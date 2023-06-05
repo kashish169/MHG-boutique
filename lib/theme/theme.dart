@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import '../constants/app_colors.dart';
+
+class AppTheme {
+  static ThemeData themeData = ThemeData.light().copyWith(
+    primaryColor: AppColors.primary,
+    brightness: Brightness.light,
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+      secondary: AppColors.primary,
+      primary: AppColors.primary,
+    ),
+    appBarTheme: AppBarTheme(
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
+      elevation: 0,
+      iconTheme: IconThemeData(color: AppColors.primary),
+      centerTitle: true,
+    ),
+    pageTransitionsTheme: const PageTransitionsTheme(
+      builders: <TargetPlatform, PageTransitionsBuilder>{
+        TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      },
+    ),
+    textTheme: TextTheme(
+      displayLarge: TextStyle(
+        fontSize: 28,
+        color: AppColors.label,
+        fontWeight: FontWeight.w600,
+      ),
+      displayMedium: TextStyle(
+        fontSize: 20,
+        color: AppColors.label,
+        fontWeight: FontWeight.w600,
+      ),
+      displaySmall: TextStyle(
+        fontSize: 14,
+        color: AppColors.label,
+        fontWeight: FontWeight.w400,
+      ),
+    ),
+  );
+}
