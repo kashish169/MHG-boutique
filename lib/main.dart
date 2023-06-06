@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:mhg/features/splash/view/splash_view.dart';
 import 'package:mhg/theme/theme.dart';
 import 'core/routes/app_routes.dart';
 
@@ -16,6 +17,7 @@ class MHG extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.themeData,
       getPages: AppRoutes.getRoutes,
+      initialRoute: SplashView.routeName,
     );
   }
 }
