@@ -1,0 +1,12 @@
+import 'package:get/get.dart';
+import 'package:mhg/features/auth/sign_up/controller/sign_up_controller.dart';
+
+
+class SignUpBinding extends Bindings {
+  @override
+  void dependencies() {
+    //Get.put(SignUpRepoImpl());
+    Get.put(SignUpController());
+
+  }
+}

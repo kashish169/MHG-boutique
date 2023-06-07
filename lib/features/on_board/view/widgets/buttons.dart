@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/auth/signin/view/pages/sign_in_page.dart';
 import 'package:mhg/widgets/primary_button.dart';
 
 class Buttons extends StatelessWidget {
@@ -20,7 +22,9 @@ class Buttons extends StatelessWidget {
                 height: 40,
                 radius: 10,
                 color: AppColors.primary.withOpacity(.1),
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(SignInPage.routeName);
+                },
               )),
           const SizedBox(
             width: 10,
