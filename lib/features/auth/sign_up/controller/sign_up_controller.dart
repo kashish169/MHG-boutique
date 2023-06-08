@@ -21,13 +21,14 @@ class SignUpController extends GetxController {
   String countryCode = '+971';
   String countryFlag = AppAssets.flag;
   final formKey = GlobalKey<FormState>();
+  final formKey2 = GlobalKey<FormState>();
   final TextEditingController name = TextEditingController();
   final TextEditingController email = TextEditingController();
   final TextEditingController phone = TextEditingController();
   final TextEditingController password = TextEditingController();
   bool isVisable = true;
   Future<void> signUp() async {
-    var formState = formKey.currentState;
+    var formState = formKey2.currentState;
     if (formState!.validate()) {
       isLoading = true;
       update();
