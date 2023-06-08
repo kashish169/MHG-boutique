@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "137515787512",
+    "project_id": "mhgroup-a80c4",
+    "storage_bucket": "mhgroup-a80c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137515787512:android:4daadc4360d3f336c7c70d",
+        "android_client_info": {
+          "package_name": "com.starttech.mhg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137515787512-j0oeal85kupspn7s0bq36d51mhr7sd4g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.starttech.mhg",
+            "certificate_hash": "69f0da888449684166b20f2634deb3d9a12d6e36"
+          }
+        },
+        {
+          "client_id": "137515787512-lgbfq62qouca2srse9qkgb8d3v2gbjqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkoMPINEzct4mQZ7SuTzYt3PMtPLIbUGw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137515787512-lgbfq62qouca2srse9qkgb8d3v2gbjqg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "137515787512-ueopa7a604j15amgrqailf9jngt0svlc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.starttech.mhg"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
