@@ -114,7 +114,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                   children: [
                     Expanded(
                         flex: 7,
-                        child: GestureDetector(
+                        child: InkWell(
                             onTap: () {
                               controller.openselcetCountry();
                             },
@@ -152,7 +152,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                     ),
                     Expanded(
                         flex: 4,
-                        child: GestureDetector(
+                        child: InkWell(
                           onTap: () {
                             controller.openselcetLangage();
                           },
