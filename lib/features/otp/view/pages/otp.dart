@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/features/otp/controller/otp_controller.dart';
@@ -15,7 +16,9 @@ class OtpView extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+              },
               icon: SizedBox(
                 height: 25,
                 width: 25,

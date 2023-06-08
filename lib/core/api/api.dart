@@ -10,4 +10,5 @@ class Api {
     'Content-Type': 'application/json',
     'Authorization': "Bearer ${App.token}",
   };
+  static String signUp = "/api/v1/users/auth/register";
 }
