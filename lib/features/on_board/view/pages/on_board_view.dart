@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
@@ -30,167 +31,102 @@ class _OnBoardViewState extends State<OnBoardView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: GetBuilder<OnboardController>(
-      builder: (controller) => Stack(
-        children: [
-          SizedBox(
-            height: double.infinity,
-            child: PageViewer(controller: controller),
-          ),
-          Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: AppDimensions.screenHeight(context) / 2,
-                ),
-                Text(
-                  controller.textOne[controller.activeIndex.value],
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .displayMedium
-                      ?.copyWith(color: AppColors.white, fontSize: 16),
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                Text(
-                  controller.textTwo[controller.activeIndex.value],
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      color: AppColors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400),
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                SmoothPageIndicator(
-                  controller: controller.pageController,
-                  count: controller.imageUrl.length,
-                  axisDirection: Axis.horizontal,
-                  onDotClicked: (v) {},
-                  effect: JumpingDotEffect(
-                    paintStyle: PaintingStyle.stroke,
-                    activeDotColor: AppColors.white,
-                    dotColor: AppColors.white,
-                    dotWidth: 20,
-                    dotHeight: 5,
-                    jumpScale: 0.8,
-                    spacing: 10,
-                    verticalOffset: 7,
-                  ),
-                ),
-                Expanded(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    return Obx(() => Scaffold(
+          body: Stack(
+            children: [
+              SizedBox(
+                height: double.infinity,
+                child: PageViewer(controller: controller),
+              ),
+              Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Buttons(),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: Text(
-                        'Change location & language',
-                        textAlign: TextAlign.start,
-                        style: Theme.of(context)
-                            .textTheme
-                            .displayMedium
-                            ?.copyWith(
-                                color: AppColors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400),
-                      ),
+                    SizedBox(
+                      height: AppDimensions.screenHeight(context) / 1.9,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: Divider(
-                        thickness: 2,
-                        color: AppColors.white.withOpacity(.5),
-                      ),
+                    Text(
+                      controller.textOne[controller.activeIndex.value],
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayMedium
+                          ?.copyWith(color: AppColors.white, fontSize: 14),
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                            flex: 7,
-                            child: GestureDetector(
-                                onTap: () {
-                                  controller.openselcetCountry();
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      controller.selectedCountry,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .displaySmall!
-                                          .copyWith(color: AppColors.white),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 25, left: 40),
-                                      child: Icon(
-                                        Icons.keyboard_arrow_up_sharp,
-                                        color: AppColors.white,
-                                      ),
-                                    ),
-                                  ],
-                                ))),
-                        SizedBox(
-                            height: 30,
-                            child: VerticalDivider(
-                              thickness: 1,
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Text(
+                      controller.textTwo[controller.activeIndex.value],
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayMedium
+                          ?.copyWith(
                               color: AppColors.white,
-                              width: 5,
-                            )),
-                        const SizedBox(
-                          width: 15,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400),
+                    ),
+                    const SizedBox(
+                      height: 27,
+                    ),
+                    SmoothPageIndicator(
+                      controller: controller.pageController,
+                      count: controller.imageUrl.length,
+                      axisDirection: Axis.horizontal,
+                      onDotClicked: (v) {},
+                      effect: JumpingDotEffect(
+                        paintStyle: PaintingStyle.stroke,
+                        activeDotColor: AppColors.white,
+                        dotColor: AppColors.white,
+                        dotWidth: 15,
+                        dotHeight: 4,
+                        jumpScale: 0.9,
+                        spacing: 10,
+                      ),
+                    ),
+                    Expanded(
+                        child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Buttons(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 40),
+                          child: Text(
+                            'Change location & language',
+                            textAlign: TextAlign.start,
+                            style: Theme.of(context)
+                                .textTheme
+                                .displayMedium
+                                ?.copyWith(
+                                    color: AppColors.white,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400),
+                          ),
                         ),
-                        Expanded(
-                            flex: 4,
-                            child: GestureDetector(
-                              onTap: () {
-                                controller.openselcetLangage();
-                              },
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 10),
-                                    child: Image.asset(
-                                      AppAssets.global,
-                                      height: 20,
-                                    ),
-                                  ),
-                                  Text(
-                                    controller.selectedLang,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displaySmall!
-                                        .copyWith(color: AppColors.white),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 20),
-                                    child: Icon(
-                                      Icons.keyboard_arrow_up_sharp,
-                                      color: AppColors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ))
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5),
+                          child: Divider(
+                            thickness: 2,
+                            color: AppColors.white.withOpacity(.5),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                flex: 2,
+                                child: CountryCodePicker(
+                                  textStyle: TextStyle(color: AppColors.white),
+                                ))
+                          ],
+                        )
                       ],
-                    )
+                    ))
                   ],
-                ))
-              ],
-            ),
-          )
-        ],
-      ),
-    ));
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }

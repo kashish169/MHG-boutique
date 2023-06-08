@@ -44,8 +44,8 @@ class CustomFormField extends StatelessWidget {
         obscureText: obscure,
         keyboardType: inputType,
         controller: controller,
-        style: Theme.of(context).textTheme.headline3!.copyWith(
-              color: AppColors.grey,
+        style: Theme.of(context).textTheme.displaySmall!.copyWith(
+              color: AppColors.label,
             ),
         decoration: InputDecoration(
           suffixIconConstraints: const BoxConstraints(
@@ -56,7 +56,7 @@ class CustomFormField extends StatelessWidget {
           filled: true,
           hintStyle: Theme.of(context)
               .textTheme
-              .headline3!
+              .displaySmall!
               .copyWith(color: AppColors.grey),
           hintText: title,
           fillColor:const Color(0XFFF0F0F0),
