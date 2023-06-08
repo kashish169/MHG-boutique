@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/auth/sign_up/controller/sign_up_controller.dart';
-import 'package:mhg/features/auth/signin/view/widget/country_button_pick.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
 import 'package:mhg/widgets/primary_button.dart';
-import 'package:mhg/widgets/retry_button.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../../constants/app_assets.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../../core/helper/app_helper.dart';
 import '../../../../../widgets/loading_widget.dart';
 import '../widget/sign_up_country_picker.dart';
 
@@ -64,22 +63,29 @@ class VerificationPage extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 20),
-                                child: CustomFormField(
-                                  title: ' ',
-                                  suffixIcon: IconButton(
-                                    onPressed: () {
-                                      controller.phone.clear();
-                                    },
-                                    icon: Image.asset(
-                                      AppAssets.close,
-                                      height: 22,
+                                child: Form(
+                                  key: controller.formKey,
+                                  child: CustomFormField(
+                                    title: ' ',
+                                    suffixIcon: IconButton(
+                                      onPressed: () {
+                                        controller.phone.clear();
+                                      },
+                                      icon: Image.asset(
+                                        AppAssets.close,
+                                        height: 22,
+                                      ),
                                     ),
+                                    prefixWidget:
+                                        const RegisetrCountryButtonPick(),
+                                    inputType: TextInputType.number,
+                                    obscure: false,
+                                    controller: controller.phone,
+                                    validator: (val) {
+                                      return AppHelper.validation(
+                                          val!, 9, 9, 'Number');
+                                    },
                                   ),
-                                  prefixWidget:
-                                      const RegisetrCountryButtonPick(),
-                                  inputType: TextInputType.number,
-                                  obscure: false,
-                                  controller: controller.phone,
                                 ),
                               ),
                               Padding(

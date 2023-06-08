@@ -4,7 +4,6 @@ import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/auth/sign_up/controller/sign_up_controller.dart';
 import 'package:mhg/features/auth/sign_up/view/pages/verfication_page.dart';
-import 'package:mhg/features/auth/signin/view/widget/country_button_pick.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -12,6 +11,8 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../../constants/app_assets.dart';
 
 import 'package:get/get.dart';
+
+import '../widget/sign_up_country_picker.dart';
 
 class SignUpPage extends StatelessWidget {
   static String routeName = '/signUp';
@@ -63,8 +64,7 @@ class SignUpPage extends StatelessWidget {
                               inputType: TextInputType.text,
                               obscure: false,
                               validator: (val) {
-                                return AppHelper.validation(
-                                    val!, 5, 50, 'userName');
+                                return AppHelper.validation(val!, 1, 500, '');
                               },
                             ),
                           ),
@@ -85,7 +85,7 @@ class SignUpPage extends StatelessWidget {
                               obscure: false,
                               validator: (val) {
                                 return AppHelper.validation(
-                                    val!, 12, 50, 'emial');
+                                    val!, 1, 500, 'emial');
                               },
                             ),
                           ),
@@ -94,13 +94,6 @@ class SignUpPage extends StatelessWidget {
                                 vertical: 10, horizontal: 20),
                             child: CustomFormField(
                               title: 'Phone Number',
-                              controller: controller.phone,
-                              inputType: TextInputType.number,
-                              obscure: false,
-                              validator: (val) {
-                                return AppHelper.validation(
-                                    val!, 9, 9, 'Number');
-                              },
                               suffixIcon: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 15),
@@ -108,6 +101,14 @@ class SignUpPage extends StatelessWidget {
                                     AppAssets.phone,
                                     height: 18,
                                   )),
+                              prefixWidget: const RegisetrCountryButtonPick(),
+                              inputType: TextInputType.number,
+                              obscure: false,
+                              controller: controller.phone,
+                              validator: (val) {
+                                return AppHelper.validation(
+                                    val!, 9, 9, 'Number');
+                              },
                             ),
                           ),
                           Padding(

@@ -52,7 +52,7 @@ class SignUpController extends GetxController {
         if (success == true) {
           Get.toNamed('/otp');
         } else {
-          showSnackBar('The email has already been taken');
+          showSnackBar(message);
         }
       });
     }
