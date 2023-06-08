@@ -42,8 +42,10 @@ class _OnBoardViewState extends State<OnBoardView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  height: AppDimensions.screenHeight(context) / 2,
+                const Expanded(
+                  child: SizedBox(
+                    
+                  ),
                 ),
                 Text(
                   controller.textOne[controller.activeIndex.value],
@@ -51,7 +53,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                   style: Theme.of(context)
                       .textTheme
                       .displayMedium
-                      ?.copyWith(color: AppColors.white, fontSize: 16),
+                      ?.copyWith(color: AppColors.white, fontSize: 15),
                 ),
                 const SizedBox(
                   height: 25,
@@ -61,7 +63,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
                       color: AppColors.white,
-                      fontSize: 16,
+                      fontSize: 15,
                       fontWeight: FontWeight.w400),
                 ),
                 const SizedBox(
@@ -76,116 +78,118 @@ class _OnBoardViewState extends State<OnBoardView> {
                     paintStyle: PaintingStyle.stroke,
                     activeDotColor: AppColors.white,
                     dotColor: AppColors.white,
-                    dotWidth: 20,
-                    dotHeight: 5,
+                    dotWidth: 17,
+                    dotHeight: 4,
                     jumpScale: 0.8,
                     spacing: 10,
-                    verticalOffset: 7,
+                    verticalOffset: 0,
                   ),
                 ),
-                Expanded(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                const Buttons(),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 27),
+                    child: Text(
+                      'Change location & language',
+                      textAlign: TextAlign.start,
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayMedium
+                          ?.copyWith(
+                          color: AppColors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Divider(
+                    thickness: 2,
+                    color: AppColors.white.withOpacity(.5),
+                  ),
+                ),
+                Row(
                   children: [
-                    const Buttons(),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: Text(
-                        'Change location & language',
-                        textAlign: TextAlign.start,
-                        style: Theme.of(context)
-                            .textTheme
-                            .displayMedium
-                            ?.copyWith(
-                                color: AppColors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400),
-                      ),
+                    Expanded(
+                        flex: 7,
+                        child: GestureDetector(
+                            onTap: () {
+                              controller.openselcetCountry();
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                const Expanded(child: SizedBox()),
+                                Text(
+                                  controller.selectedCountry,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall!
+                                      .copyWith(color: AppColors.white),
+                                ),
+                                const SizedBox(width: 20,),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 20),
+                                  child: Icon(
+                                    Icons.keyboard_arrow_up_sharp,
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                              ],
+                            ))),
+                    SizedBox(
+                        height: 30,
+                        child: VerticalDivider(
+                          thickness: 1,
+                          color: AppColors.white,
+                          width: 5,
+                        )),
+                    const SizedBox(
+                      width: 15,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: Divider(
-                        thickness: 2,
-                        color: AppColors.white.withOpacity(.5),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                            flex: 7,
-                            child: GestureDetector(
-                                onTap: () {
-                                  controller.openselcetCountry();
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      controller.selectedCountry,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .displaySmall!
-                                          .copyWith(color: AppColors.white),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 25, left: 40),
-                                      child: Icon(
-                                        Icons.keyboard_arrow_up_sharp,
-                                        color: AppColors.white,
-                                      ),
-                                    ),
-                                  ],
-                                ))),
-                        SizedBox(
-                            height: 30,
-                            child: VerticalDivider(
-                              thickness: 1,
-                              color: AppColors.white,
-                              width: 5,
-                            )),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Expanded(
-                            flex: 4,
-                            child: GestureDetector(
-                              onTap: () {
-                                controller.openselcetLangage();
-                              },
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 10),
-                                    child: Image.asset(
-                                      AppAssets.global,
-                                      height: 20,
-                                    ),
-                                  ),
-                                  Text(
-                                    controller.selectedLang,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displaySmall!
-                                        .copyWith(color: AppColors.white),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 20),
-                                    child: Icon(
-                                      Icons.keyboard_arrow_up_sharp,
-                                      color: AppColors.white,
-                                    ),
-                                  ),
-                                ],
+                    Expanded(
+                        flex: 4,
+                        child: GestureDetector(
+                          onTap: () {
+                            controller.openselcetLangage();
+                          },
+                          child: Row(
+                            mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 15),
+                                child: Image.asset(
+                                  AppAssets.global,
+                                  height: 20,
+                                ),
                               ),
-                            ))
-                      ],
-                    )
+                              FittedBox(child: Text(
+                                controller.selectedLang,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall!
+                                    .copyWith(color: AppColors.white),
+                              ),),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 15),
+                                  child: Icon(
+                                    Icons.keyboard_arrow_up_sharp,
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ))
                   ],
-                ))
+                ),
+                const SizedBox(height: 15,)
               ],
             ),
           )
