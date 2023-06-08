@@ -112,27 +112,31 @@ class _OnBoardViewState extends State<OnBoardView> {
                     Row(
                       children: [
                         Expanded(
-                            flex: 2,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  controller.selectedCountry,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall!
-                                      .copyWith(color: AppColors.white),
-                                ),
-                                IconButton(
-                                    onPressed: () {
-                                      controller.openselcetCountry();
-                                    },
-                                    icon: Icon(
-                                      Icons.keyboard_arrow_up_sharp,
-                                      color: AppColors.white,
-                                    )),
-                              ],
-                            )),
+                            flex: 7,
+                            child: GestureDetector(
+                                onTap: () {
+                                  controller.openselcetCountry();
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      controller.selectedCountry,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displaySmall!
+                                          .copyWith(color: AppColors.white),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 25, left: 40),
+                                      child: Icon(
+                                        Icons.keyboard_arrow_up_sharp,
+                                        color: AppColors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ))),
                         SizedBox(
                             height: 30,
                             child: VerticalDivider(
@@ -143,31 +147,41 @@ class _OnBoardViewState extends State<OnBoardView> {
                         const SizedBox(
                           width: 15,
                         ),
-                        Image.asset(
-                          AppAssets.global,
-                          height: 20,
-                        ),
                         Expanded(
-                            child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              controller.selectedLang,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall!
-                                  .copyWith(color: AppColors.white),
-                            ),
-                            IconButton(
-                                onPressed: () {
-                                  controller.openselcetLangage();
-                                },
-                                icon: Icon(
-                                  Icons.keyboard_arrow_up_sharp,
-                                  color: AppColors.white,
-                                )),
-                          ],
-                        ))
+                            flex: 4,
+                            child: GestureDetector(
+                              onTap: () {
+                                controller.openselcetLangage();
+                              },
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: Image.asset(
+                                      AppAssets.global,
+                                      height: 20,
+                                    ),
+                                  ),
+                                  Text(
+                                    controller.selectedLang,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall!
+                                        .copyWith(color: AppColors.white),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 20),
+                                    child: Icon(
+                                      Icons.keyboard_arrow_up_sharp,
+                                      color: AppColors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ))
                       ],
                     )
                   ],
