@@ -11,6 +11,7 @@ import 'package:mhg/features/auth/signin/model/response_model.dart';
 import 'package:mhg/features/auth/signin/model/sign_in_model.dart';
 import 'package:mhg/features/auth/signin/repository/sign_in_repo.dart';
 import 'package:mhg/features/auth/signin/repository/sign_in_repo_Imp.dart';
+import 'package:mhg/features/otp/view/pages/otp.dart';
 import 'package:mhg/widgets/show_snakBar.dart';
 
 class SignInController extends GetxController {
@@ -50,7 +51,7 @@ class SignInController extends GetxController {
     isLoading(true);
 
     var body = signInModelToJson(SignInModel(
-      phone: countryCode + phone.text.trim().trim(),
+      phone: countryCode+phone.text,
       fbToken: App.fcmToken,
     ));
 
@@ -81,7 +82,7 @@ class SignInController extends GetxController {
 
           log("token_ $token");
 
-          //Get.offAllNamed('/home');
+          Get.toNamed(OtpView.routeName);
         } else if (statusCode == 400) {
           showSnackBar(r.object['message']);
         } else {

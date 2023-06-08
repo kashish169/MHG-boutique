@@ -7,6 +7,7 @@ import '../widget/bottom_part.dart';
 import '../widget/top_part.dart';
 
 class OtpView extends StatelessWidget {
+  static String routeName='/otp';
   const OtpView({super.key});
 
   @override

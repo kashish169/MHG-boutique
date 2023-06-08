@@ -19,7 +19,10 @@ class CountryButtonPick extends StatelessWidget {
       onPressed: () {
         showCountries(
           context,
-          (p0) {},
+          (p0) {
+            controller.countryCode.value="+${p0.phoneCode}";
+            controller.countryFlag.value=p0.flagEmoji;
+          },
         );
       },
       child: SizedBox(
