@@ -19,9 +19,7 @@ class CountryButtonPick extends StatelessWidget {
       onPressed: () {
         showCountries(
           context,
-          (p0) {
-            controller.selectCountry(p0);
-          },
+          (p0) {},
         );
       },
       child: SizedBox(
