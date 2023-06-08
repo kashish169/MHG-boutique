@@ -38,14 +38,12 @@ class _OnBoardViewState extends State<OnBoardView> {
             height: double.infinity,
             child: PageViewer(controller: controller),
           ),
-          Center(
+          SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Expanded(
-                  child: SizedBox(
-                    
-                  ),
+                  child: SizedBox(),
                 ),
                 Text(
                   controller.textOne[controller.activeIndex.value],
@@ -97,9 +95,9 @@ class _OnBoardViewState extends State<OnBoardView> {
                           .textTheme
                           .displayMedium
                           ?.copyWith(
-                          color: AppColors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400),
+                              color: AppColors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400),
                     ),
                   ),
                 ),
@@ -129,10 +127,11 @@ class _OnBoardViewState extends State<OnBoardView> {
                                       .displaySmall!
                                       .copyWith(color: AppColors.white),
                                 ),
-                                const SizedBox(width: 20,),
+                                const SizedBox(
+                                  width: 20,
+                                ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 20),
+                                  padding: const EdgeInsets.only(right: 20),
                                   child: Icon(
                                     Icons.keyboard_arrow_up_sharp,
                                     color: AppColors.white,
@@ -157,8 +156,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                             controller.openselcetLangage();
                           },
                           child: Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right: 15),
@@ -167,13 +165,15 @@ class _OnBoardViewState extends State<OnBoardView> {
                                   height: 20,
                                 ),
                               ),
-                              FittedBox(child: Text(
-                                controller.selectedLang,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displaySmall!
-                                    .copyWith(color: AppColors.white),
-                              ),),
+                              FittedBox(
+                                child: Text(
+                                  controller.selectedLang,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall!
+                                      .copyWith(color: AppColors.white),
+                                ),
+                              ),
                               Expanded(
                                 child: Padding(
                                   padding: const EdgeInsets.only(
@@ -189,7 +189,9 @@ class _OnBoardViewState extends State<OnBoardView> {
                         ))
                   ],
                 ),
-                const SizedBox(height: 15,)
+                const SizedBox(
+                  height: 15,
+                )
               ],
             ),
           )

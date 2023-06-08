@@ -44,6 +44,7 @@ dependencies:
   country_code_picker: ^3.0.0
   modal_progress_hud_nsn: ^0.3.0
   pinput: ^2.2.31
+  fluttertoast: ^8.1.2
   firebase_core: ^2.13.1
   firebase_messaging: ^14.6.2
 
@@ -74,7 +75,6 @@ flutter:
     - .env
     - assets/images/
     - assets/icons/
-    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

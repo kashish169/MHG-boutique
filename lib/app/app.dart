@@ -9,7 +9,7 @@ class App {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle.light,
+      SystemUiOverlayStyle.dark,
     );
     await dotenv.load(fileName: ".env");
   }
