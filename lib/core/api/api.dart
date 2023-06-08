@@ -10,4 +10,5 @@ class Api {
     'Content-Type': 'application/json',
     'Authorization': "Bearer ${App.token}",
   };
+  static String login = "/v1/users/auth/login-with-phone";
 }
