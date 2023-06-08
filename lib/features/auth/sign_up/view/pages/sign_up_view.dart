@@ -135,7 +135,7 @@ class SignUpPage extends StatelessWidget {
 
                             child: TextButton(
                               onPressed: () {
-
+                                   Get.back();
                                 //  Get.toNamed('/sign_up');
                               },
                               child: Text(

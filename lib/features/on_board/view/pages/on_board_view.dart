@@ -46,7 +46,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: AppDimensions.screenHeight(context) / 2,
+                    height: AppDimensions.screenHeight(context) / 1.9,
                   ),
                   Text(
                     controller.textOne[controller.activeIndex.value],
@@ -54,7 +54,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                     style: Theme.of(context)
                         .textTheme
                         .displayMedium
-                        ?.copyWith(color: AppColors.white, fontSize: 16),
+                        ?.copyWith(color: AppColors.white, fontSize: 14),
                   ),
                   const SizedBox(
                     height: 25,
@@ -64,11 +64,11 @@ class _OnBoardViewState extends State<OnBoardView> {
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.displayMedium?.copyWith(
                         color: AppColors.white,
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.w400),
                   ),
                   const SizedBox(
-                    height: 25,
+                    height: 27,
                   ),
                   SmoothPageIndicator(
                     controller: controller.pageController,
@@ -79,11 +79,11 @@ class _OnBoardViewState extends State<OnBoardView> {
                       paintStyle: PaintingStyle.stroke,
                       activeDotColor: AppColors.white,
                       dotColor: AppColors.white,
-                      dotWidth: 20,
-                      dotHeight: 5,
-                      jumpScale: 0.8,
+                      dotWidth: 15,
+                      dotHeight: 4,
+                      jumpScale: 0.9,
                       spacing: 10,
-                      verticalOffset: 7,
+
                     ),
                   ),
                   Expanded(
@@ -92,7 +92,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                         children: [
                           const Buttons(),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            padding: const EdgeInsets.symmetric(horizontal: 40),
                             child: Text(
                               'Change location & language',
                               textAlign: TextAlign.start,
@@ -101,7 +101,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                                   .displayMedium
                                   ?.copyWith(
                                   color: AppColors.white,
-                                  fontSize: 16,
+                                  fontSize: 13,
                                   fontWeight: FontWeight.w400),
                             ),
                           ),

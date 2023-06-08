@@ -12,7 +12,7 @@ class Buttons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: Row(
         children: [
           Expanded(
@@ -21,7 +21,7 @@ class Buttons extends StatelessWidget {
                 title: 'login',
                 height: 40,
                 radius: 10,
-                color: AppColors.primary.withOpacity(.1),
+                color: Colors.black.withOpacity(.8),
                 onTap: () {
                   Get.toNamed(SignInPage.routeName);
                 },
