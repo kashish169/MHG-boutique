@@ -8,4 +8,6 @@ class AppAssets {
   static String message = "assets/icons/message.png";
   static String phone = "assets/icons/phone.png";
   static String person = "assets/icons/person.png";
+  static const backgroungimage = 'assets/images/01c – 6.jpg';
+  static String arrowBack = "assets/icons/Path 1.png";
 }
