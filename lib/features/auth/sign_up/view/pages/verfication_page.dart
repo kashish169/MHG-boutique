@@ -64,7 +64,7 @@ class VerificationPage extends StatelessWidget {
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 20),
                                 child: Form(
-                                  key: controller.formKey,
+                                  key: controller.formKey2,
                                   child: CustomFormField(
                                     title: ' ',
                                     suffixIcon: IconButton(

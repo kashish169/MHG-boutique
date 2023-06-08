@@ -9,22 +9,22 @@ class AppHelper {
     }
     if (type == 'emial') {
       if (!GetUtils.isEmail(value)) {
-        return 'Email not valid';
+        return 'Email Not valid';
       }
     }
     if (type == 'Number') {
       if (!GetUtils.isPhoneNumber(value)) {
-        return 'Phone number is invalid';
+        return 'Phone Number Is Invalid';
       }
     }
     if (value.trim().isEmpty) {
-      return "can't be empty";
+      return "Can't Be Empty";
     }
     if (value.trim().length < min) {
-      return "can't be less than $min";
+      return "Can't Be Less Than $min";
     }
     if (value.trim().length > max) {
-      return "can't be more than $max";
+      return "Can't Be More Than $max";
     }
   }
 
