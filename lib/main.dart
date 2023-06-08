@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:mhg/features/splash/view/splash_view.dart';
 import 'package:mhg/theme/theme.dart';
+import 'app/app.dart';
 import 'core/routes/app_routes.dart';
 
-void main() {
+void main() async {
   runApp(const MHG());
+  await App.initSettings();
 }
 
 class MHG extends StatelessWidget {

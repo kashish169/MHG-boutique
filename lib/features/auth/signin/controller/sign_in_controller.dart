@@ -4,12 +4,11 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_assets.dart';
 
-
 class SignInController extends GetxController {
   // late SignInRepo signInRepo;
 
   SignInController() {
-  //  signInRepo = Get.find<SignInRepoImpl>();
+    //  signInRepo = Get.find<SignInRepoImpl>();
   }
 
   final TextEditingController phone = TextEditingController();
@@ -27,5 +26,8 @@ class SignInController extends GetxController {
     update();
   }
 
-
+  selectCountry(country) {
+    countryFlag.value = country.flagEmoji;
+    countryCode.value = "+${country.phoneCode}";
+  }
 }

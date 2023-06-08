@@ -1,12 +1,7 @@
-import 'dart:developer';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
 
-
-showCountries(BuildContext context) {
-  final controller = Get.find<SignInController>();
+showCountries(BuildContext context, void Function(Country) onSelect) {
   return showCountryPicker(
     context: context,
     countryListTheme: CountryListThemeData(
@@ -31,10 +26,6 @@ showCountries(BuildContext context) {
       ),
     ),
     showPhoneCode: true,
-    onSelect: (country) {
-      controller.countryFlag.value = country.flagEmoji;
-      controller.countryCode.value = "+${country.phoneCode}";
-      log(country.flagEmoji);
-    },
+    onSelect: onSelect,
   );
 }
