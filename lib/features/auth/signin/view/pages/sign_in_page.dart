@@ -19,78 +19,95 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.white,
       body: GetX<SignInController>(
         builder: (controller) {
-          return ModalProgressHUD(
-              inAsyncCall: controller.isLoading.value,
-              child: Column(
+          return Form(
+            key: controller.formKey,
+            child: ModalProgressHUD(
+                inAsyncCall: controller.isLoading.value,
+                child: Column(
 
-                children: [
-                  SizedBox(
-                    height: AppDimensions.screenHeight(context) / 10,
-                  ),
-                  Text(
-                    "Login",
-                    style: Theme.of(context)
-                        .textTheme
-                        .displayMedium
-                        ?.copyWith(color: Colors.black,
-                    fontSize: 22),
-                  ),
-                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: AppDimensions.screenHeight(context) / 20,horizontal: 20),
-                    child: CustomFormField(
-                      title: ' ',
-                      suffixIcon: IconButton(
-                        onPressed: (){},
-                        icon: Image.asset(AppAssets.close,
-                          height: 22,),
-                      ),
-                      prefixWidget: const CountryButtonPick(),
-                      inputType: TextInputType.number,
-                      obscure: false,
+                  children: [
+                    SizedBox(
+                      height: AppDimensions.screenHeight(context) / 10,
                     ),
-                  ),
-                  Padding(padding: const EdgeInsets.symmetric(vertical: 25,horizontal: 25,
-                  ),
-                  child: PrimaryButton(title: 'Login',
-                    height: 50,
-                    width: double.infinity,
-                    color: const Color(0XFF232323),
-
-                    onTap: () {  },),),
-
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Don't have an account?",
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall?.copyWith(
-                          color: const Color(0XFF666666)
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-
-                        Get.toNamed(SignUpPage.routeName);
+                    Text(
+                      "Login",
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayMedium
+                          ?.copyWith(color: Colors.black,
+                      fontSize: 22),
+                    ),
+                     Padding(
+                      padding: EdgeInsets.symmetric(vertical: AppDimensions.screenHeight(context) / 20,horizontal: 20),
+                      child: CustomFormField(
+                        title: ' ',
+                        validator: (value){
+                          return controller.validatePhone(value!);
                         },
-                        child: Text(
-                          "Sign Up",
+                        controller: controller.phone,
+                        suffixIcon: IconButton(
+                          onPressed: (){
+                            controller.phone.clear();
+                          },
+                          icon: Image.asset(AppAssets.close,
+                            height: 22,),
+                        ),
+                        prefixWidget: const CountryButtonPick(),
+                        inputType: TextInputType.number,
+                        obscure: false,
+                      ),
+                    ),
+                    Padding(padding: const EdgeInsets.symmetric(vertical: 25,horizontal: 25,
+                    ),
+                    child: PrimaryButton(title: 'Login',
+                      height: 50,
+                      width: double.infinity,
+                      color: const Color(0XFF232323),
+
+                      onTap: () {if (controller.formKey.currentState!
+                          .validate()) {
+                        FocusManager.instance.primaryFocus
+                            ?.unfocus();
+                        controller.signIn();
+                      }
+
+                      },),),
+
+                    const SizedBox(height: 20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don't have an account?",
                           style: Theme.of(context)
                               .textTheme
-                              .displaySmall
-                              ?.copyWith(color: Colors.red,
-                              ),
+                              .displaySmall?.copyWith(
+                            color: const Color(0XFF666666)
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ));
+                        TextButton(
+                          onPressed: () {
+
+                          Get.toNamed(SignUpPage.routeName);
+                          },
+                          child: Text(
+                            "Sign Up",
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(color: Colors.red,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )),
+          );
         },
       ),
     );

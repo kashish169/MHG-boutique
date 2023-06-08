@@ -7,6 +7,7 @@ import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/core/models/api_response.dart';
 import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
+import 'package:mhg/features/auth/signin/model/response_model.dart';
 import 'package:mhg/features/auth/signin/model/sign_in_model.dart';
 import 'package:mhg/features/auth/signin/repository/sign_in_repo.dart';
 import 'package:mhg/features/auth/signin/repository/sign_in_repo_Imp.dart';
@@ -14,6 +15,7 @@ import 'package:mhg/widgets/show_snakBar.dart';
 
 class SignInController extends GetxController {
   late SignInRepo signInRepo;
+  late LoginModel loginModel;
 
   SignInController() {
     signInRepo = Get.find<SignInRepoImpl>();
@@ -49,7 +51,7 @@ class SignInController extends GetxController {
 
     var body = signInModelToJson(SignInModel(
       phone: countryCode + phone.text.trim().trim(),
-      fbToken: '',
+      fbToken: App.fcmToken,
     ));
 
     Either<Failure, ApiResponse> results = await signInRepo.signIn(
@@ -63,11 +65,12 @@ class SignInController extends GetxController {
       (r) async {
         log("${r.object}");
 
-        int statusCode = r.statusCode;
+        int statusCode = r.object["code"];
 
         if (statusCode == 200) {
-          log(r.object);
-          var token = r.object['token'];
+          log(r.object.toString());
+          loginModel=LoginModel.fromJson(r.object['data']);
+          var token =loginModel.token;
 
           await StoragePref.setString(
             key: "token",
@@ -76,7 +79,7 @@ class SignInController extends GetxController {
 
           App.token = token;
 
-          log(token);
+          log("token_ $token");
 
           //Get.offAllNamed('/home');
         } else if (statusCode == 400) {
