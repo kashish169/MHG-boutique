@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:country_picker/country_picker.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,17 +28,20 @@ class SignUpController extends GetxController {
   final TextEditingController phone = TextEditingController();
   final TextEditingController password = TextEditingController();
   bool isVisable = true;
+  String accountType = 'normal';
+
   Future<void> signUp() async {
     var formState = formKey2.currentState;
     if (formState!.validate()) {
       isLoading = true;
       update();
       var body = signUpModelToJson(SignUpModel(
-          email: email.text.trim(),
-          userName: name.text.trim(),
-          phoneNumber: countryCode + phone.text.trim(),
-          password: password.text.trim(),
-          accountType: 'normal'));
+        email: email.text.trim(),
+        userName: name.text.trim(),
+        phoneNumber: countryCode + phone.text.trim(),
+        password: password.text.trim(),
+        accountType: accountType,
+      ));
       Either<Failure, ApiResponse> results = await signUpRepo.signUp(
         body: body,
       );
@@ -64,7 +68,7 @@ class SignUpController extends GetxController {
     update();
   }
 
-  selcteCountry(country) {
+  selcteCountry(Country country) {
     countryFlag = country.flagEmoji;
     countryCode = "+${country.phoneCode}";
     log(country.flagEmoji);

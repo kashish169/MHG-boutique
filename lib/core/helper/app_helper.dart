@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class AppHelper {
@@ -7,18 +8,18 @@ class AppHelper {
         return 'Not valid';
       }
     }
-    if (type == 'emial') {
+    if (type == 'email') {
       if (!GetUtils.isEmail(value)) {
-        return 'Email Not valid';
+        return 'enter valid email';
       }
     }
     if (type == 'Number') {
       if (!GetUtils.isPhoneNumber(value)) {
-        return 'Phone Number Is Invalid';
+        return 'enter valid phone number';
       }
     }
     if (value.trim().isEmpty) {
-      return "Can't Be Empty";
+      return "required field";
     }
     if (value.trim().length < min) {
       return "Can't Be Less Than $min";
@@ -28,9 +29,13 @@ class AppHelper {
     }
   }
 
-  validatePassword(String value) {
+  static validatePassword(String value) {
     if (value.length < 8) {
       return "Password length must be at least 8 characters";
     }
+  }
+
+  static void closeKeyboard() {
+    FocusManager.instance.primaryFocus?.unfocus();
   }
 }

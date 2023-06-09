@@ -1,12 +1,14 @@
 import 'dart:async';
-
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
+import 'package:mhg/features/auth/verification/controller/verification_controller.dart';
 
 class OtpController extends GetxController {
   Timer? timer;
   int remainingSeconds = 1;
-  int times = 25;
-  startTimer(int seconds) {
+  int times = 60;
+
+  void startTimer(int seconds) {
+    times = 60;
     const duration = Duration(seconds: 1);
     remainingSeconds = seconds;
     timer = Timer.periodic(duration, (time) {
@@ -23,15 +25,16 @@ class OtpController extends GetxController {
     update();
   }
 
-  resendCode() {
+  void resendCode() {
     if (times == 0) {
-      startTimer(25);
+      startTimer(60);
+      Get.find<VerificationController>().sendOtpCode();
     }
   }
 
   @override
   void onReady() {
-    startTimer(25);
+    startTimer(60);
     super.onReady();
   }
 

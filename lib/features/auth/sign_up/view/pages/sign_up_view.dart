@@ -3,16 +3,13 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/auth/sign_up/controller/sign_up_controller.dart';
-import 'package:mhg/features/auth/sign_up/view/pages/verfication_page.dart';
+import 'package:mhg/features/auth/verification/view/pages/verfication_page.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../../../../../constants/app_assets.dart';
-
 import 'package:get/get.dart';
-
-import '../widget/sign_up_country_picker.dart';
+import '../../../widgets/country_picker_widget.dart';
 
 class SignUpPage extends StatelessWidget {
   static String routeName = '/signUp';
@@ -52,7 +49,7 @@ class SignUpPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 20),
                             child: CustomFormField(
-                              title: 'Full name ',
+                              hint: 'Full name',
                               controller: controller.name,
                               suffixIcon: Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -64,7 +61,12 @@ class SignUpPage extends StatelessWidget {
                               inputType: TextInputType.text,
                               obscure: false,
                               validator: (val) {
-                                return AppHelper.validation(val!, 1, 500, '');
+                                return AppHelper.validation(
+                                  val!,
+                                  1,
+                                  500,
+                                  '',
+                                );
                               },
                             ),
                           ),
@@ -72,20 +74,20 @@ class SignUpPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 20),
                             child: CustomFormField(
-                              title: 'Email address',
+                              hint: 'Email address',
                               controller: controller.email,
                               suffixIcon: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 15),
                                   child: Image.asset(
                                     AppAssets.message,
-                                    height: 18,
+                                    height: 14,
                                   )),
                               inputType: TextInputType.text,
                               obscure: false,
                               validator: (val) {
                                 return AppHelper.validation(
-                                    val!, 1, 500, 'emial');
+                                    val!, 1, 500, 'email');
                               },
                             ),
                           ),
@@ -93,15 +95,16 @@ class SignUpPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 20),
                             child: CustomFormField(
-                              title: 'Phone Number',
+                              hint: 'Phone number',
                               suffixIcon: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15),
-                                  child: Image.asset(
-                                    AppAssets.phone,
-                                    height: 18,
-                                  )),
-                              prefixWidget: const RegisetrCountryButtonPick(),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
+                                child: Image.asset(
+                                  AppAssets.phone,
+                                  height: 18,
+                                ),
+                              ),
+                              prefixWidget: const CountryPickerWidget(),
                               inputType: TextInputType.number,
                               obscure: false,
                               controller: controller.phone,
@@ -115,7 +118,7 @@ class SignUpPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 20),
                             child: CustomFormField(
-                              title: 'Password ',
+                              hint: 'Password',
                               controller: controller.password,
                               suffixIcon: Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -137,7 +140,7 @@ class SignUpPage extends StatelessWidget {
                               inputType: TextInputType.text,
                               obscure: controller.isVisable,
                               validator: (val) {
-                                return AppHelper.validation(val!, 5, 50, '');
+                                return AppHelper.validatePassword(val!);
                               },
                             ),
                           ),
@@ -168,18 +171,18 @@ class SignUpPage extends StatelessWidget {
                                   color: const Color(0XFF666666),
                                 ),
                           ),
-                          SizedBox(
-                            height: 30,
-                            child: TextButton(
-                              onPressed: () {
-                                Get.toNamed(SignUpPage.routeName);
-                              },
-                              child: Text("Terms & conditions",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall
-                                      ?.copyWith(height: .2)),
-                            ),
+                          MaterialButton(
+                            padding: EdgeInsets.zero,
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                            onPressed: () {
+                              Get.toNamed(SignUpPage.routeName);
+                            },
+                            child: Text("Terms & conditions",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall
+                                    ?.copyWith(height: .2)),
                           ),
                           const SizedBox(
                             height: 20,
@@ -198,7 +201,6 @@ class SignUpPage extends StatelessWidget {
                                 child: TextButton(
                                   onPressed: () {
                                     Get.back();
-                                    //  Get.toNamed('/sign_up');
                                   },
                                   child: Text(
                                     "Sign in",

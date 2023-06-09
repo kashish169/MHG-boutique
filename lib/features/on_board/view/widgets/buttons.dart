@@ -23,7 +23,7 @@ class Buttons extends StatelessWidget {
                 radius: 10,
                 color: Colors.black.withOpacity(.8),
                 onTap: () {
-                  Get.toNamed(SignInPage.routeName);
+                  Get.offAllNamed(SignInPage.routeName);
                 },
               )),
           const SizedBox(
@@ -31,12 +31,12 @@ class Buttons extends StatelessWidget {
           ),
           Expanded(
               child: PrimaryButton(
-                title: 'Not Now',
-                height: 40,
-                radius: 10,
-                color: AppColors.primary.withOpacity(.1),
-                onTap: () {},
-              )),
+            title: 'Not Now',
+            height: 40,
+            radius: 10,
+            color: AppColors.primary.withOpacity(.1),
+            onTap: () {},
+          )),
         ],
       ),
     );

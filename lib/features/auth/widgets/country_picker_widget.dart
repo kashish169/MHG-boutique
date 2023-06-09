@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/features/auth/sign_up/controller/sign_up_controller.dart';
+import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
 import 'package:mhg/features/auth/signin/view/widget/show_country_picker.dart';
 
-class RegisetrCountryButtonPick extends StatelessWidget {
-  const RegisetrCountryButtonPick({super.key});
+class CountryPickerWidget extends StatelessWidget {
+  const CountryPickerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    SignUpController controller = Get.find();
-    return GetBuilder<SignUpController>(
+    return GetBuilder<SignInController>(
       builder: (controller) => MaterialButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         padding: EdgeInsets.zero,
@@ -18,7 +17,7 @@ class RegisetrCountryButtonPick extends StatelessWidget {
           showCountries(
             context,
             (p0) {
-              controller.selcteCountry(p0);
+              controller.selectCountry(p0);
             },
           );
         },
@@ -26,23 +25,20 @@ class RegisetrCountryButtonPick extends StatelessWidget {
           width: 110,
           child: Row(
             children: [
-              const SizedBox(
-                width: 5,
-              ),
+              const SizedBox(width: 8),
               controller.countryFlag.contains('uae')
                   ? Image.asset(
-                      controller.countryFlag,
+                      controller.countryFlag.value,
                       height: 20,
                     )
                   : Text(
-                      controller.countryFlag,
+                      controller.countryFlag.value,
                       style: Theme.of(context).textTheme.headline2,
                     ),
               Text(
-                controller.countryCode,
+                controller.countryCode.value,
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-
               const Icon(
                 Icons.arrow_drop_down_outlined,
               ),
@@ -54,10 +50,6 @@ class RegisetrCountryButtonPick extends StatelessWidget {
                   color: Color(0XFFBCBCBC),
                 ),
               ),
-              // Image.asset(
-              //   AppAssets.arrowDown,
-              //   height: 10,
-              // ),
             ],
           ),
         ),

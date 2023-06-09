@@ -5,6 +5,7 @@
 import FlutterMacOS
 import Foundation
 
+import firebase_auth
 import firebase_core
 import firebase_messaging
 import modal_progress_hud_nsn
@@ -12,6 +13,7 @@ import path_provider_foundation
 import smart_auth
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
+  FLTFirebaseAuthPlugin.register(with: registry.registrar(forPlugin: "FLTFirebaseAuthPlugin"))
   FLTFirebaseCorePlugin.register(with: registry.registrar(forPlugin: "FLTFirebaseCorePlugin"))
   FLTFirebaseMessagingPlugin.register(with: registry.registrar(forPlugin: "FLTFirebaseMessagingPlugin"))
   ModalProgressHudNsnPlugin.register(with: registry.registrar(forPlugin: "ModalProgressHudNsnPlugin"))

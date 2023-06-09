@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_assets.dart';
 
-
 class SplashView extends StatefulWidget {
   static String routeName = '/splash';
   const SplashView({super.key});
@@ -13,9 +12,10 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void didChangeDependencies() {
-
-    precacheImage( AssetImage(AppAssets.splash), context);
-
+    precacheImage(
+      AssetImage(AppAssets.splash),
+      context,
+    );
     super.didChangeDependencies();
   }
 
@@ -23,7 +23,7 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Image.asset(
-      AppAssets.splash,
+        AppAssets.splash,
         height: double.infinity,
         width: double.infinity,
         fit: BoxFit.cover,

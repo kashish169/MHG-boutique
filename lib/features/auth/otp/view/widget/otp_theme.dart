@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
-import '../../../../constants/app_colors.dart';
+import '../../../../../constants/app_colors.dart';
 
 final defaultPinTheme = PinTheme(
   width: 45,

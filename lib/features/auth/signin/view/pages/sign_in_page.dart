@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
+import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/auth/sign_up/view/pages/sign_up_view.dart';
+import 'package:mhg/features/auth/verification/view/pages/verfication_page.dart';
 import 'package:mhg/features/auth/signin/view/widget/country_button_pick.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../../../../../constants/app_assets.dart';
 import '../../controller/sign_in_controller.dart';
-
 import 'package:get/get.dart';
 
 class SignInPage extends StatelessWidget {
@@ -28,7 +28,6 @@ class SignInPage extends StatelessWidget {
             child: ModalProgressHUD(
                 inAsyncCall: controller.isLoading.value,
                 child: Column(
-
                   children: [
                     SizedBox(
                       height: AppDimensions.screenHeight(context) / 10,
@@ -38,46 +37,54 @@ class SignInPage extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .displayMedium
-                          ?.copyWith(color: Colors.black,
-                      fontSize: 22),
+                          ?.copyWith(color: Colors.black, fontSize: 22),
                     ),
-                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: AppDimensions.screenHeight(context) / 20,horizontal: 20),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: AppDimensions.screenHeight(context) / 20,
+                          horizontal: 20),
                       child: CustomFormField(
-                        title: ' ',
-                        validator: (value){
+                        validator: (value) {
                           return controller.validatePhone(value!);
                         },
                         controller: controller.phone,
                         suffixIcon: IconButton(
-                          onPressed: (){
+                          onPressed: () {
                             controller.phone.clear();
                           },
-                          icon: Image.asset(AppAssets.close,
-                            height: 22,),
+                          icon: Image.asset(
+                            AppAssets.close,
+                            height: 22,
+                          ),
                         ),
                         prefixWidget: const CountryButtonPick(),
                         inputType: TextInputType.number,
                         obscure: false,
                       ),
                     ),
-                    Padding(padding: const EdgeInsets.symmetric(vertical: 25,horizontal: 25,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 25,
+                        horizontal: 25,
+                      ),
+                      child: PrimaryButton(
+                        title: 'Login',
+                        height: 50,
+                        width: double.infinity,
+                        color: const Color(0XFF232323),
+                        onTap: () {
+                          if (controller.formKey.currentState!.validate()) {
+                            AppHelper.closeKeyboard();
+                            Get.toNamed(
+                              VerificationPage.routeName,
+                            );
+                          }
+                        },
+                      ),
                     ),
-                    child: PrimaryButton(title: 'Login',
-                      height: 50,
-                      width: double.infinity,
-                      color: const Color(0XFF232323),
-
-                      onTap: () {if (controller.formKey.currentState!
-                          .validate()) {
-                        FocusManager.instance.primaryFocus
-                            ?.unfocus();
-                        controller.signIn();
-                      }
-
-                      },),),
-
-                    const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -85,21 +92,20 @@ class SignInPage extends StatelessWidget {
                           "Don't have an account?",
                           style: Theme.of(context)
                               .textTheme
-                              .displaySmall?.copyWith(
-                            color: const Color(0XFF666666)
-                          ),
+                              .displaySmall
+                              ?.copyWith(color: const Color(0XFF666666)),
                         ),
                         TextButton(
                           onPressed: () {
-
-                          Get.toNamed(SignUpPage.routeName);
+                            Get.toNamed(SignUpPage.routeName);
                           },
                           child: Text(
                             "Sign Up",
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
-                                ?.copyWith(color: Colors.red,
+                                ?.copyWith(
+                                  color: Colors.red,
                                 ),
                           ),
                         ),

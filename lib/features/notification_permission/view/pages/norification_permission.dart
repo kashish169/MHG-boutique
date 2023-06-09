@@ -13,16 +13,17 @@ class NotificationPermission extends StatelessWidget {
         Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(AppAssets.backgroungimage),
-                fit: BoxFit.cover),
+              image: AssetImage(AppAssets.backgroungimage),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
-            children: [
+            children: const [
               Expanded(
-                child: Column(children: [ENotificationsTopPart()]),
+                child: ENotificationsTopPart(),
               ),
               BottomButton(),
               SizedBox(height: 30),

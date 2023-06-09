@@ -12,17 +12,15 @@ class SplashController extends GetxController {
     if (isfirst == true) {
       Get.offNamed(OnBoardView.routeName);
     } else if (App.token.isEmpty) {
-      //Get.offNamed('/landing');
       Get.offNamed(OnBoardView.routeName);
     } else {
-      // Get.offNamed('/main_wrapper');
       Get.offNamed(OnBoardView.routeName);
     }
   }
 
   @override
   void onInit() {
-   initialRoute();
+    initialRoute();
     super.onInit();
   }
 }

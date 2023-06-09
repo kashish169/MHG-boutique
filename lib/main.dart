@@ -6,8 +6,8 @@ import 'app/app.dart';
 import 'core/routes/app_routes.dart';
 
 void main() async {
-  runApp(const MHG());
   await App.initSettings();
+  runApp(const MHG());
 }
 
 class MHG extends StatelessWidget {
