@@ -65,7 +65,7 @@ class RewardBox extends StatelessWidget {
               ),),)
              ],
            ),),
-          Divider(color: AppColors.secondary,thickness: .5,height: 10,),
+
             Padding(padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 5),
             child:  Row(
               mainAxisAlignment: MainAxisAlignment.start,
