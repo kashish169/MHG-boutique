@@ -17,4 +17,22 @@ class AppAssets {
   static String brands = "assets/icons/brands.png";
   static String notification = "assets/icons/notification.png";
   static String search = "assets/icons/search.png";
+  static String profileLogo = "assets/icons/profileLogo.png";
+  static String cardBackground = "assets/images/card_background.png";
+  static String cardBackground1 = "assets/images/card2_back.png";
+  static String star = "assets/images/star.png";
+  static String person1 = "assets/icons/person1.png";
+  static String order = "assets/icons/order1.png";
+  static String setting = "assets/icons/setting1.png";
+  static String reward = "assets/icons/reward1.png";
+  static String scan = "assets/icons/scan1.png";
+  static String payment = "assets/icons/payment1.png";
+  static String invite = "assets/icons/invite1.png";
+  static String about = "assets/icons/about1.png";
+  static String feedback = "assets/icons/feedback1.png";
+  static String store = "assets/icons/store1.png";
+  static String insta = "assets/icons/insta.png";
+  static String facebook = "assets/icons/facebook.png";
+  static String twitter = "assets/icons/twitter.png";
+
 }

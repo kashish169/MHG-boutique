@@ -49,6 +49,8 @@ dependencies:
   firebase_messaging: ^14.6.2
   firebase_auth: ^4.6.2
   sms_autofill: ^2.3.0
+  percent_indicator: ^4.2.2
+  qr_code_scanner: ^1.0.1
 
 dev_dependencies:
   flutter_test:

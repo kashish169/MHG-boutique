@@ -11,6 +11,8 @@ import 'package:mhg/features/notification_permission/view/pages/norification_per
 import 'package:mhg/features/on_board/binding/on_board_binding.dart';
 import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
 import 'package:mhg/features/auth/otp/bindings/otp_bindings.dart';
+import 'package:mhg/features/profile/binding/profile_binding.dart';
+import 'package:mhg/features/profile/view/pages/profile_view.dart';
 import 'package:mhg/features/splash/binding/splash_binding.dart';
 import 'package:mhg/features/splash/view/splash_view.dart';
 import '../../features/auth/otp/view/pages/otp.dart';
@@ -52,5 +54,15 @@ class AppRoutes {
       page: () => const MainWrapper(),
       binding: MainWrapperBinding(),
     ),
+    GetPage(
+      name: '/profile',
+      page: () => const ProfileView(),
+
+    ),
+
+
+
+
+
   ];
 }

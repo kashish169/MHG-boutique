@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/profile/controller/profileController.dart';
+import 'package:mhg/features/profile/view/pages/profile_view.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../controller/main_wrapper_controller.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../widgets/main_app_bar.dart';
@@ -33,30 +36,42 @@ class _MainWrapperState extends State<MainWrapper>
     });
   }
 
-  final List<Widget> _children = const [];
+  final List<Widget> _children =  [
+    Container(),
+    Container(),
+    Container(),
+    Container(),
+    const ProfileView()
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      onDrawerChanged: (isOpened) {
-        if (mounted) setState(() {});
-      },
-      appBar: mainAppBar(
-        context: context,
-        scaffoldKey: scaffoldKey,
-        currentIndex: currentIndex,
+    return Obx(()=>ModalProgressHUD(
+      inAsyncCall: Get.find<ProfileController>().isLoading.value,
+      child: Scaffold(
+        key: scaffoldKey,
+        onDrawerChanged: (isOpened) {
+          if (mounted) setState(() {});
+        },
+        appBar: mainAppBar(
+          context: context,
+          scaffoldKey: scaffoldKey,
+          currentIndex: currentIndex,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomNavBarWidget(
+          scaffoldKey: scaffoldKey,
+          tabController: tabController,
+        ),
+        body: ModalProgressHUD(
+          inAsyncCall: Get.find<ProfileController>().isLoading.value,
+          child: TabBarView(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: tabController,
+            children: _children,
+          ),
+        ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavBarWidget(
-        scaffoldKey: scaffoldKey,
-        tabController: tabController,
-      ),
-      body: TabBarView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: tabController,
-        children: _children,
-      ),
-    );
+    ));
   }
 }
