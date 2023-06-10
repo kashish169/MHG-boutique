@@ -1,24 +1,46 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
+import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_toasts.dart';
+import 'package:mhg/features/auth/sign_up/controller/sign_up_controller.dart';
 import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sms_autofill/sms_autofill.dart';
+import '../../../../constants/app_assets.dart';
 import '../../../../widgets/show_snack_bar.dart';
 
 class VerificationController extends GetxController {
   final signInController = Get.find<SignInController>();
+  final signUpController = Get.find<SignUpController>();
   RxBool isLoading = false.obs;
   String verificationIdCode = '';
   final TextEditingController codeController = TextEditingController();
+  final TextEditingController phone = TextEditingController();
   final smartAuth = SmartAuth();
   FirebaseAuth auth = FirebaseAuth.instance;
   String smsCode = '';
   RxInt timerValue = 60.obs;
   late Timer timer;
+  String type = '';
+  RxString countryCode = '+971'.obs;
+  RxString countryFlag = AppAssets.flag.obs;
+
+  @override
+  void onInit() {
+    var args = Get.arguments;
+    type = args["type"];
+    countryCode.value = args["countryCode"];
+    var phoneNumber = args["phone"];
+    phone.setText(phoneNumber);
+    log("countryCode ${countryCode.value}");
+    log("PhoneNumber $phoneNumber");
+    log("Type $type");
+    super.onInit();
+  }
 
   void codetimeout() {
     const oneSec = Duration(seconds: 1);
@@ -35,8 +57,7 @@ class VerificationController extends GetxController {
   }
 
   Future<void> sendOtpCode() async {
-    String phoneNumber =
-        signInController.countryCode + signInController.phone.text.trim();
+    String phoneNumber = countryCode.value + phone.text.trim();
     log('___PhoneNumber is : $phoneNumber');
     isLoading(true);
     await auth.verifyPhoneNumber(
@@ -80,14 +101,27 @@ class VerificationController extends GetxController {
       var result = await auth.signInWithCredential(credential);
       isLoading(false);
       if (result.user == null) {
-        showSnackBar("Incorrect code");
+        AppToasts.errorToast("Incorrect code");
       } else {
-        signInController.signIn();
+        Get.back();
+        Get.back();
+        if (type == 'signin') {
+          signInController.signIn();
+        } else {
+          signUpController.signUp();
+        }
       }
     } catch (e, s) {
       isLoading(false);
       print("$e - $s");
       showSnackBar('Incorrect code');
     }
+  }
+
+  selectCountry(Country country) {
+    countryFlag.value = country.flagEmoji;
+    countryCode.value = "+${country.phoneCode}";
+    log("+${country.phoneCode}");
+    update();
   }
 }

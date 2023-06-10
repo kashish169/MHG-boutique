@@ -53,7 +53,7 @@ class SignInController extends GetxController {
       barrierDismissible: false,
     );
     var body = signInModelToJson(SignInModel(
-      phone: countryCode + phone.text,
+      phone: countryCode + phone.text.trim(),
       fcmToken: App.fcmToken,
     ));
     Either<Failure, ApiResponse> results = await signInRepo.signIn(

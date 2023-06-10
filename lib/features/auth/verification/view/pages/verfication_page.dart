@@ -10,6 +10,7 @@ import '../../../../../constants/app_assets.dart';
 import 'package:get/get.dart';
 import '../../../../../core/helper/app_helper.dart';
 import '../../../widgets/country_picker_widget.dart';
+import '../widgets/verification_country_picker.dart';
 
 class VerificationPage extends StatelessWidget {
   static String routeName = '/verification';
@@ -20,7 +21,7 @@ class VerificationPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.white,
-      body: GetBuilder<SignInController>(
+      body: GetBuilder<VerificationController>(
         builder: (controller) {
           return SafeArea(
             child: Stack(
@@ -62,7 +63,7 @@ class VerificationPage extends StatelessWidget {
                               height: 22,
                             ),
                           ),
-                          prefixWidget: const CountryPickerWidget(),
+                          prefixWidget: const VerificationCountryPickerWidget(),
                           inputType: TextInputType.number,
                           obscure: false,
                           controller: controller.phone,

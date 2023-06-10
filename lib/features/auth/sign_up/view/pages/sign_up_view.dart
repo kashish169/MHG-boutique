@@ -8,6 +8,7 @@ import 'package:mhg/widgets/primary_button.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../../constants/app_assets.dart';
 import 'package:get/get.dart';
+import '../../../verification/view/pages/verfication_page.dart';
 import '../../../widgets/country_picker_widget.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -156,7 +157,17 @@ class SignUpPage extends StatelessWidget {
                               onTap: () {
                                 var formState = controller.formKey.currentState;
                                 if (formState!.validate()) {
-                                  controller.signUp();
+                                  AppHelper.closeKeyboard();
+                                  String phoneNumber =
+                                      controller.phone.text.trim();
+                                  Get.toNamed(
+                                    VerificationPage.routeName,
+                                    arguments: {
+                                      "type": "signup",
+                                      "countryCode": controller.countryCode,
+                                      "phone": phoneNumber,
+                                    },
+                                  );
                                 }
                               },
                             ),

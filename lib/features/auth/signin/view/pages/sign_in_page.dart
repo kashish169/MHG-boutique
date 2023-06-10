@@ -75,8 +75,14 @@ class SignInPage extends StatelessWidget {
                         onTap: () {
                           if (controller.formKey.currentState!.validate()) {
                             AppHelper.closeKeyboard();
+                            String phoneNumber = controller.phone.text.trim();
                             Get.toNamed(
                               VerificationPage.routeName,
+                              arguments: {
+                                "type": "signin",
+                                "countryCode": controller.countryCode.value,
+                                "phone": phoneNumber,
+                              },
                             );
                           }
                         },
