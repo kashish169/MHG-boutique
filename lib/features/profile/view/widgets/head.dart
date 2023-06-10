@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/profile/controller/profileController.dart';
 
 class Head extends StatelessWidget {
   final String name;
   final String email;
-  final String image;
+  final String? image;
   final String level;
 
   const Head(
       {Key? key,
       required this.name,
       required this.email,
-      required this.image,
+       this.image,
       required this.level})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller=Get.find<ProfileController>();
     return Container(
       color: AppColors.white,
       child: Padding(
@@ -52,7 +55,9 @@ class Head extends StatelessWidget {
             ),
             CircleAvatar(
               radius: 20,
-              child: Image.asset(image),
+              child: image!=null?
+              Image.network(controller.model.imageLink+image!):
+              Image.asset(AppAssets.profileLogo),
             ),
             const SizedBox(
               width: 5,

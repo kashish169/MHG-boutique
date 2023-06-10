@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/instance_manager.dart';
+import 'package:mhg/features/profile/controller/profileController.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
 import '../../controller/main_wrapper_controller.dart';
@@ -17,10 +18,10 @@ mainAppBar({
     systemOverlayStyle: SystemUiOverlayStyle.light,
     automaticallyImplyLeading: false,
     title: Text(
-      'Good Morning, Sam!',
+      'Good Morning,${Get.find<ProfileController>().model.name}',
       style: Theme.of(context).textTheme.displayMedium?.copyWith(
             color: AppColors.white,
-            fontSize: 18,
+            fontSize: 16,
           ),
     ),
     actions: [

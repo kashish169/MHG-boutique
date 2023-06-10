@@ -46,7 +46,7 @@ class _ProfileViewState extends State<ProfileView> {
             Head(
                 name: controller.model.name,
                 email: controller.model.email,
-                image: AppAssets.profileLogo,
+                image: controller.model.image,
                 level: 'Mojab'),
             const RewardBox(),
             Divider(

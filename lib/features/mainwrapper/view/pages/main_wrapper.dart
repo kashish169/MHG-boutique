@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/profile/controller/profileController.dart';
 import 'package:mhg/features/profile/view/pages/profile_view.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -46,9 +47,12 @@ class _MainWrapperState extends State<MainWrapper>
 
   @override
   Widget build(BuildContext context) {
-    return Obx(()=>ModalProgressHUD(
-      inAsyncCall: Get.find<ProfileController>().isLoading.value,
-      child: Scaffold(
+    return GetX<ProfileController>(builder: (controller) {
+      if(controller.isLoading.isTrue) {
+        return Center(child: CircularProgressIndicator(color: AppColors.primary,),);
+      }
+
+      return Scaffold(
         key: scaffoldKey,
         onDrawerChanged: (isOpened) {
           if (mounted) setState(() {});
@@ -71,7 +75,9 @@ class _MainWrapperState extends State<MainWrapper>
             children: _children,
           ),
         ),
-      ),
-    ));
+      );
+    });
+
+
   }
 }
