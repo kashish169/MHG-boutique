@@ -5,7 +5,7 @@ import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
 import '../../controller/main_wrapper_controller.dart';
 
-mainAppBar({
+AppBar mainAppBar({
   required BuildContext context,
   required GlobalKey<ScaffoldState> scaffoldKey,
   required int currentIndex,
@@ -16,12 +16,12 @@ mainAppBar({
     backgroundColor: AppColors.primary,
     systemOverlayStyle: SystemUiOverlayStyle.light,
     automaticallyImplyLeading: false,
-    title: Text(
-      'Good Morning, Sam!',
-      style: Theme.of(context).textTheme.displayMedium?.copyWith(
-            color: AppColors.white,
-            fontSize: 18,
-          ),
+    title: Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Image.asset(
+        AppAssets.logoWhite,
+        height: 38,
+      ),
     ),
     actions: [
       IconButton(
