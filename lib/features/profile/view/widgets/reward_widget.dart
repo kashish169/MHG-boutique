@@ -10,7 +10,7 @@ class RewardBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 15),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.primary,
@@ -27,7 +27,7 @@ class RewardBox extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           Padding(padding: const EdgeInsets.only(top: 12,bottom: 10,left: 12,right: 12),
+           Padding(padding: const EdgeInsets.only(top: 15,bottom: 12,left: 12,right: 12),
            child: Column(
              mainAxisAlignment: MainAxisAlignment.start,
              crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +58,7 @@ class RewardBox extends StatelessWidget {
                    ),)
                  ],
                ),
-              Padding(padding: const EdgeInsets.symmetric(vertical: 5),
+              Padding(padding: const EdgeInsets.symmetric(vertical: 10),
               child:  Text('250 Pts Until Gold Level',style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   fontSize: 10,
                   color: AppColors.white
