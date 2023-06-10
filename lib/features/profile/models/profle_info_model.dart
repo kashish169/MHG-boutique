@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final profileInfoModal = profileInfoModalFromJson(jsonString);
-
 import 'dart:convert';
 
 ProfileInfoModal profileInfoModalFromJson(String str) =>
@@ -56,7 +52,7 @@ class ProfileInfoModal {
   int? status;
   dynamic countryId;
   String? amount;
- String? hearts;
+  String? hearts;
   dynamic tierId;
   dynamic storeId;
   dynamic countryLoyalityId;

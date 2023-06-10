@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:mhg/core/api/api.dart';
@@ -10,8 +7,6 @@ import 'package:mhg/core/models/api_response.dart';
 import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/features/profile/repository/profile_repository.dart';
 
-
-
 class ProfileRepoImpl implements ProfileRepo {
   late HttpService httpService;
 
@@ -20,8 +15,8 @@ class ProfileRepoImpl implements ProfileRepo {
   }
 
   @override
-  Future<Either<Failure, ApiResponse>> getInfo() async =>
-      await httpService.get(url: Api.profile, isAuthorized: true);
-
-
+  Future<Either<Failure, ApiResponse>> getInfo() async => await httpService.get(
+        url: Api.profile,
+        isAuthorized: true,
+      );
 }

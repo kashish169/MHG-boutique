@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/features/profile/controller/profileController.dart';
+import 'package:mhg/features/profile/controller/profile_controller.dart';
 
-class Head extends StatelessWidget {
+class ProfileHeader extends StatelessWidget {
   final String name;
   final String email;
   final String? image;
   final String level;
 
-  const Head(
+  const ProfileHeader(
       {Key? key,
       required this.name,
       required this.email,
-       this.image,
+      this.image,
       required this.level})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller=Get.find<ProfileController>();
+    final controller = Get.find<ProfileController>();
     return Container(
       color: AppColors.white,
       child: Padding(
@@ -37,27 +37,29 @@ class Head extends StatelessWidget {
                 children: [
                   Text(
                     name,
-                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      fontSize: 15
-                    ),
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayMedium
+                        ?.copyWith(fontSize: 15),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   Text(
                     email,
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 11
-                    ),
+                    style: Theme.of(context)
+                        .textTheme
+                        .displaySmall
+                        ?.copyWith(fontSize: 11),
                   ),
                 ],
               ),
             ),
             CircleAvatar(
               radius: 20,
-              child: image!=null?
-              Image.network(controller.model.imageLink+image!):
-              Image.asset(AppAssets.profileLogo),
+              child: image != null
+                  ? Image.network(controller.model.imageLink + image!)
+                  : Image.asset(AppAssets.profileLogo),
             ),
             const SizedBox(
               width: 5,
@@ -67,18 +69,20 @@ class Head extends StatelessWidget {
               children: [
                 Text(
                   'Current Level',
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      fontSize: 15
-                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayMedium
+                      ?.copyWith(fontSize: 15),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 Text(
                   level,
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      fontSize: 11
-                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .displaySmall
+                      ?.copyWith(fontSize: 11),
                 ),
               ],
             )
