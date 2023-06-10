@@ -39,8 +39,6 @@ class ProfileView extends StatelessWidget {
             ),
             const ProfileRewardBox(),
             const DividerWidget(),
-            const ProfileRewardBox(),
-            const DividerWidget(),
             ProfileCard(
               icon: AppAssets.person1,
               title: 'Personal information',

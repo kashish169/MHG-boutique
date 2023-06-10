@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/features/profile/controller/profileController.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/app_dimensions.dart';
 import '../../controller/main_wrapper_controller.dart';
@@ -42,9 +41,6 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
             selectedIndex = index;
             controller.navBarIndex.value = selectedIndex;
             widget.tabController.animateTo(index);
-            if(index==4){
-              Get.find<ProfileController>().getProfileInfo();
-            }
             if (widget.scaffoldKey.currentState!.isDrawerOpen == true) {
               Navigator.pop(context);
             }

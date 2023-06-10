@@ -24,11 +24,12 @@ class _QRPageState extends State<QRPage> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             child: Container(
+                height: 63,
                 decoration: BoxDecoration(
                     color: AppColors.primary,
                     borderRadius: BorderRadius.circular(8),
                     image: DecorationImage(
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                       image: AssetImage(AppAssets.cardBackground1),
                     )),
                 child: Padding(
@@ -36,34 +37,44 @@ class _QRPageState extends State<QRPage> {
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
                   child: Row(
                     children: [
-                      Text(
-                        'Hello,${controller.model.name}',
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall
-                            ?.copyWith(color: AppColors.white, fontSize: 15),
+                      Expanded(
+                        child: Text(
+                          'Hello,${controller.model.name}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                color: AppColors.white,
+                                fontSize: 15,
+                              ),
+                        ),
                       ),
                       const Expanded(child: SizedBox()),
-                      Text(
-                        'Your Total Points \n  400 Pts ',
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall
-                            ?.copyWith(color: AppColors.white, fontSize: 12),
+                      Expanded(
+                        child: Text(
+                          'Your Total Points \n ${controller.model.hearts} Pts ',
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                color: AppColors.white,
+                                fontSize: 14,
+                              ),
+                        ),
                       ),
                     ],
                   ),
                 )),
           ),
-          SizedBox(
-            height: AppDimensions.screenHeight(context) / 15,
-          ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 30,
+              vertical: 20,
+            ),
             child: Image.asset(
               AppAssets.star,
-              height: 150,
+              height: 178,
             ),
           ),
           Expanded(
@@ -85,11 +96,11 @@ class _QRPageState extends State<QRPage> {
                     ),
                     Text(
                       'Scan to collect Points',
-                      style: Theme.of(context).textTheme.displaySmall,
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            fontSize: 18,
+                          ),
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    const SizedBox(height: 12),
                     InkWell(
                         onTap: () {},
                         child: Container(
@@ -97,22 +108,20 @@ class _QRPageState extends State<QRPage> {
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(color: AppColors.primary),
                           ),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 3, vertical: 3),
+                          padding: const EdgeInsets.all(8),
                           child: Text(
                             'Collect 50 Pts per 10 Dhs',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(fontSize: 12),
+                            style: Theme.of(context).textTheme.displaySmall,
                           ),
                         )),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 10),
-                      child: SizedBox(
-                          height: 130,
-                          child: Image.network(controller.model.qrLink)),
+                    const SizedBox(height: 12),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(25),
+                        child: Image.network(
+                          controller.model.qrLink,
+                        ),
+                      ),
                     )
                   ],
                 ),
