@@ -3,17 +3,19 @@ import 'dart:convert';
 String signUpModelToJson(SignUpModel data) => json.encode(data.toJson());
 
 class SignUpModel {
-  SignUpModel(
-      {required this.email,
-      required this.userName,
-      required this.password,
-      required this.phoneNumber,
-      required this.accountType,
-      this.fcmToken,
-      this.gender,
-      this.dob,
-      this.token,
-      this.notifyMe});
+  SignUpModel({
+    required this.email,
+    required this.userName,
+    required this.password,
+    required this.phoneNumber,
+    required this.accountType,
+    this.fcmToken,
+    this.gender,
+    this.dob,
+    this.token,
+    this.notifyMe,
+    required this.countryName,
+  });
   String userName;
   String email;
   String phoneNumber;
@@ -24,6 +26,7 @@ class SignUpModel {
   String? dob;
   int? notifyMe;
   String? token;
+  String countryName;
 
   Map<String, dynamic> toJson() => {
         "name": userName,
@@ -36,5 +39,6 @@ class SignUpModel {
         'dob': dob,
         'notify_me': notifyMe,
         'token': token,
+        'country_name': countryName,
       };
 }

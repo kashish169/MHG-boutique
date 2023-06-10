@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_dimensions.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/custom_bottom_sheet.dart';
 import '../../controller/on_board_controller.dart';
@@ -12,7 +13,7 @@ class SelectCountryView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OnboardController>(
         builder: (controller) => CustomBottomSheet(
-            height: 400,
+            height: AppDimensions.screenHeight(context) / 2,
             selectText: "Select your Country",
             valueWidget: ListView.separated(
               separatorBuilder: (context, index) => Divider(

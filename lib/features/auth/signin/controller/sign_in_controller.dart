@@ -33,6 +33,14 @@ class SignInController extends GetxController {
   RxString countryCode = '+971'.obs;
   RxString countryFlag = AppAssets.flag.obs;
   RxInt roleInd = 0.obs;
+  String selectedCountryName = '';
+
+  @override
+  void onInit() {
+    selectedCountryName = Get.arguments;
+    log("selectedCountryName $selectedCountryName");
+    super.onInit();
+  }
 
   changeVisibility() {
     isVisable = !isVisable;

@@ -3,8 +3,9 @@ import '../../../../constants/app_assets.dart';
 import '../widget/bottom_button.dart';
 import '../widget/top_part.dart';
 
-class NotificationPermission extends StatelessWidget {
-  const NotificationPermission({super.key});
+class NotificationPermissionPage extends StatelessWidget {
+  static String routeName = '/notification_permission';
+  const NotificationPermissionPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +23,7 @@ class NotificationPermission extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: const [
-              Expanded(
-                child: ENotificationsTopPart(),
-              ),
+              ENotificationsTopPart(),
               BottomButton(),
               SizedBox(height: 30),
             ],

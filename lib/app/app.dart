@@ -10,6 +10,7 @@ import 'package:mhg/core/storage/storage_pref.dart';
 class App {
   static String fcmToken = "";
   static String token = '';
+  static bool? notifyMe;
 
   static Future<void> initSettings() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -17,11 +18,13 @@ class App {
     await GetStorage.init();
     await dotenv.load(fileName: ".env");
     token = await StoragePref.getString("token");
+    notifyMe = await StoragePref.getbool("notifyme");
     await getFcmToken();
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.dark,
     );
     log("ACCESS TOKEN : $token");
+    log("NOTIFY ME : $notifyMe");
   }
 
   static Future<void> getFcmToken() async {

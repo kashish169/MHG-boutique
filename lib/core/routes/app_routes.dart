@@ -27,7 +27,7 @@ class AppRoutes {
         binding: OnBoardBinding()),
     GetPage(
       name: '/notification_permission',
-      page: () => const NotificationPermission(),
+      page: () => const NotificationPermissionPage(),
     ),
     GetPage(
         name: '/signIn',

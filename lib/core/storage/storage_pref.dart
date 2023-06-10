@@ -21,8 +21,8 @@ class StoragePref {
     await box.write(key, value);
   }
 
-  static Future<bool> getbool(String key) async {
-    return await box.read(key) ?? false;
+  static Future<bool?> getbool(String key) async {
+    return await box.read(key);
   }
 
   static Future<void> clear() async {

@@ -3,6 +3,7 @@ import 'package:country_picker/country_picker.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
 import '../../../../app/app.dart';
 import '../../../../constants/app_assets.dart';
@@ -21,6 +22,7 @@ class SignUpController extends GetxController {
   SignUpController() {
     signUpRepo = Get.find<SignUpRepoImpl>();
   }
+  final signInController = Get.find<SignInController>();
   bool isLoading = false;
   bool iserror = false;
   String countryCode = '+971';
@@ -44,6 +46,8 @@ class SignUpController extends GetxController {
       password: password.text.trim(),
       accountType: accountType,
       fcmToken: App.fcmToken,
+      countryName: signInController.selectedCountryName,
+      notifyMe: App.notifyMe == true ? 1 : 0,
     ));
     Either<Failure, ApiResponse> results = await signUpRepo.signUp(
       body: body,

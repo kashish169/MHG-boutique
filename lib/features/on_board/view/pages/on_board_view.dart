@@ -83,7 +83,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                     verticalOffset: 0,
                   ),
                 ),
-                const Buttons(),
+                const OnBoardButtons(),
                 Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
