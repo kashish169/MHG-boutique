@@ -4,6 +4,7 @@ import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
+import 'package:mhg/widgets/custom_app_bar.dart';
 
 class QRPage extends StatefulWidget {
   const QRPage({Key? key}) : super(key: key);
@@ -17,23 +18,7 @@ class _QRPageState extends State<QRPage> {
   Widget build(BuildContext context) {
     final controller = Get.find<ProfileController>();
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: AppColors.white,
-          ),
-        ),
-        backgroundColor: AppColors.primary,
-        title: Text('Scan Your Qr',
-            style: Theme.of(context)
-                .textTheme
-                .displayMedium
-                ?.copyWith(color: AppColors.white)),
-      ),
+      appBar: customAppBar(context, title: "Scan Your Qr"),
       body: Column(
         children: [
           Padding(
