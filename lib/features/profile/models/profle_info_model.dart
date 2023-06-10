@@ -1,0 +1,101 @@
+// To parse this JSON data, do
+//
+//     final profileInfoModal = profileInfoModalFromJson(jsonString);
+
+import 'dart:convert';
+
+ProfileInfoModal profileInfoModalFromJson(String str) =>
+    ProfileInfoModal.fromJson(json.decode(str));
+
+class ProfileInfoModal {
+  ProfileInfoModal(
+      {required this.id,
+      this.externalId,
+      required this.qrCode,
+      required this.name,
+      required this.email,
+      required this.accountType,
+      this.googleId,
+      this.faceBookId,
+      this.image,
+      this.number,
+      this.gender,
+      this.dob,
+      this.street,
+      this.about,
+      this.isAdmin,
+      this.status,
+      this.countryId,
+      this.amount,
+      this.hearts,
+      this.tierId,
+      this.storeId,
+      this.countryLoyalityId,
+      this.emailVerified,
+      this.notifyMe,
+      this.createdAt,
+      this.updatedAt,
+      required this.qrLink,
+      required this.imageLink});
+
+  int id;
+  int? externalId;
+  String qrCode;
+  String name;
+  String email;
+  String accountType;
+  int? googleId;
+  int? faceBookId;
+  String? image;
+  String? number;
+  String? gender;
+  dynamic dob;
+  String? street;
+  String? about;
+  int? isAdmin;
+  int? status;
+  dynamic countryId;
+  String? amount;
+ String? hearts;
+  dynamic tierId;
+  dynamic storeId;
+  dynamic countryLoyalityId;
+  dynamic emailVerified;
+  int? notifyMe;
+  dynamic createdAt;
+  dynamic updatedAt;
+  String qrLink;
+  String imageLink;
+
+  factory ProfileInfoModal.fromJson(Map<String, dynamic> json) =>
+      ProfileInfoModal(
+        id: json["id"],
+        externalId: json["external_id"],
+        qrCode: json["qr_code"],
+        name: json["name"],
+        email: json["email"],
+        accountType: json["account_type"],
+        googleId: json["google_id"],
+        faceBookId: json["facebook_id"],
+        image: json["image"],
+        number: json["Number"],
+        gender: json["Gender"],
+        dob: json["DOB"],
+        street: json["street_address"],
+        about: json["About"],
+        isAdmin: json["is_admin"],
+        status: json["status"],
+        countryId: json["country_id"],
+        amount: json["amount_spent"],
+        hearts: json["hearts"],
+        tierId: json["tier_id"],
+        storeId: json["store_id"],
+        countryLoyalityId: json["country_loyalty_tier_id"],
+        emailVerified: json["email_verified_at"],
+        notifyMe: json["notify_me"],
+        createdAt: json["created_at"],
+        updatedAt: json["updated_at"],
+        qrLink: json["qr_code_link"],
+        imageLink: json["image_link"],
+      );
+}

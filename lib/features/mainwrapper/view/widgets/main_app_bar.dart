@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/instance_manager.dart';
+import 'package:mhg/features/profile/controller/profileController.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
 import '../../controller/main_wrapper_controller.dart';
