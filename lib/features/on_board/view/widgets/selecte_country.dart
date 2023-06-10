@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/custom_bottom_sheet.dart';
 import '../../controller/on_board_controller.dart';
@@ -14,20 +13,21 @@ class SelectCountryView extends StatelessWidget {
     return GetBuilder<OnboardController>(
         builder: (controller) => CustomBottomSheet(
             height: 400,
-            selectText: "           Select your Country",
+            selectText: "Select your Country",
             valueWidget: ListView.separated(
               separatorBuilder: (context, index) => Divider(
                 color: AppColors.grey,
               ),
               itemCount: controller.countryList.length,
               itemBuilder: (context, index) => CustomValueSelector(
-                textValue: controller.countryList[index],
+                textValue: controller.countryList[index].name,
                 isSelectCountry: true,
                 onChange: (val) {
-                  controller.selectCountry(controller.countryList[index]);
+                  controller.selectCountry(controller.countryList[index].name);
                 },
-                selected: controller.countryList[index],
+                selected: controller.countryList[index].name,
                 groupValue: controller.selectedCountry,
+                image: controller.countryList[index].image,
               ),
             )));
   }

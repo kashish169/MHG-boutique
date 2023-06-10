@@ -17,4 +17,9 @@ class AppAssets {
   static String brands = "assets/icons/brands.png";
   static String notification = "assets/icons/notification.png";
   static String search = "assets/icons/search.png";
+  static String kuwaitFalge = "assets/icons/jordan.png";
+  static String sudiFlage = "assets/icons/sudi.png";
+  static String quatrFlage = "assets/icons/quatr.png";
+  static String uaeFlage = "assets/icons/falg3.png";
+  static String omanFlage = "assets/icons/R.png";
 }

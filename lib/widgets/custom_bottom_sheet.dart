@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/constants/app_dimensions.dart';
 
 class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet(
@@ -46,12 +47,19 @@ class CustomBottomSheet extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
-          Text(
-            selectText,
-            style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                color: AppColors.secondaryBlack,
-                fontSize: 18,
-                fontWeight: FontWeight.w400),
+          Row(
+            children: [
+              SizedBox(
+                width: AppDimensions.screenWidth(context) * 0.12,
+              ),
+              Text(
+                selectText,
+                style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                    color: AppColors.secondaryBlack,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400),
+              ),
+            ],
           ),
           const SizedBox(
             height: 25,

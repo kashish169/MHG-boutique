@@ -9,11 +9,13 @@ class CustomValueSelector extends StatelessWidget {
       required this.isSelectCountry,
       this.onChange,
       required this.selected,
-      required this.groupValue});
+      required this.groupValue,
+      required this.image});
   final String textValue;
   final bool isSelectCountry;
   final String selected;
   final String groupValue;
+  final String image;
   final void Function(String?)? onChange;
   @override
   Widget build(BuildContext context) {
@@ -30,12 +32,17 @@ class CustomValueSelector extends StatelessWidget {
             Container(
               height: 60,
               width: 40,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.grey)),
+              decoration: isSelectCountry
+                  ? BoxDecoration(
+                      image: DecorationImage(image: AssetImage(image)),
+                      shape: BoxShape.circle,
+                    )
+                  : BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: AppColors.grey)),
             ),
             SizedBox(
-              width: 160,
+              width: 180,
               child: Center(
                 child: Text(
                   textValue,
@@ -43,6 +50,7 @@ class CustomValueSelector extends StatelessWidget {
                       .textTheme
                       .displaySmall!
                       .copyWith(fontSize: 16),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),

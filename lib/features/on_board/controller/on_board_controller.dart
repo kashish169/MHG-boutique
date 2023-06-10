@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
 
+import '../model/country_model.dart';
 import '../view/widgets/select_language.dart';
 import '../view/widgets/selecte_country.dart';
 
@@ -22,12 +24,15 @@ class OnboardController extends GetxController {
     'LOREM IPSUM DOLOR SIT AMET \n CONSETETUR SADIPSCING ELITER',
   ];
   String selectedCountry = 'United Arab Emirates';
-  List countryList = [
-    'United Arab Emirates',
-    'Saudi Arabia',
-    'Kuwait',
-    'Qatar',
-    'Oman',
+  List<CountryModel> countryList = [
+    CountryModel(
+      name: 'United Arab Emirates',
+      image: AppAssets.uaeFlage,
+    ),
+    CountryModel(image: AppAssets.sudiFlage, name: 'Saudi Arabia'),
+    CountryModel(image: AppAssets.kuwaitFalge, name: 'Kuwait'),
+    CountryModel(image: AppAssets.quatrFlage, name: 'Qatar'),
+    CountryModel(image: AppAssets.omanFlage, name: 'Oman')
   ];
   String selectedLang = 'English';
   List langList = ['English', 'Arabic'];
