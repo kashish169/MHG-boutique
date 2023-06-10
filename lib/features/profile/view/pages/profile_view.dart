@@ -118,7 +118,7 @@ class _ProfileViewState extends State<ProfileView> {
               color: AppColors.grey,
               thickness: .5,
             ),
-            item(context, icon: AppAssets.person, title: 'Log out'),
+            item(context, icon: AppAssets.logout, title: 'Log out'),
             Divider(
               color: AppColors.grey,
               thickness: .5,

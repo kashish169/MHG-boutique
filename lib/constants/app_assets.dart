@@ -34,5 +34,6 @@ class AppAssets {
   static String insta = "assets/icons/insta.png";
   static String facebook = "assets/icons/facebook.png";
   static String twitter = "assets/icons/twitter.png";
+  static String logout = "assets/icons/logout.png";
 
 }
