@@ -10,6 +10,11 @@ ProfileInfoModal profileInfoModalFromJson(String str) =>
 class ProfileInfoModal {
   ProfileInfoModal(
       {required this.id,
+      required this.orderCount,
+      this.currentTier,
+      required this.nextTier,
+      required this.nextTierPts,
+      required this.nextTierPtsLeft,
       this.externalId,
       required this.qrCode,
       required this.name,
@@ -56,7 +61,7 @@ class ProfileInfoModal {
   int? status;
   dynamic countryId;
   String? amount;
- String? hearts;
+  String? hearts;
   dynamic tierId;
   dynamic storeId;
   dynamic countryLoyalityId;
@@ -66,6 +71,11 @@ class ProfileInfoModal {
   dynamic updatedAt;
   String qrLink;
   String imageLink;
+  int orderCount;
+  String? currentTier;
+  String nextTier;
+  int nextTierPts;
+  int nextTierPtsLeft;
 
   factory ProfileInfoModal.fromJson(Map<String, dynamic> json) =>
       ProfileInfoModal(
@@ -97,5 +107,10 @@ class ProfileInfoModal {
         updatedAt: json["updated_at"],
         qrLink: json["qr_code_link"],
         imageLink: json["image_link"],
+       orderCount: json["orders_count"],
+        currentTier: json["current_tier"],
+        nextTier: json["next_tier"],
+       nextTierPts: json["next_tier_pts"],
+        nextTierPtsLeft: json["next_tier_pts_left"],
       );
 }

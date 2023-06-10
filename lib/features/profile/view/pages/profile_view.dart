@@ -47,7 +47,7 @@ class _ProfileViewState extends State<ProfileView> {
                 name: controller.model.name,
                 email: controller.model.email,
                 image: controller.model.image,
-                level: 'Mojab'),
+                level: controller.model.currentTier??'-'),
             const RewardBox(),
             Divider(
               color: AppColors.grey,
@@ -224,10 +224,9 @@ class _ProfileViewState extends State<ProfileView> {
   item(BuildContext context, {required String title, required String icon,void Function()? onTap}) {
     return InkWell(
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 5),
-        child: SizedBox(
-          height: 40,
+      child: SizedBox(
+        height: 40,
+        child: Center(
           child: ListTile(
             leading: Image.asset(
               icon,

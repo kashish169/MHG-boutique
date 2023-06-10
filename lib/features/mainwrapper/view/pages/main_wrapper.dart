@@ -47,36 +47,35 @@ class _MainWrapperState extends State<MainWrapper>
 
   @override
   Widget build(BuildContext context) {
-    return GetX<ProfileController>(builder: (controller) {
-      if(controller.isLoading.isTrue) {
-        return Center(child: CircularProgressIndicator(color: AppColors.primary,),);
-      }
+    return Scaffold(
+      key: scaffoldKey,
+      onDrawerChanged: (isOpened) {
+        if (mounted) setState(() {});
+      },
+      appBar: mainAppBar(
+        context: context,
+        scaffoldKey: scaffoldKey,
+        currentIndex: currentIndex,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomNavBarWidget(
+        scaffoldKey: scaffoldKey,
+        tabController: tabController,
+      ),
+      body: GetX<ProfileController>(builder: (controller) {
+        if(controller.isLoading.isTrue) {
+          return Center(child: CircularProgressIndicator(color: AppColors.primary,),);
+        }
 
-      return Scaffold(
-        key: scaffoldKey,
-        onDrawerChanged: (isOpened) {
-          if (mounted) setState(() {});
-        },
-        appBar: mainAppBar(
-          context: context,
-          scaffoldKey: scaffoldKey,
-          currentIndex: currentIndex,
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: BottomNavBarWidget(
-          scaffoldKey: scaffoldKey,
-          tabController: tabController,
-        ),
-        body: ModalProgressHUD(
-          inAsyncCall: Get.find<ProfileController>().isLoading.value,
-          child: TabBarView(
-            physics: const NeverScrollableScrollPhysics(),
-            controller: tabController,
-            children: _children,
-          ),
-        ),
-      );
-    });
+        return TabBarView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: tabController,
+          children: _children,
+        );
+      })
+
+    );
+
 
 
   }

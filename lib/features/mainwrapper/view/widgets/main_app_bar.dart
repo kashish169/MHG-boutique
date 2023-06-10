@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mhg/features/profile/controller/profileController.dart';
 import '../../../../constants/app_assets.dart';
@@ -17,13 +18,21 @@ mainAppBar({
     backgroundColor: AppColors.primary,
     systemOverlayStyle: SystemUiOverlayStyle.light,
     automaticallyImplyLeading: false,
-    title: Text(
-      'Good Morning,${Get.find<ProfileController>().model.name}',
-      style: Theme.of(context).textTheme.displayMedium?.copyWith(
-            color: AppColors.white,
-            fontSize: 16,
-          ),
-    ),
+    title: GetX<ProfileController>(builder: (controller) {
+      if(controller.isLoading.isTrue&&controller.firstCall.isTrue) {
+        return const Center(child: Text(''),);
+      }
+
+      return Text(
+        'Good Morning,${Get.find<ProfileController>().model.name}',
+        style: Theme.of(context).textTheme.displayMedium?.copyWith(
+          color: AppColors.white,
+          fontSize: 16,
+        ),
+      );
+    }),
+
+
     actions: [
       IconButton(
         onPressed: () {},
