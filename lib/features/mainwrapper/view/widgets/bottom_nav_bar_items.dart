@@ -37,7 +37,7 @@ List<Widget> navBarItems({
         index: 3,
         color: index == 3 ? AppColors.secondary : AppColors.white,
         onTap: () => onTap(3),
-        iconSize: 20,
+        iconSize: 22,
       ),
       _icon(
         icon: AppAssets.profile,

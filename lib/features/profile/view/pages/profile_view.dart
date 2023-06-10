@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
+import 'package:mhg/core/storage/storage_pref.dart';
+import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/view/pages/qr_view.dart';
 import 'package:mhg/features/profile/view/widgets/reward_widget.dart';
@@ -99,6 +101,10 @@ class ProfileView extends StatelessWidget {
             ProfileCard(
               icon: AppAssets.store,
               title: 'Log out',
+              onTap: () async {
+                await StoragePref.clear();
+                Get.offAllNamed(OnBoardView.routeName);
+              },
             ),
             const SizedBox(height: 15),
             const DividerWidget(),
