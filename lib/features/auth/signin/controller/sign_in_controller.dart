@@ -15,6 +15,7 @@ import 'package:mhg/features/auth/signin/repository/sign_in_repo.dart';
 import 'package:mhg/features/auth/signin/repository/sign_in_repo_Imp.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/show_snakBar.dart';
+import '../../../mainwrapper/view/pages/main_wrapper.dart';
 
 class SignInController extends GetxController {
   late SignInRepo signInRepo;
@@ -76,6 +77,7 @@ class SignInController extends GetxController {
             value: token,
           );
           log("ACCESS TOKEN : $token");
+          Get.toNamed(MainWrapper.routeName);
         } else if (statusCode == 400) {
           AppToasts.errorToast(message);
         } else {

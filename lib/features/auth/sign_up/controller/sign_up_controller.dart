@@ -3,9 +3,13 @@ import 'package:country_picker/country_picker.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
+import '../../../../app/app.dart';
 import '../../../../constants/app_assets.dart';
+import '../../../../constants/app_toasts.dart';
 import '../../../../core/models/api_response.dart';
 import '../../../../core/models/failure.dart';
+import '../../../../core/storage/storage_pref.dart';
 import '../../../../widgets/show_snack_bar.dart';
 import '../models/sign_up_model.dart';
 import '../repository/sign_up_repo_impl.dart';
@@ -31,36 +35,41 @@ class SignUpController extends GetxController {
   String accountType = 'normal';
 
   Future<void> signUp() async {
-    var formState = formKey2.currentState;
-    if (formState!.validate()) {
-      isLoading = true;
-      update();
-      var body = signUpModelToJson(SignUpModel(
-        email: email.text.trim(),
-        userName: name.text.trim(),
-        phoneNumber: countryCode + phone.text.trim(),
-        password: password.text.trim(),
-        accountType: accountType,
-      ));
-      Either<Failure, ApiResponse> results = await signUpRepo.signUp(
-        body: body,
-      );
-      isLoading = false;
-      update();
-      results.fold((l) {
-        log(l.message);
-        showSnackBar(l.message);
-      }, (r) async {
-        log("${r.object}");
-        bool success = r.object['isSuccessful'];
-        var message = r.object['message'];
-        if (success == true) {
-          Get.toNamed('/otp');
-        } else {
-          showSnackBar(message);
-        }
-      });
-    }
+    isLoading = true;
+    update();
+    var body = signUpModelToJson(SignUpModel(
+      email: email.text.trim(),
+      userName: name.text.trim(),
+      phoneNumber: countryCode + phone.text.trim(),
+      password: password.text.trim(),
+      accountType: accountType,
+      fcmToken: App.fcmToken,
+    ));
+    Either<Failure, ApiResponse> results = await signUpRepo.signUp(
+      body: body,
+    );
+    isLoading = false;
+    update();
+    results.fold((l) {
+      log(l.message);
+      showSnackBar(l.message);
+    }, (r) async {
+      log("${r.object}");
+      bool success = r.object['isSuccessful'];
+      var message = r.object['message'];
+      if (success == true) {
+        var data = r.object['data'];
+        var token = data['token'];
+        App.token = token;
+        await StoragePref.setString(
+          key: "token",
+          value: token,
+        );
+        Get.toNamed(MainWrapper.routeName);
+      } else {
+        AppToasts.errorToast(message);
+      }
+    });
   }
 
   changeVisanility() {

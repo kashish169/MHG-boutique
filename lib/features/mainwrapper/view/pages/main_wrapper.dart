@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../controller/main_wrapper_controller.dart';
+import '../widgets/bottom_nav_bar.dart';
+import '../widgets/main_app_bar.dart';
+
+class MainWrapper extends StatefulWidget {
+  static String routeName = '/main_wrapper';
+  const MainWrapper({Key? key}) : super(key: key);
+
+  @override
+  State<MainWrapper> createState() => _MainWrapperState();
+}
+
+class _MainWrapperState extends State<MainWrapper>
+    with TickerProviderStateMixin {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  late TabController tabController;
+  int currentIndex = 0;
+  final mainController = Get.find<MainWrapperController>();
+
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(
+      initialIndex: currentIndex,
+      length: _children.length,
+      vsync: this,
+    );
+    tabController.addListener(() {
+      currentIndex = tabController.index;
+      if (mounted) setState(() {});
+    });
+  }
+
+  final List<Widget> _children = const [];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: scaffoldKey,
+      onDrawerChanged: (isOpened) {
+        if (mounted) setState(() {});
+      },
+      appBar: mainAppBar(
+        context: context,
+        scaffoldKey: scaffoldKey,
+        currentIndex: currentIndex,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomNavBarWidget(
+        scaffoldKey: scaffoldKey,
+        tabController: tabController,
+      ),
+      body: TabBarView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: tabController,
+        children: _children,
+      ),
+    );
+  }
+}

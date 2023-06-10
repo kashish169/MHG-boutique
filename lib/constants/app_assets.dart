@@ -10,4 +10,11 @@ class AppAssets {
   static String person = "assets/icons/person.png";
   static const backgroungimage = 'assets/images/01c – 6.jpg';
   static String arrowBack = "assets/icons/Path 1.png";
+  static String home = "assets/icons/home.png";
+  static String bag = "assets/icons/bag.png";
+  static String profile = "assets/icons/profile.png";
+  static String wishlist = "assets/icons/wishlist.png";
+  static String brands = "assets/icons/brands.png";
+  static String notification = "assets/icons/notification.png";
+  static String search = "assets/icons/search.png";
 }

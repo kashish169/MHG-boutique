@@ -5,6 +5,8 @@ import 'package:mhg/features/auth/verification/binding/verification_binding.dart
 import 'package:mhg/features/auth/verification/view/pages/verfication_page.dart';
 import 'package:mhg/features/auth/signin/binding/sign_in_binding.dart';
 import 'package:mhg/features/auth/signin/view/pages/sign_in_page.dart';
+import 'package:mhg/features/mainwrapper/binding/main_wrapper_bindings.dart';
+import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
 import 'package:mhg/features/notification_permission/view/pages/norification_permission.dart';
 import 'package:mhg/features/on_board/binding/on_board_binding.dart';
 import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
@@ -44,6 +46,11 @@ class AppRoutes {
       name: '/otp',
       page: () => const OtpPage(),
       binding: OtpBinding(),
+    ),
+    GetPage(
+      name: '/main_wrapper',
+      page: () => const MainWrapper(),
+      binding: MainWrapperBinding(),
     ),
   ];
 }

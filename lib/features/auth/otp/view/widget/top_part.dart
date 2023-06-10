@@ -20,7 +20,7 @@ class OtpTopPart extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .displayLarge!
-                  .copyWith(fontSize: 22, color: AppColors.secondary),
+                  .copyWith(fontSize: 22, color: AppColors.primary),
             ),
             const SizedBox(
               height: 20,

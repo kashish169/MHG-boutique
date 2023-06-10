@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mhg/constants/app_fonts.dart';
 import '../constants/app_colors.dart';
 
 class AppTheme {
@@ -27,16 +28,19 @@ class AppTheme {
         fontSize: 28,
         color: AppColors.label,
         fontWeight: FontWeight.w600,
+        fontFamily: AppFonts.INTER,
       ),
       displayMedium: TextStyle(
         fontSize: 20,
         color: AppColors.label,
         fontWeight: FontWeight.w600,
+        fontFamily: AppFonts.INTER,
       ),
       displaySmall: TextStyle(
         fontSize: 14,
         color: AppColors.label,
         fontWeight: FontWeight.w400,
+        fontFamily: AppFonts.INTER,
       ),
     ),
   );
