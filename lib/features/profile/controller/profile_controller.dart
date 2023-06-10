@@ -21,6 +21,7 @@ class ProfileController extends GetxController {
   }
   RxBool isLoading = false.obs;
   RxBool isError = false.obs;
+  RxBool firstCall = true.obs;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   Barcode? result;
   QRViewController? qrViewController;
@@ -46,6 +47,7 @@ class ProfileController extends GetxController {
         var message = r.object['message'];
         if (statusCode == 200) {
           model = ProfileInfoModal.fromJson(r.object["data"]);
+          firstCall(false);
         } else if (statusCode == 400) {
           AppToasts.errorToast(message);
         } else if (statusCode == 401) {

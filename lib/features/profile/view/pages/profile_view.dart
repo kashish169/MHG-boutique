@@ -35,8 +35,10 @@ class ProfileView extends StatelessWidget {
               name: controller.model.name,
               email: controller.model.email,
               image: controller.model.image,
-              level: 'Mojab',
+              level: controller.model.currentTier ?? '-',
             ),
+            const ProfileRewardBox(),
+            const DividerWidget(),
             const ProfileRewardBox(),
             const DividerWidget(),
             ProfileCard(
@@ -96,11 +98,11 @@ class ProfileView extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            const DividerWidget(),
             ProfileCard(
-              icon: AppAssets.person,
+              icon: AppAssets.store,
               title: 'Log out',
             ),
+            const SizedBox(height: 15),
             const DividerWidget(),
             const SizedBox(height: 15),
             Padding(

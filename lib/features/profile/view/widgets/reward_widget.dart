@@ -1,15 +1,18 @@
+import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
+import '../../controller/profile_controller.dart';
 
 class ProfileRewardBox extends StatelessWidget {
   const ProfileRewardBox({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ProfileController>();
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
       child: Container(
         decoration: BoxDecoration(
             color: AppColors.primary,
@@ -25,7 +28,7 @@ class ProfileRewardBox extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                  top: 12, bottom: 10, left: 12, right: 12),
+                  top: 15, bottom: 12, left: 12, right: 12),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,9 +51,13 @@ class ProfileRewardBox extends StatelessWidget {
                         child: LinearPercentIndicator(
                           //leaner progress bar
                           // animation: true,
-                          padding: EdgeInsets.all(0.0),
+                          padding: EdgeInsets.zero,
                           lineHeight: 12.0,
-                          percent: .7,
+                          percent: controller.model.nextTierPts != 0
+                              ? double.parse(controller.model.hearts ?? '0') /
+                                  double.parse(
+                                      controller.model.nextTierPts.toString())
+                              : 1.0,
                           barRadius: const Radius.circular(10),
                           progressColor: const Color(0XFF6E8674),
                           backgroundColor: Colors.grey[300],
@@ -60,7 +67,7 @@ class ProfileRewardBox extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        '450/650 Pts',
+                        '${controller.model.hearts}/${controller.model.nextTierPts}',
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall
@@ -69,9 +76,9 @@ class ProfileRewardBox extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Text(
-                      '250 Pts Until Gold Level',
+                      '${controller.model.nextTierPtsLeft} Until ${controller.model.nextTier}',
                       style: Theme.of(context)
                           .textTheme
                           .displaySmall
@@ -80,11 +87,6 @@ class ProfileRewardBox extends StatelessWidget {
                   )
                 ],
               ),
-            ),
-            Divider(
-              color: AppColors.secondary,
-              thickness: .5,
-              height: 10,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),

@@ -47,16 +47,7 @@ class _MainWrapperState extends State<MainWrapper>
 
   @override
   Widget build(BuildContext context) {
-    return GetX<ProfileController>(builder: (controller) {
-      if (controller.isLoading.isTrue) {
-        return Center(
-          child: CircularProgressIndicator(
-            color: AppColors.primary,
-          ),
-        );
-      }
-
-      return Scaffold(
+    return Scaffold(
         key: scaffoldKey,
         onDrawerChanged: (isOpened) {
           if (mounted) setState(() {});
@@ -71,15 +62,20 @@ class _MainWrapperState extends State<MainWrapper>
           scaffoldKey: scaffoldKey,
           tabController: tabController,
         ),
-        body: ModalProgressHUD(
-          inAsyncCall: Get.find<ProfileController>().isLoading.value,
-          child: TabBarView(
+        body: GetX<ProfileController>(builder: (controller) {
+          if (controller.isLoading.isTrue) {
+            return Center(
+              child: CircularProgressIndicator(
+                color: AppColors.primary,
+              ),
+            );
+          }
+
+          return TabBarView(
             physics: const NeverScrollableScrollPhysics(),
             controller: tabController,
             children: _children,
-          ),
-        ),
-      );
-    });
+          );
+        }));
   }
 }

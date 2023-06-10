@@ -57,6 +57,7 @@ class ProfileHeader extends StatelessWidget {
             ),
             CircleAvatar(
               radius: 20,
+              backgroundColor: AppColors.white,
               child: image != null
                   ? Image.network(controller.model.imageLink + image!)
                   : Image.asset(AppAssets.profileLogo),
