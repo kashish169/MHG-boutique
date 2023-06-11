@@ -7,6 +7,7 @@ class LevelCard extends StatelessWidget {
   final String description;
   final String icon;
   final bool isLocked;
+  final Color color;
 
   const LevelCard({
     super.key,
@@ -14,6 +15,7 @@ class LevelCard extends StatelessWidget {
     required this.description,
     required this.isLocked,
     required this.icon,
+    required this.color,
   });
 
   @override
@@ -23,7 +25,7 @@ class LevelCard extends StatelessWidget {
         vertical: 10,
         horizontal: 16,
       ),
-      color: AppColors.moghram,
+      color: color,
       child: Row(
         children: [
           Image.asset(
@@ -39,11 +41,18 @@ class LevelCard extends StatelessWidget {
                   title,
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
                         fontWeight: FontWeight.normal,
+                        color: color == AppColors.molah
+                            ? AppColors.white
+                            : AppColors.label,
                       ),
                 ),
                 Text(
                   description,
-                  style: Theme.of(context).textTheme.displaySmall,
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                        color: color == AppColors.molah
+                            ? AppColors.white
+                            : AppColors.label,
+                      ),
                 ),
               ],
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
+import 'package:mhg/constants/app_colors.dart';
 import '../../profile/controller/profile_controller.dart';
 import 'level_card.dart';
 
@@ -27,6 +28,7 @@ class RewardLevelsWidget extends StatelessWidget {
           const SizedBox(height: 25),
           LevelCard(
             icon: AppAssets.mojab,
+            color: AppColors.mojab,
             title: "Mojab",
             description:
                 "Unlock To Start Earning More Credits For Each Time You Buy From Our Brands",
@@ -35,6 +37,7 @@ class RewardLevelsWidget extends StatelessWidget {
           ),
           LevelCard(
             icon: AppAssets.moghram,
+            color: AppColors.moghram,
             title: "Moghram",
             description: "Unlock To Have Special Offers And Extra Gifts",
             isLocked:
@@ -42,6 +45,7 @@ class RewardLevelsWidget extends StatelessWidget {
           ),
           LevelCard(
             icon: AppAssets.molah,
+            color: AppColors.molah,
             title: "Molah",
             description:
                 "Unlock To Be The Vip User, With Tons Of Gifts And Offers More Than 40% Sales",
