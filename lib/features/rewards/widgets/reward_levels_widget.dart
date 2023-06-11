@@ -30,20 +30,23 @@ class RewardLevelsWidget extends StatelessWidget {
             title: "Mojab",
             description:
                 "Unlock To Start Earning More Credits For Each Time You Buy From Our Brands",
-            isLocked: controller.model.currentTier == "Mojab" ? false : true,
+            isLocked:
+                controller.model.value!.currentTier == "Mojab" ? false : true,
           ),
           LevelCard(
             icon: AppAssets.moghram,
             title: "Moghram",
             description: "Unlock To Have Special Offers And Extra Gifts",
-            isLocked: controller.model.currentTier == "Moghram" ? false : true,
+            isLocked:
+                controller.model.value!.currentTier == "Moghram" ? false : true,
           ),
           LevelCard(
             icon: AppAssets.molah,
             title: "Molah",
             description:
                 "Unlock To Be The Vip User, With Tons Of Gifts And Offers More Than 40% Sales",
-            isLocked: controller.model.currentTier == "Molah" ? false : true,
+            isLocked:
+                controller.model.value!.currentTier == "Molah" ? false : true,
           ),
         ],
       ),

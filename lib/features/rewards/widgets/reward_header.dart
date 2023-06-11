@@ -3,15 +3,11 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
-import 'package:mhg/features/profile/models/profle_info_model.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class RewardHeader extends StatelessWidget {
-  final ProfileInfoModal modal;
-
   const RewardHeader({
     Key? key,
-    required this.modal,
   }) : super(key: key);
 
   @override
@@ -53,7 +49,7 @@ class RewardHeader extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  controller.model.nextTierPts != 0
+                  controller.model.value!.nextTierPts != 0
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,9 +59,10 @@ class RewardHeader extends StatelessWidget {
                               padding: EdgeInsets.zero,
                               lineHeight: 12.0,
                               percent: double.parse(
-                                      controller.model.hearts ?? '0') /
-                                  double.parse(
-                                      controller.model.nextTierPts.toString()),
+                                      controller.model.value!.hearts ?? '0') /
+                                  double.parse(controller
+                                      .model.value!.nextTierPts
+                                      .toString()),
                               barRadius: const Radius.circular(10),
                               progressColor: const Color(0XFF6E8674),
                               backgroundColor: Colors.grey[300],
@@ -74,7 +71,7 @@ class RewardHeader extends StatelessWidget {
                               width: 5,
                             ),
                             Text(
-                              '${controller.model.hearts}/${controller.model.nextTierPts}',
+                              '${controller.model.value!.hearts}/${controller.model.value!.nextTierPts}',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall
@@ -97,9 +94,9 @@ class RewardHeader extends StatelessWidget {
                         ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: controller.model.nextTierPts != 0
+                    child: controller.model.value!.nextTierPts != 0
                         ? Text(
-                            '${controller.model.nextTierPtsLeft} Until ${controller.model.nextTier}',
+                            '${controller.model.value!.nextTierPtsLeft} Until ${controller.model.value!.nextTier}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -113,7 +110,7 @@ class RewardHeader extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-              child: controller.model.nextTierPts != 0
+              child: controller.model.value!.nextTierPts != 0
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,7 +127,7 @@ class RewardHeader extends StatelessWidget {
                           width: 20,
                         ),
                         Text(
-                          '${controller.model.orderCount} Orders = ${controller.model.hearts} Pts',
+                          '${controller.model.value!.orderCount} Orders = ${controller.model.value!.hearts} Pts',
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall

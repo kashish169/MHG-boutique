@@ -22,15 +22,13 @@ class RewardsPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
-              'Good Morning ${controller.model.name}',
+              'Good Morning ${controller.model.value!.name}',
               style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     fontSize: 18,
                   ),
             ),
           ),
-          RewardHeader(
-            modal: controller.model,
-          ),
+          const RewardHeader(),
           const ScanQrCard(),
           const RewardLevelsWidget(),
         ],

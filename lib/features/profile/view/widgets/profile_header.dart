@@ -55,37 +55,45 @@ class ProfileHeader extends StatelessWidget {
                 ],
               ),
             ),
-            CircleAvatar(
-              radius: 20,
-              backgroundColor: AppColors.white,
-              child: image != null
-                  ? Image.network(controller.model.imageLink + image!)
-                  : Image.asset(AppAssets.profileLogo),
+            Visibility(
+              visible:
+                  controller.model.value!.currentTier != null ? true : false,
+              child: CircleAvatar(
+                radius: 20,
+                backgroundColor: AppColors.white,
+                child: image != null
+                    ? Image.network(controller.model.value!.imageLink + image!)
+                    : Image.asset(AppAssets.profileLogo),
+              ),
             ),
             const SizedBox(
               width: 5,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Current Level',
-                  style: Theme.of(context)
-                      .textTheme
-                      .displayMedium
-                      ?.copyWith(fontSize: 15),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  level,
-                  style: Theme.of(context)
-                      .textTheme
-                      .displaySmall
-                      ?.copyWith(fontSize: 11),
-                ),
-              ],
+            Visibility(
+              visible:
+                  controller.model.value!.currentTier != null ? true : false,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Current Level',
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayMedium
+                        ?.copyWith(fontSize: 15),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    level,
+                    style: Theme.of(context)
+                        .textTheme
+                        .displaySmall
+                        ?.copyWith(fontSize: 11),
+                  ),
+                ],
+              ),
             )
           ],
         ),
