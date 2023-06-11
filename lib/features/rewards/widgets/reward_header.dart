@@ -6,9 +6,9 @@ import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class RewardHeader extends StatelessWidget {
-  const RewardHeader({
-    Key? key,
-  }) : super(key: key);
+  final bool? fromReward;
+
+  const RewardHeader({Key? key, this.fromReward}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +49,54 @@ class RewardHeader extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
+                  if (controller.model.value!.nextTierPts != 0 &&
+                      fromReward != null)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Row(
+                        children: [
+                          controller.model.value!.image != null
+                              ? Image.network(
+                                  controller.model.value!.imageLink +
+                                      controller.model.value!.image!,
+                                  height: 40,
+                                )
+                              : Image.asset(
+                                  AppAssets.mojab,
+                                  height: 40,
+                                ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Current Level",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall
+                                    ?.copyWith(
+                                        color: AppColors.secondary,
+                                        fontSize: 10),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                controller.model.value!.currentTier ?? '_',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall
+                                    ?.copyWith(
+                                      color: AppColors.white,
+                                    ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
                   controller.model.value!.nextTierPts != 0
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.start,
