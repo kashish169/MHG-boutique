@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:get_storage/get_storage.dart';
 import 'package:mhg/app/app.dart';
+import 'package:mhg/core/api/api.dart';
 
 class StoragePref {
   static final box = GetStorage();
@@ -28,6 +31,7 @@ class StoragePref {
 
   static Future<void> clear() async {
     App.token = '';
+    log("ACCESS TOKEN ${App.token}");
     await box.erase();
   }
 }

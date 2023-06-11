@@ -44,7 +44,8 @@ class ProfileRewardBox extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      controller.model.value!.nextTierPts != 0
+                      controller.model.value!.nextTierPts != 0 ||
+                              controller.model.value!.nextTier == null
                           ? Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,12 +56,17 @@ class ProfileRewardBox extends StatelessWidget {
                                   // animation: true,
                                   padding: EdgeInsets.zero,
                                   lineHeight: 12.0,
-                                  percent: double.parse(
-                                          controller.model.value!.hearts ??
-                                              '0') /
-                                      double.parse(controller
-                                          .model.value!.nextTierPts
-                                          .toString()),
+                                  percent:
+                                      controller.model.value!.nextTierPts == 0
+                                          ? 1.0
+                                          : double.parse(controller
+                                                      .model.value!.hearts ??
+                                                  '0') /
+                                              double.parse(
+                                                controller
+                                                    .model.value!.nextTierPts
+                                                    .toString(),
+                                              ),
                                   barRadius: const Radius.circular(10),
                                   progressColor: const Color(0XFF6E8674),
                                   backgroundColor: Colors.grey[300],
@@ -124,7 +130,8 @@ class ProfileRewardBox extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-                  child: controller.model.value!.nextTierPts != 0
+                  child: controller.model.value!.nextTierPts != 0 ||
+                          controller.model.value!.nextTier == null
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
