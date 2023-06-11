@@ -19,7 +19,6 @@ class App {
     await dotenv.load(fileName: ".env");
     token = await StoragePref.getString("token");
     notifyMe = await StoragePref.getbool("notifyme");
-    await getFcmToken();
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.dark,
     );
