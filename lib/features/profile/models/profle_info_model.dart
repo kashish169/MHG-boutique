@@ -4,40 +4,41 @@ ProfileInfoModal profileInfoModalFromJson(String str) =>
     ProfileInfoModal.fromJson(json.decode(str));
 
 class ProfileInfoModal {
-  ProfileInfoModal(
-      {required this.id,
-      required this.orderCount,
-      this.currentTier,
-      required this.nextTier,
-      required this.nextTierPts,
-      required this.nextTierPtsLeft,
-      this.externalId,
-      required this.qrCode,
-      required this.name,
-      required this.email,
-      required this.accountType,
-      this.googleId,
-      this.faceBookId,
-      this.image,
-      this.number,
-      this.gender,
-      this.dob,
-      this.street,
-      this.about,
-      this.isAdmin,
-      this.status,
-      this.countryId,
-      this.amount,
-      this.hearts,
-      this.tierId,
-      this.storeId,
-      this.countryLoyalityId,
-      this.emailVerified,
-      this.notifyMe,
-      this.createdAt,
-      this.updatedAt,
-      required this.qrLink,
-      required this.imageLink});
+  ProfileInfoModal({
+    required this.id,
+    required this.orderCount,
+    this.currentTier,
+    this.nextTier,
+    required this.nextTierPts,
+    required this.nextTierPtsLeft,
+    this.externalId,
+    required this.qrCode,
+    required this.name,
+    required this.email,
+    required this.accountType,
+    this.googleId,
+    this.faceBookId,
+    this.image,
+    this.number,
+    this.gender,
+    this.dob,
+    this.street,
+    this.about,
+    this.isAdmin,
+    this.status,
+    this.countryId,
+    this.amount,
+    this.hearts,
+    this.tierId,
+    this.storeId,
+    this.countryLoyalityId,
+    this.emailVerified,
+    this.notifyMe,
+    this.createdAt,
+    this.updatedAt,
+    required this.qrLink,
+    required this.imageLink,
+  });
 
   int id;
   int? externalId;
@@ -69,8 +70,8 @@ class ProfileInfoModal {
   String imageLink;
   int orderCount;
   String? currentTier;
-  String nextTier;
-  int nextTierPts;
+  String? nextTier;
+  dynamic nextTierPts;
   dynamic nextTierPtsLeft;
 
   factory ProfileInfoModal.fromJson(Map<String, dynamic> json) =>

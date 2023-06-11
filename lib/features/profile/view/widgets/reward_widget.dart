@@ -99,14 +99,21 @@ class ProfileRewardBox extends StatelessWidget {
                             ? Builder(builder: (context) {
                                 return controller.loadingUpdateCard.isTrue
                                     ? const LoadingThreeBounce()
-                                    : Text(
-                                        '${controller.model.value!.nextTierPtsLeft} Until ${controller.model.value!.nextTier}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .displaySmall
-                                            ?.copyWith(
-                                                fontSize: 10,
-                                                color: AppColors.white),
+                                    : Visibility(
+                                        visible:
+                                            controller.model.value!.nextTier ==
+                                                    null
+                                                ? false
+                                                : true,
+                                        child: Text(
+                                          '${controller.model.value!.nextTierPtsLeft} Until ${controller.model.value!.nextTier}',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .displaySmall
+                                              ?.copyWith(
+                                                  fontSize: 10,
+                                                  color: AppColors.white),
+                                        ),
                                       );
                               })
                             : const SizedBox(),

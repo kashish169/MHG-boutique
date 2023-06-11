@@ -46,9 +46,11 @@ class ProfileView extends StatelessWidget {
               const ProfileRewardBox(),
               const DividerWidget(),
               ProfileCard(
-                onTap: () {
-                  Get.toNamed('/personal_information',
-                      arguments: {"profile": controller.model.value});
+                onTap: () async {
+                  await Get.toNamed('/personal_information', arguments: {
+                    "profile": controller.model.value,
+                  });
+                  controller.getProfileInfo();
                 },
                 icon: AppAssets.person1,
                 title: 'Personal information',
@@ -64,7 +66,6 @@ class ProfileView extends StatelessWidget {
                 title: 'Settings',
                 onTap: () async {
                   await Get.toNamed(SettingPage.routeName);
-
                 },
               ),
               const DividerWidget(),
