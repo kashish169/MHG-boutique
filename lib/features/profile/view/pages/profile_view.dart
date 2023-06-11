@@ -7,6 +7,7 @@ import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/view/pages/qr_view.dart';
 import 'package:mhg/features/profile/view/widgets/reward_widget.dart';
 import 'package:mhg/features/rewards/pages/rewards_page.dart';
+import 'package:mhg/features/setting/view/pages/setting_view.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import '../../../../widgets/divider_widget.dart';
 import '../widgets/profile_card.dart';
@@ -45,6 +46,10 @@ class ProfileView extends StatelessWidget {
               const ProfileRewardBox(),
               const DividerWidget(),
               ProfileCard(
+                onTap: () {
+                  Get.toNamed('/personal_information',
+                      arguments: {"profile": controller.model.value});
+                },
                 icon: AppAssets.person1,
                 title: 'Personal information',
               ),
@@ -57,6 +62,10 @@ class ProfileView extends StatelessWidget {
               ProfileCard(
                 icon: AppAssets.setting,
                 title: 'Settings',
+                onTap: () async {
+                  await Get.toNamed(SettingPage.routeName);
+
+                },
               ),
               const DividerWidget(),
               ProfileCard(

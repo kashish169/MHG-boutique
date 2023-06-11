@@ -43,7 +43,7 @@ class ProfileHeader extends StatelessWidget {
                         ?.copyWith(fontSize: 15),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 2,
                   ),
                   Text(
                     email,
@@ -61,9 +61,9 @@ class ProfileHeader extends StatelessWidget {
               child: CircleAvatar(
                 radius: 20,
                 backgroundColor: AppColors.white,
-                child: image != null
-                    ? Image.network(controller.model.value!.imageLink + image!)
-                    : Image.asset(AppAssets.profileLogo),
+                child: Image.asset(
+                  controller.getLevelIcon(),
+                ),
               ),
             ),
             const SizedBox(
@@ -83,7 +83,7 @@ class ProfileHeader extends StatelessWidget {
                         ?.copyWith(fontSize: 15),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 2,
                   ),
                   Text(
                     level,

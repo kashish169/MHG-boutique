@@ -17,6 +17,7 @@ class CustomFormField extends StatelessWidget {
     this.oneSideBorder,
     this.multiLine,
     this.readOnly,
+    this.isFilled,
   });
 
   final Widget? prefixWidget;
@@ -32,6 +33,7 @@ class CustomFormField extends StatelessWidget {
   final bool? oneSideBorder;
   final bool? multiLine;
   final bool? readOnly;
+  final bool? isFilled;
 
   @override
   Widget build(BuildContext context) {
@@ -52,25 +54,62 @@ class CustomFormField extends StatelessWidget {
               const BoxConstraints(minHeight: 15, minWidth: 15),
           contentPadding:
               oneSideBorder != null ? const EdgeInsets.all(12) : null,
-          filled: true,
-          hintStyle: Theme.of(context)
-              .textTheme
-              .displaySmall!
-              .copyWith(color: AppColors.grey),
+          filled: readOnly == null ? true : false,
+          hintStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
+              color: isFilled == null ? AppColors.grey : AppColors.black3),
           hintText: hint,
           fillColor: const Color(0XFFF0F0F0),
-          border: OutlineInputBorder(
-            borderRadius: oneSideBorder != null
-                ? const BorderRadius.only(
-                    topLeft: Radius.circular(5.0),
-                    bottomLeft: Radius.circular(5.0))
-                : const BorderRadius.all(Radius.circular(10.0)),
-            borderSide: const BorderSide(color: Colors.white),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide(color: AppColors.white),
-          ),
+          border: readOnly == null
+              ? OutlineInputBorder(
+                  borderRadius: oneSideBorder != null
+                      ? const BorderRadius.only(
+                          topLeft: Radius.circular(5.0),
+                          bottomLeft: Radius.circular(5.0))
+                      : const BorderRadius.all(Radius.circular(10.0)),
+                  borderSide: const BorderSide(color: Colors.white),
+                )
+              : readOnly == false
+                  ? OutlineInputBorder(
+                      borderRadius: oneSideBorder != null
+                          ? const BorderRadius.only(
+                              topLeft: Radius.circular(5.0),
+                              bottomLeft: Radius.circular(5.0))
+                          : const BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: const BorderSide(color: Colors.white),
+                    )
+                  : UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: AppColors.lightGray3, width: 1)),
+          enabledBorder: readOnly == null
+              ? const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  borderSide: BorderSide(color: Colors.white),
+                )
+              : readOnly == false
+                  ? OutlineInputBorder(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(color: AppColors.white),
+                    )
+                  : UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: AppColors.lightGray3, width: 1)),
+          disabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: AppColors.lightGray3, width: 1)),
+          focusedBorder: readOnly == null
+              ? OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                  borderSide: BorderSide(color: AppColors.label, width: 2),
+                )
+              : readOnly == false
+                  ? OutlineInputBorder(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(color: AppColors.label, width: 2),
+                    )
+                  : UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: AppColors.lightGray3, width: 1)),
           prefixIcon: prefixWidget,
           suffixIcon: suffixIcon,
         ));

@@ -1,9 +1,15 @@
+import 'dart:developer';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:mhg/features/splash/view/splash_view.dart';
 import 'package:mhg/theme/theme.dart';
 import 'app/app.dart';
 import 'core/routes/app_routes.dart';
+
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  log("Handling a background message: ${message.messageId}");
+}
 
 void main() async {
   await App.initSettings();

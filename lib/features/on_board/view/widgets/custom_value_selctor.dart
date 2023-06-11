@@ -30,17 +30,12 @@ class CustomValueSelector extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              height: 60,
-              width: 40,
-              decoration: isSelectCountry
-                  ? BoxDecoration(
-                      image: DecorationImage(image: AssetImage(image)),
-                      shape: BoxShape.circle,
-                    )
-                  : BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: AppColors.grey)),
-            ),
+                height: 60,
+                width: 40,
+                decoration: BoxDecoration(
+                    image: DecorationImage(image: AssetImage(image)),
+                    shape: BoxShape.circle,
+                    border: Border.all(color: AppColors.grey))),
             SizedBox(
               width: 180,
               child: Center(

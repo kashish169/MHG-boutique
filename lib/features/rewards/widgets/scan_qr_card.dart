@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import '../../profile/view/pages/qr_view.dart';
 
@@ -62,11 +63,20 @@ class ScanQrCard extends StatelessWidget {
                 ),
                 color: AppColors.white,
               ),
-              child: const Align(
-                alignment: Alignment.centerRight,
-                child: Icon(
-                  Icons.arrow_forward_ios,
-                ),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Image.asset(
+                    AppAssets.qrIcon,
+                    fit: BoxFit.cover,
+                  ),
+                  const Align(
+                    alignment: Alignment.centerRight,
+                    child: Icon(
+                      Icons.arrow_forward_ios,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
