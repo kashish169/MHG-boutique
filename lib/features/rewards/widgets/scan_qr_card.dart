@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import '../../profile/view/pages/qr_view.dart';
 
 class ScanQrCard extends StatelessWidget {
   const ScanQrCard({super.key});
@@ -8,7 +10,9 @@ class ScanQrCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //TODO
+        Get.to(
+          () => const QRPage(),
+        );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
