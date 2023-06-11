@@ -43,54 +43,68 @@ class ProfileRewardBox extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: LinearPercentIndicator(
-                          //leaner progress bar
-                          // animation: true,
-                          padding: EdgeInsets.zero,
-                          lineHeight: 12.0,
-                          percent: controller.model.nextTierPts != 0
-                              ? double.parse(controller.model.hearts ?? '0') /
+                  controller.model.nextTierPts != 0
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                                child: LinearPercentIndicator(
+                              //leaner progress bar
+                              // animation: true,
+                              padding: EdgeInsets.zero,
+                              lineHeight: 12.0,
+                              percent: double.parse(
+                                      controller.model.hearts ?? '0') /
                                   double.parse(
-                                      controller.model.nextTierPts.toString())
-                              : 1.0,
-                          barRadius: const Radius.circular(10),
-                          progressColor: const Color(0XFF6E8674),
-                          backgroundColor: Colors.grey[300],
+                                      controller.model.nextTierPts.toString()),
+                              barRadius: const Radius.circular(10),
+                              progressColor: const Color(0XFF6E8674),
+                              backgroundColor: Colors.grey[300],
+                            )),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              '${controller.model.hearts}/${controller.model.nextTierPts}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall
+                                  ?.copyWith(
+                                      fontSize: 11, color: AppColors.white),
+                            )
+                          ],
+                        )
+                      : FittedBox(
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 30),
+                            child: Text(
+                              'Unlock rewards with your first order! Start earning today.',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall
+                                  ?.copyWith(color: AppColors.white),
+                            ),
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        '${controller.model.hearts}/${controller.model.nextTierPts}',
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall
-                            ?.copyWith(fontSize: 11, color: AppColors.white),
-                      )
-                    ],
-                  ),
+
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Text(
+                    child:controller.model.nextTierPts != 0? Text(
                       '${controller.model.nextTierPtsLeft} Until ${controller.model.nextTier}',
                       style: Theme.of(context)
                           .textTheme
                           .displaySmall
                           ?.copyWith(fontSize: 10, color: AppColors.white),
-                    ),
+                    ):const SizedBox(),
                   )
                 ],
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-              child: Row(
+              child: controller.model.nextTierPts != 0?
+              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -106,14 +120,14 @@ class ProfileRewardBox extends StatelessWidget {
                     width: 20,
                   ),
                   Text(
-                    '20 Orders = 400 Pts',
+                    '${controller.model.orderCount} Orders = ${controller.model.hearts} Pts',
                     style: Theme.of(context)
                         .textTheme
                         .displaySmall
                         ?.copyWith(fontSize: 11, color: AppColors.white),
                   ),
                 ],
-              ),
+              ):const SizedBox(),
             )
           ],
         ),

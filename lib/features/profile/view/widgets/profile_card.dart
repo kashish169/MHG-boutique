@@ -16,24 +16,22 @@ class ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 5),
-        child: SizedBox(
-          height: 40,
-          child: ListTile(
-            leading: Image.asset(
-              icon,
-              height: 25,
-            ),
-            title: Text(
-              title,
-              style: Theme.of(context).textTheme.displaySmall,
-            ),
-            trailing: const Icon(
-              Icons.arrow_forward_ios_sharp,
-              color: Color(0xFFB4B4B4),
-              size: 20,
-            ),
+      child: Container(
+        color:AppColors.white,
+        height: 60,
+        child: ListTile(
+          leading: Image.asset(
+            icon,
+            height: 25,
+          ),
+          title: Text(
+            title,
+            style: Theme.of(context).textTheme.displaySmall,
+          ),
+          trailing: const Icon(
+            Icons.arrow_forward_ios_sharp,
+            color: Color(0xFFB4B4B4),
+            size: 20,
           ),
         ),
       ),

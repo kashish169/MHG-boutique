@@ -38,29 +38,33 @@ class _QRPageState extends State<QRPage> {
                   child: Row(
                     children: [
                       Expanded(
-                        child: Text(
-                          'Hello,${controller.model.name}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                color: AppColors.white,
-                                fontSize: 15,
-                              ),
+                        child: FittedBox(
+                          child: Text(
+                            'Hello,${controller.model.name}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                                  color: AppColors.white,
+                                  fontSize: 15,
+                                ),
+                          ),
                         ),
                       ),
                       const Expanded(child: SizedBox()),
                       Expanded(
-                        child: Text(
-                          'Your Total Points \n ${controller.model.hearts} Pts ',
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                color: AppColors.white,
-                                fontSize: 14,
-                              ),
+                        child: FittedBox(
+                          child: Text(
+                            'Your Total Points \n ${controller.model.hearts} Pts ',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                              color: AppColors.white,
+                              fontSize: 14,
+                            ),
+                          ),
                         ),
                       ),
                     ],

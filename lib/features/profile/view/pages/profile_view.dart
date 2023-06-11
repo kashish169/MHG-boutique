@@ -98,6 +98,7 @@ class ProfileView extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
+            const DividerWidget(),
             ProfileCard(
               icon: AppAssets.store,
               title: 'Log out',
@@ -106,8 +107,9 @@ class ProfileView extends StatelessWidget {
                 Get.offAllNamed(OnBoardView.routeName);
               },
             ),
-            const SizedBox(height: 15),
             const DividerWidget(),
+            const SizedBox(height: 15),
+
             const SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
@@ -129,7 +131,7 @@ class ProfileView extends StatelessWidget {
                     ],
                   )),
                   const SizedBox(
-                      height: 20,
+                      height: 25,
                       child: VerticalDivider(
                         thickness: 1,
                         color: Colors.grey,
