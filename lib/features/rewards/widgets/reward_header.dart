@@ -8,10 +8,12 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class RewardHeader extends StatelessWidget {
   final ProfileInfoModal modal;
+  final bool? fromReward;
 
   const RewardHeader({
     Key? key,
     required this.modal,
+    this.fromReward
   }) : super(key: key);
 
   @override
@@ -53,6 +55,40 @@ class RewardHeader extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
+                  if(controller.model.nextTierPts != 0&&fromReward!=null)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Row(
+                        children: [
+                          controller.model.image!=null?  Image.network(controller.model.imageLink+controller.model.image!,
+                            height: 40,):
+                          Image.asset(AppAssets.mojab,
+
+                            height: 40,),
+                          const SizedBox(width: 10,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Current Level",style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                                  color: AppColors.secondary,
+                                  fontSize: 10
+                              ),
+
+                              ),
+                              const SizedBox(height: 5,),
+                              Text(controller.model.currentTier??'_',style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                                color: AppColors.white,
+
+                              ),
+                              )
+                            ],
+                          )
+
+                        ],
+
+                      ),
+                    ),
+
                   controller.model.nextTierPts != 0
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.start,

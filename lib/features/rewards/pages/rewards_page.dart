@@ -15,25 +15,28 @@ class RewardsPage extends StatelessWidget {
     final controller = Get.find<ProfileController>();
     return Scaffold(
       appBar: customAppBar(context, title: "Rewards"),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              'Good Morning ${controller.model.name}',
-              style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    fontSize: 18,
-                  ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                'Good Morning ${controller.model.name}',
+                style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                      fontSize: 18,
+                    ),
+              ),
             ),
-          ),
-          RewardHeader(
-            modal: controller.model,
-          ),
-          const ScanQrCard(),
-          const RewardLevelsWidget(),
-        ],
+            RewardHeader(
+              modal: controller.model,
+              fromReward: true,
+            ),
+            const ScanQrCard(),
+            const RewardLevelsWidget(),
+          ],
+        ),
       ),
     );
   }
