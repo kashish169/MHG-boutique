@@ -24,7 +24,6 @@ class BottomButton extends StatelessWidget {
               color: AppColors.secondary,
               height: 50,
               onTap: () async {
-                await App.getFcmToken();
                 await setNotifyMe(true);
               },
             ),
