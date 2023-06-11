@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:mhg/features/splash/view/splash_view.dart';
+import 'package:mhg/theme/theme.dart';
+import 'app/app.dart';
+import 'core/routes/app_routes.dart';
 
-void main() {
+void main() async {
+  await App.initSettings();
   runApp(const MHG());
 }
 
@@ -9,6 +15,11 @@ class MHG extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.themeData,
+      getPages: AppRoutes.getRoutes,
+      initialRoute: SplashView.routeName,
+    );
   }
 }

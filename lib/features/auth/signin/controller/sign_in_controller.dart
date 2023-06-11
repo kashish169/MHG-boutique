@@ -1,0 +1,104 @@
+import 'dart:developer';
+import 'package:country_picker/country_picker.dart';
+import 'package:dartz/dartz.dart';
+import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:mhg/app/app.dart';
+import 'package:mhg/constants/app_assets.dart';
+import 'package:mhg/constants/app_toasts.dart';
+import 'package:mhg/core/models/api_response.dart';
+import 'package:mhg/core/models/failure.dart';
+import 'package:mhg/core/storage/storage_pref.dart';
+import 'package:mhg/features/auth/signin/model/response_model.dart';
+import 'package:mhg/features/auth/signin/model/sign_in_model.dart';
+import 'package:mhg/features/auth/signin/repository/sign_in_repo.dart';
+import 'package:mhg/features/auth/signin/repository/sign_in_repo_Imp.dart';
+import 'package:mhg/widgets/loading_widget.dart';
+import 'package:mhg/widgets/show_snakBar.dart';
+import '../../../mainwrapper/view/pages/main_wrapper.dart';
+
+class SignInController extends GetxController {
+  late SignInRepo signInRepo;
+  late LoginModel loginModel;
+
+  SignInController() {
+    signInRepo = Get.find<SignInRepoImpl>();
+  }
+
+  final TextEditingController phone = TextEditingController();
+  final TextEditingController password = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  bool isVisable = true;
+  RxBool isLoading = false.obs;
+  RxString countryCode = '+971'.obs;
+  RxString countryFlag = AppAssets.flag.obs;
+  RxInt roleInd = 0.obs;
+  String selectedCountryName = '';
+
+  @override
+  void onInit() {
+    selectedCountryName = Get.arguments;
+    log("selectedCountryName $selectedCountryName");
+    super.onInit();
+  }
+
+  changeVisibility() {
+    isVisable = !isVisable;
+    update();
+  }
+
+  String? validatePhone(String value) {
+    if (GetUtils.isPhoneNumber(countryCode.value + value) == false) {
+      return 'enter valid phone number';
+    } else {
+      return null;
+    }
+  }
+
+  Future<void> signIn() async {
+    Get.dialog(
+      const LoadingWidget(),
+      barrierDismissible: false,
+    );
+    var body = signInModelToJson(SignInModel(
+      phone: countryCode + phone.text.trim(),
+      fcmToken: App.fcmToken,
+    ));
+    Either<Failure, ApiResponse> results = await signInRepo.signIn(
+      body: body,
+    );
+    Get.back();
+    results.fold(
+      (l) {
+        showSnackBar(l.message);
+      },
+      (r) async {
+        log("${r.object}");
+        int statusCode = r.object["code"];
+        var message = r.object['message'];
+        if (statusCode == 200) {
+          loginModel = LoginModel.fromJson(r.object['data']);
+          var token = loginModel.token;
+          App.token = token;
+          await StoragePref.setString(
+            key: "token",
+            value: token,
+          );
+          log("ACCESS TOKEN : $token");
+          Get.toNamed(MainWrapper.routeName);
+        } else if (statusCode == 400) {
+          AppToasts.errorToast(message);
+        } else {
+          AppToasts.errorToast(message);
+        }
+      },
+    );
+  }
+
+  selectCountry(Country country) {
+    countryFlag.value = country.flagEmoji;
+    countryCode.value = "+${country.phoneCode}";
+    log("+${country.phoneCode}");
+    update();
+  }
+}
