@@ -44,4 +44,6 @@ class AppAssets {
   static String mojab = "assets/icons/mojab.png";
   static String moghram = "assets/icons/Moghram.png";
   static String molah = "assets/icons/Molah.png";
+  static String img1 = "assets/images/img1.png";
+  static String favourtie = "assets/icons/favourtie.png";
 }

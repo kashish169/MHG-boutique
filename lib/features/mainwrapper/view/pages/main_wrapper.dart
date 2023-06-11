@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/view/pages/profile_view.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import '../../../home/view/pages/home_page.dart';
 import '../../controller/main_wrapper_controller.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../widgets/main_app_bar.dart';
