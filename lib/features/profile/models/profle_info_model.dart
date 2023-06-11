@@ -71,7 +71,7 @@ class ProfileInfoModal {
   String? currentTier;
   String nextTier;
   int nextTierPts;
-  int nextTierPtsLeft;
+  dynamic nextTierPtsLeft;
 
   factory ProfileInfoModal.fromJson(Map<String, dynamic> json) =>
       ProfileInfoModal(
@@ -103,10 +103,10 @@ class ProfileInfoModal {
         updatedAt: json["updated_at"],
         qrLink: json["qr_code_link"],
         imageLink: json["image_link"],
-       orderCount: json["orders_count"],
+        orderCount: json["orders_count"],
         currentTier: json["current_tier"],
         nextTier: json["next_tier"],
-       nextTierPts: json["next_tier_pts"],
+        nextTierPts: json["next_tier_pts"],
         nextTierPtsLeft: json["next_tier_pts_left"],
       );
 }

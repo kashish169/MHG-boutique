@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/core/models/api_response.dart';
 import 'package:mhg/core/models/failure.dart';
@@ -59,5 +60,15 @@ class ProfileController extends GetxController {
         }
       },
     );
+  }
+
+  String getLevelIcon() {
+    if (model.value!.currentTier == "Mojab") {
+      return AppAssets.mojab;
+    } else if (model.value!.currentTier == "Moghram") {
+      return AppAssets.moghram;
+    } else {
+      return AppAssets.molah;
+    }
   }
 }

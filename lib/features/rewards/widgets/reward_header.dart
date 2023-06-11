@@ -56,7 +56,7 @@ class RewardHeader extends StatelessWidget {
                       child: Row(
                         children: [
                           Image.asset(
-                            AppAssets.mojab,
+                            controller.getLevelIcon(),
                             height: 40,
                           ),
                           const SizedBox(
