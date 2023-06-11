@@ -8,6 +8,7 @@ import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
 import '../../../../app/app.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_toasts.dart';
+import '../../../../core/api/api.dart';
 import '../../../../core/models/api_response.dart';
 import '../../../../core/models/failure.dart';
 import '../../../../core/storage/storage_pref.dart';
@@ -65,6 +66,10 @@ class SignUpController extends GetxController {
         var data = r.object['data'];
         var token = data['token'];
         App.token = token;
+        Api.authorizedheaders = {
+          'Content-Type': 'application/json',
+          'Authorization': "Bearer $token",
+        };
         await StoragePref.setString(
           key: "token",
           value: token,

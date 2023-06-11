@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_toasts.dart';
+import 'package:mhg/core/api/api.dart';
 import 'package:mhg/core/models/api_response.dart';
 import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
@@ -80,6 +81,10 @@ class SignInController extends GetxController {
           loginModel = LoginModel.fromJson(r.object['data']);
           var token = loginModel.token;
           App.token = token;
+          Api.authorizedheaders = {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer $token",
+          };
           await StoragePref.setString(
             key: "token",
             value: token,
