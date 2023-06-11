@@ -6,6 +6,7 @@ import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/view/pages/qr_view.dart';
 import 'package:mhg/features/profile/view/widgets/reward_widget.dart';
+import 'package:mhg/features/rewards/pages/rewards_page.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import '../../../../widgets/divider_widget.dart';
 import '../widgets/profile_card.dart';
@@ -59,6 +60,9 @@ class ProfileView extends StatelessWidget {
             ProfileCard(
               icon: AppAssets.reward,
               title: 'Rewards',
+              onTap: () {
+                Get.toNamed(RewardsPage.routeName);
+              },
             ),
             const DividerWidget(),
             ProfileCard(
@@ -109,7 +113,6 @@ class ProfileView extends StatelessWidget {
             ),
             const DividerWidget(),
             const SizedBox(height: 15),
-
             const SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
