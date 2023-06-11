@@ -6,9 +6,7 @@ import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class RewardHeader extends StatelessWidget {
-  final bool? fromReward;
-
-  const RewardHeader({Key? key, this.fromReward}) : super(key: key);
+  const RewardHeader({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,22 +47,18 @@ class RewardHeader extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  if (controller.model.value!.nextTierPts != 0 &&
-                      fromReward != null)
-                    Padding(
+                  Visibility(
+                    visible: controller.model.value!.currentTier != null
+                        ? true
+                        : false,
+                    child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Row(
                         children: [
-                          controller.model.value!.image != null
-                              ? Image.network(
-                                  controller.model.value!.imageLink +
-                                      controller.model.value!.image!,
-                                  height: 40,
-                                )
-                              : Image.asset(
-                                  AppAssets.mojab,
-                                  height: 40,
-                                ),
+                          Image.asset(
+                            AppAssets.mojab,
+                            height: 40,
+                          ),
                           const SizedBox(
                             width: 10,
                           ),
@@ -97,6 +91,7 @@ class RewardHeader extends StatelessWidget {
                         ],
                       ),
                     ),
+                  ),
                   controller.model.value!.nextTierPts != 0
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.start,
