@@ -4,6 +4,7 @@ import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
 
 import '../model/country_model.dart';
+import '../model/language_model.dart';
 import '../view/widgets/select_language.dart';
 import '../view/widgets/selecte_country.dart';
 
@@ -35,7 +36,10 @@ class OnboardController extends GetxController {
     CountryModel(image: AppAssets.omanFlage, name: 'Oman')
   ];
   String selectedLang = 'English';
-  List langList = ['English', 'Arabic'];
+  List<LanguageModel> langList = [
+    LanguageModel(name: 'English', image: AppAssets.ukFlag),
+    LanguageModel(name: 'Arabic', image: AppAssets.uaeFlage),
+  ];
   PageController pageController = PageController();
   RxInt activeIndex = 0.obs;
   Future isFirstLaunch() async {

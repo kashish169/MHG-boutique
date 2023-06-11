@@ -13,5 +13,6 @@ class Api {
   static String signUp = "/api/v1/users/auth/register";
   static String login = "/api/v1/users/auth/login-with-phone";
   static String profile = "/api/v1/users/profile";
-  static String notifications= "/api/v1/users/notifications";
+  static String notifications = "/api/v1/users/notifications";
+  static String updateProfile = "/api/v1/users/update";
 }

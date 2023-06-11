@@ -51,4 +51,6 @@ class AppAssets {
   static String ads = "assets/icons/ads.png";
   static String info = "assets/icons/info.png";
   static String terms = "assets/icons/terms.png";
+  static String edit = "assets/icons/edit.png";
+  static String ukFlag = "assets/icons/uk.png";
 }
