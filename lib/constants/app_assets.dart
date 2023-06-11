@@ -40,4 +40,8 @@ class AppAssets {
   static String facebook = "assets/icons/facebook.png";
   static String twitter = "assets/icons/twitter.png";
   static String logout = "assets/icons/logout.png";
+  static String locked = "assets/icons/locked.png";
+  static String mojab = "assets/icons/mojab.png";
+  static String moghram = "assets/icons/Moghram.png";
+  static String molah = "assets/icons/Molah.png";
 }

@@ -13,6 +13,7 @@ import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
 import 'package:mhg/features/auth/otp/bindings/otp_bindings.dart';
 import 'package:mhg/features/profile/binding/profile_binding.dart';
 import 'package:mhg/features/profile/view/pages/profile_view.dart';
+import 'package:mhg/features/rewards/pages/rewards_page.dart';
 import 'package:mhg/features/splash/binding/splash_binding.dart';
 import 'package:mhg/features/splash/view/splash_view.dart';
 import '../../features/auth/otp/view/pages/otp.dart';
@@ -57,12 +58,10 @@ class AppRoutes {
     GetPage(
       name: '/profile',
       page: () => const ProfileView(),
-
     ),
-
-
-
-
-
+    GetPage(
+      name: '/reward',
+      page: () => const RewardsPage(),
+    ),
   ];
 }
