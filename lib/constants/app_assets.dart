@@ -33,6 +33,7 @@ class AppAssets {
   static String scan = "assets/icons/scan1.png";
   static String payment = "assets/icons/payment1.png";
   static String invite = "assets/icons/invite1.png";
+  static String alert = "assets/icons/alert.png";
   static String about = "assets/icons/about1.png";
   static String feedback = "assets/icons/feedback1.png";
   static String store = "assets/icons/store1.png";
@@ -44,4 +45,8 @@ class AppAssets {
   static String mojab = "assets/icons/mojab.png";
   static String moghram = "assets/icons/Moghram.png";
   static String molah = "assets/icons/Molah.png";
+  static String arrowDown = "assets/icons/arrow_down.png";
+  static String ads = "assets/icons/ads.png";
+  static String info = "assets/icons/info.png";
+  static String terms = "assets/icons/terms.png";
 }
