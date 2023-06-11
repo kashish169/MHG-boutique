@@ -100,7 +100,7 @@ class ProfileView extends StatelessWidget {
             ),
             const DividerWidget(),
             ProfileCard(
-              icon: AppAssets.logout,
+              icon: AppAssets.store,
               title: 'Log out',
               onTap: () async {
                 await StoragePref.clear();
