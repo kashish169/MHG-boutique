@@ -1,4 +1,5 @@
 import 'package:get_storage/get_storage.dart';
+import 'package:mhg/app/app.dart';
 
 class StoragePref {
   static final box = GetStorage();
@@ -26,6 +27,7 @@ class StoragePref {
   }
 
   static Future<void> clear() async {
+    App.token = '';
     await box.erase();
   }
 }
