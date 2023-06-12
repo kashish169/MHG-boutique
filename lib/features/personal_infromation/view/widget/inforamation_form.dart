@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/personal_infromation/view/widget/CountryButtonPick.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
 
 import '../../controller/peronal_informatiom_controller.dart';
@@ -43,6 +44,42 @@ class InformationForm extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
+          header=='Phone number'?
+              Row(
+                children: [
+                  const CountryButtonPicker(),
+                  const SizedBox(width: 5,),
+                  Expanded(
+                    child: CustomFormField(
+                      controller: textController,
+                      validator: validator,
+                      inputType: inInputNumber == null
+                          ? TextInputType.name
+                          : TextInputType.number,
+                      readOnly: isEnableToEdit,
+                      suffixIcon: IconButton(
+                        onPressed: onTap,
+                        icon: SizedBox(
+                          height: 25,
+                          width: 25,
+                          child: isEnableToEdit == true
+                              ? Image.asset(AppAssets.edit)
+                              : SizedBox(
+                            height: 25,
+                            width: 25,
+                            child: Icon(
+                              Icons.check,
+                              color: AppColors.label,
+                              size: 25,
+                            ),
+                          ),
+                        ),
+                      ),
+                      obscure: false,
+                    ),
+                  )
+                ],
+              ):
           CustomFormField(
             controller: textController,
             validator: validator,

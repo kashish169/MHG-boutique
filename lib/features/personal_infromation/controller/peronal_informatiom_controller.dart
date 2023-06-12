@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_assets.dart';
+import 'package:mhg/core/models/countries.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/models/profle_info_model.dart';
 
@@ -26,7 +28,7 @@ class PersonalInformationController extends GetxController {
   bool enableEditOnName = true;
   bool enableEditOnEmail = true;
   bool enableEditOnPassword = true;
-  bool enableEditOnNumber = true;
+  RxBool enableEditOnNumber = true.obs;
   bool enableEditOnAddress = true;
   final TextEditingController name = TextEditingController();
   final TextEditingController email = TextEditingController();
@@ -35,14 +37,20 @@ class PersonalInformationController extends GetxController {
   final TextEditingController address = TextEditingController();
   bool isLoading = false;
   bool iserror = false;
-  String countryCode = '+971';
+  RxString countryCode = '+971'.obs;
+  RxString countryFlag = AppAssets.flag.obs;
   @override
   void onInit() {
     profileInfo = Get.arguments["profile"];
     print(profileInfo.number);
     name.text = profileInfo.name;
     email.text = profileInfo.email;
-    phone.text = profileInfo.number ?? 'Add your Number';
+   if(profileInfo.number!=null ){
+     seperatePhoneAndDialCode(profileInfo.number!);
+   }else{
+     phone.text == 'Add your Number';
+   }
+
     address.text = profileInfo.street ?? 'Add your address';
     super.onInit();
   }
@@ -71,6 +79,7 @@ class PersonalInformationController extends GetxController {
         var message = r.object['message'];
         if (success == true) {
           Get.back();
+
           profileController.getProfileInfo();
         } else {
           AppToasts.errorToast(message);
@@ -95,12 +104,34 @@ class PersonalInformationController extends GetxController {
   }
 
   enableNumber() {
-    enableEditOnNumber = !enableEditOnNumber;
+    enableEditOnNumber.value = !enableEditOnNumber.value;
     update();
   }
 
   enableAddress() {
     enableEditOnAddress = !enableEditOnAddress;
     update();
+  }
+  seperatePhoneAndDialCode(String phoneWithDialCode) {
+    Map<String, String> foundedCountry = {};
+    for (var country in Countries.allCountries) {
+      String dialCode = country["dial_code"].toString();
+      if (phoneWithDialCode.contains(dialCode)) {
+        foundedCountry = country;
+      }
+    }
+
+    if (foundedCountry.isNotEmpty) {
+      var dialCode = phoneWithDialCode.substring(
+        0,
+        foundedCountry["dial_code"]!.length,
+      );
+      var newPhoneNumber = phoneWithDialCode.substring(
+        foundedCountry["dial_code"]!.length,
+      );
+      phone.text = newPhoneNumber;
+      countryCode.value = dialCode;
+      print({dialCode, newPhoneNumber});
+    }
   }
 }
