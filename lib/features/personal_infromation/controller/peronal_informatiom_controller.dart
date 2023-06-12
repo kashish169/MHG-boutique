@@ -80,6 +80,7 @@ class PersonalInformationController extends GetxController {
         if (success == true) {
           Get.back();
 
+          AppToasts.errorToast("Updated Successfully");
           profileController.getProfileInfo();
         } else {
           AppToasts.errorToast(message);
