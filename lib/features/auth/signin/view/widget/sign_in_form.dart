@@ -12,75 +12,77 @@ class SignInForm extends StatelessWidget {
   final SignInController controller = Get.find();
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 20,
-        ),
-        controller.logWithNumber.value
-            ? Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                child: CustomFormField(
-                  validator: (value) {
-                    return controller.validatePhone(value!);
-                  },
-                  controller: controller.phone,
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      controller.phone.clear();
-                    },
-                    icon: Image.asset(
-                      AppAssets.close,
-                      height: 22,
-                    ),
-                  ),
-                  prefixWidget: const CountryButtonPick(),
-                  inputType: TextInputType.number,
-                  obscure: false,
-                ),
-              )
-            : Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                child: CustomFormField(
-                  hint: 'Email address ',
-                  controller: controller.email,
-                  suffixIcon: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: Image.asset(
-                        AppAssets.message,
-                        height: 14,
-                      )),
-                  inputType: TextInputType.text,
-                  obscure: false,
-                  validator: (val) {
-                    return AppHelper.validation(val!, 1, 500, 'email');
-                  },
-                ),
-              ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-          child: CustomFormField(
-            hint: 'Password',
-            controller: controller.password,
-            suffixIcon: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: GestureDetector(
-                    onTap: () {
-                      controller.changeVisibility();
-                    },
-                    child: Icon(controller.isVisable.value
-                        ? Icons.visibility
-                        : Icons.visibility_off_rounded))),
-            inputType: TextInputType.text,
-            obscure: controller.isVisable.value,
+    return GetX<SignInController>(builder: (controller) {
+      return Column(
+        children: [
+          const SizedBox(
+            height: 20,
           ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-      ],
-    );
+          controller.logWithNumber.value
+              ? Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                  child: CustomFormField(
+                    validator: (value) {
+                      return controller.validatePhone(value!);
+                    },
+                    controller: controller.phone,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        controller.phone.clear();
+                      },
+                      icon: Image.asset(
+                        AppAssets.close,
+                        height: 22,
+                      ),
+                    ),
+                    prefixWidget: const CountryButtonPick(),
+                    inputType: TextInputType.number,
+                    obscure: false,
+                  ),
+                )
+              : Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  child: CustomFormField(
+                    hint: 'Email address ',
+                    controller: controller.email,
+                    suffixIcon: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: Image.asset(
+                          AppAssets.message,
+                          height: 14,
+                        )),
+                    inputType: TextInputType.text,
+                    obscure: false,
+                    validator: (val) {
+                      return AppHelper.validation(val!, 1, 500, 'email');
+                    },
+                  ),
+                ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            child: CustomFormField(
+              hint: 'Password',
+              controller: controller.password,
+              suffixIcon: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: GestureDetector(
+                      onTap: () {
+                        controller.changeVisibility();
+                      },
+                      child: Icon(controller.isVisable.value
+                          ? Icons.visibility
+                          : Icons.visibility_off_rounded))),
+              inputType: TextInputType.text,
+              obscure: controller.isVisable.value,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+        ],
+      );
+    });
   }
 }
