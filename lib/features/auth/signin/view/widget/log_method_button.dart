@@ -1,0 +1,68 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
+import 'package:mhg/widgets/primary_button.dart';
+
+class LogMethodButton extends StatelessWidget {
+  LogMethodButton({super.key});
+  final SignInController controller = Get.find();
+  @override
+  Widget build(BuildContext context) {
+    return GetX<SignInController>(builder: (controller) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: AnimatedSize(
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.fastOutSlowIn,
+                  child: PrimaryButton(
+                    title: 'With Phone Number',
+                    isSelcted: !controller.logWithNumber.value,
+                    reverseColor: !controller.logWithNumber.value,
+                    height: controller.numberLogHight.value,
+                    width: controller.numberLogwidth.value,
+                    color: controller.logWithNumber.value == true
+                        ? AppColors.primary
+                        : AppColors.white,
+                    onTap: () {
+                      controller.logWithNum();
+                    },
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: AnimatedSize(
+                duration: const Duration(seconds: 1),
+                curve: Curves.fastOutSlowIn,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: PrimaryButton(
+                    title: 'With Email',
+                    height: controller.emailLogHight.value,
+                    isSelcted: !controller.logWithEmail.value,
+                    reverseColor: !controller.logWithEmail.value,
+                    width: controller.emailLogwidth.value,
+                    color: controller.logWithEmail.value == true
+                        ? AppColors.primary
+                        : AppColors.white,
+                    onTap: () {
+                      controller.loginWithEmail();
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    });
+  }
+}
