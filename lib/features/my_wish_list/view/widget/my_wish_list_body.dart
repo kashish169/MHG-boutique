@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mhg/features/my_wish_list/view/widget/body_buttons.dart';
-import '../../../../constants/app_assets.dart';
+import 'package:mhg/features/my_wish_list/view/widget/my_wish_list_body_buttons.dart';
 import '../../../../constants/app_colors.dart';
-import 'body_header.dart';
-import 'body_middle_text.dart';
+import 'my_wish_list_body_header.dart';
+import 'my_wish_list_body_middle_text.dart';
 
 class MyWishBody extends StatelessWidget {
   const MyWishBody({super.key});
@@ -36,13 +35,13 @@ class MyWishBody extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
+              const Expanded(
                 flex: 13,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       TopBodyHeader(),
                       SizedBox(
                         height: 10,

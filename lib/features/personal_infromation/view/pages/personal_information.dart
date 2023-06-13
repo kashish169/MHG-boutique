@@ -5,6 +5,7 @@ import 'package:mhg/features/personal_infromation/controller/peronal_informatiom
 import 'package:mhg/features/personal_infromation/view/widget/inforamation_form.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import '../../../../widgets/custom_app_bar.dart';
+import '../widget/delete_account_dialog.dart';
 import '../widget/personal_info_button.dart';
 
 class PersonalInformation extends StatelessWidget {
@@ -98,7 +99,14 @@ class PersonalInformation extends StatelessWidget {
                               isDelete: false),
                         PersonalInfoButton(
                             text: "Delete Account",
-                            onTap: () {},
+                            onTap: () {
+                              deleteAccountDialog(
+                                context: context,
+                                onConfirm: () {
+                                  controller.deleteAccount();
+                                },
+                              );
+                            },
                             isDelete: true),
                       ],
                     ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
+import '../../../../widgets/delete_icon_button.dart';
 
 class TopBodyHeader extends StatelessWidget {
   const TopBodyHeader({super.key});
@@ -18,16 +17,9 @@ class TopBodyHeader extends StatelessWidget {
               .displaySmall!
               .copyWith(fontSize: 16, color: AppColors.darkGrey),
         ),
-        GestureDetector(
+        DeleteIconButton(
           onTap: () {},
-          child: SizedBox(
-              height: 30,
-              width: 30,
-              child: Image.asset(
-                AppAssets.x,
-                fit: BoxFit.cover,
-              )),
-        )
+        ),
       ],
     );
   }

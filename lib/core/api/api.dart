@@ -16,4 +16,5 @@ class Api {
   static String profile = "/api/v1/users/profile";
   static String notifications = "/api/v1/users/notifications";
   static String updateProfile = "/api/v1/users/update";
+  static String deleteAccount = "/api/v1/users/delete-account";
 }

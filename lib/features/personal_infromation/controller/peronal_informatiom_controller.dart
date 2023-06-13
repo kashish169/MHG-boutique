@@ -9,6 +9,7 @@ import 'package:mhg/features/profile/models/profle_info_model.dart';
 import '../../../constants/app_toasts.dart';
 import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
+import '../../../core/storage/storage_pref.dart';
 import '../../../widgets/show_snack_bar.dart';
 import '../model/personal_model.dart';
 import '../repository/personal_info_repo.dart';
@@ -34,6 +35,7 @@ class PersonalInformationController extends GetxController {
   final TextEditingController password = TextEditingController();
   final TextEditingController address = TextEditingController();
   bool isLoading = false;
+  bool deleteLoading = false;
   bool iserror = false;
   RxString countryCode = '+971'.obs;
   RxString countryFlag = AppAssets.flag.obs;
@@ -133,5 +135,28 @@ class PersonalInformationController extends GetxController {
       countryCode.value = dialCode;
       print({dialCode, newPhoneNumber});
     }
+  }
+
+  deleteAccount() async {
+    deleteLoading = true;
+    update();
+    Either<Failure, ApiResponse> results = await personalRepo.deleteData();
+    deleteLoading = false;
+    update();
+    results.fold((l) {
+      log(l.message);
+      showSnackBar(l.message);
+    }, (r) async {
+      log("${r.object}");
+      bool success = r.object['isSuccessful'];
+      var message = r.object['message'];
+      if (success == true) {
+        await StoragePref.clear();
+        Get.offAllNamed('/notification_permission');
+        AppToasts.errorToast("Deleted Successfully");
+      } else {
+        AppToasts.errorToast(message);
+      }
+    });
   }
 }
