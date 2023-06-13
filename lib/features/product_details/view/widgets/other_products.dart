@@ -1,6 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
@@ -8,6 +9,7 @@ import 'package:mhg/features/home/view/widgets/custom_dot_swiper.dart';
 import 'package:mhg/features/home/view/widgets/home_slider.dart';
 import 'package:mhg/features/home/view/widgets/home_trends_widget.dart';
 import 'package:mhg/features/home/view/widgets/product_card.dart';
+import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/widgets/heart_widget.dart';
 
 class OtherProducts extends StatelessWidget {
@@ -39,7 +41,12 @@ class OtherProducts extends StatelessWidget {
             crossAxisSpacing: 20,
             itemCount: 2,
             builder: (ctx, index) {
-              return ProductCard();
+              return InkWell(
+                  onTap: (){
+                    Get.back();
+                    Get.toNamed(ProductPage.routeName);
+                  },
+                  child: const ProductCard());
             },
           ),
         ),

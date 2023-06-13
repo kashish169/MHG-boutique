@@ -4,9 +4,9 @@ import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/home/view/widgets/custom_dot_swiper.dart';
-import 'package:mhg/features/product_details/view/widgets/add_tobag_card.dart';
-import 'package:mhg/features/product_details/view/widgets/details_card.dart';
-import 'package:mhg/features/product_details/view/widgets/header.dart';
+import 'package:mhg/features/product_details/view/widgets/details_page_brand_card.dart';
+import 'package:mhg/features/product_details/view/widgets/details_page_info_card.dart';
+import 'package:mhg/features/product_details/view/widgets/details_page_slider.dart';
 import 'package:mhg/features/product_details/view/widgets/other_products.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/divider_widget.dart';
@@ -25,9 +25,16 @@ class ProductPage extends StatelessWidget {
       body: const SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [Head(), BagCard(), DividerWidget(), DetailsCard(),
+          children: [
+            DetailsPageSlider(),
+            DetailsPageBrandCard(),
+            DividerWidget(),
+            InfoCard(),
             OtherProducts(),
-          SizedBox(height: 20,)],
+            SizedBox(
+              height: 20,
+            )
+          ],
         ),
       ),
     );

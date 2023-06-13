@@ -3,8 +3,8 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/widgets/divider_widget.dart';
 import 'package:mhg/widgets/primary_button.dart';
 
-class BagCard extends StatelessWidget {
-  const BagCard({Key? key}) : super(key: key);
+class DetailsPageBrandCard extends StatelessWidget {
+  const DetailsPageBrandCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
