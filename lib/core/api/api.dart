@@ -11,6 +11,7 @@ class Api {
     'Authorization': "Bearer ${App.token}",
   };
   static String signUp = "/api/v1/users/auth/register";
+  static String loginEmail = "/api/v1/users/auth/login";
   static String login = "/api/v1/users/auth/login-with-phone";
   static String profile = "/api/v1/users/profile";
   static String notifications = "/api/v1/users/notifications";

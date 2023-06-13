@@ -12,6 +12,7 @@ class PrimaryButton extends StatelessWidget {
   final bool? reverseColor;
   final double? fontSize;
   final Color? color;
+  final bool? isSelcted;
 
   const PrimaryButton({
     super.key,
@@ -23,7 +24,9 @@ class PrimaryButton extends StatelessWidget {
     this.radius,
     this.fromSplash,
     this.reverseColor,
-    this.fontSize, this.color,
+    this.fontSize,
+    this.color,
+    this.isSelcted,
   });
 
   @override
@@ -33,7 +36,12 @@ class PrimaryButton extends StatelessWidget {
       minWidth: width,
       color: color ?? AppColors.primary,
       shape: RoundedRectangleBorder(
-         side: BorderSide(color: AppColors.white),
+        side: BorderSide(
+            color: isSelcted == null
+                ? AppColors.white
+                : isSelcted == false
+                    ? AppColors.white
+                    : AppColors.label),
         borderRadius: BorderRadius.circular(radius ?? 13),
       ),
       onPressed: onTap,
@@ -47,11 +55,11 @@ class PrimaryButton extends StatelessWidget {
           : Text(
               title,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
-
                     color: reverseColor == true
                         ? AppColors.primary
                         : AppColors.white,
                   ),
+              textAlign: TextAlign.center,
             ),
     );
   }
