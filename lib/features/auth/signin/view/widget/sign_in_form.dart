@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../../constants/app_assets.dart';
 import '../../../../../core/helper/app_helper.dart';
 import '../../../../../widgets/custom_form_field.dart';
@@ -20,8 +19,10 @@ class SignInForm extends StatelessWidget {
           ),
           controller.logWithNumber.value
               ? Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 20,
+                  ),
                   child: CustomFormField(
                     validator: (value) {
                       return controller.validatePhone(value!);

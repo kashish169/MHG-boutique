@@ -55,10 +55,6 @@ class CountryButtonPick extends StatelessWidget {
                 color: Color(0XFFBCBCBC),
               ),
             ),
-            // Image.asset(
-            //   AppAssets.arrowDown,
-            //   height: 10,
-            // ),
           ],
         ),
       ),
