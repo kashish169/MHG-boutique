@@ -26,7 +26,7 @@ class MHG extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.themeData,
       getPages: AppRoutes.getRoutes,
-      initialRoute: ProductPage.routeName,
+      initialRoute: SplashView.routeName,
     );
   }
 }

@@ -36,13 +36,13 @@ class MyWishBody extends StatelessWidget {
                   ),
                 ),
               ),
-              const Expanded(
+              Expanded(
                 flex: 13,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: const [
                       TopBodyHeader(),
                       SizedBox(
                         height: 10,
