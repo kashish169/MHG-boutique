@@ -7,6 +7,8 @@ import 'package:mhg/features/auth/signin/binding/sign_in_binding.dart';
 import 'package:mhg/features/auth/signin/view/pages/sign_in_page.dart';
 import 'package:mhg/features/mainwrapper/binding/main_wrapper_bindings.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
+import 'package:mhg/features/myorders/binding/my_orders_binding.dart';
+import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
 import 'package:mhg/features/notification_permission/view/pages/norification_permission.dart';
 import 'package:mhg/features/notifications/binding/notification_binding.dart';
 import 'package:mhg/features/notifications/view/pages/notifications_page.dart';
@@ -81,6 +83,11 @@ class AppRoutes {
       name: '/personal_information',
       page: () => PersonalInformation(),
       binding: PersonalInformationBinding(),
+    ),
+    GetPage(
+      name: '/my_orders',
+      page: () => const MyOrdersPage(),
+      binding: MyOrdersBinding(),
     ),
   ];
 }

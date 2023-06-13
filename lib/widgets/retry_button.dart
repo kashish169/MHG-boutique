@@ -12,7 +12,7 @@ class RetryButton extends StatelessWidget {
         children: [
           Text(
             'Something went wrong',
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.displaySmall,
           ),
           TextButton(
               onPressed: onTap,
