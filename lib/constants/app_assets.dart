@@ -58,4 +58,5 @@ class AppAssets {
   static String heart = "assets/icons/heart.png";
   static String upload = "assets/icons/upload.png";
   static String starIcon = "assets/icons/star.png";
+  static String x = "assets/icons/x.png";
 }

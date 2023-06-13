@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/my_wish_list/view/pages/my_wish_list.dart';
 import 'package:mhg/features/profile/view/pages/profile_view.dart';
 import '../../../home/view/pages/home_page.dart';
 import '../../../mycart/view/pages/my_cart_page.dart';
@@ -39,8 +40,8 @@ class _MainWrapperState extends State<MainWrapper>
   final List<Widget> _children = [
     const HomePage(),
     Container(),
+    const MyWishList(),
     Container(),
-    const MyCartPage(),
     const ProfileView()
   ];
 
@@ -52,10 +53,10 @@ class _MainWrapperState extends State<MainWrapper>
         if (mounted) setState(() {});
       },
       appBar: mainAppBar(
-        context: context,
-        scaffoldKey: scaffoldKey,
-        currentIndex: currentIndex,
-      ),
+          context: context,
+          scaffoldKey: scaffoldKey,
+          currentIndex: currentIndex,
+          isHome: tabController.index == 2 ? false : null),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavBarWidget(
         scaffoldKey: scaffoldKey,

@@ -24,6 +24,7 @@ import 'package:mhg/features/setting/view/pages/setting_view.dart';
 import 'package:mhg/features/splash/binding/splash_binding.dart';
 import 'package:mhg/features/splash/view/splash_view.dart';
 import '../../features/auth/otp/view/pages/otp.dart';
+import '../../features/my_wish_list/view/pages/my_wish_list.dart';
 import '../../features/personal_infromation/binding/peronal_informatiom_binding.dart';
 
 class AppRoutes {
@@ -93,6 +94,11 @@ class AppRoutes {
     GetPage(
       name: '/product',
       page: () => const ProductPage(),
+    ),
+    GetPage(
+      name: '/my_wish_list',
+      page: () => const MyWishList(),
+      binding: MyOrdersBinding(),
     ),
   ];
 }
