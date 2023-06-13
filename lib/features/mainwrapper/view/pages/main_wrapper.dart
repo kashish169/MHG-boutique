@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/profile/view/pages/profile_view.dart';
 import '../../../home/view/pages/home_page.dart';
+import '../../../mycart/view/pages/my_cart_page.dart';
 import '../../controller/main_wrapper_controller.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../widgets/main_app_bar.dart';
@@ -39,7 +40,7 @@ class _MainWrapperState extends State<MainWrapper>
     const HomePage(),
     Container(),
     Container(),
-    Container(),
+    const MyCartPage(),
     const ProfileView()
   ];
 

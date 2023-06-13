@@ -32,7 +32,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(12),
         ),
-        boxShadow: AppColors.shadow,
+        boxShadow: AppColors.shadow(0.5),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

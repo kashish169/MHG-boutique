@@ -54,4 +54,5 @@ class AppAssets {
   static String edit = "assets/icons/edit.png";
   static String ukFlag = "assets/icons/uk.png";
   static String qrIcon = "assets/icons/qr-icon.png";
+  static String closeFill = "assets/icons/close-fill.png";
 }

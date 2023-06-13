@@ -8,6 +8,7 @@ class AppColors {
   static Color black3 = const Color(0xFF232C39);
   static Color red = const Color(0xFFF15B3A);
   static Color lightLabel = const Color(0xFF9B9B9B);
+  static Color mediumLabel = const Color(0xFF515C6F);
   static Color lightGray = const Color(0xFFF0F0F0);
   static Color lightGray2 = const Color(0xFF91959C);
   static Color lightGray3 = const Color(0xFFEDF2F5);
@@ -18,10 +19,10 @@ class AppColors {
   static Color grey = Colors.grey;
   static Color green = Colors.green;
   static Color white = Colors.white;
-  static List<BoxShadow> shadow = [
-    BoxShadow(
-      color: AppColors.primary.withOpacity(0.5),
-      blurRadius: 8,
-    )
-  ];
+  static List<BoxShadow> shadow(double opacity) => [
+        BoxShadow(
+          color: AppColors.primary.withOpacity(opacity),
+          blurRadius: 8,
+        )
+      ];
 }
