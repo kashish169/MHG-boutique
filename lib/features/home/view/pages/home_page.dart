@@ -1,33 +1,31 @@
-import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:mhg/features/home/view/widgets/home_slider.dart';
-import 'package:mhg/features/home/view/widgets/product_card.dart';
+import '../widgets/home_explore_our_brands_widget.dart';
+import '../widgets/home_trends_widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SingleChildScrollView(
       child: Column(
-        children: [
-          const HomeSlider(),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: DynamicHeightGridView(
-              physics: const NeverScrollableScrollPhysics(),
-              crossAxisCount: 2,
-              shrinkWrap: true,
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 20,
-              itemCount: 2,
-              builder: (ctx, index) {
-                return ProductCard();
-              },
-            ),
-          ),
+        children: const [
+          HomeSlider(),
+          HomeTrendsWidget(),
+          HomeExploreOurBrandsWidget(),
         ],
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

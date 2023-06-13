@@ -36,7 +36,7 @@ class _MainWrapperState extends State<MainWrapper>
   }
 
   final List<Widget> _children = [
-    Container(),
+    const HomePage(),
     Container(),
     Container(),
     Container(),

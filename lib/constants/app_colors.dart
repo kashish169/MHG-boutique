@@ -20,7 +20,7 @@ class AppColors {
   static Color white = Colors.white;
   static List<BoxShadow> shadow = [
     BoxShadow(
-      color: AppColors.primary.withOpacity(0.6),
+      color: AppColors.primary.withOpacity(0.5),
       blurRadius: 8,
     )
   ];
