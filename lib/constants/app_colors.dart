@@ -8,6 +8,7 @@ class AppColors {
   static Color black3 = const Color(0xFF232C39);
   static Color red = const Color(0xFFF15B3A);
   static Color lightLabel = const Color(0xFF9B9B9B);
+  static Color lightLabel2 = const Color(0xFFB4B4B4);
   static Color lightGray = const Color(0xFFF0F0F0);
   static Color lightGray2 = const Color(0xFF91959C);
   static Color lightGray3 = const Color(0xFFEDF2F5);
@@ -16,6 +17,7 @@ class AppColors {
   static Color molah = const Color(0xFF1B291E);
 
   static Color grey = Colors.grey;
+  static Color lGrey = const Color(0XFF515C6F);
   static Color green = Colors.green;
   static Color white = Colors.white;
   static List<BoxShadow> shadow = [

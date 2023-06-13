@@ -55,6 +55,7 @@ class PrimaryButton extends StatelessWidget {
           : Text(
               title,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                fontSize: fontSize,
                     color: reverseColor == true
                         ? AppColors.primary
                         : AppColors.white,

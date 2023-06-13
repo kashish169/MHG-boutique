@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/features/splash/view/splash_view.dart';
 import 'package:mhg/theme/theme.dart';
 import 'app/app.dart';
@@ -25,7 +26,7 @@ class MHG extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.themeData,
       getPages: AppRoutes.getRoutes,
-      initialRoute: SplashView.routeName,
+      initialRoute: ProductPage.routeName,
     );
   }
 }
