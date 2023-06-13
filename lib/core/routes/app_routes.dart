@@ -16,6 +16,7 @@ import 'package:mhg/features/on_board/binding/on_board_binding.dart';
 import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
 import 'package:mhg/features/auth/otp/bindings/otp_bindings.dart';
 import 'package:mhg/features/personal_infromation/view/pages/personal_information.dart';
+import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/features/profile/view/pages/profile_view.dart';
 import 'package:mhg/features/rewards/pages/rewards_page.dart';
 import 'package:mhg/features/setting/binding/setting_binding.dart';
@@ -88,6 +89,10 @@ class AppRoutes {
       name: '/my_orders',
       page: () => const MyOrdersPage(),
       binding: MyOrdersBinding(),
+    ),
+    GetPage(
+      name: '/product',
+      page: () => const ProductPage(),
     ),
   ];
 }
