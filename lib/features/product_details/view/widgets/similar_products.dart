@@ -12,8 +12,8 @@ import 'package:mhg/features/home/view/widgets/product_card.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/widgets/heart_widget.dart';
 
-class OtherProducts extends StatelessWidget {
-  const OtherProducts({Key? key}) : super(key: key);
+class SimilarProductsWidget extends StatelessWidget {
+  const SimilarProductsWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +27,7 @@ class OtherProducts extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .displaySmall
-                ?.copyWith(fontSize: 22,
-            color: const Color(0XFF515C6F)),
+                ?.copyWith(fontSize: 22, color: const Color(0XFF515C6F)),
           ),
         ),
         Padding(
@@ -42,9 +41,9 @@ class OtherProducts extends StatelessWidget {
             itemCount: 2,
             builder: (ctx, index) {
               return InkWell(
-                  onTap: (){
+                  onTap: () {
                     Get.back();
-                    Get.toNamed(ProductPage.routeName);
+                    Get.toNamed(ProductDetailsPage.routeName);
                   },
                   child: const ProductCard());
             },

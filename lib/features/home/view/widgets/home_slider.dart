@@ -19,8 +19,8 @@ class HomeSlider extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: InkWell(
-              onTap: (){
-                Get.toNamed(ProductPage.routeName);
+              onTap: () {
+                Get.toNamed(ProductDetailsPage.routeName);
               },
               child: Image.asset(
                 AppAssets.img1,

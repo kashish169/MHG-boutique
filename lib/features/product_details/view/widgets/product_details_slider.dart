@@ -1,3 +1,4 @@
+
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_assets.dart';
@@ -5,8 +6,9 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/home/view/widgets/custom_dot_swiper.dart';
 import 'package:mhg/widgets/heart_widget.dart';
-class DetailsPageSlider extends StatelessWidget {
-  const DetailsPageSlider({
+
+class ProductDetailsSlider extends StatelessWidget {
+  const ProductDetailsSlider({
     super.key,
   });
 
@@ -15,8 +17,7 @@ class DetailsPageSlider extends StatelessWidget {
     return Stack(
       children: [
         SizedBox(
-
-          height: AppDimensions.screenHeight(context)/2.8,
+          height: AppDimensions.screenHeight(context) / 2.8,
           child: Swiper(
             itemBuilder: (BuildContext context, int index) {
               return Image.asset(
@@ -46,28 +47,34 @@ class DetailsPageSlider extends StatelessWidget {
         //   ),
         // ),
         SizedBox(
-          height: (AppDimensions.screenHeight(context)/2.8)-40,
+          height: (AppDimensions.screenHeight(context) / 2.8) - 40,
           child: Align(
             alignment: Alignment.bottomLeft,
             child: Row(
               children: [
-                const SizedBox(width: 5,),
-                Image.asset(AppAssets.starIcon,height: 17,),
-                const SizedBox(width: 5,),
-                Text('250 pts',style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 22,
-                    color: const Color(0XFF1B291E),
-                    fontWeight: FontWeight.w600
-                ),),
-
-
+                const SizedBox(
+                  width: 5,
+                ),
+                Image.asset(
+                  AppAssets.starIcon,
+                  height: 17,
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  '250 pts',
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                      fontSize: 22,
+                      color: const Color(0XFF1B291E),
+                      fontWeight: FontWeight.w600),
+                ),
               ],
             ),
-
           ),
         ),
         SizedBox(
-          height: AppDimensions.screenHeight(context)/2.94,
+          height: AppDimensions.screenHeight(context) / 2.94,
           child: const Align(
               alignment: Alignment.bottomRight,
               child: Padding(
