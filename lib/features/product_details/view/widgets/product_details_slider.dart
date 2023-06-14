@@ -1,4 +1,3 @@
-
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_assets.dart';
@@ -79,7 +78,7 @@ class ProductDetailsSlider extends StatelessWidget {
               alignment: Alignment.bottomRight,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8),
-                child: HeartWidget(),
+                child: FavouriteWidget(),
               )),
         )
       ],

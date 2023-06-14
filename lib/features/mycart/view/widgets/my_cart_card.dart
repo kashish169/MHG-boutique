@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/widgets/counter_widget.dart';
-import 'package:mhg/widgets/delete_icon_button.dart';
+import 'package:mhg/widgets/heart_widget.dart';
+import 'package:mhg/widgets/net_image.dart';
+import '../../models/cart_model.dart';
+import 'cart_counter_widget.dart';
+import 'delete_cart_button.dart';
 
 class MyCartCard extends StatelessWidget {
-  const MyCartCard({super.key});
+  final CartModel model;
+  const MyCartCard({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +23,23 @@ class MyCartCard extends StatelessWidget {
           ),
           child: Row(
             children: [
-              ClipRRect(
-                borderRadius: const BorderRadiusDirectional.horizontal(
-                  start: Radius.circular(8),
-                ),
-                child: Image.asset(
-                  AppAssets.img1,
-                  width: 120,
-                  height: 110,
-                  fit: BoxFit.cover,
-                ),
+              Stack(
+                alignment: AlignmentDirectional.topEnd,
+                children: [
+                  ClipRRect(
+                    borderRadius: const BorderRadiusDirectional.horizontal(
+                      start: Radius.circular(8),
+                    ),
+                    child: NetImage(
+                      image: model.options.imageLink,
+                      width: 120,
+                      height: 110,
+                    ),
+                  ),
+                  FavouriteWidget(
+                    onTap: () {},
+                  ),
+                ],
               ),
               const SizedBox(width: 10),
               Expanded(
@@ -38,7 +48,7 @@ class MyCartCard extends StatelessWidget {
                   children: [
                     const SizedBox(height: 10),
                     Text(
-                      'Syond (60ml)',
+                      model.name,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                             fontSize: 16,
                             color: AppColors.mediumLabel,
@@ -59,7 +69,7 @@ class MyCartCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          'Edge',
+                          model.options.itemTag ?? '',
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall
@@ -75,7 +85,7 @@ class MyCartCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            'Dhs. 396.00',
+                            'Dhs. ${model.options.discountPrice ?? model.price}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -88,28 +98,25 @@ class MyCartCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Expanded(
-                          child: Text(
-                            'Dhs. 396.00',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  fontSize: 12,
-                                  color: AppColors.lightLabel,
-                                  decoration: TextDecoration.lineThrough,
-                                ),
+                          child: Visibility(
+                            visible: model.options.discountPrice != null
+                                ? true
+                                : false,
+                            child: Text(
+                              'Dhs. ${model.price}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall
+                                  ?.copyWith(
+                                    fontSize: 12,
+                                    color: AppColors.lightLabel,
+                                    decoration: TextDecoration.lineThrough,
+                                  ),
+                            ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(end: 10),
-                          child: CounterWidget(
-                            circleColor: AppColors.lightGray,
-                            countColor: AppColors.mediumLabel,
-                            buttonColor: AppColors.mediumLabel,
-                            count: 1,
-                            onChange: (value) {},
-                            loading: false,
-                          ),
+                        CartCounterWidget(
+                          model: model,
                         ),
                       ],
                     ),
@@ -120,8 +127,8 @@ class MyCartCard extends StatelessWidget {
             ],
           ),
         ),
-        DeleteIconButton(
-          onTap: () {},
+        DeleteCartButton(
+          model: model,
         ),
       ],
     );

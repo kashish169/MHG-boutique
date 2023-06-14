@@ -17,4 +17,10 @@ class Api {
   static String notifications = "/api/v1/users/notifications";
   static String updateProfile = "/api/v1/users/update";
   static String deleteAccount = "/api/v1/users/delete-account";
+
+  static String cartRoute = "/api/v1/cart";
+  static String cartItems = "$cartRoute/items";
+  static String deleteCartItem = "$cartRoute/remove-item";
+  static String increaseCartItem = "$cartRoute/increase-item";
+  static String decreaseCartItem = "$cartRoute/decrease-item";
 }

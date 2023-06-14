@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/features/home/view/widgets/home_slider.dart';
 import '../widgets/home_explore_our_brands_widget.dart';
-import '../widgets/home_trends_widget.dart';
+import '../widgets/home_top_sellers_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage>
       child: Column(
         children: const [
           HomeSlider(),
-          HomeTrendsWidget(),
+          HomeTopSellersWidget(),
           HomeExploreOurBrandsWidget(),
         ],
       ),

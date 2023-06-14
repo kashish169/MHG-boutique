@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/app_dimensions.dart';
@@ -45,8 +46,12 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
             if (widget.scaffoldKey.currentState!.isDrawerOpen == true) {
               Navigator.pop(context);
             }
+
             if (selectedIndex == 4) {
               Get.find<ProfileController>().getProfileInfo();
+            }
+            if (selectedIndex == 3) {
+              Get.find<MyCartController>().getCart();
             }
             if (mounted) setState(() {});
           },

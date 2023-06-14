@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
+import '../../../../widgets/heart_widget.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key});
@@ -27,7 +28,7 @@ class ProductCard extends StatelessWidget {
                 Image.asset(
                   AppAssets.img1,
                   fit: BoxFit.cover,
-                  height: 180,
+                  height: 229,
                 ),
                 const SizedBox(height: 10),
                 Text(
@@ -78,14 +79,7 @@ class ProductCard extends StatelessWidget {
                 const SizedBox(height: 10),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset(
-                AppAssets.favourtie,
-                fit: BoxFit.cover,
-                height: 38,
-              ),
-            ),
+            FavouriteWidget(),
           ],
         ),
       ),

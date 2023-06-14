@@ -5,7 +5,8 @@ class CounterWidget extends StatefulWidget {
     Key? key,
     required this.circleColor,
     required this.count,
-    required this.onChange,
+    required this.onIncrease,
+    required this.onDecrease,
     required this.loading,
     this.countColor = Colors.black,
     this.addIcon = const Icon(Icons.add_rounded),
@@ -17,7 +18,8 @@ class CounterWidget extends StatefulWidget {
   final Color circleColor;
   final int count;
   final Color countColor;
-  final ValueChanged<int> onChange;
+  final ValueChanged<int> onIncrease;
+  final ValueChanged<int> onDecrease;
   final bool loading;
   final Color progressColor;
   final Color buttonColor;
@@ -43,6 +45,7 @@ class _CounterWidgetState extends State<CounterWidget> {
               LinearProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(widget.progressColor),
                 backgroundColor: Colors.transparent,
+                minHeight: 2,
               ),
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -60,7 +63,7 @@ class _CounterWidgetState extends State<CounterWidget> {
                         : () {
                             widget.count == 1
                                 ? null
-                                : widget.onChange(widget.count - 1);
+                                : widget.onDecrease(widget.count - 1);
                           },
                     icon: widget.removeIcon,
                     padding: EdgeInsets.zero,
@@ -124,7 +127,7 @@ class _CounterWidgetState extends State<CounterWidget> {
                     onPressed: widget.loading
                         ? null
                         : () {
-                            widget.onChange(widget.count + 1);
+                            widget.onIncrease(widget.count + 1);
                           },
                     icon: widget.addIcon,
                     padding: EdgeInsets.zero,
