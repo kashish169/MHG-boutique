@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
-import '../widget/my_wish_body.dart';
+import '../widget/my_wish_list_body.dart';
 
 class MyWishList extends StatelessWidget {
   const MyWishList({super.key});
