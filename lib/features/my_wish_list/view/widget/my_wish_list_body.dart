@@ -22,30 +22,24 @@ class MyWishBody extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Expanded(
-                flex: 6,
-                child: Container(
-                  height: 150,
-                  width: 110,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    // image: DecorationImage(
-                    //     image: AssetImage(AppAssets.img1),
-                    //     fit: BoxFit.cover)
-                  ),
+              Container(
+                height: 150,
+                width: 110,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  // image: DecorationImage(
+                  //     image: AssetImage(AppAssets.img1),
+                  //     fit: BoxFit.cover)
                 ),
               ),
-              const Expanded(
-                flex: 13,
+              Expanded(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: const [
                       TopBodyHeader(),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      SizedBox(height: 10),
                       BodyMiddleText(),
                       BodyButtons(),
                     ],
