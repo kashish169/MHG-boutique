@@ -19,9 +19,7 @@ class AppColors {
   static Color moghram = const Color(0xFFF4F4F5);
   static Color molah = const Color(0xFF1B291E);
   static Color white2 = const Color(0xFFF8F8F8);
-
   static Color grey = Colors.grey;
-  static Color lGrey = const Color(0XFF515C6F);
   static Color green = Colors.green;
   static Color white = Colors.white;
   static List<BoxShadow> shadow(double opacity) => [

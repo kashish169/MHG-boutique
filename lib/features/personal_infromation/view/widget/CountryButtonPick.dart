@@ -23,33 +23,30 @@ class CountryButtonPicker extends StatelessWidget {
           },
         );
       },
-      child: SizedBox(
-        width: 110,
-        child: Row(
-          children: [
-            Obx(
-              () => Text(
-                controller.countryCode.value,
-                style: Theme.of(context).textTheme.displaySmall,
-              ),
+      child: Row(
+        children: [
+          Obx(
+            () => Text(
+              controller.countryCode.value,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
-            const Icon(
-              Icons.arrow_drop_down_outlined,
+          ),
+          const Icon(
+            Icons.arrow_drop_down_outlined,
+          ),
+          const SizedBox(
+            height: 30,
+            child: VerticalDivider(
+              width: 1,
+              thickness: 1,
+              color: Color(0XFFBCBCBC),
             ),
-            const SizedBox(
-              height: 30,
-              child: VerticalDivider(
-                width: 1,
-                thickness: 1,
-                color: Color(0XFFBCBCBC),
-              ),
-            ),
-            // Image.asset(
-            //   AppAssets.arrowDown,
-            //   height: 10,
-            // ),
-          ],
-        ),
+          ),
+          // Image.asset(
+          //   AppAssets.arrowDown,
+          //   height: 10,
+          // ),
+        ],
       ),
     );
   }

@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/widgets/divider_widget.dart';
 import 'package:mhg/widgets/primary_button.dart';
 
 class ProductDetailsBrandCard extends StatelessWidget {
@@ -18,10 +16,10 @@ class ProductDetailsBrandCard extends StatelessWidget {
           children: [
             Text(
               'Neor (60ml)',
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall
-                  ?.copyWith(fontSize: 22, color: AppColors.lGrey),
+              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    fontSize: 22,
+                    color: AppColors.mediumLabel,
+                  ),
             ),
             RichText(
               text: TextSpan(children: [
@@ -35,7 +33,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                     text: 'Edge\n',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: 16,
-                          color: AppColors.lGrey,
+                          color: AppColors.mediumLabel,
                         )),
                 TextSpan(
                     text: 'Dhs. 495.00',
@@ -54,15 +52,19 @@ class ProductDetailsBrandCard extends StatelessWidget {
                         ?.copyWith(fontSize: 15)),
               ]),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            PrimaryButton(
-              fontSize: 16,
-              height: 42,
-              title: 'Add to bag',
-              onTap: () {},
-              width: double.infinity,
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 30,
+                bottom: 15,
+              ),
+              child: PrimaryButton(
+                fontSize: 16,
+                height: 42,
+                title: 'Add to Bag',
+                onTap: () {},
+                width: double.infinity,
+                elevation: 0,
+              ),
             ),
           ],
         ),

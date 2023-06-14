@@ -56,20 +56,17 @@ class PersonalInformation extends StatelessWidget {
                                       isEnableToEdit:
                                           controller.enableEditOnEmail),
                                   InformationForm(
-                                      header: 'Phone number',
-                                      hint: controller.profileInfo.number ??
-                                          "Add your Number",
-                                      onTap: () {
-                                        controller.enableNumber();
-                                      },
-                                      // validator: (val) {
-                                      //   return AppHelper.validation(
-                                      //       val!, 9, 9, 'Number');
-                                      // },
-                                      textController: controller.phone,
-                                      inInputNumber: true,
-                                      isEnableToEdit:
-                                          controller.enableEditOnNumber.value),
+                                    header: 'Phone number',
+                                    hint: controller.profileInfo.number ??
+                                        "Add your Number",
+                                    onTap: () {
+                                      controller.enableNumber();
+                                    },
+                                    textController: controller.phone,
+                                    inInputNumber: true,
+                                    isEnableToEdit:
+                                        controller.enableEditOnNumber.value,
+                                  ),
                                   InformationForm(
                                       textController: controller.address,
                                       header: 'Address',

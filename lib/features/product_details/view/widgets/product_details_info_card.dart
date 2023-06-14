@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/widgets/divider_widget.dart';
 
@@ -20,16 +19,17 @@ class ProductDetailsInfoCard extends StatelessWidget {
             padding: const EdgeInsets.all(5),
             child: Text(
               'Product Details',
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall
-                  ?.copyWith(fontSize: 16, color: AppColors.lGrey),
+              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    fontSize: 16,
+                    color: AppColors.mediumLabel,
+                  ),
             ),
           ),
           const SizedBox(
             height: 5,
           ),
           const DividerWidget(),
+          const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: RichText(
@@ -44,7 +44,7 @@ class ProductDetailsInfoCard extends StatelessWidget {
                     text: 'Floriental\n',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: 14,
-                          color: AppColors.lGrey,
+                          color: AppColors.mediumLabel,
                         )),
                 TextSpan(
                     text: 'Fragrance Note: ',
@@ -55,7 +55,7 @@ class ProductDetailsInfoCard extends StatelessWidget {
                 TextSpan(
                     text: 'Solar Note,Elder Flower\n',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          color: AppColors.lGrey,
+                          color: AppColors.mediumLabel,
                           fontSize: 14,
                         )),
                 TextSpan(
@@ -68,12 +68,11 @@ class ProductDetailsInfoCard extends StatelessWidget {
                     text: 'Perfume, 60ml,by Edge\n',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: 14,
-                          color: AppColors.lGrey,
+                          color: AppColors.mediumLabel,
                         )),
               ]),
             ),
           ),
-          // const SizedBox(height: 5,),
           const DividerWidget(),
         ],
       ),

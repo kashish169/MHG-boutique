@@ -13,6 +13,7 @@ class PrimaryButton extends StatelessWidget {
   final double? fontSize;
   final Color? color;
   final bool? isSelcted;
+  final double? elevation;
 
   const PrimaryButton({
     super.key,
@@ -27,11 +28,13 @@ class PrimaryButton extends StatelessWidget {
     this.fontSize,
     this.color,
     this.isSelcted,
+    this.elevation,
   });
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
+      elevation: elevation,
       height: height,
       minWidth: width,
       color: color ?? AppColors.primary,
@@ -55,7 +58,7 @@ class PrimaryButton extends StatelessWidget {
           : Text(
               title,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                fontSize: fontSize,
+                    fontSize: fontSize,
                     color: reverseColor == true
                         ? AppColors.primary
                         : AppColors.white,

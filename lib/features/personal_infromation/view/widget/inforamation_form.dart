@@ -44,69 +44,69 @@ class InformationForm extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          header=='Phone number'?
-              Row(
-                children: [
-                  const CountryButtonPicker(),
-                  const SizedBox(width: 5,),
-                  Expanded(
-                    child: CustomFormField(
-                      controller: textController,
-                      validator: validator,
-                      inputType: inInputNumber == null
-                          ? TextInputType.name
-                          : TextInputType.number,
-                      readOnly: isEnableToEdit,
-                      suffixIcon: IconButton(
-                        onPressed: onTap,
-                        icon: SizedBox(
-                          height: 25,
-                          width: 25,
-                          child: isEnableToEdit == true
-                              ? Image.asset(AppAssets.edit)
-                              : SizedBox(
+          header == 'Phone number'
+              ? Row(
+                  children: [
+                    const CountryButtonPicker(),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: CustomFormField(
+                        controller: textController,
+                        validator: validator,
+                        inputType: inInputNumber == null
+                            ? TextInputType.name
+                            : TextInputType.number,
+                        readOnly: isEnableToEdit,
+                        suffixIcon: IconButton(
+                          onPressed: onTap,
+                          icon: SizedBox(
                             height: 25,
                             width: 25,
-                            child: Icon(
-                              Icons.check,
-                              color: AppColors.label,
-                              size: 25,
-                            ),
+                            child: isEnableToEdit == true
+                                ? Image.asset(AppAssets.edit)
+                                : SizedBox(
+                                    height: 25,
+                                    width: 25,
+                                    child: Icon(
+                                      Icons.check,
+                                      color: AppColors.label,
+                                      size: 25,
+                                    ),
+                                  ),
                           ),
                         ),
+                        obscure: false,
                       ),
-                      obscure: false,
+                    )
+                  ],
+                )
+              : CustomFormField(
+                  controller: textController,
+                  validator: validator,
+                  inputType: inInputNumber == null
+                      ? TextInputType.name
+                      : TextInputType.number,
+                  readOnly: isEnableToEdit,
+                  suffixIcon: IconButton(
+                    onPressed: onTap,
+                    icon: SizedBox(
+                      height: 25,
+                      width: 25,
+                      child: isEnableToEdit == true
+                          ? Image.asset(AppAssets.edit)
+                          : SizedBox(
+                              height: 25,
+                              width: 25,
+                              child: Icon(
+                                Icons.check,
+                                color: AppColors.label,
+                                size: 25,
+                              ),
+                            ),
                     ),
-                  )
-                ],
-              ):
-          CustomFormField(
-            controller: textController,
-            validator: validator,
-            inputType: inInputNumber == null
-                ? TextInputType.name
-                : TextInputType.number,
-            readOnly: isEnableToEdit,
-            suffixIcon: IconButton(
-              onPressed: onTap,
-              icon: SizedBox(
-                height: 25,
-                width: 25,
-                child: isEnableToEdit == true
-                    ? Image.asset(AppAssets.edit)
-                    : SizedBox(
-                        height: 25,
-                        width: 25,
-                        child: Icon(
-                          Icons.check,
-                          color: AppColors.label,
-                          size: 25,
-                        ),
-                      ),
-              ),
-            ),
-            obscure: false,
-          ),
+                  ),
+                  obscure: false,
+                ),
         ],
       ),
     );
