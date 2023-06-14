@@ -5,8 +5,8 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/home/view/widgets/custom_dot_swiper.dart';
 import 'package:mhg/widgets/heart_widget.dart';
-class Head extends StatelessWidget {
-  const Head({
+class DetailsPageSlider extends StatelessWidget {
+  const DetailsPageSlider({
     super.key,
   });
 

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/widgets/divider_widget.dart';
-class DetailsCard extends StatelessWidget {
-  const DetailsCard({Key? key}) : super(key: key);
+class InfoCard extends StatelessWidget {
+  const InfoCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

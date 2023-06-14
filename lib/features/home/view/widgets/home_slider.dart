@@ -1,7 +1,9 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_dimensions.dart';
+import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import '../../../../constants/app_colors.dart';
 import 'custom_dot_swiper.dart';
 
@@ -16,9 +18,14 @@ class HomeSlider extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Image.asset(
-              AppAssets.img1,
-              fit: BoxFit.contain,
+            child: InkWell(
+              onTap: (){
+                Get.toNamed(ProductPage.routeName);
+              },
+              child: Image.asset(
+                AppAssets.img1,
+                fit: BoxFit.contain,
+              ),
             ),
           );
         },
