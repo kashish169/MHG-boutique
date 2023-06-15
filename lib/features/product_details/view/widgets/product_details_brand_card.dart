@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/widgets/primary_button.dart';
 
@@ -50,7 +51,28 @@ class ProductDetailsBrandCard extends StatelessWidget {
                         .textTheme
                         .displayMedium
                         ?.copyWith(fontSize: 15)),
+
               ]),
+
+            ),
+            Row(
+              children: [
+
+                Image.asset(
+                  AppAssets.starIcon,
+                  height: 17,
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  '250 pts',
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                      fontSize: 22,
+                      color: AppColors.secondaryBlack,
+                      fontWeight: FontWeight.w600),
+                ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.only(

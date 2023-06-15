@@ -28,7 +28,7 @@ class ProductDetailsInfoCard extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          const DividerWidget(),
+       //   const DividerWidget(),
           const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),

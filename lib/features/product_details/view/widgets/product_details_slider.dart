@@ -45,33 +45,7 @@ class ProductDetailsSlider extends StatelessWidget {
         //         height:22),
         //   ),
         // ),
-        SizedBox(
-          height: (AppDimensions.screenHeight(context) / 2.8) - 40,
-          child: Align(
-            alignment: Alignment.bottomLeft,
-            child: Row(
-              children: [
-                const SizedBox(
-                  width: 5,
-                ),
-                Image.asset(
-                  AppAssets.starIcon,
-                  height: 17,
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  '250 pts',
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      fontSize: 22,
-                      color: AppColors.secondaryBlack,
-                      fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
-          ),
-        ),
+
         SizedBox(
           height: AppDimensions.screenHeight(context) / 2.94,
           child: const Align(
