@@ -35,9 +35,7 @@ class SearchItemWishListBody extends StatelessWidget {
                       margin: const EdgeInsets.only(top: 10),
                       decoration: BoxDecoration(
                           shape: BoxShape.circle, color: AppColors.lightLabel2),
-                      child: const FavouriteWidget(
-                        isWhite: true,
-                      ))
+                      child: const FavouriteWidget())
                 ],
               ),
               const SizedBox(

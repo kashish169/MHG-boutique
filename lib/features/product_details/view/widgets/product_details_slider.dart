@@ -51,9 +51,8 @@ class ProductDetailsSlider extends StatelessWidget {
           child: Align(
               alignment: AlignmentDirectional.bottomEnd,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8,vertical: 7),
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 7),
                 child: FavouriteWidget(
-                  width: 35,
                   height: 31,
                 ),
               )),
