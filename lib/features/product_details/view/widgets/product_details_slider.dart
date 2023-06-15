@@ -65,7 +65,7 @@ class ProductDetailsSlider extends StatelessWidget {
                   '250 pts',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                       fontSize: 22,
-                      color: const Color(0XFF1B291E),
+                      color: AppColors.secondaryBlack,
                       fontWeight: FontWeight.w600),
                 ),
               ],

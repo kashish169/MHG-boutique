@@ -1,6 +1,7 @@
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/home/view/widgets/product_card.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 
@@ -19,7 +20,7 @@ class SimilarProductsWidget extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .displaySmall
-                ?.copyWith(fontSize: 22, color: const Color(0XFF515C6F)),
+                ?.copyWith(fontSize: 22, color: AppColors.darkGrey),
           ),
         ),
         Padding(
