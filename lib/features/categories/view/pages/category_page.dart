@@ -16,6 +16,7 @@ class CategoryPage extends StatelessWidget {
         child:  const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             CategoryListTile(title: 'Top Sellers'),
             CategoryListTile(title: 'Iconic Brands'),
             CategoryListTile(title: 'Frangances'),
