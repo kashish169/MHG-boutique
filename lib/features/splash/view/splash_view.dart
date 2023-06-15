@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_assets.dart';
 
 class SplashView extends StatefulWidget {
-  static String routeName = '/splash';
+  static String routeName = '/product_details';
   const SplashView({super.key});
 
   @override
