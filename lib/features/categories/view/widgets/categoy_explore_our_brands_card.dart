@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/features/categories/view/widgets/category_brand_card.dart';
-import 'package:mhg/features/home/view/widgets/home_brand_card.dart';
 
 class CategoryExploreOurBrandsWidget extends StatelessWidget {
   const CategoryExploreOurBrandsWidget({super.key});
@@ -18,9 +17,9 @@ class CategoryExploreOurBrandsWidget extends StatelessWidget {
           child: Text(
             'Explore Our Brands',
             style: Theme.of(context).textTheme.displayMedium?.copyWith(
-              fontWeight: FontWeight.normal,
-              fontSize: 18,
-            ),
+                  fontWeight: FontWeight.normal,
+                  fontSize: 18,
+                ),
           ),
         ),
         SizedBox(

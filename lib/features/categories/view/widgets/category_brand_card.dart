@@ -10,11 +10,10 @@ class CategoryBrandCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        boxShadow: AppColors.shadow(0.5),
+        boxShadow: AppColors.shadow(0.3),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
-
         child: Image.asset(
           AppAssets.img1,
           height: 132,

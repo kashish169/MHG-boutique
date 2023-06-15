@@ -15,10 +15,10 @@ class ProductDetailsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0XFFF8F8F8),
       appBar: customAppBar(context, title: "View Product"),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: const [
             ProductDetailsSlider(),
             ProductDetailsBrandCard(),
             DividerWidget(),

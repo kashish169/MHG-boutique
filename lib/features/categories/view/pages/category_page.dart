@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/features/categories/view/widgets/Categories_explore_our_brands_card.dart';
+import 'package:mhg/features/categories/view/widgets/categoy_explore_our_brands_card.dart';
 import 'package:mhg/features/categories/view/widgets/category_list_tile.dart';
-import 'package:mhg/features/home/view/widgets/home_explore_our_brands_widget.dart';
 
 class CategoryPage extends StatelessWidget {
   static String routeName = '/category';
@@ -14,10 +13,9 @@ class CategoryPage extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         color: AppColors.white2,
-        child:  const Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-
+          children: const [
             CategoryListTile(title: 'Top Sellers'),
             CategoryListTile(title: 'Iconic Brands'),
             CategoryListTile(title: 'Frangances'),
@@ -26,7 +24,9 @@ class CategoryPage extends StatelessWidget {
             CategoryListTile(title: 'Make-Up'),
             CategoryListTile(title: 'Giveaway & Services'),
             CategoryExploreOurBrandsWidget(),
-            SizedBox(height: 80,)
+            SizedBox(
+              height: 80,
+            )
           ],
         ),
       ),
