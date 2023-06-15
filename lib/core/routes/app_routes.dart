@@ -22,6 +22,7 @@ import 'package:mhg/features/products_page/binding/products_page_binding.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
 import 'package:mhg/features/profile/view/pages/profile_view.dart';
 import 'package:mhg/features/rewards/pages/rewards_page.dart';
+import 'package:mhg/features/search/view/pages/search_page.dart';
 import 'package:mhg/features/setting/binding/setting_binding.dart';
 import 'package:mhg/features/setting/view/pages/setting_view.dart';
 import 'package:mhg/features/splash/binding/splash_binding.dart';
@@ -29,6 +30,7 @@ import 'package:mhg/features/splash/view/splash_view.dart';
 import '../../features/auth/otp/view/pages/otp.dart';
 import '../../features/my_wish_list/view/pages/my_wish_list.dart';
 import '../../features/personal_infromation/binding/peronal_informatiom_binding.dart';
+import '../../features/search/binding/search_binding.dart';
 
 class AppRoutes {
   static List<GetPage> getRoutes = [
@@ -104,13 +106,18 @@ class AppRoutes {
       binding: MyOrdersBinding(),
     ),
     GetPage(
-        name: '/category',
-        page: () => const CategoryPage(),
-       ),
+      name: '/category',
+      page: () => const CategoryPage(),
+    ),
     GetPage(
       name: '/products_page',
       page: () => const ProductsPage(),
-      binding: ProductsPageBinding()
+      binding: ProductsPageBinding(),
+    ),
+    GetPage(
+      name: '/search',
+      page: () => const SearchPage(),
+      binding: SearchBinding(),
     ),
   ];
 }

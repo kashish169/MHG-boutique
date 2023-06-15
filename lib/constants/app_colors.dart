@@ -9,9 +9,11 @@ class AppColors {
   static Color black3 = const Color(0xFF232C39);
   static Color darkGrey = const Color(0xFF515C6F);
   static Color red = const Color(0xFFF15B3A);
+  static Color darkRed = const Color(0xFFF11027);
   static Color lightLabel = const Color(0xFF9B9B9B);
   static Color mediumLabel = const Color(0xFF515C6F);
   static Color lightLabel2 = const Color(0xFFB4B4B4);
+  static Color dividerColor = const Color(0xFFDDDDDD);
   static Color lightGray = const Color(0xFFF0F0F0);
   static Color lightGray2 = const Color(0xFF91959C);
   static Color lightGray3 = const Color(0xFFEDF2F5);

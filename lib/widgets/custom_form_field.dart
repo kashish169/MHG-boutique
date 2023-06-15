@@ -18,6 +18,9 @@ class CustomFormField extends StatelessWidget {
     this.multiLine,
     this.readOnly,
     this.isFilled,
+    this.isAlignCenter,
+    this.onTap,
+    this.onTapOutsidel,
   });
 
   final Widget? prefixWidget;
@@ -34,7 +37,9 @@ class CustomFormField extends StatelessWidget {
   final bool? multiLine;
   final bool? readOnly;
   final bool? isFilled;
-
+  final bool? isAlignCenter;
+  final void Function()? onTap;
+  final void Function(PointerDownEvent)? onTapOutsidel;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -45,6 +50,9 @@ class CustomFormField extends StatelessWidget {
         obscureText: obscure,
         keyboardType: inputType,
         controller: controller,
+        onTap: onTap,
+        onTapOutside: onTapOutsidel,
+        textAlign: isAlignCenter != null ? TextAlign.center : TextAlign.start,
         readOnly: readOnly ?? false,
         style: Theme.of(context).textTheme.displaySmall!.copyWith(
               color: AppColors.label,
