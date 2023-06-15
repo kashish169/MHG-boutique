@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/features/my_wish_list/view/widget/my_wish_list_body_buttons.dart';
+import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
 import 'my_wish_list_body_header.dart';
 import 'my_wish_list_body_middle_text.dart';
@@ -23,14 +24,13 @@ class MyWishBody extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                height: 150,
-                width: 110,
+                height: 161,
+                width: 120,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  // image: DecorationImage(
-                  //     image: AssetImage(AppAssets.img1),
-                  //     fit: BoxFit.cover)
-                ),
+                    borderRadius: const BorderRadius.horizontal(
+                        left: Radius.circular(12)),
+                    image: DecorationImage(
+                        image: AssetImage(AppAssets.img1), fit: BoxFit.fill)),
               ),
               Expanded(
                 child: Padding(

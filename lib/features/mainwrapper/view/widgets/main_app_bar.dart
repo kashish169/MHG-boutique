@@ -31,7 +31,9 @@ AppBar mainAppBar({
         : null,
     actions: [
       IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed('/search');
+        },
         icon: Image.asset(
           AppAssets.search,
           height: 20,
