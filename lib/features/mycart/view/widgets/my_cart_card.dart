@@ -85,7 +85,7 @@ class MyCartCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            'Dhs. ${model.options.discountPrice ?? model.price}',
+                            'Dhs. ${model.options.discountPrice}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -99,11 +99,14 @@ class MyCartCard extends StatelessWidget {
                         const SizedBox(width: 4),
                         Expanded(
                           child: Visibility(
-                            visible: model.options.discountPrice != null
-                                ? true
-                                : false,
+                            visible: double.parse(
+                                      model.options.discountParcent ?? '0',
+                                    ).round() ==
+                                    0
+                                ? false
+                                : true,
                             child: Text(
-                              'Dhs. ${model.price}',
+                              'Dhs. ${model.weight}',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall

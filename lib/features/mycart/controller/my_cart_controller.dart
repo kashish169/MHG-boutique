@@ -169,10 +169,15 @@ class MyCartController extends GetxController {
     totalPrice.value = 0;
     for (var element in cartItemsList) {
       if (element.options.discountPrice != null) {
-        totalPrice.value +=
-            double.parse(element.options.discountPrice ?? '') * element.qty;
-      } else {
-        totalPrice.value += element.price.toDouble() * element.qty;
+        if (double.parse(
+              element.options.discountParcent ?? '0',
+            ).round() ==
+            0) {
+          totalPrice.value += element.weight.toDouble() * element.qty;
+        } else {
+          totalPrice.value +=
+              double.parse(element.options.discountPrice ?? '') * element.qty;
+        }
       }
     }
     debugPrint("TOTAL CART PRICE : $totalPrice");

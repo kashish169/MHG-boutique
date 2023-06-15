@@ -41,7 +41,7 @@ class ProductCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  'Shay Much Perfume',
+                  model.enProductName,
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontSize: 16,
                       ),
@@ -53,17 +53,23 @@ class ProductCard extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Expanded(
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            'Dhs. 332.00',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  decoration: TextDecoration.lineThrough,
-                                ),
+                      Visibility(
+                        visible: double.parse(
+                              model.discount,
+                            ).round() !=
+                            0,
+                        child: Expanded(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              'Dhs. ${model.price}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall
+                                  ?.copyWith(
+                                    decoration: TextDecoration.lineThrough,
+                                  ),
+                            ),
                           ),
                         ),
                       ),
@@ -72,7 +78,7 @@ class ProductCard extends StatelessWidget {
                         child: FittedBox(
                           fit: BoxFit.scaleDown,
                           child: Text(
-                            'Dhs. 330.00',
+                            'Dhs. ${model.discountPrice}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
