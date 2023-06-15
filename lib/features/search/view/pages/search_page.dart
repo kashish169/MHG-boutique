@@ -3,9 +3,10 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 import '../widget/custom_search_section.dart';
 import '../widget/recent_search_body.dart';
-import '../widget/search_brand_body.dart';
+import '../widget/search_top_sells_body.dart';
 import '../widget/search_form.dart';
 import '../widget/search_item_wish_list_body.dart';
+import '../widget/search_top_sellers.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -27,20 +28,16 @@ class SearchPage extends StatelessWidget {
             ),
             SearchForm(),
             const RecentSearchBody(),
-            const CustomSearchSection(title: " Trending Brands"),
+            const SearchTopSellers(),
             Container(
               color: AppColors.white2,
               margin: const EdgeInsets.symmetric(horizontal: 10),
-              height: 140,
+              height: 300,
               width: double.infinity,
               child: ListView.builder(
                   itemCount: 5,
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => const SearchBrandBody()),
-            ),
-            Divider(
-              thickness: 1,
-              color: AppColors.dividerColor,
+                  itemBuilder: (context, index) => const SearchTopSellsBody()),
             ),
             const SizedBox(
               height: 5,

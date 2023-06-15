@@ -4,8 +4,8 @@ import 'package:mhg/constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/heart_widget.dart';
 
-class SearchItemWishListBody extends StatelessWidget {
-  const SearchItemWishListBody({super.key});
+class SearchTopSellsBody extends StatelessWidget {
+  const SearchTopSellsBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class SearchItemWishListBody extends StatelessWidget {
       child: Material(
         elevation: 5,
         shadowColor: AppColors.white2,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(22),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
@@ -25,23 +25,29 @@ class SearchItemWishListBody extends StatelessWidget {
                 children: [
                   Container(
                     margin: const EdgeInsets.all(10),
-                    height: 120,
-                    width: 120,
+                    height: 170,
+                    width: 130,
                     decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(12)),
-                    child: Image.asset(AppAssets.brand1),
+                        BoxDecoration(borderRadius: BorderRadius.circular(22)),
+                    child: Image.asset(
+                      AppAssets.brand1,
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                  FavouriteWidget(
-                    onTap: () {},
-                    height: 22,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: FavouriteWidget(
+                      onTap: () {},
+                      height: 22,
+                    ),
                   )
                 ],
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               Text(
-                "Neor",
+                "REBEL",
                 style: Theme.of(context)
                     .textTheme
                     .displaySmall!
@@ -51,7 +57,7 @@ class SearchItemWishListBody extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                "Dhs. 396.00",
+                "Dhs. 590.00 ",
                 style: Theme.of(context)
                     .textTheme
                     .displayLarge!
