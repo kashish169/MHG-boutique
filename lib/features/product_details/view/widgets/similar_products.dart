@@ -34,11 +34,13 @@ class SimilarProductsWidget extends StatelessWidget {
             itemCount: 2,
             builder: (ctx, index) {
               return InkWell(
-                  onTap: () {
-                    Get.back();
-                    Get.toNamed(ProductDetailsPage.routeName);
-                  },
-                  child: const ProductCard());
+                onTap: () {
+                  Get.back();
+                  Get.toNamed(ProductDetailsPage.routeName);
+                },
+                // child: const ProductCard(),
+                //TODO
+              );
             },
           ),
         ),

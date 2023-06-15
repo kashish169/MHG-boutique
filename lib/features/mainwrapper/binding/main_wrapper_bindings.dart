@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
+import 'package:mhg/features/home/repository/home_repo_impl.dart';
 import 'package:mhg/features/mycart/repository/my_cart_repo_impl.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/repository/profile_repo_impl.dart';
@@ -14,6 +15,7 @@ class MainWrapperBinding extends Bindings {
     Get.put(ProfileController());
     Get.put(MainWrapperRepoImpl());
     Get.put(MainWrapperController());
+    Get.put(HomeRepoImplement());
     Get.put(HomeController());
     Get.put(MyCartRepoImplement());
     Get.put(MyCartController());
