@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/features/home/view/widgets/home_brand_card.dart';
+import '../../controller/home_controller.dart';
 
 class HomeExploreOurBrandsWidget extends StatelessWidget {
   const HomeExploreOurBrandsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<HomeController>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: 20,
-            horizontal: 8,
+            vertical: 10,
+            horizontal: 20,
           ),
           child: Text(
             'Explore Our Brands',
@@ -25,15 +28,16 @@ class HomeExploreOurBrandsWidget extends StatelessWidget {
         SizedBox(
           height: 170,
           child: ListView.separated(
-            padding: const EdgeInsets.only(
-              left: 8,
-              right: 8,
-              bottom: 10,
+            padding: const EdgeInsetsDirectional.symmetric(
+              horizontal: 20,
+              vertical: 15,
             ),
-            itemCount: 3,
+            itemCount: controller.brandsList.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return HomeBrandCard();
+              return HomeBrandCard(
+                model: controller.brandsList[index],
+              );
             },
             separatorBuilder: (context, index) {
               return const SizedBox(width: 12);

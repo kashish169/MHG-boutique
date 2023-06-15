@@ -4,8 +4,8 @@ import 'package:mhg/features/home/view/widgets/product_card.dart';
 import '../../../../widgets/view_all_button.dart';
 import '../../controller/home_controller.dart';
 
-class HomeTopSellersWidget extends StatelessWidget {
-  const HomeTopSellersWidget({super.key});
+class HomeNewArrivelsWidget extends StatelessWidget {
+  const HomeNewArrivelsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class HomeTopSellersWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  'Top Sellers',
+                  'New Arrivals',
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
                         fontWeight: FontWeight.normal,
                         fontSize: 18,
@@ -39,10 +39,10 @@ class HomeTopSellersWidget extends StatelessWidget {
             child: Row(
               children: [
                 for (int index = 0;
-                    index < controller.topSellersList.length;
+                    index < controller.newArrivalsList.length;
                     index++)
                   ProductCard(
-                    model: controller.topSellersList[index],
+                    model: controller.newArrivalsList[index],
                   ),
               ],
             ),
