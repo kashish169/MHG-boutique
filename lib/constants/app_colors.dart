@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+
   static Color primary = const Color(0xFF232323);
   static Color secondary = const Color(0xFF6E8674);
   static Color label = const Color(0xFF333333);
@@ -26,6 +27,7 @@ class AppColors {
         BoxShadow(
           color: AppColors.primary.withOpacity(opacity),
           blurRadius: 8,
+
         )
       ];
 }

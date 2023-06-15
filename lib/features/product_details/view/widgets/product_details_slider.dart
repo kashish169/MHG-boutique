@@ -16,7 +16,7 @@ class ProductDetailsSlider extends StatelessWidget {
     return Stack(
       children: [
         SizedBox(
-          height: AppDimensions.screenHeight(context) / 2.8,
+          height: 390,
           child: Swiper(
             itemBuilder: (BuildContext context, int index) {
               return Image.asset(
@@ -46,13 +46,16 @@ class ProductDetailsSlider extends StatelessWidget {
         //   ),
         // ),
 
-        SizedBox(
-          height: AppDimensions.screenHeight(context) / 2.94,
-          child: const Align(
+        const SizedBox(
+          height: 390,
+          child: Align(
               alignment: AlignmentDirectional.bottomEnd,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: FavouriteWidget(),
+                padding: EdgeInsets.symmetric(horizontal: 8,vertical: 7),
+                child: FavouriteWidget(
+                  width: 35,
+                  height: 31,
+                ),
               )),
         )
       ],
