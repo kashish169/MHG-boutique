@@ -38,7 +38,8 @@ class SimilarProductsWidget extends StatelessWidget {
                   Get.back();
                   Get.toNamed(ProductDetailsPage.routeName);
                 },
-                // child: const ProductCard(),
+                child: SizedBox(),
+                //  ProductCard(),
                 //TODO
               );
             },
