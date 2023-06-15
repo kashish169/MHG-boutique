@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/categories/view/pages/category_page.dart';
 import 'package:mhg/features/my_wish_list/view/pages/my_wish_list.dart';
 import 'package:mhg/features/profile/view/pages/profile_view.dart';
 import '../../../home/view/pages/home_page.dart';
@@ -39,7 +40,7 @@ class _MainWrapperState extends State<MainWrapper>
 
   final List<Widget> _children = const [
     HomePage(),
-    SizedBox(),
+    CategoryPage(),
     MyWishList(),
     MyCartPage(),
     ProfileView()
