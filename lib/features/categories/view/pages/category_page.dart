@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/categories/view/widgets/Categories_explore_our_brands_card.dart';
 import 'package:mhg/features/categories/view/widgets/category_list_tile.dart';
 import 'package:mhg/features/home/view/widgets/home_explore_our_brands_widget.dart';
 
@@ -24,8 +25,8 @@ class CategoryPage extends StatelessWidget {
             CategoryListTile(title: 'Dehn Oud'),
             CategoryListTile(title: 'Make-Up'),
             CategoryListTile(title: 'Giveaway & Services'),
-            HomeExploreOurBrandsWidget(),
-            SizedBox(height: 100,)
+            CategoryExploreOurBrandsWidget(),
+            SizedBox(height: 80,)
           ],
         ),
       ),

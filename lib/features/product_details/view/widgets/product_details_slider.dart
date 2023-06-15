@@ -49,7 +49,7 @@ class ProductDetailsSlider extends StatelessWidget {
         SizedBox(
           height: AppDimensions.screenHeight(context) / 2.94,
           child: const Align(
-              alignment: Alignment.bottomRight,
+              alignment: AlignmentDirectional.bottomEnd,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8),
                 child: FavouriteWidget(),
