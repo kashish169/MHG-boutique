@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
+import 'package:mhg/features/products_page/view/pages/product_page.dart';
 import 'package:mhg/widgets/divider_widget.dart';
 
 class CategoryListTile extends StatelessWidget {
@@ -16,7 +18,9 @@ class CategoryListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: (){
+        Get.toNamed(ProductsPage.routeName);
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
