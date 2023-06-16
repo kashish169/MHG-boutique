@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mhg/widgets/three_bounce_loading.dart';
 import '../constants/app_colors.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String title;
-  final bool? isLoading;
+  final bool isLoading;
   final VoidCallback onTap;
   final double? height;
   final double? width;
@@ -18,7 +19,7 @@ class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
     super.key,
     required this.title,
-    this.isLoading,
+    this.isLoading = false,
     required this.onTap,
     this.height,
     this.width,
@@ -48,13 +49,10 @@ class PrimaryButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(radius ?? 13),
       ),
       onPressed: onTap,
-      child: isLoading != null && isLoading == true
-          ? SizedBox(
-              width: 20,
-              height: 20,
-              child: Center(
-                child: CircularProgressIndicator(color: AppColors.white),
-              ))
+      child: isLoading
+          ? const Center(
+              child: LoadingThreeBounce(),
+            )
           : Text(
               title,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(

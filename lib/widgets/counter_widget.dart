@@ -13,6 +13,8 @@ class CounterWidget extends StatefulWidget {
     this.removeIcon = const Icon(Icons.remove_rounded),
     this.buttonColor = Colors.black,
     this.progressColor = Colors.black,
+    this.circleSize = 18,
+    this.iconSize = 15,
   }) : super(key: key);
 
   final Color circleColor;
@@ -25,6 +27,8 @@ class CounterWidget extends StatefulWidget {
   final Color buttonColor;
   final Icon addIcon;
   final Icon removeIcon;
+  final double circleSize;
+  final double iconSize;
 
   @override
   _CounterWidgetState createState() => _CounterWidgetState();
@@ -55,8 +59,8 @@ class _CounterWidgetState extends State<CounterWidget> {
                     color: widget.circleColor,
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  width: 18.0,
-                  height: 18.0,
+                  width: widget.circleSize,
+                  height: widget.circleSize,
                   child: IconButton(
                     onPressed: widget.loading
                         ? null
@@ -68,7 +72,7 @@ class _CounterWidgetState extends State<CounterWidget> {
                     icon: widget.removeIcon,
                     padding: EdgeInsets.zero,
                     color: widget.buttonColor,
-                    iconSize: 15,
+                    iconSize: widget.iconSize,
                   ),
                 ),
                 const SizedBox(width: 5),
@@ -117,8 +121,8 @@ class _CounterWidgetState extends State<CounterWidget> {
                 ),
                 const SizedBox(width: 5),
                 Container(
-                  width: 18.0,
-                  height: 18.0,
+                  width: widget.circleSize,
+                  height: widget.circleSize,
                   decoration: BoxDecoration(
                     color: widget.circleColor,
                     borderRadius: BorderRadius.circular(30),
@@ -132,7 +136,7 @@ class _CounterWidgetState extends State<CounterWidget> {
                     icon: widget.addIcon,
                     padding: EdgeInsets.zero,
                     color: widget.buttonColor,
-                    iconSize: 15,
+                    iconSize: widget.iconSize,
                   ),
                 ),
               ],

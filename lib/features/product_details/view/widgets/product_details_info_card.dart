@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/widgets/divider_widget.dart';
+
+import '../../controller/product_details_controller.dart';
 
 class ProductDetailsInfoCard extends StatelessWidget {
   const ProductDetailsInfoCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ProductDetailsController>();
     return ColoredBox(
       color: AppColors.white,
       child: Column(
@@ -16,7 +21,10 @@ class ProductDetailsInfoCard extends StatelessWidget {
             height: 5,
           ),
           Padding(
-            padding: const EdgeInsets.all(5),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 10,
+            ),
             child: Text(
               'Product Details',
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
@@ -28,51 +36,18 @@ class ProductDetailsInfoCard extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-       //   const DividerWidget(),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: RichText(
-              text: TextSpan(children: [
-                TextSpan(
-                    text: 'Scent: ',
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        color: AppColors.lightLabel2,
-                        fontSize: 14,
-                        height: 1.7)),
-                TextSpan(
-                    text: 'Floriental\n',
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontSize: 14,
-                          color: AppColors.mediumLabel,
-                        )),
-                TextSpan(
-                    text: 'Fragrance Note: ',
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        color: AppColors.lightLabel2,
-                        fontSize: 14,
-                        height: 1.7)),
-                TextSpan(
-                    text: 'Solar Note,Elder Flower\n',
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          color: AppColors.mediumLabel,
-                          fontSize: 14,
-                        )),
-                TextSpan(
-                    text: 'Key Details: ',
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        color: AppColors.lightLabel2,
-                        fontSize: 14,
-                        height: 1.7)),
-                TextSpan(
-                    text: 'Perfume, 60ml,by Edge\n',
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontSize: 14,
-                          color: AppColors.mediumLabel,
-                        )),
-              ]),
-            ),
+          const DividerWidget(),
+          Html(
+            data: controller.model.enDescription,
+            style: {
+              "body": Style(
+                  color: Colors.black,
+                  margin: Margins.symmetric(
+                    horizontal: 20,
+                  ))
+            },
           ),
+          const SizedBox(height: 10),
           const DividerWidget(),
         ],
       ),

@@ -23,6 +23,10 @@ class Api {
   static String deleteCartItem = "$cartRoute/remove-item";
   static String increaseCartItem = "$cartRoute/increase-item";
   static String decreaseCartItem = "$cartRoute/decrease-item";
+  static String addCartItem = "$cartRoute/add-item";
 
   static String home = "/api/v1/home";
+
+  static String productRoute = "/api/v1/product";
+  static String productDetails = "$productRoute/product-details";
 }

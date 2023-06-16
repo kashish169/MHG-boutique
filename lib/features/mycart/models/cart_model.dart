@@ -3,7 +3,7 @@ class CartModel {
   int id;
   int qty;
   String name;
-  int price;
+  dynamic price;
   int weight;
   Options options;
   int taxRate;

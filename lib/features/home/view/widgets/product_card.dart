@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/product_details/controller/product_details_controller.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/widgets/net_image.dart';
 import '../../../../widgets/heart_widget.dart';
@@ -9,13 +9,31 @@ import '../../models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModel model;
-  const ProductCard({super.key, required this.model});
+  final bool isDetails;
+  const ProductCard({
+    super.key,
+    required this.model,
+    this.isDetails = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Get.toNamed(ProductDetailsPage.routeName);
+      onTap: () async {
+        if (isDetails) {
+          final controller = Get.find<ProductDetailsController>();
+          controller.productId = model.id;
+          controller.productName.value = model.enProductName;
+          controller.getProductDetails();
+        } else {
+          Get.toNamed(
+            ProductDetailsPage.routeName,
+            arguments: {
+              "id": model.id,
+              "name": model.enProductName,
+            },
+          );
+        }
       },
       child: Container(
         width: 182,

@@ -47,9 +47,9 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
             if (widget.scaffoldKey.currentState!.isDrawerOpen == true) {
               Navigator.pop(context);
             }
-            if (selectedIndex == 0) {
-              Get.find<HomeController>().getHome();
-            }
+            // if (selectedIndex == 0) {
+            //   Get.find<HomeController>().getHome();
+            // }
             if (selectedIndex == 4) {
               Get.find<ProfileController>().getProfileInfo();
             }
