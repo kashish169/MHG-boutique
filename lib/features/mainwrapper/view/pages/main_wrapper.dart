@@ -54,10 +54,10 @@ class _MainWrapperState extends State<MainWrapper>
         if (mounted) setState(() {});
       },
       appBar: mainAppBar(
-          context: context,
-          scaffoldKey: scaffoldKey,
-          currentIndex: currentIndex,
-          isHome: tabController.index == 2 ? false : null),
+        context: context,
+        scaffoldKey: scaffoldKey,
+        currentIndex: currentIndex,
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavBarWidget(
         scaffoldKey: scaffoldKey,

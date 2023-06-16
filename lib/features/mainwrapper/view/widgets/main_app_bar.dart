@@ -12,7 +12,6 @@ AppBar mainAppBar({
   required BuildContext context,
   required GlobalKey<ScaffoldState> scaffoldKey,
   required int currentIndex,
-  bool? isHome,
 }) {
   final controller = Get.find<MainWrapperController>();
   return AppBar(
@@ -20,15 +19,13 @@ AppBar mainAppBar({
     backgroundColor: AppColors.primary,
     systemOverlayStyle: SystemUiOverlayStyle.light,
     automaticallyImplyLeading: false,
-    title: isHome == null
-        ? Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Image.asset(
-              AppAssets.logoWhite,
-              height: 38,
-            ),
-          )
-        : null,
+    title: Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Image.asset(
+        AppAssets.logoWhite,
+        height: 38,
+      ),
+    ),
     actions: [
       IconButton(
         onPressed: () {
