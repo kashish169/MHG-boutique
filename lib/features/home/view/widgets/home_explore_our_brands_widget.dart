@@ -32,6 +32,7 @@ class HomeExploreOurBrandsWidget extends StatelessWidget {
               horizontal: 20,
               vertical: 15,
             ),
+            physics: const BouncingScrollPhysics(),
             itemCount: controller.brandsList.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {

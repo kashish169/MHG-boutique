@@ -23,23 +23,15 @@ class MyCartCard extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Stack(
-                alignment: AlignmentDirectional.topEnd,
-                children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadiusDirectional.horizontal(
-                      start: Radius.circular(8),
-                    ),
-                    child: NetImage(
-                      image: model.options.imageLink,
-                      width: 120,
-                      height: 110,
-                    ),
-                  ),
-                  FavouriteWidget(
-                    onTap: () {},
-                  ),
-                ],
+              ClipRRect(
+                borderRadius: const BorderRadiusDirectional.horizontal(
+                  start: Radius.circular(8),
+                ),
+                child: NetImage(
+                  image: model.options.imageLink,
+                  width: 120,
+                  height: 110,
+                ),
               ),
               const SizedBox(width: 10),
               Expanded(

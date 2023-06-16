@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/widgets/net_image.dart';
 
 class HomeCategoryCard extends StatelessWidget {
   const HomeCategoryCard({super.key});
@@ -13,11 +14,24 @@ class HomeCategoryCard extends StatelessWidget {
         borderRadius: BorderRadiusDirectional.circular(8),
         boxShadow: AppColors.shadow(0.3),
       ),
-      child: Text(
-        "Top Sellers",
-        style: Theme.of(context).textTheme.displaySmall?.copyWith(
-              fontSize: 16,
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              "Top Sellers",
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    fontSize: 15,
+                  ),
             ),
+          ),
+          NetImage(
+            image: "https://fimgs.net/mdimg/perfume/375x500.43120.jpg",
+            height: 45,
+            width: 45,
+          ),
+        ],
       ),
     );
   }

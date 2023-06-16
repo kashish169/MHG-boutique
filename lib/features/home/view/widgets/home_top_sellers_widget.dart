@@ -31,6 +31,7 @@ class HomeTopSellersWidget extends StatelessWidget {
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
+          physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: const EdgeInsetsDirectional.symmetric(
               horizontal: 20,
