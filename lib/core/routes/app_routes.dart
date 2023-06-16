@@ -5,7 +5,6 @@ import 'package:mhg/features/auth/verification/binding/verification_binding.dart
 import 'package:mhg/features/auth/verification/view/pages/verfication_page.dart';
 import 'package:mhg/features/auth/signin/binding/sign_in_binding.dart';
 import 'package:mhg/features/auth/signin/view/pages/sign_in_page.dart';
-import 'package:mhg/features/categories/view/pages/category_page.dart';
 import 'package:mhg/features/mainwrapper/binding/main_wrapper_bindings.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
 import 'package:mhg/features/myorders/binding/my_orders_binding.dart';
@@ -29,6 +28,7 @@ import 'package:mhg/features/setting/view/pages/setting_view.dart';
 import 'package:mhg/features/splash/binding/splash_binding.dart';
 import 'package:mhg/features/splash/view/splash_view.dart';
 import '../../features/auth/otp/view/pages/otp.dart';
+import '../../features/categories/view/pages/categories_page.dart';
 import '../../features/my_wish_list/view/pages/my_wish_list.dart';
 import '../../features/personal_infromation/binding/peronal_informatiom_binding.dart';
 import '../../features/search/binding/search_binding.dart';
@@ -108,8 +108,8 @@ class AppRoutes {
       binding: MyOrdersBinding(),
     ),
     GetPage(
-      name: '/category',
-      page: () => const CategoryPage(),
+      name: '/categories',
+      page: () => const CategoriesPage(),
     ),
     GetPage(
       name: '/products_page',

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mhg/features/categories/view/widgets/category_brand_card.dart';
+import 'package:mhg/features/categories/view/widgets/categories_brand_card.dart';
 
 class CategoryExploreOurBrandsWidget extends StatelessWidget {
   const CategoryExploreOurBrandsWidget({super.key});
