@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mhg/features/search/view/widget/search_recent_button.dart';
 
 import '../../../../constants/app_colors.dart';
+import 'custom_search_section.dart';
 
 class RecentSearchBody extends StatelessWidget {
   const RecentSearchBody({super.key});
@@ -13,40 +14,9 @@ class RecentSearchBody extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        Divider(
-          thickness: 1,
-          color: AppColors.dividerColor,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Recent Searaches",
-                style: Theme.of(context)
-                    .textTheme
-                    .displayMedium!
-                    .copyWith(fontWeight: FontWeight.w400, fontSize: 18),
-              ),
-              TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Clear History",
-                    style: Theme.of(context)
-                        .textTheme
-                        .displaySmall!
-                        .copyWith(fontSize: 12, color: AppColors.darkRed),
-                  ))
-            ],
-          ),
-        ),
-        Divider(
-          thickness: 1,
-          color: AppColors.dividerColor,
-        ),
+        const CustomSearchSection(title: " Recent Searaches"),
         const SizedBox(
-          height: 10,
+          height: 5,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -76,14 +46,11 @@ class RecentSearchBody extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 80,
+          height: 50,
         ),
         Divider(
           thickness: 1,
           color: AppColors.dividerColor,
-        ),
-        const SizedBox(
-          height: 10,
         ),
       ],
     );

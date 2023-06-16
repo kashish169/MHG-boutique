@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/on_board/controller/on_board_controller.dart';
 import 'package:mhg/features/on_board/view/widgets/buttons.dart';
 import 'package:mhg/features/on_board/view/widgets/page_viewer.dart';
@@ -119,22 +118,36 @@ class _OnBoardViewState extends State<OnBoardView> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                const Expanded(child: SizedBox()),
-                                Text(
-                                  controller.selectedCountry,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall!
-                                      .copyWith(color: AppColors.white),
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 13),
+                                      height: 30,
+                                      width: 30,
+                                      child: Image.asset(
+                                          controller.selctedCountryFlage)),
                                 ),
-                                const SizedBox(
-                                  width: 20,
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    controller.selectedCountry,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall!
+                                        .copyWith(color: AppColors.white),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 20),
-                                  child: Icon(
-                                    Icons.keyboard_arrow_up_sharp,
-                                    color: AppColors.white,
+                                Expanded(
+                                  flex: 1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: Icon(
+                                      Icons.keyboard_arrow_up_sharp,
+                                      color: AppColors.white,
+                                    ),
                                   ),
                                 ),
                               ],
