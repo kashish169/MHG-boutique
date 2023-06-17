@@ -27,7 +27,7 @@ class SearchPage extends StatelessWidget {
               height: 10,
             ),
             SearchForm(),
-            const RecentSearchBody(),
+            RecentSearchBody(),
             const SearchTopSellers(),
             Container(
               color: AppColors.white2,

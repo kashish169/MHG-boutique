@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/features/my_wish_list/view/widget/my_wish_list_body_buttons.dart';
-import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/delete_icon_button.dart';
 import 'my_wish_list_body_header.dart';

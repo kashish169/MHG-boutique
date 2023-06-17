@@ -51,6 +51,10 @@ class ProductModel {
   String image3Link;
   String image4Link;
   String image5Link;
+  dynamic shopifyProductType;
+  dynamic shopifyVendor;
+  dynamic weight;
+  dynamic weightUnit;
 
   ProductModel({
     required this.id,
@@ -105,6 +109,10 @@ class ProductModel {
     required this.image3Link,
     required this.image4Link,
     required this.image5Link,
+    required this.shopifyProductType,
+    required this.shopifyVendor,
+    required this.weight,
+    required this.weightUnit,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
@@ -160,5 +168,9 @@ class ProductModel {
         image3Link: json["image3_link"],
         image4Link: json["image4_link"],
         image5Link: json["image5_link"],
+        shopifyProductType: json['shopify_product_type'],
+        shopifyVendor: json['shopify_vendor'],
+        weight: json['weight'],
+        weightUnit: json['weight_unit'],
       );
 }
