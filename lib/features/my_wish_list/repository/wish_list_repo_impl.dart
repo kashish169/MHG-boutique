@@ -31,7 +31,7 @@ class WishListRepoImpl implements WishListRepository {
     required Object body,
   }) async =>
       httpService.post(
-        url: Api.addToWishList,
+        url: Api.removeFromWishList,
         body: body,
         isAuthorized: true,
       );

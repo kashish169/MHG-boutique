@@ -59,7 +59,7 @@ class WishListController extends GetxController {
       Map<String, dynamic> body = {"item_id": itemId};
 
       Either<Failure, ApiResponse> results =
-      await wishListRepository.addToWishList(
+      await wishListRepository.removeFromWishList(
         body: jsonEncode(body),
       );
       results.fold(

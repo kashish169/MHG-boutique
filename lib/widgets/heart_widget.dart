@@ -46,7 +46,12 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                  setState(() {
 
                  });
+                 if(widget.from=='productDetails'){
+                   Get.find<HomeController>().getHome();
+
+                 }
                }
+
 
                // if(res==true){
                //   if(from=='home'){
@@ -62,9 +67,14 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                 bool res= await controller.addToWishList(widget.itemId!);
                 if(res==true){
                   widget.inWishlist=1;
+                  if(widget.from=='productDetails'){
+                    Get.find<HomeController>().getHome();
+
+                  }
                   setState(() {
 
                   });
+
                 }
                 // if(res==true){
                 //   if(from=='home'){
