@@ -114,7 +114,7 @@ class ProductCard extends StatelessWidget {
               ],
             ),
             FavouriteWidget(
-              from: 'home',
+              from: isDetails==true?'productDetails':'home',
               itemId: model.id,
               inWishlist: model.inWishlist,
             ),

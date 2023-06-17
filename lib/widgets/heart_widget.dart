@@ -51,9 +51,7 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
 
                  }
                }
-
-
-               // if(res==true){
+    // if(res==true){
                //   if(from=='home'){
                //     Get.find<HomeController>().getHome();
                //   }
