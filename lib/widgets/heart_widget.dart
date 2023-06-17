@@ -47,14 +47,7 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
 
                  });
                  if(widget.from=='productDetails'){
-                   for(int i=0;i<Get.find<HomeController>().newArrivalsList.length;i++){
-                     if(  Get.find<HomeController>().newArrivalsList[i].id==widget.itemId){
-                       Get.find<HomeController>().isLoading(true);
-                       Get.find<HomeController>().newArrivalsList[i].inWishlist=0;
-                       Get.find<HomeController>().isLoading(false);
-
-                     }
-                   }
+                   Get.find<HomeController>().getHome();
 
                  }
                }
@@ -73,15 +66,7 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                 if(res==true){
                   widget.inWishlist=1;
                   if(widget.from=='productDetails'){
-                    for(int i=0;i<Get.find<HomeController>().newArrivalsList.length;i++){
-                    if(  Get.find<HomeController>().newArrivalsList[i].id==widget.itemId){
-
-                      Get.find<HomeController>().newArrivalsList[i].inWishlist=1;
-                      Get.find<HomeController>().up
-
-                    }
-                    }
-
+                    Get.find<HomeController>().getHome();
                   }
                   setState(() {
 
