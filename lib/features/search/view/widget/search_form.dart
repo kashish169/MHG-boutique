@@ -18,9 +18,14 @@ class SearchForm extends StatelessWidget {
           inputType: TextInputType.name,
           obscure: false,
           oneSideBorder: false,
+          controller: controller.serach,
           hint: "What Are You Looking For ?",
           prefixWidget: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                controller.serach.text.isNotEmpty
+                    ? searchController.searchForProduct()
+                    : null;
+              },
               icon: SizedBox(
                 height: 20,
                 width: 20,

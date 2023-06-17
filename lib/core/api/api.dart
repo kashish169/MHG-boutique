@@ -26,6 +26,7 @@ class Api {
   static String addCartItem = "$cartRoute/add-item";
 
   static String home = "/api/v1/home";
+  static String searchLink = "/api/v1/search";
 
   static String productRoute = "/api/v1/product";
   static String productDetails = "$productRoute/product-details";
