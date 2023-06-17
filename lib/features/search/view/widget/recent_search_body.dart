@@ -69,23 +69,6 @@ class RecentSearchBody extends StatelessWidget {
                         return ProductCard(
                             model: searchingController.productList[index]);
                       }),
-                  // )
-                  //                GridView.builder(
-                  //                   physics: const ScrollPhysics(),
-                  //                   itemCount: searchingController.productList.length,
-                  //                   shrinkWrap: true,
-                  //                   scrollDirection: Axis.vertical,
-                  //                   gridDelegate:
-                  //                       const SliverGridDelegateWithFixedCrossAxisCount(
-                  //                     crossAxisCount: 2,
-                  //                     childAspectRatio: 5 / 9,
-                  //                     crossAxisSpacing: 20,
-                  //                     mainAxisSpacing: 20,
-                  //                   ),
-                  //                   itemBuilder: (BuildContext context, int index) {
-                  //                     return ProductCard(
-                  //                         model: searchingController.productList[index]);
-                  //                   }),
                 ),
           const SizedBox(
             height: 20,
