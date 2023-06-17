@@ -32,6 +32,7 @@ class SearchItemWishListBody extends StatelessWidget {
                     child: Image.asset(AppAssets.brand1),
                   ),
                   FavouriteWidget(
+                    from: 'search',
                     onTap: () {},
                     height: 22,
                   )

@@ -37,6 +37,7 @@ class SearchTopSellsBody extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: FavouriteWidget(
+                      from: 'search',
                       onTap: () {},
                       height: 22,
                     ),

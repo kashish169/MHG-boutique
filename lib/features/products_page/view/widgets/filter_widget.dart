@@ -15,8 +15,12 @@ class FiltersWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 11),
       child: Row(
         children: [
-         Expanded(child:  _scentWidget(context, controller),),
-          const SizedBox(width: 3,),
+          Expanded(
+            child: _scentWidget(context, controller),
+          ),
+          const SizedBox(
+            width: 3,
+          ),
           Expanded(child: _sortByWidget(context, controller))
         ],
       ),
@@ -39,7 +43,7 @@ class FiltersWidget extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           height: 35,
-          width: AppDimensions.screenWidth(context)/3.2,
+          width: AppDimensions.screenWidth(context) / 3.2,
           decoration: BoxDecoration(
               border: Border.all(color: AppColors.secondaryBlack),
               borderRadius: const BorderRadius.all(Radius.circular(5)),
@@ -88,7 +92,7 @@ class FiltersWidget extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           height: 35,
-           width: AppDimensions.screenWidth(context)/3.2,
+          width: AppDimensions.screenWidth(context) / 3.2,
           decoration: BoxDecoration(
               border: Border.all(color: AppColors.secondaryBlack),
               borderRadius: const BorderRadius.all(Radius.circular(5)),
