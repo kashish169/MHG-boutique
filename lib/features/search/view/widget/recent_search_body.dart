@@ -1,3 +1,4 @@
+import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/search/view/widget/search_recent_button.dart';
@@ -57,22 +58,34 @@ class RecentSearchBody extends StatelessWidget {
               ? const LoadingWidget()
               : Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: GridView.builder(
-                      physics: const ScrollPhysics(),
+                  child: DynamicHeightGridView(
                       itemCount: searchingController.productList.length,
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 20,
                       shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 5 / 9,
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20,
-                      ),
-                      itemBuilder: (BuildContext context, int index) {
+                      physics: const ScrollPhysics(),
+                      builder: (ctx, index) {
                         return ProductCard(
                             model: searchingController.productList[index]);
                       }),
+                  // )
+                  //                GridView.builder(
+                  //                   physics: const ScrollPhysics(),
+                  //                   itemCount: searchingController.productList.length,
+                  //                   shrinkWrap: true,
+                  //                   scrollDirection: Axis.vertical,
+                  //                   gridDelegate:
+                  //                       const SliverGridDelegateWithFixedCrossAxisCount(
+                  //                     crossAxisCount: 2,
+                  //                     childAspectRatio: 5 / 9,
+                  //                     crossAxisSpacing: 20,
+                  //                     mainAxisSpacing: 20,
+                  //                   ),
+                  //                   itemBuilder: (BuildContext context, int index) {
+                  //                     return ProductCard(
+                  //                         model: searchingController.productList[index]);
+                  //                   }),
                 ),
           const SizedBox(
             height: 20,
