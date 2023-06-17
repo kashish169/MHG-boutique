@@ -1,5 +1,5 @@
+import 'package:mhg/features/product_details/models/product_details_category_model.dart';
 import '../../home/models/brand_model.dart';
-import '../../home/models/category_model.dart';
 import '../../home/models/product_model.dart';
 import '../../home/models/store_model.dart';
 
@@ -7,7 +7,7 @@ class ProductDetailsModel {
   int id;
   dynamic externalId;
   dynamic sku;
-  int categoryId;
+  dynamic categoryId;
   int storeId;
   int brandId;
   String enProductName;
@@ -57,7 +57,7 @@ class ProductDetailsModel {
   String image4Link;
   String image5Link;
   StoreModel store;
-  CategoryModel category;
+  List<ProductDetailsCategoryModel> categories;
   BrandModel brand;
   List<Color> colors;
   List<Size> sizes;
@@ -70,7 +70,7 @@ class ProductDetailsModel {
     required this.id,
     this.externalId,
     this.sku,
-    required this.categoryId,
+    this.categoryId,
     required this.storeId,
     required this.brandId,
     required this.enProductName,
@@ -120,7 +120,7 @@ class ProductDetailsModel {
     required this.image4Link,
     required this.image5Link,
     required this.store,
-    required this.category,
+    required this.categories,
     required this.brand,
     required this.colors,
     required this.sizes,
@@ -185,7 +185,8 @@ class ProductDetailsModel {
         image4Link: json["image4_link"],
         image5Link: json["image5_link"],
         store: StoreModel.fromJson(json["store"]),
-        category: CategoryModel.fromJson(json["category"]),
+        categories: List<ProductDetailsCategoryModel>.from(json["categories"]
+            .map((x) => ProductDetailsCategoryModel.fromJson(x))),
         brand: BrandModel.fromJson(json["brand"]),
         colors: List<Color>.from(json["colors"].map((x) => Color.fromJson(x))),
         sizes: List<Size>.from(json["sizes"].map((x) => Size.fromJson(x))),
@@ -194,7 +195,7 @@ class ProductDetailsModel {
         productReviews:
             List<dynamic>.from(json["product_reviews"].map((x) => x)),
         relatedProducts: List<ProductModel>.from(
-            json["related_products"].map((x) => ProductModel.fromJson(x))),
+            json["relatedProducts"].map((x) => ProductModel.fromJson(x))),
       );
 }
 

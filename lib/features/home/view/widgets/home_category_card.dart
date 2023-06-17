@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/widgets/net_image.dart';
+import '../../models/category_model.dart';
 
 class HomeCategoryCard extends StatelessWidget {
-  const HomeCategoryCard({super.key});
+  final CategoryModel model;
+  const HomeCategoryCard({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class HomeCategoryCard extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              "Top Sellers",
+              model.enName,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
@@ -27,7 +29,7 @@ class HomeCategoryCard extends StatelessWidget {
             ),
           ),
           NetImage(
-            image: "https://fimgs.net/mdimg/perfume/375x500.43120.jpg",
+            image: model.url,
             height: 45,
             width: 45,
           ),

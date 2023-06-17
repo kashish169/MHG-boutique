@@ -2,9 +2,9 @@ class ProductModel {
   int id;
   dynamic externalId;
   dynamic sku;
-  int categoryId;
-  int storeId;
-  int brandId;
+  dynamic categoryId;
+  dynamic storeId;
+  dynamic brandId;
   String enProductName;
   String? frProductName;
   String enProductSlug;
@@ -56,9 +56,9 @@ class ProductModel {
     required this.id,
     this.externalId,
     this.sku,
-    required this.categoryId,
-    required this.storeId,
-    required this.brandId,
+    this.categoryId,
+    this.storeId,
+    this.brandId,
     required this.enProductName,
     this.frProductName,
     required this.enProductSlug,
