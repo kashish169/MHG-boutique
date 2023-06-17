@@ -1,12 +1,15 @@
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/features/home/view/widgets/home_category_card.dart';
+import '../../controller/home_controller.dart';
 
 class HomeShopByCategoryWidget extends StatelessWidget {
   const HomeShopByCategoryWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<HomeController>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -30,9 +33,11 @@ class HomeShopByCategoryWidget extends StatelessWidget {
               shrinkWrap: true,
               mainAxisSpacing: 20,
               crossAxisSpacing: 20,
-              itemCount: 8,
+              itemCount: controller.categories.length,
               builder: (ctx, index) {
-                return HomeCategoryCard();
+                return HomeCategoryCard(
+                  model: controller.categories[index],
+                );
               },
             )),
       ],

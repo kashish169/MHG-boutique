@@ -1,53 +1,51 @@
 class CategoryModel {
   int id;
-  dynamic externalId;
-  String enCategoryName;
-  String frCategoryName;
-  String enCategorySlug;
-  String frCategorySlug;
-  dynamic categoryIcon;
-  dynamic enDescription;
-  dynamic frDescription;
-  dynamic parentId;
-  dynamic brandId;
-  int storeId;
+  dynamic image;
+  String enName;
+  String frName;
+  dynamic slug;
+  int isStatic;
+  String url;
   int status;
+  dynamic categoryId;
+  dynamic parentId;
   DateTime createdAt;
   DateTime updatedAt;
+  dynamic imageLink;
+  List<dynamic> allActiveSubMenus;
 
   CategoryModel({
     required this.id,
-    this.externalId,
-    required this.enCategoryName,
-    required this.frCategoryName,
-    required this.enCategorySlug,
-    required this.frCategorySlug,
-    this.categoryIcon,
-    this.enDescription,
-    this.frDescription,
-    this.parentId,
-    this.brandId,
-    required this.storeId,
+    this.image,
+    required this.enName,
+    required this.frName,
+    this.slug,
+    required this.isStatic,
+    required this.url,
     required this.status,
+    this.categoryId,
+    this.parentId,
     required this.createdAt,
     required this.updatedAt,
+    this.imageLink,
+    required this.allActiveSubMenus,
   });
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
         id: json["id"],
-        externalId: json["external_id"],
-        enCategoryName: json["en_Category_Name"],
-        frCategoryName: json["fr_Category_Name"],
-        enCategorySlug: json["en_Category_Slug"],
-        frCategorySlug: json["fr_Category_Slug"],
-        categoryIcon: json["Category_Icon"],
-        enDescription: json["en_Description"],
-        frDescription: json["fr_Description"],
+        image: json["image"],
+        enName: json["en_name"],
+        frName: json["fr_name"],
+        slug: json["slug"],
+        isStatic: json["is_static"],
+        url: json["url"],
+        status: json["status"],
+        categoryId: json["category_id"],
         parentId: json["parent_id"],
-        brandId: json["brand_id"],
-        storeId: json["store_id"],
-        status: json["Status"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
+        imageLink: json["image_link"],
+        allActiveSubMenus:
+            List<dynamic>.from(json["all_active_sub_menus"].map((x) => x)),
       );
 }

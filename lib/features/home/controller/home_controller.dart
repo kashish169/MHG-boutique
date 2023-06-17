@@ -9,6 +9,7 @@ import 'package:mhg/features/home/repository/home_repo_impl.dart';
 import '../../../constants/app_toasts.dart';
 import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
+import '../models/category_model.dart';
 import '../models/slider_model.dart';
 
 class HomeController extends GetxController {
@@ -24,6 +25,7 @@ class HomeController extends GetxController {
   List<ProductModel> topSellersList = [];
   List<ProductModel> newArrivalsList = [];
   List<BrandModel> brandsList = [];
+  List<CategoryModel> categories = [];
 
   Future<void> getHome() async {
     try {
@@ -48,6 +50,7 @@ class HomeController extends GetxController {
             topSellersList = data.topSellers;
             newArrivalsList = data.newArrivals;
             brandsList = data.brands;
+            categories = data.categories;
           } else {
             AppToasts.errorToast(message);
           }
