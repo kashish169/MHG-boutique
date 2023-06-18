@@ -30,4 +30,8 @@ class Api {
 
   static String productRoute = "/api/v1/product";
   static String productDetails = "$productRoute/product-details";
+  static String storeCategories = "/api/v1/category/store";
+  static String menus = "/api/v1/category/menus";
+
+
 }

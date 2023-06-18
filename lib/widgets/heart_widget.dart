@@ -102,7 +102,7 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
           icon: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Image.asset(
-              AppAssets.favourtie,
+              widget.inWishlist == 1 ? AppAssets.wishlist: AppAssets.favourtie,
               height: widget.height ?? 24,
               width: widget.width,
               color: widget.inWishlist == 1 ? AppColors.red : null,

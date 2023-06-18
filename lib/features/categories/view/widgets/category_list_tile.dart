@@ -2,24 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
+import 'package:mhg/features/categories/models/categories_model.dart';
+import 'package:mhg/features/categories/view/pages/sub_categories_page.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
 import 'package:mhg/widgets/divider_widget.dart';
 
 class CategoryListTile extends StatelessWidget {
-  final String title;
+  // final String title;
+  final Menu model;
   final Function()? onTap;
 
   const CategoryListTile({
     super.key,
-    required this.title,
-    this.onTap,
+
+    this.onTap, required this.model,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Get.toNamed(ProductsPage.routeName);
+        if(model.allActiveSubMenus.isEmpty){
+          Get.toNamed(ProductsPage.routeName);
+        }else{
+          Navigator.pushNamed(context, SubCategoriesPage.routeName,arguments:[model.allActiveSubMenus,model.enName] );
+
+        }
+
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,12 +38,14 @@ class CategoryListTile extends StatelessWidget {
             height: 60,
             child: Row(children: [
               const SizedBox(width: 35,),
-              Text(
-                title,
-                style: Theme.of(context)
-                    .textTheme
-                    .displaySmall
-                    ?.copyWith(fontSize: 16),
+              Expanded(
+                child: Text(
+                  model.enName,
+                  style: Theme.of(context)
+                      .textTheme
+                      .displaySmall
+                      ?.copyWith(fontSize: 16),
+                ),
               ),
               const Expanded(child: SizedBox()),
               Icon(

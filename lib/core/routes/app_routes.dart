@@ -5,6 +5,7 @@ import 'package:mhg/features/auth/verification/binding/verification_binding.dart
 import 'package:mhg/features/auth/verification/view/pages/verfication_page.dart';
 import 'package:mhg/features/auth/signin/binding/sign_in_binding.dart';
 import 'package:mhg/features/auth/signin/view/pages/sign_in_page.dart';
+import 'package:mhg/features/categories/view/pages/sub_categories_page.dart';
 import 'package:mhg/features/mainwrapper/binding/main_wrapper_bindings.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
 import 'package:mhg/features/myorders/binding/my_orders_binding.dart';
@@ -116,6 +117,14 @@ class AppRoutes {
       page: () => const ProductsPage(),
       binding: ProductsPageBinding(),
     ),
+    GetPage(
+      name: '/sub_categories',
+      page: () => const SubCategoriesPage()
+    ),
+
+
+
+
     GetPage(
       name: '/search',
       page: () => const SearchPage(),
