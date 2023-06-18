@@ -22,11 +22,21 @@ class HomeController extends GetxController {
   }
 
   List<SliderModel> slidersList = [];
-  List<ProductModel> topSellersList = [];
-  List<ProductModel> newArrivalsList = [];
+  RxList<ProductModel> topSellersList = <ProductModel>[].obs;
+  RxList<ProductModel> newArrivalsList = <ProductModel>[].obs;
   List<BrandModel> brandsList = [];
   List<CategoryModel> categories = [];
+  updateList(List<ProductModel> model,bool fromArrival){
+  for(int i=0;i<model.length;i++) {
+    if(fromArrival){
+      newArrivalsList[i]=model[i];
+    }else{
+      topSellersList[i]=model[i];
+    }
 
+  }
+
+  }
   Future<void> getHome() async {
     try {
       isLoading(true);
@@ -47,8 +57,8 @@ class HomeController extends GetxController {
             var json = r.object["data"];
             var data = HomeModel.fromJson(json);
             slidersList = data.sliders;
-            topSellersList = data.topSellers;
-            newArrivalsList = data.newArrivals;
+            topSellersList.value = data.topSellers;
+            newArrivalsList.value = data.newArrivals;
             brandsList = data.brands;
             categories = data.categories;
           } else {

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
+import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/product_details/controller/product_details_controller.dart';
 import 'package:mhg/widgets/loading_widget.dart';
@@ -11,16 +12,20 @@ class FavouriteWidget extends StatefulWidget {
   final double? height;
   final double? width;
   final VoidCallback? onTap;
-   int? inWishlist;
+  int? inWishlist;
   final int? itemId;
   final String from;
+  final bool fromArrival;
 
-   FavouriteWidget(
+  FavouriteWidget(
       {Key? key,
       this.height,
       this.onTap,
       this.width,
-      this.itemId, this.inWishlist, required this.from})
+      this.fromArrival = false,
+      this.itemId,
+      this.inWishlist,
+      required this.from})
       : super(key: key);
 
   @override
@@ -30,7 +35,6 @@ class FavouriteWidget extends StatefulWidget {
 class _FavouriteWidgetState extends State<FavouriteWidget> {
   @override
   Widget build(BuildContext context) {
-
     return InkWell(child: GetX<WishListController>(builder: (controller) {
       if (controller.isLoading.isTrue) {
         return const LoadingWidget();
@@ -39,40 +43,49 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
           padding: EdgeInsets.zero,
           onPressed: () async {
             if (widget.itemId != null) {
-              if (widget.inWishlist==1) {
-               bool res= await controller.removeFromWishList(widget.itemId!);
-               if(res==true){
-                 widget.inWishlist=0;
-                 setState(() {
-
-                 });
-                 if(widget.from=='productDetails'){
-                   Get.find<HomeController>().getHome();
-
-                 }
-               }
-    // if(res==true){
-               //   if(from=='home'){
-               //     Get.find<HomeController>().getHome();
-               //   }
-               //   if(from=='productDetails'){
-               //     Get.find<ProductDetailsController>().productId=0;
-               //
-               //   }
-               // }
-
-              } else {
-                bool res= await controller.addToWishList(widget.itemId!);
-                if(res==true){
-                  widget.inWishlist=1;
-                  if(widget.from=='productDetails'){
-                    Get.find<HomeController>().getHome();
-
+              if (widget.inWishlist == 1) {
+                bool res = await controller.removeFromWishList(widget.itemId!);
+                if (res == true) {
+                  widget.inWishlist = 0;
+                  setState(() {});
+                  if (widget.from == 'productDetails') {
+                    List<ProductModel> temp = widget.fromArrival
+                        ? Get.find<HomeController>().newArrivalsList
+                        : Get.find<HomeController>().topSellersList;
+                    for (int i = 0; i < temp.length; i++) {
+                      if (temp[i].id == widget.itemId!) {
+                        temp[i].inWishlist = 0;
+                      }
+                    }
+                    Get.find<HomeController>().updateList(temp,widget.fromArrival);
                   }
-                  setState(() {
+                }
+                // if(res==true){
+                //   if(from=='home'){
+                //     Get.find<HomeController>().getHome();
+                //   }
+                //   if(from=='productDetails'){
+                //     Get.find<ProductDetailsController>().productId=0;
+                //
+                //   }
+                // }
+              } else {
+                bool res = await controller.addToWishList(widget.itemId!);
+                if (res == true) {
+                  widget.inWishlist = 1;
 
-                  });
-
+                  setState(() {});
+                  if (widget.from == 'productDetails') {
+                    List<ProductModel> temp = widget.fromArrival
+                        ? Get.find<HomeController>().newArrivalsList
+                        : Get.find<HomeController>().topSellersList;
+                    for (int i = 0; i < temp.length; i++) {
+                      if (temp[i].id == widget.itemId!) {
+                        temp[i].inWishlist = 1;
+                      }
+                    }
+                    Get.find<HomeController>().updateList(temp,widget.fromArrival);
+                  }
                 }
                 // if(res==true){
                 //   if(from=='home'){
@@ -92,10 +105,8 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
               AppAssets.favourtie,
               height: widget.height ?? 24,
               width: widget.width,
-              color: widget.inWishlist==1
-                  ? AppColors.red
-                  : null,
-              fit: widget.inWishlist==1? BoxFit.fill : null,
+              color: widget.inWishlist == 1 ? AppColors.red : null,
+              fit: widget.inWishlist == 1 ? BoxFit.fill : null,
             ),
           ));
     }));

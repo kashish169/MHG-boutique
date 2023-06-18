@@ -10,11 +10,13 @@ import '../../models/product_model.dart';
 class ProductCard extends StatelessWidget {
   final ProductModel model;
   final bool isDetails;
+  final bool fromArrival;
 
   const ProductCard({
     super.key,
     required this.model,
     this.isDetails = false,
+    this.fromArrival = false,
   });
 
   @override
@@ -32,6 +34,7 @@ class ProductCard extends StatelessWidget {
             arguments: {
               "id": model.id,
               "name": model.enProductName,
+              "fromArrival":fromArrival
             },
           );
         }
@@ -117,6 +120,7 @@ class ProductCard extends StatelessWidget {
               from: isDetails==true?'productDetails':'home',
               itemId: model.id,
               inWishlist: model.inWishlist,
+              fromArrival: fromArrival,
             ),
           ],
         ),

@@ -16,6 +16,7 @@ class ProductDetailsController extends GetxController {
   RxBool isLoadingAdd = false.obs;
   RxBool isErrorAdd = false.obs;
   late int productId;
+  late bool fromArrival;
   RxString productName = ''.obs;
 
   ProductDetailsController() {
@@ -128,6 +129,7 @@ class ProductDetailsController extends GetxController {
   void onInit() {
     var data = Get.arguments;
     productId = data["id"];
+    fromArrival = data["fromArrival"];
     productName.value = data["name"];
     log("PRODUCT ID IS : $productId");
     getProductDetails();

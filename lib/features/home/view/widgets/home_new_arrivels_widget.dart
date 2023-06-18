@@ -42,9 +42,11 @@ class HomeNewArrivelsWidget extends StatelessWidget {
                 for (int index = 0;
                     index < controller.newArrivalsList.length;
                     index++)
-                  ProductCard(
-                    model: controller.newArrivalsList[index],
-                  ),
+                  Obx(()=>
+                      ProductCard(
+                        fromArrival:true,
+                        model: controller.newArrivalsList[index],
+                      ),)
               ],
             ),
           ),
