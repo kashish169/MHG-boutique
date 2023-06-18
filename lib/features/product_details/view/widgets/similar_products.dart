@@ -42,6 +42,7 @@ class SimilarProductsWidget extends StatelessWidget {
                   ProductCard(
                     model: controller.model.relatedProducts[index],
                     isDetails: true,
+                    fromArrival: controller.fromArrival,
                   ),
               ],
             ),

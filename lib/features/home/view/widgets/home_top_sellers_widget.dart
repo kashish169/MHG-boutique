@@ -42,9 +42,9 @@ class HomeTopSellersWidget extends StatelessWidget {
                 for (int index = 0;
                     index < controller.topSellersList.length;
                     index++)
-                  ProductCard(
+                  Obx(()=>ProductCard(
                     model: controller.topSellersList[index],
-                  ),
+                  )),
               ],
             ),
           ),

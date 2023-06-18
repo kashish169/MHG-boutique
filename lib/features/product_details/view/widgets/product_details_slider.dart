@@ -48,7 +48,7 @@ class ProductDetailsSlider extends StatelessWidget {
                   inWishlist: controller.model.inWishlist,
                   itemId: controller.productId,
                   height: 31,
-
+                 fromArrival: controller.fromArrival,
                 ),
               )),
         )
