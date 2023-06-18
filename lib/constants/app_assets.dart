@@ -60,4 +60,6 @@ class AppAssets {
   static String loadingHolder = "assets/images/loading_holder.jpg";
   static String recent = "assets/icons/recent.png";
   static String brand1 = "assets/images/brand1.png";
+  static String master = "assets/icons/master.png";
+  static String tag = "assets/icons/tag.png";
 }
