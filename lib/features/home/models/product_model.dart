@@ -17,11 +17,11 @@ class ProductModel {
   String discountPrice;
   int quantity;
   String sold;
-  String primaryImage;
-  String image2;
-  String image3;
-  String image4;
-  String image5;
+  String? primaryImage;
+  String? image2;
+  String? image3;
+  String? image4;
+  String? image5;
   dynamic digitalType;
   dynamic digitalLink;
   dynamic digitalFile;
@@ -46,11 +46,11 @@ class ProductModel {
   int inCart;
   int cartQty;
   int inWishlist;
-  String primaryImageLink;
-  String image2Link;
-  String image3Link;
-  String image4Link;
-  String image5Link;
+  String? primaryImageLink;
+  String? image2Link;
+  String? image3Link;
+  String? image4Link;
+  String? image5Link;
   dynamic shopifyProductType;
   dynamic shopifyVendor;
   dynamic weight;
@@ -75,11 +75,11 @@ class ProductModel {
     required this.discountPrice,
     required this.quantity,
     required this.sold,
-    required this.primaryImage,
-    required this.image2,
-    required this.image3,
-    required this.image4,
-    required this.image5,
+     this.primaryImage,
+     this.image2,
+     this.image3,
+     this.image4,
+     this.image5,
     this.digitalType,
     this.digitalLink,
     this.digitalFile,
@@ -104,11 +104,11 @@ class ProductModel {
     required this.inCart,
     required this.cartQty,
     required this.inWishlist,
-    required this.primaryImageLink,
-    required this.image2Link,
-    required this.image3Link,
-    required this.image4Link,
-    required this.image5Link,
+     this.primaryImageLink,
+     this.image2Link,
+     this.image3Link,
+     this.image4Link,
+     this.image5Link,
     required this.shopifyProductType,
     required this.shopifyVendor,
     required this.weight,

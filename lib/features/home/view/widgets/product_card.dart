@@ -64,8 +64,11 @@ class ProductCard extends StatelessWidget {
                 const SizedBox(height: 10),
                 Text(
                   model.enProductName,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontSize: 16,
+
                       ),
                 ),
                 const SizedBox(height: 10),

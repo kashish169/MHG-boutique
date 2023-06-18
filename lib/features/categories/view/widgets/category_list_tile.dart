@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
@@ -22,8 +24,12 @@ class CategoryListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
+        if(model.categoryId==null) {
+          return;
+        }
         if(model.allActiveSubMenus.isEmpty){
-          Get.toNamed(ProductsPage.routeName);
+          log(model.categoryId.toString());
+          Get.toNamed(ProductsPage.routeName,arguments: model.categoryId);
         }else{
           Navigator.pushNamed(context, SubCategoriesPage.routeName,arguments:[model.allActiveSubMenus,model.enName] );
 
