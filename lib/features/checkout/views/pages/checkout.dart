@@ -25,7 +25,7 @@ class Checkout extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.81,
+            height: MediaQuery.of(context).size.height*0.85 ,
             width: MediaQuery.of(context).size.width,
             child: ListView.separated(
               itemBuilder: (context, index) {

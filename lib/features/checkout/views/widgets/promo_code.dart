@@ -13,7 +13,7 @@ class PromoCode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.2,
+      height: MediaQuery.of(context).size.height * 0.17,
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
@@ -44,7 +44,7 @@ class PromoCode extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.5,
+                width: MediaQuery.of(context).size.width * 0.6,
                 height: 44,
                 child: CustomFormField(
                   inputType: TextInputType.text,
@@ -53,13 +53,10 @@ class PromoCode extends StatelessWidget {
                 ),
               ),
              
-              Container(
-                margin: EdgeInsets.only(right: MediaQuery.of(context).size.width*0.1),
-                child: PlaceOrderButton(
-                  title: 'Apply',
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  hasIcon: false,
-                ),
+              PlaceOrderButton(
+                title: 'Apply',
+                width: MediaQuery.of(context).size.width * 0.3,
+                hasIcon: false,
               ),
             ],
           ),

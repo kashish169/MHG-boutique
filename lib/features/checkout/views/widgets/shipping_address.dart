@@ -10,7 +10,7 @@ class ShippingAddress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.15,
+      height: MediaQuery.of(context).size.height * 0.17,
       width: MediaQuery.of(context).size.width,
       child: ListTile(
         title: Padding(
@@ -65,7 +65,7 @@ class ShippingAddress extends StatelessWidget {
           ],
         ),
         trailing: Container(
-          margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.1),
+          margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.04),
           height: 25,
           width: 25,
           decoration: BoxDecoration(
