@@ -10,6 +10,7 @@ import '../../models/product_model.dart';
 class ProductCard extends StatelessWidget {
   final ProductModel model;
   final bool isDetails;
+
   const ProductCard({
     super.key,
     required this.model,
@@ -112,7 +113,11 @@ class ProductCard extends StatelessWidget {
                 const SizedBox(height: 10),
               ],
             ),
-            FavouriteWidget(),
+            FavouriteWidget(
+              from: isDetails==true?'productDetails':'home',
+              itemId: model.id,
+              inWishlist: model.inWishlist,
+            ),
           ],
         ),
       ),

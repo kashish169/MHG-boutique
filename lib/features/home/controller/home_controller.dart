@@ -61,6 +61,8 @@ class HomeController extends GetxController {
     }
   }
 
+
+
   @override
   void onInit() {
     getHome();

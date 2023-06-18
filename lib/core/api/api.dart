@@ -17,14 +17,14 @@ class Api {
   static String notifications = "/api/v1/users/notifications";
   static String updateProfile = "/api/v1/users/update";
   static String deleteAccount = "/api/v1/users/delete-account";
-
   static String cartRoute = "/api/v1/cart";
   static String cartItems = "$cartRoute/items";
   static String deleteCartItem = "$cartRoute/remove-item";
   static String increaseCartItem = "$cartRoute/increase-item";
   static String decreaseCartItem = "$cartRoute/decrease-item";
   static String addCartItem = "$cartRoute/add-item";
-
+  static String addToWishList = "/api/v1/wishlist/add-item";
+  static String removeFromWishList = "/api/v1/wishlist/remove-item";
   static String home = "/api/v1/home";
   static String searchLink = "/api/v1/search";
 
