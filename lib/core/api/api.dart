@@ -25,6 +25,7 @@ class Api {
   static String addCartItem = "$cartRoute/add-item";
   static String addToWishList = "/api/v1/wishlist/add-item";
   static String removeFromWishList = "/api/v1/wishlist/remove-item";
+  static String getWishListDataLink = "/api/v1/wishlist/items";
   static String home = "/api/v1/home";
   static String searchLink = "/api/v1/search";
 
