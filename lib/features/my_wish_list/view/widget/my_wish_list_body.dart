@@ -42,6 +42,7 @@ class MyWishBody extends StatelessWidget {
                       SizedBox(height: 10),
                       BodyMiddleText(),
                       BodyButtons(),
+                      
                     ],
                   ),
                 ),
