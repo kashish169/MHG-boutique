@@ -24,7 +24,7 @@ class CategoryListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        if(model.categoryId==null) {
+        if(model.categoryId==null &&model.allActiveSubMenus.isEmpty) {
           return;
         }
         if(model.allActiveSubMenus.isEmpty){
