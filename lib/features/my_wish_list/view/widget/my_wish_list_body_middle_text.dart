@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../constants/app_colors.dart';
 
 class BodyMiddleText extends StatelessWidget {
-  const BodyMiddleText({super.key});
-
+  const BodyMiddleText({super.key, required this.brand, required this.price});
+  final String brand;
+  final String price;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,7 +24,7 @@ class BodyMiddleText extends StatelessWidget {
                     .copyWith(fontSize: 12, color: AppColors.lightGray4),
               ),
               TextSpan(
-                text: " Edge",
+                text: " $brand",
                 style: Theme.of(context)
                     .textTheme
                     .displaySmall!
@@ -35,7 +36,7 @@ class BodyMiddleText extends StatelessWidget {
             height: 10,
           ),
           Text(
-            "Dhs. 495.00",
+            "Dhs. $price",
             style: Theme.of(context)
                 .textTheme
                 .displayMedium!

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../../constants/app_colors.dart';
 
 class TopBodyHeader extends StatelessWidget {
-  const TopBodyHeader({super.key});
-
+  const TopBodyHeader({super.key, required this.title});
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -11,7 +11,7 @@ class TopBodyHeader extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Syond (60ml)",
+            title,
             style: Theme.of(context)
                 .textTheme
                 .displaySmall!

@@ -4,8 +4,8 @@ import '../../../../constants/app_colors.dart';
 import '../../../../widgets/primary_button.dart';
 
 class BodyButtons extends StatelessWidget {
-  const BodyButtons({super.key});
-
+  const BodyButtons({super.key, required this.addToBag});
+  final void Function() addToBag;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -32,7 +32,7 @@ class BodyButtons extends StatelessWidget {
             ),
             child: PrimaryButton(
               title: "Add to Bag",
-              onTap: () {},
+              onTap: addToBag,
               fontSize: 12,
               color: AppColors.primary,
               height: 35,

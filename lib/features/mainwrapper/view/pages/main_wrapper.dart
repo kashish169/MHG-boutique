@@ -38,12 +38,12 @@ class _MainWrapperState extends State<MainWrapper>
     });
   }
 
-  final List<Widget> _children = const [
-    HomePage(),
-    CategoriesPage(),
+  final List<Widget> _children = [
+    const HomePage(),
+    const CategoriesPage(),
     MyWishList(),
-    MyCartPage(),
-    ProfileView()
+    const MyCartPage(),
+    const ProfileView()
   ];
 
   @override

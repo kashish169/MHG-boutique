@@ -104,7 +104,7 @@ class AppRoutes {
     ),
     GetPage(
       name: '/my_wish_list',
-      page: () => const MyWishList(),
+      page: () => MyWishList(),
       binding: MyOrdersBinding(),
     ),
     GetPage(

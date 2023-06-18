@@ -15,8 +15,6 @@ class WishListRepoImpl implements WishListRepository {
     httpService = Get.put(HttpServiceImplementation());
   }
 
-
-
   @override
   Future<Either<Failure, ApiResponse>> addToWishList({
     required Object body,
@@ -35,6 +33,19 @@ class WishListRepoImpl implements WishListRepository {
         body: body,
         isAuthorized: true,
       );
-
-
+  @override
+  Future<Either<Failure, ApiResponse>> getWishListData() async =>
+      httpService.get(
+        url: Api.getWishListDataLink,
+        isAuthorized: true,
+      );
+  @override
+  Future<Either<Failure, ApiResponse>> addToBag({
+    required Object body,
+  }) async =>
+      httpService.post(
+        url: Api.addCartItem,
+        body: body,
+        isAuthorized: true,
+      );
 }
