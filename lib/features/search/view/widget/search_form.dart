@@ -16,16 +16,17 @@ class SearchForm extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: CustomFormField(
           inputType: TextInputType.name,
+          onFieldSubmitted: (val) {
+            controller.serach.text.isNotEmpty
+                ? searchController.searchForProduct()
+                : null;
+          },
           obscure: false,
           oneSideBorder: false,
           controller: controller.serach,
           hint: "What Are You Looking For ?",
           prefixWidget: IconButton(
-              onPressed: () {
-                controller.serach.text.isNotEmpty
-                    ? searchController.searchForProduct()
-                    : null;
-              },
+              onPressed: () {},
               icon: SizedBox(
                 height: 20,
                 width: 20,

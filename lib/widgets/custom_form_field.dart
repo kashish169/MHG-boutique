@@ -21,6 +21,7 @@ class CustomFormField extends StatelessWidget {
     this.isAlignCenter,
     this.onTap,
     this.onTapOutsidel,
+    this.onFieldSubmitted,
   });
 
   final Widget? prefixWidget;
@@ -39,6 +40,7 @@ class CustomFormField extends StatelessWidget {
   final bool? isFilled;
   final bool? isAlignCenter;
   final void Function()? onTap;
+  final Function(String)? onFieldSubmitted;
   final void Function(PointerDownEvent)? onTapOutsidel;
   @override
   Widget build(BuildContext context) {
@@ -47,6 +49,7 @@ class CustomFormField extends StatelessWidget {
         enabled: disableForm == null ? true : false,
         validator: validator,
         onChanged: onChanged,
+        onFieldSubmitted: onFieldSubmitted,
         obscureText: obscure,
         keyboardType: inputType,
         controller: controller,
