@@ -16,8 +16,13 @@ class ProductsRepoImplement implements ProductsRepository {
   }
 
   @override
-  Future<Either<Failure, ApiResponse>> getCategoryProduct({required String categoryId,required String page}) async => httpService.get(
-        url: '${Api.productByCategory}&category_id=$categoryId&page=$page',
-        isAuthorized: App.token.isEmpty ? false : true,
+  Future<Either<Failure, ApiResponse>> getCategoryProduct({required String categoryId,required String page,String? search}) async => httpService.get(
+        url: search!=null ?'${Api.filterProduct}&categories[]=$categoryId&page=$page&search=$search':'${Api.filterProduct}&categories[]=$categoryId&page=$page',
+        isAuthorized: true,
       );
+  @override
+  Future<Either<Failure, ApiResponse>> getProductTags() async => httpService.get(
+    url: Api.productTags,
+    isAuthorized:true,
+  );
 }

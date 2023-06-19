@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
@@ -48,29 +49,37 @@ class FiltersWidget extends StatelessWidget {
               border: Border.all(color: AppColors.secondaryBlack),
               borderRadius: const BorderRadius.all(Radius.circular(5)),
               color: AppColors.white),
-          child: DropdownButtonHideUnderline(
-            child: DropdownButton(
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall!
-                  .copyWith(color: AppColors.secondaryBlack, fontSize: 14),
-              isExpanded: true,
-              value: controller.selectedScent.value,
-              icon: Image.asset(
-                AppAssets.arrowDown,
-                height: 8,
-                color: AppColors.primary,
-              ),
-              items: controller.ScentList.map((itemss) {
-                return DropdownMenuItem<String>(
-                    value: itemss, child: Text(itemss));
-              }).toList(),
-              onChanged: (newValue) {
-                controller.selectedScent.value = newValue!;
-                // print(controller.categoryValue.value);
-              },
-            ),
-          ),
+          child:Obx(()=>
+              DropdownButtonHideUnderline(
+                child: DropdownButton2(
+
+                  style: Theme.of(context)
+                      .textTheme
+                      .displaySmall!
+                      .copyWith(color: AppColors.secondaryBlack, fontSize: 14),
+
+                  isExpanded: true,
+                  value:controller.selectedScent.value!=''? controller.selectedScent.value:null,
+                  iconStyleData: IconStyleData(
+                    icon: Image.asset(
+                      AppAssets.arrowDown,
+                      height: 8,
+                      color: AppColors.primary,
+                    ),),
+
+
+                  items: controller.scentList.map((itemss) {
+                    return DropdownMenuItem<String>(
+                        value: itemss.name, child: Text(itemss.name));
+                  }).toList(),
+                  onChanged: (newValue) {
+                    controller.selectedScent.value = newValue!;
+                    controller.resetPaginate();
+                    controller.getProducts(Get.arguments,controller.selectedScent.value );
+                    // print(controller.categoryValue.value);
+                  },
+                ),
+              )),
         )
       ],
     );
@@ -116,6 +125,7 @@ class FiltersWidget extends StatelessWidget {
               }).toList(),
               onChanged: (newValue) {
                 controller.selectedSortBy.value = newValue!;
+
                 // print(controller.categoryValue.value);
               },
             ),
