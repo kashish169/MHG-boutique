@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_toasts.dart';
+import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
 import 'package:mhg/features/my_wish_list/repository/wish_list_repo.dart';
 import 'package:mhg/features/my_wish_list/repository/wish_list_repo_impl.dart';
@@ -17,6 +18,7 @@ class WishListController extends GetxController {
   WishListController() {
     wishListRepository = Get.find<WishListRepoImpl>();
   }
+  HomeController controller = Get.find();
   @override
   void onInit() {
     getData();
@@ -41,12 +43,9 @@ class WishListController extends GetxController {
 
           if (statusCode == 200) {
             List json = r.object["data"]['wishlist_items'];
-            for (int i = 0; i < json.length; i++) {
-              if (json[i]['id'] == itemId) {
-                WishListModel models = WishListModel.fromJson(json[i]);
-                wishListItems.add(models);
-              }
-            }
+            wishListItems.value =
+                json.map((e) => WishListModel.fromJson(e)).toList();
+            controller.getHome();
             result = true;
             AppToasts.successToast(
               "The product has been added to the wishlist",
@@ -87,6 +86,7 @@ class WishListController extends GetxController {
             );
             result = true;
             wishListItems.removeWhere((element) => element.id == itemId);
+            controller.getHome();
             update();
           } else {
             AppToasts.errorToast(message);
