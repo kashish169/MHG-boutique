@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/features/checkout/views/pages/checkout.dart';
+import 'package:mhg/features/checkout/views/pages/checkout_page.dart';
 import 'package:mhg/widgets/primary_button.dart';
 
 class CheckOutButton extends StatelessWidget {
@@ -21,7 +21,7 @@ class CheckOutButton extends StatelessWidget {
             width: 300,
             title: 'Checkout',
             onTap: () {
-              Get.toNamed(Checkout.routeName);
+              Get.toNamed(CheckoutPage.routeName);
             },
           ),
           Padding(

@@ -107,6 +107,7 @@ class SignInController extends GetxController {
             'Content-Type': 'application/json',
             'Authorization': "Bearer $token",
           };
+          print(token);
           await StoragePref.setString(
             key: "token",
             value: token,

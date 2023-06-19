@@ -1,10 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/features/checkout/views/pages/checkout.dart';
+
 import 'package:mhg/widgets/primary_button.dart';
 
 class PlaceOrderButton extends StatelessWidget {
