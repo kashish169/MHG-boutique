@@ -8,6 +8,7 @@ import 'package:mhg/core/models/api_response.dart';
 import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
+import 'package:mhg/features/products_page/models/product_tag_model.dart';
 import 'package:mhg/features/products_page/repository/products_repo.dart';
 import 'package:mhg/features/products_page/repository/products_repo_impl.dart';
 import 'package:mhg/features/profile/models/profle_info_model.dart';
@@ -16,7 +17,8 @@ import 'package:mhg/features/profile/repository/profile_repository.dart';
 
 class ProductsController extends GetxController {
   late ProductsRepository productsRepository;
-
+   RxList<ProductTagModel> scentList=<ProductTagModel>[].obs;
+  RxString selectedScent = ''.obs;
   RxBool isLoading = false.obs;
   RxBool isError = false.obs;
   RxBool isFetching = false.obs;
@@ -30,8 +32,8 @@ class ProductsController extends GetxController {
 
    RxList<ProductModel> products=<ProductModel>[].obs;
 
-  RxString selectedScent = 'Floriental'.obs;
-  RxList ScentList = <String>['Floriental'].obs;
+
+
   RxString selectedSortBy = 'Featured'.obs;
   RxList sortByList = <String>['Featured'].obs;
   ScrollController scrollController = ScrollController();
@@ -41,7 +43,9 @@ class ProductsController extends GetxController {
   @override
   Future<void> onInit() async {
     log(Get.arguments.toString());
-    getProducts(await Get.arguments);
+    getProductsTags();
+    getProducts(await Get.arguments,null);
+
      paginate();
     super.onInit();
   }
@@ -62,15 +66,16 @@ class ProductsController extends GetxController {
         if (products.length < last) {
           log(products.length.toString());
           log(last.toString());
-          getProducts(Get.arguments);
+          getProducts(Get.arguments,null);
         }
       }
     });
   }
 
-  Future<void> getProducts(int catId) async {
+  Future<void> getProducts(int catId,String? search) async {
+    log("Search:$search");
     try {
-      if(page==1){
+      if(page==1&& search==null){
         isLoading(true);
       }else{
         isFetching.trigger(true);
@@ -78,8 +83,9 @@ class ProductsController extends GetxController {
       isError(false);
       Either<Failure, ApiResponse> results =
           await productsRepository.getCategoryProduct(
-              categoryId: catId.toString(), page: page.toString());
-      if(page==1){
+              categoryId: catId.toString(), page: page.toString(),search: search);
+
+      if(page==1&& search==null){
         isLoading(false);
       }else{
         isFetching.trigger(false);
@@ -97,11 +103,11 @@ class ProductsController extends GetxController {
           if (statusCode == 200) {
             var json = r.object["data"];
             log(json.toString());
-            log("here");
+
             last=r.object['data']["products"]['total'];
             products += List<ProductModel>.from(
                 json["products"]['data'].map((x) => ProductModel.fromJson(x)));
-
+            log("length of List ${products.length}");
             // CategoriesModel.fromJson(r.object["data"]);
             // var data = HomeModel.fromJson(json);
             //
@@ -109,6 +115,51 @@ class ProductsController extends GetxController {
           } else {
             AppToasts.errorToast(message);
             page--;
+          }
+        },
+      );
+    } catch (e, s) {
+      log("$e $s");
+    }
+  }
+  Future<void> getProductsTags() async {
+   // scentList.clear();
+    log("product tags");
+    try {
+
+        isLoading(true);
+
+      isError(false);
+      Either<Failure, ApiResponse> results =
+      await productsRepository.getProductTags();
+
+        isLoading(false);
+
+      results.fold(
+            (l) {
+          isError(true);
+
+          AppToasts.errorToast(l.message);
+        },
+            (r) {
+          var statusCode = r.object["code"];
+          var message = r.object["message"];
+
+          if (statusCode == 200) {
+            var json = r.object["data"];
+            log(json.toString());
+            log("length ${scentList.length}");
+            scentList += List<ProductTagModel>.from(
+                json['productTags'].map((x) => ProductTagModel.fromJson(x)));
+            log("length ${scentList.length}");
+           // selectedScent.value=scentList[0].name;
+            // CategoriesModel.fromJson(r.object["data"]);
+            // var data = HomeModel.fromJson(json);
+            //
+            // categories = data.categories;
+          } else {
+            AppToasts.errorToast(message);
+
           }
         },
       );
