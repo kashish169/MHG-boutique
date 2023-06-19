@@ -8,7 +8,7 @@ import 'package:mhg/features/auth/signin/view/pages/sign_in_page.dart';
 import 'package:mhg/features/checkout/binding/checkout_bindings.dart';
 import 'package:mhg/features/mainwrapper/binding/main_wrapper_bindings.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
-import 'package:mhg/features/checkout/views/pages/checkout.dart';
+import 'package:mhg/features/checkout/views/pages/checkout_page.dart';
 import 'package:mhg/features/myorders/binding/my_orders_binding.dart';
 import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
 import 'package:mhg/features/notification_permission/view/pages/norification_permission.dart';
@@ -127,7 +127,7 @@ class AppRoutes {
     ),
     GetPage(
       name: '/checkout',
-      page: () => const Checkout(),
+      page: () => const CheckoutPage(),
       binding: CheckoutBinding(),
     ),
   ];
