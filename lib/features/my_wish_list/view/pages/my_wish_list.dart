@@ -24,14 +24,14 @@ class _MyWishListState extends State<MyWishList> {
           return controller.isLoading.value
               ? const LoadingWidget()
               : controller.isError.value
-                  ? RetryButton(onTap: () => controller.getData())
+                  ? RetryButton(onTap: () => controller.getWishList())
                   : Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const SizedBox(
                           height: 20,
                         ),
-                        controller.wishListItems.length > 0
+                        controller.wishListItems.isNotEmpty
                             ? Expanded(
                                 child: ListView.builder(
                                     itemCount: controller.wishListItems.length,

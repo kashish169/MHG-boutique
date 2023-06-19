@@ -62,4 +62,6 @@ class AppAssets {
   static String brand1 = "assets/images/brand1.png";
   static String master = "assets/icons/master.png";
   static String tag = "assets/icons/tag.png";
+  static String starGif = "assets/images/star-gif.gif";
+  static String qrGif = "assets/images/qr-gif.gif";
 }

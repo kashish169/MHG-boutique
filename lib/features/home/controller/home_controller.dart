@@ -26,17 +26,17 @@ class HomeController extends GetxController {
   RxList<ProductModel> newArrivalsList = <ProductModel>[].obs;
   List<BrandModel> brandsList = [];
   List<CategoryModel> categories = [];
-  updateList(List<ProductModel> model,bool fromArrival){
-  for(int i=0;i<model.length;i++) {
-    if(fromArrival){
-      newArrivalsList[i]=model[i];
-    }else{
-      topSellersList[i]=model[i];
+
+  updateList(List<ProductModel> model, bool fromArrival) {
+    for (int i = 0; i < model.length; i++) {
+      if (fromArrival) {
+        newArrivalsList[i] = model[i];
+      } else {
+        topSellersList[i] = model[i];
+      }
     }
-
   }
 
-  }
   Future<void> getHome() async {
     try {
       isLoading(true);
@@ -46,7 +46,6 @@ class HomeController extends GetxController {
       results.fold(
         (l) {
           isError(true);
-          AppToasts.errorToast(l.message);
           log("HOME RESPONSE ERROR ${l.message}");
         },
         (r) {
@@ -70,8 +69,6 @@ class HomeController extends GetxController {
       log("$e $s");
     }
   }
-
-
 
   @override
   void onInit() {

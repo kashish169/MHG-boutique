@@ -7,6 +7,7 @@ import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/product_details/controller/product_details_controller.dart';
 import 'package:mhg/widgets/loading_widget.dart';
+import 'package:mhg/widgets/three_bounce_loading.dart';
 
 class FavouriteWidget extends StatefulWidget {
   final double? height;
@@ -37,7 +38,12 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
   Widget build(BuildContext context) {
     return InkWell(child: GetX<WishListController>(builder: (controller) {
       if (controller.isLoading.isTrue) {
-        return const LoadingWidget();
+        return Container(
+          width: 30,
+          height: 30,
+          margin: const EdgeInsetsDirectional.all(10),
+          child: const LoadingThreeBounce(),
+        );
       }
       return IconButton(
           padding: EdgeInsets.zero,
@@ -57,7 +63,8 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                         temp[i].inWishlist = 0;
                       }
                     }
-                    Get.find<HomeController>().updateList(temp,widget.fromArrival);
+                    Get.find<HomeController>()
+                        .updateList(temp, widget.fromArrival);
                   }
                 }
                 // if(res==true){
@@ -84,7 +91,8 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                         temp[i].inWishlist = 1;
                       }
                     }
-                    Get.find<HomeController>().updateList(temp,widget.fromArrival);
+                    Get.find<HomeController>()
+                        .updateList(temp, widget.fromArrival);
                   }
                 }
                 // if(res==true){
@@ -102,7 +110,7 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
           icon: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Image.asset(
-              widget.inWishlist == 1 ? AppAssets.wishlist: AppAssets.favourtie,
+              widget.inWishlist == 1 ? AppAssets.wishlist : AppAssets.favourtie,
               height: widget.height ?? 24,
               width: widget.width,
               color: widget.inWishlist == 1 ? AppColors.red : null,

@@ -21,7 +21,7 @@ class WishListController extends GetxController {
   HomeController controller = Get.find();
   @override
   void onInit() {
-    getData();
+    getWishList();
     super.onInit();
   }
 
@@ -101,7 +101,7 @@ class WishListController extends GetxController {
     return result;
   }
 
-  Future<void> getData() async {
+  Future<void> getWishList() async {
     try {
       isLoading(true);
       isError(false);

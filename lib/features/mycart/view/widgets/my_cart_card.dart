@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/widgets/heart_widget.dart';
 import 'package:mhg/widgets/net_image.dart';
+import '../../../../constants/app_dimensions.dart';
 import '../../models/cart_model.dart';
 import 'cart_counter_widget.dart';
 import 'delete_cart_button.dart';
@@ -30,7 +31,7 @@ class MyCartCard extends StatelessWidget {
                 child: NetImage(
                   image: model.options.imageLink,
                   width: 120,
-                  height: 110,
+                  height: AppDimensions.productHeight(context) / 1.3,
                 ),
               ),
               const SizedBox(width: 10),

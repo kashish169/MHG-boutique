@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/features/home/controller/home_controller.dart';
+import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import '../../../../constants/app_colors.dart';
@@ -47,9 +47,9 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
             if (widget.scaffoldKey.currentState!.isDrawerOpen == true) {
               Navigator.pop(context);
             }
-            // if (selectedIndex == 0) {
-            //   Get.find<HomeController>().getHome();
-            // }
+            if (selectedIndex == 2) {
+              Get.find<WishListController>().getWishList();
+            }
             if (selectedIndex == 4) {
               Get.find<ProfileController>().getProfileInfo();
             }

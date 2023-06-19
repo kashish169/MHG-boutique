@@ -4,25 +4,20 @@ import 'package:get/get.dart';
 import 'package:mhg/features/categories/models/categories_model.dart';
 import 'package:mhg/features/categories/repository/categories_repo.dart';
 import 'package:mhg/features/categories/repository/categories_repo_impl.dart';
-
 import 'package:mhg/features/home/models/category_model.dart';
-
 import '../../../constants/app_toasts.dart';
 import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
 
-
 class CategoriesController extends GetxController {
   late CategoriesRepository categoriesRepository;
   late CategoriesModel categoriesModel;
-  RxBool isLoading
-  = false.obs;
+  RxBool isLoading = false.obs;
   RxBool isError = false.obs;
 
   CategoriesController() {
     categoriesRepository = Get.find<CategoriesRepoImplement>();
   }
-
 
   List<CategoryModel> categories = [];
 
@@ -30,26 +25,21 @@ class CategoriesController extends GetxController {
     try {
       isLoading(true);
       isError(false);
-      Either<Failure, ApiResponse> results = await categoriesRepository.getCategories();
+      Either<Failure, ApiResponse> results =
+          await categoriesRepository.getCategories();
       isLoading(false);
       results.fold(
         (l) {
           isError(true);
-          AppToasts.errorToast(l.message);
-
         },
         (r) {
           var statusCode = r.object["code"];
           var message = r.object["message"];
-
           if (statusCode == 200) {
             var json = r.object["data"];
             log(json.toString());
             log("here");
-            categoriesModel=CategoriesModel.fromJson(r.object["data"]);
-            // var data = HomeModel.fromJson(json);
-            //
-            // categories = data.categories;
+            categoriesModel = CategoriesModel.fromJson(r.object["data"]);
           } else {
             AppToasts.errorToast(message);
           }
@@ -59,8 +49,6 @@ class CategoriesController extends GetxController {
       log("$e $s");
     }
   }
-
-
 
   @override
   void onInit() {

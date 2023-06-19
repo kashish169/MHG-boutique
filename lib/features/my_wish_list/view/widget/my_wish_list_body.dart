@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
 import 'package:mhg/features/my_wish_list/view/widget/my_wish_list_body_buttons.dart';
 import 'package:mhg/widgets/net_image.dart';
@@ -32,7 +33,7 @@ class MyWishBody extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                height: 158,
+                height: AppDimensions.productHeight(context) / 1.3,
                 width: 120,
                 decoration: const BoxDecoration(
                   borderRadius:

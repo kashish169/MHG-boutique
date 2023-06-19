@@ -53,18 +53,26 @@ class ProductDetailsController extends GetxController {
             productImages.add(
               model.primaryImageLink,
             );
-            productImages.add(
-              model.image2Link,
-            );
-            productImages.add(
-              model.image3Link,
-            );
-            productImages.add(
-              model.image4Link,
-            );
-            productImages.add(
-              model.image5Link,
-            );
+            if (model.image2Link != null) {
+              productImages.add(
+                model.image2Link,
+              );
+            }
+            if (model.image3Link != null) {
+              productImages.add(
+                model.image3Link,
+              );
+            }
+            if (model.image4Link != null) {
+              productImages.add(
+                model.image4Link,
+              );
+            }
+            if (model.image5Link != null) {
+              productImages.add(
+                model.image5Link,
+              );
+            }
           } else {
             isError(true);
             AppToasts.errorToast(message);
