@@ -46,7 +46,7 @@ class ProductsPage extends StatelessWidget {
                 : controller.products.isEmpty
                     ? InkWell(
                         onTap: () async {
-                          controller.searchWord = null;
+                          controller.searchWord = '';
                           controller.selectedScent.value = '';
                           await controller.getProducts(
                               Get.arguments, controller.searchWord);
@@ -59,36 +59,34 @@ class ProductsPage extends StatelessWidget {
 
                               "Nothing to show,Click to show all Products",
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.displaySmall,
+                              style: Theme.of(context).textTheme.displayMedium,
                             ),
                           ),
                         ),
                       )
-                    : Expanded(
-                      child: RefreshIndicator(
-                          onRefresh: () async {
-                            controller.searchWord = '';
-                            controller.selectedScent.value = '';
-                            await controller.getProducts(
-                                Get.arguments, controller.searchWord);
+                    : RefreshIndicator(
+                        onRefresh: () async {
+                          controller.searchWord = '';
+                          controller.selectedScent.value = '';
+                          await controller.getProducts(
+                              Get.arguments, controller.searchWord);
+                        },
+                        child: DynamicHeightGridView(
+                          controller: controller.scrollController,
+                          // physics: const NeverScrollableScrollPhysics(),
+                          crossAxisCount: 2,
+                          shrinkWrap: true,
+                          mainAxisSpacing: 15,
+                          crossAxisSpacing: 5,
+                          itemCount: controller.products.length,
+                          builder: (ctx, index) {
+                            return Center(
+                                child: ProductCard(
+                              model: controller.products[index],
+                            ));
                           },
-                          child: DynamicHeightGridView(
-                            controller: controller.scrollController,
-                            // physics: const NeverScrollableScrollPhysics(),
-                            crossAxisCount: 2,
-                            shrinkWrap: true,
-                            mainAxisSpacing: 15,
-                            crossAxisSpacing: 5,
-                            itemCount: controller.products.length,
-                            builder: (ctx, index) {
-                              return Center(
-                                  child: ProductCard(
-                                model: controller.products[index],
-                              ));
-                            },
-                          ),
                         ),
-                    ))
+                      ))
           ],
         );
       }),
