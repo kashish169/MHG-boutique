@@ -1,15 +1,15 @@
 class BrandModel {
   int id;
-  String enBrandName;
-  String frBrandName;
-  String enBrandSlug;
-  String frBrandSlug;
-  String brandImage;
-  String status;
-  int storeId;
-  DateTime createdAt;
-  DateTime updatedAt;
-  String imageLink;
+  dynamic enBrandName;
+  dynamic frBrandName;
+  dynamic enBrandSlug;
+  dynamic frBrandSlug;
+  dynamic brandImage;
+  dynamic status;
+  dynamic storeId;
+  dynamic createdAt;
+  dynamic updatedAt;
+  dynamic imageLink;
 
   BrandModel({
     required this.id,
