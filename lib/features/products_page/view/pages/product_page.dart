@@ -44,33 +44,51 @@ class ProductsPage extends StatelessWidget {
             Obx(() => controller.isFetching.isTrue
                 ? const Center(child: CircularProgressIndicator())
                 : controller.products.isEmpty
-                    ? SizedBox(
-                        height: 200,
-                        child: Center(
-                          child: Text(
-                            "Nothing to show",
-                            style: Theme.of(context).textTheme.displayMedium,
+                    ? InkWell(
+                        onTap: () async {
+                          controller.searchWord = null;
+                          controller.selectedScent.value = '';
+                          await controller.getProducts(
+                              Get.arguments, controller.searchWord);
+                        },
+                        child: SizedBox(
+                          height: 200,
+
+                          child: Center(
+                            child: Text(
+
+                              "Nothing to show,Click to show all Products",
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.displaySmall,
+                            ),
                           ),
                         ),
                       )
                     : Expanded(
-                        // padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: DynamicHeightGridView(
-                          controller: controller.scrollController,
-                          // physics: const NeverScrollableScrollPhysics(),
-                          crossAxisCount: 2,
-                          shrinkWrap: true,
-                          mainAxisSpacing: 25,
-                          crossAxisSpacing: 5,
-                          itemCount: controller.products.length,
-                          builder: (ctx, index) {
-                            return Center(
-                                child: ProductCard(
-                              model: controller.products[index],
-                            ));
+                      child: RefreshIndicator(
+                          onRefresh: () async {
+                            controller.searchWord = '';
+                            controller.selectedScent.value = '';
+                            await controller.getProducts(
+                                Get.arguments, controller.searchWord);
                           },
+                          child: DynamicHeightGridView(
+                            controller: controller.scrollController,
+                            // physics: const NeverScrollableScrollPhysics(),
+                            crossAxisCount: 2,
+                            shrinkWrap: true,
+                            mainAxisSpacing: 15,
+                            crossAxisSpacing: 5,
+                            itemCount: controller.products.length,
+                            builder: (ctx, index) {
+                              return Center(
+                                  child: ProductCard(
+                                model: controller.products[index],
+                              ));
+                            },
+                          ),
                         ),
-                      ))
+                    ))
           ],
         );
       }),

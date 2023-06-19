@@ -27,27 +27,26 @@ class SimilarProductsWidget extends StatelessWidget {
                 ?.copyWith(fontSize: 22, color: AppColors.darkGrey),
           ),
         ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Padding(
-            padding: const EdgeInsetsDirectional.symmetric(
-              horizontal: 20,
-              vertical: 10,
-            ),
-            child: Row(
-              children: [
-                for (int index = 0;
-                    index < controller.model.relatedProducts.length;
-                    index++)
-                  ProductCard(
-                    model: controller.model.relatedProducts[index],
-                    isDetails: true,
-                    fromArrival: controller.fromArrival,
-                  ),
-              ],
-            ),
-          ),
+
+        Container(
+          height: 340,
+
+          child: ListView.builder(
+
+            scrollDirection: Axis.horizontal,
+              itemCount: controller.model.relatedProducts.length,
+              itemBuilder:(context,index){
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: ProductCard(
+                  model: controller.model.relatedProducts[index],
+                  isDetails: true,
+                  fromArrival: controller.fromArrival,
+                ),
+              );
+              }),
         ),
+
         const SizedBox(height: 10),
       ],
     );

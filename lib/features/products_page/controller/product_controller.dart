@@ -33,7 +33,7 @@ class ProductsController extends GetxController {
    RxList<ProductModel> products=<ProductModel>[].obs;
 
 
-
+  String? searchWord;
   RxString selectedSortBy = 'Featured'.obs;
   RxList sortByList = <String>['Featured'].obs;
   ScrollController scrollController = ScrollController();
@@ -66,19 +66,24 @@ class ProductsController extends GetxController {
         if (products.length < last) {
           log(products.length.toString());
           log(last.toString());
-          getProducts(Get.arguments,null);
+          getProducts(Get.arguments,searchWord);
         }
       }
     });
   }
 
   Future<void> getProducts(int catId,String? search) async {
+
     log("Search:$search");
+    log("page:$page");
     try {
       if(page==1&& search==null){
         isLoading(true);
       }else{
-        isFetching.trigger(true);
+        if(search!=null)
+        {
+          isFetching.trigger(true);
+        }
       }
       isError(false);
       Either<Failure, ApiResponse> results =
@@ -88,12 +93,17 @@ class ProductsController extends GetxController {
       if(page==1&& search==null){
         isLoading(false);
       }else{
-        isFetching.trigger(false);
+        if(search!=null)
+        {
+          isFetching.trigger(false);
+        }
       }
       results.fold(
         (l) {
           isError(true);
-          page--;
+          if(page>1) {
+            page--;
+          }
           AppToasts.errorToast(l.message);
         },
         (r) {
@@ -114,7 +124,9 @@ class ProductsController extends GetxController {
             // categories = data.categories;
           } else {
             AppToasts.errorToast(message);
-            page--;
+            if(page>1) {
+              page--;
+            }
           }
         },
       );

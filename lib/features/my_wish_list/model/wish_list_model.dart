@@ -3,7 +3,7 @@ class WishListModel {
   int id;
   int qty;
   String name;
-  int price;
+  double price;
   int weight;
   OptionsModel options;
   int? taxRate;

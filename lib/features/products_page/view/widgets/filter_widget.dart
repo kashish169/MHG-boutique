@@ -49,25 +49,25 @@ class FiltersWidget extends StatelessWidget {
               border: Border.all(color: AppColors.secondaryBlack),
               borderRadius: const BorderRadius.all(Radius.circular(5)),
               color: AppColors.white),
-          child:Obx(()=>
-              DropdownButtonHideUnderline(
+          child: Obx(() => DropdownButtonHideUnderline(
                 child: DropdownButton2(
+                  isDense: true,
 
                   style: Theme.of(context)
                       .textTheme
                       .displaySmall!
                       .copyWith(color: AppColors.secondaryBlack, fontSize: 14),
-
                   isExpanded: true,
-                  value:controller.selectedScent.value!=''? controller.selectedScent.value:null,
+                  value: controller.selectedScent.value != ''
+                      ? controller.selectedScent.value
+                      : null,
                   iconStyleData: IconStyleData(
                     icon: Image.asset(
                       AppAssets.arrowDown,
                       height: 8,
                       color: AppColors.primary,
-                    ),),
-
-
+                    ),
+                  ),
                   items: controller.scentList.map((itemss) {
                     return DropdownMenuItem<String>(
                         value: itemss.name, child: Text(itemss.name));
@@ -75,7 +75,9 @@ class FiltersWidget extends StatelessWidget {
                   onChanged: (newValue) {
                     controller.selectedScent.value = newValue!;
                     controller.resetPaginate();
-                    controller.getProducts(Get.arguments,controller.selectedScent.value );
+                    controller.searchWord=controller.selectedScent.value;
+                    controller.getProducts(
+                        Get.arguments,controller.searchWord );
                     // print(controller.categoryValue.value);
                   },
                 ),
