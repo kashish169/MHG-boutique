@@ -55,7 +55,7 @@ class MyWishBody extends StatelessWidget {
                         TopBodyHeader(title: model.name),
                         const SizedBox(height: 10),
                         BodyMiddleText(
-                          brand: model.options.itemTag,
+                          brand: model.options.brand,
                           price: model.price.toString(),
                         ),
                         BodyButtons(addToBag: addToBag),

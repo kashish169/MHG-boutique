@@ -26,23 +26,33 @@ class _MyWishListState extends State<MyWishList> {
               : controller.isError.value
                   ? RetryButton(onTap: () => controller.getData())
                   : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const SizedBox(
                           height: 20,
                         ),
-                        Expanded(
-                          child: ListView.builder(
-                              itemCount: controller.wishListItems.length,
-                              itemBuilder: (context, index) => MyWishBody(
-                                  addToBag: () async {
-                                    controller.chechBeforAdd(index);
-                                  },
-                                  model: controller.wishListItems[index],
-                                  onTap: () {
-                                    controller.removeFromWishList(
-                                        controller.wishListItems[index].id);
-                                  })),
-                        )
+                        controller.wishListItems.length > 0
+                            ? Expanded(
+                                child: ListView.builder(
+                                    itemCount: controller.wishListItems.length,
+                                    itemBuilder: (context, index) => MyWishBody(
+                                        addToBag: () async {
+                                          controller.chechBeforAdd(index);
+                                        },
+                                        model: controller.wishListItems[index],
+                                        onTap: () {
+                                          controller.removeFromWishList(
+                                              controller
+                                                  .wishListItems[index].id);
+                                        })),
+                              )
+                            : Center(
+                                child: Text(
+                                  'Wish list is empty!',
+                                  style:
+                                      Theme.of(context).textTheme.displaySmall,
+                                ),
+                              )
                       ],
                     );
         }));

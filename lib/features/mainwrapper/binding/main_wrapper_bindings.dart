@@ -15,6 +15,8 @@ import '../repository/main_wrapper_repo_impl.dart';
 class MainWrapperBinding extends Bindings {
   @override
   void dependencies() {
+    Get.put(HomeRepoImplement());
+    Get.put(HomeController());
     Get.put(CategoriesRepoImplement());
     Get.put(CategoriesController());
     Get.put(WishListRepoImpl());
@@ -23,8 +25,6 @@ class MainWrapperBinding extends Bindings {
     Get.put(ProfileController());
     Get.put(MainWrapperRepoImpl());
     Get.put(MainWrapperController());
-    Get.put(HomeRepoImplement());
-    Get.put(HomeController());
     Get.put(MyCartRepoImplement());
     Get.put(MyCartController());
   }

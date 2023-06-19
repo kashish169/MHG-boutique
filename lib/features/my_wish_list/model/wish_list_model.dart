@@ -3,12 +3,12 @@ class WishListModel {
   int id;
   int qty;
   String name;
-  double price;
-  int weight;
+  dynamic price;
+  dynamic weight;
   OptionsModel options;
-  int? taxRate;
-  String? instance;
-
+  dynamic discount;
+  dynamic tax;
+  dynamic subtotal;
   WishListModel(
       {required this.rowId,
       required this.id,
@@ -17,8 +17,9 @@ class WishListModel {
       required this.price,
       required this.weight,
       required this.options,
-      required this.taxRate,
-      required this.instance});
+      required this.discount,
+      required this.tax,
+      required this.subtotal});
 
   factory WishListModel.fromJson(Map<String, dynamic> json) => WishListModel(
         rowId: json['rowId'],
@@ -28,8 +29,9 @@ class WishListModel {
         price: json['price'],
         weight: json['weight'],
         options: OptionsModel.fromJson(json['options']),
-        taxRate: json['taxRate'],
-        instance: json['instance'],
+        discount: json['discount'],
+        tax: json['tax'],
+        subtotal: json['subtotal'],
       );
 }
 
@@ -39,7 +41,7 @@ class OptionsModel {
   String image;
   String imageLink;
   String discountPrice;
-  String itemTag;
+  dynamic itemTag;
   String discountParcent;
   String voucher;
   int inCart;
