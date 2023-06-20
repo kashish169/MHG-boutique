@@ -26,40 +26,31 @@ class CheckoutPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.white2,
       appBar: customAppBar(context, title: 'Checkout'),
-      body: GetBuilder<CheckoutController>(builder: (controller) {
-        if (controller.isLoading.isTrue) {
-          return const LoadingWidget();
-        } else if (controller.isError.isTrue) {
-          return RetryButton(onTap: () => controller.getAllPaymentMethods());
-        }  else if(controller.isLoading.isFalse && controller.isError.isFalse){
-          
-        }
-          return Column(
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.85,
-                width: MediaQuery.of(context).size.width,
-                child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return index == 0
-                        ? ShippingAddress()
-                        : index == 1
-                            ? PaymentMethod()
-                            : index == 2
-                                ? CheckoutItems()
-                                : index == 3
-                                    ? PromoCode()
-                                    : PlaceOrder();
-                  },
-                  separatorBuilder: (context, index) => Divider(
-                    color: Colors.black,
-                  ),
-                  itemCount: 5,
-                ),
+      body: Column(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.85,
+            width: MediaQuery.of(context).size.width,
+            child: ListView.separated(
+              itemBuilder: (context, index) {
+                return index == 0
+                    ? ShippingAddress()
+                    : index == 1
+                        ? PaymentMethod()
+                        : index == 2
+                            ? CheckoutItems()
+                            : index == 3
+                                ? PromoCode()
+                                : PlaceOrder();
+              },
+              separatorBuilder: (context, index) => Divider(
+                color: Colors.black,
               ),
-            ],
-          );
-      }),
+              itemCount: 5,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

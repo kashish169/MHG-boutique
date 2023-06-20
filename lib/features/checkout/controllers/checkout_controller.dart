@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
@@ -12,11 +13,13 @@ import 'package:mhg/features/mycart/models/cart_model.dart';
 
 class CheckoutController extends GetxController {
   late CheckoutRepository checkoutRepository;
-  late PaymentMethodsModel paymentMethodsModel;
+  PaymentMethodsModel paymentMethodsModel = PaymentMethodsModel();
   RxBool isLoading = false.obs;
   RxBool isError = false.obs;
   RxList<CartModel> cartItemsList = <CartModel>[].obs;
   RxDouble totalPrice = 0.0.obs;
+  RxString cardType = ''.obs;
+  RxString cardNumber = ''.obs;
 
   CheckoutController() {
     checkoutRepository = Get.find<CheckoutRepoImplement>();
@@ -37,28 +40,29 @@ class CheckoutController extends GetxController {
           log("PAYMENT METHODS RESPONSE ERROR ${l.message}");
         },
         (r) {
-          isError(false);
-        
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("PAYMENT METHODS RESPONSE STATUS $statusCode");
 
           if (statusCode == 200) {
-            var json = r.object["data"];
-            log(json.toString());
-            paymentMethodsModel =
-                PaymentMethodsModel.fromJson(r.object["data"]);
-          
+            if (r.object["data"] != null) {
+              paymentMethodsModel = PaymentMethodsModel.fromJson(r.object);
+
+              cardType(paymentMethodsModel.data![0].cardType);
+              cardNumber(getCodedNumber(paymentMethodsModel.data![0].cardNumber));
+            }
           } else {
             AppToasts.errorToast(message);
           }
         },
       );
     } catch (e, s) {
-      isError(true);
-      isLoading(false);
       log("$e $s");
     }
+  }
+
+  String getCodedNumber(String? cardNumber) {
+    return cardNumber!.substring(cardNumber.indexOf('*')).replaceRange(0, 2, "");
   }
 
   @override
