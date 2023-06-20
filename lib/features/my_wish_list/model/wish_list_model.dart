@@ -9,17 +9,22 @@ class WishListModel {
   dynamic discount;
   dynamic tax;
   dynamic subtotal;
-  WishListModel(
-      {required this.rowId,
-      required this.id,
-      required this.qty,
-      required this.name,
-      required this.price,
-      required this.weight,
-      required this.options,
-      required this.discount,
-      required this.tax,
-      required this.subtotal});
+  bool isDeleteItem;
+  bool isLoadingDelete;
+  WishListModel({
+    required this.rowId,
+    required this.id,
+    required this.qty,
+    required this.name,
+    required this.price,
+    required this.weight,
+    required this.options,
+    required this.discount,
+    required this.tax,
+    required this.subtotal,
+    this.isDeleteItem = false,
+    this.isLoadingDelete = false,
+  });
 
   factory WishListModel.fromJson(Map<String, dynamic> json) => WishListModel(
         rowId: json['rowId'],

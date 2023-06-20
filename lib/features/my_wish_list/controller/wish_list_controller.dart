@@ -45,8 +45,8 @@ class WishListController extends GetxController {
             List json = r.object["data"]['wishlist_items'];
             wishListItems.value =
                 json.map((e) => WishListModel.fromJson(e)).toList();
-            controller.getHome();
             result = true;
+            controller.update();
             AppToasts.successToast(
               "The product has been added to the wishlist",
             );
@@ -85,9 +85,11 @@ class WishListController extends GetxController {
               "The product has been removed from the wishlist",
             );
             result = true;
-            wishListItems.removeWhere((element) => element.id == itemId);
-            controller.getHome();
-            update();
+            List json = r.object["data"]['wishlist_items'];
+            wishListItems.value =
+                json.map((e) => WishListModel.fromJson(e)).toList();
+            controller.update();
+            // wishListItems.removeWhere((element) => element.id == itemId);
           } else {
             AppToasts.errorToast(message);
             result = false;
@@ -141,8 +143,6 @@ class WishListController extends GetxController {
     bool result = false;
 
     try {
-      isLoading(true);
-      isError(false);
       Map<String, dynamic> body = {
         "item_id": productId,
         "qty": 1,
@@ -150,12 +150,10 @@ class WishListController extends GetxController {
       Either<Failure, ApiResponse> results = await wishListRepository.addToBag(
         body: jsonEncode(body),
       );
-      isLoading(false);
       results.fold(
         (l) {
           AppToasts.errorToast(l.message);
           log("ADD PRODUCT TO CART RESPONSE ERROR ${l.message}");
-          isError(true);
           result = false;
         },
         (r) {
@@ -169,7 +167,6 @@ class WishListController extends GetxController {
             );
           } else {
             result = false;
-            isError(true);
             AppToasts.errorToast(message);
           }
         },
@@ -178,6 +175,7 @@ class WishListController extends GetxController {
       log("$e $s");
       isError(true);
       result = false;
+      AppToasts.errorToast("$e");
     }
     return result;
   }

@@ -36,15 +36,19 @@ class _MyWishListState extends State<MyWishList> {
                                 child: ListView.builder(
                                     itemCount: controller.wishListItems.length,
                                     itemBuilder: (context, index) => MyWishBody(
-                                        addToBag: () async {
-                                          controller.chechBeforAdd(index);
-                                        },
-                                        model: controller.wishListItems[index],
-                                        onTap: () {
-                                          controller.removeFromWishList(
-                                              controller
-                                                  .wishListItems[index].id);
-                                        })),
+                                          addToBag: () async {
+                                            controller.chechBeforAdd(index);
+                                          },
+                                          model:
+                                              controller.wishListItems[index],
+                                          onTap: () {
+                                            controller.wishListItems[index]
+                                                .isLoadingDelete = true;
+                                            controller.removeFromWishList(
+                                                controller
+                                                    .wishListItems[index].id);
+                                          },
+                                        )),
                               )
                             : Center(
                                 child: Text(

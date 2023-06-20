@@ -21,4 +21,14 @@ class SearchRepoImplement implements SearchRepository {
         url: "${Api.searchLink}?search=$serchingProduct",
         isAuthorized: App.token.isEmpty ? false : true,
       );
+  @override
+  Future<Either<Failure, ApiResponse>> filterProduct(
+          {required String serchingProduct,
+          required String storeiD,
+          required String page}) async =>
+      httpService.get(
+        url:
+            "${Api.searchLink}?store_id=$storeiD&search=$serchingProduct&page=$page",
+        isAuthorized: App.token.isEmpty ? false : true,
+      );
 }
