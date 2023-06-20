@@ -21,11 +21,12 @@ class HomeController extends GetxController {
     homeRepository = Get.find<HomeRepoImplement>();
   }
 
-  List<SliderModel> slidersList = [];
+  HomeModel? homeModel;
+  RxList<SliderModel> slidersList = <SliderModel>[].obs;
   RxList<ProductModel> topSellersList = <ProductModel>[].obs;
   RxList<ProductModel> newArrivalsList = <ProductModel>[].obs;
-  List<BrandModel> brandsList = [];
-  List<CategoryModel> categories = [];
+  RxList<BrandModel> brandsList = <BrandModel>[].obs;
+  RxList<CategoryModel> categories = <CategoryModel>[].obs;
 
   updateList(List<ProductModel> model, bool fromArrival) {
     for (int i = 0; i < model.length; i++) {
@@ -39,7 +40,7 @@ class HomeController extends GetxController {
 
   Future<void> getHome() async {
     try {
-      isLoading(true);
+      if (homeModel == null) isLoading(true);
       isError(false);
       Either<Failure, ApiResponse> results = await homeRepository.getHome();
       isLoading(false);
@@ -55,11 +56,12 @@ class HomeController extends GetxController {
           if (statusCode == 200) {
             var json = r.object["data"];
             var data = HomeModel.fromJson(json);
-            slidersList = data.sliders;
+            homeModel = data;
+            slidersList.value = data.sliders;
             topSellersList.value = data.topSellers;
             newArrivalsList.value = data.newArrivals;
-            brandsList = data.brands;
-            categories = data.categories;
+            brandsList.value = data.brands;
+            categories.value = data.categories;
           } else {
             AppToasts.errorToast(message);
           }

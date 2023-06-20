@@ -19,21 +19,20 @@ class CategoriesPage extends StatelessWidget {
         return RetryButton(onTap: () => controller.getCategories());
       }
       return SingleChildScrollView(
-        child: Column(
-          children: [
-            ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: controller.categoriesModel.menus.length,
-                itemBuilder: (context, index) {
-                  return CategoryListTile(
-                    model: controller.categoriesModel.menus[index],
-                  );
-                }),
-            const HomeExploreOurBrandsWidget(),
-          ],
-        ),
-      );
+          child: Column(
+        children: [
+          ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: controller.categoriesModel.menus.length,
+              itemBuilder: (context, index) {
+                return CategoryListTile(
+                  model: controller.categoriesModel.menus[index],
+                );
+              }),
+          const HomeExploreOurBrandsWidget(),
+        ],
+      ));
     });
   }
 }
