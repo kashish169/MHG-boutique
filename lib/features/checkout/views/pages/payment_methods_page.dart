@@ -4,6 +4,8 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/checkout/views/widgets/place_order_button.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
+import 'package:mhg/widgets/loading_widget.dart';
+import 'package:mhg/widgets/retry_button.dart';
 
 class PaymentMethodsPage extends StatelessWidget {
   static String routeName = '/payment_methods';
@@ -18,7 +20,7 @@ class PaymentMethodsPage extends StatelessWidget {
         context,
         title: 'Payment Methods',
       ),
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: CustomScrollView(
@@ -34,7 +36,7 @@ class PaymentMethodsPage extends StatelessWidget {
                 (context, index) => Container(
                   height: MediaQuery.of(context).size.height * 0.1,
                   width: MediaQuery.of(context).size.width * 0.8,
-                  margin: EdgeInsets.all(15),
+                  margin: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                     color: AppColors.white,
                     borderRadius: BorderRadius.circular(8),
@@ -79,7 +81,6 @@ class PaymentMethodsPage extends StatelessWidget {
                           groupValue: 1,
                           onChanged: (val) {
                             checkoutController.setPaymentMethodValue(val);
-                            
                           }),
                     ),
                   ),
@@ -87,10 +88,19 @@ class PaymentMethodsPage extends StatelessWidget {
               ),
             ),
             SliverToBoxAdapter(
-              child: PlaceOrderButton(
-                title: 'Add Card',
-                width: 300,
-                hasIcon: false,
+              child: Obx(
+                () =>  (checkoutController.isLoading.value == false &&
+              checkoutController.isError.value == false)
+          ? PlaceOrderButton(
+                    title: 'Add Card',
+                    width: 300,
+                    hasIcon: false,
+                    onPress: checkoutController.addPaymentMethod) : (checkoutController.isLoading.value == false &&
+                  checkoutController.isError.value == true)
+              ? RetryButton(
+                  onTap: () => checkoutController.getAllPaymentMethods(),
+                )
+              : const LoadingWidget(),
               ),
             )
           ],

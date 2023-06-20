@@ -35,4 +35,5 @@ class Api {
   static String menus = "/api/v1/category/menus";
   static String productByCategory = "/api/v1/product/category?store_id=1";
   static String getCountries = "/api/v1/countries/index";
+  static String addPaymentMethod = "/api/v1/payment/tap/new-method-link";
 }

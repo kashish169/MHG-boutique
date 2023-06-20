@@ -9,11 +9,13 @@ class PlaceOrderButton extends StatelessWidget {
   final String title;
   final double width;
   final bool hasIcon;
+  final Function onPress;
   PlaceOrderButton({
     super.key,
     required this.title,
     required this.width,
     required this.hasIcon,
+    required this.onPress,
   });
 
   @override
@@ -26,16 +28,18 @@ class PlaceOrderButton extends StatelessWidget {
             height: 44,
             width: width,
             title: title,
-            onTap: () {},
+            onTap: () => onPress(),
           ),
-         hasIcon ? Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Icon(
-              Icons.arrow_forward_ios,
-              color: AppColors.white,
-              size: 18,
-            ),
-          ) :SizedBox.shrink(),
+          hasIcon
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: AppColors.white,
+                    size: 18,
+                  ),
+                )
+              : SizedBox.shrink(),
         ],
       ),
     );

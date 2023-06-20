@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_toasts.dart';
@@ -76,10 +76,50 @@ class CheckoutController extends GetxController {
         .replaceRange(0, 2, "");
   }
 
+  addPaymentMethod() async {
+    try {
+      isLoading(true);
+      isError(false);
+      Either<Failure, ApiResponse> results =
+          await checkoutRepository.addPaymentMethod();
+      isLoading(false);
+      results.fold(
+        (l) {
+          isError(true);
+          AppToasts.errorToast(l.message);
+          log("Add PAYMENT METHODS RESPONSE ERROR ${l.message}");
+        },
+        (r) {
+          var statusCode = r.object["code"];
+          var message = r.object["message"];
+          log("Add PAYMENT METHODS RESPONSE STATUS $statusCode");
+
+          if (statusCode == 200) {
+            if (r.object["data"] != null) {
+              addPaymentMethodsModel =
+                  AddPaymentMethodsModel.fromJson(r.object);
+              _launchUrl(addPaymentMethodsModel.data!.link!);
+            }
+          } else {
+            AppToasts.errorToast(message);
+          }
+        },
+      );
+    } catch (e, s) {
+      log("$e $s");
+    }
+  }
+
+  Future<void> _launchUrl(String ur) async {
+    final Uri _url = Uri.parse(ur);
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
+  }
+
   @override
   void onInit() {
     getAllPaymentMethods();
-
     super.onInit();
   }
 }
