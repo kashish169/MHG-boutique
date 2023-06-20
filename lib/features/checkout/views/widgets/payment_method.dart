@@ -6,6 +6,7 @@ import 'package:mhg/constants/app_assets.dart';
 
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
+import 'package:mhg/features/checkout/views/pages/payment_methods_page.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 
@@ -24,6 +25,9 @@ class PaymentMethod extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.only(bottom: 17),
                 child: ListTile(
+                  onTap: () {
+                    Get.toNamed(PaymentMethodsPage.routeName);
+                  },
                   title: Text(
                     'Payment Method',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(

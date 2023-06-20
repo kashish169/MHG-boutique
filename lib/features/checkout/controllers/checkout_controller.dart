@@ -6,7 +6,8 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/core/models/api_response.dart';
 import 'package:mhg/core/models/failure.dart';
-import 'package:mhg/features/checkout/models/payment_methods.dart';
+import 'package:mhg/features/checkout/models/add_payment_methods_model.dart';
+import 'package:mhg/features/checkout/models/payment_methods_model.dart';
 import 'package:mhg/features/checkout/repository/checkout_repo.dart';
 import 'package:mhg/features/checkout/repository/checkout_repo_imp.dart';
 import 'package:mhg/features/mycart/models/cart_model.dart';
@@ -14,6 +15,7 @@ import 'package:mhg/features/mycart/models/cart_model.dart';
 class CheckoutController extends GetxController {
   late CheckoutRepository checkoutRepository;
   PaymentMethodsModel paymentMethodsModel = PaymentMethodsModel();
+  AddPaymentMethodsModel addPaymentMethodsModel = AddPaymentMethodsModel();
   RxBool isLoading = false.obs;
   RxBool isError = false.obs;
   RxList<CartModel> cartItemsList = <CartModel>[].obs;
@@ -21,9 +23,9 @@ class CheckoutController extends GetxController {
   RxString cardType = ''.obs;
   RxString cardNumber = ''.obs;
   RxString shippingName = ''.obs;
+  RxString paymentMethod = ''.obs;
 
   CheckoutController() {
-    
     checkoutRepository = Get.find<CheckoutRepoImplement>();
   }
 
@@ -62,6 +64,10 @@ class CheckoutController extends GetxController {
     } catch (e, s) {
       log("$e $s");
     }
+  }
+
+  void setPaymentMethodValue(val) {
+    paymentMethod(val);
   }
 
   String getCodedNumber(String? cardNumber) {

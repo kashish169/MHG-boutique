@@ -20,4 +20,11 @@ class CheckoutRepoImplement implements CheckoutRepository {
         url: Api.paymentMethods,
         isAuthorized: App.token.isEmpty ? false : true,
       );
+
+  @override
+  Future<Either<Failure, ApiResponse>> addPaymentMethod() async =>
+      httpService.get(
+        url: Api.paymentMethods,
+        isAuthorized: App.token.isEmpty ? false : true,
+      );
 }
