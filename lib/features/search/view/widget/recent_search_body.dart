@@ -11,7 +11,9 @@ import 'custom_search_section.dart';
 
 class RecentSearchBody extends StatelessWidget {
   RecentSearchBody({super.key});
+
   final SearchingController searchingController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SearchingController>(
@@ -54,22 +56,28 @@ class RecentSearchBody extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          searchingController.iSLoading
-              ? const LoadingWidget()
-              : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: DynamicHeightGridView(
-                      itemCount: searchingController.productList.length,
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 20,
-                      shrinkWrap: true,
-                      physics: const ScrollPhysics(),
-                      builder: (ctx, index) {
-                        return ProductCard(
-                            model: searchingController.productList[index]);
-                      }),
-                ),
+          Obx(
+            () => searchingController.isLoading.isTrue
+                ? const LoadingWidget()
+                : Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: SizedBox(
+                      height: 400,
+                      child: DynamicHeightGridView(
+                          controller: searchingController.scrollController,
+                          itemCount: searchingController.productList.length,
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 20,
+                          shrinkWrap: true,
+                          physics: const ScrollPhysics(),
+                          builder: (ctx, index) {
+                            return ProductCard(
+                                model: searchingController.productList[index]);
+                          }),
+                    ),
+                  ),
+          ),
           const SizedBox(
             height: 20,
           ),
