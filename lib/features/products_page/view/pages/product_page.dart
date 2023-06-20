@@ -1,17 +1,15 @@
 import 'dart:developer';
-
-import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/home/view/widgets/product_card.dart';
 import 'package:mhg/features/products_page/controller/product_controller.dart';
 import 'package:mhg/features/products_page/view/widgets/filter_widget.dart';
-
 import 'package:mhg/features/products_page/view/widgets/products_items_list_view.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
+import '../../../../widgets/dynamic_grid_view.dart';
 
 class ProductsPage extends StatelessWidget {
   static String routeName = '/products_page';
@@ -46,45 +44,46 @@ class ProductsPage extends StatelessWidget {
                 : controller.products.isEmpty
                     ? InkWell(
                         onTap: () async {
-                          controller.searchWord = '';
+                          controller.searchWord = null;
                           controller.selectedScent.value = '';
                           await controller.getProducts(
                               Get.arguments, controller.searchWord);
                         },
                         child: SizedBox(
                           height: 200,
-
                           child: Center(
                             child: Text(
-
                               "Nothing to show,Click to show all Products",
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.displayMedium,
+                              style: Theme.of(context).textTheme.displaySmall,
                             ),
                           ),
                         ),
                       )
-                    : RefreshIndicator(
-                        onRefresh: () async {
-                          controller.searchWord = '';
-                          controller.selectedScent.value = '';
-                          await controller.getProducts(
-                              Get.arguments, controller.searchWord);
-                        },
-                        child: DynamicHeightGridView(
-                          controller: controller.scrollController,
-                          // physics: const NeverScrollableScrollPhysics(),
-                          crossAxisCount: 2,
-                          shrinkWrap: true,
-                          mainAxisSpacing: 15,
-                          crossAxisSpacing: 5,
-                          itemCount: controller.products.length,
-                          builder: (ctx, index) {
-                            return Center(
-                                child: ProductCard(
-                              model: controller.products[index],
-                            ));
+                    : Expanded(
+                        child: RefreshIndicator(
+                          onRefresh: () async {
+                            controller.searchWord = '';
+                            controller.selectedScent.value = '';
+                            await controller.getProducts(
+                                Get.arguments, controller.searchWord);
                           },
+                          child: DynamicGridView(
+                            padding: const EdgeInsetsDirectional.symmetric(
+                                vertical: 10),
+                            controller: controller.scrollController,
+                            crossAxisCount: 2,
+                            shrinkWrap: true,
+                            mainAxisSpacing: 15,
+                            crossAxisSpacing: 5,
+                            itemCount: controller.products.length,
+                            builder: (ctx, index) {
+                              return Center(
+                                  child: ProductCard(
+                                model: controller.products[index],
+                              ));
+                            },
+                          ),
                         ),
                       ))
           ],

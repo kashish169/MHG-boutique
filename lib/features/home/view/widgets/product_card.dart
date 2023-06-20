@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/product_details/controller/product_details_controller.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/widgets/net_image.dart';
 import '../../../../widgets/heart_widget.dart';
+import '../../../../widgets/rating_widget.dart';
 import '../../models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
@@ -34,7 +36,7 @@ class ProductCard extends StatelessWidget {
             arguments: {
               "id": model.id,
               "name": model.enProductName,
-              "fromArrival":fromArrival
+              "fromArrival": fromArrival
             },
           );
         }
@@ -57,19 +59,37 @@ class ProductCard extends StatelessWidget {
                     top: Radius.circular(20),
                   ),
                   child: NetImage(
-                    image: model.primaryImageLink,
-                    height: 229,
-                  ),
+                      image: model.primaryImageLink,
+                      height: AppDimensions.productHeight(context)),
                 ),
                 const SizedBox(height: 10),
-                Text(
-                  model.enProductName,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 16,
-
+                Padding(
+                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 5),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            model.enProductName,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                                  fontSize: 16,
+                                ),
+                          ),
+                        ),
                       ),
+                      const SizedBox(width: 5),
+                      const Expanded(
+                        child: RatingWidget(),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Padding(
@@ -120,7 +140,7 @@ class ProductCard extends StatelessWidget {
               ],
             ),
             FavouriteWidget(
-              from: isDetails==true?'productDetails':'home',
+              from: isDetails == true ? 'productDetails' : 'home',
               itemId: model.id,
               inWishlist: model.inWishlist,
               fromArrival: fromArrival,

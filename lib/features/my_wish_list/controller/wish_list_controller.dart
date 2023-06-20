@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_toasts.dart';
+import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
 import 'package:mhg/features/my_wish_list/repository/wish_list_repo.dart';
 import 'package:mhg/features/my_wish_list/repository/wish_list_repo_impl.dart';
@@ -17,9 +18,10 @@ class WishListController extends GetxController {
   WishListController() {
     wishListRepository = Get.find<WishListRepoImpl>();
   }
+  HomeController controller = Get.find();
   @override
   void onInit() {
-    getData();
+    getWishList();
     super.onInit();
   }
 
@@ -41,13 +43,10 @@ class WishListController extends GetxController {
 
           if (statusCode == 200) {
             List json = r.object["data"]['wishlist_items'];
-            for (int i = 0; i < json.length; i++) {
-              if (json[i]['id'] == itemId) {
-                WishListModel models = WishListModel.fromJson(json[i]);
-                wishListItems.add(models);
-              }
-            }
+            wishListItems.value =
+                json.map((e) => WishListModel.fromJson(e)).toList();
             result = true;
+            controller.update();
             AppToasts.successToast(
               "The product has been added to the wishlist",
             );
@@ -86,8 +85,11 @@ class WishListController extends GetxController {
               "The product has been removed from the wishlist",
             );
             result = true;
-            wishListItems.removeWhere((element) => element.id == itemId);
-            update();
+            List json = r.object["data"]['wishlist_items'];
+            wishListItems.value =
+                json.map((e) => WishListModel.fromJson(e)).toList();
+            controller.update();
+            // wishListItems.removeWhere((element) => element.id == itemId);
           } else {
             AppToasts.errorToast(message);
             result = false;
@@ -101,7 +103,7 @@ class WishListController extends GetxController {
     return result;
   }
 
-  Future<void> getData() async {
+  Future<void> getWishList() async {
     try {
       isLoading(true);
       isError(false);
@@ -141,8 +143,6 @@ class WishListController extends GetxController {
     bool result = false;
 
     try {
-      isLoading(true);
-      isError(false);
       Map<String, dynamic> body = {
         "item_id": productId,
         "qty": 1,
@@ -150,12 +150,10 @@ class WishListController extends GetxController {
       Either<Failure, ApiResponse> results = await wishListRepository.addToBag(
         body: jsonEncode(body),
       );
-      isLoading(false);
       results.fold(
         (l) {
           AppToasts.errorToast(l.message);
           log("ADD PRODUCT TO CART RESPONSE ERROR ${l.message}");
-          isError(true);
           result = false;
         },
         (r) {
@@ -169,7 +167,6 @@ class WishListController extends GetxController {
             );
           } else {
             result = false;
-            isError(true);
             AppToasts.errorToast(message);
           }
         },
@@ -178,6 +175,7 @@ class WishListController extends GetxController {
       log("$e $s");
       isError(true);
       result = false;
+      AppToasts.errorToast("$e");
     }
     return result;
   }

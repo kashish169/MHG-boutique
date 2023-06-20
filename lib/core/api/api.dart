@@ -28,15 +28,13 @@ class Api {
   static String getWishListDataLink = "/api/v1/wishlist/items";
   static String home = "/api/v1/home";
   static String searchLink = "/api/v1/search";
-
+  static String filterProductLink = "/api/v1//product/filter";
+  static String paymentMethods = "/api/v1/payment/tap/payment-methods";
   static String productRoute = "/api/v1/product";
   static String productDetails = "$productRoute/product-details";
   static String storeCategories = "/api/v1/category/store";
   static String menus = "/api/v1/category/menus";
-  // static String productByCategory = "/api/v1/product/category?store_id=1";
   static String filterProduct = "/api/v1/product/filter?store_id=1";
   static String productTags = "/api/v1/product/product-tags";
-
-
-
+  static String productByCategory = "/api/v1/product/category?store_id=1";
 }

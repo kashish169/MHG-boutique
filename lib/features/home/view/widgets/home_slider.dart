@@ -19,7 +19,7 @@ class HomeSlider extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: 15,
+            vertical: 10,
             horizontal: 20,
           ),
           child: Text(
@@ -31,12 +31,19 @@ class HomeSlider extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: AppDimensions.screenWidth(context) / (3 / 4),
+          height: AppDimensions.screenWidth(context) / (3 / 3.3),
           child: Swiper(
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
                 onTap: () {
-                  Get.toNamed(ProductDetailsPage.routeName);
+                  Get.toNamed(
+                    ProductDetailsPage.routeName,
+                    arguments: {
+                      "id": controller.slidersList[index].id,
+                      "name": controller.slidersList[index].enTitle,
+                      "fromArrival": false,
+                    },
+                  );
                 },
                 child: NetImage(
                   image: controller.slidersList[index].backgroundImageLink,

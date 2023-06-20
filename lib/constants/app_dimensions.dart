@@ -20,4 +20,8 @@ class AppDimensions {
       return false;
     }
   }
+
+  static double productHeight(BuildContext context) {
+    return screenWidth(context) / (3 / 1.6);
+  }
 }

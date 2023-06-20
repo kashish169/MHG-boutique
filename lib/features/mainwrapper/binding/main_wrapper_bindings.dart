@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:mhg/features/categories/controller/categories_controller.dart';
 import 'package:mhg/features/categories/repository/categories_repo_impl.dart';
+import 'package:mhg/features/checkout/repository/checkout_repo_imp.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/repository/home_repo_impl.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
@@ -15,6 +16,8 @@ import '../repository/main_wrapper_repo_impl.dart';
 class MainWrapperBinding extends Bindings {
   @override
   void dependencies() {
+    Get.put(HomeRepoImplement());
+    Get.put(HomeController());
     Get.put(CategoriesRepoImplement());
     Get.put(CategoriesController());
     Get.put(WishListRepoImpl());
@@ -23,9 +26,8 @@ class MainWrapperBinding extends Bindings {
     Get.put(ProfileController());
     Get.put(MainWrapperRepoImpl());
     Get.put(MainWrapperController());
-    Get.put(HomeRepoImplement());
-    Get.put(HomeController());
     Get.put(MyCartRepoImplement());
     Get.put(MyCartController());
+    Get.put(CheckoutRepoImplement());
   }
 }

@@ -18,7 +18,7 @@ class SearchForm extends StatelessWidget {
           inputType: TextInputType.name,
           onFieldSubmitted: (val) {
             controller.serach.text.isNotEmpty
-                ? searchController.searchForProduct()
+                ? searchController.filterSearchForProduct()
                 : null;
           },
           obscure: false,

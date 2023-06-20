@@ -24,25 +24,39 @@ class _MyWishListState extends State<MyWishList> {
           return controller.isLoading.value
               ? const LoadingWidget()
               : controller.isError.value
-                  ? RetryButton(onTap: () => controller.getData())
+                  ? RetryButton(onTap: () => controller.getWishList())
                   : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const SizedBox(
                           height: 20,
                         ),
-                        Expanded(
-                          child: ListView.builder(
-                              itemCount: controller.wishListItems.length,
-                              itemBuilder: (context, index) => MyWishBody(
-                                  addToBag: () async {
-                                    controller.chechBeforAdd(index);
-                                  },
-                                  model: controller.wishListItems[index],
-                                  onTap: () {
-                                    controller.removeFromWishList(
-                                        controller.wishListItems[index].id);
-                                  })),
-                        )
+                        controller.wishListItems.isNotEmpty
+                            ? Expanded(
+                                child: ListView.builder(
+                                    itemCount: controller.wishListItems.length,
+                                    itemBuilder: (context, index) => MyWishBody(
+                                          addToBag: () async {
+                                            controller.chechBeforAdd(index);
+                                          },
+                                          model:
+                                              controller.wishListItems[index],
+                                          onTap: () {
+                                            controller.wishListItems[index]
+                                                .isLoadingDelete = true;
+                                            controller.removeFromWishList(
+                                                controller
+                                                    .wishListItems[index].id);
+                                          },
+                                        )),
+                              )
+                            : Center(
+                                child: Text(
+                                  'Wish list is empty!',
+                                  style:
+                                      Theme.of(context).textTheme.displaySmall,
+                                ),
+                              )
                       ],
                     );
         }));

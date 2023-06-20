@@ -5,8 +5,8 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/mycart/models/cart_model.dart';
 import 'package:mhg/features/mycart/view/widgets/my_cart_card.dart';
 
-class Items extends StatelessWidget {
-  const Items({Key? key}) : super(key: key);
+class CheckoutItems extends StatelessWidget {
+  const CheckoutItems({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
