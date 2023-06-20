@@ -61,25 +61,30 @@ class RecentSearchBody extends StatelessWidget {
                 ? const LoadingWidget()
                 : Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: SizedBox(
-                      height: 400,
-                      child: DynamicHeightGridView(
-                          controller: searchingController.scrollController,
-                          itemCount: searchingController.productList.length,
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 20,
-                          shrinkWrap: true,
-                          physics: const ScrollPhysics(),
-                          builder: (ctx, index) {
-                            return ProductCard(
-                                model: searchingController.productList[index]);
-                          }),
-                    ),
+                    child: DynamicHeightGridView(
+                        itemCount: searchingController.productList.length,
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 20,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        builder: (ctx, index) {
+                          return ProductCard(
+                              model: searchingController.productList[index]);
+                        }),
                   ),
           ),
-          const SizedBox(
-            height: 20,
+          Obx(
+            () => searchingController.isFetching.isTrue
+                ? const SizedBox(
+                    height: 50,
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                : const SizedBox(
+                    height: 20,
+                  ),
           ),
           Divider(
             thickness: 1,
