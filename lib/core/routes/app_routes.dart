@@ -122,7 +122,7 @@ class AppRoutes {
     GetPage(name: '/sub_categories', page: () => const SubCategoriesPage()),
     GetPage(
       name: '/search',
-      page: () => const SearchPage(),
+      page: () => SearchPage(),
       binding: SearchBinding(),
     ),
     GetPage(
