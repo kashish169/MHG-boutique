@@ -28,7 +28,7 @@ class SearchRepoImplement implements SearchRepository {
           required String page}) async =>
       httpService.get(
         url:
-            "${Api.searchLink}?store_id=$storeiD&search=$serchingProduct&page=$page",
+            "${Api.filterProductLink}?store_id=$storeiD&search=$serchingProduct&page=$page",
         isAuthorized: App.token.isEmpty ? false : true,
       );
 }
