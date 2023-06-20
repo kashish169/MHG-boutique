@@ -16,6 +16,11 @@ class SearchForm extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: CustomFormField(
           inputType: TextInputType.name,
+          onChanged: (val){
+           if( val==''){
+             controller.resetPaginate();
+           }
+          },
           onFieldSubmitted: (val) {
             controller.resetPaginate();
             controller.serach.text.isNotEmpty
