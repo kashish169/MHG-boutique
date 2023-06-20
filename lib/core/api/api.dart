@@ -28,7 +28,7 @@ class Api {
   static String getWishListDataLink = "/api/v1/wishlist/items";
   static String home = "/api/v1/home";
   static String searchLink = "/api/v1/search";
-  static String filterProductLink = "/api/v1//product/filter";
+  static String filterProductLink = "/api/v1/product/filter";
   static String paymentMethods = "/api/v1/payment/tap/payment-methods";
   static String productRoute = "/api/v1/product";
   static String productDetails = "$productRoute/product-details";
