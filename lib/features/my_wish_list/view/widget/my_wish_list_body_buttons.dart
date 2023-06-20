@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
+import 'package:mhg/features/my_wish_list/view/widget/wish_list_counter.dart';
 
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/primary_button.dart';
@@ -35,26 +36,37 @@ class _BodyButtonsState extends State<BodyButtons> {
             ),
           ),
         ),
-        Expanded(
-          child: Padding(
-              padding: const EdgeInsets.only(
-                left: 5,
-              ),
-              child: PrimaryButton(
-                title: "Add to Bag",
-                isLoading: widget.model.isLoadingDelete,
-                onTap: () async {
-                  widget.model.isLoadingDelete = true;
-                  if (mounted) setState(() {});
-                  await controller.addProductToCart(productId: widget.model.id);
-                  widget.model.isLoadingDelete = false;
-                  if (mounted) setState(() {});
-                },
-                fontSize: 12,
-                color: AppColors.primary,
-                height: 35,
-              )),
-        ),
+        Expanded(child: StatefulBuilder(builder: (context, setState) {
+          return widget.model.options.inCart == 0
+              ? Padding(
+                  padding: const EdgeInsets.only(
+                    left: 5,
+                  ),
+                  child: PrimaryButton(
+                    title: "Add to Bag",
+                    isLoading: widget.model.isLoadingDelete,
+                    onTap: () async {
+                      widget.model.isLoadingDelete = true;
+                      if (mounted) setState(() {});
+                      var result = await controller.addProductToCart(
+                          productId: widget.model.id);
+                      if (result) {
+                        widget.model.options.inCart = 1;
+                        widget.model.options.cartQuantity = 1;
+                        setState(() {});
+                      }
+                      widget.model.isLoadingDelete = false;
+                      if (mounted) setState(() {});
+                    },
+                    fontSize: 12,
+                    color: AppColors.primary,
+                    height: 35,
+                  ))
+              : Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: WishListCounterrWidget(model: widget.model),
+                );
+        })),
       ],
     );
   }

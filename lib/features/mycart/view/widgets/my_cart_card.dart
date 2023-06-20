@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/widgets/heart_widget.dart';
 import 'package:mhg/widgets/net_image.dart';
 import '../../../../constants/app_dimensions.dart';
 import '../../models/cart_model.dart';
