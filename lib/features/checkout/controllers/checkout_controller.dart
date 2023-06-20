@@ -20,8 +20,10 @@ class CheckoutController extends GetxController {
   RxDouble totalPrice = 0.0.obs;
   RxString cardType = ''.obs;
   RxString cardNumber = ''.obs;
+  RxString shippingName = ''.obs;
 
   CheckoutController() {
+    
     checkoutRepository = Get.find<CheckoutRepoImplement>();
   }
 
@@ -49,7 +51,8 @@ class CheckoutController extends GetxController {
               paymentMethodsModel = PaymentMethodsModel.fromJson(r.object);
 
               cardType(paymentMethodsModel.data![0].cardType);
-              cardNumber(getCodedNumber(paymentMethodsModel.data![0].cardNumber));
+              cardNumber(
+                  getCodedNumber(paymentMethodsModel.data![0].cardNumber));
             }
           } else {
             AppToasts.errorToast(message);
@@ -62,7 +65,9 @@ class CheckoutController extends GetxController {
   }
 
   String getCodedNumber(String? cardNumber) {
-    return cardNumber!.substring(cardNumber.indexOf('*')).replaceRange(0, 2, "");
+    return cardNumber!
+        .substring(cardNumber.indexOf('*'))
+        .replaceRange(0, 2, "");
   }
 
   @override

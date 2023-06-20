@@ -1,9 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/checkout/views/widgets/checkout_items.dart';
 import 'package:mhg/features/checkout/views/widgets/payment_method.dart';
 import 'package:mhg/features/checkout/views/widgets/place_order.dart';
@@ -11,8 +9,6 @@ import 'package:mhg/features/checkout/views/widgets/promo_code.dart';
 import 'package:mhg/features/checkout/views/widgets/shipping_address.dart';
 
 import 'package:mhg/widgets/custom_app_bar.dart';
-import 'package:mhg/widgets/loading_widget.dart';
-import 'package:mhg/widgets/retry_button.dart';
 
 class CheckoutPage extends StatelessWidget {
   static String routeName = '/checkout';

@@ -6,6 +6,7 @@ import 'package:mhg/features/auth/verification/view/pages/verfication_page.dart'
 import 'package:mhg/features/auth/signin/binding/sign_in_binding.dart';
 import 'package:mhg/features/auth/signin/view/pages/sign_in_page.dart';
 import 'package:mhg/features/checkout/binding/checkout_bindings.dart';
+
 import 'package:mhg/features/mainwrapper/binding/main_wrapper_bindings.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
 import 'package:mhg/features/checkout/views/pages/checkout_page.dart';
@@ -130,5 +131,6 @@ class AppRoutes {
       page: () => const CheckoutPage(),
       binding: CheckoutBinding(),
     ),
+   
   ];
 }

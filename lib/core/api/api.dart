@@ -34,4 +34,5 @@ class Api {
   static String storeCategories = "/api/v1/category/store";
   static String menus = "/api/v1/category/menus";
   static String productByCategory = "/api/v1/product/category?store_id=1";
+  static String getCountries = "/api/v1/countries/index";
 }
