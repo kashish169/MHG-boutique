@@ -9,6 +9,7 @@ class WishListModel {
   dynamic discount;
   dynamic tax;
   dynamic subtotal;
+  bool isAddToBag;
   bool isDeleteItem;
   bool isLoadingDelete;
   WishListModel({
@@ -24,6 +25,7 @@ class WishListModel {
     required this.subtotal,
     this.isDeleteItem = false,
     this.isLoadingDelete = false,
+    this.isAddToBag = false,
   });
 
   factory WishListModel.fromJson(Map<String, dynamic> json) => WishListModel(
