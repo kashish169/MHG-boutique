@@ -57,6 +57,7 @@ class PromoCode extends StatelessWidget {
                 title: 'Apply',
                 width: MediaQuery.of(context).size.width * 0.3,
                 hasIcon: false,
+                 onPress: (){}
               ),
             ],
           ),

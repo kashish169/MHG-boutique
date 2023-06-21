@@ -29,7 +29,7 @@ class HomeCategoryCard extends StatelessWidget {
             ),
           ),
           NetImage(
-            image: model.url,
+            image: model.imageLink,
             height: 45,
             width: 45,
           ),

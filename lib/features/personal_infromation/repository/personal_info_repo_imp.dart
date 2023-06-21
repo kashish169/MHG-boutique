@@ -30,4 +30,10 @@ class PersonalInfoRepoImpl implements PersonalInfoRepo {
         url: Api.deleteAccount,
         isAuthorized: true,
       );
+
+  @override
+  Future<Either<Failure, ApiResponse>> getCountries() async =>
+      await httpService.get(
+        url: Api.getCountries,
+      );
 }
