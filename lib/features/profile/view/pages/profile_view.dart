@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
 import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
@@ -127,6 +128,10 @@ class ProfileView extends StatelessWidget {
                 title: 'Log out',
                 onTap: () async {
                   await StoragePref.clear();
+                  await StoragePref.setbool(
+                    key: 'notifyme',
+                    value: App.notifyMe!,
+                  );
                   Get.offAllNamed(OnBoardView.routeName);
                 },
               ),
