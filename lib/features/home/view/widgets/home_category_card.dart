@@ -10,7 +10,8 @@ class HomeCategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsetsDirectional.all(18),
+      padding:
+          const EdgeInsetsDirectional.symmetric(horizontal: 14, vertical: 10),
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadiusDirectional.circular(8),
@@ -29,7 +30,7 @@ class HomeCategoryCard extends StatelessWidget {
             ),
           ),
           NetImage(
-            image: model.url,
+            image: model.imageLink,
             height: 45,
             width: 45,
           ),

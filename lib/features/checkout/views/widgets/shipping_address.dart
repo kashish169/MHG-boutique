@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/profile/controller/profile_controller.dart';
 
 class ShippingAddress extends StatelessWidget {
   const ShippingAddress({super.key});
@@ -14,7 +16,7 @@ class ShippingAddress extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: ListTile(
         title: Padding(
-          padding:  EdgeInsets.only(bottom:8.0),
+          padding: EdgeInsets.only(bottom: 8.0),
           child: Text(
             'Shipping Address',
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
@@ -41,14 +43,14 @@ class ShippingAddress extends StatelessWidget {
                     color: AppColors.mediumLabel,
                   ),
             ),
-             Text(
+            Text(
               'Main Street ,',
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 16,
                     color: AppColors.mediumLabel,
                   ),
             ),
-             Text(
+            Text(
               'City Name , Province ,',
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 16,
@@ -65,7 +67,8 @@ class ShippingAddress extends StatelessWidget {
           ],
         ),
         trailing: Container(
-          margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.04),
+          margin:
+              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.04),
           height: 25,
           width: 25,
           decoration: BoxDecoration(
@@ -77,6 +80,14 @@ class ShippingAddress extends StatelessWidget {
             size: 15,
           ),
         ),
+        onTap: () async {
+          final ProfileController controller = Get.find<ProfileController>();
+         await Get.toNamed("/personal_information", arguments: {
+            "profile": controller.model.value,
+          });
+         
+       
+        },
       ),
     );
   }
