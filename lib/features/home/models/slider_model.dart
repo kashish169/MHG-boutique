@@ -1,19 +1,20 @@
 class SliderModel {
   int id;
-  String backgroundImage;
-  String thumbnail;
-  String enTitle;
-  String enSubTitle;
-  String enDescription;
-  String enButtonText;
-  String frTitle;
-  String frSubTitle;
-  String frDescription;
-  String frButtonText;
-  DateTime createdAt;
-  DateTime updatedAt;
-  String thumbnailLink;
-  String backgroundImageLink;
+  dynamic backgroundImage;
+  dynamic thumbnail;
+  dynamic enTitle;
+  dynamic enSubTitle;
+  dynamic enDescription;
+  dynamic enButtonText;
+  dynamic frTitle;
+  dynamic frSubTitle;
+  dynamic frDescription;
+  dynamic frButtonText;
+  dynamic createdAt;
+  dynamic updatedAt;
+  dynamic thumbnailLink;
+  dynamic backgroundImageLink;
+  dynamic link;
 
   SliderModel({
     required this.id,
@@ -31,6 +32,7 @@ class SliderModel {
     required this.updatedAt,
     required this.thumbnailLink,
     required this.backgroundImageLink,
+    required this.link,
   });
 
   factory SliderModel.fromJson(Map<String, dynamic> json) => SliderModel(
@@ -49,5 +51,6 @@ class SliderModel {
         updatedAt: DateTime.parse(json["updated_at"]),
         thumbnailLink: json["thumbnail_link"],
         backgroundImageLink: json["background_image_link"],
+        link: json["link"],
       );
 }

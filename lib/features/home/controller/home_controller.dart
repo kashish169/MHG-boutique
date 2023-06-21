@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/home/models/brand_model.dart';
 import 'package:mhg/features/home/models/home_model.dart';
+import 'package:mhg/features/home/models/middle_section_model.dart';
 import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/home/repository/home_repo.dart';
 import 'package:mhg/features/home/repository/home_repo_impl.dart';
@@ -27,6 +28,10 @@ class HomeController extends GetxController {
   RxList<ProductModel> newArrivalsList = <ProductModel>[].obs;
   RxList<BrandModel> brandsList = <BrandModel>[].obs;
   RxList<CategoryModel> categories = <CategoryModel>[].obs;
+  RxList<MiddleSectionModel> middleSectionList = <MiddleSectionModel>[].obs;
+  RxList<SliderModel> footerSlider = <SliderModel>[].obs;
+  RxString middleSectionMainImage = ''.obs;
+  RxString middleSectionMainTitle = ''.obs;
 
   updateList(List<ProductModel> model, bool fromArrival) {
     for (int i = 0; i < model.length; i++) {
@@ -62,6 +67,11 @@ class HomeController extends GetxController {
             newArrivalsList.value = data.newArrivals;
             brandsList.value = data.brands;
             categories.value = data.categories;
+            footerSlider.value = data.footerSliders;
+            middleSectionList.value = data.middleSections;
+            middleSectionMainImage.value = middleSectionList.first.imageLink;
+            middleSectionMainTitle.value = middleSectionList.first.enTitle;
+            middleSectionList.removeAt(0);
           } else {
             AppToasts.errorToast(message);
           }
