@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/auth/signin/view/pages/sign_in_page.dart';
 import 'package:mhg/features/on_board/controller/on_board_controller.dart';
-
 import 'onBoard_button.dart';
 
 class OnBoardButtons extends StatelessWidget {

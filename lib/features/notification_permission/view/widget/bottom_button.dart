@@ -21,7 +21,7 @@ class BottomButton extends StatelessWidget {
             child: PrimaryButton(
               title: "Yes, Notify me",
               width: 100,
-              color: AppColors.secondary,
+              color: AppColors.primary,
               height: 50,
               onTap: () async {
                 await setNotifyMe(true);

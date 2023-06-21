@@ -127,11 +127,15 @@ class ProfileView extends StatelessWidget {
                 icon: AppAssets.store,
                 title: 'Log out',
                 onTap: () async {
+                  print(App.notifyMe);
+                  bool notifayMe = App.notifyMe!;
+                  print(notifayMe);
                   await StoragePref.clear();
                   await StoragePref.setbool(
                     key: 'notifyme',
-                    value: App.notifyMe!,
+                    value: notifayMe,
                   );
+                  print(App.notifyMe);
                   Get.offAllNamed(OnBoardView.routeName);
                 },
               ),
