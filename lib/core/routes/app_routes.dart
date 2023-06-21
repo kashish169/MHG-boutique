@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:mhg/features/auth/sign_up/binding/sign_up_binding.dart';
 import 'package:mhg/features/auth/sign_up/view/pages/sign_up_view.dart';
@@ -6,6 +8,7 @@ import 'package:mhg/features/auth/verification/view/pages/verfication_page.dart'
 import 'package:mhg/features/auth/signin/binding/sign_in_binding.dart';
 import 'package:mhg/features/auth/signin/view/pages/sign_in_page.dart';
 import 'package:mhg/features/checkout/binding/checkout_bindings.dart';
+import 'package:mhg/features/checkout/views/pages/add_payment_method_webview_page.dart';
 import 'package:mhg/features/checkout/views/pages/payment_methods_page.dart';
 import 'package:mhg/features/mainwrapper/binding/main_wrapper_bindings.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
@@ -131,10 +134,13 @@ class AppRoutes {
       page: () => const CheckoutPage(),
       binding: CheckoutBinding(),
     ),
-   GetPage(
+    GetPage(
       name: '/payment_methods',
-      page: () =>  PaymentMethodsPage(),
-      
+      page: () => PaymentMethodsPage(),
     ),
+    GetPage(
+      name: '/add_payment_method_web_view',
+      page: () => AddPaymentMethodWebViewPage(),
+    )
   ];
 }

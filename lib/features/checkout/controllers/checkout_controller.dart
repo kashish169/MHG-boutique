@@ -1,7 +1,6 @@
-import 'dart:convert';
 import 'dart:developer';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/core/models/api_response.dart';
@@ -11,11 +10,13 @@ import 'package:mhg/features/checkout/models/payment_methods_model.dart';
 import 'package:mhg/features/checkout/repository/checkout_repo.dart';
 import 'package:mhg/features/checkout/repository/checkout_repo_imp.dart';
 import 'package:mhg/features/mycart/models/cart_model.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class CheckoutController extends GetxController {
   late CheckoutRepository checkoutRepository;
   PaymentMethodsModel paymentMethodsModel = PaymentMethodsModel();
   AddPaymentMethodsModel addPaymentMethodsModel = AddPaymentMethodsModel();
+  late final WebViewController webViewController;
   RxBool isLoading = false.obs;
   RxBool isError = false.obs;
   RxList<CartModel> cartItemsList = <CartModel>[].obs;
@@ -98,7 +99,40 @@ class CheckoutController extends GetxController {
             if (r.object["data"] != null) {
               addPaymentMethodsModel =
                   AddPaymentMethodsModel.fromJson(r.object);
-              _launchUrl(addPaymentMethodsModel.data!.link!);
+              webViewController = WebViewController()
+                ..setJavaScriptMode(JavaScriptMode.unrestricted)
+                ..setBackgroundColor(const Color(0x00000000))
+                ..setNavigationDelegate(
+                  NavigationDelegate(
+                    onProgress: (int progress) {
+                      isLoading(true);
+                      isError(false);
+                    },
+                    onPageStarted: (String url) {
+                      isLoading(true);
+                      isError(false);
+                    },
+                    onPageFinished: (String url) {
+                      isLoading(false);
+                      isError(false);
+                    },
+                    onWebResourceError: (WebResourceError error) {
+                      isLoading(false);
+                      isError(true);
+                    },
+                    onNavigationRequest: (NavigationRequest request) {
+                      if (request.url
+                          .startsWith(addPaymentMethodsModel.data!.link!)) {
+                        return NavigationDecision.prevent;
+                      }
+                      return NavigationDecision.navigate;
+                    },
+                  ),
+                )
+                ..loadRequest(
+                  Uri.parse(addPaymentMethodsModel.data!.link!),
+                );
+              Get.toNamed('/add_payment_method_web_view');
             }
           } else {
             AppToasts.errorToast(message);
@@ -107,13 +141,6 @@ class CheckoutController extends GetxController {
       );
     } catch (e, s) {
       log("$e $s");
-    }
-  }
-
-  Future<void> _launchUrl(String ur) async {
-    final Uri _url = Uri.parse(ur);
-    if (!await launchUrl(_url)) {
-      throw Exception('Could not launch $_url');
     }
   }
 
