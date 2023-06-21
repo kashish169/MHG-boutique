@@ -14,6 +14,7 @@ class MyCartController extends GetxController {
   late MyCartRepository myCartRepository;
   RxBool isLoading = false.obs;
   RxBool isError = false.obs;
+  RxDouble columnSize = 0.0.obs;
 
   MyCartController() {
     myCartRepository = Get.find<MyCartRepoImplement>();
