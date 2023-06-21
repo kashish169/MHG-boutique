@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/auth/signin/view/pages/sign_in_page.dart';
 import 'package:mhg/features/on_board/controller/on_board_controller.dart';
-import 'package:mhg/widgets/primary_button.dart';
+
+import 'onBoard_button.dart';
 
 class OnBoardButtons extends StatelessWidget {
   const OnBoardButtons({
@@ -19,11 +20,11 @@ class OnBoardButtons extends StatelessWidget {
         children: [
           Expanded(
               flex: 2,
-              child: PrimaryButton(
-                title: 'login',
-                height: 40,
+              child: OnBoardButton(
+                title: 'Login',
+                height: 50,
                 radius: 10,
-                color: Colors.black.withOpacity(.8),
+                color: AppColors.dGreen,
                 onTap: () {
                   Get.offAllNamed(
                     SignInPage.routeName,
@@ -35,11 +36,11 @@ class OnBoardButtons extends StatelessWidget {
             width: 10,
           ),
           Expanded(
-              child: PrimaryButton(
-            title: 'Not Now',
-            height: 40,
+              child: OnBoardButton(
+            title: 'Guest',
+            height: 50,
             radius: 10,
-            color: AppColors.primary.withOpacity(.1),
+            color: AppColors.dGreen,
             onTap: () {},
           )),
         ],

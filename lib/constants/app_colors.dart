@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-
   static Color primary = const Color(0xFF232323);
   static Color secondary = const Color(0xFF6E8674);
   static Color label = const Color(0xFF333333);
@@ -24,12 +23,12 @@ class AppColors {
   static Color white2 = const Color(0xFFF8F8F8);
   static Color grey = Colors.grey;
   static Color green = Colors.green;
+  static Color dGreen = const Color(0xFF1B291E);
   static Color white = Colors.white;
   static List<BoxShadow> shadow(double opacity) => [
         BoxShadow(
           color: AppColors.primary.withOpacity(opacity),
           blurRadius: 8,
-
         )
       ];
 }
