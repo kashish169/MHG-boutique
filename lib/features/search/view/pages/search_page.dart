@@ -4,12 +4,13 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/search/controller/search_controller.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
+import '../../../../widgets/loading_widget.dart';
+import '../../../../widgets/retry_button.dart';
 import '../../../home/controller/home_controller.dart';
 import '../../../home/view/widgets/product_card.dart';
 import '../widget/custom_search_section.dart';
 import '../widget/recent_search_body.dart';
 import '../widget/search_form.dart';
-import '../widget/search_item_wish_list_body.dart';
 import '../widget/search_top_sellers.dart';
 
 class SearchPage extends StatelessWidget {
@@ -37,39 +38,84 @@ class SearchPage extends StatelessWidget {
             SearchForm(),
             RecentSearchBody(),
             const SearchTopSellers(),
-            Container(
-              color: AppColors.white2,
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-              height: 320,
-              width: double.infinity,
-              child: ListView.builder(
-                  itemCount: homeController.topSellersList.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 5),
-                        child: ProductCard(
-                          model: homeController.topSellersList[index],
-                        ),
-                      )),
+            GetX<HomeController>(
+              builder: (homeController) => homeController.isLoading.isTrue
+                  ? const LoadingWidget()
+                  : homeController.isError.isTrue
+                      ? RetryButton(onTap: () => homeController.getHome())
+                      : homeController.topSellersList.isNotEmpty
+                          ? Container(
+                              color: AppColors.white2,
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              height: 320,
+                              width: double.infinity,
+                              child: ListView.builder(
+                                  itemCount:
+                                      homeController.topSellersList.length,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) => Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 10, horizontal: 5),
+                                        child: ProductCard(
+                                          model: homeController
+                                              .topSellersList[index],
+                                        ),
+                                      )),
+                            )
+                          : SizedBox(
+                              height: 50,
+                              child: Center(
+                                child: Text(
+                                  'Top Sellers is empty!',
+                                  style:
+                                      Theme.of(context).textTheme.displaySmall,
+                                ),
+                              ),
+                            ),
             ),
             const SizedBox(
               height: 5,
             ),
             const CustomSearchSection(title: " Items You've Wishlisted"),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-              height: 225,
-              color: AppColors.white2,
-              width: double.infinity,
-              child: ListView.builder(
-                  itemCount: wishListController.wishListItems.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => SearchItemWishListBody(
-                        model: wishListController.wishListItems[index],
-                        // productModel: homeController.topSellersList[index],
-                        onTap: () {},
-                      )),
+            GetX<WishListController>(
+              builder: (wishListController) => wishListController
+                      .isLoading.isTrue
+                  ? const LoadingWidget()
+                  : wishListController.isError.isTrue
+                      ? RetryButton(
+                          onTap: () => wishListController.getWishList())
+                      : wishListController.wishListItems.isNotEmpty
+                          ? Container(
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              height: 320,
+                              color: AppColors.white2,
+                              width: double.infinity,
+                              child: ListView.builder(
+                                  itemCount:
+                                      wishListController.wishListItems.length,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) => Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 10, horizontal: 5),
+                                        child: ProductCard(
+                                          isWishList: true,
+                                          wishListModel: wishListController
+                                              .wishListItems[index],
+                                        ),
+                                      )),
+                            )
+                          : SizedBox(
+                              height: 50,
+                              child: Center(
+                                child: Text(
+                                  'Wish list is empty!',
+                                  style:
+                                      Theme.of(context).textTheme.displaySmall,
+                                ),
+                              ),
+                            ),
             ),
             const SizedBox(
               height: 10,

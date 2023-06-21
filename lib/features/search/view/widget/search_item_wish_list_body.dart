@@ -7,80 +7,75 @@ import '../../../../widgets/heart_widget.dart';
 
 class SearchItemWishListBody extends StatelessWidget {
   const SearchItemWishListBody(
-      {super.key,
-      required this.model,
-      // required this.productModel,
-      this.onTap});
+      {super.key, required this.model, required this.onTap});
   final WishListModel model;
-  // final ProductModel productModel;
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 7),
       child: Material(
-        elevation: 5,
-        shadowColor: AppColors.white2,
-        borderRadius: BorderRadius.circular(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              alignment: Alignment.topRight,
-              children: [
-                Container(
-                  height: 140,
-                  width: 140,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(12)),
-                  child: ClipRRect(
-                      borderRadius:
-                          const BorderRadius.vertical(top: Radius.circular(12)),
-                      child: NetImage(
-                        image: model.options.imageLink,
-                        fit: BoxFit.cover,
-                      )),
-                ),
-                FavouriteWidget(
-                  from: 'search',
-                  // inWishlist: productModel.inWishlist,
-                  inWishlist: 1,
-                  onTap: onTap,
-                  height: 22,
-                )
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+          elevation: 5,
+          shadowColor: AppColors.white2,
+          borderRadius: BorderRadius.circular(12),
+          child: Stack(
+            alignment: Alignment.topRight,
+            children: [
+              Column(
                 children: [
-                  const SizedBox(
-                    height: 10,
+                  Expanded(
+                    child: ClipRRect(
+                        borderRadius: const BorderRadius.vertical(
+                            top: Radius.circular(12)),
+                        child: NetImage(
+                          image: model.options.imageLink,
+                          height: 140,
+                          width: 140,
+                          fit: BoxFit.cover,
+                        )),
                   ),
-                  Text(
-                    model.name,
-                    style: Theme.of(context)
-                        .textTheme
-                        .displaySmall!
-                        .copyWith(color: AppColors.darkGrey),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Dhs. ${model.price}",
-                    style: Theme.of(context)
-                        .textTheme
-                        .displayLarge!
-                        .copyWith(fontSize: 12, color: AppColors.darkGrey),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          model.name,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall!
+                              .copyWith(color: AppColors.darkGrey),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Dhs. ${model.price}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayLarge!
+                              .copyWith(
+                                  fontSize: 12, color: AppColors.darkGrey),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
-            )
-          ],
-        ),
-      ),
+              FavouriteWidget(
+                from: 'search',
+                inWishlist: 1,
+                onTap: onTap,
+                height: 22,
+              )
+            ],
+          )),
     );
   }
 }
