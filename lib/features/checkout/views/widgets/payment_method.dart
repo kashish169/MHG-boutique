@@ -39,7 +39,17 @@ class PaymentMethod extends StatelessWidget {
                     padding: EdgeInsets.only(
                       top: MediaQuery.of(context).size.height * 0.014,
                     ),
-                    child: Row(
+                    child: checkoutController.cardNumber.value == '' ?  Text(
+                          'Add Payment Method',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: 14,
+                                color: AppColors.mediumLabel,
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ): Row(
                       children: [
                         Image.asset(
                           AppAssets.master,
