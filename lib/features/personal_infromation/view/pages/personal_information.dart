@@ -269,6 +269,7 @@ class PersonalInformation extends StatelessWidget {
                             onTap: () {
                               deleteAccountDialog(
                                 context: context,
+                                message: "Are you sure you want to delete this account?",
                                 onConfirm: () {
                                   controller.deleteAccount();
                                 },

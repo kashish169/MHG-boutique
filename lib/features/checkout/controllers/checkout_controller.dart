@@ -7,6 +7,7 @@ import 'package:mhg/core/models/api_response.dart';
 import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/features/checkout/models/add_payment_methods_model.dart';
 import 'package:mhg/features/checkout/models/payment_methods_model.dart';
+import 'package:mhg/features/checkout/models/remove_payment_method_model.dart';
 import 'package:mhg/features/checkout/repository/checkout_repo.dart';
 import 'package:mhg/features/checkout/repository/checkout_repo_imp.dart';
 import 'package:mhg/features/mycart/models/cart_model.dart';
@@ -16,6 +17,8 @@ class CheckoutController extends GetxController {
   late CheckoutRepository checkoutRepository;
   PaymentMethodsModel paymentMethodsModel = PaymentMethodsModel();
   AddPaymentMethodsModel addPaymentMethodsModel = AddPaymentMethodsModel();
+  RemovePaymentMethodsModel removePaymentMethodsModel =
+      RemovePaymentMethodsModel();
   late final WebViewController webViewController;
   RxBool isLoading = false.obs;
   RxBool isError = false.obs;
@@ -25,6 +28,7 @@ class CheckoutController extends GetxController {
   RxString cardNumber = ''.obs;
   RxString shippingName = ''.obs;
   RxString paymentMethod = ''.obs;
+  RxInt loadingPercentage = 0.obs;
 
   CheckoutController() {
     checkoutRepository = Get.find<CheckoutRepoImplement>();
@@ -84,6 +88,7 @@ class CheckoutController extends GetxController {
       Either<Failure, ApiResponse> results =
           await checkoutRepository.addPaymentMethod();
       isLoading(false);
+
       results.fold(
         (l) {
           isError(true);
@@ -99,40 +104,64 @@ class CheckoutController extends GetxController {
             if (r.object["data"] != null) {
               addPaymentMethodsModel =
                   AddPaymentMethodsModel.fromJson(r.object);
+              Get.toNamed('/add_payment_method_web_view');
               webViewController = WebViewController()
                 ..setJavaScriptMode(JavaScriptMode.unrestricted)
                 ..setBackgroundColor(const Color(0x00000000))
                 ..setNavigationDelegate(
                   NavigationDelegate(
-                    onProgress: (int progress) {
-                      isLoading(true);
-                      isError(false);
+                    onPageStarted: (url) {
+                      loadingPercentage(0);
                     },
-                    onPageStarted: (String url) {
-                      isLoading(true);
-                      isError(false);
+                    onProgress: (progress) {
+                      loadingPercentage(progress);
                     },
-                    onPageFinished: (String url) {
-                      isLoading(false);
-                      isError(false);
-                    },
-                    onWebResourceError: (WebResourceError error) {
-                      isLoading(false);
-                      isError(true);
-                    },
-                    onNavigationRequest: (NavigationRequest request) {
-                      if (request.url
-                          .startsWith(addPaymentMethodsModel.data!.link!)) {
-                        return NavigationDecision.prevent;
-                      }
-                      return NavigationDecision.navigate;
+                    onPageFinished: (url) async {
+                      webViewController.printInfo();
+                      loadingPercentage(100);
                     },
                   ),
                 )
                 ..loadRequest(
                   Uri.parse(addPaymentMethodsModel.data!.link!),
                 );
-              Get.toNamed('/add_payment_method_web_view');
+            }
+          } else {
+            AppToasts.errorToast(message);
+          }
+        },
+      );
+    } catch (e, s) {
+      log("$e $s");
+    }
+  }
+
+  deletePaymentMethod(paymentMethodID) async {
+    try {
+      isLoading(true);
+      isError(false);
+      Either<Failure, ApiResponse> results =
+          await checkoutRepository.deletePaymentMethod(paymentMethodID);
+
+      isLoading(false);
+      results.fold(
+        (l) {
+          isError(true);
+          AppToasts.errorToast(l.message);
+
+          log("DELETE PAYMENT METHODS RESPONSE ERROR ${l.message}");
+        },
+        (r) {
+          var statusCode = r.object["code"];
+          var message = r.object["message"];
+          log("DELETE PAYMENT METHODS RESPONSE STATUS $statusCode");
+
+          if (statusCode == 200) {
+            if (r.object["data"] != null) {
+              removePaymentMethodsModel =
+                  RemovePaymentMethodsModel.fromJson(r.object);
+              print(removePaymentMethodsModel.data);
+              getAllPaymentMethods();
             }
           } else {
             AppToasts.errorToast(message);

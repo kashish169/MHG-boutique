@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/features/personal_infromation/controller/peronal_informatiom_controller.dart';
+import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/primary_button.dart';
 
-deleteAccountDialog({
+deleteCardDialog({
   required BuildContext context,
   required void Function() onConfirm,
   required String message,
@@ -17,8 +17,8 @@ deleteAccountDialog({
           .displayLarge!
           .copyWith(color: AppColors.red, fontSize: 17),
       titlePadding: const EdgeInsets.only(top: 20),
-      content: GetBuilder<PersonalInformationController>(
-        builder: (controller) => controller.deleteLoading == false
+      content: GetBuilder<CheckoutController>(
+        builder: (controller) => controller.isLoading.value == false
             ? Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(

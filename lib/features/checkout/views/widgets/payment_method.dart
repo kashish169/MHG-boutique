@@ -57,7 +57,7 @@ class PaymentMethod extends StatelessWidget {
                           width: 50,
                         ),
                         Text(
-                          ' ${checkoutController.cardType} ending ${checkoutController.cardNumber}',
+                          ' ${checkoutController.cardType} ending ${ checkoutController.cardNumber}',
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall
