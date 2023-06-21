@@ -46,9 +46,9 @@ class SearchingController extends GetxController {
   Future<void> paginate() async {
     log("pagination .................................");
     scrollController.addListener(() {
-      if (scrollController.offset ==
-          scrollController.position.maxScrollExtent) {
+      if (scrollController.position.extentAfter<=600 &&productList.isNotEmpty&&isLoading.isFalse&&isFetching.isFalse) {
         page++;
+     //   scrollController.animateTo(569, duration: const Duration(milliseconds: 1), curve: Curves.decelerate);
         if (productList.length < last) {
           log(productList.length.toString());
           log(last.toString());
@@ -59,7 +59,7 @@ class SearchingController extends GetxController {
   }
 
   Future<void> filterSearchForProduct() async {
-
+   log("called");
     if(page==1){
       isLoading(true);
     }else{

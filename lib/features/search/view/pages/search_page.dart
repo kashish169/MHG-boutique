@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/search/controller/search_controller.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 import '../widget/custom_search_section.dart';
 import '../widget/recent_search_body.dart';
@@ -13,6 +15,7 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller=Get.find<SearchingController>();
     return Scaffold(
       backgroundColor: AppColors.white2,
       appBar: customAppBar(
@@ -20,6 +23,7 @@ class SearchPage extends StatelessWidget {
         title: "Search",
       ),
       body: SingleChildScrollView(
+        controller: controller.scrollController,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

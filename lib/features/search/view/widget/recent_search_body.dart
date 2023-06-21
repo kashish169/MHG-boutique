@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/search/view/widget/search_recent_button.dart';
 import 'package:mhg/widgets/loading_widget.dart';
-
 import '../../../../constants/app_colors.dart';
 import '../../../home/view/widgets/product_card.dart';
 import '../../controller/search_controller.dart';
@@ -61,25 +60,30 @@ class RecentSearchBody extends StatelessWidget {
                 ? const LoadingWidget()
                 : Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: SizedBox(
-                      height: 400,
-                      child: DynamicHeightGridView(
-                          controller: searchingController.scrollController,
-                          itemCount: searchingController.productList.length,
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 20,
-                          shrinkWrap: true,
-                          physics: const ScrollPhysics(),
-                          builder: (ctx, index) {
-                            return ProductCard(
-                                model: searchingController.productList[index]);
-                          }),
-                    ),
+                    child: DynamicHeightGridView(
+                        itemCount: searchingController.productList.length,
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 20,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        builder: (ctx, index) {
+                          return ProductCard(
+                              model: searchingController.productList[index]);
+                        }),
                   ),
           ),
-          const SizedBox(
-            height: 20,
+          Obx(
+            () => searchingController.isFetching.isTrue
+                ? const SizedBox(
+                    height: 50,
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                : const SizedBox(
+                    height: 20,
+                  ),
           ),
           Divider(
             thickness: 1,
