@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,10 +12,22 @@ import 'package:mhg/widgets/delete_icon_button.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 
-class PaymentMethodsPage extends StatelessWidget {
+class PaymentMethodsPage extends StatefulWidget {
   static String routeName = '/payment_methods';
   PaymentMethodsPage({super.key});
+
+  @override
+  State<PaymentMethodsPage> createState() => _PaymentMethodsPageState();
+}
+
+class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
   final CheckoutController checkoutController = Get.put(CheckoutController());
+
+  @override
+  void initState() {
+  
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,11 +118,16 @@ class PaymentMethodsPage extends StatelessWidget {
                                 children: [
                                   Radio(
                                       value: checkoutController
+                                          .paymentMethodsModel.data![index].id
+                                          .toString(),
+                                      groupValue: checkoutController
                                           .paymentMethod.value,
-                                      groupValue: 1,
                                       onChanged: (val) {
+                                        checkoutController.paymentMethod(val);
                                         checkoutController
-                                            .setPaymentMethodValue(val);
+                                            .setDefaultPaymentMethod(val);
+
+                                        setState(() {});
                                       }),
                                   DeleteIconButton(
                                     onTap: () {

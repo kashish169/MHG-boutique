@@ -37,4 +37,12 @@ class CheckoutRepoImplement implements CheckoutRepository {
         isAuthorized: App.token.isEmpty ? false : true,
         body: json.encode({"payment_method": id}),
       );
+
+  @override
+  Future<Either<Failure, ApiResponse>> setDefaultPaymentMethod(id) async =>
+      httpService.post(
+        url: Api.removePaymentMethod,
+        isAuthorized: App.token.isEmpty ? false : true,
+        body: json.encode({"payment_method": id}),
+      );
 }

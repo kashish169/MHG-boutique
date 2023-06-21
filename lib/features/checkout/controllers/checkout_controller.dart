@@ -8,18 +8,31 @@ import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/features/checkout/models/add_payment_methods_model.dart';
 import 'package:mhg/features/checkout/models/payment_methods_model.dart';
 import 'package:mhg/features/checkout/models/remove_payment_method_model.dart';
+import 'package:mhg/features/checkout/models/set_default_payment_method_model.dart';
 import 'package:mhg/features/checkout/repository/checkout_repo.dart';
 import 'package:mhg/features/checkout/repository/checkout_repo_imp.dart';
 import 'package:mhg/features/mycart/models/cart_model.dart';
+import 'package:mhg/features/personal_infromation/controller/peronal_informatiom_controller.dart';
+import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+/*
+ * 5123450000000008
+4508750015741019
+345678901234564
+4464040000000007
+4228230000000001
+ */
 class CheckoutController extends GetxController {
   late CheckoutRepository checkoutRepository;
   PaymentMethodsModel paymentMethodsModel = PaymentMethodsModel();
   AddPaymentMethodsModel addPaymentMethodsModel = AddPaymentMethodsModel();
   RemovePaymentMethodsModel removePaymentMethodsModel =
       RemovePaymentMethodsModel();
+  SetDefaultPaymentMethodsModel setDefaultPaymentMethodsModel =
+      SetDefaultPaymentMethodsModel();
   late final WebViewController webViewController;
+   final ProfileController profileController = Get.find<ProfileController>();
   RxBool isLoading = false.obs;
   RxBool isError = false.obs;
   RxList<CartModel> cartItemsList = <CartModel>[].obs;
@@ -71,10 +84,6 @@ class CheckoutController extends GetxController {
     }
   }
 
-  void setPaymentMethodValue(val) {
-    paymentMethod(val);
-  }
-
   String getCodedNumber(String? cardNumber) {
     return cardNumber!
         .substring(cardNumber.indexOf('*'))
@@ -111,13 +120,15 @@ class CheckoutController extends GetxController {
                 ..setNavigationDelegate(
                   NavigationDelegate(
                     onPageStarted: (url) {
+                      print(url);
                       loadingPercentage(0);
                     },
                     onProgress: (progress) {
+                       print(progress);
                       loadingPercentage(progress);
                     },
                     onPageFinished: (url) async {
-                      webViewController.printInfo();
+                       print(url);
                       loadingPercentage(100);
                     },
                   ),
@@ -160,7 +171,46 @@ class CheckoutController extends GetxController {
             if (r.object["data"] != null) {
               removePaymentMethodsModel =
                   RemovePaymentMethodsModel.fromJson(r.object);
-              print(removePaymentMethodsModel.data);
+
+              getAllPaymentMethods();
+            }
+          } else {
+            AppToasts.errorToast(message);
+          }
+        },
+      );
+    } catch (e, s) {
+      log("$e $s");
+    }
+  }
+
+  setDefaultPaymentMethod(paymentMethodID) async {
+    try {
+      isLoading(true);
+      isError(false);
+      Either<Failure, ApiResponse> results = await checkoutRepository
+          .setDefaultPaymentMethod(int.parse(paymentMethodID));
+
+      isLoading(false);
+      results.fold(
+        (l) {
+          isError(true);
+          AppToasts.errorToast(l.message);
+
+          log("SET DEFAULT PAYMENT METHODS RESPONSE ERROR ${l.message}");
+        },
+        (r) {
+          var statusCode = r.object["code"];
+          var message = r.object["message"];
+          log("SET DEFAULT PAYMENT METHODS RESPONSE STATUS $statusCode");
+
+          if (statusCode == 200) {
+            if (r.object["data"] != null) {
+              setDefaultPaymentMethodsModel =
+                  SetDefaultPaymentMethodsModel.fromJson(r.object);
+
+              paymentMethod(setDefaultPaymentMethodsModel.data!.id.toString());
+
               getAllPaymentMethods();
             }
           } else {
