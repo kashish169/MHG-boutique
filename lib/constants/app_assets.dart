@@ -61,6 +61,9 @@ class AppAssets {
   static String recent = "assets/icons/recent.png";
   static String brand1 = "assets/images/brand1.png";
   static String master = "assets/icons/master.png";
+  static String visa2 = "assets/icons/visa2.png";
+  static String googlepay = "assets/icons/google-pay.png";
+  static String applepay = "assets/icons/apple-pay.png";
   static String tag = "assets/icons/tag.png";
   static String starGif = "assets/images/star-gif.gif";
   static String qrGif = "assets/images/qr-gif.gif";

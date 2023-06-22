@@ -2,12 +2,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/personal_infromation/controller/peronal_informatiom_controller.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 
 class ShippingAddress extends StatelessWidget {
-  const ShippingAddress({super.key});
+  ShippingAddress({super.key});
+  final ProfileController controller = Get.find<ProfileController>();
+  
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +33,11 @@ class ShippingAddress extends StatelessWidget {
                 ),
           ),
         ),
-        subtitle: Column(
+        subtitle: Obx(() => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'John Doe',
+              controller.model.value!.name,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 14,
                     color: AppColors.mediumLabel,
@@ -37,13 +45,13 @@ class ShippingAddress extends StatelessWidget {
                   ),
             ),
             Text(
-              'No 123 , Sub Street ,',
+            controller.model.value != null ?'': controller.model.value!.street!,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 16,
                     color: AppColors.mediumLabel,
                   ),
             ),
-            Text(
+          /*   Text(
               'Main Street ,',
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 16,
@@ -63,9 +71,9 @@ class ShippingAddress extends StatelessWidget {
                     fontSize: 16,
                     color: AppColors.mediumLabel,
                   ),
-            ),
+            ), */
           ],
-        ),
+        )),
         trailing: Container(
           margin:
               EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.04),
@@ -81,12 +89,9 @@ class ShippingAddress extends StatelessWidget {
           ),
         ),
         onTap: () async {
-          final ProfileController controller = Get.find<ProfileController>();
-         await Get.toNamed("/personal_information", arguments: {
+          await Get.toNamed("/personal_information", arguments: {
             "profile": controller.model.value,
           });
-         
-       
         },
       ),
     );

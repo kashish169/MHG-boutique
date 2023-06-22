@@ -47,8 +47,7 @@ class PersonalInformationController extends GetxController {
   bool iserror = false;
   RxString countryCode = '+971'.obs;
   RxString countryFlag = AppAssets.flag.obs;
-  String userState = 'Add your state';
-  String userZipCode = 'Add your Zip Code';
+  RxInt countryId = 0.obs;
 
   @override
   void onInit() {
@@ -58,17 +57,26 @@ class PersonalInformationController extends GetxController {
     name.text = profileInfo.name;
     email.text = profileInfo.email;
     if (profileInfo.number != null) {
-      seperatePhoneAndDialCode(profileInfo.number!);
+      separatePhoneAndDialCode(profileInfo.number!);
     } else {
       phone.text == 'Add your Number';
     }
-
+    state.text = profileInfo.state ?? 'Add your state';
     address.text = profileInfo.street ?? 'Add your street address';
+    zipCode.text = profileInfo.zipCode ?? 'Add your  zip code';
+
     super.onInit();
   }
 
   setCountry(val) {
     selectedCountry = val;
+
+    countryId(countriesModel.data!.firstWhere(
+      (element) {
+        return element.name == val;
+      },
+    ).id);
+
     update();
   }
 
@@ -79,13 +87,19 @@ class PersonalInformationController extends GetxController {
       isLoading = true;
 
       update();
-      var body = updateInfoModel(UpdateInfoModel(
+      var body = updateInfoModel(
+        UpdateInfoModel(
           name: name.text,
           email: email.text,
           address: address.text,
           number: countryCode + phone.text,
           notifyMe: App.notifyMe == true ? 1 : 0,
-          isOptional: email.text == profileInfo.email ? true : false));
+          isOptional: email.text == profileInfo.email ? true : false,
+          state: state.text,
+          zipCode: zipCode.text,
+          countryId: countryId.value,
+        ),
+      );
       Either<Failure, ApiResponse> results = await personalRepo.updateData(
         body: body,
       );
@@ -137,17 +151,15 @@ class PersonalInformationController extends GetxController {
 
   enableState() {
     enableEditOnState = !enableEditOnState;
-    userState = state.text;
     update();
   }
 
   enableZipCode() {
     enableEditOnZipCode = !enableEditOnZipCode;
-    userZipCode = zipCode.text;
     update();
   }
 
-  seperatePhoneAndDialCode(String phoneWithDialCode) {
+  separatePhoneAndDialCode(String phoneWithDialCode) {
     Map<String, String> foundedCountry = {};
     for (var country in Countries.allCountries) {
       String dialCode = country["dial_code"].toString();

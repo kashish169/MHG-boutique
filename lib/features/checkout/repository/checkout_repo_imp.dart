@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/core/api/api.dart';
@@ -26,5 +28,21 @@ class CheckoutRepoImplement implements CheckoutRepository {
       httpService.get(
         url: Api.addPaymentMethod,
         isAuthorized: App.token.isEmpty ? false : true,
+      );
+
+  @override
+  Future<Either<Failure, ApiResponse>> deletePaymentMethod(id) async =>
+      httpService.post(
+        url: Api.removePaymentMethod,
+        isAuthorized: App.token.isEmpty ? false : true,
+        body: json.encode({"payment_method": id}),
+      );
+
+  @override
+  Future<Either<Failure, ApiResponse>> setDefaultPaymentMethod(id) async =>
+      httpService.post(
+        url: Api.removePaymentMethod,
+        isAuthorized: App.token.isEmpty ? false : true,
+        body: json.encode({"payment_method": id}),
       );
 }
