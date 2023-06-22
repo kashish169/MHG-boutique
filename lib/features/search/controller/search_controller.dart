@@ -36,6 +36,7 @@ class SearchingController extends GetxController {
   List<SearchModel> serachResponsList = [];
   TextEditingController serach = TextEditingController();
   ScrollController scrollController = ScrollController();
+  bool isSearch = false;
 
   resetPaginate() {
     page = 1;
@@ -140,5 +141,14 @@ class SearchingController extends GetxController {
         }
       },
     );
+  }
+
+  onSelectRecentSearch(String selected) {
+    // isSearch = true;
+    update();
+    productList.clear();
+    serach.text = selected;
+    filterSearchForProduct();
+    update();
   }
 }
