@@ -176,8 +176,8 @@ class ProductCard extends StatelessWidget {
                 StatefulBuilder(builder: (context, setState) {
                   return model?.inCart == 1
                       ? ProductCounter(
-                    model: model!,
-                  )
+                          model: model!,
+                        )
                       : const SizedBox();
                 }),
               ],

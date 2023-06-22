@@ -24,7 +24,7 @@ class RecentSearchBody extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const CustomSearchSection(title: " Recent Searches"),
+          const CustomSearchSection(title: "Recent Searches"),
           const SizedBox(
             height: 5,
           ),
@@ -87,8 +87,9 @@ class RecentSearchBody extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         builder: (ctx, index) {
                           return ProductCard(
-                              model: searchingController.productList[index],
-                          isSearch: true,);
+                            model: searchingController.productList[index],
+                            isSearch: true,
+                          );
                         }),
                   ),
           ),

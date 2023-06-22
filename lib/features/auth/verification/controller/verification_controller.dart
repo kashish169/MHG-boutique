@@ -109,6 +109,7 @@ class VerificationController extends GetxController {
         Get.back();
         Get.back();
         if (type == 'signin') {
+          signInController.signIn();
         } else {
           signUpController.signUp();
         }
