@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/constants/app_dimensions.dart';
 import '../../../home/view/widgets/product_card.dart';
 import '../../controller/product_details_controller.dart';
 
@@ -28,7 +29,7 @@ class SimilarProductsWidget extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 320,
+          height: AppDimensions.screenWidth(context) * 0.86,
           child: ListView.builder(
               padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
               scrollDirection: Axis.horizontal,

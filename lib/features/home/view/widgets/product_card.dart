@@ -188,9 +188,9 @@ class ProductCard extends StatelessWidget {
                             height: 35,
                             title: 'Add to Bag',
                             isLoading: model!.isLoading,
+                            color: AppColors.secondary,
                             onTap: () async {
                               model!.isLoading = true;
-
                               setState(() {});
                               var result = await controller.addProductToCart(
                                 productId: model!.id,
