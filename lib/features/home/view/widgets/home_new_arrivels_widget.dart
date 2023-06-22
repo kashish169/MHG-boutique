@@ -11,6 +11,7 @@ class HomeNewArrivelsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsetsDirectional.only(start: 20),
@@ -42,11 +43,12 @@ class HomeNewArrivelsWidget extends StatelessWidget {
                 for (int index = 0;
                     index < controller.newArrivalsList.length;
                     index++)
-                  Obx(()=>
-                      ProductCard(
-                        fromArrival:true,
-                        model: controller.newArrivalsList[index],
-                      ),)
+                  Obx(
+                    () => ProductCard(
+                      fromArrival: true,
+                      model: controller.newArrivalsList[index],
+                    ),
+                  )
               ],
             ),
           ),
