@@ -6,6 +6,7 @@ import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/product_details/controller/product_details_controller.dart';
+import 'package:mhg/features/search/controller/search_controller.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/three_bounce_loading.dart';
 
@@ -54,7 +55,7 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                 if (res == true) {
                   widget.inWishlist = 0;
                   setState(() {});
-                  if (widget.from == 'productDetails') {
+
                     List<ProductModel> temp = widget.fromArrival
                         ? Get.find<HomeController>().newArrivalsList
                         : Get.find<HomeController>().topSellersList;
@@ -63,9 +64,13 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                         temp[i].inWishlist = 0;
                       }
                     }
+                    if(widget.from=='search'){
+                      Get.find<SearchingController>()
+                          .updateList(temp, widget.fromArrival);
+                    }
                     Get.find<HomeController>()
                         .updateList(temp, widget.fromArrival);
-                  }
+
                 }
                 // if(res==true){
                 //   if(from=='home'){
@@ -82,7 +87,7 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                   widget.inWishlist = 1;
 
                   setState(() {});
-                  if (widget.from == 'productDetails') {
+
                     List<ProductModel> temp = widget.fromArrival
                         ? Get.find<HomeController>().newArrivalsList
                         : Get.find<HomeController>().topSellersList;
@@ -93,7 +98,7 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                     }
                     Get.find<HomeController>()
                         .updateList(temp, widget.fromArrival);
-                  }
+
                 }
                 // if(res==true){
                 //   if(from=='home'){

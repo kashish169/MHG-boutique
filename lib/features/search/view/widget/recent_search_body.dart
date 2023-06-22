@@ -69,7 +69,8 @@ class RecentSearchBody extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         builder: (ctx, index) {
                           return ProductCard(
-                              model: searchingController.productList[index]);
+                              model: searchingController.productList[index],
+                          isSearch: true,);
                         }),
                   ),
           ),
