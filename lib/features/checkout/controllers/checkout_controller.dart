@@ -264,6 +264,60 @@ class CheckoutController extends GetxController {
     }
   }
 
+  createOrder(
+    billingName,
+    billingEmail,
+    billingStreet,
+    billingState,
+    billingZipCode,
+    billingCountry,
+    coupon,
+    paymentMethod,
+    onlinePaymentMethod,
+  ) async {
+    try {
+      isLoading(true);
+      isError(false);
+      Either<Failure, ApiResponse> results =
+          await checkoutRepository.createOrder(
+        billingName,
+        billingEmail,
+        billingStreet,
+        billingState,
+        billingZipCode,
+        billingCountry,
+        coupon,
+        paymentMethod,
+        onlinePaymentMethod,
+      );
+
+      isLoading(false);
+      results.fold(
+        (l) {
+          isError(true);
+          AppToasts.errorToast(l.message);
+
+          log("CREATE ORDER METHODS RESPONSE ERROR ${l.message}");
+        },
+        (r) {
+          var statusCode = r.object["code"];
+          var message = r.object["message"];
+          log("CREATE ORDER METHODS RESPONSE STATUS $statusCode");
+
+          if (statusCode == 200) {
+            if (r.object["data"] != null) {
+              createOrderModal = CreateOrderModal.fromJson(r.object);
+            }
+          } else {
+            AppToasts.errorToast(message);
+          }
+        },
+      );
+    } catch (e, s) {
+      log("$e $s");
+    }
+  }
+
   @override
   void onInit() {
     getAllPaymentMethods();
