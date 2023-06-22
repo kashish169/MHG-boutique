@@ -52,6 +52,7 @@ class CheckoutController extends GetxController {
   RxInt loadingPercentage = 0.obs;
   RxString total = ''.obs;
   RxString codOrCard = 'COD'.obs;
+  RxString code = ''.obs;
 
   CheckoutController() {
     checkoutRepository = Get.find<CheckoutRepoImplement>();

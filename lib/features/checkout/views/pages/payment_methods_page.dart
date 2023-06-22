@@ -25,8 +25,14 @@ class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
 
   @override
   void initState() {
-  
+     
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    checkoutController.getAllPaymentMethods();
+    super.dispose();
   }
 
   @override
