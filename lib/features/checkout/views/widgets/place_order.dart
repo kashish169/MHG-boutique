@@ -41,16 +41,16 @@ class PlaceOrder extends StatelessWidget {
               width: 300,
               hasIcon: true,
               onPress: () {
-                checkoutController.createOrder(
-                    profileController.model.value!.name,
-                    profileController.model.value!.email,
-                    profileController.model.value!.street,
-                    profileController.model.value!.state,
-                    profileController.model.value!.zipCode,
-                    profileController.model.value!.countryName,
-                    coupon,
-                    paymentMethod,
-                    checkoutController.paymentMethod);
+                // checkoutController.createOrder(
+                //     profileController.model.value!.name,
+                //     profileController.model.value!.email,
+                //     profileController.model.value!.street,
+                //     profileController.model.value!.state,
+                //     profileController.model.value!.zipCode,
+                //     profileController.model.value!.countryName,
+                //     // coupon,
+                //     // paymentMethod,
+                //     checkoutController.paymentMethod);
               }),
           const SizedBox(height: 15),
         ],

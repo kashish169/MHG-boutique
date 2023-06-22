@@ -55,6 +55,7 @@ class ProductModel {
   dynamic shopifyVendor;
   dynamic weight;
   dynamic weightUnit;
+  bool isLoading;
 
   ProductModel({
     required this.id,
@@ -113,6 +114,7 @@ class ProductModel {
     required this.shopifyVendor,
     required this.weight,
     required this.weightUnit,
+    this.isLoading = false,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
