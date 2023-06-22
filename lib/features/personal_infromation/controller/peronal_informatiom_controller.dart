@@ -46,7 +46,7 @@ class PersonalInformationController extends GetxController {
   bool iserror = false;
   RxString countryCode = '+971'.obs;
   RxString countryFlag = AppAssets.flag.obs;
-  int countryId = 0;
+  RxInt countryId = 0.obs;
 
   @override
   void onInit() {
@@ -62,11 +62,19 @@ class PersonalInformationController extends GetxController {
     state.text = profileInfo.state ?? 'Add your state';
     address.text = profileInfo.street ?? 'Add your street address';
     zipCode.text = profileInfo.zipCode ?? 'Add your  zip code';
+    
     super.onInit();
   }
 
   setCountry(val) {
     selectedCountry = val;
+ 
+   countryId(countriesModel.data!.firstWhere(
+      (element) {
+        return element.name == val;
+      },
+    ).id);
+ 
     update();
   }
 
@@ -85,6 +93,7 @@ class PersonalInformationController extends GetxController {
           number: countryCode + phone.text,
           state: state.text,
           zipCode: zipCode.text,
+          countryId: countryId.value,
         ),
       );
       Either<Failure, ApiResponse> results = await personalRepo.updateData(

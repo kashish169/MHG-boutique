@@ -80,7 +80,7 @@ class ProfileInfoModal {
   String? state;
   String? zipCode;
   String? countryName;
-  CountryModal? country;
+  Country? country;
 
   factory ProfileInfoModal.fromJson(Map<String, dynamic> json) =>
       ProfileInfoModal(
@@ -120,9 +120,9 @@ class ProfileInfoModal {
         state: json['state'],
         zipCode: json['zip_code'],
         countryName: json['country_name'],
-       /*  country: CountryModal.fromJson(
+         country: Country.fromJson(
           json['country'],
-        ), */
+        ), 
       );
 }
 
