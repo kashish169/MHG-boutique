@@ -34,6 +34,7 @@ class HomeController extends GetxController {
   RxList<RecentSearchModel> recentSearchList = <RecentSearchModel>[].obs;
   RxString middleSectionMainImage = ''.obs;
   RxString middleSectionMainTitle = ''.obs;
+  int? middleSectionMainBrandId;
 
   updateList(List<ProductModel> model, bool fromArrival) {
     for (int i = 0; i < model.length; i++) {
@@ -72,9 +73,12 @@ class HomeController extends GetxController {
             footerSlider.value = data.footerSliders;
             recentSearchList.value = data.recentSearch.reversed.toList();
             middleSectionList.value = data.middleSections;
-            middleSectionMainImage.value = middleSectionList.first.imageLink;
-            middleSectionMainTitle.value = middleSectionList.first.enTitle;
-            middleSectionList.removeAt(0);
+            if (middleSectionList.isNotEmpty) {
+              middleSectionMainImage.value = middleSectionList.first.imageLink;
+              middleSectionMainTitle.value = middleSectionList.first.enTitle;
+              middleSectionMainBrandId = middleSectionList.first.brandId;
+              middleSectionList.removeAt(0);
+            }
           } else {
             AppToasts.errorToast(message);
           }

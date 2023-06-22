@@ -4,8 +4,6 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/products_page/controller/product_controller.dart';
 import 'package:mhg/features/products_page/view/widgets/product_category_item.dart';
 import 'package:mhg/widgets/three_bounce_loading.dart';
-
-import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
 
 class ProductsCategoriesListView extends StatelessWidget {
@@ -15,13 +13,15 @@ class ProductsCategoriesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetX<ProductsController>(builder: (controller) {
       if (controller.isLoadingCategories.isTrue) {
-        return const Padding(
-          padding: EdgeInsets.all(8.0),
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Center(
             child: SizedBox(
               height: 25,
               width: 25,
-              child: LoadingWidget(),
+              child: LoadingThreeBounce(
+                color: AppColors.primary,
+              ),
             ),
           ),
         );

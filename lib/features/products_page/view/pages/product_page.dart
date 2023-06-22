@@ -26,7 +26,8 @@ class ProductsPage extends StatelessWidget {
           const ProductsCategoriesListView(),
           Expanded(
             child: GetX<ProductsController>(builder: (controller) {
-              if (controller.isLoading.isTrue) {
+              if (controller.isLoading.isTrue ||
+                  controller.isLoadingCategories.isTrue) {
                 return const LoadingWidget();
               } else if (controller.isError.isTrue) {
                 return RetryButton(onTap: () {
