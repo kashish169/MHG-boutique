@@ -130,20 +130,38 @@ class ProductCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 10),
-                      Expanded(
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            'Dhs. ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  fontWeight: FontWeight.bold,
+                      double.parse(
+                                isWishList == false
+                                    ? model!.discount
+                                    : wishListModel!.discount.toString(),
+                              ).round() ==
+                              0
+                          ? FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                'Dhs. ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            )
+                          : Expanded(
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  'Dhs. ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                 ),
-                          ),
-                        ),
-                      ),
+                              ),
+                            ),
                     ],
                   ),
                 ),

@@ -13,9 +13,12 @@ class HomeBrandCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Get.toNamed(
-        //   ProductsPage.routeName,
-        // );
+        Get.toNamed(
+          ProductsPage.routeName,
+          arguments: {
+            'brandId': model.id,
+          },
+        );
       },
       child: Container(
         decoration: BoxDecoration(

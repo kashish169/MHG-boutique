@@ -26,7 +26,12 @@ class CategoryListTile extends StatelessWidget {
         }
         if (model.allActiveSubMenus.isEmpty) {
           log(model.categoryId.toString());
-          Get.toNamed(ProductsPage.routeName, arguments: model.categoryId);
+          Get.toNamed(
+            ProductsPage.routeName,
+            arguments: {
+              "categoryId": model.categoryId,
+            },
+          );
         } else {
           Navigator.pushNamed(context, SubCategoriesPage.routeName,
               arguments: [model.allActiveSubMenus, model.enName]);

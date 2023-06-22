@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:mhg/app/app.dart';
 import 'package:mhg/core/api/api.dart';
 import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/core/models/api_response.dart';
@@ -16,13 +15,23 @@ class ProductsRepoImplement implements ProductsRepository {
   }
 
   @override
-  Future<Either<Failure, ApiResponse>> getCategoryProduct({required String categoryId,required String page,String? search}) async => httpService.get(
-        url: search!=null ?'${Api.filterProduct}&categories[]=$categoryId&page=$page&search=$search':'${Api.filterProduct}&categories[]=$categoryId&page=$page',
+  Future<Either<Failure, ApiResponse>> getCategoryProduct(String query) async =>
+      httpService.get(
+        url: '${Api.filterProduct}$query',
         isAuthorized: true,
       );
+
   @override
-  Future<Either<Failure, ApiResponse>> getProductTags() async => httpService.get(
-    url: Api.productTags,
-    isAuthorized:true,
-  );
+  Future<Either<Failure, ApiResponse>> getProductTags() async =>
+      httpService.get(
+        url: Api.productTags,
+        isAuthorized: true,
+      );
+
+  @override
+  Future<Either<Failure, ApiResponse>> getBrandsCategories(int brandId) async =>
+      httpService.get(
+        url: "${Api.categoriesByBrand}?brand_id=$brandId",
+        isAuthorized: true,
+      );
 }

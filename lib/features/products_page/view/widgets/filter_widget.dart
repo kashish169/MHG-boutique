@@ -52,7 +52,6 @@ class FiltersWidget extends StatelessWidget {
           child: Obx(() => DropdownButtonHideUnderline(
                 child: DropdownButton2(
                   isDense: true,
-
                   style: Theme.of(context)
                       .textTheme
                       .displaySmall!
@@ -75,9 +74,8 @@ class FiltersWidget extends StatelessWidget {
                   onChanged: (newValue) {
                     controller.selectedScent.value = newValue!;
                     controller.resetPaginate();
-                    controller.searchWord=controller.selectedScent.value;
-                    controller.getProducts(
-                        Get.arguments,controller.searchWord );
+                    controller.searchWord = controller.selectedScent.value;
+                    controller.getProducts(controller.searchWord);
                     // print(controller.categoryValue.value);
                   },
                 ),

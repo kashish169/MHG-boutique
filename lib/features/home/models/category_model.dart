@@ -1,18 +1,17 @@
 class CategoryModel {
   int id;
   dynamic image;
-  String enName;
-  String frName;
+  dynamic enName;
+  dynamic frName;
   dynamic slug;
-  int isStatic;
-  String url;
-  int status;
+  dynamic isStatic;
+  dynamic url;
+  dynamic status;
   dynamic categoryId;
   dynamic parentId;
-  DateTime createdAt;
-  DateTime updatedAt;
+  dynamic createdAt;
+  dynamic updatedAt;
   dynamic imageLink;
-  List<dynamic> allActiveSubMenus;
 
   CategoryModel({
     required this.id,
@@ -28,7 +27,6 @@ class CategoryModel {
     required this.createdAt,
     required this.updatedAt,
     this.imageLink,
-    required this.allActiveSubMenus,
   });
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
@@ -45,7 +43,5 @@ class CategoryModel {
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         imageLink: json["image_link"],
-        allActiveSubMenus:
-            List<dynamic>.from(json["all_active_sub_menus"].map((x) => x)),
       );
 }

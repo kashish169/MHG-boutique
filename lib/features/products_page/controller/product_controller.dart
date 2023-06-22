@@ -9,6 +9,7 @@ import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/products_page/models/product_tag_model.dart';
 import 'package:mhg/features/products_page/repository/products_repo.dart';
 import 'package:mhg/features/products_page/repository/products_repo_impl.dart';
+import '../models/categories_brand_model.dart';
 
 class ProductsController extends GetxController {
   late ProductsRepository productsRepository;
@@ -18,6 +19,9 @@ class ProductsController extends GetxController {
   RxBool isError = false.obs;
   RxBool isFetching = false.obs;
   RxBool isEmpty = false.obs;
+  RxBool isLoadingCategories = false.obs;
+  RxBool isErrorCategories = false.obs;
+
   int page = 1;
   int last = 1000;
 
@@ -31,11 +35,19 @@ class ProductsController extends GetxController {
   RxString selectedSortBy = 'Featured'.obs;
   RxList sortByList = <String>['Featured'].obs;
   ScrollController scrollController = ScrollController();
-
+  int? brandId;
+  int? categoryId;
+  List<CategoryBrandModel> categoriesList = [];
+  RxInt selectedCategoryIndex = (-1).obs;
   @override
   Future<void> onInit() async {
-    log(Get.arguments.toString());
-    await getProducts(await Get.arguments, null);
+    var args = Get.arguments;
+    categoryId = args["categoryId"];
+    brandId = args["brandId"];
+    if (brandId != null) {
+      getCategoriesByBrandId();
+    }
+    await getProducts(null);
     getProductsTags();
     paginate();
     super.onInit();
@@ -58,13 +70,13 @@ class ProductsController extends GetxController {
         if (products.length < last) {
           log(products.length.toString());
           log(last.toString());
-          getProducts(Get.arguments, searchWord);
+          getProducts(searchWord);
         }
       }
     });
   }
 
-  Future<void> getProducts(int catId, String? search) async {
+  Future<void> getProducts(String? search) async {
     log("Search:$search");
     log("page:$page");
     try {
@@ -74,11 +86,19 @@ class ProductsController extends GetxController {
         isFetching.trigger(true);
       }
       isError(false);
+      var query = '&page=$page';
+      if (categoryId != null) {
+        query += "&categories[]=$categoryId";
+      }
+      if (brandId != null) {
+        query += "&brands[]=$brandId";
+      }
+      if (search != null) {
+        query += "&search=$search";
+      }
+      log("query $query");
       Either<Failure, ApiResponse> results =
-          await productsRepository.getCategoryProduct(
-              categoryId: catId.toString(),
-              page: page.toString(),
-              search: search);
+          await productsRepository.getCategoryProduct(query);
 
       if (page == 1 && search == null) {
         isLoading(false);
@@ -96,34 +116,27 @@ class ProductsController extends GetxController {
         (r) {
           var statusCode = r.object["code"];
           var message = r.object["message"];
-
           if (statusCode == 200) {
             var json = r.object["data"];
-            log(json.toString());
             last = r.object['data']["products"]['total'];
             products += List<ProductModel>.from(
                 json["products"]['data'].map((x) => ProductModel.fromJson(x)));
-            log("length of List ${products.length}");
-
-            // CategoriesModel.fromJson(r.object["data"]);
-            // var data = HomeModel.fromJson(json);
-            //
-            // categories = data.categories;
           } else {
             AppToasts.errorToast(message);
             if (page > 1) {
               page--;
             }
+            isError(true);
           }
         },
       );
     } catch (e, s) {
       log("$e $s");
+      isError(true);
     }
   }
 
   Future<void> getProductsTags() async {
-    // scentList.clear();
     log("product tags");
     try {
       isLoading(true);
@@ -143,19 +156,10 @@ class ProductsController extends GetxController {
         (r) {
           var statusCode = r.object["code"];
           var message = r.object["message"];
-
           if (statusCode == 200) {
             var json = r.object["data"];
-            log(json.toString());
-            log("length ${scentList.length}");
             scentList += List<ProductTagModel>.from(
                 json['productTags'].map((x) => ProductTagModel.fromJson(x)));
-            log("length ${scentList.length}");
-            // selectedScent.value=scentList[0].name;
-            // CategoriesModel.fromJson(r.object["data"]);
-            // var data = HomeModel.fromJson(json);
-            //
-            // categories = data.categories;
           } else {
             AppToasts.errorToast(message);
           }
@@ -163,6 +167,38 @@ class ProductsController extends GetxController {
       );
     } catch (e, s) {
       log("$e $s");
+    }
+  }
+
+  Future<void> getCategoriesByBrandId() async {
+    log("getCategoriesByBrandId");
+    try {
+      isLoadingCategories(true);
+      isErrorCategories(false);
+      Either<Failure, ApiResponse> results =
+          await productsRepository.getBrandsCategories(
+        brandId!,
+      );
+      isLoadingCategories(false);
+      results.fold(
+        (l) {
+          isErrorCategories(true);
+          AppToasts.errorToast(l.message);
+        },
+        (r) {
+          var statusCode = r.object["code"];
+          if (statusCode == 200) {
+            var json = r.object["data"];
+            categoriesList = List<CategoryBrandModel>.from(
+                json["categories"].map((x) => CategoryBrandModel.fromJson(x)));
+          } else {
+            isErrorCategories(true);
+          }
+        },
+      );
+    } catch (e, s) {
+      log("$e $s");
+      isErrorCategories(true);
     }
   }
 }
