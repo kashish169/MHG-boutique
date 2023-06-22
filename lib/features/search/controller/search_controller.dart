@@ -20,6 +20,8 @@ class SearchingController extends GetxController {
   @override
   void onInit() {
     paginate();
+    filterSearchForProduct();
+
     super.onInit();
   }
 
@@ -30,7 +32,7 @@ class SearchingController extends GetxController {
   RxBool isEmpty = false.obs;
 
   int last = 1000;
-  RxList<ProductModel> productList =<ProductModel> [].obs;
+  RxList<ProductModel> productList = <ProductModel>[].obs;
   List<SearchModel> serachResponsList = [];
   TextEditingController serach = TextEditingController();
   ScrollController scrollController = ScrollController();
@@ -39,16 +41,18 @@ class SearchingController extends GetxController {
     page = 1;
     last = 1000;
     isFetching.trigger(false);
-
     productList.clear();
   }
 
   Future<void> paginate() async {
     log("pagination .................................");
     scrollController.addListener(() {
-      if (scrollController.position.extentAfter<=600 &&productList.isNotEmpty&&isLoading.isFalse&&isFetching.isFalse) {
+      if (scrollController.position.extentAfter <= 600 &&
+          productList.isNotEmpty &&
+          isLoading.isFalse &&
+          isFetching.isFalse) {
         page++;
-     //   scrollController.animateTo(569, duration: const Duration(milliseconds: 1), curve: Curves.decelerate);
+        //   scrollController.animateTo(569, duration: const Duration(milliseconds: 1), curve: Curves.decelerate);
         if (productList.length < last) {
           log(productList.length.toString());
           log(last.toString());
@@ -59,13 +63,11 @@ class SearchingController extends GetxController {
   }
 
   Future<void> filterSearchForProduct() async {
-   log("called");
-    if(page==1){
+    log("called");
+    if (page == 1) {
       isLoading(true);
-    }else{
-
-        isFetching.trigger(true);
-
+    } else {
+      isFetching.trigger(true);
     }
 
     Either<Failure, ApiResponse> results = await searchRepo.filterProduct(
@@ -73,12 +75,10 @@ class SearchingController extends GetxController {
       serchingProduct: serach.text,
       page: page.toString(),
     );
-    if(page==1){
+    if (page == 1) {
       isLoading(false);
-    }else{
-
+    } else {
       isFetching.trigger(false);
-
     }
     results.fold(
       (l) {
@@ -98,7 +98,7 @@ class SearchingController extends GetxController {
           var json = r.object["data"];
           log('json $json');
           List products = json['products']['data'];
-          productList+= products.map((e) => ProductModel.fromJson(e)).toList();
+          productList += products.map((e) => ProductModel.fromJson(e)).toList();
           log(productList.length.toString());
         } else {
           if (page > 1) {
@@ -114,7 +114,6 @@ class SearchingController extends GetxController {
     productList.clear();
     isLoading(true);
     isError(false);
-
 
     Either<Failure, ApiResponse> results = await searchRepo.search(serach.text);
     isLoading(false);
@@ -133,7 +132,8 @@ class SearchingController extends GetxController {
           var json = r.object["data"];
           List products = json['products'];
 
-          productList.value = products.map((e) => ProductModel.fromJson(e)).toList();
+          productList.value =
+              products.map((e) => ProductModel.fromJson(e)).toList();
           print(productList.length);
         } else {
           AppToasts.errorToast(message);
