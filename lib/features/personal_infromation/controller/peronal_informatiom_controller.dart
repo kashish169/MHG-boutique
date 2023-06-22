@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/core/models/countries.dart';
+import 'package:mhg/core/models/countries_model.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/models/profle_info_model.dart';
 import '../../../app/app.dart';
@@ -24,26 +25,36 @@ class PersonalInformationController extends GetxController {
   }
   ProfileController profileController = Get.find();
   final formKey = GlobalKey<FormState>();
+  CountriesModel countriesModel = CountriesModel();
+  String selectedCountry = '';
   late ProfileInfoModal profileInfo;
   bool enableEditOnName = true;
   bool enableEditOnEmail = true;
   bool enableEditOnPassword = true;
   RxBool enableEditOnNumber = true.obs;
   bool enableEditOnAddress = true;
+  bool enableEditOnState = true;
+  bool enableEditOnZipCode = true;
   final TextEditingController name = TextEditingController();
   final TextEditingController email = TextEditingController();
   final TextEditingController phone = TextEditingController();
   final TextEditingController password = TextEditingController();
   final TextEditingController address = TextEditingController();
+  final TextEditingController state = TextEditingController();
+  final TextEditingController zipCode = TextEditingController();
   bool isLoading = false;
   bool deleteLoading = false;
   bool iserror = false;
   RxString countryCode = '+971'.obs;
   RxString countryFlag = AppAssets.flag.obs;
+  String userState = 'Add your state';
+  String userZipCode = 'Add your Zip Code';
+
   @override
   void onInit() {
+    getAllCountries();
     profileInfo = Get.arguments["profile"];
-    print(profileInfo.street);
+    print(profileInfo.number);
     name.text = profileInfo.name;
     email.text = profileInfo.email;
     if (profileInfo.number != null) {
@@ -52,14 +63,21 @@ class PersonalInformationController extends GetxController {
       phone.text == 'Add your Number';
     }
 
-    address.text = profileInfo.street ?? 'Add your address';
+    address.text = profileInfo.street ?? 'Add your street address';
     super.onInit();
+  }
+
+  setCountry(val) {
+    selectedCountry = val;
+    update();
   }
 
   updateInformation() async {
     var formState = formKey.currentState;
+
     if (formState!.validate()) {
       isLoading = true;
+
       update();
       var body = updateInfoModel(UpdateInfoModel(
           name: name.text,
@@ -117,6 +135,18 @@ class PersonalInformationController extends GetxController {
     update();
   }
 
+  enableState() {
+    enableEditOnState = !enableEditOnState;
+    userState = state.text;
+    update();
+  }
+
+  enableZipCode() {
+    enableEditOnZipCode = !enableEditOnZipCode;
+    userZipCode = zipCode.text;
+    update();
+  }
+
   seperatePhoneAndDialCode(String phoneWithDialCode) {
     Map<String, String> foundedCountry = {};
     for (var country in Countries.allCountries) {
@@ -161,5 +191,38 @@ class PersonalInformationController extends GetxController {
         AppToasts.errorToast(message);
       }
     });
+  }
+
+  Future<void> getAllCountries() async {
+    try {
+      isLoading = true;
+      update();
+      Either<Failure, ApiResponse> results = await personalRepo.getCountries();
+      isLoading = false;
+      update();
+      results.fold(
+        (l) {
+          showSnackBar(l.message);
+          log("GET COUNTRIES RESPONSE ERROR ${l.message}");
+        },
+        (r) {
+          var statusCode = r.object["code"];
+          var message = r.object["message"];
+          log("GET COUNTRIES RESPONSE STATUS $statusCode");
+
+          if (statusCode == 200) {
+            if (r.object["data"] != null) {
+              countriesModel = CountriesModel.fromJson(r.object);
+              setCountry(countriesModel.data![0].name);
+              update();
+            }
+          } else {
+            AppToasts.errorToast(message);
+          }
+        },
+      );
+    } catch (e, s) {
+      log("$e $s");
+    }
   }
 }

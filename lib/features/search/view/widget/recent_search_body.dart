@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/search/view/widget/search_recent_button.dart';
 import 'package:mhg/widgets/loading_widget.dart';
-
 import '../../../../constants/app_colors.dart';
 import '../../../home/view/widgets/product_card.dart';
 import '../../controller/search_controller.dart';

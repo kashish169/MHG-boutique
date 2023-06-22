@@ -4,9 +4,9 @@ class CartModel {
   int qty;
   String name;
   dynamic price;
-  int weight;
+  dynamic weight;
   Options options;
-  int taxRate;
+  dynamic taxRate;
   String instance;
   bool isDeleteItem;
   bool isLoadingQuantity;

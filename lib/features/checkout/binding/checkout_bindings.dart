@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/checkout/repository/checkout_repo_imp.dart';
+import 'package:mhg/features/personal_infromation/controller/peronal_informatiom_controller.dart';
 
 class CheckoutBinding extends Bindings {
   @override
@@ -11,5 +12,6 @@ class CheckoutBinding extends Bindings {
     Get.put(
       CheckoutRepoImplement(),
     );
+   
   }
 }

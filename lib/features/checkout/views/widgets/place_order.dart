@@ -7,13 +7,11 @@ class PlaceOrder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-        
           const SizedBox(height: 15),
           Text(
             'TOTAL',
@@ -22,16 +20,16 @@ class PlaceOrder extends StatelessWidget {
                   color: AppColors.label,
                 ),
           ),
-         Text(
-                '57.2',
-                style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      color: AppColors.mediumLabel,
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
-       
+          Text(
+            '57.2',
+            style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                  color: AppColors.mediumLabel,
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
           const SizedBox(height: 15),
-           PlaceOrderButton(title: 'Place Order', width: 300, hasIcon: true,),
+          PlaceOrderButton(
+              title: 'Place Order', width: 300, hasIcon: true, onPress: () {}),
           const SizedBox(height: 15),
         ],
       ),
