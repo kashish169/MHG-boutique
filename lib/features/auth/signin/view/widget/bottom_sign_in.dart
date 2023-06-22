@@ -48,7 +48,8 @@ class BottomSignIn extends StatelessWidget {
                         AppHelper.closeKeyboard();
                         String phoneNumber = controller.phone.text.trim();
                         Get.toNamed(
-                          VerificationPage.routeName,
+                          // VerificationPage.routeName,
+                          'otp',
                           arguments: {
                             "type": "signin",
                             "countryCode": controller.countryCode.value,

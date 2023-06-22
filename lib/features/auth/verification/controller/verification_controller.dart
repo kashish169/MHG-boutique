@@ -39,6 +39,9 @@ class VerificationController extends GetxController {
     log("countryCode ${countryCode.value}");
     log("PhoneNumber $phoneNumber");
     log("Type $type");
+    if (type == 'signin') {
+      sendOtpCode();
+    }
     super.onInit();
   }
 
@@ -106,7 +109,6 @@ class VerificationController extends GetxController {
         Get.back();
         Get.back();
         if (type == 'signin') {
-
         } else {
           signUpController.signUp();
         }
