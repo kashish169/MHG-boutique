@@ -1,6 +1,12 @@
+import 'dart:convert';
 import 'dart:developer';
+import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_toasts.dart';
+import 'package:mhg/core/models/api_response.dart';
+import 'package:mhg/core/models/failure.dart';
+import 'package:mhg/features/home/controller/home_controller.dart';
+import 'package:mhg/features/home/models/product_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../repository/main_wrapper_repo_impl.dart';
 import '../repository/main_wrapper_repository.dart';
@@ -13,6 +19,8 @@ class MainWrapperController extends GetxController {
   }
 
   RxInt navBarIndex = 0.obs;
+  RxBool isLoadingAdd = false.obs;
+  RxBool isErrorAdd = false.obs;
 
   Future<void> launchUrl(String url) async {
     try {
@@ -31,5 +39,70 @@ class MainWrapperController extends GetxController {
     void onInit() {
       super.onInit();
     }
+  }
+  Future<bool> addProductToCart({
+    required int productId,
+  }) async {
+    bool result = false;
+
+    try {
+      isLoadingAdd(true);
+      isErrorAdd(false);
+      Map<String, dynamic> body = {
+        "item_id": productId,
+        "qty": 1,
+      };
+      Either<Failure, ApiResponse> results =
+      await mainWrapperRepo.addProductToCart(
+        body: jsonEncode(body),
+      );
+      isLoadingAdd(false);
+      results.fold(
+            (l) {
+          AppToasts.errorToast(l.message);
+          log("ADD PRODUCT TO CART RESPONSE ERROR ${l.message}");
+          isErrorAdd(true);
+          result = false;
+        },
+            (r) {
+          var statusCode = r.object["code"];
+          var message = r.object["message"];
+          log("ADD PRODUCT TO CART CART RESPONSE STATUS $statusCode");
+          if (statusCode == 200) {
+            result = true;
+            bool fromArrival=false;
+            List<ProductModel> temp = Get.find<HomeController>().newArrivalsList;
+            for (int i = 0; i < temp.length; i++) {
+              if (temp[i].id == productId) {
+                temp[i].inCart = 1;
+                temp[i].cartQty=1;
+                fromArrival=true;
+              }
+            }
+            List<ProductModel>  temp2 = Get.find<HomeController>().topSellersList;
+            for (int i = 0; i < temp2.length; i++) {
+              if (temp2[i].id == productId) {
+                temp2[i].inCart = 1;
+                temp2[i].cartQty=1;
+                fromArrival=false;
+              }
+            }
+            Get.find<HomeController>().updateList(fromArrival==true?temp:temp2, fromArrival);
+            AppToasts.successToast(
+              "The product has been added to the bag",
+            );
+          } else {
+            result = false;
+            isErrorAdd(true);
+            AppToasts.errorToast(message);
+          }
+        },
+      );
+    } catch (e, s) {
+      log("$e $s");
+      isErrorAdd(true);
+      result = false;
+    }
+    return result;
   }
 }
