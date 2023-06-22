@@ -16,15 +16,23 @@ class UpdateInfoModel {
   String? image;
   String address;
   bool isOptional;
-  UpdateInfoModel(
-      {required this.name,
-      this.email,
-      required this.number,
-      this.gender,
-      this.notifyMe,
-      required this.address,
-      required this.isOptional,
-      this.image});
+  String? state;
+  int? countryId;
+  String? zipCode;
+  UpdateInfoModel({
+    required this.name,
+    this.email,
+    required this.number,
+    this.gender,
+    this.notifyMe,
+    required this.address,
+    required this.isOptional,
+    this.image,
+    this.state,
+    this.countryId,
+    this.zipCode,
+  });
+
   Map<String, dynamic> toJson() => isOptional
       ? {
           "name": name,
@@ -33,6 +41,8 @@ class UpdateInfoModel {
           // 'dob': dob,
           'notify_me': notifyMe,
           'street_address': address,
+          'state': state,
+          'zip_code': zipCode, 'country_id': countryId,
         }
       : {
           "name": name,
@@ -42,5 +52,7 @@ class UpdateInfoModel {
           // 'dob': dob,
           'notify_me': notifyMe,
           'street_address': address,
+          'state': state,
+          'zip_code': zipCode, 'country_id': countryId,
         };
 }

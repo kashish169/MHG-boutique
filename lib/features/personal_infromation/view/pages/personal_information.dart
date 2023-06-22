@@ -89,7 +89,8 @@ class PersonalInformation extends StatelessWidget {
                                   ),
                                   InformationForm(
                                     header: 'State',
-                                    hint: controller.userState,
+                                    hint: controller.profileInfo.state ??
+                                        'Add your state',
                                     validator: (val) {
                                       return AppHelper.validation(
                                           val!, 1, 500, '');
@@ -103,7 +104,8 @@ class PersonalInformation extends StatelessWidget {
                                   ),
                                   InformationForm(
                                     header: 'Zip Code',
-                                    hint: controller.userZipCode,
+                                    hint: controller.profileInfo.zipCode ??
+                                        'Add your zip code',
                                     onTap: () {
                                       controller.enableZipCode();
                                     },
@@ -135,6 +137,7 @@ class PersonalInformation extends StatelessWidget {
                                           isExpanded: true,
                                           value: controller.selectedCountry,
                                           onChanged: (value) {
+                                            
                                             controller.setCountry(value);
                                           },
                                           hint: Text(
@@ -244,8 +247,6 @@ class PersonalInformation extends StatelessWidget {
                                           },
                                         ),
                                       ),
-                                       SizedBox(
-                                        height: MediaQuery.of(context).size.height*0.5,)
                                     ],
                                   ),
                                 ],
@@ -269,6 +270,8 @@ class PersonalInformation extends StatelessWidget {
                             onTap: () {
                               deleteAccountDialog(
                                 context: context,
+                                message:
+                                    'Are you sure you want to delete this account ?',
                                 onConfirm: () {
                                   controller.deleteAccount();
                                 },

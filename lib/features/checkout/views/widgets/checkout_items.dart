@@ -1,22 +1,22 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/features/mycart/models/cart_model.dart';
+import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/features/mycart/view/widgets/my_cart_card.dart';
+import 'package:mhg/widgets/loading_widget.dart';
+import 'package:mhg/widgets/retry_button.dart';
 
 class CheckoutItems extends StatelessWidget {
-  const CheckoutItems({Key? key}) : super(key: key);
+  CheckoutItems({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.35,
-      width: MediaQuery.of(context).size.width,
-      child: ListTile(
-        title: Container(
-          margin: EdgeInsets.only(bottom: 15),
-          child: Text(
+    return Column(
+      children: [
+        ListTile(
+          title: Text(
             'Items',
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   fontSize: 16,
@@ -24,37 +24,44 @@ class CheckoutItems extends StatelessWidget {
                 ),
           ),
         ),
-        subtitle: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.3,
-          width: MediaQuery.of(context).size.width,
-          child: CustomScrollView(
-            slivers: [
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  childCount: 3,
-                  (context, index) => Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 8.0,
+        GetX<MyCartController>(
+          builder: (controller) {
+            if (controller.isLoading.isTrue) {
+              return const LoadingWidget();
+            } else if (controller.isError.isTrue) {
+              return RetryButton(onTap: () => controller.getCart());
+            }
+            return controller.cartItemsList.isEmpty
+                ? Center(
+                    child: Text(
+                      'Bag is empty!',
+                      style: Theme.of(context).textTheme.displaySmall,
                     ),
-                    child: MyCartCard(
-                      model: CartModel(
-                          rowId: "1",
-                          id: 1,
-                          qty: 5,
-                          name: "name",
-                          price: 5,
-                          weight: 5,
-                          options: Options(imageLink: ''),
-                          taxRate: 2,
-                          instance: "instance"),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+                  )
+                : Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Obx(
+                        () => ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: const EdgeInsets.all(18),
+                          itemCount: controller.cartItemsList.length,
+                          itemBuilder: (context, index) {
+                            return MyCartCard(
+                              model: controller.cartItemsList[index],
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(height: 9);
+                          },
+                        ),
+                      ),
+                    ],
+                  );
+          },
         ),
-      ),
+      ],
     );
   }
 }
