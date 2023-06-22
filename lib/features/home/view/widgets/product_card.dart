@@ -13,13 +13,16 @@ import '../../models/product_model.dart';
 class ProductCard extends StatelessWidget {
   final ProductModel? model;
   final bool isDetails;
+  final bool isSearch;
   final bool fromArrival;
   final bool? isWishList;
   final WishListModel? wishListModel;
+
   const ProductCard(
       {super.key,
       this.model,
       this.isDetails = false,
+      this.isSearch = false,
       this.fromArrival = false,
       this.wishListModel,
       this.isWishList = false});
@@ -169,10 +172,14 @@ class ProductCard extends StatelessWidget {
               ],
             ),
             FavouriteWidget(
-              from: isDetails == true ? 'productDetails' : 'home',
+              from: isSearch
+                  ? 'search'
+                  : isDetails == true
+                      ? 'productDetails'
+                      : 'home',
               itemId: isWishList == false ? model!.id : wishListModel!.id,
               inWishlist: isWishList == false ? model!.inWishlist : 1,
-              fromArrival: fromArrival,
+              fromArrival: false,
             ),
           ],
         ),
