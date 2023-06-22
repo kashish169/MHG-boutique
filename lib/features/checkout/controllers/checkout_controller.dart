@@ -6,6 +6,7 @@ import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/core/models/api_response.dart';
 import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/features/checkout/models/add_payment_methods_model.dart';
+import 'package:mhg/features/checkout/models/create_order_modal.dart';
 import 'package:mhg/features/checkout/models/order_price_model.dart';
 import 'package:mhg/features/checkout/models/payment_methods_model.dart';
 import 'package:mhg/features/checkout/models/remove_payment_method_model.dart';
@@ -31,6 +32,7 @@ class CheckoutController extends GetxController {
       RemovePaymentMethodsModel();
   SetDefaultPaymentMethodsModel setDefaultPaymentMethodsModel =
       SetDefaultPaymentMethodsModel();
+  CreateOrderModal createOrderModal = CreateOrderModal();
   OrderPriceModal orderPriceModal = OrderPriceModal();
   late final WebViewController webViewController;
   final ProfileController profileController = Get.find<ProfileController>();
@@ -251,6 +253,60 @@ class CheckoutController extends GetxController {
             if (r.object["data"] != null) {
               orderPriceModal = OrderPriceModal.fromJson(r.object);
               total(orderPriceModal.data!.grandTotal.toString());
+            }
+          } else {
+            AppToasts.errorToast(message);
+          }
+        },
+      );
+    } catch (e, s) {
+      log("$e $s");
+    }
+  }
+
+  createOrder(
+    billingName,
+    billingEmail,
+    billingStreet,
+    billingState,
+    billingZipCode,
+    billingCountry,
+    coupon,
+    paymentMethod,
+    onlinePaymentMethod,
+  ) async {
+    try {
+      isLoading(true);
+      isError(false);
+      Either<Failure, ApiResponse> results =
+          await checkoutRepository.createOrder(
+        billingName,
+        billingEmail,
+        billingStreet,
+        billingState,
+        billingZipCode,
+        billingCountry,
+        coupon,
+        paymentMethod,
+        onlinePaymentMethod,
+      );
+
+      isLoading(false);
+      results.fold(
+        (l) {
+          isError(true);
+          AppToasts.errorToast(l.message);
+
+          log("CREATE ORDER METHODS RESPONSE ERROR ${l.message}");
+        },
+        (r) {
+          var statusCode = r.object["code"];
+          var message = r.object["message"];
+          log("CREATE ORDER METHODS RESPONSE STATUS $statusCode");
+
+          if (statusCode == 200) {
+            if (r.object["data"] != null) {
+              createOrderModal = CreateOrderModal.fromJson(r.object);
             }
           } else {
             AppToasts.errorToast(message);
