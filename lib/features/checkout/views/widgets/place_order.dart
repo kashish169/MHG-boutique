@@ -49,63 +49,77 @@ class _PlaceOrderState extends State<PlaceOrder> {
                     ),
               )),
           const SizedBox(height: 15),
-                  checkoutController.paymentMethodsModel.data == null || checkoutController.paymentMethodsModel.data!.isEmpty ? SizedBox.shrink() : Text(
-            'Payment',
-            style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                  fontSize: 16,
-                  color: AppColors.label,
+          checkoutController.paymentMethodsModel.data == null ||
+                  checkoutController.paymentMethodsModel.data!.isEmpty
+              ? SizedBox.shrink()
+              : Text(
+                  'Payment',
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                        fontSize: 16,
+                        color: AppColors.label,
+                      ),
                 ),
-          ),
           const SizedBox(height: 15),
-         checkoutController.paymentMethodsModel.data == null || checkoutController.paymentMethodsModel.data!.isEmpty ? SizedBox.shrink() :  SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1,
-            child: ButtonBar(
-              children: [
-                Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    Text(
-                      "Cash On Delivery",
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 16,
-                            color: AppColors.label,
+          checkoutController.paymentMethodsModel.data == null ||
+                  checkoutController.paymentMethodsModel.data!.isEmpty
+              ? SizedBox.shrink()
+              : SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  child: ButtonBar(
+                    children: [
+                      Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          Text(
+                            "Cash On Delivery",
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                                  fontSize: 16,
+                                  color: AppColors.label,
+                                ),
                           ),
-                    ),
-                    Radio(
-                        value: "COD",
-                        groupValue: checkoutController.codOrCard.value,
-                        onChanged: (val) {
-                          checkoutController.codOrCard(val);
-                          setState(() {});
-                        }),
-                  ],
-                ),
-                Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    Text(
-                      checkoutController.paymentMethodsModel.data!
-                          .firstWhere((element) => element.isDefault == 0)
-                          .cardType!,
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 16,
-                            color: AppColors.label,
+                          Radio(
+                              value: "COD",
+                              groupValue: checkoutController.codOrCard.value,
+                              onChanged: (val) {
+                                checkoutController.codOrCard(val);
+                                setState(() {});
+                              }),
+                        ],
+                      ),
+                      Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          Text(
+                            checkoutController.paymentMethodsModel.data!
+                                .firstWhere((element) => element.isDefault == 0)
+                                .cardType!,
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                                  fontSize: 16,
+                                  color: AppColors.label,
+                                ),
                           ),
-                    ),
-                    Radio(
-                        value: checkoutController.paymentMethodsModel.data!
-                            .firstWhere((element) => element.isDefault == 0)
-                            .cardType!,
-                        groupValue: checkoutController.codOrCard.value,
-                        onChanged: (val) {
-                          checkoutController.codOrCard(val);
-                          setState(() {});
-                        }),
-                  ],
+                          Radio(
+                              value: checkoutController
+                                  .paymentMethodsModel.data!
+                                  .firstWhere(
+                                      (element) => element.isDefault == 0)
+                                  .cardType!,
+                              groupValue: checkoutController.codOrCard.value,
+                              onChanged: (val) {
+                                checkoutController.codOrCard(val);
+                                setState(() {});
+                              }),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-          ),
           const SizedBox(height: 15),
           Obx(
             () => (checkoutController.isLoadingCreateOrder.value == false &&

@@ -326,6 +326,7 @@ class CheckoutController extends GetxController {
   @override
   void onInit() {
     getAllPaymentMethods();
+    getAllPaymentMethods();
     super.onInit();
   }
 }
