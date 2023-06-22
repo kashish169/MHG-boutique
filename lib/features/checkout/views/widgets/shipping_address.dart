@@ -3,12 +3,20 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
+import '../../../../widgets/retry_button.dart';
 
 class ShippingAddress extends StatelessWidget {
   const ShippingAddress({super.key});
   @override
   Widget build(BuildContext context) {
     return GetX<ProfileController>(builder: (controller) {
+      if (controller.isError.isTrue) {
+        return RetryButton(
+          onTap: () {
+            controller.getProfileInfo();
+          },
+        );
+      }
       return InkWell(
         onTap: () async {
           await Get.toNamed("/personal_information", arguments: {

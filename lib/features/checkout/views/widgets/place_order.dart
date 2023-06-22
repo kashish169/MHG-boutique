@@ -138,40 +138,24 @@ class _PlaceOrderState extends State<PlaceOrder> {
                 ),
           const SizedBox(height: 15),
           Obx(
-            () => (checkoutController.isLoadingCreateOrder.value == false &&
-                    checkoutController.isErrorCreateOrder.value == false)
-                ? PlaceOrderButton(
-                    title: 'Place Order',
-                    width: 300,
-                    hasIcon: true,
-                    onPress: () {
-                      checkoutController.createOrder(
-                          profileController.model.value!.name,
-                          profileController.model.value!.email,
-                          profileController.model.value!.street,
-                          profileController.model.value!.state,
-                          profileController.model.value!.zipCode,
-                          profileController.model.value!.countryName,
-                          checkoutController.codeController.text,
-                          checkoutController.codOrCard.value,
-                          checkoutController.paymentMethod);
-                    },
-                  )
-                : (checkoutController.isLoadingCreateOrder.value == false &&
-                        checkoutController.isErrorCreateOrder.value == true)
-                    ? RetryButton(
-                        onTap: () => checkoutController.createOrder(
-                            profileController.model.value!.name,
-                            profileController.model.value!.email,
-                            profileController.model.value!.street,
-                            profileController.model.value!.state,
-                            profileController.model.value!.zipCode,
-                            profileController.model.value!.countryName,
-                            checkoutController.codeController.text,
-                            checkoutController.codOrCard.value,
-                            checkoutController.paymentMethod.value),
-                      )
-                    : LoadingWidget(),
+            () => PlaceOrderButton(
+              title: 'Place Order',
+              width: 300,
+              hasIcon: true,
+              isLoading: checkoutController.isLoadingCreateOrder.value,
+              onPress: () {
+                checkoutController.createOrder(
+                    profileController.model.value!.name,
+                    profileController.model.value!.email,
+                    profileController.model.value!.street,
+                    profileController.model.value!.state,
+                    profileController.model.value!.zipCode,
+                    profileController.model.value!.countryName,
+                    checkoutController.codeController.text,
+                    checkoutController.codOrCard.value,
+                    checkoutController.paymentMethod.value);
+              },
+            ),
           ),
           const SizedBox(height: 15),
         ],
