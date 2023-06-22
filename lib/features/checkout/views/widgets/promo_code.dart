@@ -63,7 +63,7 @@ class PromoCode extends StatelessWidget {
               Obx(
                 () => (checkoutController.isLoadingPromo.value == false &&
                         checkoutController.isErrorPromo.value == false)
-                    ? PlaceOrderButton(
+                    ? checkoutController.codeController.text.isEmpty ? SizedBox(width: MediaQuery.of(context).size.width*0.3,): PlaceOrderButton(
                         title: 'Apply',
                         width: MediaQuery.of(context).size.width * 0.3,
                         hasIcon: false,
