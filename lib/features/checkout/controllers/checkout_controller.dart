@@ -6,6 +6,7 @@ import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/core/models/api_response.dart';
 import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/features/checkout/models/add_payment_methods_model.dart';
+import 'package:mhg/features/checkout/models/order_price_model.dart';
 import 'package:mhg/features/checkout/models/payment_methods_model.dart';
 import 'package:mhg/features/checkout/models/remove_payment_method_model.dart';
 import 'package:mhg/features/checkout/models/set_default_payment_method_model.dart';
@@ -30,10 +31,13 @@ class CheckoutController extends GetxController {
       RemovePaymentMethodsModel();
   SetDefaultPaymentMethodsModel setDefaultPaymentMethodsModel =
       SetDefaultPaymentMethodsModel();
+  OrderPriceModal orderPriceModal = OrderPriceModal();
   late final WebViewController webViewController;
-   final ProfileController profileController = Get.find<ProfileController>();
+  final ProfileController profileController = Get.find<ProfileController>();
   RxBool isLoading = false.obs;
   RxBool isError = false.obs;
+  RxBool isLoadingPromo = false.obs;
+  RxBool isErrorPromo = false.obs;
   RxList<CartModel> cartItemsList = <CartModel>[].obs;
   RxDouble totalPrice = 0.0.obs;
   RxString cardType = ''.obs;
@@ -41,6 +45,7 @@ class CheckoutController extends GetxController {
   RxString shippingName = ''.obs;
   RxString paymentMethod = ''.obs;
   RxInt loadingPercentage = 0.obs;
+  RxString total = ''.obs;
 
   CheckoutController() {
     checkoutRepository = Get.find<CheckoutRepoImplement>();
@@ -123,11 +128,11 @@ class CheckoutController extends GetxController {
                       loadingPercentage(0);
                     },
                     onProgress: (progress) {
-                       print(progress);
+                      print(progress);
                       loadingPercentage(progress);
                     },
                     onPageFinished: (url) async {
-                       print(url);
+                      print(url);
                       loadingPercentage(100);
                     },
                   ),
@@ -211,6 +216,41 @@ class CheckoutController extends GetxController {
               paymentMethod(setDefaultPaymentMethodsModel.data!.id.toString());
 
               getAllPaymentMethods();
+            }
+          } else {
+            AppToasts.errorToast(message);
+          }
+        },
+      );
+    } catch (e, s) {
+      log("$e $s");
+    }
+  }
+
+  orderPrice(countryId, coupon) async {
+    try {
+      isLoadingPromo(true);
+      isErrorPromo(false);
+      Either<Failure, ApiResponse> results =
+          await checkoutRepository.orderPrice(countryId, coupon);
+      isLoadingPromo(false);
+
+      results.fold(
+        (l) {
+          isErrorPromo(true);
+
+          AppToasts.errorToast(l.message);
+          log("ORDER PRICE METHODS RESPONSE ERROR ${l.message}");
+        },
+        (r) {
+          var statusCode = r.object["code"];
+          var message = r.object["message"];
+          log("ORDER PRICE METHODS RESPONSE STATUS $statusCode");
+
+          if (statusCode == 200) {
+            if (r.object["data"] != null) {
+              orderPriceModal = OrderPriceModal.fromJson(r.object);
+              total(orderPriceModal.data!.grandTotal.toString());
             }
           } else {
             AppToasts.errorToast(message);

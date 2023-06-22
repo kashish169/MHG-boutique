@@ -22,6 +22,7 @@ class CheckoutPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.white2,
       appBar: customAppBar(context, title: 'Checkout'),
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           SizedBox(
