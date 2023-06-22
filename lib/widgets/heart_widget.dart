@@ -5,6 +5,7 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
+import 'package:mhg/features/products_page/controller/product_controller.dart';
 import 'package:mhg/features/search/controller/search_controller.dart';
 import 'package:mhg/widgets/three_bounce_loading.dart';
 
@@ -61,6 +62,10 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                     if (temp[i].id == widget.itemId!) {
                       temp[i].inWishlist = 0;
                     }
+                  }
+                  if (widget.from == 'product') {
+                    Get.find<ProductsController>()
+                        .updateList(temp, widget.fromArrival);
                   }
                   if (widget.from == 'search') {
                     Get.find<SearchingController>()
