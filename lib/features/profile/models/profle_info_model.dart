@@ -120,9 +120,11 @@ class ProfileInfoModal {
         state: json['state'],
         zipCode: json['zip_code'],
         countryName: json['country_name'],
-         country: Country.fromJson(
-          json['country'],
-        ), 
+        country: json['country'] == null
+            ? null
+            : Country.fromJson(
+                json['country'],
+              ),
       );
 }
 
