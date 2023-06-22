@@ -24,7 +24,7 @@ class RecentSearchBody extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const CustomSearchSection(title: " Recent Searaches"),
+          const CustomSearchSection(title: " Recent Searches"),
           const SizedBox(
             height: 5,
           ),
