@@ -50,6 +50,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
             }
             if (selectedIndex == 0) {
               Get.find<HomeController>().getHome();
+
             }
             if (selectedIndex == 2) {
               Get.find<WishListController>().getWishList();
