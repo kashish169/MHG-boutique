@@ -14,13 +14,13 @@ import 'place_order_button.dart';
 
 class PromoCode extends StatelessWidget {
   PromoCode({super.key});
-  final TextEditingController _codeController = TextEditingController();
+
   final CheckoutController checkoutController = Get.put(CheckoutController());
   final ProfileController controller = Get.find<ProfileController>();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.17,
+      height: MediaQuery.of(context).size.height * 0.19,
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
@@ -57,27 +57,31 @@ class PromoCode extends StatelessWidget {
                   inputType: TextInputType.text,
                   obscure: false,
                   hint: 'Enter Code Here',
-                  controller: _codeController,
+                  controller: checkoutController.codeController,
                 ),
               ),
               Obx(
                 () => (checkoutController.isLoadingPromo.value == false &&
                         checkoutController.isErrorPromo.value == false)
-                    ? PlaceOrderButton(
-                        title: 'Apply',
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        hasIcon: false,
-                        onPress: () {
-                          checkoutController.orderPrice(
-                              controller.model.value!.countryId,
-                              _codeController.text);
-                        })
+                    ? checkoutController.codeController.text.isEmpty
+                        ? SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.3,
+                          )
+                        : PlaceOrderButton(
+                            title: 'Apply',
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            hasIcon: false,
+                            onPress: () {
+                              checkoutController.orderPrice(
+                                  controller.model.value!.countryId,
+                                  checkoutController.codeController.text);
+                            })
                     : (checkoutController.isLoadingPromo.value == false &&
                             checkoutController.isErrorPromo.value == true)
                         ? RetryButton(
                             onTap: () => checkoutController.orderPrice(
                                 controller.model.value!.countryId,
-                                _codeController.text),
+                                checkoutController.codeController.text),
                           )
                         : LoadingWidget(),
               )
