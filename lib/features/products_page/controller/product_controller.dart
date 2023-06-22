@@ -35,8 +35,8 @@ class ProductsController extends GetxController {
   @override
   Future<void> onInit() async {
     log(Get.arguments.toString());
+    await getProducts(await Get.arguments, null);
     getProductsTags();
-    getProducts(await Get.arguments, null);
     paginate();
     super.onInit();
   }
@@ -71,9 +71,7 @@ class ProductsController extends GetxController {
       if (page == 1 && search == null) {
         isLoading(true);
       } else {
-        if (search != null) {
-          isFetching.trigger(true);
-        }
+        isFetching.trigger(true);
       }
       isError(false);
       Either<Failure, ApiResponse> results =
@@ -85,9 +83,7 @@ class ProductsController extends GetxController {
       if (page == 1 && search == null) {
         isLoading(false);
       } else {
-        if (search != null) {
-          isFetching.trigger(false);
-        }
+        isFetching.trigger(false);
       }
       results.fold(
         (l) {
@@ -108,6 +104,7 @@ class ProductsController extends GetxController {
             products += List<ProductModel>.from(
                 json["products"]['data'].map((x) => ProductModel.fromJson(x)));
             log("length of List ${products.length}");
+
             // CategoriesModel.fromJson(r.object["data"]);
             // var data = HomeModel.fromJson(json);
             //

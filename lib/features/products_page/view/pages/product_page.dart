@@ -30,56 +30,67 @@ class ProductsPage extends StatelessWidget {
             controller.paginate();
           });
         }
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const ProductsListView(),
-            const FiltersWidget(),
-            Obx(() => controller.isFetching.isTrue
-                ? const Center(child: CircularProgressIndicator())
-                : controller.products.isEmpty
-                    ? InkWell(
-                        onTap: () async {
-                          controller.searchWord = '';
-                          controller.selectedScent.value = '';
-                          await controller.getProducts(
-                              Get.arguments, controller.searchWord);
-                        },
-                        child: SizedBox(
-                          height: 200,
-                          child: Center(
-                            child: Text(
-                              "Nothing to show,Click to show all Products",
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.displayMedium,
+        return SingleChildScrollView(
+          controller: controller.scrollController,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const ProductsListView(),
+              const FiltersWidget(),
+              Obx(() => controller.isLoading.isTrue
+                  ? const Center(child: CircularProgressIndicator())
+                  : controller.products.isEmpty && controller.isFetching.isFalse
+                      ? InkWell(
+                          onTap: () async {
+                            controller.searchWord = '';
+                            controller.selectedScent.value = '';
+                            await controller.getProducts(
+                                Get.arguments, controller.searchWord);
+                          },
+                          child: SizedBox(
+                            height: 200,
+                            child: Center(
+                              child: Text(
+                                "Nothing to show,Click to show all Products",
+                                textAlign: TextAlign.center,
+                                style:
+                                    Theme.of(context).textTheme.displayMedium,
+                              ),
                             ),
                           ),
-                        ),
-                      )
-                    : RefreshIndicator(
-                        onRefresh: () async {
-                          controller.searchWord = '';
-                          controller.selectedScent.value = '';
-                          await controller.getProducts(
-                              Get.arguments, controller.searchWord);
-                        },
-                        child: DynamicHeightGridView(
-                          controller: controller.scrollController,
-                          // physics: const NeverScrollableScrollPhysics(),
-                          crossAxisCount: 2,
-                          shrinkWrap: true,
-                          mainAxisSpacing: 15,
-                          crossAxisSpacing: 5,
-                          itemCount: controller.products.length,
-                          builder: (ctx, index) {
-                            return Center(
-                                child: ProductCard(
-                              model: controller.products[index],
-                            ));
+                        )
+                      : RefreshIndicator(
+                          onRefresh: () async {
+                            controller.searchWord = '';
+                            controller.selectedScent.value = '';
+                            await controller.getProducts(
+                                Get.arguments, controller.searchWord);
                           },
-                        ),
-                      ))
-          ],
+                          child: DynamicHeightGridView(
+                            physics: const NeverScrollableScrollPhysics(),
+                            crossAxisCount: 2,
+                            shrinkWrap: true,
+                            mainAxisSpacing: 15,
+                            crossAxisSpacing: 5,
+                            itemCount: controller.products.length,
+                            builder: (ctx, index) {
+                              return Center(
+                                  child: ProductCard(
+                                model: controller.products[index],
+                              ));
+                            },
+                          ),
+                        )),
+              Obx(() => controller.isFetching.isTrue
+                  ? SizedBox(
+                      height: 50,
+                      child: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    )
+                  : const SizedBox())
+            ],
+          ),
         );
       }),
     );
