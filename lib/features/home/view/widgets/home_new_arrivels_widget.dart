@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/home/view/widgets/product_card.dart';
 import '../../../../widgets/view_all_button.dart';
+import '../../../allproducts/view/pages/all_products_page.dart';
 import '../../controller/home_controller.dart';
 
 class HomeNewArrivelsWidget extends StatelessWidget {
@@ -26,7 +27,11 @@ class HomeNewArrivelsWidget extends StatelessWidget {
                       ),
                 ),
               ),
-              ViewAllButton(onTap: () {}),
+              ViewAllButton(onTap: () {
+                Get.to(() => AllProductsPage(
+                      products: controller.newArrivalsList,
+                    ));
+              }),
             ],
           ),
         ),
