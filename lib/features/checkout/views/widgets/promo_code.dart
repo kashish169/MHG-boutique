@@ -1,15 +1,22 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
+import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
+import 'package:mhg/widgets/loading_widget.dart';
+import 'package:mhg/widgets/retry_button.dart';
 
 import 'place_order_button.dart';
 
 class PromoCode extends StatelessWidget {
-  const PromoCode({super.key});
-
+  PromoCode({super.key});
+  final TextEditingController _codeController = TextEditingController();
+  final CheckoutController checkoutController = Get.put(CheckoutController());
+  final ProfileController controller = Get.find<ProfileController>();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -50,15 +57,30 @@ class PromoCode extends StatelessWidget {
                   inputType: TextInputType.text,
                   obscure: false,
                   hint: 'Enter Code Here',
+                  controller: _codeController,
                 ),
               ),
-             
-              PlaceOrderButton(
-                title: 'Apply',
-                width: MediaQuery.of(context).size.width * 0.3,
-                hasIcon: false,
-                 onPress: (){}
-              ),
+              Obx(
+                () => (checkoutController.isLoadingPromo.value == false &&
+                        checkoutController.isErrorPromo.value == false)
+                    ? PlaceOrderButton(
+                        title: 'Apply',
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        hasIcon: false,
+                        onPress: () {
+                          checkoutController.orderPrice(
+                              controller.model.value!.countryId,
+                              _codeController.text);
+                        })
+                    : (checkoutController.isLoadingPromo.value == false &&
+                            checkoutController.isErrorPromo.value == true)
+                        ? RetryButton(
+                            onTap: () => checkoutController.orderPrice(
+                                controller.model.value!.countryId,
+                                _codeController.text),
+                          )
+                        : LoadingWidget(),
+              )
             ],
           ),
         ],

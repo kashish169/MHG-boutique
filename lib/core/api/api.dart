@@ -41,6 +41,6 @@ class Api {
   static String addPaymentMethod = "/api/v1/payment/tap/new-method-link";
   static String removePaymentMethod = "/api/v1/payment/tap/remove-method";
   static String setDefaultPaymentMethod = '/api/v1/payment/tap/set-default';
-
+  static String orderPrice = '/api/v1/order/order-price';
   static String categoriesByBrand = "/api/v1/category/brand";
 }

@@ -45,4 +45,11 @@ class CheckoutRepoImplement implements CheckoutRepository {
         isAuthorized: App.token.isEmpty ? false : true,
         body: json.encode({"payment_method": id}),
       );
+      
+        @override
+        Future<Either<Failure, ApiResponse>> orderPrice(countryId, coupon) async =>
+      httpService.get(
+        url: '${Api.orderPrice}?country=$countryId&coupon=$coupon',
+        isAuthorized: App.token.isEmpty ? false : true,
+      );
 }

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/checkout/views/widgets/place_order_button.dart';
 import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 
 class PlaceOrder extends StatelessWidget {
   PlaceOrder({super.key});
   final controller = Get.find<MyCartController>();
+  final CheckoutController checkoutController = Get.put(CheckoutController());
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,7 +25,9 @@ class PlaceOrder extends StatelessWidget {
                 ),
           ),
           Obx(() => Text(
-                '\$${controller.totalPrice.value}',
+                checkoutController.total.value != ''
+                    ? '\$${checkoutController.total.value}'
+                    : '\$${controller.totalPrice.value}',
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
                       color: AppColors.mediumLabel,
                       fontWeight: FontWeight.bold,
