@@ -5,7 +5,9 @@ import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
 import 'package:mhg/features/product_details/controller/product_details_controller.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
+import 'package:mhg/features/product_details/view/widgets/product_details_counter_widget.dart';
 import 'package:mhg/widgets/net_image.dart';
+import 'package:mhg/widgets/product_counter.dart';
 import '../../../../widgets/heart_widget.dart';
 import '../../../../widgets/rating_widget.dart';
 import '../../models/product_model.dart';
@@ -171,6 +173,13 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
+                StatefulBuilder(builder: (context, setState) {
+                  return model?.inCart == 1
+                      ? ProductCounter(
+                    model: model!,
+                  )
+                      : const SizedBox();
+                }),
               ],
             ),
             FavouriteWidget(
