@@ -6,6 +6,7 @@ import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/core/models/api_response.dart';
 import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/features/checkout/models/add_payment_methods_model.dart';
+import 'package:mhg/features/checkout/models/create_order_modal.dart';
 import 'package:mhg/features/checkout/models/order_price_model.dart';
 import 'package:mhg/features/checkout/models/payment_methods_model.dart';
 import 'package:mhg/features/checkout/models/remove_payment_method_model.dart';
@@ -31,6 +32,7 @@ class CheckoutController extends GetxController {
       RemovePaymentMethodsModel();
   SetDefaultPaymentMethodsModel setDefaultPaymentMethodsModel =
       SetDefaultPaymentMethodsModel();
+  CreateOrderModal createOrderModal = CreateOrderModal();
   OrderPriceModal orderPriceModal = OrderPriceModal();
   late final WebViewController webViewController;
   final ProfileController profileController = Get.find<ProfileController>();
