@@ -23,13 +23,13 @@ class PaymentMethodsModel {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add( Data.fromJson(v));
+        data!.add(new Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['isSuccessful'] = isSuccessful;
     data['hasContent'] = hasContent;
     data['code'] = code;
@@ -44,6 +44,7 @@ class PaymentMethodsModel {
 
 class Data {
   int? id;
+  int? isDefault;
   String? token;
   String? customerId;
   String? cardId;
@@ -60,6 +61,7 @@ class Data {
 
   Data(
       {this.id,
+      this.isDefault,
       this.token,
       this.customerId,
       this.cardId,
@@ -76,6 +78,7 @@ class Data {
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    isDefault = json['is_default'];
     token = json['token'];
     customerId = json['customer_id'];
     cardId = json['card_id'];
@@ -92,8 +95,9 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = id;
+    data['is_default'] = isDefault;
     data['token'] = token;
     data['customer_id'] = customerId;
     data['card_id'] = cardId;

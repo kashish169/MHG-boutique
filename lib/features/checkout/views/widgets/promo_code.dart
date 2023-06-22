@@ -14,7 +14,7 @@ import 'place_order_button.dart';
 
 class PromoCode extends StatelessWidget {
   PromoCode({super.key});
-  final TextEditingController _codeController = TextEditingController();
+  
   final CheckoutController checkoutController = Get.put(CheckoutController());
   final ProfileController controller = Get.find<ProfileController>();
   @override
@@ -57,7 +57,7 @@ class PromoCode extends StatelessWidget {
                   inputType: TextInputType.text,
                   obscure: false,
                   hint: 'Enter Code Here',
-                  controller: _codeController,
+                  controller: checkoutController.codeController,
                 ),
               ),
               Obx(
@@ -70,14 +70,14 @@ class PromoCode extends StatelessWidget {
                         onPress: () {
                           checkoutController.orderPrice(
                               controller.model.value!.countryId,
-                              _codeController.text);
+                              checkoutController.codeController.text);
                         })
                     : (checkoutController.isLoadingPromo.value == false &&
                             checkoutController.isErrorPromo.value == true)
                         ? RetryButton(
                             onTap: () => checkoutController.orderPrice(
                                 controller.model.value!.countryId,
-                                _codeController.text),
+                                checkoutController.codeController.text),
                           )
                         : LoadingWidget(),
               )

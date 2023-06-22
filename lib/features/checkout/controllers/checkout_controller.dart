@@ -35,11 +35,14 @@ class CheckoutController extends GetxController {
   CreateOrderModal createOrderModal = CreateOrderModal();
   OrderPriceModal orderPriceModal = OrderPriceModal();
   late final WebViewController webViewController;
+  final TextEditingController codeController = TextEditingController();
   final ProfileController profileController = Get.find<ProfileController>();
   RxBool isLoading = false.obs;
   RxBool isError = false.obs;
   RxBool isLoadingPromo = false.obs;
   RxBool isErrorPromo = false.obs;
+  RxBool isLoadingCreateOrder = false.obs;
+  RxBool isErrorCreateOrder = false.obs;
   RxList<CartModel> cartItemsList = <CartModel>[].obs;
   RxDouble totalPrice = 0.0.obs;
   RxString cardType = ''.obs;
@@ -48,6 +51,7 @@ class CheckoutController extends GetxController {
   RxString paymentMethod = ''.obs;
   RxInt loadingPercentage = 0.obs;
   RxString total = ''.obs;
+  RxString codOrCard = 'COD'.obs;
 
   CheckoutController() {
     checkoutRepository = Get.find<CheckoutRepoImplement>();
@@ -276,8 +280,8 @@ class CheckoutController extends GetxController {
     onlinePaymentMethod,
   ) async {
     try {
-      isLoading(true);
-      isError(false);
+      isLoadingCreateOrder(true);
+      isErrorCreateOrder(false);
       Either<Failure, ApiResponse> results =
           await checkoutRepository.createOrder(
         billingName,
@@ -291,10 +295,10 @@ class CheckoutController extends GetxController {
         onlinePaymentMethod,
       );
 
-      isLoading(false);
+      isLoadingCreateOrder(false);
       results.fold(
         (l) {
-          isError(true);
+          isErrorCreateOrder(true);
           AppToasts.errorToast(l.message);
 
           log("CREATE ORDER METHODS RESPONSE ERROR ${l.message}");
@@ -307,6 +311,7 @@ class CheckoutController extends GetxController {
           if (statusCode == 200) {
             if (r.object["data"] != null) {
               createOrderModal = CreateOrderModal.fromJson(r.object);
+              print(createOrderModal.data!.userId);
             }
           } else {
             AppToasts.errorToast(message);
