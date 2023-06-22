@@ -10,7 +10,12 @@ import '../../../mycart/controller/my_cart_controller.dart';
 
 class WishListCounterrWidget extends StatefulWidget {
   final WishListModel model;
-  const WishListCounterrWidget({super.key, required this.model});
+  final bool fromSearch;
+  const WishListCounterrWidget({
+    super.key,
+    required this.model,
+    this.fromSearch = false,
+  });
 
   @override
   State<WishListCounterrWidget> createState() => _WishListCounterrWidgetState();
@@ -27,6 +32,8 @@ class _WishListCounterrWidgetState extends State<WishListCounterrWidget> {
         countColor: AppColors.mediumLabel,
         buttonColor: AppColors.mediumLabel,
         count: widget.model.options.cartQuantity,
+        circleSize: widget.fromSearch == true ? 35 : 18,
+        iconSize: widget.fromSearch == true ? 25 : 15,
         onIncrease: (value) async {
           widget.model.isAddToBag = true;
           if (mounted) setState(() {});
@@ -36,24 +43,27 @@ class _WishListCounterrWidgetState extends State<WishListCounterrWidget> {
           );
           if (result == true) {
             widget.model.options.cartQuantity = value;
-            bool fromArrival=false;
-            List<ProductModel> temp = Get.find<HomeController>().newArrivalsList;
+            bool fromArrival = false;
+            List<ProductModel> temp =
+                Get.find<HomeController>().newArrivalsList;
             for (int i = 0; i < temp.length; i++) {
               if (temp[i].id == widget.model.id!) {
                 temp[i].inCart = 1;
-                temp[i].cartQty=value;
-                fromArrival=true;
+                temp[i].cartQty = value;
+                fromArrival = true;
               }
             }
-            List<ProductModel>  temp2 = Get.find<HomeController>().topSellersList;
+            List<ProductModel> temp2 =
+                Get.find<HomeController>().topSellersList;
             for (int i = 0; i < temp2.length; i++) {
               if (temp2[i].id == widget.model.id!) {
                 temp2[i].inCart = 1;
-                temp2[i].cartQty=value;
-                fromArrival=false;
+                temp2[i].cartQty = value;
+                fromArrival = false;
               }
             }
-            Get.find<HomeController>().updateList(fromArrival==true?temp:temp2, fromArrival);
+            Get.find<HomeController>()
+                .updateList(fromArrival == true ? temp : temp2, fromArrival);
           }
           widget.model.isAddToBag = false;
           if (mounted) setState(() {});
@@ -67,24 +77,27 @@ class _WishListCounterrWidgetState extends State<WishListCounterrWidget> {
           );
           if (result == true) {
             widget.model.options.cartQuantity = value;
-            bool fromArrival=false;
-            List<ProductModel> temp = Get.find<HomeController>().newArrivalsList;
+            bool fromArrival = false;
+            List<ProductModel> temp =
+                Get.find<HomeController>().newArrivalsList;
             for (int i = 0; i < temp.length; i++) {
               if (temp[i].id == widget.model.id!) {
                 temp[i].inCart = 1;
-                temp[i].cartQty=value;
-                fromArrival=true;
+                temp[i].cartQty = value;
+                fromArrival = true;
               }
             }
-            List<ProductModel>  temp2 = Get.find<HomeController>().topSellersList;
+            List<ProductModel> temp2 =
+                Get.find<HomeController>().topSellersList;
             for (int i = 0; i < temp2.length; i++) {
               if (temp2[i].id == widget.model.id!) {
                 temp2[i].inCart = 1;
-                temp2[i].cartQty=value;
-                fromArrival=false;
+                temp2[i].cartQty = value;
+                fromArrival = false;
               }
             }
-            Get.find<HomeController>().updateList(fromArrival==true?temp:temp2, fromArrival);
+            Get.find<HomeController>()
+                .updateList(fromArrival == true ? temp : temp2, fromArrival);
           }
           widget.model.isAddToBag = false;
           if (mounted) setState(() {});

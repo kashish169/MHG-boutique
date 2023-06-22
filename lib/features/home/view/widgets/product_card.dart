@@ -4,6 +4,7 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/mainwrapper/controller/main_wrapper_controller.dart';
 import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
+import 'package:mhg/features/my_wish_list/view/widget/wish_list_counter.dart';
 import 'package:mhg/features/product_details/controller/product_details_controller.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/features/product_details/view/widgets/product_details_counter_widget.dart';
@@ -181,31 +182,55 @@ class ProductCard extends StatelessWidget {
                       ? ProductCounter(
                           model: model!,
                         )
-                      : Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: PrimaryButton(
-                            fontSize: 16,
-                            height: 35,
-                            title: 'Add to Bag',
-                            isLoading: model?.isLoading ?? false,
-                            color: AppColors.secondary,
-                            onTap: () async {
-                              model!.isLoading = true;
-                              setState(() {});
-                              var result = await controller.addProductToCart(
-                                productId: model!.id,
-                              );
-                              model!.isLoading = false;
-                              if (result) {
-                                model!.inCart = 1;
-                                model!.cartQty = 1;
-                                setState(() {});
-                              }
-                            },
-                            width: double.infinity,
-                            elevation: 0,
-                          ),
-                        );
+                      : wishListModel?.options.inCart == 1
+                          ? Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: WishListCounterrWidget(
+                                model: wishListModel!,
+                                fromSearch: true,
+                              ),
+                            )
+                          : Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: PrimaryButton(
+                                fontSize: 16,
+                                height: 35,
+                                title: 'Add to Bag',
+                                isLoading: model?.isLoading ??
+                                    wishListModel!.isAddToBag,
+                                color: AppColors.secondary,
+                                onTap: () async {
+                                  if (wishListModel != null) {
+                                    wishListModel?.isAddToBag = true;
+                                  } else {
+                                    model!.isLoading = true;
+                                  }
+                                  setState(() {});
+                                  var result =
+                                      await controller.addProductToCart(
+                                    productId: model?.id ?? wishListModel!.id,
+                                  );
+                                  if (wishListModel != null) {
+                                    wishListModel?.isAddToBag = false;
+                                  } else {
+                                    model!.isLoading = false;
+                                  }
+                                  if (result) {
+                                    if (wishListModel != null) {
+                                      wishListModel?.options.inCart = 1;
+                                      wishListModel?.options.cartQuantity = 1;
+                                    } else {
+                                      model!.inCart = 1;
+                                      model!.cartQty = 1;
+                                    }
+                                    setState(() {});
+                                  }
+                                },
+                                width: double.infinity,
+                                elevation: 0,
+                              ),
+                            );
                 }),
               ],
             ),
