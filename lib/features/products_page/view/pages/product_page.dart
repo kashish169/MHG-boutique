@@ -39,50 +39,57 @@ class ProductsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const FiltersWidget(),
-                  controller.isLoadingList.isTrue?
-                      const Center(child: CircularProgressIndicator(),):
-                  Expanded(
-                    child: controller.isLoading.isTrue
-                        ? const Center(child: CircularProgressIndicator())
-                        : RefreshIndicator(
-                            onRefresh: () async {
-                              controller.searchWord = '';
-                              controller.selectedScent.value = '';
-                              controller.resetPaginate();
-                              await controller.getProducts(
-                                controller.searchWord,
-                              );
-                            },
-                            child: controller.products.isEmpty&&controller.isLoading.isFalse&&controller.isFetching.isFalse
-                                ? Center(
-                                    child: Text(
-                                      'No Results!',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .displaySmall,
-                                    ),
-                                  )
-                                : DynamicGridView(
-                                    padding: const EdgeInsetsDirectional.only(
-                                      start: 10,
-                                      top: 10,
-                                      bottom: 15,
-                                    ),
-                                    controller: controller.scrollController,
-                                    crossAxisCount: 2,
-                                    shrinkWrap: true,
-                                    mainAxisSpacing: 15,
-                                    crossAxisSpacing: 5,
-                                    itemCount: controller.products.length,
-                                    builder: (ctx, index) {
-                                      return Center(
-                                          child: ProductCard(
-                                        model: controller.products[index],
-                                      ));
-                                    },
-                                  ),
-                          ),
-                  ),
+                  controller.isLoadingList.isTrue
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : Expanded(
+                          child: controller.isLoading.isTrue
+                              ? const Center(child: CircularProgressIndicator())
+                              : RefreshIndicator(
+                                  onRefresh: () async {
+                                    controller.searchWord = '';
+                                    controller.selectedScent.value = '';
+                                    controller.resetPaginate();
+                                    await controller.getProducts(
+                                      controller.searchWord,
+                                    );
+                                  },
+                                  child: controller.products.isEmpty &&
+                                          controller.isLoading.isFalse &&
+                                          controller.isFetching.isFalse
+                                      ? Center(
+                                          child: Text(
+                                            'No Results!',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .displaySmall,
+                                          ),
+                                        )
+                                      : DynamicGridView(
+                                          padding:
+                                              const EdgeInsetsDirectional.only(
+                                            start: 10,
+                                            top: 10,
+                                            bottom: 15,
+                                          ),
+                                          controller:
+                                              controller.scrollController,
+                                          crossAxisCount: 2,
+                                          shrinkWrap: true,
+                                          mainAxisSpacing: 15,
+                                          crossAxisSpacing: 5,
+                                          itemCount: controller.products.length,
+                                          builder: (ctx, index) {
+                                            return Center(
+                                                child: ProductCard(
+                                              model: controller.products[index],
+                                              isProductPage: true,
+                                            ));
+                                          },
+                                        ),
+                                ),
+                        ),
                   Obx(() => controller.isFetching.isTrue
                       ? const SizedBox(
                           height: 50,

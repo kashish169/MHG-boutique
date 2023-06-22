@@ -46,11 +46,9 @@ class SearchingController extends GetxController {
   }
   updateList(List<ProductModel> model, bool fromArrival) {
     for (int i = 0; i < model.length; i++) {
-      if (fromArrival) {
+
         productList[i] = model[i];
-      } else {
-        productList[i] = model[i];
-      }
+
     }
   }
 
