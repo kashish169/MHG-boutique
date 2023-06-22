@@ -13,13 +13,16 @@ import '../../models/product_model.dart';
 class ProductCard extends StatelessWidget {
   final ProductModel? model;
   final bool isDetails;
+  final bool isSearch;
   final bool fromArrival;
   final bool? isWishList;
   final WishListModel? wishListModel;
+
   const ProductCard(
       {super.key,
       this.model,
       this.isDetails = false,
+      this.isSearch = false,
       this.fromArrival = false,
       this.wishListModel,
       this.isWishList = false});
@@ -130,20 +133,38 @@ class ProductCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 10),
-                      Expanded(
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            'Dhs. ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  fontWeight: FontWeight.bold,
+                      double.parse(
+                                isWishList == false
+                                    ? model!.discount
+                                    : wishListModel!.discount.toString(),
+                              ).round() ==
+                              0
+                          ? FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                'Dhs. ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            )
+                          : Expanded(
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  'Dhs. ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                 ),
-                          ),
-                        ),
-                      ),
+                              ),
+                            ),
                     ],
                   ),
                 ),
@@ -151,10 +172,14 @@ class ProductCard extends StatelessWidget {
               ],
             ),
             FavouriteWidget(
-              from: isDetails == true ? 'productDetails' : 'home',
+              from: isSearch
+                  ? 'search'
+                  : isDetails == true
+                      ? 'productDetails'
+                      : 'home',
               itemId: isWishList == false ? model!.id : wishListModel!.id,
               inWishlist: isWishList == false ? model!.inWishlist : 1,
-              fromArrival: fromArrival,
+              fromArrival: false,
             ),
           ],
         ),

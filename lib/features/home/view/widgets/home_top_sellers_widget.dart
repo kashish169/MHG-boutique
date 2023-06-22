@@ -11,6 +11,7 @@ class HomeTopSellersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsetsDirectional.only(start: 20),

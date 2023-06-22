@@ -1,23 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:mhg/features/products_page/view/widgets/product_label_item.dart';
-class ProductsListView extends StatelessWidget {
-  const ProductsListView({Key? key}) : super(key: key);
+import 'package:get/get.dart';
+import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/products_page/controller/product_controller.dart';
+import 'package:mhg/features/products_page/view/widgets/product_category_item.dart';
+import 'package:mhg/widgets/three_bounce_loading.dart';
+
+import '../../../../widgets/loading_widget.dart';
+import '../../../../widgets/retry_button.dart';
+
+class ProductsCategoriesListView extends StatelessWidget {
+  const ProductsCategoriesListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          const ProductLabelItem(title: 'Edge',),
-          const ProductLabelItem(title: 'Hilal',),
-          const  ProductLabelItem(title: 'Michael Crorner',),
-          const  ProductLabelItem(title: 'Rose Rossa',),
-          const ProductLabelItem(title: 'Wedding Moments',),
-
-
-        ],
-      ),
-    );
+    return GetX<ProductsController>(builder: (controller) {
+      if (controller.isLoadingCategories.isTrue) {
+        return const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Center(
+            child: SizedBox(
+              height: 25,
+              width: 25,
+              child: LoadingWidget(),
+            ),
+          ),
+        );
+      } else if (controller.isErrorCategories.isTrue) {
+        return RetryButton(onTap: () {
+          controller.getCategoriesByBrandId();
+        });
+      }
+      return Visibility(
+        visible: controller.categoriesList.isEmpty ? false : true,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              Obx(() => InkWell(
+                    onTap: () {
+                      controller.resetPaginate();
+                      controller.selectedCategoryIndex.value = (-1);
+                      controller.categoryId = null;
+                      controller.getProducts(null);
+                    },
+                    child: ProductCategoryItem(
+                      title: "ALL",
+                      color: controller.selectedCategoryIndex.value == (-1)
+                          ? AppColors.primary
+                          : Colors.white,
+                    ),
+                  )),
+              for (var index = 0;
+                  index < controller.categoriesList.length;
+                  index++)
+                InkWell(
+                  onTap: () {
+                    controller.resetPaginate();
+                    controller.selectedCategoryIndex.value = index;
+                    controller.categoryId = controller.categoriesList[index].id;
+                    controller.getProducts(null);
+                  },
+                  child: Obx(() => ProductCategoryItem(
+                        title: controller.categoriesList[index].enCategoryName,
+                        color: controller.selectedCategoryIndex.value == index
+                            ? AppColors.primary
+                            : Colors.white,
+                      )),
+                ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }

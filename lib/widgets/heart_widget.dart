@@ -5,8 +5,7 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
-import 'package:mhg/features/product_details/controller/product_details_controller.dart';
-import 'package:mhg/widgets/loading_widget.dart';
+import 'package:mhg/features/search/controller/search_controller.dart';
 import 'package:mhg/widgets/three_bounce_loading.dart';
 
 class FavouriteWidget extends StatefulWidget {
@@ -54,18 +53,21 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                 if (res == true) {
                   widget.inWishlist = 0;
                   setState(() {});
-                  if (widget.from == 'productDetails') {
-                    List<ProductModel> temp = widget.fromArrival
-                        ? Get.find<HomeController>().newArrivalsList
-                        : Get.find<HomeController>().topSellersList;
-                    for (int i = 0; i < temp.length; i++) {
-                      if (temp[i].id == widget.itemId!) {
-                        temp[i].inWishlist = 0;
-                      }
+
+                  List<ProductModel> temp = widget.fromArrival
+                      ? Get.find<HomeController>().newArrivalsList
+                      : Get.find<HomeController>().topSellersList;
+                  for (int i = 0; i < temp.length; i++) {
+                    if (temp[i].id == widget.itemId!) {
+                      temp[i].inWishlist = 0;
                     }
-                    Get.find<HomeController>()
+                  }
+                  if (widget.from == 'search') {
+                    Get.find<SearchingController>()
                         .updateList(temp, widget.fromArrival);
                   }
+                  Get.find<HomeController>()
+                      .updateList(temp, widget.fromArrival);
                 }
                 // if(res==true){
                 //   if(from=='home'){
@@ -82,18 +84,17 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                   widget.inWishlist = 1;
 
                   setState(() {});
-                  if (widget.from == 'productDetails') {
-                    List<ProductModel> temp = widget.fromArrival
-                        ? Get.find<HomeController>().newArrivalsList
-                        : Get.find<HomeController>().topSellersList;
-                    for (int i = 0; i < temp.length; i++) {
-                      if (temp[i].id == widget.itemId!) {
-                        temp[i].inWishlist = 1;
-                      }
+
+                  List<ProductModel> temp = widget.fromArrival
+                      ? Get.find<HomeController>().newArrivalsList
+                      : Get.find<HomeController>().topSellersList;
+                  for (int i = 0; i < temp.length; i++) {
+                    if (temp[i].id == widget.itemId!) {
+                      temp[i].inWishlist = 1;
                     }
-                    Get.find<HomeController>()
-                        .updateList(temp, widget.fromArrival);
                   }
+                  Get.find<HomeController>()
+                      .updateList(temp, widget.fromArrival);
                 }
                 // if(res==true){
                 //   if(from=='home'){

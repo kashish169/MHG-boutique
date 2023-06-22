@@ -1,4 +1,3 @@
-import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
@@ -9,6 +8,7 @@ import 'package:mhg/features/products_page/view/widgets/products_items_list_view
 import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
+import '../../../../widgets/dynamic_grid_view.dart';
 
 class ProductsPage extends StatelessWidget {
   static String routeName = '/products_page';
@@ -20,79 +20,83 @@ class ProductsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.white2,
       appBar: customAppBar(context, title: 'Products'),
-      body: GetX<ProductsController>(builder: (controller) {
-        if (controller.isLoading.isTrue) {
-          return const LoadingWidget();
-        } else if (controller.isError.isTrue) {
-          return RetryButton(onTap: () {
-            controller.getProductsTags();
-            controller.getProducts(Get.arguments, null);
-            controller.paginate();
-          });
-        }
-        return SingleChildScrollView(
-          controller: controller.scrollController,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const ProductsListView(),
-              const FiltersWidget(),
-              Obx(() => controller.isLoading.isTrue
-                  ? const Center(child: CircularProgressIndicator())
-                  : controller.products.isEmpty && controller.isFetching.isFalse
-                      ? InkWell(
-                          onTap: () async {
-                            controller.searchWord = '';
-                            controller.selectedScent.value = '';
-                            await controller.getProducts(
-                                Get.arguments, controller.searchWord);
-                          },
-                          child: SizedBox(
-                            height: 200,
-                            child: Center(
-                              child: Text(
-                                "Nothing to show,Click to show all Products",
-                                textAlign: TextAlign.center,
-                                style:
-                                    Theme.of(context).textTheme.displayMedium,
-                              ),
-                            ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const ProductsCategoriesListView(),
+          Expanded(
+            child: GetX<ProductsController>(builder: (controller) {
+              if (controller.isLoading.isTrue) {
+                return const LoadingWidget();
+              } else if (controller.isError.isTrue) {
+                return RetryButton(onTap: () {
+                  controller.getProductsTags();
+                  controller.getProducts('');
+                  controller.paginate();
+                });
+              }
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const FiltersWidget(),
+                  controller.isLoadingList.isTrue?
+                      const Center(child: CircularProgressIndicator(),):
+                  Expanded(
+                    child: controller.isLoading.isTrue
+                        ? const Center(child: CircularProgressIndicator())
+                        : RefreshIndicator(
+                            onRefresh: () async {
+                              controller.searchWord = '';
+                              controller.selectedScent.value = '';
+                              controller.resetPaginate();
+                              await controller.getProducts(
+                                controller.searchWord,
+                              );
+                            },
+                            child: controller.products.isEmpty&&controller.isLoading.isFalse&&controller.isFetching.isFalse
+                                ? Center(
+                                    child: Text(
+                                      'No Results!',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displaySmall,
+                                    ),
+                                  )
+                                : DynamicGridView(
+                                    padding: const EdgeInsetsDirectional.only(
+                                      start: 10,
+                                      top: 10,
+                                      bottom: 15,
+                                    ),
+                                    controller: controller.scrollController,
+                                    crossAxisCount: 2,
+                                    shrinkWrap: true,
+                                    mainAxisSpacing: 15,
+                                    crossAxisSpacing: 5,
+                                    itemCount: controller.products.length,
+                                    builder: (ctx, index) {
+                                      return Center(
+                                          child: ProductCard(
+                                        model: controller.products[index],
+                                      ));
+                                    },
+                                  ),
+                          ),
+                  ),
+                  Obx(() => controller.isFetching.isTrue
+                      ? const SizedBox(
+                          height: 50,
+                          child: Center(
+                            child: CircularProgressIndicator(),
                           ),
                         )
-                      : RefreshIndicator(
-                          onRefresh: () async {
-                            controller.searchWord = '';
-                            controller.selectedScent.value = '';
-                            await controller.getProducts(
-                                Get.arguments, controller.searchWord);
-                          },
-                          child: DynamicHeightGridView(
-                            physics: const NeverScrollableScrollPhysics(),
-                            crossAxisCount: 2,
-                            shrinkWrap: true,
-                            mainAxisSpacing: 15,
-                            crossAxisSpacing: 5,
-                            itemCount: controller.products.length,
-                            builder: (ctx, index) {
-                              return Center(
-                                  child: ProductCard(
-                                model: controller.products[index],
-                              ));
-                            },
-                          ),
-                        )),
-              Obx(() => controller.isFetching.isTrue
-                  ? SizedBox(
-                      height: 50,
-                      child: const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    )
-                  : const SizedBox())
-            ],
+                      : const SizedBox())
+                ],
+              );
+            }),
           ),
-        );
-      }),
+        ],
+      ),
     );
   }
 }

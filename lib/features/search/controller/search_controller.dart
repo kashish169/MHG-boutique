@@ -20,7 +20,7 @@ class SearchingController extends GetxController {
   @override
   void onInit() {
     paginate();
-    filterSearchForProduct();
+   // filterSearchForProduct();
 
     super.onInit();
   }
@@ -43,6 +43,15 @@ class SearchingController extends GetxController {
     last = 1000;
     isFetching.trigger(false);
     productList.clear();
+  }
+  updateList(List<ProductModel> model, bool fromArrival) {
+    for (int i = 0; i < model.length; i++) {
+      if (fromArrival) {
+        productList[i] = model[i];
+      } else {
+        productList[i] = model[i];
+      }
+    }
   }
 
   Future<void> paginate() async {
