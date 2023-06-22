@@ -36,6 +36,10 @@ class ProfileInfoModal {
     this.notifyMe,
     this.createdAt,
     this.updatedAt,
+    this.state,
+    this.zipCode,
+    this.countryName,
+    this.country,
     required this.qrLink,
     required this.imageLink,
   });
@@ -73,6 +77,10 @@ class ProfileInfoModal {
   String? nextTier;
   dynamic nextTierPts;
   dynamic nextTierPtsLeft;
+  String? state;
+  String? zipCode;
+  String? countryName;
+  CountryModal? country;
 
   factory ProfileInfoModal.fromJson(Map<String, dynamic> json) =>
       ProfileInfoModal(
@@ -109,5 +117,71 @@ class ProfileInfoModal {
         nextTier: json["next_tier"],
         nextTierPts: json["next_tier_pts"],
         nextTierPtsLeft: json["next_tier_pts_left"],
+        state: json['state'],
+        zipCode: json['zip_code'],
+        countryName: json['country_name'],
+       /*  country: CountryModal.fromJson(
+          json['country'],
+        ), */
       );
+}
+
+class CountryModal {
+  Country? country;
+
+  CountryModal({this.country});
+
+  CountryModal.fromJson(Map<String, dynamic> json) {
+    country =
+        json['country'] != null ? Country.fromJson(json['country']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (country != null) {
+      data['country'] = country!.toJson();
+    }
+    return data;
+  }
+}
+
+class Country {
+  int? id;
+  String? name;
+  String? flag;
+  int? currencyId;
+  String? createdAt;
+  String? updatedAt;
+  String? flagLink;
+
+  Country(
+      {this.id,
+      this.name,
+      this.flag,
+      this.currencyId,
+      this.createdAt,
+      this.updatedAt,
+      this.flagLink});
+
+  Country.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    flag = json['flag'];
+    currencyId = json['currency_id'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    flagLink = json['flag_link'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['flag'] = flag;
+    data['currency_id'] = currencyId;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['flag_link'] = flagLink;
+    return data;
+  }
 }

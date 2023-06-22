@@ -12,7 +12,6 @@ import 'package:mhg/features/checkout/models/set_default_payment_method_model.da
 import 'package:mhg/features/checkout/repository/checkout_repo.dart';
 import 'package:mhg/features/checkout/repository/checkout_repo_imp.dart';
 import 'package:mhg/features/mycart/models/cart_model.dart';
-import 'package:mhg/features/personal_infromation/controller/peronal_informatiom_controller.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
