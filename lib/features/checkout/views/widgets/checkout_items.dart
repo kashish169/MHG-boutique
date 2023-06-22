@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
@@ -9,14 +7,20 @@ import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 
 class CheckoutItems extends StatelessWidget {
-  CheckoutItems({Key? key}) : super(key: key);
+  const CheckoutItems({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ListTile(
-          title: Text(
+        Padding(
+          padding: const EdgeInsetsDirectional.only(
+            start: 20,
+            top: 16,
+            bottom: 10,
+          ),
+          child: Text(
             'Items',
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   fontSize: 16,

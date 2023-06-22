@@ -7,7 +7,7 @@ class CustomFormField extends StatelessWidget {
     this.prefixWidget,
     this.hint,
     this.controller,
-    required this.inputType,
+    this.inputType,
     required this.obscure,
     this.validator,
     this.isPadding,
@@ -27,7 +27,7 @@ class CustomFormField extends StatelessWidget {
   final Widget? prefixWidget;
   final String? hint;
   final TextEditingController? controller;
-  final TextInputType inputType;
+  final TextInputType? inputType;
   final bool obscure;
   final String? Function(String?)? validator;
   final bool? isPadding;

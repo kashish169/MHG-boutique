@@ -22,32 +22,27 @@ class CheckoutPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.white2,
       appBar: customAppBar(context, title: 'Checkout'),
-      resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.85,
-            width: MediaQuery.of(context).size.width,
-            child: ListView.separated(
-              itemBuilder: (context, index) {
-                return index == 0
-                    ? ShippingAddress()
-                    : index == 1
-                        ? PaymentMethod()
-                        : index == 2
-                            ? CheckoutItems()
-                            : index == 3
-                                ? PromoCode()
-                                : PlaceOrder();
-              },
-              separatorBuilder: (context, index) => Divider(
-                color: Colors.black,
-              ),
-              itemCount: 5,
-            ),
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ShippingAddress(),
+            divider(),
+            PaymentMethod(),
+            divider(),
+            CheckoutItems(),
+            divider(),
+            PromoCode(),
+            divider(),
+            PlaceOrder(),
+          ],
+        ),
       ),
     );
   }
+}
+
+Widget divider() {
+  return Divider(
+    color: AppColors.grey,
+  );
 }
