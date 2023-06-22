@@ -49,7 +49,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                     ),
               )),
           const SizedBox(height: 15),
-          Text(
+                  checkoutController.paymentMethodsModel.data == null || checkoutController.paymentMethodsModel.data!.isEmpty ? SizedBox.shrink() : Text(
             'Payment',
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   fontSize: 16,
@@ -57,7 +57,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                 ),
           ),
           const SizedBox(height: 15),
-          SizedBox(
+         checkoutController.paymentMethodsModel.data == null || checkoutController.paymentMethodsModel.data!.isEmpty ? SizedBox.shrink() :  SizedBox(
             height: MediaQuery.of(context).size.height * 0.1,
             child: ButtonBar(
               children: [
@@ -124,7 +124,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           profileController.model.value!.countryName,
                           checkoutController.codeController.text,
                           checkoutController.codOrCard.value,
-                          checkoutController.paymentMethod.value);
+                          checkoutController.paymentMethod);
                     },
                   )
                 : (checkoutController.isLoadingCreateOrder.value == false &&

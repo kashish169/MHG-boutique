@@ -280,6 +280,7 @@ class CheckoutController extends GetxController {
     onlinePaymentMethod,
   ) async {
     try {
+      print(paymentMethod);
       isLoadingCreateOrder(true);
       isErrorCreateOrder(false);
       Either<Failure, ApiResponse> results =
@@ -294,7 +295,7 @@ class CheckoutController extends GetxController {
         paymentMethod,
         onlinePaymentMethod,
       );
-
+      print(results);
       isLoadingCreateOrder(false);
       results.fold(
         (l) {
@@ -311,7 +312,6 @@ class CheckoutController extends GetxController {
           if (statusCode == 200) {
             if (r.object["data"] != null) {
               createOrderModal = CreateOrderModal.fromJson(r.object);
-              print(createOrderModal.data!.userId);
             }
           } else {
             AppToasts.errorToast(message);

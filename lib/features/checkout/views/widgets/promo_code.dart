@@ -14,7 +14,7 @@ import 'place_order_button.dart';
 
 class PromoCode extends StatelessWidget {
   PromoCode({super.key});
-  
+
   final CheckoutController checkoutController = Get.put(CheckoutController());
   final ProfileController controller = Get.find<ProfileController>();
   @override
@@ -63,15 +63,19 @@ class PromoCode extends StatelessWidget {
               Obx(
                 () => (checkoutController.isLoadingPromo.value == false &&
                         checkoutController.isErrorPromo.value == false)
-                    ? checkoutController.codeController.text.isEmpty ? SizedBox(width: MediaQuery.of(context).size.width*0.3,): PlaceOrderButton(
-                        title: 'Apply',
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        hasIcon: false,
-                        onPress: () {
-                          checkoutController.orderPrice(
-                              controller.model.value!.countryId,
-                              checkoutController.codeController.text);
-                        })
+                    ? checkoutController.codeController.text.isEmpty
+                        ? SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.3,
+                          )
+                        : PlaceOrderButton(
+                            title: 'Apply',
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            hasIcon: false,
+                            onPress: () {
+                              checkoutController.orderPrice(
+                                  controller.model.value!.countryId,
+                                  checkoutController.codeController.text);
+                            })
                     : (checkoutController.isLoadingPromo.value == false &&
                             checkoutController.isErrorPromo.value == true)
                         ? RetryButton(
