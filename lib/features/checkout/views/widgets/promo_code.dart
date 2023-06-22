@@ -58,16 +58,20 @@ class PromoCode extends StatelessWidget {
                   obscure: false,
                   hint: 'Enter Code Here',
                   controller: checkoutController.codeController,
+                  onChanged: (val) {
+                    checkoutController.codeController.text=val;
+                  },
                 ),
               ),
               Obx(
                 () => (checkoutController.isLoadingPromo.value == false &&
                         checkoutController.isErrorPromo.value == false)
-                    ? checkoutController.codeController.text.isEmpty
-                        ? SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.3,
-                          )
-                        : PlaceOrderButton(
+                    ? AbsorbPointer(
+                        absorbing:
+                            checkoutController.codeController.text.isEmpty
+                                ? true
+                                : false,
+                        child: PlaceOrderButton(
                             title: 'Apply',
                             width: MediaQuery.of(context).size.width * 0.3,
                             hasIcon: false,
@@ -75,7 +79,8 @@ class PromoCode extends StatelessWidget {
                               checkoutController.orderPrice(
                                   controller.model.value!.countryId,
                                   checkoutController.codeController.text);
-                            })
+                            }),
+                      )
                     : (checkoutController.isLoadingPromo.value == false &&
                             checkoutController.isErrorPromo.value == true)
                         ? RetryButton(
