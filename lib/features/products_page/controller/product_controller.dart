@@ -16,6 +16,7 @@ class ProductsController extends GetxController {
   RxList<ProductTagModel> scentList = <ProductTagModel>[].obs;
   RxString selectedScent = ''.obs;
   RxBool isLoading = false.obs;
+  RxBool isLoadingList = false.obs;
   RxBool isError = false.obs;
   RxBool isFetching = false.obs;
   RxBool isEmpty = false.obs;
@@ -44,11 +45,13 @@ class ProductsController extends GetxController {
     var args = Get.arguments;
     categoryId = args["categoryId"];
     brandId = args["brandId"];
+    await getProductsTags();
+    await getProducts(null);
     if (brandId != null) {
       getCategoriesByBrandId();
     }
-    await getProducts(null);
-    getProductsTags();
+
+
     paginate();
     super.onInit();
   }
@@ -58,6 +61,7 @@ class ProductsController extends GetxController {
     last = 1000;
     isFetching.trigger(false);
     isEmpty.trigger(false);
+
     products.clear();
   }
 
@@ -80,8 +84,8 @@ class ProductsController extends GetxController {
     log("Search:$search");
     log("page:$page");
     try {
-      if (page == 1 && search == null) {
-        isLoading(true);
+      if (page == 1 ) {
+        isLoadingList(true);
       } else {
         isFetching.trigger(true);
       }
@@ -100,8 +104,8 @@ class ProductsController extends GetxController {
       Either<Failure, ApiResponse> results =
           await productsRepository.getCategoryProduct(query);
 
-      if (page == 1 && search == null) {
-        isLoading(false);
+      if (page == 1 ) {
+        isLoadingList(false);
       } else {
         isFetching.trigger(false);
       }
@@ -139,13 +143,13 @@ class ProductsController extends GetxController {
   Future<void> getProductsTags() async {
     log("product tags");
     try {
-      isLoading(true);
+      isLoadingList(true);
 
       isError(false);
       Either<Failure, ApiResponse> results =
           await productsRepository.getProductTags();
 
-      isLoading(false);
+      isLoadingList(false);
 
       results.fold(
         (l) {

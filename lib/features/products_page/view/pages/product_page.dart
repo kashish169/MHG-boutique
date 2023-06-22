@@ -39,6 +39,8 @@ class ProductsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const FiltersWidget(),
+                  controller.isLoadingList.isTrue?
+                      const Center(child: CircularProgressIndicator(),):
                   Expanded(
                     child: controller.isLoading.isTrue
                         ? const Center(child: CircularProgressIndicator())
@@ -46,11 +48,12 @@ class ProductsPage extends StatelessWidget {
                             onRefresh: () async {
                               controller.searchWord = '';
                               controller.selectedScent.value = '';
+                              controller.resetPaginate();
                               await controller.getProducts(
                                 controller.searchWord,
                               );
                             },
-                            child: controller.products.isEmpty
+                            child: controller.products.isEmpty&&controller.isLoading.isFalse&&controller.isFetching.isFalse
                                 ? Center(
                                     child: Text(
                                       'No Results!',
