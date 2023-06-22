@@ -28,7 +28,9 @@ AppBar mainAppBar({
     ),
     actions: [
       IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed('/search');
+        },
         icon: Image.asset(
           AppAssets.search,
           height: 20,
@@ -37,7 +39,6 @@ AppBar mainAppBar({
       IconButton(
         onPressed: () {
           Get.toNamed(NotificationsPage.routeName);
-
         },
         icon: Image.asset(
           AppAssets.notification,

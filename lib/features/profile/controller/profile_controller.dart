@@ -9,7 +9,6 @@ import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
 import 'package:mhg/features/profile/models/profle_info_model.dart';
 import 'package:mhg/features/profile/repository/profile_repo_impl.dart';
 import 'package:mhg/features/profile/repository/profile_repository.dart';
-import '../../../widgets/show_snack_bar.dart';
 
 class ProfileController extends GetxController {
   late ProfileRepo profileRepo;
@@ -42,7 +41,7 @@ class ProfileController extends GetxController {
     results.fold(
       (l) {
         isError(true);
-        showSnackBar(l.message);
+        AppToasts.errorToast("NETWORK ERROR");
       },
       (r) async {
         log("${r.object}");

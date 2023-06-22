@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/personal_infromation/view/widget/CountryButtonPick.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
 
 import '../../controller/peronal_informatiom_controller.dart';
@@ -23,6 +24,7 @@ class InformationForm extends StatelessWidget {
   final bool? inInputNumber;
   final String? Function(String?)? validator;
   final TextEditingController textController;
+  
   final PersonalInformationController controller = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -43,33 +45,69 @@ class InformationForm extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          CustomFormField(
-            controller: textController,
-            validator: validator,
-            inputType: inInputNumber == null
-                ? TextInputType.name
-                : TextInputType.number,
-            readOnly: isEnableToEdit,
-            suffixIcon: IconButton(
-              onPressed: onTap,
-              icon: SizedBox(
-                height: 25,
-                width: 25,
-                child: isEnableToEdit == true
-                    ? Image.asset(AppAssets.edit)
-                    : SizedBox(
-                        height: 25,
-                        width: 25,
-                        child: Icon(
-                          Icons.check,
-                          color: AppColors.label,
-                          size: 25,
+          header == 'Phone number'
+              ? Row(
+                  children: [
+                     CountryButtonPicker(isFromShippingAddress: false,),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: CustomFormField(
+                        controller: textController,
+                        validator: validator,
+                        inputType: inInputNumber == null
+                            ? TextInputType.name
+                            : TextInputType.number,
+                        readOnly: isEnableToEdit,
+                        suffixIcon: IconButton(
+                          onPressed: onTap,
+                          icon: SizedBox(
+                            height: 25,
+                            width: 25,
+                            child: isEnableToEdit == true
+                                ? Image.asset(AppAssets.edit)
+                                : SizedBox(
+                                    height: 25,
+                                    width: 25,
+                                    child: Icon(
+                                      Icons.check,
+                                      color: AppColors.label,
+                                      size: 25,
+                                    ),
+                                  ),
+                          ),
                         ),
+                        obscure: false,
                       ),
-              ),
-            ),
-            obscure: false,
-          ),
+                    )
+                  ],
+                )
+              : CustomFormField(
+                  controller: textController,
+                  validator: validator,
+                  inputType: inInputNumber == null
+                      ? TextInputType.name
+                      : TextInputType.number,
+                  readOnly: isEnableToEdit,
+                  suffixIcon: IconButton(
+                    onPressed: onTap,
+                    icon: SizedBox(
+                      height: 25,
+                      width: 25,
+                      child: isEnableToEdit == true
+                          ? Image.asset(AppAssets.edit)
+                          : SizedBox(
+                              height: 25,
+                              width: 25,
+                              child: Icon(
+                                Icons.check,
+                                color: AppColors.label,
+                                size: 25,
+                              ),
+                            ),
+                    ),
+                  ),
+                  obscure: false,
+                ),
         ],
       ),
     );

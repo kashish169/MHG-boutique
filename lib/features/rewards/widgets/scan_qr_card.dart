@@ -67,7 +67,7 @@ class ScanQrCard extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   Image.asset(
-                    AppAssets.qrIcon,
+                    AppAssets.qrGif,
                     fit: BoxFit.cover,
                   ),
                   const Align(

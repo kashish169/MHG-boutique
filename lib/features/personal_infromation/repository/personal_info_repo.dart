@@ -4,4 +4,6 @@ import 'package:mhg/core/models/failure.dart';
 
 abstract class PersonalInfoRepo {
   Future<Either<Failure, ApiResponse>> updateData({required String body});
+  Future<Either<Failure, ApiResponse>> deleteData();
+  Future<Either<Failure, ApiResponse>> getCountries();
 }

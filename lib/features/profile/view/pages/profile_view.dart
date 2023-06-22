@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
+import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
 import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/view/pages/qr_view.dart';
@@ -59,6 +61,10 @@ class ProfileView extends StatelessWidget {
               ProfileCard(
                 icon: AppAssets.order,
                 title: 'My Orders',
+                onTap: () async {
+                  await Get.toNamed(MyOrdersPage.routeName);
+                  controller.getProfileInfo();
+                },
               ),
               const DividerWidget(),
               ProfileCard(
@@ -121,7 +127,15 @@ class ProfileView extends StatelessWidget {
                 icon: AppAssets.store,
                 title: 'Log out',
                 onTap: () async {
+                  print(App.notifyMe);
+                  bool notifayMe = App.notifyMe!;
+                  print(notifayMe);
                   await StoragePref.clear();
+                  await StoragePref.setbool(
+                    key: 'notifyme',
+                    value: notifayMe,
+                  );
+                  print(App.notifyMe);
                   Get.offAllNamed(OnBoardView.routeName);
                 },
               ),

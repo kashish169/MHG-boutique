@@ -30,202 +30,207 @@ class SignUpPage extends StatelessWidget {
                     inAsyncCall: controller.isLoading,
                     child: Form(
                       key: controller.formKey,
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: AppDimensions.screenHeight(context) / 10,
-                          ),
-                          Text(
-                            "Sign up",
-                            style: Theme.of(context)
-                                .textTheme
-                                .displayMedium
-                                ?.copyWith(color: Colors.black, fontSize: 22),
-                          ),
-                          SizedBox(
-                            height: AppDimensions.screenHeight(context) / 20,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            child: CustomFormField(
-                              hint: 'Full name',
-                              controller: controller.name,
-                              suffixIcon: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15),
-                                  child: Image.asset(
-                                    AppAssets.person,
-                                    height: 18,
-                                  )),
-                              inputType: TextInputType.text,
-                              obscure: false,
-                              validator: (val) {
-                                return AppHelper.validation(
-                                  val!,
-                                  1,
-                                  500,
-                                  '',
-                                );
-                              },
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: AppDimensions.screenHeight(context) / 10,
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            child: CustomFormField(
-                              hint: 'Email address',
-                              controller: controller.email,
-                              suffixIcon: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15),
-                                  child: Image.asset(
-                                    AppAssets.message,
-                                    height: 14,
-                                  )),
-                              inputType: TextInputType.text,
-                              obscure: false,
-                              validator: (val) {
-                                return AppHelper.validation(
-                                    val!, 1, 500, 'email');
-                              },
+                            Text(
+                              "Sign up",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displayMedium
+                                  ?.copyWith(color: Colors.black, fontSize: 22),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            child: CustomFormField(
-                              hint: 'Phone number',
-                              suffixIcon: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 15),
-                                child: Image.asset(
-                                  AppAssets.phone,
-                                  height: 18,
-                                ),
-                              ),
-                              prefixWidget: const CountryPickerWidget(),
-                              inputType: TextInputType.number,
-                              obscure: false,
-                              controller: controller.phone,
-                              validator: (val) {
-                                return AppHelper.validation(
-                                    val!, 9, 9, 'Number');
-                              },
+                            SizedBox(
+                              height: AppDimensions.screenHeight(context) / 20,
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            child: CustomFormField(
-                              hint: 'Password',
-                              controller: controller.password,
-                              suffixIcon: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      controller.changeVisanility();
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 20),
-                                      child: Icon(
-                                        controller.isVisable
-                                            ? Icons.visibility
-                                            : Icons.visibility_off,
-                                        color: AppColors.grey,
-                                      ),
-                                    ),
-                                  )),
-                              inputType: TextInputType.text,
-                              obscure: controller.isVisable,
-                              validator: (val) {
-                                return AppHelper.validatePassword(val!);
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 25,
-                              horizontal: 25,
-                            ),
-                            child: PrimaryButton(
-                              title: 'Sign up',
-                              height: 50,
-                              width: double.infinity,
-                              color: const Color(0XFF232323),
-                              onTap: () {
-                                var formState = controller.formKey.currentState;
-                                if (formState!.validate()) {
-                                  AppHelper.closeKeyboard();
-                                  String phoneNumber =
-                                      controller.phone.text.trim();
-                                  Get.toNamed(
-                                    VerificationPage.routeName,
-                                    arguments: {
-                                      "type": "signup",
-                                      "countryCode": controller.countryCode,
-                                      "phone": phoneNumber,
-                                    },
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 20),
+                              child: CustomFormField(
+                                hint: 'Full name',
+                                controller: controller.name,
+                                suffixIcon: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15),
+                                    child: Image.asset(
+                                      AppAssets.person,
+                                      height: 18,
+                                    )),
+                                inputType: TextInputType.text,
+                                obscure: false,
+                                validator: (val) {
+                                  return AppHelper.validation(
+                                    val!,
+                                    1,
+                                    500,
+                                    '',
                                   );
-                                }
-                              },
-                            ),
-                          ),
-                          Text(
-                            "By continuing sign up you agree to the",
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  color: const Color(0XFF666666),
-                                ),
-                          ),
-                          MaterialButton(
-                            padding: EdgeInsets.zero,
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                            onPressed: () {
-                              Get.toNamed(SignUpPage.routeName);
-                            },
-                            child: Text("Terms & conditions",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displaySmall
-                                    ?.copyWith(height: .2)),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Already have an account?",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displaySmall
-                                    ?.copyWith(color: const Color(0XFF666666)),
+                                },
                               ),
-                              Flexible(
-                                child: TextButton(
-                                  onPressed: () {
-                                    Get.back();
-                                  },
-                                  child: Text(
-                                    "Sign in",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displaySmall
-                                        ?.copyWith(
-                                          color: Colors.red,
-                                        ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 20),
+                              child: CustomFormField(
+                                hint: 'Email address',
+                                controller: controller.email,
+                                suffixIcon: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15),
+                                    child: Image.asset(
+                                      AppAssets.message,
+                                      height: 14,
+                                    )),
+                                inputType: TextInputType.text,
+                                obscure: false,
+                                validator: (val) {
+                                  return AppHelper.validation(
+                                      val!, 1, 500, 'email');
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 20),
+                              child: CustomFormField(
+                                hint: 'Phone number',
+                                suffixIcon: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15),
+                                  child: Image.asset(
+                                    AppAssets.phone,
+                                    height: 18,
                                   ),
                                 ),
+                                prefixWidget: const CountryPickerWidget(),
+                                inputType: TextInputType.number,
+                                obscure: false,
+                                controller: controller.phone,
+                                validator: (val) {
+                                  return AppHelper.validation(
+                                      val!, 9, 9, 'Number');
+                                },
                               ),
-                            ],
-                          ),
-                        ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 20),
+                              child: CustomFormField(
+                                hint: 'Password',
+                                controller: controller.password,
+                                suffixIcon: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        controller.changeVisanility();
+                                      },
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 20),
+                                        child: Icon(
+                                          controller.isVisable
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
+                                          color: AppColors.grey,
+                                        ),
+                                      ),
+                                    )),
+                                inputType: TextInputType.text,
+                                obscure: controller.isVisable,
+                                validator: (val) {
+                                  return AppHelper.validatePassword(val!);
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 25,
+                                horizontal: 25,
+                              ),
+                              child: PrimaryButton(
+                                title: 'Sign up',
+                                height: 50,
+                                width: double.infinity,
+                                color: const Color(0XFF232323),
+                                onTap: () {
+                                  var formState =
+                                      controller.formKey.currentState;
+                                  if (formState!.validate()) {
+                                    AppHelper.closeKeyboard();
+                                    String phoneNumber =
+                                        controller.phone.text.trim();
+                                    Get.toNamed(
+                                      VerificationPage.routeName,
+                                      arguments: {
+                                        "type": "signup",
+                                        "countryCode": controller.countryCode,
+                                        "phone": phoneNumber,
+                                      },
+                                    );
+                                  }
+                                },
+                              ),
+                            ),
+                            Text(
+                              "By continuing sign up you agree to the",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall
+                                  ?.copyWith(
+                                    color: const Color(0XFF666666),
+                                  ),
+                            ),
+                            MaterialButton(
+                              padding: EdgeInsets.zero,
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.shrinkWrap,
+                              onPressed: () {
+                                Get.toNamed(SignUpPage.routeName);
+                              },
+                              child: Text("Terms & conditions",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall
+                                      ?.copyWith(height: .2)),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Already have an account?",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall
+                                      ?.copyWith(
+                                          color: const Color(0XFF666666)),
+                                ),
+                                Flexible(
+                                  child: TextButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    child: Text(
+                                      "Sign in",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displaySmall
+                                          ?.copyWith(
+                                            color: Colors.red,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     )),
                 IconButton(

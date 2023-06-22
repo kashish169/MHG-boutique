@@ -24,7 +24,8 @@ class SelectCountryView extends StatelessWidget {
                 textValue: controller.countryList[index].name,
                 isSelectCountry: true,
                 onChange: (val) {
-                  controller.selectCountry(controller.countryList[index].name);
+                  controller.selectCountry(controller.countryList[index].name,
+                      controller.countryList[index].image);
                 },
                 selected: controller.countryList[index].name,
                 groupValue: controller.selectedCountry,

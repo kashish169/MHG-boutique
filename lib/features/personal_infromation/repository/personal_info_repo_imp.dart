@@ -23,4 +23,17 @@ class PersonalInfoRepoImpl implements PersonalInfoRepo {
         body: body,
         isAuthorized: true,
       );
+
+  @override
+  Future<Either<Failure, ApiResponse>> deleteData() async =>
+      await httpService.post(
+        url: Api.deleteAccount,
+        isAuthorized: true,
+      );
+
+  @override
+  Future<Either<Failure, ApiResponse>> getCountries() async =>
+      await httpService.get(
+        url: Api.getCountries,
+      );
 }

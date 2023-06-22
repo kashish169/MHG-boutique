@@ -19,7 +19,7 @@ List<Widget> navBarItems({
       ),
       _icon(
         icon: AppAssets.brands,
-        label: 'Brands',
+        label: 'Categories',
         index: 1,
         color: index == 1 ? AppColors.secondary : AppColors.white,
         onTap: () => onTap(1),

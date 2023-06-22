@@ -25,6 +25,7 @@ class OnboardController extends GetxController {
     'LOREM IPSUM DOLOR SIT AMET \n CONSETETUR SADIPSCING ELITER',
   ];
   String selectedCountry = 'United Arab Emirates';
+  late String selctedCountryFlage;
   List<CountryModel> countryList = [
     CountryModel(
       name: 'United Arab Emirates',
@@ -51,12 +52,14 @@ class OnboardController extends GetxController {
 
   @override
   void onInit() {
+    selctedCountryFlage = countryList[0].image;
     isFirstLaunch();
     super.onInit();
   }
 
-  selectCountry(String country) {
+  selectCountry(String country, String countryFlage) {
     selectedCountry = country;
+    selctedCountryFlage = countryFlage;
     update();
   }
 

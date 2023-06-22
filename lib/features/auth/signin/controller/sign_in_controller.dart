@@ -25,17 +25,22 @@ class SignInController extends GetxController {
   SignInController() {
     signInRepo = Get.find<SignInRepoImpl>();
   }
-
+  TextEditingController email = TextEditingController();
   final TextEditingController phone = TextEditingController();
   final TextEditingController password = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  bool isVisable = true;
+  RxBool isVisable = true.obs;
   RxBool isLoading = false.obs;
   RxString countryCode = '+971'.obs;
   RxString countryFlag = AppAssets.flag.obs;
   RxInt roleInd = 0.obs;
   String selectedCountryName = '';
-
+  RxBool logWithEmail = false.obs;
+  RxBool logWithNumber = true.obs;
+  RxDouble numberLogHight = 53.0.obs;
+  RxDouble emailLogHight = 45.0.obs;
+  RxDouble emailLogwidth = (double.infinity * 0.3).obs;
+  RxDouble numberLogwidth = (double.infinity * 0.35).obs;
   @override
   void onInit() {
     selectedCountryName = Get.arguments;
@@ -44,8 +49,7 @@ class SignInController extends GetxController {
   }
 
   changeVisibility() {
-    isVisable = !isVisable;
-    update();
+    isVisable.value = !isVisable.value;
   }
 
   String? validatePhone(String value) {
@@ -54,6 +58,24 @@ class SignInController extends GetxController {
     } else {
       return null;
     }
+  }
+
+  logWithNum() {
+    logWithEmail.value = false;
+    logWithNumber.value = true;
+    numberLogHight.value = 53.0;
+    emailLogHight.value = 45.0;
+    numberLogwidth.value = (double.infinity * 0.35);
+    emailLogwidth.value = (double.infinity * 0.3);
+  }
+
+  loginWithEmail() {
+    logWithEmail.value = true;
+    logWithNumber.value = false;
+    numberLogHight.value = 45.0;
+    emailLogHight.value = 53.0;
+    numberLogwidth.value = (double.infinity * 0.3);
+    emailLogwidth.value = (double.infinity * 0.35);
   }
 
   Future<void> signIn() async {
@@ -66,6 +88,53 @@ class SignInController extends GetxController {
       fcmToken: App.fcmToken,
     ));
     Either<Failure, ApiResponse> results = await signInRepo.signIn(
+      body: body,
+    );
+    Get.back();
+    results.fold(
+      (l) {
+        showSnackBar(l.message);
+      },
+      (r) async {
+        log("${r.object}");
+        int statusCode = r.object["code"];
+        var message = r.object['message'];
+        if (statusCode == 200) {
+          loginModel = LoginModel.fromJson(r.object['data']);
+          var token = loginModel.token;
+          App.token = token;
+          Api.authorizedheaders = {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer $token",
+          };
+          print(token);
+          await StoragePref.setString(
+            key: "token",
+            value: token,
+          );
+          log("ACCESS TOKEN : $token");
+          Get.toNamed(MainWrapper.routeName);
+        } else if (statusCode == 400) {
+          AppToasts.errorToast(message);
+        } else {
+          AppToasts.errorToast(message);
+        }
+      },
+    );
+  }
+
+  Future<void> signInWithOutOtp() async {
+    Get.dialog(
+      const LoadingWidget(),
+      barrierDismissible: false,
+    );
+    var body = signInWithOutOtpModel(SignInWithOutOtpModel(
+      fcmToken: App.fcmToken,
+      email: logWithEmail.value ? email.text : null,
+      phoneNumber: logWithEmail.value ? null : countryCode + phone.text.trim(),
+      password: password.text,
+    ));
+    Either<Failure, ApiResponse> results = await signInRepo.signInWithOutOtp(
       body: body,
     );
     Get.back();

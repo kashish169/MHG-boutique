@@ -1,0 +1,73 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
+import 'package:mhg/features/my_wish_list/view/widget/wish_list_counter.dart';
+
+import '../../../../constants/app_colors.dart';
+import '../../../../widgets/primary_button.dart';
+import '../../model/wish_list_model.dart';
+
+class BodyButtons extends StatefulWidget {
+  const BodyButtons({super.key, required this.addToBag, required this.model});
+  final void Function() addToBag;
+  final WishListModel model;
+  @override
+  State<BodyButtons> createState() => _BodyButtonsState();
+}
+
+class _BodyButtonsState extends State<BodyButtons> {
+  final WishListController controller = Get.find();
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(right: 5),
+            child: PrimaryButton(
+              title: "Share",
+              onTap: () {},
+              fontSize: 12,
+              color: AppColors.white,
+              height: 35,
+              reverseColor: true,
+              isSelcted: true,
+            ),
+          ),
+        ),
+        Expanded(child: StatefulBuilder(builder: (context, setState) {
+          return widget.model.options.inCart == 0
+              ? Padding(
+                  padding: const EdgeInsets.only(
+                    left: 5,
+                  ),
+                  child: PrimaryButton(
+                    title: "Add to Bag",
+                    isLoading: widget.model.isAddToBag,
+                    onTap: () async {
+                      widget.model.isAddToBag = true;
+                      if (mounted) setState(() {});
+                      var result = await controller.addProductToCart(
+                          productId: widget.model.id);
+                      if (result) {
+                        widget.model.options.inCart = 1;
+                        widget.model.options.cartQuantity = 1;
+                        setState(() {});
+                      }
+                      widget.model.isAddToBag = false;
+                      if (mounted) setState(() {});
+                    },
+                    fontSize: 12,
+                    color: AppColors.primary,
+                    height: 35,
+                  ))
+              : Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: WishListCounterrWidget(model: widget.model),
+                );
+        })),
+      ],
+    );
+  }
+}

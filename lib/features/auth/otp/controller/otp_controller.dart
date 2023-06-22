@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:mhg/features/auth/verification/controller/verification_controller.dart';
 
 class OtpController extends GetxController {
+  VerificationController verificationController =
+      Get.put(VerificationController());
   Timer? timer;
   int remainingSeconds = 1;
   int times = 60;
@@ -28,7 +30,7 @@ class OtpController extends GetxController {
   void resendCode() {
     if (times == 0) {
       startTimer(60);
-      Get.find<VerificationController>().sendOtpCode();
+      verificationController.sendOtpCode();
     }
   }
 
