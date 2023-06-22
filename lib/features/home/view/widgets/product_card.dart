@@ -187,7 +187,7 @@ class ProductCard extends StatelessWidget {
                             fontSize: 16,
                             height: 35,
                             title: 'Add to Bag',
-                            isLoading: model!.isLoading,
+                            isLoading: model?.isLoading ?? false,
                             color: AppColors.secondary,
                             onTap: () async {
                               model!.isLoading = true;
