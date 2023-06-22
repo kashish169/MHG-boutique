@@ -7,6 +7,7 @@ import 'package:mhg/core/models/countries.dart';
 import 'package:mhg/core/models/countries_model.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/models/profle_info_model.dart';
+import '../../../app/app.dart';
 import '../../../constants/app_toasts.dart';
 import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
@@ -53,6 +54,7 @@ class PersonalInformationController extends GetxController {
   void onInit() {
     getAllCountries();
     profileInfo = Get.arguments["profile"];
+    print(profileInfo.number);
     name.text = profileInfo.name;
     email.text = profileInfo.email;
     if (profileInfo.number != null) {
@@ -81,7 +83,9 @@ class PersonalInformationController extends GetxController {
           name: name.text,
           email: email.text,
           address: address.text,
-          number: countryCode + phone.text));
+          number: countryCode + phone.text,
+          notifyMe: App.notifyMe == true ? 1 : 0,
+          isOptional: email.text == profileInfo.email ? true : false));
       Either<Failure, ApiResponse> results = await personalRepo.updateData(
         body: body,
       );

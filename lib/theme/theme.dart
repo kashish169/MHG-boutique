@@ -7,6 +7,7 @@ class AppTheme {
   static ThemeData themeData = ThemeData.light().copyWith(
     primaryColor: AppColors.primary,
     brightness: Brightness.light,
+    backgroundColor: AppColors.white2,
     colorScheme: ColorScheme.fromSwatch().copyWith(
       secondary: AppColors.primary,
       primary: AppColors.primary,

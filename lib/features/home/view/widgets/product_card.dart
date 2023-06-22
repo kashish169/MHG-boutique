@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
+import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
 import 'package:mhg/features/product_details/controller/product_details_controller.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/widgets/net_image.dart';
@@ -10,16 +11,18 @@ import '../../../../widgets/rating_widget.dart';
 import '../../models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
-  final ProductModel model;
+  final ProductModel? model;
   final bool isDetails;
   final bool fromArrival;
-
-  const ProductCard({
-    super.key,
-    required this.model,
-    this.isDetails = false,
-    this.fromArrival = false,
-  });
+  final bool? isWishList;
+  final WishListModel? wishListModel;
+  const ProductCard(
+      {super.key,
+      this.model,
+      this.isDetails = false,
+      this.fromArrival = false,
+      this.wishListModel,
+      this.isWishList = false});
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +30,17 @@ class ProductCard extends StatelessWidget {
       onTap: () async {
         if (isDetails) {
           final controller = Get.find<ProductDetailsController>();
-          controller.productId = model.id;
-          controller.productName.value = model.enProductName;
+          controller.productId = model!.id;
+          controller.productName.value = model!.enProductName;
           controller.getProductDetails();
         } else {
           Get.toNamed(
             ProductDetailsPage.routeName,
             arguments: {
-              "id": model.id,
-              "name": model.enProductName,
+              "id": isWishList == false ? model!.id : wishListModel!.id,
+              "name": isWishList == false
+                  ? model!.enProductName
+                  : wishListModel!.name,
               "fromArrival": fromArrival
             },
           );
@@ -59,7 +64,9 @@ class ProductCard extends StatelessWidget {
                     top: Radius.circular(20),
                   ),
                   child: NetImage(
-                      image: model.primaryImageLink,
+                      image: isWishList == false
+                          ? model!.primaryImageLink
+                          : wishListModel!.options.imageLink,
                       height: AppDimensions.productHeight(context)),
                 ),
                 const SizedBox(height: 10),
@@ -72,7 +79,9 @@ class ProductCard extends StatelessWidget {
                         child: FittedBox(
                           fit: BoxFit.scaleDown,
                           child: Text(
-                            model.enProductName,
+                            isWishList == false
+                                ? model!.enProductName
+                                : wishListModel!.name,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: Theme.of(context)
@@ -100,14 +109,16 @@ class ProductCard extends StatelessWidget {
                     children: [
                       Visibility(
                         visible: double.parse(
-                              model.discount,
+                              isWishList == false
+                                  ? model!.discount
+                                  : wishListModel!.discount.toString(),
                             ).round() !=
                             0,
                         child: Expanded(
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
-                              'Dhs. ${model.price}',
+                              'Dhs. ${isWishList == false ? model!.price : wishListModel!.price}',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall
@@ -119,36 +130,20 @@ class ProductCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 10),
-                      double.parse(
-                                model.discount,
-                              ).round() !=
-                              0
-                          ? Expanded(
-                              child: FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(
-                                  'Dhs. ${model.discountPrice}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall
-                                      ?.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                      Expanded(
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            'Dhs. ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
                                 ),
-                              ),
-                            )
-                          : FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                'Dhs. ${model.discountPrice}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displaySmall
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -157,8 +152,8 @@ class ProductCard extends StatelessWidget {
             ),
             FavouriteWidget(
               from: isDetails == true ? 'productDetails' : 'home',
-              itemId: model.id,
-              inWishlist: model.inWishlist,
+              itemId: isWishList == false ? model!.id : wishListModel!.id,
+              inWishlist: isWishList == false ? model!.inWishlist : 1,
               fromArrival: fromArrival,
             ),
           ],

@@ -26,7 +26,7 @@ class _WishListCounterrWidgetState extends State<WishListCounterrWidget> {
         buttonColor: AppColors.mediumLabel,
         count: widget.model.options.cartQuantity,
         onIncrease: (value) async {
-          widget.model.isDeleteItem = true;
+          widget.model.isAddToBag = true;
           if (mounted) setState(() {});
           bool result = await Get.find<MyCartController>().increaseCartItem(
             cartItemId: widget.model.id,
@@ -35,11 +35,11 @@ class _WishListCounterrWidgetState extends State<WishListCounterrWidget> {
           if (result == true) {
             widget.model.options.cartQuantity = value;
           }
-          widget.model.isDeleteItem = false;
+          widget.model.isAddToBag = false;
           if (mounted) setState(() {});
         },
         onDecrease: (value) async {
-          widget.model.isDeleteItem = true;
+          widget.model.isAddToBag = true;
           if (mounted) setState(() {});
           bool result = await Get.find<MyCartController>().decreaseCartItem(
             cartItemId: widget.model.id,
@@ -48,10 +48,10 @@ class _WishListCounterrWidgetState extends State<WishListCounterrWidget> {
           if (result == true) {
             widget.model.options.cartQuantity = value;
           }
-          widget.model.isDeleteItem = false;
+          widget.model.isAddToBag = false;
           if (mounted) setState(() {});
         },
-        loading: widget.model.isDeleteItem,
+        loading: widget.model.isAddToBag,
       ),
     );
   }
