@@ -1,32 +1,46 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
+import 'package:mhg/features/personal_infromation/controller/peronal_informatiom_controller.dart';
+
 String updateInfoModel(UpdateInfoModel data) => json.encode(data.toJson());
+PersonalInformationController controller = Get.find();
 
 class UpdateInfoModel {
   String name;
-  String email;
+  String? email;
   String number;
   String? gender;
   // final String dob;
   int? notifyMe;
   String? image;
   String address;
-
+  bool isOptional;
   UpdateInfoModel(
       {required this.name,
-      required this.email,
+      this.email,
       required this.number,
       this.gender,
       this.notifyMe,
       required this.address,
+      required this.isOptional,
       this.image});
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "phone_number": number,
-        "email": email,
-        'gender': gender,
-        // 'dob': dob,
-        'notify_me': notifyMe,
-        'streat_address': address,
-      };
+  Map<String, dynamic> toJson() => isOptional
+      ? {
+          "name": name,
+          "phone_number": number,
+          'gender': gender,
+          // 'dob': dob,
+          'notify_me': notifyMe,
+          'street_address': address,
+        }
+      : {
+          "name": name,
+          "phone_number": number,
+          "email": email,
+          'gender': gender,
+          // 'dob': dob,
+          'notify_me': notifyMe,
+          'street_address': address,
+        };
 }

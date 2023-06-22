@@ -44,9 +44,9 @@ class _BodyButtonsState extends State<BodyButtons> {
                   ),
                   child: PrimaryButton(
                     title: "Add to Bag",
-                    isLoading: widget.model.isLoadingDelete,
+                    isLoading: widget.model.isAddToBag,
                     onTap: () async {
-                      widget.model.isLoadingDelete = true;
+                      widget.model.isAddToBag = true;
                       if (mounted) setState(() {});
                       var result = await controller.addProductToCart(
                           productId: widget.model.id);
@@ -55,7 +55,7 @@ class _BodyButtonsState extends State<BodyButtons> {
                         widget.model.options.cartQuantity = 1;
                         setState(() {});
                       }
-                      widget.model.isLoadingDelete = false;
+                      widget.model.isAddToBag = false;
                       if (mounted) setState(() {});
                     },
                     fontSize: 12,

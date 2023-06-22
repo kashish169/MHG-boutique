@@ -31,7 +31,7 @@ class HomeSlider extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: AppDimensions.screenWidth(context) / (3 / 3.3),
+          height: AppDimensions.screenWidth(context) * 1.2,
           width: AppDimensions.screenWidth(context),
           child: Swiper(
             itemBuilder: (BuildContext context, int index) {
@@ -43,7 +43,7 @@ class HomeSlider extends StatelessWidget {
                 },
                 child: NetImage(
                   image: controller.slidersList[index].backgroundImageLink,
-                  height: AppDimensions.screenWidth(context) / (3 / 3.3),
+                  height: AppDimensions.screenWidth(context) * 1.2,
                   width: AppDimensions.screenWidth(context),
                 ),
               );
