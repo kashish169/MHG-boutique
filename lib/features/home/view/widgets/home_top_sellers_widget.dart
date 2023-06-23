@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/allproducts/view/pages/all_products_page.dart';
 import 'package:mhg/features/home/view/widgets/product_card.dart';
 import '../../../../widgets/view_all_button.dart';
 import '../../controller/home_controller.dart';
@@ -11,6 +12,7 @@ class HomeTopSellersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsetsDirectional.only(start: 20),
@@ -25,7 +27,11 @@ class HomeTopSellersWidget extends StatelessWidget {
                       ),
                 ),
               ),
-              ViewAllButton(onTap: () {}),
+              ViewAllButton(onTap: () {
+                Get.to(() => AllProductsPage(
+                      products: controller.topSellersList,
+                    ));
+              }),
             ],
           ),
         ),

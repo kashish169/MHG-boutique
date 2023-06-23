@@ -1,25 +1,28 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/models/product_model.dart';
+import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/features/product_details/controller/product_details_controller.dart';
 import 'package:mhg/features/product_details/models/product_details_model.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/counter_widget.dart';
 
-class ProductDetailsCounterWidget extends StatefulWidget {
-  final ProductDetailsModel model;
-  const ProductDetailsCounterWidget({super.key, required this.model});
+class ProductCounter extends StatefulWidget {
+  final ProductModel model;
+  const ProductCounter({super.key, required this.model});
 
   @override
-  State<ProductDetailsCounterWidget> createState() =>
-      _ProductDetailsCounterWidgetState();
+  State<ProductCounter> createState() =>
+      _ProductCounterState();
 }
 
-class _ProductDetailsCounterWidgetState
-    extends State<ProductDetailsCounterWidget> {
-  final controller = Get.find<ProductDetailsController>();
+class _ProductCounterState
+    extends State<ProductCounter> {
+  final controller = Get.find<WishListController>();
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -33,7 +36,7 @@ class _ProductDetailsCounterWidgetState
           buttonColor: AppColors.mediumLabel,
           count: widget.model.cartQty,
           onIncrease: (value) async {
-            widget.model.isLoadingQuantity = true;
+            controller.isLoading.value = true;
             if (mounted) setState(() {});
             bool result = await Get.find<MyCartController>().increaseCartItem(
               cartItemId: widget.model.id,
@@ -41,6 +44,7 @@ class _ProductDetailsCounterWidgetState
             );
             if (result == true) {
               widget.model.cartQty = value;
+              widget.model.inCart=1;
               bool fromArrival=false;
               List<ProductModel> temp = Get.find<HomeController>().newArrivalsList;
               for (int i = 0; i < temp.length; i++) {
@@ -60,11 +64,11 @@ class _ProductDetailsCounterWidgetState
               }
               Get.find<HomeController>().updateList(fromArrival==true?temp:temp2, fromArrival);
             }
-            widget.model.isLoadingQuantity = false;
+            controller.isLoading.value = false;
             if (mounted) setState(() {});
           },
           onDecrease: (value) async {
-            widget.model.isLoadingQuantity = true;
+            controller.isLoading.value = true;
             if (mounted) setState(() {});
             bool result = await Get.find<MyCartController>().decreaseCartItem(
               cartItemId: widget.model.id,
@@ -72,6 +76,7 @@ class _ProductDetailsCounterWidgetState
             );
             if (result == true) {
               widget.model.cartQty = value;
+              widget.model.inCart=1;
               bool fromArrival=false;
               List<ProductModel> temp = Get.find<HomeController>().newArrivalsList;
               for (int i = 0; i < temp.length; i++) {
@@ -87,14 +92,15 @@ class _ProductDetailsCounterWidgetState
                   temp2[i].inCart = 1;
                   temp2[i].cartQty=value;
                   fromArrival=false;
+                  log("llllllll");
                 }
               }
               Get.find<HomeController>().updateList(fromArrival==true?temp:temp2, fromArrival);
             }
-            widget.model.isLoadingQuantity = false;
+            controller.isLoading.value = false;
             if (mounted) setState(() {});
           },
-          loading: widget.model.isLoadingQuantity,
+          loading:controller.isLoading.value,
         ),
       ),
     );

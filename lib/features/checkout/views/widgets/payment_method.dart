@@ -1,9 +1,6 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
-
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/checkout/views/pages/payment_methods_page.dart';
@@ -17,82 +14,82 @@ class PaymentMethod extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => (checkoutController.isLoading.value == false &&
-              checkoutController.isError.value == false)
-          ? SizedBox(
-              height: MediaQuery.of(context).size.height * 0.11,
-              width: MediaQuery.of(context).size.width,
-              child: Container(
-                padding: EdgeInsets.only(bottom: 17),
-                child: ListTile(
-                  onTap: () {
-                    Get.toNamed(PaymentMethodsPage.routeName);
-                  },
-                  title: Text(
+      () => (checkoutController.isLoading.isFalse)
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 5),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
                     'Payment Method',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: 16,
                           color: AppColors.label,
                         ),
                   ),
-                  subtitle: Padding(
-                    padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height * 0.014,
+                ),
+                InkWell(
+                  onTap: () {
+                    Get.toNamed(PaymentMethodsPage.routeName);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.only(
+                      top: 10,
+                      start: 20,
+                      end: 30,
                     ),
-                    child: checkoutController.cardNumber.value == '' ?  Text(
-                          'Add Payment Method',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                fontSize: 14,
-                                color: AppColors.mediumLabel,
-                                fontWeight: FontWeight.bold,
-                              ),
-                        ): Row(
+                    child: Row(
                       children: [
-                        Image.asset(
-                          AppAssets.master,
-                          height: 50,
-                          width: 50,
+                        Expanded(
+                          child: checkoutController.cardNumber.value == ''
+                              ? Text(
+                                  'Add Payment Method',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall
+                                      ?.copyWith(
+                                        fontSize: 14,
+                                        color: AppColors.mediumLabel,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                )
+                              : Row(
+                                  children: [
+                                    Image.asset(
+                                      AppAssets.master,
+                                      height: 50,
+                                      width: 50,
+                                    ),
+                                    Text(
+                                      ' ${checkoutController.cardType} ending ${checkoutController.cardNumber}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displaySmall
+                                          ?.copyWith(
+                                            fontSize: 14,
+                                            color: AppColors.mediumLabel,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ],
+                                ),
                         ),
-                        Text(
-                          ' ${checkoutController.cardType} ending ${ checkoutController.cardNumber}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                fontSize: 14,
-                                color: AppColors.mediumLabel,
-                                fontWeight: FontWeight.bold,
-                              ),
+                        Image.asset(
+                          AppAssets.arrowForward,
+                          height: 20,
                         ),
                       ],
                     ),
                   ),
-                  trailing: Container(
-                    margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.04),
-                    height: 25,
-                    width: 25,
-                    decoration: BoxDecoration(
-                      color: AppColors.lightGray,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: 15,
-                    ),
-                  ),
                 ),
-              ),
+              ],
             )
-          : (checkoutController.isLoading.value == false &&
-                  checkoutController.isError.value == true)
+          : (checkoutController.isError.isTrue)
               ? RetryButton(
                   onTap: () => checkoutController.getAllPaymentMethods(),
                 )
-              : LoadingWidget(),
+              : const LoadingWidget(),
     );
   }
 }

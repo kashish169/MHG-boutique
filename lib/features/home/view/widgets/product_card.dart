@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
+import 'package:mhg/features/mainwrapper/controller/main_wrapper_controller.dart';
 import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
+import 'package:mhg/features/my_wish_list/view/widget/wish_list_counter.dart';
 import 'package:mhg/features/product_details/controller/product_details_controller.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
+import 'package:mhg/features/product_details/view/widgets/product_details_counter_widget.dart';
 import 'package:mhg/widgets/net_image.dart';
+import 'package:mhg/widgets/primary_button.dart';
+import 'package:mhg/widgets/product_counter.dart';
 import '../../../../widgets/heart_widget.dart';
 import '../../../../widgets/rating_widget.dart';
 import '../../models/product_model.dart';
@@ -13,19 +18,25 @@ import '../../models/product_model.dart';
 class ProductCard extends StatelessWidget {
   final ProductModel? model;
   final bool isDetails;
+  final bool isProductPage;
+  final bool isSearch;
   final bool fromArrival;
   final bool? isWishList;
   final WishListModel? wishListModel;
+
   const ProductCard(
       {super.key,
       this.model,
       this.isDetails = false,
+      this.isProductPage = false,
+      this.isSearch = false,
       this.fromArrival = false,
       this.wishListModel,
       this.isWishList = false});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<MainWrapperController>();
     return InkWell(
       onTap: () async {
         if (isDetails) {
@@ -52,7 +63,7 @@ class ProductCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: AppColors.shadow(0.4),
+          boxShadow: AppColors.shadow(0.2),
         ),
         child: Stack(
           alignment: Alignment.topRight,
@@ -166,13 +177,74 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
+                StatefulBuilder(builder: (context, setState) {
+                  return model?.inCart == 1
+                      ? ProductCounter(
+                          model: model!,
+                        )
+                      : wishListModel?.options.inCart == 1
+                          ? Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: WishListCounterrWidget(
+                                model: wishListModel!,
+                                fromSearch: true,
+                              ),
+                            )
+                          : Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: PrimaryButton(
+                                fontSize: 16,
+                                height: 35,
+                                title: 'Add to Bag',
+                                isLoading: model?.isLoading ??
+                                    wishListModel!.isAddToBag,
+                                color: AppColors.secondary,
+                                onTap: () async {
+                                  if (wishListModel != null) {
+                                    wishListModel?.isAddToBag = true;
+                                  } else {
+                                    model!.isLoading = true;
+                                  }
+                                  setState(() {});
+                                  var result =
+                                      await controller.addProductToCart(
+                                    productId: model?.id ?? wishListModel!.id,
+                                  );
+                                  if (wishListModel != null) {
+                                    wishListModel?.isAddToBag = false;
+                                  } else {
+                                    model!.isLoading = false;
+                                  }
+                                  if (result) {
+                                    if (wishListModel != null) {
+                                      wishListModel?.options.inCart = 1;
+                                      wishListModel?.options.cartQuantity = 1;
+                                    } else {
+                                      model!.inCart = 1;
+                                      model!.cartQty = 1;
+                                    }
+                                    setState(() {});
+                                  }
+                                },
+                                width: double.infinity,
+                                elevation: 0,
+                              ),
+                            );
+                }),
               ],
             ),
             FavouriteWidget(
-              from: isDetails == true ? 'productDetails' : 'home',
+              from: isProductPage
+                  ? 'product'
+                  : isSearch
+                      ? 'search'
+                      : isDetails == true
+                          ? 'productDetails'
+                          : 'home',
               itemId: isWishList == false ? model!.id : wishListModel!.id,
               inWishlist: isWishList == false ? model!.inWishlist : 1,
-              fromArrival: fromArrival,
+              fromArrival: false,
             ),
           ],
         ),

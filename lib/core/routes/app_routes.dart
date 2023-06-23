@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:mhg/features/allproducts/view/pages/all_products_page.dart';
 import 'package:mhg/features/auth/sign_up/binding/sign_up_binding.dart';
 import 'package:mhg/features/auth/sign_up/view/pages/sign_up_view.dart';
 import 'package:mhg/features/auth/verification/binding/verification_binding.dart';
@@ -141,6 +142,6 @@ class AppRoutes {
     GetPage(
       name: '/add_payment_method_web_view',
       page: () => AddPaymentMethodWebViewPage(),
-    )
+    ),
   ];
 }

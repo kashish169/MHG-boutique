@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/home/controller/home_controller.dart';
+import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/product_details/models/product_details_model.dart';
 import 'package:mhg/features/product_details/repository/product_details_repo.dart';
 import 'package:mhg/features/product_details/repository/product_details_repo_impl.dart';
@@ -115,6 +117,23 @@ class ProductDetailsController extends GetxController {
           log("ADD PRODUCT TO CART CART RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
             result = true;
+            List<ProductModel> temp = Get.find<HomeController>().newArrivalsList;
+            for (int i = 0; i < temp.length; i++) {
+              if (temp[i].id == productId) {
+                temp[i].inCart = 1;
+                temp[i].cartQty=1;
+                fromArrival=true;
+              }
+            }
+            List<ProductModel>  temp2 = Get.find<HomeController>().topSellersList;
+            for (int i = 0; i < temp2.length; i++) {
+              if (temp2[i].id == productId) {
+                temp2[i].inCart = 1;
+                temp2[i].cartQty=1;
+                fromArrival=false;
+              }
+            }
+            Get.find<HomeController>().updateList(fromArrival==true?temp:temp2, fromArrival);
             AppToasts.successToast(
               "The product has been added to the bag",
             );

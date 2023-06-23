@@ -35,7 +35,7 @@ class WishListController extends GetxController {
       );
       results.fold(
         (l) {
-          AppToasts.errorToast(l.message);
+          // AppToasts.errorToast(l.message);
         },
         (r) {
           var statusCode = r.object["code"];
@@ -52,7 +52,7 @@ class WishListController extends GetxController {
             );
           } else {
             result = false;
-            AppToasts.errorToast(message);
+            // AppToasts.errorToast(message);
           }
         },
       );

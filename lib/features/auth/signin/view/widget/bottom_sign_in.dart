@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../../core/helper/app_helper.dart';
 import '../../../../../widgets/primary_button.dart';
+import '../../../otp/view/pages/otp.dart';
 import '../../../sign_up/view/pages/sign_up_view.dart';
-import '../../../verification/view/pages/verfication_page.dart';
 import '../../controller/sign_in_controller.dart';
 
 class BottomSignIn extends StatelessWidget {
@@ -48,7 +47,7 @@ class BottomSignIn extends StatelessWidget {
                         AppHelper.closeKeyboard();
                         String phoneNumber = controller.phone.text.trim();
                         Get.toNamed(
-                          VerificationPage.routeName,
+                          OtpPage.routeName,
                           arguments: {
                             "type": "signin",
                             "countryCode": controller.countryCode.value,

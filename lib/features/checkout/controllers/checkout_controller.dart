@@ -80,10 +80,13 @@ class CheckoutController extends GetxController {
           if (statusCode == 200) {
             if (r.object["data"] != null) {
               paymentMethodsModel = PaymentMethodsModel.fromJson(r.object);
-
-              cardType(paymentMethodsModel.data![0].cardType);
-              cardNumber(
-                  getCodedNumber(paymentMethodsModel.data![0].cardNumber));
+              if (paymentMethodsModel.data != null) {
+                if (paymentMethodsModel.data!.isNotEmpty) {
+                  cardType(paymentMethodsModel.data![0].cardType);
+                  cardNumber(
+                      getCodedNumber(paymentMethodsModel.data![0].cardNumber));
+                }
+              }
             }
           } else {
             AppToasts.errorToast(message);

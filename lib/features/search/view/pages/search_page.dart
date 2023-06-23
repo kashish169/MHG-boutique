@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/home/view/widgets/home_top_sellers_widget.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/search/controller/search_controller.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
@@ -11,7 +12,6 @@ import '../../../home/view/widgets/product_card.dart';
 import '../widget/custom_search_section.dart';
 import '../widget/recent_search_body.dart';
 import '../widget/search_form.dart';
-import '../widget/search_top_sellers.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({super.key});
@@ -37,32 +37,13 @@ class SearchPage extends StatelessWidget {
             ),
             SearchForm(),
             RecentSearchBody(),
-            const SearchTopSellers(),
             GetX<HomeController>(
               builder: (homeController) => homeController.isLoading.isTrue
                   ? const LoadingWidget()
                   : homeController.isError.isTrue
                       ? RetryButton(onTap: () => homeController.getHome())
                       : homeController.topSellersList.isNotEmpty
-                          ? Container(
-                              color: AppColors.white2,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              height: 320,
-                              width: double.infinity,
-                              child: ListView.builder(
-                                  itemCount:
-                                      homeController.topSellersList.length,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, index) => Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 10, horizontal: 5),
-                                        child: ProductCard(
-                                          model: homeController
-                                              .topSellersList[index],
-                                        ),
-                                      )),
-                            )
+                          ? HomeTopSellersWidget()
                           : SizedBox(
                               height: 50,
                               child: Center(
@@ -89,22 +70,25 @@ class SearchPage extends StatelessWidget {
                           ? Container(
                               margin:
                                   const EdgeInsets.symmetric(horizontal: 10),
-                              height: 320,
                               color: AppColors.white2,
                               width: double.infinity,
-                              child: ListView.builder(
-                                  itemCount:
-                                      wishListController.wishListItems.length,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, index) => Padding(
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: [
+                                    for (var element
+                                        in wishListController.wishListItems)
+                                      Padding(
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 10, horizontal: 5),
                                         child: ProductCard(
                                           isWishList: true,
-                                          wishListModel: wishListController
-                                              .wishListItems[index],
+                                          wishListModel: element,
                                         ),
-                                      )),
+                                      )
+                                  ],
+                                ),
+                              ),
                             )
                           : SizedBox(
                               height: 50,
