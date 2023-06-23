@@ -39,33 +39,33 @@ class ShippingAddress extends StatelessWidget {
                   ),
             ),
             Text(
-            controller.model.value != null ?'': controller.model.value!.street!,
+            controller.model.value != null ?'': controller.model.value!.email,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 16,
                     color: AppColors.mediumLabel,
                   ),
             ),
-          /*   Text(
-              'Main Street ,',
-              style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 16,
-                    color: AppColors.mediumLabel,
-                  ),
-            ),
-            Text(
-              'City Name , Province ,',
+           Text(
+              controller.model.value != null ?'': controller.model.value!.street!,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 16,
                     color: AppColors.mediumLabel,
                   ),
             ),
             Text(
-              'Country ,',
+               controller.model.value != null ?'': controller.model.value!.zipCode!,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 16,
                     color: AppColors.mediumLabel,
                   ),
-            ), */
+            ),
+            Text(
+              controller.model.value != null ?'': controller.model.value!.countryName!,
+              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    fontSize: 16,
+                    color: AppColors.mediumLabel,
+                  ),
+            ), 
           ],
         )),
         trailing: Container(
