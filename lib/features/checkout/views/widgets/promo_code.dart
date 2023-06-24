@@ -81,6 +81,7 @@ class PromoCode extends StatelessWidget {
                   hasIcon: false,
                   isLoading: checkoutController.isLoadingPromo.value,
                   onPress: () {
+                    checkoutController.isFromApply(!checkoutController.isFromApply.value);
                     if (checkoutController.codeController.text
                         .trim()
                         .isNotEmpty) {

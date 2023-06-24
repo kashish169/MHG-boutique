@@ -43,6 +43,8 @@ class CheckoutController extends GetxController {
   RxBool isErrorPromo = false.obs;
   RxBool isLoadingCreateOrder = false.obs;
   RxBool isErrorCreateOrder = false.obs;
+  RxBool isLoadingRedeem = false.obs;
+  RxBool isErrorRedeem = false.obs;
   RxList<CartModel> cartItemsList = <CartModel>[].obs;
   RxDouble totalPrice = 0.0.obs;
   RxString cardType = ''.obs;
@@ -55,6 +57,7 @@ class CheckoutController extends GetxController {
   RxString codOrCard = 'COD'.obs;
   RxString code = ''.obs;
   RxBool hasRedeem = false.obs;
+  RxBool isFromApply = false.obs;
 
   CheckoutController() {
     checkoutRepository = Get.find<CheckoutRepoImplement>();
@@ -254,17 +257,35 @@ class CheckoutController extends GetxController {
     }
   }
 
-  orderPrice(countryId, coupon , ) async {
+  orderPrice(countryId, coupon, {bool isRedeem = false}) async {
     try {
-      isLoadingPromo(true);
-      isErrorPromo(false);
+      if (isRedeem == true && isFromApply.value == false) {
+        isLoadingRedeem(true);
+        isErrorRedeem(false);
+      } else if (isFromApply.value == true && isRedeem == false) {
+        isLoadingPromo(true);
+        isErrorPromo(false);
+      }
+
       Either<Failure, ApiResponse> results =
-          await checkoutRepository.orderPrice(countryId, coupon , profileController.model.value!.hearts!);
-      isLoadingPromo(false);
+          await checkoutRepository.orderPrice(
+        countryId,
+        coupon,
+        profileController.model.value!.hearts!,
+      );
+      if (isRedeem == true && isFromApply.value == false) {
+        isLoadingRedeem(false);
+      } else if (isFromApply.value == true && isRedeem == false) {
+        isLoadingPromo(false);
+      }
 
       results.fold(
         (l) {
-          isErrorPromo(true);
+          if (isRedeem == true && isFromApply.value == false) {
+            isErrorRedeem(true);
+          } else if (isFromApply.value == true && isRedeem == false) {
+            isErrorPromo(true);
+          }
 
           AppToasts.errorToast(l.message);
           log("ORDER PRICE METHODS RESPONSE ERROR ${l.message}");
@@ -299,7 +320,6 @@ class CheckoutController extends GetxController {
     coupon,
     pm,
     onlinePaymentMethod,
-  
   ) async {
     try {
       onlinePaymentMethod = paymentMethodsModel.data!
@@ -311,17 +331,16 @@ class CheckoutController extends GetxController {
       isErrorCreateOrder(false);
       Either<Failure, ApiResponse> results =
           await checkoutRepository.createOrder(
-        billingName,
-        billingEmail,
-        billingStreet,
-        billingState,
-        billingZipCode,
-        billingCountry,
-        coupon,
-        pm,
-        onlinePaymentMethod,
-        hasRedeem.value ? profileController.model.value!.hearts!: null
-      );
+              billingName,
+              billingEmail,
+              billingStreet,
+              billingState,
+              billingZipCode,
+              billingCountry,
+              coupon,
+              pm,
+              onlinePaymentMethod,
+              hasRedeem.value ? profileController.model.value!.hearts! : null);
 
       isLoadingCreateOrder(false);
       results.fold(

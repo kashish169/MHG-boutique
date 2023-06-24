@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors_in_immutables
+
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,11 +9,17 @@ import 'package:mhg/features/checkout/views/pages/payment_methods_page.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
+import 'package:radio_group_v2/radio_group_v2.dart';
 
 class PaymentMethod extends StatelessWidget {
   PaymentMethod({super.key});
+
   final CheckoutController checkoutController = Get.put(CheckoutController());
+
+RadioGroupController myController = RadioGroupController();
+
   final ProfileController profileController = Get.find<ProfileController>();
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -156,6 +162,11 @@ class PaymentMethod extends StatelessWidget {
                         groupValue: checkoutController.hasRedeem.value,
                         onChanged: (val) {
                           checkoutController.hasRedeem(val);
+                         checkoutController.orderPrice(
+                            profileController.model.value!.countryId,
+                            checkoutController.codeController.text.trim(),
+                            isRedeem: val!,
+                          ); 
                         }),
                     Text(
                       'Redeem ${profileController.model.value!.hearts!} Pts',

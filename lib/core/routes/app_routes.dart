@@ -138,7 +138,7 @@ class AppRoutes {
     ),
     GetPage(
       name: '/checkout',
-      page: () => const CheckoutPage(),
+      page: () =>  CheckoutPage(),
       binding: CheckoutBinding(),
     ),
     GetPage(
