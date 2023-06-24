@@ -51,74 +51,8 @@ class _PlaceOrderState extends State<PlaceOrder> {
                     ),
               )),
           const SizedBox(height: 15),
-          checkoutController.paymentMethodsModel.data == null ||
-                  checkoutController.paymentMethodsModel.data!.isEmpty
-              ? const SizedBox()
-              : Text(
-                  'Payment Method Type',
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 16,
-                        color: AppColors.label,
-                      ),
-                ),
-          checkoutController.paymentMethodsModel.data == null ||
-                  checkoutController.paymentMethodsModel.data!.isEmpty
-              ? const SizedBox()
-              : Row(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "COD",
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  fontSize: 16,
-                                  color: AppColors.label,
-                                ),
-                          ),
-                          Radio(
-                              value: "COD",
-                              groupValue: checkoutController.codOrCard.value,
-                              onChanged: (val) {
-                                checkoutController.codOrCard("COD");
-                                
-                                setState(() {});
-                              }),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            checkoutController.onlinePaymentMethodName.value,
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  fontSize: 16,
-                                  color: AppColors.label,
-                                ),
-                          ),
-                          Radio(
-                              value:checkoutController. onlinePaymentMethodName.value,
-                              groupValue: checkoutController.codOrCard.value,
-                              onChanged: (val) {
-                                checkoutController.codOrCard(val);
-                                
-                                setState(() {});
-                              }),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-          const SizedBox(height: 15),
+      
+         
           Obx(
             () => checkoutController.isLoadingCreateOrder.isTrue ? const LoadingWidget(): checkoutController.isErrorCreateOrder.isTrue
               ? RetryButton(

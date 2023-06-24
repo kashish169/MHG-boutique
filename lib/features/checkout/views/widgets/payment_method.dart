@@ -7,8 +7,14 @@ import 'package:mhg/features/checkout/views/pages/payment_methods_page.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 
-class PaymentMethod extends StatelessWidget {
+class PaymentMethod extends StatefulWidget {
   PaymentMethod({super.key});
+
+  @override
+  State<PaymentMethod> createState() => _PaymentMethodState();
+}
+
+class _PaymentMethodState extends State<PaymentMethod> {
   final CheckoutController checkoutController = Get.put(CheckoutController());
 
   @override
@@ -29,6 +35,69 @@ class PaymentMethod extends StatelessWidget {
                         ),
                   ),
                 ),
+                checkoutController.paymentMethodsModel.data == null ||
+                        checkoutController.paymentMethodsModel.data!.isEmpty
+                    ? const SizedBox()
+                    : SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.12,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Radio(
+                                    value: "COD",
+                                    groupValue:
+                                        checkoutController.codOrCard.value,
+                                    onChanged: (val) {
+                                      checkoutController.codOrCard("COD");
+
+                                      setState(() {});
+                                    }),
+                                Text(
+                                  "COD",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall
+                                      ?.copyWith(
+                                        fontSize: 16,
+                                        color: AppColors.label,
+                                      ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Radio(
+                                    value: checkoutController
+                                        .onlinePaymentMethodName.value,
+                                    groupValue:
+                                        checkoutController.codOrCard.value,
+                                    onChanged: (val) {
+                                      checkoutController.codOrCard(val);
+
+                                      setState(() {});
+                                    }),
+                                Text(
+                                  checkoutController
+                                      .onlinePaymentMethodName.value,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall
+                                      ?.copyWith(
+                                        fontSize: 16,
+                                        color: AppColors.label,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                const SizedBox(height: 15),
                 InkWell(
                   onTap: () {
                     Get.toNamed(PaymentMethodsPage.routeName);
