@@ -156,6 +156,11 @@ class PaymentMethod extends StatelessWidget {
                         groupValue: checkoutController.hasRedeem.value,
                         onChanged: (val) {
                           checkoutController.hasRedeem(val);
+                          checkoutController.orderPrice(
+                            profileController.model.value!.countryId,
+                            checkoutController.codeController.text.trim(),
+                            isRedeem: true,
+                          );
                         }),
                     Text(
                       'Redeem ${profileController.model.value!.hearts!} Pts',

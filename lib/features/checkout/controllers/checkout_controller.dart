@@ -249,17 +249,17 @@ class CheckoutController extends GetxController {
     }
   }
 
-  orderPrice(countryId, coupon , ) async {
+  orderPrice(countryId, coupon , {bool isRedeem = false} ) async {
     try {
-      isLoadingPromo(true);
-      isErrorPromo(false);
+     isRedeem ? isLoading(true) : isLoadingPromo(true);
+     isRedeem ? isError(true) : isErrorPromo(false);
       Either<Failure, ApiResponse> results =
           await checkoutRepository.orderPrice(countryId, coupon , profileController.model.value!.hearts!);
-      isLoadingPromo(false);
+    isRedeem ? isLoading(true) :  isLoadingPromo(false);
 
       results.fold(
         (l) {
-          isErrorPromo(true);
+        isRedeem ? isError(true) :  isErrorPromo(true);
 
           AppToasts.errorToast(l.message);
           log("ORDER PRICE METHODS RESPONSE ERROR ${l.message}");
