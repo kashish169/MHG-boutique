@@ -44,4 +44,5 @@ class Api {
   static String orderPrice = '/api/v1/order/order-price';
   static String categoriesByBrand = "/api/v1/category/brand";
   static String createOrder = "/api/v1/order/create";
+  static String myOrders = "/api/v1/users/orders";
 }
