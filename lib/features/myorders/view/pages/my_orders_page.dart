@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/myorders/controller/my_orders_controller.dart';
 import 'package:mhg/features/myorders/view/widgets/tab_bar_card.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
+import 'package:mhg/widgets/retry_button.dart';
 import '../widgets/my_orders_list_widget.dart';
 
 class MyOrdersPage extends StatefulWidget {
@@ -70,17 +73,31 @@ class _MyOrdersPageState extends State<MyOrdersPage>
                   ),
                 ],
               ),
-              Expanded(
-                child: TabBarView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: _tabController,
-                  children: const [
-                    MyOrdersListWidget(),
-                    MyOrdersListWidget(),
-                    MyOrdersListWidget(),
-                  ],
-                ),
-              ),
+       GetX<MyOrdersController>(builder: (controller) {
+      if (controller.isLoading.isTrue) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (controller.isError.isTrue) {
+        return RetryButton(
+          onTap: () {
+            controller.getMyOrders();
+          },
+        );
+      }
+      return  Expanded(
+        child: TabBarView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: _tabController,
+          children:  [
+            MyOrdersListWidget(model: controller.orders,),
+            MyOrdersListWidget(model: controller.returns,),
+            MyOrdersListWidget(model: controller.cancelled,),
+          ],
+        ),
+      );
+    })
+
             ],
           )),
     );
