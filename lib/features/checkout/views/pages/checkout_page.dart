@@ -15,31 +15,14 @@ import 'package:mhg/widgets/custom_app_bar.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
 
-class CheckoutPage extends StatefulWidget {
+class CheckoutPage extends StatelessWidget {
   static String routeName = '/checkout';
 
-  const CheckoutPage({
+   CheckoutPage({
     super.key,
   });
 
-  @override
-  State<CheckoutPage> createState() => _CheckoutPageState();
-}
-
-class _CheckoutPageState extends State<CheckoutPage> {
   final CheckoutController checkoutController = Get.put(CheckoutController());
-  @override
-  void initState() {
-    super.initState();
-    checkoutController.getAllPaymentMethods();
-    setState(() {});
-  }
-
-  @override
-  void dispose() {
-    setState(() {});
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

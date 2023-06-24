@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors_in_immutables
+
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,15 +11,11 @@ import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import 'package:radio_group_v2/radio_group_v2.dart';
 
-class PaymentMethod extends StatefulWidget {
+class PaymentMethod extends StatelessWidget {
   PaymentMethod({super.key});
 
-  @override
-  State<PaymentMethod> createState() => _PaymentMethodState();
-}
-
-class _PaymentMethodState extends State<PaymentMethod> {
   final CheckoutController checkoutController = Get.put(CheckoutController());
+
 RadioGroupController myController = RadioGroupController();
 
   final ProfileController profileController = Get.find<ProfileController>();
