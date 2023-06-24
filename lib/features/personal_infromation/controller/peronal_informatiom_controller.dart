@@ -61,9 +61,9 @@ class PersonalInformationController extends GetxController {
     } else {
       phone.text == 'Add your Number';
     }
-    state.text = profileInfo.state ?? 'Add your state';
-    address.text = profileInfo.street ?? 'Add your street address';
-    zipCode.text = profileInfo.zipCode ?? 'Add your  zip code';
+    state.text = profileInfo.state ?? '';
+    address.text = profileInfo.street ?? '';
+    zipCode.text = profileInfo.zipCode ?? '';
 
     super.onInit();
   }
