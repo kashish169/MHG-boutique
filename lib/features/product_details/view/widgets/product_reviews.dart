@@ -5,13 +5,16 @@ import 'package:mhg/features/product_details/view/widgets/product_details_commen
 import 'package:mhg/widgets/primary_button.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/rating_widget.dart';
-import 'product_details_comment_dialog.dart';
+import '../../controller/product_details_controller.dart';
+import 'product_add_review_dialog.dart';
 
-class ProductDetialsReview extends StatelessWidget {
-  const ProductDetialsReview({super.key});
+class ProductDetailsReview extends StatelessWidget {
+  const ProductDetailsReview({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ProductDetailsController>();
+
     return Container(
       color: AppColors.white3,
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -41,7 +44,7 @@ class ProductDetialsReview extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "4.0",
+                  "${controller.model.avarageRate}",
                   style: Theme.of(context)
                       .textTheme
                       .displayLarge!
@@ -50,16 +53,18 @@ class ProductDetialsReview extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
+                    SizedBox(
                         width: 60,
                         child: RatingWidget(
                           isEnableToRate: false,
+                          initialRating:
+                              double.parse("${controller.model.avarageRate}"),
                         )),
                     const SizedBox(
                       height: 5,
                     ),
                     Text(
-                      "(Reviewed By 213 Persons)",
+                      "(Reviewed By ${controller.model.reviewsCount} Persons)",
                       style: Theme.of(context)
                           .textTheme
                           .displaySmall!
@@ -73,33 +78,40 @@ class ProductDetialsReview extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
-          ListView.separated(
-            shrinkWrap: true,
-            itemCount: 3,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) => const ProductDetailsComment(),
-            separatorBuilder: (context, index) => const SizedBox(
-              height: 10,
-            ),
-          ),
+          Obx(() => ListView.separated(
+                shrinkWrap: true,
+                itemCount: controller.productsReviews.length,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) => ProductDetailsReviewComment(
+                  model: controller.productsReviews[index],
+                ),
+                separatorBuilder: (context, index) => const SizedBox(
+                  height: 10,
+                ),
+              )),
           const SizedBox(
             height: 20,
           ),
           Center(
-            child: PrimaryButton(
-              title: "Add Comment",
-              onTap: () {
-                Get.defaultDialog(
-                  title: "Add Review",
-                  titleStyle: Theme.of(context).textTheme.headline2,
-                  titlePadding: const EdgeInsets.only(
-                    top: 20,
-                  ),
-                  content: ProductDetailsCommentDialog(),
-                );
-              },
-              height: 60,
-              width: AppDimensions.screenWidth(context) * 0.8,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: PrimaryButton(
+                title: "Add Comment",
+                onTap: () {
+                  Get.defaultDialog(
+                    title: "Add Review",
+                    titleStyle: Theme.of(context).textTheme.headline2,
+                    titlePadding: const EdgeInsets.only(
+                      top: 20,
+                    ),
+                    content: ProductAddReviewDialog(
+                      productId: controller.model.id,
+                    ),
+                  );
+                },
+                height: 40,
+                width: double.infinity,
+              ),
             ),
           ),
           const SizedBox(

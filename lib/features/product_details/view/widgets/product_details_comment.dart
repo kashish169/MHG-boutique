@@ -1,35 +1,36 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
-
+import 'package:mhg/features/product_details/models/product_review_model.dart';
+import 'package:mhg/widgets/net_image.dart';
+import '../../../../core/helper/app_helper.dart';
 import '../../../../widgets/rating_widget.dart';
 
-class ProductDetailsComment extends StatelessWidget {
-  const ProductDetailsComment({super.key});
+class ProductDetailsReviewComment extends StatelessWidget {
+  final ProductReviewModel model;
+  const ProductDetailsReviewComment({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsetsDirectional.only(end: 20),
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(6),
       ),
       child: Row(
         children: [
-          Expanded(
-            flex: 1,
-            child: Container(
-              height: 80,
-              width: 50,
-              decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius:
-                      const BorderRadius.horizontal(left: Radius.circular(6))),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(
+              radius: 20,
+              backgroundColor: AppColors.secondary,
+              backgroundImage: CachedNetworkImageProvider(model.user.imageLink),
             ),
           ),
           Expanded(
-            flex: 4,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -39,7 +40,7 @@ class ProductDetailsComment extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "Ali Ali",
+                            model.user.name ?? '',
                             style: Theme.of(context)
                                 .textTheme
                                 .displayLarge!
@@ -49,15 +50,16 @@ class ProductDetailsComment extends StatelessWidget {
                           Container(
                               margin: const EdgeInsets.symmetric(horizontal: 5),
                               width: 60,
-                              child: const RatingWidget(
+                              child: RatingWidget(
                                 isEnableToRate: false,
+                                initialRating: double.parse("${model.rating}"),
                               ))
                         ],
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 5),
                         child: Text(
-                          "1 day ago",
+                          AppHelper.difference(model.createdAt),
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall!
@@ -70,7 +72,7 @@ class ProductDetailsComment extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    "user name comment and review here ",
+                    model.feedback,
                     style: Theme.of(context)
                         .textTheme
                         .displaySmall!

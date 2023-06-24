@@ -1,4 +1,5 @@
 import 'package:mhg/features/product_details/models/product_details_category_model.dart';
+import 'package:mhg/features/product_details/models/product_review_model.dart';
 import '../../home/models/brand_model.dart';
 import '../../home/models/product_model.dart';
 import '../../home/models/store_model.dart';
@@ -57,13 +58,16 @@ class ProductDetailsModel {
   dynamic image4Link;
   dynamic image5Link;
   StoreModel store;
+  dynamic reviewsCount;
+  dynamic avarageRate;
   List<ProductDetailsCategoryModel> categories;
   BrandModel brand;
   List<Color> colors;
   List<Size> sizes;
   List<ProductTag> productTags;
-  List<dynamic> productReviews;
   List<ProductModel> relatedProducts;
+  List<ProductReviewModel> productReviews;
+
   bool isLoadingQuantity;
 
   ProductDetailsModel({
@@ -127,6 +131,8 @@ class ProductDetailsModel {
     required this.productTags,
     required this.productReviews,
     required this.relatedProducts,
+    this.avarageRate,
+    this.reviewsCount,
     this.isLoadingQuantity = false,
   });
 
@@ -184,6 +190,8 @@ class ProductDetailsModel {
         image3Link: json["image3_link"],
         image4Link: json["image4_link"],
         image5Link: json["image5_link"],
+        reviewsCount: json["reviews_count"],
+        avarageRate: json["avarage_rate"],
         store: StoreModel.fromJson(json["store"]),
         categories: List<ProductDetailsCategoryModel>.from(json["categories"]
             .map((x) => ProductDetailsCategoryModel.fromJson(x))),
@@ -192,10 +200,10 @@ class ProductDetailsModel {
         sizes: List<Size>.from(json["sizes"].map((x) => Size.fromJson(x))),
         productTags: List<ProductTag>.from(
             json["product_tags"].map((x) => ProductTag.fromJson(x))),
-        productReviews:
-            List<dynamic>.from(json["product_reviews"].map((x) => x)),
         relatedProducts: List<ProductModel>.from(
             json["relatedProducts"].map((x) => ProductModel.fromJson(x))),
+        productReviews: List<ProductReviewModel>.from(
+            json["product_reviews"].map((x) => ProductReviewModel.fromJson(x))),
       );
 }
 

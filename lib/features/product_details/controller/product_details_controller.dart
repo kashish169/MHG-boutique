@@ -1,12 +1,18 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/product_details/models/product_details_model.dart';
+import 'package:mhg/features/product_details/models/product_review_model.dart';
+import 'package:mhg/features/product_details/models/review_model.dart';
 import 'package:mhg/features/product_details/repository/product_details_repo.dart';
 import 'package:mhg/features/product_details/repository/product_details_repo_impl.dart';
+import 'package:mhg/features/profile/controller/profile_controller.dart';
+import 'package:mhg/widgets/loading_widget.dart';
 import '../../../constants/app_toasts.dart';
 import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
@@ -20,14 +26,18 @@ class ProductDetailsController extends GetxController {
   late int productId;
   late bool fromArrival;
   RxString productName = ''.obs;
+  final profileController = Get.find<ProfileController>();
 
   ProductDetailsController() {
     productDetailsRepository = Get.find<ProductDetailsRepoImplement>();
   }
 
+  TextEditingController reviewNote = TextEditingController();
+  double ratingValue = 1;
   late ProductDetailsModel model;
 
   List<String> productImages = [];
+  RxList<ProductReviewModel> productsReviews = <ProductReviewModel>[].obs;
 
   Future<void> getProductDetails() async {
     productImages.clear();
@@ -52,6 +62,7 @@ class ProductDetailsController extends GetxController {
           if (statusCode == 200) {
             var json = r.object["data"]["product"];
             model = ProductDetailsModel.fromJson(json);
+            productsReviews.value = model.productReviews;
             productImages.add(
               model.primaryImageLink,
             );
@@ -117,23 +128,26 @@ class ProductDetailsController extends GetxController {
           log("ADD PRODUCT TO CART CART RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
             result = true;
-            List<ProductModel> temp = Get.find<HomeController>().newArrivalsList;
+            List<ProductModel> temp =
+                Get.find<HomeController>().newArrivalsList;
             for (int i = 0; i < temp.length; i++) {
               if (temp[i].id == productId) {
                 temp[i].inCart = 1;
-                temp[i].cartQty=1;
-                fromArrival=true;
+                temp[i].cartQty = 1;
+                fromArrival = true;
               }
             }
-            List<ProductModel>  temp2 = Get.find<HomeController>().topSellersList;
+            List<ProductModel> temp2 =
+                Get.find<HomeController>().topSellersList;
             for (int i = 0; i < temp2.length; i++) {
               if (temp2[i].id == productId) {
                 temp2[i].inCart = 1;
-                temp2[i].cartQty=1;
-                fromArrival=false;
+                temp2[i].cartQty = 1;
+                fromArrival = false;
               }
             }
-            Get.find<HomeController>().updateList(fromArrival==true?temp:temp2, fromArrival);
+            Get.find<HomeController>()
+                .updateList(fromArrival == true ? temp : temp2, fromArrival);
             AppToasts.successToast(
               "The product has been added to the bag",
             );
@@ -150,6 +164,67 @@ class ProductDetailsController extends GetxController {
       result = false;
     }
     return result;
+  }
+
+  Future<void> addReview({
+    required int productId,
+  }) async {
+    if (reviewNote.text.trim().isEmpty) {
+      AppToasts.errorToast("Please Write Your Review");
+      return;
+    }
+    AppHelper.closeKeyboard();
+    Get.dialog(
+      const LoadingWidget(),
+      barrierDismissible: false,
+    );
+    try {
+      Map<String, dynamic> body = {
+        "product_id": productId,
+        "rate": ratingValue,
+        "review": reviewNote.text.trim()
+      };
+      Either<Failure, ApiResponse> results =
+          await productDetailsRepository.addReview(
+        body: jsonEncode(body),
+      );
+      Get.back();
+      results.fold(
+        (l) {
+          AppToasts.errorToast(l.message);
+          log("REVIEW RESPONSE ERROR ${l.message}");
+        },
+        (r) {
+          var statusCode = r.object["code"];
+          var message = r.object["message"];
+          log("REVIEW RESPONSE STATUS $statusCode");
+          if (statusCode == 200) {
+            var json = r.object["data"]["review"];
+            var model = ReviewModel.fromJson(json);
+            productsReviews.add(ProductReviewModel(
+              id: model.id,
+              rating: model.rating,
+              feedback: model.feedback,
+              productId: productId,
+              userId: profileController.model.value!.id,
+              createdAt: model.createdAt,
+              updatedAt: model.updatedAt,
+              user: User(
+                id: profileController.model.value!.id,
+                name: profileController.model.value?.name ?? '',
+                imageLink: profileController.model.value?.imageLink,
+              ),
+            ));
+            AppToasts.successToast("Your review has been added successfully");
+            Get.back();
+          } else {
+            AppToasts.errorToast(message);
+          }
+        },
+      );
+    } catch (e, s) {
+      log("$e $s");
+    }
   }
 
   @override

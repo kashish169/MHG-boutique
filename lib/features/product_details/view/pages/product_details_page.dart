@@ -36,7 +36,7 @@ class ProductDetailsPage extends StatelessWidget {
                 ProductDetailsInfoCard(),
                 SimilarProductsWidget(),
                 SizedBox(height: 20),
-                ProductDetialsReview()
+                ProductDetailsReview()
               ],
             ),
           );

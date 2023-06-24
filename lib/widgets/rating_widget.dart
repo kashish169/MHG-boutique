@@ -2,18 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class RatingWidget extends StatelessWidget {
-  const RatingWidget(
-      {super.key, this.isEnableToRate = true, this.boxSize, this.starSize});
+  const RatingWidget({
+    super.key,
+    this.isEnableToRate = true,
+    this.boxSize,
+    this.starSize,
+    this.onRatingUpdate,
+    this.initialRating,
+  });
+  final double? initialRating;
   final bool? isEnableToRate;
   final double? boxSize;
   final double? starSize;
+  final Function(double)? onRatingUpdate;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: boxSize == null ? 30 : boxSize!,
       child: Center(
         child: RatingBar.builder(
-          initialRating: 3,
+          initialRating: initialRating ?? 3,
           minRating: 1,
           ignoreGestures: isEnableToRate! ? false : true,
           direction: Axis.horizontal,
@@ -28,6 +37,7 @@ class RatingWidget extends StatelessWidget {
           ),
           onRatingUpdate: (rating) {
             print(rating);
+            onRatingUpdate!(rating);
           },
         ),
       ),
