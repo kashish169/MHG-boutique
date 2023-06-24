@@ -8,7 +8,12 @@ import 'delete_cart_button.dart';
 
 class MyCartCard extends StatelessWidget {
   final CartModel model;
-  const MyCartCard({super.key, required this.model});
+  final bool isCheckOut;
+  const MyCartCard({
+    super.key,
+    required this.model,
+    this.isCheckOut = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -122,8 +127,11 @@ class MyCartCard extends StatelessWidget {
             ],
           ),
         ),
-        DeleteCartButton(
-          model: model,
+        Visibility(
+          visible: !isCheckOut,
+          child: DeleteCartButton(
+            model: model,
+          ),
         ),
       ],
     );

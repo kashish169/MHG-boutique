@@ -68,4 +68,5 @@ class AppAssets {
   static String starGif = "assets/images/star-gif.gif";
   static String qrGif = "assets/images/qr-gif.gif";
   static String arrowForward = "assets/icons/arrow-forward.png";
+  static String sendIcon = "assets/icons/send.png";
 }

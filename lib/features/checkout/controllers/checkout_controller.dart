@@ -314,7 +314,6 @@ class CheckoutController extends GetxController {
         pm,
         onlinePaymentMethod,
       );
-      print(results);
       isLoadingCreateOrder(false);
       results.fold(
         (l) {

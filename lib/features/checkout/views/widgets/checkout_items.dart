@@ -54,6 +54,7 @@ class CheckoutItems extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return MyCartCard(
                               model: controller.cartItemsList[index],
+                              isCheckOut: true,
                             );
                           },
                           separatorBuilder: (context, index) {

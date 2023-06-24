@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mhg/core/helper/app_helper.dart';
+import 'package:mhg/features/myorders/models/order_model.dart';
 
 class MyOrderCard extends StatelessWidget {
-  const MyOrderCard({super.key});
+  final MyOrder model;
+  const MyOrderCard({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Get.toNamed('/my_orders_details',arguments: model.orderDetails);
+      },
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Row(
@@ -17,14 +23,14 @@ class MyOrderCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Order #223455',
+                    model.orderNumber,
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: 16,
                         ),
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    'Total 2500 Dhs',
+                    'Total ${model.grandTotal} Dhs',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: 16,
                         ),
@@ -38,14 +44,14 @@ class MyOrderCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '4 items',
+                    '${model.orderDetails.length} items',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: 16,
                         ),
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    '26/05/2023 11:12 PM',
+                    '${AppHelper.dateFormat(model.createdAt.toLocal())} ${AppHelper.timeFormat(model.createdAt.toLocal())}',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: 12,
                         ),
@@ -54,7 +60,7 @@ class MyOrderCard extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 5),
-            Icon(
+            const Icon(
               Icons.arrow_forward_ios,
             ),
           ],

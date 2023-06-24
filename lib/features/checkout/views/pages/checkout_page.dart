@@ -12,6 +12,9 @@ import 'package:mhg/features/checkout/views/widgets/shipping_address.dart';
 
 import 'package:mhg/widgets/custom_app_bar.dart';
 
+import '../../../../widgets/loading_widget.dart';
+import '../../../../widgets/retry_button.dart';
+
 class CheckoutPage extends StatefulWidget {
   static String routeName = '/checkout';
 
@@ -24,11 +27,11 @@ class CheckoutPage extends StatefulWidget {
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
-   final CheckoutController checkoutController = Get.put(CheckoutController());
+  final CheckoutController checkoutController = Get.put(CheckoutController());
   @override
   void initState() {
     super.initState();
-     checkoutController.getAllPaymentMethods();
+    checkoutController.getAllPaymentMethods();
     setState(() {});
   }
 
@@ -43,21 +46,28 @@ class _CheckoutPageState extends State<CheckoutPage> {
     return Scaffold(
       backgroundColor: AppColors.white2,
       appBar: customAppBar(context, title: 'Checkout'),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ShippingAddress(),
-            divider(),
-            PaymentMethod(),
-            divider(),
-            CheckoutItems(),
-            divider(),
-            PromoCode(),
-            divider(),
-            PlaceOrder(),
-          ],
-        ),
-      ),
+      body: GetX<CheckoutController>(builder: (controller) {
+        if (controller.isLoading.isTrue) {
+          return const LoadingWidget();
+        } else if (controller.isError.isTrue) {
+          return RetryButton(onTap: () => controller.getAllPaymentMethods());
+        }
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              const ShippingAddress(),
+              divider(),
+              PaymentMethod(),
+              divider(),
+              const CheckoutItems(),
+              divider(),
+              PromoCode(),
+              divider(),
+              const PlaceOrder(),
+            ],
+          ),
+        );
+      }),
     );
   }
 }
