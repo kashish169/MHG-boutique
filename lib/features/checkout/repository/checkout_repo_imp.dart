@@ -41,7 +41,7 @@ class CheckoutRepoImplement implements CheckoutRepository {
   @override
   Future<Either<Failure, ApiResponse>> setDefaultPaymentMethod(id) async =>
       httpService.post(
-        url: Api.removePaymentMethod,
+        url: Api.setDefaultPaymentMethod,
         isAuthorized: App.token.isEmpty ? false : true,
         body: json.encode({"payment_method": id}),
       );
@@ -62,7 +62,7 @@ class CheckoutRepoImplement implements CheckoutRepository {
     billingZipCode,
     billingCountry,
     coupon,
-    paymentMethod,
+    pm,
     onlinePaymentMethod,
   ) async =>
       httpService.post(
@@ -82,7 +82,7 @@ class CheckoutRepoImplement implements CheckoutRepository {
           "shipping_zipcode": billingZipCode,
           "shipping_country": billingCountry,
           "coupon": coupon,
-          "payment_method": paymentMethod,
+          "payment_method": pm,
           "online_payment_method_id": onlinePaymentMethod
         }),
       );

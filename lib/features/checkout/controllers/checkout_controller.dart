@@ -49,6 +49,7 @@ class CheckoutController extends GetxController {
   RxString cardNumber = ''.obs;
   RxString shippingName = ''.obs;
   RxString paymentMethod = ''.obs;
+  RxString onlinePaymentMethodName = ''.obs;
   RxInt loadingPercentage = 0.obs;
   RxString total = ''.obs;
   RxString codOrCard = 'COD'.obs;
@@ -85,6 +86,12 @@ class CheckoutController extends GetxController {
                   cardType(paymentMethodsModel.data![0].cardType);
                   cardNumber(
                       getCodedNumber(paymentMethodsModel.data![0].cardNumber));
+                  onlinePaymentMethodName(paymentMethodsModel.data!
+                      .firstWhere((element) => element.isDefault == 0)
+                      .cardType!);
+                  paymentMethod(paymentMethodsModel.data!
+                      .firstWhere((element) => element.isDefault == 0)
+                      .cardType!);
                 }
               }
             }
@@ -134,16 +141,14 @@ class CheckoutController extends GetxController {
                 ..setNavigationDelegate(
                   NavigationDelegate(
                     onPageStarted: (url) {
-                      print(url);
                       loadingPercentage(0);
                     },
                     onProgress: (progress) {
-                      print(progress);
                       loadingPercentage(progress);
                     },
                     onPageFinished: (url) async {
-                      print(url);
                       loadingPercentage(100);
+                      getAllPaymentMethods();
                     },
                   ),
                 )
@@ -185,7 +190,8 @@ class CheckoutController extends GetxController {
             if (r.object["data"] != null) {
               removePaymentMethodsModel =
                   RemovePaymentMethodsModel.fromJson(r.object);
-
+              AppToasts.successToast(
+                  'Payment Method has been removed Successfully!');
               getAllPaymentMethods();
             }
           } else {
@@ -224,7 +230,12 @@ class CheckoutController extends GetxController {
                   SetDefaultPaymentMethodsModel.fromJson(r.object);
 
               paymentMethod(setDefaultPaymentMethodsModel.data!.id.toString());
-
+              AppToasts.successToast(
+                  'Payment Method has been updated Successfully!');
+              onlinePaymentMethodName(
+                  paymentMethodsModel.data!.firstWhere((element) {
+                return element.id.toString() == paymentMethod.value;
+              }).cardType);
               getAllPaymentMethods();
             }
           } else {
@@ -280,11 +291,15 @@ class CheckoutController extends GetxController {
     billingZipCode,
     billingCountry,
     coupon,
-    paymentMethod,
+    pm,
     onlinePaymentMethod,
   ) async {
     try {
-      print(paymentMethod);
+      onlinePaymentMethod = paymentMethodsModel.data!
+          .where((element) => element.cardType == onlinePaymentMethodName.value)
+          .first
+          .id;
+
       isLoadingCreateOrder(true);
       isErrorCreateOrder(false);
       Either<Failure, ApiResponse> results =
@@ -296,7 +311,7 @@ class CheckoutController extends GetxController {
         billingZipCode,
         billingCountry,
         coupon,
-        paymentMethod,
+        pm,
         onlinePaymentMethod,
       );
       print(results);
@@ -316,6 +331,7 @@ class CheckoutController extends GetxController {
           if (statusCode == 200) {
             if (r.object["data"] != null) {
               createOrderModal = CreateOrderModal.fromJson(r.object);
+              AppToasts.successToast('Order Placed Successfully!');
             }
           } else {
             AppToasts.errorToast(message);
@@ -325,12 +341,5 @@ class CheckoutController extends GetxController {
     } catch (e, s) {
       log("$e $s");
     }
-  }
-
-  @override
-  void onInit() {
-    getAllPaymentMethods();
-    getAllPaymentMethods();
-    super.onInit();
   }
 }
