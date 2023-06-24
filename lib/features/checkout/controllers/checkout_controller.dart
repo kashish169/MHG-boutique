@@ -60,6 +60,28 @@ class CheckoutController extends GetxController {
     checkoutRepository = Get.find<CheckoutRepoImplement>();
   }
 
+  @override
+  void onInit() {
+    webViewController = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(const Color(0x00000000))
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onPageStarted: (url) {
+            loadingPercentage(0);
+          },
+          onProgress: (progress) {
+            loadingPercentage(progress);
+          },
+          onPageFinished: (url) async {
+            loadingPercentage(100);
+            getAllPaymentMethods();
+          },
+        ),
+      );
+    super.onInit();
+  }
+
   Future<void> getAllPaymentMethods() async {
     try {
       isLoading(true);
@@ -136,26 +158,9 @@ class CheckoutController extends GetxController {
               addPaymentMethodsModel =
                   AddPaymentMethodsModel.fromJson(r.object);
               Get.toNamed('/add_payment_method_web_view');
-              webViewController = WebViewController()
-                ..setJavaScriptMode(JavaScriptMode.unrestricted)
-                ..setBackgroundColor(const Color(0x00000000))
-                ..setNavigationDelegate(
-                  NavigationDelegate(
-                    onPageStarted: (url) {
-                      loadingPercentage(0);
-                    },
-                    onProgress: (progress) {
-                      loadingPercentage(progress);
-                    },
-                    onPageFinished: (url) async {
-                      loadingPercentage(100);
-                      getAllPaymentMethods();
-                    },
-                  ),
-                )
-                ..loadRequest(
-                  Uri.parse(addPaymentMethodsModel.data!.link!),
-                );
+              webViewController.loadRequest(
+                Uri.parse(addPaymentMethodsModel.data!.link!),
+              );
             }
           } else {
             AppToasts.errorToast(message);
