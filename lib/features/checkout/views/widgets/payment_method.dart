@@ -10,14 +10,8 @@ import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 
-class PaymentMethod extends StatefulWidget {
+class PaymentMethod extends StatelessWidget {
   PaymentMethod({super.key});
-
-  @override
-  State<PaymentMethod> createState() => _PaymentMethodState();
-}
-
-class _PaymentMethodState extends State<PaymentMethod> {
   final CheckoutController checkoutController = Get.put(CheckoutController());
   final ProfileController profileController = Get.find<ProfileController>();
   @override
@@ -56,8 +50,6 @@ class _PaymentMethodState extends State<PaymentMethod> {
                                         checkoutController.codOrCard.value,
                                     onChanged: (val) {
                                       checkoutController.codOrCard("COD");
-
-                                      setState(() {});
                                     }),
                                 Text(
                                   "COD",
@@ -81,8 +73,6 @@ class _PaymentMethodState extends State<PaymentMethod> {
                                         checkoutController.codOrCard.value,
                                     onChanged: (val) {
                                       checkoutController.codOrCard(val);
-
-                                      setState(() {});
                                     }),
                                 Text(
                                   checkoutController
@@ -166,10 +156,6 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         groupValue: checkoutController.hasRedeem.value,
                         onChanged: (val) {
                           checkoutController.hasRedeem(val);
-                          print(checkoutController.hasRedeem.value);
-                          setState(() {
-
-                          });
                         }),
                     Text(
                       'Redeem ${profileController.model.value!.hearts!} Pts',
@@ -178,7 +164,6 @@ class _PaymentMethodState extends State<PaymentMethod> {
                             color: AppColors.label,
                           ),
                     ),
-                  
                   ],
                 ),
               ],
