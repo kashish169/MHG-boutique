@@ -72,6 +72,7 @@ class MyOrdersController extends GetxController {
           cancelled.add(myOrdersModel.orders[i]);
         }else{
           orders.add(myOrdersModel.orders[i]);
+
         }
 
       }
