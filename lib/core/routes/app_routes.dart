@@ -15,6 +15,7 @@ import 'package:mhg/features/mainwrapper/binding/main_wrapper_bindings.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
 import 'package:mhg/features/checkout/views/pages/checkout_page.dart';
 import 'package:mhg/features/myorders/binding/my_orders_binding.dart';
+import 'package:mhg/features/myorders/view/pages/my_order_detail.dart';
 import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
 import 'package:mhg/features/notification_permission/view/pages/norification_permission.dart';
 import 'package:mhg/features/notifications/binding/notification_binding.dart';
@@ -104,6 +105,11 @@ class AppRoutes {
       name: '/my_orders',
       page: () => const MyOrdersPage(),
       binding: MyOrdersBinding(),
+    ),
+    GetPage(
+      name: '/my_orders_details',
+      page: () => const MyOrderDetailPage(),
+
     ),
     GetPage(
       name: '/product_details',

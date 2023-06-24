@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/myorders/models/order_model.dart';
 
@@ -9,7 +10,9 @@ class MyOrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Get.toNamed('/my_orders_details',arguments: model.orderDetails);
+      },
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Row(
