@@ -1,14 +1,13 @@
-// ignore_for_file: unrelated_type_equality_checks
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/checkout/views/widgets/place_order_button.dart';
-import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
+import 'package:mhg/widgets/three_bounce_loading.dart';
 
 class PlaceOrder extends StatefulWidget {
   const PlaceOrder({super.key});
@@ -18,10 +17,7 @@ class PlaceOrder extends StatefulWidget {
 }
 
 class _PlaceOrderState extends State<PlaceOrder> {
-  final controller = Get.find<MyCartController>();
-
   final CheckoutController checkoutController = Get.put(CheckoutController());
-
   final ProfileController profileController = Get.find<ProfileController>();
 
   @override
@@ -32,64 +28,156 @@ class _PlaceOrderState extends State<PlaceOrder> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 15),
-          Text(
-            'TOTAL',
-            style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                  fontSize: 16,
-                  color: AppColors.label,
+          GetX<CheckoutController>(builder: (checkoutController) {
+            if (checkoutController.isLoadingRedeem.isTrue) {
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: LoadingThreeBounce(
+                  color: AppColors.primary,
+                  size: 20,
                 ),
-          ),
-          const SizedBox(height: 10),
-          Obx(() => (checkoutController.isLoadingRedeem.value == true &&
-                  checkoutController.isErrorRedeem.isFalse)
-              ? const LoadingWidget()
-              : Text(
-                  checkoutController.total.value != ''
-                      ? '\$${checkoutController.total.value}'
-                      : '\$${controller.totalPrice.value}',
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        color: AppColors.mediumLabel,
-                        fontWeight: FontWeight.bold,
+              );
+            } else if (checkoutController.isErrorRedeem.isTrue) {
+              return RetryButton(onTap: () => checkoutController.orderPrice());
+            }
+            return Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'SUBTOTAL',
+                        style:
+                            Theme.of(context).textTheme.displaySmall?.copyWith(
+                                  fontSize: 16,
+                                  color: AppColors.label,
+                                ),
                       ),
-                )),
+                      const SizedBox(height: 10),
+                      Text(
+                        '\$${checkoutController.orderPriceModal.data?.subtotal}',
+                        style:
+                            Theme.of(context).textTheme.displayMedium?.copyWith(
+                                  color: AppColors.mediumLabel,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'TAX',
+                        style:
+                            Theme.of(context).textTheme.displaySmall?.copyWith(
+                                  fontSize: 16,
+                                  color: AppColors.label,
+                                ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        '\$${checkoutController.orderPriceModal.data?.tax}',
+                        style:
+                            Theme.of(context).textTheme.displayMedium?.copyWith(
+                                  color: AppColors.mediumLabel,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                      ),
+                    ],
+                  ),
+                ),
+                Visibility(
+                  visible:
+                      checkoutController.orderPriceModal.data?.discount == 0
+                          ? false
+                          : true,
+                  child: Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'DISCOUNT',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: 16,
+                                color: AppColors.label,
+                              ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          '\$${checkoutController.orderPriceModal.data?.discount}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(
+                                color: AppColors.mediumLabel,
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        'TOTAL',
+                        style:
+                            Theme.of(context).textTheme.displaySmall?.copyWith(
+                                  fontSize: 16,
+                                  color: AppColors.label,
+                                ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        '\$${checkoutController.orderPriceModal.data?.grandTotal}',
+                        style:
+                            Theme.of(context).textTheme.displayMedium?.copyWith(
+                                  color: AppColors.mediumLabel,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          }),
           const SizedBox(height: 15),
           Obx(
-            () => checkoutController.isLoadingCreateOrder.isTrue
-                ? const LoadingWidget()
-                : checkoutController.isErrorCreateOrder.isTrue
-                    ? RetryButton(
-                        onTap: () => checkoutController.createOrder(
-                            profileController.model.value!.name,
-                            profileController.model.value!.email,
-                            profileController.model.value!.street,
-                            profileController.model.value!.state,
-                            profileController.model.value!.zipCode,
-                            profileController.model.value!.countryName,
-                            checkoutController.codeController.text,
-                            checkoutController.codOrCard.value,
-                            checkoutController.paymentMethod.value),
-                      )
-                    : PlaceOrderButton(
-                        title: 'Place Order',
-                        width: 300,
-                        hasIcon: true,
-                        isLoading:
-                            checkoutController.isLoadingCreateOrder.value,
-                        onPress: () {
-                          checkoutController.createOrder(
-                              profileController.model.value!.name,
-                              profileController.model.value!.email,
-                              profileController.model.value!.street,
-                              profileController.model.value!.state,
-                              profileController.model.value!.zipCode,
-                              profileController.model.value!.countryName,
-                              checkoutController.codeController.text,
-                              checkoutController.codOrCard.value,
-                              checkoutController.paymentMethod.value);
-                        },
-                      ),
+            () => PlaceOrderButton(
+              title: 'Place Order',
+              width: 300,
+              hasIcon: true,
+              color: checkoutController.isLoadingRedeem.isTrue
+                  ? AppColors.grey
+                  : AppColors.primary,
+              isLoading: checkoutController.isLoadingCreateOrder.value,
+              onPress: checkoutController.isLoadingRedeem.isTrue
+                  ? () {}
+                  : () {
+                      checkoutController.createOrder(
+                          profileController.model.value!.name,
+                          profileController.model.value!.email,
+                          profileController.model.value!.street,
+                          profileController.model.value!.state,
+                          profileController.model.value!.zipCode,
+                          profileController.model.value!.countryName,
+                          checkoutController.codeController.text,
+                          checkoutController.codOrCard.value,
+                          checkoutController.paymentMethod.value);
+                    },
+            ),
           ),
-          const SizedBox(height: 15),
+          SizedBox(height: AppDimensions.viewBottomPadding(context) + 15),
         ],
       ),
     );

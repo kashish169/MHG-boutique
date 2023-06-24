@@ -40,7 +40,6 @@ class PaymentMethod extends StatelessWidget {
                         checkoutController.paymentMethodsModel.data!.isEmpty
                     ? const SizedBox()
                     : SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.12,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -153,6 +152,9 @@ class PaymentMethod extends StatelessWidget {
                   onTap: () {
                     checkoutController.hasRedeem.value =
                         !checkoutController.hasRedeem.value;
+                    checkoutController.orderPrice(
+                      isRedeem: checkoutController.hasRedeem.value,
+                    );
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -168,9 +170,7 @@ class PaymentMethod extends StatelessWidget {
                             checkoutController.hasRedeem.value =
                                 !checkoutController.hasRedeem.value;
                             checkoutController.orderPrice(
-                              profileController.model.value!.countryId,
-                              checkoutController.codeController.text.trim(),
-                              isRedeem: val!,
+                              isRedeem: checkoutController.hasRedeem.value,
                             );
                           }),
                       Text(

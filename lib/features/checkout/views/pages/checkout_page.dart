@@ -7,9 +7,7 @@ import 'package:mhg/features/checkout/views/widgets/payment_method.dart';
 import 'package:mhg/features/checkout/views/widgets/place_order.dart';
 import 'package:mhg/features/checkout/views/widgets/promo_code.dart';
 import 'package:mhg/features/checkout/views/widgets/shipping_address.dart';
-
 import 'package:mhg/widgets/custom_app_bar.dart';
-
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
 
@@ -27,31 +25,31 @@ class CheckoutPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.white2,
       appBar: customAppBar(context, title: 'Checkout'),
-      body: GetX<CheckoutController>(
-          initState: (state) => state.controller?.getAllPaymentMethods(),
-          builder: (controller) {
-            if (controller.isLoading.isTrue) {
-              return const LoadingWidget();
-            } else if (controller.isError.isTrue) {
-              return RetryButton(
-                  onTap: () => controller.getAllPaymentMethods());
-            }
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  const ShippingAddress(),
-                  divider(),
-                  PaymentMethod(),
-                  divider(),
-                  const CheckoutItems(),
-                  divider(),
-                  PromoCode(),
-                  divider(),
-                  const PlaceOrder(),
-                ],
-              ),
-            );
-          }),
+      body: GetX<CheckoutController>(initState: (state) async {
+        state.controller?.getAllPaymentMethods();
+        state.controller?.orderPrice();
+      }, builder: (controller) {
+        if (controller.isLoading.isTrue) {
+          return const LoadingWidget();
+        } else if (controller.isError.isTrue) {
+          return RetryButton(onTap: () => controller.getAllPaymentMethods());
+        }
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              const ShippingAddress(),
+              divider(),
+              PaymentMethod(),
+              divider(),
+              const CheckoutItems(),
+              divider(),
+              PromoCode(),
+              divider(),
+              const PlaceOrder(),
+            ],
+          ),
+        );
+      }),
     );
   }
 }

@@ -1,9 +1,5 @@
-// ignore_for_file: unnecessary_null_comparison
-
 import 'dart:convert';
-
 import 'package:get/get.dart';
-import 'package:mhg/app/app.dart';
 import 'package:mhg/core/api/api.dart';
 import 'package:mhg/core/httpservices/http_services_impl.dart';
 import 'package:mhg/core/httpservices/http_services_repository.dart';
@@ -22,21 +18,21 @@ class CheckoutRepoImplement implements CheckoutRepository {
   Future<Either<Failure, ApiResponse>> getPaymentMethods() async =>
       httpService.get(
         url: Api.paymentMethods,
-        isAuthorized: App.token.isEmpty ? false : true,
+        isAuthorized: true,
       );
 
   @override
   Future<Either<Failure, ApiResponse>> addPaymentMethod() async =>
       httpService.get(
         url: Api.addPaymentMethod,
-        isAuthorized: App.token.isEmpty ? false : true,
+        isAuthorized: true,
       );
 
   @override
   Future<Either<Failure, ApiResponse>> deletePaymentMethod(id) async =>
       httpService.post(
         url: Api.removePaymentMethod,
-        isAuthorized: App.token.isEmpty ? false : true,
+        isAuthorized: true,
         body: json.encode({"payment_method": id}),
       );
 
@@ -44,21 +40,17 @@ class CheckoutRepoImplement implements CheckoutRepository {
   Future<Either<Failure, ApiResponse>> setDefaultPaymentMethod(id) async =>
       httpService.post(
         url: Api.setDefaultPaymentMethod,
-        isAuthorized: App.token.isEmpty ? false : true,
+        isAuthorized: true,
         body: json.encode({"payment_method": id}),
       );
 
   @override
   Future<Either<Failure, ApiResponse>> orderPrice(
-      countryId, coupon, redeem) async {
-    
-    if (redeem != null) {
-      redeem = int.parse(redeem);
-    }
-
+    Object query,
+  ) async {
     return httpService.get(
-      url: '${Api.orderPrice}?country=$countryId&coupon=$coupon&redeem=$redeem',
-      isAuthorized: App.token.isEmpty ? false : true,
+      url: '${Api.orderPrice}$query',
+      isAuthorized: true,
     );
   }
 
@@ -96,7 +88,7 @@ class CheckoutRepoImplement implements CheckoutRepository {
     map.removeWhere((key, value) => key == null || value == null);
     return httpService.post(
       url: Api.createOrder,
-      isAuthorized: App.token.isEmpty ? false : true,
+      isAuthorized: true,
       body: json.encode(map),
     );
   }

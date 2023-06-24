@@ -25,7 +25,7 @@ class MyCartController extends GetxController {
 
   Future<void> getCart() async {
     try {
-      isLoading(true);
+      if (cartItemsList.isEmpty) isLoading(true);
       isError(false);
       Either<Failure, ApiResponse> results = await myCartRepository.getCart();
       isLoading(false);

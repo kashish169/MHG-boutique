@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/mycart/models/cart_model.dart';
@@ -60,6 +61,8 @@ class _CartCounterWidgetState extends State<CartCounterWidget> {
           widget.model.isLoadingQuantity = false;
           if (mounted) setState(() {});
           controller.getTotalCartPrice();
+          Get.find<MyCartController>().getCart();
+          Get.find<CheckoutController>().orderPrice();
         },
         onDecrease: (value) async {
           widget.model.isLoadingQuantity = true;
@@ -95,6 +98,8 @@ class _CartCounterWidgetState extends State<CartCounterWidget> {
           widget.model.isLoadingQuantity = false;
           if (mounted) setState(() {});
           controller.getTotalCartPrice();
+          Get.find<MyCartController>().getCart();
+          Get.find<CheckoutController>().orderPrice();
         },
         loading: widget.model.isLoadingQuantity,
       ),

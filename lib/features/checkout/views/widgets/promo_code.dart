@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_toasts.dart';
+import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
@@ -59,46 +60,48 @@ class PromoCode extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const SizedBox(width: 20),
-              Expanded(
-                child: SizedBox(
-                  height: 44,
-                  child: CustomFormField(
-                    obscure: false,
-                    hint: 'Enter Code Here',
-                    controller: checkoutController.codeController,
-                    oneSideBorder: true,
+          Obx(() => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const SizedBox(width: 20),
+                  Expanded(
+                    child: SizedBox(
+                      height: 44,
+                      child: CustomFormField(
+                        obscure: false,
+                        readOnly: checkoutController.isLoadingPromo.value,
+                        hint: 'Enter Code Here',
+                        controller: checkoutController.codeController,
+                        oneSideBorder: true,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(width: 20),
-              Obx(() => PlaceOrderButton(
-                  title: 'Apply',
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  hasIcon: false,
-                  isLoading: checkoutController.isLoadingPromo.value,
-                  onPress: () {
-                    checkoutController.isFromApply(!checkoutController.isFromApply.value);
-                    if (checkoutController.codeController.text
-                        .trim()
-                        .isNotEmpty) {
-                      if (controller.model.value!.countryId == null) {
-                        AppToasts.errorToast(
-                            'Please add your country in profile information');
-                      } else {
-                        checkoutController.orderPrice(
-                          controller.model.value!.countryId,
-                          checkoutController.codeController.text.trim(),
-                        );
-                      }
-                    }
-                  })),
-              const SizedBox(width: 20),
-            ],
-          ),
+                  const SizedBox(width: 20),
+                  PlaceOrderButton(
+                      title: 'Apply',
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      hasIcon: false,
+                      isLoading: checkoutController.isLoadingPromo.value,
+                      onPress: checkoutController.isLoadingPromo.isTrue
+                          ? () {}
+                          : () {
+                              checkoutController.isFromApply(
+                                  !checkoutController.isFromApply.value);
+                              if (checkoutController.codeController.text
+                                  .trim()
+                                  .isNotEmpty) {
+                                if (controller.model.value!.countryId == null) {
+                                  AppToasts.errorToast(
+                                      'Please add your country in profile information');
+                                } else {
+                                  AppHelper.closeKeyboard();
+                                  checkoutController.orderPrice();
+                                }
+                              }
+                            }),
+                  const SizedBox(width: 20),
+                ],
+              )),
         ],
       ),
     );

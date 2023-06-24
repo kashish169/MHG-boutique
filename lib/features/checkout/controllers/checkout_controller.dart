@@ -15,6 +15,7 @@ import 'package:mhg/features/checkout/repository/checkout_repo.dart';
 import 'package:mhg/features/checkout/repository/checkout_repo_imp.dart';
 import 'package:mhg/features/mycart/models/cart_model.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
+import 'package:mhg/widgets/loading_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 /*
@@ -42,7 +43,6 @@ class CheckoutController extends GetxController {
   RxBool isLoadingPromo = false.obs;
   RxBool isErrorPromo = false.obs;
   RxBool isLoadingCreateOrder = false.obs;
-  RxBool isErrorCreateOrder = false.obs;
   RxBool isLoadingRedeem = false.obs;
   RxBool isErrorRedeem = false.obs;
   RxList<CartModel> cartItemsList = <CartModel>[].obs;
@@ -106,6 +106,7 @@ class CheckoutController extends GetxController {
 
           if (statusCode == 200) {
             if (r.object["data"] != null) {
+              log("PAYMENT METHODS${r.object["data"]}");
               paymentMethodsModel = PaymentMethodsModel.fromJson(r.object);
               if (paymentMethodsModel.data != null) {
                 if (paymentMethodsModel.data!.isNotEmpty) {
@@ -257,28 +258,31 @@ class CheckoutController extends GetxController {
     }
   }
 
-  orderPrice(countryId, coupon, {bool isRedeem = false}) async {
+  Future<void> orderPrice({
+    bool isRedeem = false,
+  }) async {
     try {
-      if (isRedeem == true && isFromApply.value == false) {
-        isLoadingRedeem(true);
-        isErrorRedeem(false);
-      } else if (isFromApply.value == true && isRedeem == false) {
+      isLoadingRedeem(true);
+      isErrorRedeem(false);
+      if (isRedeem == false) {
         isLoadingPromo(true);
         isErrorPromo(false);
       }
-
-      Either<Failure, ApiResponse> results =
-          await checkoutRepository.orderPrice(
-        countryId,
-        coupon,
-        profileController.model.value!.hearts!,
-      );
-      if (isRedeem == true && isFromApply.value == false) {
-        isLoadingRedeem(false);
-      } else if (isFromApply.value == true && isRedeem == false) {
-        isLoadingPromo(false);
+      var countryId = profileController.model.value?.countryId;
+      var promoCode = codeController.text.trim();
+      var query = '?country=$countryId';
+      if (promoCode.isNotEmpty) {
+        query += "&coupon=$promoCode";
       }
-
+      if (isRedeem == true) {
+        query += "&redeem=1";
+      } else {
+        query += "&redeem=0";
+      }
+      Either<Failure, ApiResponse> results =
+          await checkoutRepository.orderPrice(query);
+      isLoadingRedeem(false);
+      isLoadingPromo(false);
       results.fold(
         (l) {
           if (isRedeem == true && isFromApply.value == false) {
@@ -286,7 +290,6 @@ class CheckoutController extends GetxController {
           } else if (isFromApply.value == true && isRedeem == false) {
             isErrorPromo(true);
           }
-
           AppToasts.errorToast(l.message);
           log("ORDER PRICE METHODS RESPONSE ERROR ${l.message}");
         },
@@ -294,7 +297,6 @@ class CheckoutController extends GetxController {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("ORDER PRICE METHODS RESPONSE STATUS $statusCode");
-
           if (statusCode == 200) {
             if (r.object["data"] != null) {
               orderPriceModal = OrderPriceModal.fromJson(r.object);
@@ -310,7 +312,7 @@ class CheckoutController extends GetxController {
     }
   }
 
-  createOrder(
+  Future<void> createOrder(
     billingName,
     billingEmail,
     billingStreet,
@@ -327,8 +329,10 @@ class CheckoutController extends GetxController {
           .first
           .id;
 
-      isLoadingCreateOrder(true);
-      isErrorCreateOrder(false);
+      Get.dialog(
+        const LoadingWidget(),
+        barrierDismissible: false,
+      );
       Either<Failure, ApiResponse> results =
           await checkoutRepository.createOrder(
               billingName,
@@ -342,19 +346,16 @@ class CheckoutController extends GetxController {
               onlinePaymentMethod,
               hasRedeem.value ? profileController.model.value!.hearts! : null);
 
-      isLoadingCreateOrder(false);
+      Get.back();
       results.fold(
         (l) {
-          isErrorCreateOrder(true);
           AppToasts.errorToast(l.message);
-
           log("CREATE ORDER METHODS RESPONSE ERROR ${l.message}");
         },
         (r) {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("CREATE ORDER METHODS RESPONSE STATUS $statusCode");
-
           if (statusCode == 200) {
             if (r.object["data"] != null) {
               createOrderModal = CreateOrderModal.fromJson(r.object);

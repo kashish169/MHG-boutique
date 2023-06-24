@@ -11,6 +11,7 @@ class PlaceOrderButton extends StatelessWidget {
   final bool hasIcon;
   final Function onPress;
   final bool isLoading;
+  final Color? color;
   PlaceOrderButton({
     super.key,
     required this.title,
@@ -18,6 +19,7 @@ class PlaceOrderButton extends StatelessWidget {
     required this.hasIcon,
     required this.onPress,
     this.isLoading = false,
+    this.color,
   });
 
   @override
@@ -27,6 +29,7 @@ class PlaceOrderButton extends StatelessWidget {
         alignment: Alignment.centerRight,
         children: [
           PrimaryButton(
+            color: color,
             height: 44,
             width: width,
             title: title,
