@@ -23,15 +23,15 @@ class CheckoutPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ShippingAddress(),
+            const ShippingAddress(),
             divider(),
             PaymentMethod(),
             divider(),
-            CheckoutItems(),
+            const CheckoutItems(),
             divider(),
             PromoCode(),
             divider(),
-            PlaceOrder(),
+            const PlaceOrder(),
           ],
         ),
       ),

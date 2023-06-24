@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/checkout/views/widgets/place_order_button.dart';
 import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
-import 'package:mhg/widgets/loading_widget.dart';
-import 'package:mhg/widgets/retry_button.dart';
 
 class PlaceOrder extends StatefulWidget {
   const PlaceOrder({super.key});
@@ -157,7 +156,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
               },
             ),
           ),
-          const SizedBox(height: 15),
+          SizedBox(height: AppDimensions.viewBottomPadding(context) + 20),
         ],
       ),
     );
