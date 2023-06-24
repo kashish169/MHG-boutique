@@ -5,14 +5,21 @@ import 'my_order_card.dart';
 
 class MyOrdersListWidget extends StatelessWidget {
   final List <MyOrder> model;
-  const MyOrdersListWidget({super.key, required this.model});
+ final  String name;
+  const MyOrdersListWidget({super.key, required this.model, required this.name});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
+
+    return  model.isEmpty?
+    Center(child: Text('$name will appear here',
+    style: Theme.of(context).textTheme.displaySmall,),):
+
+    ListView.separated(
       physics: const BouncingScrollPhysics(),
       itemCount: model.length,
       itemBuilder: (context, index) {
+
         return MyOrderCard(model: model[index],);
       },
       separatorBuilder: (context, index) {

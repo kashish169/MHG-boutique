@@ -90,9 +90,9 @@ class _MyOrdersPageState extends State<MyOrdersPage>
           physics: const NeverScrollableScrollPhysics(),
           controller: _tabController,
           children:  [
-            MyOrdersListWidget(model: controller.orders,),
-            MyOrdersListWidget(model: controller.returns,),
-            MyOrdersListWidget(model: controller.cancelled,),
+            MyOrdersListWidget(model: controller.orders,name:"Orders",),
+            MyOrdersListWidget(model: controller.returns,name: 'Returns Orders',),
+            MyOrdersListWidget(model: controller.cancelled,name: 'Cancelled Orders',),
           ],
         ),
       );
