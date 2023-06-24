@@ -1,3 +1,5 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
@@ -63,74 +65,54 @@ class _PlaceOrderState extends State<PlaceOrder> {
               : Row(
                   children: [
                     Expanded(
-                      child: InkWell(
-                        onTap: () {
-                          checkoutController.codOrCard("COD");
-                          setState(() {});
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Cash On Delivery",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall
-                                  ?.copyWith(
-                                    fontSize: 16,
-                                    color: AppColors.label,
-                                  ),
-                            ),
-                            Radio(
-                                value: "COD",
-                                groupValue: checkoutController.codOrCard.value,
-                                onChanged: (val) {
-                                  checkoutController.codOrCard(val);
-                                  setState(() {});
-                                }),
-                          ],
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "COD",
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                                  fontSize: 16,
+                                  color: AppColors.label,
+                                ),
+                          ),
+                          Radio(
+                              value: "COD",
+                              groupValue: checkoutController.codOrCard.value,
+                              onChanged: (val) {
+                                checkoutController.codOrCard("COD");
+
+                                setState(() {});
+                              }),
+                        ],
                       ),
                     ),
                     Expanded(
-                      child: InkWell(
-                        onTap: () {
-                          var value = checkoutController
-                              .paymentMethodsModel.data!
-                              .firstWhere((element) => element.isDefault == 0)
-                              .cardType;
-                          checkoutController.codOrCard(value);
-                          setState(() {});
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              checkoutController.paymentMethodsModel.data!
-                                  .firstWhere(
-                                      (element) => element.isDefault == 0)
-                                  .cardType!,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall
-                                  ?.copyWith(
-                                    fontSize: 16,
-                                    color: AppColors.label,
-                                  ),
-                            ),
-                            Radio(
-                                value: checkoutController
-                                    .paymentMethodsModel.data!
-                                    .firstWhere(
-                                        (element) => element.isDefault == 0)
-                                    .cardType!,
-                                groupValue: checkoutController.codOrCard.value,
-                                onChanged: (val) {
-                                  checkoutController.codOrCard(val);
-                                  setState(() {});
-                                }),
-                          ],
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            checkoutController.onlinePaymentMethodName.value,
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                                  fontSize: 16,
+                                  color: AppColors.label,
+                                ),
+                          ),
+                          Radio(
+                              value: checkoutController
+                                  .onlinePaymentMethodName.value,
+                              groupValue: checkoutController.codOrCard.value,
+                              onChanged: (val) {
+                                checkoutController.codOrCard(val);
+
+                                setState(() {});
+                              }),
+                        ],
                       ),
                     ),
                   ],

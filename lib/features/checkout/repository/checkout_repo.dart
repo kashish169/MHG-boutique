@@ -16,7 +16,7 @@ abstract class CheckoutRepository {
     billingZipCode,
     billingCountry,
     coupon,
-    paymentMethod,
+    pm,
     onlinePaymentMethod,
   );
 }

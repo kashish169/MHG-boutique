@@ -21,7 +21,7 @@ class AddPaymentMethodWebViewPage extends StatelessWidget {
       appBar: customAppBar(
         context,
         title: 'Add Payment Method',
-        
+        onPress:() => checkoutController.getAllPaymentMethods(),
       ),
       body: Obx(() => Container(
         height: MediaQuery.of(context).size.height,

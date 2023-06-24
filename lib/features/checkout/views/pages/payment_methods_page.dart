@@ -25,13 +25,12 @@ class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
 
   @override
   void initState() {
-     
     super.initState();
   }
 
   @override
   void dispose() {
-    checkoutController.getAllPaymentMethods();
+    // checkoutController.getAllPaymentMethods();
     super.dispose();
   }
 
@@ -39,10 +38,9 @@ class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white2,
-      appBar: customAppBar(
-        context,
-        title: 'Payment Methods',
-      ),
+      appBar: customAppBar(context,
+          title: 'Payment Methods',
+          onPress: () => checkoutController.getAllPaymentMethods()),
       body: Obx(
         () => (checkoutController.isLoading.value == false &&
                 checkoutController.isError.value == false)
@@ -132,7 +130,7 @@ class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
                                         checkoutController.paymentMethod(val);
                                         checkoutController
                                             .setDefaultPaymentMethod(val);
-
+                                     
                                         setState(() {});
                                       }),
                                   DeleteIconButton(

@@ -73,6 +73,13 @@ class ShippingAddress extends StatelessWidget {
                             color: AppColors.mediumLabel,
                           ),
                     ),
+                     Text(
+                      controller.model.value!.zipCode ?? '',
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            fontSize: 16,
+                            color: AppColors.mediumLabel,
+                          ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 3),
                       child: Text(

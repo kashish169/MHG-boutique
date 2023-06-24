@@ -6,6 +6,7 @@ import '../constants/app_colors.dart';
 AppBar customAppBar(
   BuildContext context, {
   required String title,
+  Function? onPress ,
 }) {
   return AppBar(
     systemOverlayStyle: SystemUiOverlayStyle.light,
