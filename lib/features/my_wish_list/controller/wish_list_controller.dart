@@ -19,11 +19,6 @@ class WishListController extends GetxController {
     wishListRepository = Get.find<WishListRepoImpl>();
   }
   HomeController controller = Get.find();
-  @override
-  void onInit() {
-    getWishList();
-    super.onInit();
-  }
 
   Future<bool> addToWishList(int itemId) async {
     bool result = false;
@@ -35,7 +30,7 @@ class WishListController extends GetxController {
       );
       results.fold(
         (l) {
-          // AppToasts.errorToast(l.message);
+          AppToasts.errorToast(l.message);
         },
         (r) {
           var statusCode = r.object["code"];
@@ -52,7 +47,7 @@ class WishListController extends GetxController {
             );
           } else {
             result = false;
-            // AppToasts.errorToast(message);
+            AppToasts.errorToast(message);
           }
         },
       );
@@ -113,7 +108,7 @@ class WishListController extends GetxController {
       results.fold(
         (l) {
           isError(true);
-          AppToasts.errorToast(l.message);
+          // AppToasts.errorToast(l.message);
           log("Wish List ${l.message}");
         },
         (r) {
