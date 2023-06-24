@@ -9,11 +9,21 @@ import 'package:mhg/features/checkout/views/pages/payment_methods_page.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
+import 'package:radio_group_v2/radio_group_v2.dart';
 
-class PaymentMethod extends StatelessWidget {
+class PaymentMethod extends StatefulWidget {
   PaymentMethod({super.key});
+
+  @override
+  State<PaymentMethod> createState() => _PaymentMethodState();
+}
+
+class _PaymentMethodState extends State<PaymentMethod> {
   final CheckoutController checkoutController = Get.put(CheckoutController());
+RadioGroupController myController = RadioGroupController();
+
   final ProfileController profileController = Get.find<ProfileController>();
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -156,11 +166,11 @@ class PaymentMethod extends StatelessWidget {
                         groupValue: checkoutController.hasRedeem.value,
                         onChanged: (val) {
                           checkoutController.hasRedeem(val);
-                          checkoutController.orderPrice(
+                         checkoutController.orderPrice(
                             profileController.model.value!.countryId,
                             checkoutController.codeController.text.trim(),
-                            isRedeem: true,
-                          );
+                            isRedeem: val!,
+                          ); 
                         }),
                     Text(
                       'Redeem ${profileController.model.value!.hearts!} Pts',

@@ -50,12 +50,17 @@ class CheckoutRepoImplement implements CheckoutRepository {
 
   @override
   Future<Either<Failure, ApiResponse>> orderPrice(
-          countryId, coupon, redeem) async =>
-      httpService.get(
-        url:
-            '${Api.orderPrice}?country=$countryId&coupon=$coupon&redeem=$redeem',
-        isAuthorized: App.token.isEmpty ? false : true,
-      );
+      countryId, coupon, redeem) async {
+    
+    if (redeem != null) {
+      redeem = int.parse(redeem);
+    }
+
+    return httpService.get(
+      url: '${Api.orderPrice}?country=$countryId&coupon=$coupon&redeem=$redeem',
+      isAuthorized: App.token.isEmpty ? false : true,
+    );
+  }
 
   @override
   Future<Either<Failure, ApiResponse>> createOrder(
@@ -84,7 +89,7 @@ class CheckoutRepoImplement implements CheckoutRepository {
       "shipping_zipcode": billingZipCode,
       "shipping_country": billingCountry,
       "coupon": coupon,
-      "redeem": redeem,
+      "redeem": int.parse(redeem),
       "payment_method": pm,
       "online_payment_method_id": onlinePaymentMethod
     };

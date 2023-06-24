@@ -40,15 +40,18 @@ class _PlaceOrderState extends State<PlaceOrder> {
                 ),
           ),
           const SizedBox(height: 10),
-          Obx(() => Text(
-                checkoutController.total.value != ''
-                    ? '\$${checkoutController.total.value}'
-                    : '\$${controller.totalPrice.value}',
-                style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      color: AppColors.mediumLabel,
-                      fontWeight: FontWeight.bold,
-                    ),
-              )),
+          Obx(() => (checkoutController.isLoadingRedeem.value == true &&
+                  checkoutController.isErrorRedeem.isFalse)
+              ? const LoadingWidget()
+              : Text(
+                  checkoutController.total.value != ''
+                      ? '\$${checkoutController.total.value}'
+                      : '\$${controller.totalPrice.value}',
+                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                        color: AppColors.mediumLabel,
+                        fontWeight: FontWeight.bold,
+                      ),
+                )),
           const SizedBox(height: 15),
           Obx(
             () => checkoutController.isLoadingCreateOrder.isTrue
@@ -64,7 +67,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             profileController.model.value!.countryName,
                             checkoutController.codeController.text,
                             checkoutController.codOrCard.value,
-                            checkoutController.paymentMethod.value ),
+                            checkoutController.paymentMethod.value),
                       )
                     : PlaceOrderButton(
                         title: 'Place Order',
