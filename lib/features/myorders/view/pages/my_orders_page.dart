@@ -73,31 +73,39 @@ class _MyOrdersPageState extends State<MyOrdersPage>
                   ),
                 ],
               ),
-       GetX<MyOrdersController>(builder: (controller) {
-      if (controller.isLoading.isTrue) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      } else if (controller.isError.isTrue) {
-        return RetryButton(
-          onTap: () {
-            controller.getMyOrders();
-          },
-        );
-      }
-      return  Expanded(
-        child: TabBarView(
-          physics: const NeverScrollableScrollPhysics(),
-          controller: _tabController,
-          children:  [
-            MyOrdersListWidget(model: controller.orders,name:"Orders",),
-            MyOrdersListWidget(model: controller.returns,name: 'Returns Orders',),
-            MyOrdersListWidget(model: controller.cancelled,name: 'Cancelled Orders',),
-          ],
-        ),
-      );
-    })
-
+              GetX<MyOrdersController>(builder: (controller) {
+                if (controller.isLoading.isTrue) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (controller.isError.isTrue) {
+                  return RetryButton(
+                    onTap: () {
+                      controller.getMyOrders();
+                    },
+                  );
+                }
+                return Expanded(
+                  child: TabBarView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: _tabController,
+                    children: [
+                      MyOrdersListWidget(
+                        model: controller.orders,
+                        name: "Orders",
+                      ),
+                      MyOrdersListWidget(
+                        model: controller.returns,
+                        name: 'Returns Orders',
+                      ),
+                      MyOrdersListWidget(
+                        model: controller.cancelled,
+                        name: 'Cancelled Orders',
+                      ),
+                    ],
+                  ),
+                );
+              })
             ],
           )),
     );

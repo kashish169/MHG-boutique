@@ -48,7 +48,7 @@ class MyOrderCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                   '${AppHelper.dateFormat(model.createdAt.toLocal())} ${AppHelper.timeFormat(model.createdAt.toLocal())}',
+                    '${AppHelper.dateFormat(model.createdAt.toLocal())} ${AppHelper.timeFormat(model.createdAt.toLocal())}',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: 12,
                         ),
