@@ -9,6 +9,7 @@ import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/divider_widget.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
+import '../widgets/product_reviews.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   static String routeName = '/product_details';
@@ -34,7 +35,8 @@ class ProductDetailsPage extends StatelessWidget {
                 DividerWidget(),
                 ProductDetailsInfoCard(),
                 SimilarProductsWidget(),
-                SizedBox(height: 20)
+                SizedBox(height: 20),
+                ProductDetialsReview()
               ],
             ),
           );
