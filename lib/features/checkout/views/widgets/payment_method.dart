@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
@@ -16,7 +14,7 @@ class PaymentMethod extends StatelessWidget {
 
   final CheckoutController checkoutController = Get.put(CheckoutController());
 
-RadioGroupController myController = RadioGroupController();
+  RadioGroupController myController = RadioGroupController();
 
   final ProfileController profileController = Get.find<ProfileController>();
 
@@ -151,31 +149,40 @@ RadioGroupController myController = RadioGroupController();
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.01,
-                    ),
-                    Radio(
-                        value: !checkoutController.hasRedeem.value,
-                        groupValue: checkoutController.hasRedeem.value,
-                        onChanged: (val) {
-                          checkoutController.hasRedeem(val);
-                         checkoutController.orderPrice(
-                            profileController.model.value!.countryId,
-                            checkoutController.codeController.text.trim(),
-                            isRedeem: val!,
-                          ); 
-                        }),
-                    Text(
-                      'Redeem ${profileController.model.value!.hearts!} Pts',
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 16,
-                            color: AppColors.label,
-                          ),
-                    ),
-                  ],
+                InkWell(
+                  onTap: () {
+                    checkoutController.hasRedeem.value =
+                        !checkoutController.hasRedeem.value;
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.01,
+                      ),
+                      Radio(
+                          toggleable: true,
+                          value: true,
+                          groupValue: checkoutController.hasRedeem.value,
+                          onChanged: (val) {
+                            checkoutController.hasRedeem.value =
+                                !checkoutController.hasRedeem.value;
+                            //  checkoutController.orderPrice(
+                            //     profileController.model.value!.countryId,
+                            //     checkoutController.codeController.text.trim(),
+                            //     isRedeem: val!,
+                            //   );
+                          }),
+                      Text(
+                        'Redeem ${profileController.model.value!.hearts!} Pts',
+                        style:
+                            Theme.of(context).textTheme.displaySmall?.copyWith(
+                                  fontSize: 16,
+                                  color: AppColors.label,
+                                ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             )
