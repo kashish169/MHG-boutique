@@ -54,6 +54,7 @@ class CheckoutController extends GetxController {
   RxString total = ''.obs;
   RxString codOrCard = 'COD'.obs;
   RxString code = ''.obs;
+  RxBool hasRedeem = false.obs;
 
   CheckoutController() {
     checkoutRepository = Get.find<CheckoutRepoImplement>();
@@ -248,12 +249,12 @@ class CheckoutController extends GetxController {
     }
   }
 
-  orderPrice(countryId, coupon) async {
+  orderPrice(countryId, coupon , ) async {
     try {
       isLoadingPromo(true);
       isErrorPromo(false);
       Either<Failure, ApiResponse> results =
-          await checkoutRepository.orderPrice(countryId, coupon);
+          await checkoutRepository.orderPrice(countryId, coupon , profileController.model.value!.hearts!);
       isLoadingPromo(false);
 
       results.fold(
@@ -293,6 +294,7 @@ class CheckoutController extends GetxController {
     coupon,
     pm,
     onlinePaymentMethod,
+  
   ) async {
     try {
       onlinePaymentMethod = paymentMethodsModel.data!
@@ -313,7 +315,9 @@ class CheckoutController extends GetxController {
         coupon,
         pm,
         onlinePaymentMethod,
+        hasRedeem.value ? profileController.model.value!.hearts!: null
       );
+
       isLoadingCreateOrder(false);
       results.fold(
         (l) {

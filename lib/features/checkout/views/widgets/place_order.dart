@@ -64,7 +64,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             profileController.model.value!.countryName,
                             checkoutController.codeController.text,
                             checkoutController.codOrCard.value,
-                            checkoutController.paymentMethod.value),
+                            checkoutController.paymentMethod.value ),
                       )
                     : PlaceOrderButton(
                         title: 'Place Order',

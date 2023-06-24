@@ -7,7 +7,7 @@ abstract class CheckoutRepository {
   Future<Either<Failure, ApiResponse>> addPaymentMethod();
   Future<Either<Failure, ApiResponse>> deletePaymentMethod(id);
   Future<Either<Failure, ApiResponse>> setDefaultPaymentMethod(id);
-  Future<Either<Failure, ApiResponse>> orderPrice(countryId, coupon);
+  Future<Either<Failure, ApiResponse>> orderPrice(countryId, coupon , redeem);
   Future<Either<Failure, ApiResponse>> createOrder(
     billingName,
     billingEmail,
@@ -18,5 +18,6 @@ abstract class CheckoutRepository {
     coupon,
     pm,
     onlinePaymentMethod,
+    redeem,
   );
 }
