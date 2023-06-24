@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
@@ -18,7 +16,7 @@ import '../../../../widgets/retry_button.dart';
 class CheckoutPage extends StatelessWidget {
   static String routeName = '/checkout';
 
-   CheckoutPage({
+  CheckoutPage({
     super.key,
   });
 
@@ -29,28 +27,31 @@ class CheckoutPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.white2,
       appBar: customAppBar(context, title: 'Checkout'),
-      body: GetX<CheckoutController>(builder: (controller) {
-        if (controller.isLoading.isTrue) {
-          return const LoadingWidget();
-        } else if (controller.isError.isTrue) {
-          return RetryButton(onTap: () => controller.getAllPaymentMethods());
-        }
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              const ShippingAddress(),
-              divider(),
-              PaymentMethod(),
-              divider(),
-              const CheckoutItems(),
-              divider(),
-              PromoCode(),
-              divider(),
-              const PlaceOrder(),
-            ],
-          ),
-        );
-      }),
+      body: GetX<CheckoutController>(
+          initState: (state) => state.controller?.getAllPaymentMethods(),
+          builder: (controller) {
+            if (controller.isLoading.isTrue) {
+              return const LoadingWidget();
+            } else if (controller.isError.isTrue) {
+              return RetryButton(
+                  onTap: () => controller.getAllPaymentMethods());
+            }
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  const ShippingAddress(),
+                  divider(),
+                  PaymentMethod(),
+                  divider(),
+                  const CheckoutItems(),
+                  divider(),
+                  PromoCode(),
+                  divider(),
+                  const PlaceOrder(),
+                ],
+              ),
+            );
+          }),
     );
   }
 }

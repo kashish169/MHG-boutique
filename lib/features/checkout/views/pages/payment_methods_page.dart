@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
@@ -14,26 +12,14 @@ import 'package:mhg/widgets/retry_button.dart';
 
 class PaymentMethodsPage extends StatefulWidget {
   static String routeName = '/payment_methods';
-  PaymentMethodsPage({super.key});
+  const PaymentMethodsPage({super.key});
 
   @override
   State<PaymentMethodsPage> createState() => _PaymentMethodsPageState();
 }
 
 class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
-  final CheckoutController checkoutController = Get.put(CheckoutController());
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    // checkoutController.getAllPaymentMethods();
-    super.dispose();
-  }
-
+  final CheckoutController checkoutController = Get.find<CheckoutController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,7 +116,7 @@ class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
                                         checkoutController.paymentMethod(val);
                                         checkoutController
                                             .setDefaultPaymentMethod(val);
-                                     
+
                                         setState(() {});
                                       }),
                                   DeleteIconButton(
