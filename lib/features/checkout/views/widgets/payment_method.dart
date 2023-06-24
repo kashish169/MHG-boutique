@@ -1,22 +1,19 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/checkout/views/pages/payment_methods_page.dart';
+import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 
-class PaymentMethod extends StatefulWidget {
+class PaymentMethod extends StatelessWidget {
   PaymentMethod({super.key});
-
-  @override
-  State<PaymentMethod> createState() => _PaymentMethodState();
-}
-
-class _PaymentMethodState extends State<PaymentMethod> {
   final CheckoutController checkoutController = Get.put(CheckoutController());
-
+  final ProfileController profileController = Get.find<ProfileController>();
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -53,8 +50,6 @@ class _PaymentMethodState extends State<PaymentMethod> {
                                         checkoutController.codOrCard.value,
                                     onChanged: (val) {
                                       checkoutController.codOrCard("COD");
-
-                                      setState(() {});
                                     }),
                                 Text(
                                   "COD",
@@ -78,8 +73,6 @@ class _PaymentMethodState extends State<PaymentMethod> {
                                         checkoutController.codOrCard.value,
                                     onChanged: (val) {
                                       checkoutController.codOrCard(val);
-
-                                      setState(() {});
                                     }),
                                 Text(
                                   checkoutController
@@ -151,6 +144,27 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       ],
                     ),
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.01,
+                    ),
+                    Radio(
+                        value: !checkoutController.hasRedeem.value,
+                        groupValue: checkoutController.hasRedeem.value,
+                        onChanged: (val) {
+                          checkoutController.hasRedeem(val);
+                        }),
+                    Text(
+                      'Redeem ${profileController.model.value!.hearts!} Pts',
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            fontSize: 16,
+                            color: AppColors.label,
+                          ),
+                    ),
+                  ],
                 ),
               ],
             )

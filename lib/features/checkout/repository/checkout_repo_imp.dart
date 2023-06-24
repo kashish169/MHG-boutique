@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'dart:convert';
 
 import 'package:get/get.dart';
@@ -47,9 +49,11 @@ class CheckoutRepoImplement implements CheckoutRepository {
       );
 
   @override
-  Future<Either<Failure, ApiResponse>> orderPrice(countryId, coupon) async =>
+  Future<Either<Failure, ApiResponse>> orderPrice(
+          countryId, coupon, redeem) async =>
       httpService.get(
-        url: '${Api.orderPrice}?country=$countryId&coupon=$coupon',
+        url:
+            '${Api.orderPrice}?country=$countryId&coupon=$coupon&redeem=$redeem',
         isAuthorized: App.token.isEmpty ? false : true,
       );
 
@@ -64,26 +68,31 @@ class CheckoutRepoImplement implements CheckoutRepository {
     coupon,
     pm,
     onlinePaymentMethod,
-  ) async =>
-      httpService.post(
-        url: Api.createOrder,
-        isAuthorized: App.token.isEmpty ? false : true,
-        body: json.encode({
-          "billing_name": billingName,
-          "billing_email": billingEmail,
-          "billing_street_address": billingStreet,
-          "billing_state": billingState,
-          "billing_zipcode": billingZipCode,
-          "billing_country": billingCountry,
-          "shipping_name": billingName,
-          "shipping_email": billingEmail,
-          "shipping_street_address": billingStreet,
-          "shipping_state": billingState,
-          "shipping_zipcode": billingZipCode,
-          "shipping_country": billingCountry,
-          "coupon": coupon,
-          "payment_method": pm,
-          "online_payment_method_id": onlinePaymentMethod
-        }),
-      );
+    redeem,
+  ) async {
+    Map<String, dynamic> map = {
+      "billing_name": billingName,
+      "billing_email": billingEmail,
+      "billing_street_address": billingStreet,
+      "billing_state": billingState,
+      "billing_zipcode": billingZipCode,
+      "billing_country": billingCountry,
+      "shipping_name": billingName,
+      "shipping_email": billingEmail,
+      "shipping_street_address": billingStreet,
+      "shipping_state": billingState,
+      "shipping_zipcode": billingZipCode,
+      "shipping_country": billingCountry,
+      "coupon": coupon,
+      "redeem": redeem,
+      "payment_method": pm,
+      "online_payment_method_id": onlinePaymentMethod
+    };
+    map.removeWhere((key, value) => key == null || value == null);
+    return httpService.post(
+      url: Api.createOrder,
+      isAuthorized: App.token.isEmpty ? false : true,
+      body: json.encode(map),
+    );
+  }
 }
