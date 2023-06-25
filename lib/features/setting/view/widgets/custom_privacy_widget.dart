@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 import '../../../../constants/app_colors.dart';
 
@@ -15,23 +16,29 @@ class CustomPrivacyWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              title,
-              style: Theme.of(context)
-                  .textTheme
-                  .displayLarge!
-                  .copyWith(fontSize: 14, color: AppColors.dBlack2),
+            Html(
+              data: title,
+              style: {
+                "body": Style(
+                    color: Colors.black,
+                    margin: Margins.symmetric(
+                      horizontal: 20,
+                    ))
+              },
             ),
             const SizedBox(
               height: 20,
             ),
-            Text(
-              subTitle,
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall!
-                  .copyWith(fontSize: 12, color: AppColors.dBlack2),
-            )
+            Html(
+              data: subTitle,
+              style: {
+                "body": Style(
+                    color: Colors.black,
+                    margin: Margins.symmetric(
+                      horizontal: 20,
+                    ))
+              },
+            ),
           ],
         ),
       ),
