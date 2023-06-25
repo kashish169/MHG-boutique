@@ -19,84 +19,99 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
 
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 1),
-                  child: Center(
-                    child: Text(
-                      'TAX \n\n${model.tax}',
+              Visibility(
+                visible: double.parse(model.tax)!=0,
+                child: Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
+                    child: Center(
+                      child: Text(
+                        'TAX \n${model.tax}',
 
 
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 14,
-                        color: AppColors.label,
+                        style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          fontSize: 14,
+                          color: AppColors.label,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
 
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 1),
-                  child: Center(
-                    child: Text(
-                      'Hearts Discount\n${model.heartsDiscount}',
+              Visibility(
+                visible: double.parse(model.heartsDiscount)!=0,
+                child: Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
+                    child: Center(
+                      child: Text(
+                        'Hearts Discount\n${model.heartsDiscount}',
 
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 14,
-                        color: AppColors.label,
+                        style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          fontSize: 14,
+                          color: AppColors.label,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
 
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 1),
-                  child: Center(
-                    child: Text(
-                      'Sub Total\n\n${model.subTotal}',
+              Visibility(
+                visible: double.parse(model.subTotal)!=0,
+                child: Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
+                    child: Center(
+                      child: Text(
+                        'Sub Total\n${model.subTotal}',
 
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 14,
-                        color: AppColors.label,
+                        style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          fontSize: 14,
+                          color: AppColors.label,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
 
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 1),
-                  child: Center(
-                    child: Text(
-                      'Coupon Amount\n${model.couponAmount}',
+              Visibility(
+                visible: double.parse(model.couponAmount)!=0,
+                child: Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 1),
+                    child: Center(
+                      child: Text(
+                        'Coupon Amount\n${model.couponAmount}',
 
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 14,
-                        color: AppColors.label,
+                        style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          fontSize: 14,
+                          color: AppColors.label,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
 
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 1),
-                  child: Center(
-                    child: Text(
-                      'Grand Total\n${model.grandTotal}',
+              Visibility(
+                visible: double.parse(model.grandTotal)!=0,
+                child: Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
+                    child: Center(
+                      child: Text(
+                        'Grand Total\n${model.grandTotal}',
 
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 14,
-                        color: AppColors.label,
+                        style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          fontSize: 14,
+                          color: AppColors.label,
+                        ),
                       ),
                     ),
                   ),
