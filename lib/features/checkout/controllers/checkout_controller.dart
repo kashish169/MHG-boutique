@@ -330,6 +330,8 @@ class CheckoutController extends GetxController {
       var zipCode = profileController.model.value!.zipCode;
       var countryName = profileController.model.value!.countryName;
       var promoCode = codeController.text.trim();
+      log("$countryName");
+
       if (street!.isEmpty ||
           state!.isEmpty ||
           zipCode!.isEmpty ||
@@ -359,50 +361,50 @@ class CheckoutController extends GetxController {
         ),
       );
       log(objectData);
-      Get.dialog(
-        const LoadingWidget(),
-        barrierDismissible: false,
-      );
-      Either<Failure, ApiResponse> results =
-          await checkoutRepository.createOrder(objectData);
-      Get.back();
-      results.fold(
-        (l) {
-          AppToasts.errorToast(l.message);
-          log("CREATE ORDER METHODS RESPONSE ERROR ${l.message}");
-        },
-        (r) async {
-          var statusCode = r.object["code"];
-          var message = r.object["message"];
-          log("CREATE ORDER METHODS RESPONSE STATUS $statusCode");
-          log("${r.object}");
-          if (statusCode == 201) {
-            var url = r.object["data"];
-            var results = await Get.to(
-              () => AddPaymentMethodWebViewPage(
-                title: "3DS Authentication",
-                url: url,
-                is3dAUth: true,
-              ),
-            );
-            if (results == true) {
-              _onOrderSuccess.call();
-            }
-          } else if (statusCode == 200) {
-            _onOrderSuccess.call();
-          } else {
-            AppToasts.errorToast(message);
-          }
-        },
-      );
+      // Get.dialog(
+      //   const LoadingWidget(),
+      //   barrierDismissible: false,
+      // );
+      // Either<Failure, ApiResponse> results =
+      //     await checkoutRepository.createOrder(objectData);
+      // Get.back();
+      // results.fold(
+      //   (l) {
+      //     AppToasts.errorToast(l.message);
+      //     log("CREATE ORDER METHODS RESPONSE ERROR ${l.message}");
+      //   },
+      //   (r) async {
+      //     var statusCode = r.object["code"];
+      //     var message = r.object["message"];
+      //     log("CREATE ORDER METHODS RESPONSE STATUS $statusCode");
+      //     log("${r.object}");
+      //     if (statusCode == 201) {
+      //       var url = r.object["data"];
+      //       var results = await Get.to(
+      //         () => AddPaymentMethodWebViewPage(
+      //           title: "3DS Authentication",
+      //           url: url,
+      //           is3dAUth: true,
+      //         ),
+      //       );
+      //       if (results == true) {
+      //         _onOrderSuccess.call();
+      //       }
+      //     } else if (statusCode == 200) {
+      //       _onOrderSuccess.call();
+      //     } else {
+      //       AppToasts.errorToast(message);
+      //     }
+      //   },
+      // );
     } catch (e, s) {
       log("$e $s");
     }
   }
 
   void _onOrderSuccess() {
-    Get.find<MyCartController>().getCart();
     profileController.getProfileInfo();
+    Get.find<MyCartController>().getCart();
     Get.offAndToNamed(MyOrdersPage.routeName);
     AppToasts.successToast(
       'Your order has been submitted successfully!',
