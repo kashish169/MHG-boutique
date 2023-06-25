@@ -1,10 +1,7 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_interpolation_to_compose_strings
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/core/helper/app_helper.dart';
-import 'package:mhg/core/models/countries_model.dart';
 import 'package:mhg/features/personal_infromation/controller/peronal_informatiom_controller.dart';
 import 'package:mhg/features/personal_infromation/view/widget/inforamation_form.dart';
 import 'package:mhg/widgets/loading_widget.dart';
@@ -137,7 +134,6 @@ class PersonalInformation extends StatelessWidget {
                                           isExpanded: true,
                                           value: controller.selectedCountry,
                                           onChanged: (value) {
-                                            
                                             controller.setCountry(value);
                                           },
                                           hint: Text(
@@ -255,8 +251,8 @@ class PersonalInformation extends StatelessWidget {
                           ),
                         ),
                         if (controller.enableEditOnName == false ||
-                            controller.enableEditOnState == false||
-                            controller.enableEditOnZipCode == false||
+                            controller.enableEditOnState == false ||
+                            controller.enableEditOnZipCode == false ||
                             controller.enableEditOnEmail == false ||
                             controller.enableEditOnPassword == false ||
                             controller.enableEditOnNumber.isFalse ||
