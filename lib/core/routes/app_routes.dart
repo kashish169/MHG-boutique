@@ -35,6 +35,8 @@ import 'package:mhg/features/setting/binding/setting_binding.dart';
 import 'package:mhg/features/setting/view/pages/setting_view.dart';
 import 'package:mhg/features/splash/binding/splash_binding.dart';
 import 'package:mhg/features/splash/view/splash_view.dart';
+import 'package:mhg/features/stroresmap/bindings/stores_map_binding.dart';
+import 'package:mhg/features/stroresmap/view/pages/stores_map_page.dart';
 import '../../features/auth/otp/view/pages/otp.dart';
 import '../../features/categories/view/pages/categories_page.dart';
 import '../../features/categories/view/pages/sub_categories_page.dart';
@@ -148,6 +150,11 @@ class AppRoutes {
     GetPage(
       name: '/add_payment_method_web_view',
       page: () => AddPaymentMethodWebViewPage(),
+    ),
+    GetPage(
+      name: '/map',
+      page: () => StoresMapPage(),
+      binding: StoresMapBinding()
     ),
   ];
 }
