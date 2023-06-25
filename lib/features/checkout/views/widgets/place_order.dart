@@ -60,6 +60,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             Theme.of(context).textTheme.displayMedium?.copyWith(
                                   color: AppColors.mediumLabel,
                                   fontWeight: FontWeight.bold,
+                                  fontSize: 18,
                                 ),
                       ),
                     ],
@@ -84,6 +85,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             Theme.of(context).textTheme.displayMedium?.copyWith(
                                   color: AppColors.mediumLabel,
                                   fontWeight: FontWeight.bold,
+                                  fontSize: 18,
                                 ),
                       ),
                     ],
@@ -117,6 +119,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                               ?.copyWith(
                                 color: AppColors.mediumLabel,
                                 fontWeight: FontWeight.bold,
+                                fontSize: 18,
                               ),
                         ),
                       ],
@@ -142,6 +145,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             Theme.of(context).textTheme.displayMedium?.copyWith(
                                   color: AppColors.mediumLabel,
                                   fontWeight: FontWeight.bold,
+                                  fontSize: 18,
                                 ),
                       ),
                     ],

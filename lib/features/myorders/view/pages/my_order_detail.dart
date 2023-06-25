@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:mhg/features/mycart/view/widgets/my_cart_card.dart';
+import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/myorders/models/order_model.dart';
 import 'package:mhg/features/myorders/view/widgets/my_order_details_global_info.dart';
 import 'package:mhg/features/myorders/view/widgets/order_detail_card.dart';
@@ -38,15 +37,16 @@ class MyOrderDetailPage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: 10,
-          ),
-          Padding(
+          const SizedBox(height: 10),
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: DividerWidget(),
           ),
           MyOrderDetailsGlobalInfo(
             model: model,
+          ),
+          SizedBox(
+            height: AppDimensions.viewBottomPadding(context),
           )
         ],
       ),

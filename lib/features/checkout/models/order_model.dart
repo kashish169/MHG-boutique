@@ -55,8 +55,13 @@ class OrderModel {
       "shipping_country": shippingCountry,
       "redeem": redeem,
       "payment_method": paymentMethod,
-      "online_payment_method_id": onlinePaymentMethodId,
     };
+    if (paymentMethod == "TAP") {
+      body.putIfAbsent(
+        "online_payment_method_id",
+        () => onlinePaymentMethodId,
+      );
+    }
     if (coupon.isNotEmpty) {
       body.putIfAbsent(
         "coupon",

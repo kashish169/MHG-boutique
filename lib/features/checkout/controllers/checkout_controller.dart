@@ -313,6 +313,21 @@ class CheckoutController extends GetxController {
 
   Future<void> createOrder() async {
     try {
+      var userName = profileController.model.value!.name;
+      var email = profileController.model.value!.email;
+      var street = profileController.model.value?.street;
+      var state = profileController.model.value?.state;
+      var zipCode = profileController.model.value?.zipCode;
+      var countryName = profileController.model.value?.country?.name;
+      var promoCode = codeController.text.trim();
+      if (street!.isEmpty ||
+          state!.isEmpty ||
+          zipCode!.isEmpty ||
+          countryName == null ||
+          countryName.isEmpty) {
+        AppToasts.errorToast("Please complete your personal information");
+        return;
+      }
       if (paymentMethodValue.isEmpty) {
         AppToasts.errorToast("Choose payment method");
         return;
@@ -322,23 +337,6 @@ class CheckoutController extends GetxController {
           AppToasts.errorToast("Choose payment method");
           return;
         }
-      }
-      var userName = profileController.model.value!.name;
-      var email = profileController.model.value!.email;
-      var street = profileController.model.value!.street;
-      var state = profileController.model.value!.state;
-      var zipCode = profileController.model.value!.zipCode;
-      var countryName = profileController.model.value!.countryName;
-      var promoCode = codeController.text.trim();
-      log("$countryName");
-
-      if (street!.isEmpty ||
-          state!.isEmpty ||
-          zipCode!.isEmpty ||
-          countryName == null ||
-          countryName.isEmpty) {
-        AppToasts.errorToast("Please complete your personal information");
-        return;
       }
       String objectData = orderModelToJson(
         OrderModel(
@@ -361,42 +359,42 @@ class CheckoutController extends GetxController {
         ),
       );
       log(objectData);
-      // Get.dialog(
-      //   const LoadingWidget(),
-      //   barrierDismissible: false,
-      // );
-      // Either<Failure, ApiResponse> results =
-      //     await checkoutRepository.createOrder(objectData);
-      // Get.back();
-      // results.fold(
-      //   (l) {
-      //     AppToasts.errorToast(l.message);
-      //     log("CREATE ORDER METHODS RESPONSE ERROR ${l.message}");
-      //   },
-      //   (r) async {
-      //     var statusCode = r.object["code"];
-      //     var message = r.object["message"];
-      //     log("CREATE ORDER METHODS RESPONSE STATUS $statusCode");
-      //     log("${r.object}");
-      //     if (statusCode == 201) {
-      //       var url = r.object["data"];
-      //       var results = await Get.to(
-      //         () => AddPaymentMethodWebViewPage(
-      //           title: "3DS Authentication",
-      //           url: url,
-      //           is3dAUth: true,
-      //         ),
-      //       );
-      //       if (results == true) {
-      //         _onOrderSuccess.call();
-      //       }
-      //     } else if (statusCode == 200) {
-      //       _onOrderSuccess.call();
-      //     } else {
-      //       AppToasts.errorToast(message);
-      //     }
-      //   },
-      // );
+      Get.dialog(
+        const LoadingWidget(),
+        barrierDismissible: false,
+      );
+      Either<Failure, ApiResponse> results =
+          await checkoutRepository.createOrder(objectData);
+      Get.back();
+      results.fold(
+        (l) {
+          AppToasts.errorToast(l.message);
+          log("CREATE ORDER METHODS RESPONSE ERROR ${l.message}");
+        },
+        (r) async {
+          var statusCode = r.object["code"];
+          var message = r.object["message"];
+          log("CREATE ORDER METHODS RESPONSE STATUS $statusCode");
+          log("${r.object}");
+          if (statusCode == 201) {
+            var url = r.object["data"];
+            var results = await Get.to(
+              () => AddPaymentMethodWebViewPage(
+                title: "3DS Authentication",
+                url: url,
+                is3dAUth: true,
+              ),
+            );
+            if (results == true) {
+              _onOrderSuccess.call();
+            }
+          } else if (statusCode == 200) {
+            _onOrderSuccess.call();
+          } else {
+            AppToasts.errorToast(message);
+          }
+        },
+      );
     } catch (e, s) {
       log("$e $s");
     }
