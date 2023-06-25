@@ -14,7 +14,7 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     log(model.grandTotal);
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 5),
+      padding: const EdgeInsets.all(20.0),
       child: Column(
 
         children: [
@@ -27,7 +27,7 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 1),
                   child: Center(
                     child: Text(
-                      'TAX \n\n${model.tax} ',
+                      'TAX Amount\n${model.tax}',
 
 
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
@@ -44,7 +44,7 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 1),
                   child: Center(
                     child: Text(
-                      'Hearts Discount\n${model.heartsDiscount} ',
+                      'Hearts Discount\n${model.heartsDiscount}',
 
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontSize: 14,
@@ -60,7 +60,7 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 1),
                   child: Center(
                     child: Text(
-                      'Sub Total\n\n${model.subTotal} ',
+                      'Sub Total\n${model.subTotal}',
 
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontSize: 14,
@@ -76,7 +76,7 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 1),
                   child: Center(
                     child: Text(
-                      'Coupon Amount\n${model.couponAmount} ',
+                      'Coupon Amount\n${model.couponAmount}',
 
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontSize: 14,
