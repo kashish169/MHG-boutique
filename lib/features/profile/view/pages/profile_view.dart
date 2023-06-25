@@ -101,12 +101,15 @@ class ProfileView extends StatelessWidget {
               const DividerWidget(),
               ProfileCard(
                 icon: AppAssets.invite,
-                title: 'invite your friends',
+                title: 'Invite your friends',
               ),
               const DividerWidget(),
               ProfileCard(
                 icon: AppAssets.about,
                 title: 'About MHGboutique',
+                onTap: () {
+                  Get.toNamed('/about_us');
+                },
               ),
               const DividerWidget(),
               ProfileCard(
@@ -124,7 +127,7 @@ class ProfileView extends StatelessWidget {
               ),
               const DividerWidget(),
               ProfileCard(
-                icon: AppAssets.store,
+                icon: AppAssets.logout,
                 title: 'Log out',
                 onTap: () async {
                   print(App.notifyMe);
