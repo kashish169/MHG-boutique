@@ -14,12 +14,12 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     log(model.grandTotal);
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
       child: Column(
 
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
@@ -27,7 +27,7 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 1),
                   child: Center(
                     child: Text(
-                      'TAX Amount\n${model.tax}',
+                      'TAX \n\n${model.tax}',
 
 
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
@@ -60,7 +60,7 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 1),
                   child: Center(
                     child: Text(
-                      'Sub Total\n${model.subTotal}',
+                      'Sub Total\n\n${model.subTotal}',
 
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontSize: 14,
