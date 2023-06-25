@@ -11,7 +11,7 @@ class MyOrderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed('/my_orders_details',arguments: model.orderDetails);
+        Get.toNamed('/my_orders_details',arguments: model);
       },
       child: Padding(
         padding: const EdgeInsets.all(15.0),
