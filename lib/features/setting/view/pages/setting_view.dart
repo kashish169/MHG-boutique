@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/features/profile/view/widgets/profile_card.dart';
 import 'package:mhg/features/setting/view/widgets/ads.dart';
@@ -38,9 +39,19 @@ class SettingPage extends StatelessWidget {
             height: 50,
           ),
           const DividerWidget(),
-          ProfileCard(icon: AppAssets.info, title: 'Privacy Policy'),
+          ProfileCard(
+              icon: AppAssets.info,
+              title: 'Privacy Policy',
+              onTap: () {
+                Get.toNamed('praivacy_policy');
+              }),
           const DividerWidget(),
-          ProfileCard(icon: AppAssets.terms, title: 'Terms & Conditions'),
+          ProfileCard(
+              icon: AppAssets.terms,
+              title: 'Terms & Conditions',
+              onTap: () {
+                Get.toNamed('terms_and_conditions');
+              }),
           const DividerWidget(),
         ],
       ),
