@@ -29,7 +29,7 @@ class SettingController extends GetxController {
   RxBool isLoadingPrivacy = false.obs;
   RxBool isErrorPrivacy = false.obs;
   late TermsModel termsModel;
-  late PraivacyModel praivacyModel;
+  late PrivacyModel privacyModel;
   @override
   void onInit() {
     getPraivacyData();
@@ -57,7 +57,7 @@ class SettingController extends GetxController {
           log("Privacy Status Code $statusCode");
           if (stats == true) {
             var model = r.object['data']['privacy_policy'];
-            praivacyModel = PraivacyModel.fromJson(model);
+            privacyModel = PrivacyModel.fromJson(model);
           } else {
             AppToasts.errorToast(message);
           }

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
+import 'package:mhg/features/about_us/view/pages/about_us_page.dart';
 import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
 import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
@@ -108,7 +109,7 @@ class ProfileView extends StatelessWidget {
                 icon: AppAssets.about,
                 title: 'About MHGboutique',
                 onTap: () {
-                  Get.toNamed('/about_us');
+                  Get.toNamed(AboutUsPage.routeName);
                 },
               ),
               const DividerWidget(),
@@ -120,7 +121,7 @@ class ProfileView extends StatelessWidget {
               ProfileCard(
                 icon: AppAssets.store,
                 title: 'Find Our Stores',
-                onTap: (){
+                onTap: () {
                   Get.toNamed('/map');
                 },
               ),

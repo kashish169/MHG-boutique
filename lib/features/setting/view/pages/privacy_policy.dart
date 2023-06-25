@@ -10,6 +10,7 @@ import '../widgets/custom_privacy_widget.dart';
 class PrivacyPolicyPage extends StatelessWidget {
   PrivacyPolicyPage({super.key});
   final SettingController controller = Get.find();
+  static String routeName = '/privacy_policy';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,8 +35,8 @@ class PrivacyPolicyPage extends StatelessWidget {
                     ],
                   )
                 : CustomPrivacyWidget(
-                    title: controller.praivacyModel.location,
-                    subTitle: controller.praivacyModel.englishDescription),
+                    title: controller.privacyModel.location,
+                    subTitle: controller.privacyModel.englishDescription),
       ),
     );
   }

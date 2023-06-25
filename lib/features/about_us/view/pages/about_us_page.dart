@@ -9,6 +9,7 @@ import '../widget/about_us_body.dart';
 
 class AboutUsPage extends StatelessWidget {
   AboutUsPage({super.key});
+  static String routeName = '/about_us';
   final AboutUsController controller = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -44,10 +45,8 @@ class AboutUsPage extends StatelessWidget {
                             child: ListView.separated(
                                 itemCount: controller.aboutUsList.length,
                                 itemBuilder: (context, index) => AboutUsBody(
-                                    title: controller
-                                        .aboutUsList[index].englishtitle1,
-                                    subTitle: controller.aboutUsList[index]
-                                        .englishdescriotion1),
+                                    aboutUsModel:
+                                        controller.aboutUsList[index]),
                                 separatorBuilder: (context, index) =>
                                     const SizedBox(
                                       height: 30,

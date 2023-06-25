@@ -42,7 +42,8 @@ class UpdateInfoModel {
           'notify_me': notifyMe,
           'street_address': address,
           'state': state,
-          'zip_code': zipCode, 'country_id': countryId,
+          'zip_code': zipCode,
+          'country_id': countryId,
         }
       : {
           "name": name,
@@ -53,6 +54,7 @@ class UpdateInfoModel {
           'notify_me': notifyMe,
           'street_address': address,
           'state': state,
-          'zip_code': zipCode, 'country_id': countryId,
+          'zip_code': zipCode,
+          'country_id': countryId,
         };
 }

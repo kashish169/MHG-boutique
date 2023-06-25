@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/features/profile/view/widgets/profile_card.dart';
+import 'package:mhg/features/setting/view/pages/privacy_policy.dart';
+import 'package:mhg/features/setting/view/pages/terms_and_conditions_page.dart';
 import 'package:mhg/features/setting/view/widgets/ads.dart';
 import 'package:mhg/features/setting/view/widgets/allow_notification.dart';
 import 'package:mhg/features/setting/view/widgets/country_widget.dart';
@@ -43,14 +45,14 @@ class SettingPage extends StatelessWidget {
               icon: AppAssets.info,
               title: 'Privacy Policy',
               onTap: () {
-                Get.toNamed('praivacy_policy');
+                Get.toNamed(PrivacyPolicyPage.routeName);
               }),
           const DividerWidget(),
           ProfileCard(
               icon: AppAssets.terms,
               title: 'Terms & Conditions',
               onTap: () {
-                Get.toNamed('terms_and_conditions');
+                Get.toNamed(TermsAndConidtionsPage.routeName);
               }),
           const DividerWidget(),
         ],

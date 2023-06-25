@@ -12,6 +12,7 @@ import '../widgets/custom_privacy_widget.dart';
 class TermsAndConidtionsPage extends StatelessWidget {
   TermsAndConidtionsPage({super.key});
   final SettingController controller = Get.find();
+  static String routeName = '/terms_and_conditions';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
