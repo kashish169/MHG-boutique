@@ -115,6 +115,18 @@ class OrderDetailsCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                Text(
+                  'Quantity: ${model.quantity}',
+                  style: Theme.of(context)
+                      .textTheme
+                      .displaySmall
+                      ?.copyWith(
+                    fontSize: 14,
+                    color: AppColors.mediumLabel,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 4),
                 const SizedBox(height: 10),
               ],
             ),

@@ -117,6 +117,9 @@ class ProfileView extends StatelessWidget {
               ProfileCard(
                 icon: AppAssets.store,
                 title: 'Find Our Stores',
+                onTap: (){
+                  Get.toNamed('/map');
+                },
               ),
               const DividerWidget(),
               const SizedBox(
