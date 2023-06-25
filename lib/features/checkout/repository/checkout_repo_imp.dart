@@ -20,6 +20,12 @@ class CheckoutRepoImplement implements CheckoutRepository {
         url: Api.paymentMethods,
         isAuthorized: true,
       );
+  @override
+  Future<Either<Failure, ApiResponse>> getUserPaymentMethods() async =>
+      httpService.get(
+        url: Api.userPaymentMethods,
+        isAuthorized: true,
+      );
 
   @override
   Future<Either<Failure, ApiResponse>> addPaymentMethod() async =>
@@ -55,41 +61,11 @@ class CheckoutRepoImplement implements CheckoutRepository {
   }
 
   @override
-  Future<Either<Failure, ApiResponse>> createOrder(
-    billingName,
-    billingEmail,
-    billingStreet,
-    billingState,
-    billingZipCode,
-    billingCountry,
-    coupon,
-    pm,
-    onlinePaymentMethod,
-    redeem,
-  ) async {
-    Map<String, dynamic> map = {
-      "billing_name": billingName,
-      "billing_email": billingEmail,
-      "billing_street_address": billingStreet,
-      "billing_state": billingState,
-      "billing_zipcode": billingZipCode,
-      "billing_country": billingCountry,
-      "shipping_name": billingName,
-      "shipping_email": billingEmail,
-      "shipping_street_address": billingStreet,
-      "shipping_state": billingState,
-      "shipping_zipcode": billingZipCode,
-      "shipping_country": billingCountry,
-      "coupon": coupon,
-      "redeem": int.parse(redeem),
-      "payment_method": pm,
-      "online_payment_method_id": onlinePaymentMethod
-    };
-    map.removeWhere((key, value) => key == null || value == null);
+  Future<Either<Failure, ApiResponse>> createOrder(Object body) async {
     return httpService.post(
       url: Api.createOrder,
       isAuthorized: true,
-      body: json.encode(map),
+      body: body,
     );
   }
 }

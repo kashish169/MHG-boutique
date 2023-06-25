@@ -5,7 +5,6 @@ import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/checkout/views/widgets/place_order_button.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
-import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import 'package:mhg/widgets/three_bounce_loading.dart';
 
@@ -164,16 +163,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
               onPress: checkoutController.isLoadingRedeem.isTrue
                   ? () {}
                   : () {
-                      checkoutController.createOrder(
-                          profileController.model.value!.name,
-                          profileController.model.value!.email,
-                          profileController.model.value!.street,
-                          profileController.model.value!.state,
-                          profileController.model.value!.zipCode,
-                          profileController.model.value!.countryName,
-                          checkoutController.codeController.text,
-                          checkoutController.codOrCard.value,
-                          checkoutController.paymentMethod.value);
+                      checkoutController.createOrder();
                     },
             ),
           ),

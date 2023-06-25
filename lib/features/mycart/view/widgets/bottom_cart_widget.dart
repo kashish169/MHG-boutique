@@ -27,7 +27,7 @@ class BottomCartWidget extends StatelessWidget {
                 ),
           ),
           Obx(() => Text(
-                '\$${controller.totalPrice.value}',
+                '\$${controller.totalPrice.value.toStringAsFixed(2)}',
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
                       color: AppColors.mediumLabel,
                       fontWeight: FontWeight.bold,

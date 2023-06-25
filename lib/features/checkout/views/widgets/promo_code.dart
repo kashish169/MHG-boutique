@@ -20,6 +20,7 @@ class PromoCode extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 5),
       child: Column(
         children: [
+          const SizedBox(height: 5),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
