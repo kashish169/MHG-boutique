@@ -25,7 +25,7 @@ class MyCartController extends GetxController {
 
   Future<void> getCart() async {
     try {
-      isLoading(true);
+      if (cartItemsList.isEmpty) isLoading(true);
       isError(false);
       Either<Failure, ApiResponse> results = await myCartRepository.getCart();
       isLoading(false);
@@ -46,11 +46,13 @@ class MyCartController extends GetxController {
             getTotalCartPrice();
           } else {
             AppToasts.errorToast(message);
+            isError(true);
           }
         },
       );
     } catch (e, s) {
       log("$e $s");
+      isError(true);
     }
   }
 

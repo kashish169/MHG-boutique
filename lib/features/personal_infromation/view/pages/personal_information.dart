@@ -1,19 +1,18 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_interpolation_to_compose_strings
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/core/helper/app_helper.dart';
-import 'package:mhg/core/models/countries_model.dart';
 import 'package:mhg/features/personal_infromation/controller/peronal_informatiom_controller.dart';
 import 'package:mhg/features/personal_infromation/view/widget/inforamation_form.dart';
 import 'package:mhg/widgets/loading_widget.dart';
+import 'package:mhg/widgets/net_image.dart';
 import '../../../../widgets/custom_app_bar.dart';
 import '../widget/delete_account_dialog.dart';
 import '../widget/personal_info_button.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 class PersonalInformation extends StatelessWidget {
+  static String routeName = "/personal_information";
   PersonalInformation({super.key});
   final PersonalInformationController controller = Get.find();
   final TextEditingController _searchController = TextEditingController();
@@ -66,8 +65,7 @@ class PersonalInformation extends StatelessWidget {
                                   ),
                                   InformationForm(
                                     header: 'Phone number',
-                                    hint: controller.profileInfo.number ??
-                                        "Add your Number",
+                                    hint: "Add your Number",
                                     onTap: () {
                                       controller.enableNumber();
                                     },
@@ -79,8 +77,7 @@ class PersonalInformation extends StatelessWidget {
                                   InformationForm(
                                     textController: controller.address,
                                     header: 'Address',
-                                    hint: controller.profileInfo.street ??
-                                        'Add your address',
+                                    hint: 'Add your address',
                                     onTap: () {
                                       controller.enableAddress();
                                     },
@@ -89,8 +86,7 @@ class PersonalInformation extends StatelessWidget {
                                   ),
                                   InformationForm(
                                     header: 'State',
-                                    hint: controller.profileInfo.state ??
-                                        'Add your state',
+                                    hint: 'Add your state',
                                     validator: (val) {
                                       return AppHelper.validation(
                                           val!, 1, 500, '');
@@ -104,8 +100,7 @@ class PersonalInformation extends StatelessWidget {
                                   ),
                                   InformationForm(
                                     header: 'Zip Code',
-                                    hint: controller.profileInfo.zipCode ??
-                                        'Add your zip code',
+                                    hint: 'Add your zip code',
                                     onTap: () {
                                       controller.enableZipCode();
                                     },
@@ -137,7 +132,6 @@ class PersonalInformation extends StatelessWidget {
                                           isExpanded: true,
                                           value: controller.selectedCountry,
                                           onChanged: (value) {
-                                            
                                             controller.setCountry(value);
                                           },
                                           hint: Text(
@@ -157,15 +151,16 @@ class PersonalInformation extends StatelessWidget {
                                                     text: TextSpan(
                                                       children: [
                                                         WidgetSpan(
-                                                          child: Image.network(
-                                                            item.flagLink!,
-                                                            height: 15,
-                                                            width: 15,
+                                                          child: NetImage(
+                                                            image:
+                                                                item.flagLink!,
+                                                            height: 20,
+                                                            width: 20,
                                                           ),
                                                         ),
                                                         TextSpan(
                                                           text:
-                                                              ' ' + item.name!,
+                                                              ' ${item.name!}',
                                                           style:
                                                               Theme.of(context)
                                                                   .textTheme
@@ -255,6 +250,8 @@ class PersonalInformation extends StatelessWidget {
                           ),
                         ),
                         if (controller.enableEditOnName == false ||
+                            controller.enableEditOnState == false ||
+                            controller.enableEditOnZipCode == false ||
                             controller.enableEditOnEmail == false ||
                             controller.enableEditOnPassword == false ||
                             controller.enableEditOnNumber.isFalse ||

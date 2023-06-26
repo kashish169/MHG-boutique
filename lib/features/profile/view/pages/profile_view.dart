@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
+import 'package:mhg/features/about_us/view/pages/about_us_page.dart';
 import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
 import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
@@ -101,12 +102,15 @@ class ProfileView extends StatelessWidget {
               const DividerWidget(),
               ProfileCard(
                 icon: AppAssets.invite,
-                title: 'invite your friends',
+                title: 'Invite your friends',
               ),
               const DividerWidget(),
               ProfileCard(
                 icon: AppAssets.about,
                 title: 'About MHGboutique',
+                onTap: () {
+                  Get.toNamed(AboutUsPage.routeName);
+                },
               ),
               const DividerWidget(),
               ProfileCard(
@@ -117,6 +121,9 @@ class ProfileView extends StatelessWidget {
               ProfileCard(
                 icon: AppAssets.store,
                 title: 'Find Our Stores',
+                onTap: () {
+                  Get.toNamed('/map');
+                },
               ),
               const DividerWidget(),
               const SizedBox(
@@ -124,18 +131,15 @@ class ProfileView extends StatelessWidget {
               ),
               const DividerWidget(),
               ProfileCard(
-                icon: AppAssets.store,
+                icon: AppAssets.logout,
                 title: 'Log out',
                 onTap: () async {
-                  print(App.notifyMe);
                   bool notifayMe = App.notifyMe!;
-                  print(notifayMe);
                   await StoragePref.clear();
                   await StoragePref.setbool(
                     key: 'notifyme',
                     value: notifayMe,
                   );
-                  print(App.notifyMe);
                   Get.offAllNamed(OnBoardView.routeName);
                 },
               ),

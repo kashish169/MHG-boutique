@@ -7,15 +7,19 @@ import 'package:mhg/widgets/primary_button.dart';
 
 class PlaceOrderButton extends StatelessWidget {
   final String title;
-  final double width;
+  final double? width;
   final bool hasIcon;
   final Function onPress;
+  final bool isLoading;
+  final Color? color;
   PlaceOrderButton({
     super.key,
     required this.title,
-    required this.width,
+    this.width,
     required this.hasIcon,
     required this.onPress,
+    this.isLoading = false,
+    this.color,
   });
 
   @override
@@ -25,9 +29,11 @@ class PlaceOrderButton extends StatelessWidget {
         alignment: Alignment.centerRight,
         children: [
           PrimaryButton(
+            color: color,
             height: 44,
             width: width,
             title: title,
+            isLoading: isLoading,
             onTap: () => onPress(),
           ),
           hasIcon

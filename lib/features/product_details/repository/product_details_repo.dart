@@ -33,4 +33,14 @@ class ProductDetailsRepoImplement implements ProductDetailsRepository {
         isAuthorized: true,
         body: body,
       );
+
+  @override
+  Future<Either<Failure, ApiResponse>> addReview({
+    required Object body,
+  }) async =>
+      httpService.post(
+        url: Api.addReview,
+        isAuthorized: true,
+        body: body,
+      );
 }

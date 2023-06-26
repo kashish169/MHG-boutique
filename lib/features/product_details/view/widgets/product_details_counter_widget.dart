@@ -41,24 +41,27 @@ class _ProductDetailsCounterWidgetState
             );
             if (result == true) {
               widget.model.cartQty = value;
-              bool fromArrival=false;
-              List<ProductModel> temp = Get.find<HomeController>().newArrivalsList;
+              bool fromArrival = false;
+              List<ProductModel> temp =
+                  Get.find<HomeController>().newArrivalsList;
               for (int i = 0; i < temp.length; i++) {
-                if (temp[i].id == widget.model.id!) {
+                if (temp[i].id == widget.model.id) {
                   temp[i].inCart = 1;
-                  temp[i].cartQty=value;
-                  fromArrival=true;
+                  temp[i].cartQty = value;
+                  fromArrival = true;
                 }
               }
-              List<ProductModel>  temp2 = Get.find<HomeController>().topSellersList;
+              List<ProductModel> temp2 =
+                  Get.find<HomeController>().topSellersList;
               for (int i = 0; i < temp2.length; i++) {
-                if (temp2[i].id == widget.model.id!) {
+                if (temp2[i].id == widget.model.id) {
                   temp2[i].inCart = 1;
-                  temp2[i].cartQty=value;
-                  fromArrival=false;
+                  temp2[i].cartQty = value;
+                  fromArrival = false;
                 }
               }
-              Get.find<HomeController>().updateList(fromArrival==true?temp:temp2, fromArrival);
+              Get.find<HomeController>()
+                  .updateList(fromArrival == true ? temp : temp2, fromArrival);
             }
             widget.model.isLoadingQuantity = false;
             if (mounted) setState(() {});
@@ -72,24 +75,27 @@ class _ProductDetailsCounterWidgetState
             );
             if (result == true) {
               widget.model.cartQty = value;
-              bool fromArrival=false;
-              List<ProductModel> temp = Get.find<HomeController>().newArrivalsList;
+              bool fromArrival = false;
+              List<ProductModel> temp =
+                  Get.find<HomeController>().newArrivalsList;
               for (int i = 0; i < temp.length; i++) {
-                if (temp[i].id == widget.model.id!) {
+                if (temp[i].id == widget.model.id) {
                   temp[i].inCart = 1;
-                  temp[i].cartQty=value;
-                  fromArrival=true;
+                  temp[i].cartQty = value;
+                  fromArrival = true;
                 }
               }
-              List<ProductModel>  temp2 = Get.find<HomeController>().topSellersList;
+              List<ProductModel> temp2 =
+                  Get.find<HomeController>().topSellersList;
               for (int i = 0; i < temp2.length; i++) {
-                if (temp2[i].id == widget.model.id!) {
+                if (temp2[i].id == widget.model.id) {
                   temp2[i].inCart = 1;
-                  temp2[i].cartQty=value;
-                  fromArrival=false;
+                  temp2[i].cartQty = value;
+                  fromArrival = false;
                 }
               }
-              Get.find<HomeController>().updateList(fromArrival==true?temp:temp2, fromArrival);
+              Get.find<HomeController>()
+                  .updateList(fromArrival == true ? temp : temp2, fromArrival);
             }
             widget.model.isLoadingQuantity = false;
             if (mounted) setState(() {});

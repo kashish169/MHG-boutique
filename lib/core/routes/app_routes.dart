@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:mhg/features/about_us/view/pages/about_us_page.dart';
 import 'package:mhg/features/allproducts/view/pages/all_products_page.dart';
 import 'package:mhg/features/auth/sign_up/binding/sign_up_binding.dart';
 import 'package:mhg/features/auth/sign_up/view/pages/sign_up_view.dart';
@@ -15,6 +16,7 @@ import 'package:mhg/features/mainwrapper/binding/main_wrapper_bindings.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
 import 'package:mhg/features/checkout/views/pages/checkout_page.dart';
 import 'package:mhg/features/myorders/binding/my_orders_binding.dart';
+import 'package:mhg/features/myorders/view/pages/my_order_detail.dart';
 import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
 import 'package:mhg/features/notification_permission/view/pages/norification_permission.dart';
 import 'package:mhg/features/notifications/binding/notification_binding.dart';
@@ -31,9 +33,14 @@ import 'package:mhg/features/profile/view/pages/profile_view.dart';
 import 'package:mhg/features/rewards/pages/rewards_page.dart';
 import 'package:mhg/features/search/view/pages/search_page.dart';
 import 'package:mhg/features/setting/binding/setting_binding.dart';
+import 'package:mhg/features/setting/view/pages/privacy_policy.dart';
 import 'package:mhg/features/setting/view/pages/setting_view.dart';
+import 'package:mhg/features/setting/view/pages/terms_and_conditions_page.dart';
 import 'package:mhg/features/splash/binding/splash_binding.dart';
 import 'package:mhg/features/splash/view/splash_view.dart';
+import 'package:mhg/features/stroresmap/bindings/stores_map_binding.dart';
+import 'package:mhg/features/stroresmap/view/pages/stores_map_page.dart';
+import '../../features/about_us/binding/about_us_bindings.dart';
 import '../../features/auth/otp/view/pages/otp.dart';
 import '../../features/categories/view/pages/categories_page.dart';
 import '../../features/categories/view/pages/sub_categories_page.dart';
@@ -106,6 +113,10 @@ class AppRoutes {
       binding: MyOrdersBinding(),
     ),
     GetPage(
+      name: '/my_orders_details',
+      page: () => const MyOrderDetailPage(),
+    ),
+    GetPage(
       name: '/product_details',
       page: () => const ProductDetailsPage(),
       binding: ProductDetailsBinding(),
@@ -132,7 +143,7 @@ class AppRoutes {
     ),
     GetPage(
       name: '/checkout',
-      page: () => const CheckoutPage(),
+      page: () => CheckoutPage(),
       binding: CheckoutBinding(),
     ),
     GetPage(
@@ -142,6 +153,21 @@ class AppRoutes {
     GetPage(
       name: '/add_payment_method_web_view',
       page: () => AddPaymentMethodWebViewPage(),
+    ),
+    GetPage(
+        name: '/map', page: () => StoresMapPage(), binding: StoresMapBinding()),
+    GetPage(
+      name: '/terms_and_conditions',
+      page: () => TermsAndConidtionsPage(),
+    ),
+    GetPage(
+      name: '/about_us',
+      page: () => AboutUsPage(),
+      binding: AboutUsBinding(),
+    ),
+    GetPage(
+      name: '/privacy_policy',
+      page: () => PrivacyPolicyPage(),
     ),
   ];
 }

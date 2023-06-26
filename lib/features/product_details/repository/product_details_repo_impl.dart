@@ -10,4 +10,8 @@ abstract class ProductDetailsRepository {
   Future<Either<Failure, ApiResponse>> addProductToCart({
     required Object body,
   });
+
+  Future<Either<Failure, ApiResponse>> addReview({
+    required Object body,
+  });
 }

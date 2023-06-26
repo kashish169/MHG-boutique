@@ -38,10 +38,10 @@ class OrderPriceModal {
 }
 
 class Data {
-  double? subtotal;
-  double? tax;
-  int? shippingCharge;
-  int? discount;
+  dynamic subtotal;
+  dynamic tax;
+  dynamic shippingCharge;
+  dynamic discount;
   double? grandTotal;
 
   Data(

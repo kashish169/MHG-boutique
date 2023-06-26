@@ -1,18 +1,64 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, sized_box_for_whitespace, prefer_const_constructors
-
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/loading_widget.dart';
-import 'package:mhg/widgets/retry_button.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class AddPaymentMethodWebViewPage extends StatelessWidget {
+class AddPaymentMethodWebViewPage extends StatefulWidget {
   static String routeName = '/add_payment_method_web_view';
-  AddPaymentMethodWebViewPage({super.key});
-  final CheckoutController checkoutController = Get.put(CheckoutController());
+  final String? title;
+  final String? url;
+  final bool is3dAUth;
+
+  const AddPaymentMethodWebViewPage({
+    super.key,
+    this.title,
+    this.url,
+    this.is3dAUth = false,
+  });
+
+  @override
+  State<AddPaymentMethodWebViewPage> createState() =>
+      _AddPaymentMethodWebViewPageState();
+}
+
+class _AddPaymentMethodWebViewPageState
+    extends State<AddPaymentMethodWebViewPage> {
+  final CheckoutController checkoutController = Get.find<CheckoutController>();
+  late final WebViewController webViewController;
+
+  @override
+  void initState() {
+    webViewController = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(const Color(0x00000000))
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onPageStarted: (url) {
+            checkoutController.loadingPercentage(0);
+          },
+          onProgress: (progress) {
+            checkoutController.loadingPercentage(progress);
+          },
+          onPageFinished: (url) async {
+            checkoutController.loadingPercentage(100);
+            log("REDIRECT URL $url");
+            if (widget.is3dAUth == true) {
+              if (url.contains("thank-you")) {
+                Get.back(result: true);
+              }
+            } else {
+              checkoutController.getUserPaymentMethods();
+            }
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(widget.url!));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +66,17 @@ class AddPaymentMethodWebViewPage extends StatelessWidget {
       backgroundColor: AppColors.white2,
       appBar: customAppBar(
         context,
-        title: 'Add Payment Method',
-        
+        title: widget.title ?? 'Add Payment Method',
       ),
-      body: Obx(() => Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: checkoutController.loadingPercentage.value != 100
-            ? LoadingWidget()
-            : WebViewWidget(
-                controller: checkoutController.webViewController,
-              ),
-      )),
+      body: Obx(() => SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: checkoutController.loadingPercentage.value != 100
+                ? const LoadingWidget()
+                : WebViewWidget(
+                    controller: webViewController,
+                  ),
+          )),
     );
   }
 }

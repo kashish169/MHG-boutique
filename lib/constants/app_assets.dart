@@ -67,4 +67,8 @@ class AppAssets {
   static String tag = "assets/icons/tag.png";
   static String starGif = "assets/images/star-gif.gif";
   static String qrGif = "assets/images/qr-gif.gif";
+  static String arrowForward = "assets/icons/arrow-forward.png";
+  static String sendIcon = "assets/icons/send.png";
+  static String americanExpress = "assets/icons/american_express.jpg";
+  static String mada = "assets/icons/mada.png";
 }

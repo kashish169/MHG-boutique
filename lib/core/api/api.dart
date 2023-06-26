@@ -14,6 +14,9 @@ class Api {
   static String loginEmail = "/api/v1/users/auth/login";
   static String login = "/api/v1/users/auth/login-with-phone";
   static String profile = "/api/v1/users/profile";
+  static String privacyPolicyLink = "/api/v1/privacy-policy";
+  static String termsAndConidtionsLink = "/api/v1/terms-conditions";
+  static String aboutUsLink = "/api/v1/about-us";
   static String notifications = "/api/v1/users/notifications";
   static String updateProfile = "/api/v1/users/update";
   static String deleteAccount = "/api/v1/users/delete-account";
@@ -29,9 +32,11 @@ class Api {
   static String home = "/api/v1/home";
   static String searchLink = "/api/v1/search";
   static String filterProductLink = "/api/v1/product/filter";
-  static String paymentMethods = "/api/v1/payment/tap/payment-methods";
+  static String userPaymentMethods = "/api/v1/payment/tap/payment-methods";
   static String productRoute = "/api/v1/product";
   static String productDetails = "$productRoute/product-details";
+  static String addReview = "$productRoute/add-review";
+
   static String storeCategories = "/api/v1/category/store";
   static String menus = "/api/v1/category/menus";
   static String filterProduct = "/api/v1/product/filter?store_id=1";
@@ -44,4 +49,6 @@ class Api {
   static String orderPrice = '/api/v1/order/order-price';
   static String categoriesByBrand = "/api/v1/category/brand";
   static String createOrder = "/api/v1/order/create";
+  static String paymentMethods = "/api/v1/order/payment-methods";
+  static String myOrders = "/api/v1/users/orders";
 }

@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
-import 'package:mhg/app/app.dart';
 import 'package:mhg/core/api/api.dart';
 import 'package:mhg/core/httpservices/http_services_impl.dart';
 import 'package:mhg/core/httpservices/http_services_repository.dart';
@@ -20,70 +18,54 @@ class CheckoutRepoImplement implements CheckoutRepository {
   Future<Either<Failure, ApiResponse>> getPaymentMethods() async =>
       httpService.get(
         url: Api.paymentMethods,
-        isAuthorized: App.token.isEmpty ? false : true,
+        isAuthorized: true,
+      );
+  @override
+  Future<Either<Failure, ApiResponse>> getUserPaymentMethods() async =>
+      httpService.get(
+        url: Api.userPaymentMethods,
+        isAuthorized: true,
       );
 
   @override
   Future<Either<Failure, ApiResponse>> addPaymentMethod() async =>
       httpService.get(
         url: Api.addPaymentMethod,
-        isAuthorized: App.token.isEmpty ? false : true,
+        isAuthorized: true,
       );
 
   @override
   Future<Either<Failure, ApiResponse>> deletePaymentMethod(id) async =>
       httpService.post(
         url: Api.removePaymentMethod,
-        isAuthorized: App.token.isEmpty ? false : true,
+        isAuthorized: true,
         body: json.encode({"payment_method": id}),
       );
 
   @override
   Future<Either<Failure, ApiResponse>> setDefaultPaymentMethod(id) async =>
       httpService.post(
-        url: Api.removePaymentMethod,
-        isAuthorized: App.token.isEmpty ? false : true,
+        url: Api.setDefaultPaymentMethod,
+        isAuthorized: true,
         body: json.encode({"payment_method": id}),
       );
 
   @override
-  Future<Either<Failure, ApiResponse>> orderPrice(countryId, coupon) async =>
-      httpService.get(
-        url: '${Api.orderPrice}?country=$countryId&coupon=$coupon',
-        isAuthorized: App.token.isEmpty ? false : true,
-      );
+  Future<Either<Failure, ApiResponse>> orderPrice(
+    Object query,
+  ) async {
+    return httpService.get(
+      url: '${Api.orderPrice}$query',
+      isAuthorized: true,
+    );
+  }
 
   @override
-  Future<Either<Failure, ApiResponse>> createOrder(
-    billingName,
-    billingEmail,
-    billingStreet,
-    billingState,
-    billingZipCode,
-    billingCountry,
-    coupon,
-    paymentMethod,
-    onlinePaymentMethod,
-  ) async =>
-      httpService.post(
-        url: Api.createOrder,
-        isAuthorized: App.token.isEmpty ? false : true,
-        body: json.encode({
-          "billing_name": billingName,
-          "billing_email": billingEmail,
-          "billing_street_address": billingStreet,
-          "billing_state": billingState,
-          "billing_zipcode": billingZipCode,
-          "billing_country": billingCountry,
-          "shipping_name": billingName,
-          "shipping_email": billingEmail,
-          "shipping_street_address": billingStreet,
-          "shipping_state": billingState,
-          "shipping_zipcode": billingZipCode,
-          "shipping_country": billingCountry,
-          "coupon": coupon,
-          "payment_method": paymentMethod,
-          "online_payment_method_id": onlinePaymentMethod
-        }),
-      );
+  Future<Either<Failure, ApiResponse>> createOrder(Object body) async {
+    return httpService.post(
+      url: Api.createOrder,
+      isAuthorized: true,
+      body: body,
+    );
+  }
 }

@@ -7,7 +7,7 @@ class CustomFormField extends StatelessWidget {
     this.prefixWidget,
     this.hint,
     this.controller,
-    required this.inputType,
+    this.inputType,
     required this.obscure,
     this.validator,
     this.isPadding,
@@ -22,12 +22,13 @@ class CustomFormField extends StatelessWidget {
     this.onTap,
     this.onTapOutsidel,
     this.onFieldSubmitted,
+    this.isFileWhite,
   });
 
   final Widget? prefixWidget;
   final String? hint;
   final TextEditingController? controller;
-  final TextInputType inputType;
+  final TextInputType? inputType;
   final bool obscure;
   final String? Function(String?)? validator;
   final bool? isPadding;
@@ -42,6 +43,7 @@ class CustomFormField extends StatelessWidget {
   final void Function()? onTap;
   final Function(String)? onFieldSubmitted;
   final void Function(PointerDownEvent)? onTapOutsidel;
+  final bool? isFileWhite;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -69,7 +71,8 @@ class CustomFormField extends StatelessWidget {
           hintStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
               color: isFilled == null ? AppColors.grey : AppColors.black3),
           hintText: hint,
-          fillColor: const Color(0XFFF0F0F0),
+          fillColor:
+              isFileWhite == null ? const Color(0XFFF0F0F0) : AppColors.white,
           border: readOnly == null
               ? OutlineInputBorder(
                   borderRadius: oneSideBorder != null

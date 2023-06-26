@@ -4,13 +4,14 @@ import 'package:mhg/constants/app_colors.dart';
 
 class LoadingThreeBounce extends StatelessWidget {
   final Color? color;
-  const LoadingThreeBounce({super.key, this.color});
+  final double? size;
+  const LoadingThreeBounce({super.key, this.color, this.size});
 
   @override
   Widget build(BuildContext context) {
     return SpinKitThreeBounce(
       color: color ?? AppColors.white,
-      size: 12,
+      size: size ?? 12,
     );
   }
 }

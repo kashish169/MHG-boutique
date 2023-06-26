@@ -96,7 +96,7 @@ class ProfileInfoModal {
         number: json["Number"],
         gender: json["Gender"],
         dob: json["DOB"],
-        street: json["street_address"],
+        street: json["street_address"] ?? '',
         about: json["About"],
         isAdmin: json["is_admin"],
         status: json["status"],
@@ -117,8 +117,8 @@ class ProfileInfoModal {
         nextTier: json["next_tier"],
         nextTierPts: json["next_tier_pts"],
         nextTierPtsLeft: json["next_tier_pts_left"],
-        state: json['state'],
-        zipCode: json['zip_code'],
+        state: json['state'] ?? '',
+        zipCode: json['zip_code'] ?? '',
         countryName: json['country_name'],
         country: json['country'] == null
             ? null

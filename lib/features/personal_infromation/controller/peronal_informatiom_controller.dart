@@ -53,7 +53,6 @@ class PersonalInformationController extends GetxController {
   void onInit() {
     getAllCountries();
     profileInfo = Get.arguments["profile"];
-    print(profileInfo.number);
     name.text = profileInfo.name;
     email.text = profileInfo.email;
     if (profileInfo.number != null) {
@@ -61,9 +60,9 @@ class PersonalInformationController extends GetxController {
     } else {
       phone.text == 'Add your Number';
     }
-    state.text = profileInfo.state ?? 'Add your state';
-    address.text = profileInfo.street ?? 'Add your street address';
-    zipCode.text = profileInfo.zipCode ?? 'Add your  zip code';
+    state.text = profileInfo.state ?? '';
+    address.text = profileInfo.street ?? '';
+    zipCode.text = profileInfo.zipCode ?? '';
 
     super.onInit();
   }
@@ -100,6 +99,7 @@ class PersonalInformationController extends GetxController {
           countryId: countryId.value,
         ),
       );
+      print("country id ${countryId.value}");
       Either<Failure, ApiResponse> results = await personalRepo.updateData(
         body: body,
       );
