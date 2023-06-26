@@ -77,10 +77,12 @@ class ProductCard extends StatelessWidget {
                     top: Radius.circular(20),
                   ),
                   child: NetImage(
-                      image: isWishList == false
-                          ? model!.primaryImageLink
-                          : wishListModel!.options.imageLink,
-                      height: AppDimensions.productHeight(context)),
+                    image: isWishList == false
+                        ? model!.primaryImageLink
+                        : wishListModel!.options.imageLink,
+                    height: AppDimensions.productHeight(context),
+                    width: 182,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Padding(
@@ -107,13 +109,21 @@ class ProductCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 5),
-
-                       Visibility(
-                         visible: isWishList == true&& model?.averageRate!=null&&model?.averageRate!='0',
-                         child: Expanded(
-                          child: RatingWidget(initialRating: double.parse(model?.averageRate!=null?model!.averageRate!.toString():'0'),),
-                      ),
-                       ),
+                      isWishList == true
+                          ? const SizedBox()
+                          : Visibility(
+                              visible:
+                                  double.parse("${model?.averageRate}") == 0
+                                      ? false
+                                      : true,
+                              child: Expanded(
+                                child: RatingWidget(
+                                  initialRating:
+                                      double.parse("${model?.averageRate}"),
+                                  isEnableToRate: false,
+                                ),
+                              ),
+                            ),
                     ],
                   ),
                 ),

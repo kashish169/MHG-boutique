@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/core/models/api_response.dart';
@@ -23,36 +24,42 @@ class ProfileController extends GetxController {
   RxBool loadingUpdateCard = false.obs;
 
   Future<void> getProfileInfo() async {
-    if (model.value == null) {
-      isLoading(true);
-    } else {
-      loadingUpdateCard(true);
+    try {
+      if (model.value == null) {
+        isLoading(true);
+      } else {
+        loadingUpdateCard(true);
+      }
+      isError(false);
+      Either<Failure, ApiResponse> results = await profileRepo.getInfo();
+      isLoading(false);
+      loadingUpdateCard(false);
+      results.fold(
+        (l) {
+          isError(true);
+          AppToasts.errorToast("NETWORK ERROR");
+        },
+        (r) async {
+          log("${r.object}");
+          int statusCode = r.object['code'];
+          var message = r.object['message'];
+          if (statusCode == 200) {
+            model.value = ProfileInfoModal.fromJson(r.object["data"]);
+            firstCall(false);
+          } else if (statusCode == 400) {
+            AppToasts.errorToast(message);
+          } else if (statusCode == 401) {
+            Get.offAllNamed(OnBoardView.routeName);
+          } else {
+            isError(true);
+            AppToasts.errorToast(message);
+          }
+        },
+      );
+    } catch (e, s) {
+      log("$e $s");
+      isError(true);
     }
-    isError(false);
-    Either<Failure, ApiResponse> results = await profileRepo.getInfo();
-    isLoading(false);
-    loadingUpdateCard(false);
-    results.fold(
-      (l) {
-        isError(true);
-        AppToasts.errorToast("NETWORK ERROR");
-      },
-      (r) async {
-        log("${r.object}");
-        int statusCode = r.object['code'];
-        var message = r.object['message'];
-        if (statusCode == 200) {
-          model.value = ProfileInfoModal.fromJson(r.object["data"]);
-          firstCall(false);
-        } else if (statusCode == 400) {
-          AppToasts.errorToast(message);
-        } else if (statusCode == 401) {
-          Get.offAllNamed(OnBoardView.routeName);
-        } else {
-          AppToasts.errorToast(message);
-        }
-      },
-    );
   }
 
   String getLevelIcon() {
@@ -63,5 +70,13 @@ class ProfileController extends GetxController {
     } else {
       return AppAssets.molah;
     }
+  }
+
+  @override
+  void onInit() {
+    if (App.token.isNotEmpty) {
+      getProfileInfo();
+    }
+    super.onInit();
   }
 }

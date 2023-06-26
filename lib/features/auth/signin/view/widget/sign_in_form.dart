@@ -46,7 +46,7 @@ class SignInForm extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   child: CustomFormField(
-                    hint: 'Email address ',
+                    hint: 'Email address',
                     controller: controller.email,
                     suffixIcon: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -57,7 +57,9 @@ class SignInForm extends StatelessWidget {
                     inputType: TextInputType.text,
                     obscure: false,
                     validator: (val) {
-                      return AppHelper.validation(val!, 1, 500, 'email');
+                      if (controller.logWithEmail.isTrue) {
+                        return AppHelper.validation(val!, 1, 500, 'email');
+                      }
                     },
                   ),
                 ),
@@ -77,8 +79,10 @@ class SignInForm extends StatelessWidget {
                           : Icons.visibility_off_rounded))),
               inputType: TextInputType.text,
               obscure: controller.isVisable.value,
-              validator:(value){
-                return controller.validatePassword(value!);
+              validator: (value) {
+                if (controller.isOTP.isFalse) {
+                  return controller.validatePassword(value!);
+                }
               },
             ),
           ),

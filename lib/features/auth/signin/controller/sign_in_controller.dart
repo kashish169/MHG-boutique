@@ -42,6 +42,7 @@ class SignInController extends GetxController {
   RxDouble emailLogwidth = (double.infinity * 0.3).obs;
   RxDouble numberLogwidth = (double.infinity * 0.35).obs;
   RxBool isGuest = false.obs;
+  RxBool isOTP = false.obs;
 
   @override
   void onInit() {
@@ -66,7 +67,7 @@ class SignInController extends GetxController {
 
   String? validatePassword(String value) {
     if (value.isEmpty) {
-      return 'please enter a password';
+      return 'enter your password';
     }
     if (value.length < 6) {
       return 'password must be 6 characters at least';

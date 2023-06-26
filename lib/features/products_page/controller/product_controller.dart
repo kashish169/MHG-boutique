@@ -46,13 +46,16 @@ class ProductsController extends GetxController {
   int? categoryId;
   List<CategoryBrandModel> categoriesList = [];
   RxInt selectedCategoryIndex = (-1).obs;
+  String? categoryName;
+
   @override
   Future<void> onInit() async {
     selectedScent = scentList[0].name.obs;
     var args = Get.arguments;
     categoryId = args["categoryId"];
     brandId = args["brandId"];
-
+    categoryName = args["categoryName"];
+    log(args["categoryName"]);
     if (brandId != null) {
       await getCategoriesByBrandId();
     }

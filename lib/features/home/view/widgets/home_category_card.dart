@@ -14,17 +14,16 @@ class HomeCategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-
       onTap: () {
         if (model.categoryId == null && model.allActiveSubMenus.isEmpty) {
           return;
         }
         if (model.allActiveSubMenus.isEmpty) {
-
           Get.toNamed(
             ProductsPage.routeName,
             arguments: {
               "categoryId": model.categoryId,
+              "categoryName": model.enName,
             },
           );
         } else {
@@ -32,7 +31,6 @@ class HomeCategoryCard extends StatelessWidget {
               arguments: [model.allActiveSubMenus, model.enName]);
         }
       },
-
       child: Container(
         padding:
             const EdgeInsetsDirectional.symmetric(horizontal: 14, vertical: 10),

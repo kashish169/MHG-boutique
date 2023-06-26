@@ -12,12 +12,7 @@ class ProfileRewardBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<ProfileController>();
-    print(double.parse(controller.model.value!.hearts ?? '0'));
-    print(
-      double.parse(
-        controller.model.value!.nextTierPts.toString(),
-      ),
-    );
+
     return Obx(() => Padding(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
           child: Container(
@@ -95,7 +90,7 @@ class ProfileRewardBox extends StatelessWidget {
                             ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: controller.model.value!.nextTierPts != 0
+                        child: controller.model.value!.nextTierPts != "0.00"
                             ? Builder(builder: (context) {
                                 return controller.loadingUpdateCard.isTrue
                                     ? const LoadingThreeBounce()
@@ -124,7 +119,7 @@ class ProfileRewardBox extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-                  child: controller.model.value!.nextTierPts != 0 ||
+                  child: controller.model.value!.nextTierPts != "0.00" ||
                           controller.model.value!.nextTier == null
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.start,
