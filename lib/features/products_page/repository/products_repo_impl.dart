@@ -18,13 +18,9 @@ class ProductsRepoImplement implements ProductsRepository {
   @override
   Future<Either<Failure, ApiResponse>> getCategoryProduct({
     required String query,
-    required int featured,
-    required int bestSaller,
-    required int newArrival,
   }) async =>
       httpService.get(
-        url:
-            '${Api.filterProduct}$query&new_arrival=$newArrival&best_sale=$bestSaller&featured=$featured',
+        url: '${Api.filterProduct}$query',
         isAuthorized: App.token.isEmpty ? false : true,
       );
 

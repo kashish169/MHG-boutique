@@ -113,13 +113,19 @@ class ProductsController extends GetxController {
       if (search != null) {
         query += "&search=$search";
       }
+      if (selectedSortBy.value == 'Featured') {
+        query += "&featured=1";
+      }
+      if (selectedSortBy.value == 'Best Sellers') {
+        query += "&best_sale=1";
+      }
+      if (selectedSortBy.value == 'New Arrival') {
+        query += "&new_arrival=1";
+      }
       log("query $query");
       Either<Failure, ApiResponse> results =
           await productsRepository.getCategoryProduct(
         query: query,
-        featured: selectedSortBy.value == 'Featured' ? 1 : 0,
-        bestSaller: selectedSortBy.value == 'Best Sellers' ? 1 : 0,
-        newArrival: selectedSortBy.value == 'New Arrival' ? 1 : 0,
       );
       print(query);
       print(selectedSortBy.value);
