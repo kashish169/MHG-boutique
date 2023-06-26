@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/categories/models/categories_model.dart';
 import 'package:mhg/features/home/models/brand_model.dart';
 import 'package:mhg/features/home/models/home_model.dart';
 import 'package:mhg/features/home/models/middle_section_model.dart';
@@ -28,7 +29,7 @@ class HomeController extends GetxController {
   RxList<ProductModel> topSellersList = <ProductModel>[].obs;
   RxList<ProductModel> newArrivalsList = <ProductModel>[].obs;
   RxList<BrandModel> brandsList = <BrandModel>[].obs;
-  RxList<CategoryModel> categories = <CategoryModel>[].obs;
+  RxList<Menu> categories = <Menu>[].obs;
   RxList<MiddleSectionModel> middleSectionList = <MiddleSectionModel>[].obs;
   RxList<SliderModel> footerSlider = <SliderModel>[].obs;
   RxList<RecentSearchModel> recentSearchList = <RecentSearchModel>[].obs;
@@ -63,6 +64,7 @@ class HomeController extends GetxController {
           log("HOME RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
             var json = r.object["data"];
+
             var data = HomeModel.fromJson(json);
             homeModel = data;
             slidersList.value = data.sliders;

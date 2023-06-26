@@ -37,8 +37,9 @@ class CategoriesController extends GetxController {
           var message = r.object["message"];
           if (statusCode == 200) {
             var json = r.object["data"];
+            log("categoriesModel ");
             log(json.toString());
-            log("here");
+
             categoriesModel = CategoriesModel.fromJson(r.object["data"]);
           } else {
             AppToasts.errorToast(message);
