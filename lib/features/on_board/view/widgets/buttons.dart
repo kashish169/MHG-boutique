@@ -13,48 +13,53 @@ class OnBoardButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<OnboardController>();
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: Row(
-        children: [
-          Expanded(
-              flex: 2,
-              child: OnBoardButton(
-                title: 'Login',
-                height: 50,
-                radius: 10,
-                color: AppColors.dGreen,
-                onTap: () {
-                  Get.offAllNamed(
-                    SignInPage.routeName,
-                    arguments: {
-                      'country': controller.selectedCountry,
-                      'is_guest': false,
+    return GetBuilder<OnboardController>(builder: (controller) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        child: Row(
+          children: [
+            Expanded(
+                flex: 2,
+                child: OnBoardButton(
+                  title: 'Login',
+                  height: 50,
+                  radius: 10,
+                  color: AppColors.dGreen,
+                  onTap: controller.isLoading
+                      ? () {}
+                      : () {
+                          Get.offAllNamed(
+                            SignInPage.routeName,
+                            arguments: {
+                              'country': controller.selectedCountry,
+                              'is_guest': false,
+                            },
+                          );
+                        },
+                )),
+            const SizedBox(
+              width: 10,
+            ),
+            Expanded(
+                child: OnBoardButton(
+              title: 'Guest',
+              height: 50,
+              radius: 10,
+              color: AppColors.dGreen,
+              onTap: controller.isLoading
+                  ? () {}
+                  : () {
+                      Get.offAllNamed(
+                        MainWrapper.routeName,
+                        arguments: {
+                          'country': controller.selectedCountry,
+                        },
+                      );
                     },
-                  );
-                },
-              )),
-          const SizedBox(
-            width: 10,
-          ),
-          Expanded(
-              child: OnBoardButton(
-            title: 'Guest',
-            height: 50,
-            radius: 10,
-            color: AppColors.dGreen,
-            onTap: () {
-              Get.offAllNamed(
-                MainWrapper.routeName,
-                arguments: {
-                  'country': controller.selectedCountry,
-                },
-              );
-            },
-          )),
-        ],
-      ),
-    );
+            )),
+          ],
+        ),
+      );
+    });
   }
 }

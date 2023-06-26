@@ -109,7 +109,7 @@ class ProductDetailsReview extends StatelessWidget {
                         Get.toNamed(
                           SignInPage.routeName,
                           arguments: {
-                            'country': "UAE",
+                            'country': App.countryName,
                             'is_guest': true,
                           },
                         );

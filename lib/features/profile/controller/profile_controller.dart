@@ -37,7 +37,6 @@ class ProfileController extends GetxController {
       results.fold(
         (l) {
           isError(true);
-          AppToasts.errorToast("NETWORK ERROR");
         },
         (r) async {
           log("${r.object}");

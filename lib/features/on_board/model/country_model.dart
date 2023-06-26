@@ -6,6 +6,7 @@ class CountryModel {
   String flagLink;
   dynamic createdAt;
   dynamic updatedAt;
+  Currency currency;
   CountryModel({
     required this.id,
     required this.currencyId,
@@ -14,6 +15,7 @@ class CountryModel {
     required this.flagLink,
     required this.createdAt,
     required this.updatedAt,
+    required this.currency,
   });
   factory CountryModel.fromJson(Map<String, dynamic> json) => CountryModel(
         id: json['id'],
@@ -21,6 +23,37 @@ class CountryModel {
         name: json['name'],
         falg: json['flag'],
         flagLink: json['flag_link'],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+        currency: Currency.fromJson(json["currency"]),
+      );
+}
+
+class Currency {
+  int id;
+  String currency;
+  dynamic iso;
+  dynamic symbol;
+  dynamic convertFromUsd;
+  dynamic createdAt;
+  dynamic updatedAt;
+
+  Currency({
+    required this.id,
+    required this.currency,
+    this.iso,
+    this.symbol,
+    this.convertFromUsd,
+    this.createdAt,
+    this.updatedAt,
+  });
+
+  factory Currency.fromJson(Map<String, dynamic> json) => Currency(
+        id: json["id"],
+        currency: json["currency"],
+        iso: json["iso"],
+        symbol: json["symbol"],
+        convertFromUsd: json["convert_from_usd"].toDouble(),
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
       );

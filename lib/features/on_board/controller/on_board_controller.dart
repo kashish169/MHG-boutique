@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
 
@@ -39,7 +40,8 @@ class OnboardController extends GetxController {
     'LOREM IPSUM DOLOR SIT AMET \n CONSETETUR SADIPSCING ELITER',
   ];
   String selectedCountry = 'United Arab Emirates';
-  late String selctedCountryFlage;
+  int selectedCountryId = 1;
+  String? selectedCountryFlage;
   List<CountryModel> countryList = [];
   String selectedLang = 'English';
   List<LanguageModel> langList = [
@@ -79,7 +81,7 @@ class OnboardController extends GetxController {
           AppToasts.errorToast(l.message);
           log("onBoard ${l.message}");
         },
-        (r) {
+        (r) async {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           var stats = r.object['isSuccessful'];
@@ -87,8 +89,17 @@ class OnboardController extends GetxController {
           if (stats == true) {
             List json = r.object['data'];
             countryList = json.map((e) => CountryModel.fromJson(e)).toList();
-            selctedCountryFlage = countryList[0].flagLink;
+            if (countryList.isNotEmpty) {
+              selectedCountryFlage = countryList.first.flagLink;
+              App.countryId = countryList.first.id;
+              await StoragePref.setInt(
+                key: 'countryid',
+                value: App.countryId ?? 1,
+              );
+            }
           } else {
+            isError = true;
+            update();
             AppToasts.errorToast(message);
           }
         },
@@ -101,9 +112,19 @@ class OnboardController extends GetxController {
     }
   }
 
-  selectCountry(String country, String countryFlage) {
+  selectCountry({
+    required String country,
+    required String countryFlage,
+    required int id,
+    required String currency,
+  }) {
     selectedCountry = country;
-    selctedCountryFlage = countryFlage;
+    selectedCountryFlage = countryFlage;
+    selectedCountryId = id;
+    App.countryId = selectedCountryId;
+    App.currency = currency;
+    App.countryName = selectedCountry;
+    log("__$selectedCountry ID IS :${App.countryId}");
     update();
   }
 

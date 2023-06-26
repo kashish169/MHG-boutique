@@ -50,7 +50,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
                 Get.toNamed(
                   SignInPage.routeName,
                   arguments: {
-                    'country': "UAE",
+                    'country': App.countryName,
                     'is_guest': true,
                   },
                 );

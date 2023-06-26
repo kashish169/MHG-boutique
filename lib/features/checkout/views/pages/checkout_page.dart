@@ -26,6 +26,9 @@ class CheckoutPage extends StatelessWidget {
         if (state.controller!.paymentMethodsList.isEmpty) {
           await state.controller?.getPaymentMethods();
         }
+        if (profileController.model.value == null) {
+          await profileController.getProfileInfo();
+        }
         await state.controller?.orderPrice();
       }, builder: (controller) {
         if (controller.isLoading.isTrue ||

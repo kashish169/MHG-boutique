@@ -109,7 +109,6 @@ class WishListController extends GetxController {
       results.fold(
         (l) {
           isError(true);
-          // AppToasts.errorToast(l.message);
           log("Wish List ${l.message}");
         },
         (r) {

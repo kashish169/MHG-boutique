@@ -73,24 +73,26 @@ class ProductDetailsBrandCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 5),
-          controller.model.pts!=null?  Row(
-            children: [
-              Image.asset(
-                AppAssets.starIcon,
-                height: 17,
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-               Text(
-                '${controller.model.pts} pts',
-                style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 15,
-                    color: AppColors.secondaryBlack,
-                    fontWeight: FontWeight.w600),
-              ),
-            ],
-          ):SizedBox(),
+          controller.model.pts != null
+              ? Row(
+                  children: [
+                    Image.asset(
+                      AppAssets.starIcon,
+                      height: 17,
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      '${controller.model.pts} pts',
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          fontSize: 15,
+                          color: AppColors.secondaryBlack,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                )
+              : SizedBox(),
           StatefulBuilder(builder: (context, setState) {
             return controller.model.inCart == 1
                 ? ProductDetailsCounterWidget(
@@ -102,7 +104,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                       bottom: 15,
                     ),
                     child: Obx(() => PrimaryButton(
-                      color: AppColors.secondary,
+                          color: AppColors.secondary,
                           fontSize: 16,
                           height: 42,
                           title: 'Add to Bag',
@@ -112,7 +114,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                               Get.toNamed(
                                 SignInPage.routeName,
                                 arguments: {
-                                  'country': "UAE",
+                                  'country': App.countryName,
                                   'is_guest': true,
                                 },
                               );

@@ -5,6 +5,7 @@ class Api {
   static String baseUrl = dotenv.env["ROOT_API"] ?? "";
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
+    'Country-Id': "${App.countryId}",
   };
   static Map<String, String> authorizedheaders = {
     'Content-Type': 'application/json',

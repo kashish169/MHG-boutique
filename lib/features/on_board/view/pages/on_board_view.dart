@@ -8,6 +8,7 @@ import 'package:mhg/features/on_board/view/widgets/buttons.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/net_image.dart';
 import 'package:mhg/widgets/retry_button.dart';
+import 'package:mhg/widgets/three_bounce_loading.dart';
 // import 'package:mhg/features/on_board/view/widgets/page_viewer.dart';
 // import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -36,165 +37,167 @@ class _OnBoardViewState extends State<OnBoardView> {
     return Scaffold(
         backgroundColor: AppColors.dGreen,
         body: GetBuilder<OnboardController>(
-          builder: (controller) => controller.isLoading
-              ? const LoadingWidget(
-                  isWhite: true,
-                )
-              : controller.isError
-                  ? RetryButton(onTap: controller.getCountries())
-                  :
-                  //  Stack(
-                  //   children: [
-                  //     SizedBox(
-                  //       height: double.infinity,
-                  //       child: PageViewer(controller: controller),
-                  //     ),
-                  SafeArea(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const Expanded(
-                            flex: 2,
-                            child: SizedBox(),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                    height:
-                                        AppDimensions.screenHeight(context) *
-                                            0.12),
-                                Text(
-                                  "MHGboutique",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displayLarge!
-                                      .copyWith(
-                                        fontSize: 35,
-                                        fontWeight: FontWeight.w400,
-                                        color: AppColors.white,
-                                      ),
+          builder: (controller) =>
+              //  Stack(
+              //   children: [
+              //     SizedBox(
+              //       height: double.infinity,
+              //       child: PageViewer(controller: controller),
+              //     ),
+              SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Expanded(
+                  flex: 2,
+                  child: SizedBox(),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                          height: AppDimensions.screenHeight(context) * 0.12),
+                      Text(
+                        "MHGboutique",
+                        style:
+                            Theme.of(context).textTheme.displayLarge!.copyWith(
+                                  fontSize: 35,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.white,
                                 ),
-                                const SizedBox(height: 5),
-                                Text("THE ULTIMATE HOUSE OF EMIRATI LUXURY",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1!
-                                        .copyWith(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w400,
-                                          color:
-                                              AppColors.white.withOpacity(0.5),
-                                        )),
-                                // const SizedBox(height: 60),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                              flex: 1,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "EXPERIENCE LUXURY WITH OUR",
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displayMedium
-                                        ?.copyWith(
-                                            color: AppColors.white
-                                                .withOpacity(0.7),
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "EXQUISITE PERFUMES FOR ALL",
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displayMedium
-                                        ?.copyWith(
-                                            color: AppColors.white
-                                                .withOpacity(0.7),
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "OCCASIONS",
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displayMedium
-                                        ?.copyWith(
-                                            color: AppColors.white
-                                                .withOpacity(0.7),
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500),
-                                  ),
-                                ],
-                              )),
-                          // const SizedBox(
-                          //   height: 25,
-                          // ),
-                          // Text(
-                          //   controller.textTwo[controller.activeIndex.value],
-                          //   textAlign: TextAlign.center,
-                          //   style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                          //       color: AppColors.white,
-                          //       fontSize: 15,
-                          //       fontWeight: FontWeight.w400),
-                          // ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text("THE ULTIMATE HOUSE OF EMIRATI LUXURY",
+                          style:
+                              Theme.of(context).textTheme.headline1!.copyWith(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColors.white.withOpacity(0.5),
+                                  )),
+                      // const SizedBox(height: 60),
+                    ],
+                  ),
+                ),
+                Expanded(
+                    flex: 1,
+                    child: Column(
+                      children: [
+                        Text(
+                          "EXPERIENCE LUXURY WITH OUR",
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(
+                                  color: AppColors.white.withOpacity(0.7),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "EXQUISITE PERFUMES FOR ALL",
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(
+                                  color: AppColors.white.withOpacity(0.7),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "OCCASIONS",
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(
+                                  color: AppColors.white.withOpacity(0.7),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    )),
+                // const SizedBox(
+                //   height: 25,
+                // ),
+                // Text(
+                //   controller.textTwo[controller.activeIndex.value],
+                //   textAlign: TextAlign.center,
+                //   style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                //       color: AppColors.white,
+                //       fontSize: 15,
+                //       fontWeight: FontWeight.w400),
+                // ),
 
-                          // SmoothPageIndicator(
-                          //   controller: controller.pageController,
-                          //   count: controller.imageUrl.length,
-                          //   axisDirection: Axis.horizontal,
-                          //   onDotClicked: (v) {},
-                          //   effect: JumpingDotEffect(
-                          //     paintStyle: PaintingStyle.stroke,
-                          //     activeDotColor: AppColors.white,
-                          //     dotColor: AppColors.white,
-                          //     dotWidth: 17,
-                          //     dotHeight: 4,
-                          //     jumpScale: 0.8,
-                          //     spacing: 10,
-                          //     verticalOffset: 0,
-                          //   ),
-                          // ),
-                          const OnBoardButtons(),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 27),
-                              child: Text(
-                                'Change location',
-                                textAlign: TextAlign.start,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displayMedium
-                                    ?.copyWith(
-                                        color: AppColors.white.withOpacity(0.7),
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5),
-                            child: Divider(
-                              thickness: 2,
-                              color: AppColors.white.withOpacity(.5),
-                            ),
-                          ),
-                          Row(
+                // SmoothPageIndicator(
+                //   controller: controller.pageController,
+                //   count: controller.imageUrl.length,
+                //   axisDirection: Axis.horizontal,
+                //   onDotClicked: (v) {},
+                //   effect: JumpingDotEffect(
+                //     paintStyle: PaintingStyle.stroke,
+                //     activeDotColor: AppColors.white,
+                //     dotColor: AppColors.white,
+                //     dotWidth: 17,
+                //     dotHeight: 4,
+                //     jumpScale: 0.8,
+                //     spacing: 10,
+                //     verticalOffset: 0,
+                //   ),
+                // ),
+                const OnBoardButtons(),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 27),
+                    child: Text(
+                      'Change location',
+                      textAlign: TextAlign.start,
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayMedium
+                          ?.copyWith(
+                              color: AppColors.white.withOpacity(0.7),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Divider(
+                    thickness: 2,
+                    color: AppColors.white.withOpacity(.5),
+                  ),
+                ),
+                controller.isLoading
+                    ? const Padding(
+                        padding: EdgeInsets.all(13.0),
+                        child: LoadingThreeBounce(),
+                      )
+                    : controller.isError
+                        ? TextButton(
+                            onPressed: () {
+                              controller.getCountries();
+                            },
+                            child: Text(
+                              'Retry',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall
+                                  ?.copyWith(
+                                    color: AppColors.white,
+                                  ),
+                            ))
+                        : Row(
                             children: [
                               Expanded(
                                   flex: 7,
@@ -219,7 +222,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                                                       BorderRadius.circular(25),
                                                   child: NetImage(
                                                     image: controller
-                                                        .selctedCountryFlage,
+                                                        .selectedCountryFlage,
                                                     fit: BoxFit.cover,
                                                   ),
                                                 )),
@@ -305,14 +308,14 @@ class _OnBoardViewState extends State<OnBoardView> {
                               //     ))
                             ],
                           ),
-                          const SizedBox(
-                            height: 15,
-                          )
-                        ],
-                      ),
-                      //     )
-                      //   ],
-                    ),
+                const SizedBox(
+                  height: 15,
+                )
+              ],
+            ),
+            //     )
+            //   ],
+          ),
         ));
   }
 }

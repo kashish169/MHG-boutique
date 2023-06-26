@@ -400,10 +400,10 @@ class CheckoutController extends GetxController {
     }
   }
 
-  void _onOrderSuccess() {
-    profileController.getProfileInfo();
-    Get.find<MyCartController>().getCart();
+  void _onOrderSuccess() async {
     Get.offAndToNamed(MyOrdersPage.routeName);
+    Get.find<MyCartController>().getCart();
+    await profileController.getProfileInfo();
     AppToasts.successToast(
       'Your order has been submitted successfully!',
     );

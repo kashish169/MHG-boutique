@@ -55,7 +55,6 @@ class ProductsController extends GetxController {
     categoryId = args["categoryId"];
     brandId = args["brandId"];
     categoryName = args["categoryName"];
-    log(args["categoryName"]);
     if (brandId != null) {
       await getCategoriesByBrandId();
     }
