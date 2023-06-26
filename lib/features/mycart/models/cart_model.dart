@@ -7,7 +7,7 @@ class CartModel {
   dynamic weight;
   Options options;
   dynamic taxRate;
-  String instance;
+  dynamic instance;
   bool isDeleteItem;
   bool isLoadingQuantity;
 
@@ -43,9 +43,9 @@ class Options {
   dynamic color;
   String? image;
   String imageLink;
-  String? discountPrice;
+  dynamic discountPrice;
   String? itemTag;
-  String? discountParcent;
+  dynamic discountParcent;
   String? voucher;
 
   Options({
@@ -64,9 +64,9 @@ class Options {
         color: json["color"],
         image: json["image"],
         imageLink: json["image_link"],
-        discountPrice: json["discount_price"],
+        discountPrice: json["discount_price"].toString(),
         itemTag: json["item_tag"],
-        discountParcent: json["discount_parcent"],
+        discountParcent: json["discount_parcent"].toString(),
         voucher: json["voucher"],
       );
 }
