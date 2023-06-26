@@ -28,7 +28,7 @@ class MyOrdersController extends GetxController {
  }
 
   Future<void> getMyOrders() async {
-    try {
+
       isLoading(true);
       isError(false);
       Either<Failure, ApiResponse> results =
@@ -57,10 +57,7 @@ class MyOrdersController extends GetxController {
           }
         },
       );
-    } catch (e) {
-      isError(true);
-      print("catch error" "$e");
-    }
+   
   }
   filterOrders(){
 

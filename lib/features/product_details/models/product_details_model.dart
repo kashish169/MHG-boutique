@@ -7,6 +7,7 @@ import '../../home/models/store_model.dart';
 class ProductDetailsModel {
   int id;
   dynamic externalId;
+  dynamic pts;
   dynamic sku;
   dynamic categoryId;
   int storeId;
@@ -71,6 +72,7 @@ class ProductDetailsModel {
   bool isLoadingQuantity;
 
   ProductDetailsModel({
+    this.pts,
     required this.id,
     this.externalId,
     this.sku,
@@ -139,6 +141,7 @@ class ProductDetailsModel {
   factory ProductDetailsModel.fromJson(Map<String, dynamic> json) =>
       ProductDetailsModel(
         id: json["id"],
+        pts: json["pts"],
         externalId: json["external_id"],
         sku: json["sku"],
         categoryId: json["Category_Id"],

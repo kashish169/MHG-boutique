@@ -59,7 +59,7 @@ class _BodyButtonsState extends State<BodyButtons> {
                       if (mounted) setState(() {});
                     },
                     fontSize: 12,
-                    color: AppColors.primary,
+                    color: AppColors.secondary,
                     height: 35,
                   ))
               : Padding(

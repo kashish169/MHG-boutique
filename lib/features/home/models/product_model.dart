@@ -13,6 +13,8 @@ class ProductModel {
   String frAbout;
   dynamic itemTag;
   dynamic price;
+  dynamic averageRate;
+  dynamic pts;
   dynamic discount;
   dynamic discountPrice;
   int quantity;
@@ -58,6 +60,8 @@ class ProductModel {
   bool isLoading;
 
   ProductModel({
+    this.averageRate,
+    this.pts,
     required this.id,
     this.externalId,
     this.sku,
@@ -119,6 +123,8 @@ class ProductModel {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         id: json["id"],
+        averageRate: json["avarage_rate"]!=null?json["avarage_rate"].toString():'0',
+        pts: json["pts"],
         externalId: json["external_id"],
         sku: json["sku"],
         categoryId: json["Category_Id"],

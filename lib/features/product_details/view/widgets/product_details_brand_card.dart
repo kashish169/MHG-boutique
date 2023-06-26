@@ -73,7 +73,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 5),
-          Row(
+          controller.model.pts!=null?  Row(
             children: [
               Image.asset(
                 AppAssets.starIcon,
@@ -82,15 +82,15 @@ class ProductDetailsBrandCard extends StatelessWidget {
               const SizedBox(
                 width: 5,
               ),
-              Text(
-                '250 pts',
+               Text(
+                '${controller.model.pts} pts',
                 style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 15,
                     color: AppColors.secondaryBlack,
                     fontWeight: FontWeight.w600),
               ),
             ],
-          ),
+          ):SizedBox(),
           StatefulBuilder(builder: (context, setState) {
             return controller.model.inCart == 1
                 ? ProductDetailsCounterWidget(
@@ -102,6 +102,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                       bottom: 15,
                     ),
                     child: Obx(() => PrimaryButton(
+                      color: AppColors.secondary,
                           fontSize: 16,
                           height: 42,
                           title: 'Add to Bag',

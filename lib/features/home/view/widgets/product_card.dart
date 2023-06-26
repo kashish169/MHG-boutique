@@ -107,9 +107,13 @@ class ProductCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 5),
-                      const Expanded(
-                        child: RatingWidget(),
+
+                       Visibility(
+                         visible: isWishList == true&& model?.averageRate!=null&&model?.averageRate!='0',
+                         child: Expanded(
+                          child: RatingWidget(initialRating: double.parse(model?.averageRate!=null?model!.averageRate!.toString():'0'),),
                       ),
+                       ),
                     ],
                   ),
                 ),

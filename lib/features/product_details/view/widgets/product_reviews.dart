@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 // import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/product_details/view/widgets/product_details_comment.dart';
 import 'package:mhg/widgets/primary_button.dart';
@@ -101,6 +102,7 @@ class ProductDetailsReview extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 40),
                   child: PrimaryButton(
+                    color: AppColors.secondary,
                     title: "Add Comment",
                     onTap: () {
                       if (App.token.isEmpty) {
