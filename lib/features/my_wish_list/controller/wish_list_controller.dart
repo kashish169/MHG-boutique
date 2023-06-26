@@ -126,9 +126,9 @@ class WishListController extends GetxController {
           }
         },
       );
-    } catch (e) {
+    } catch (e, s) {
       isError(true);
-      print("catch error" "$e");
+      print("catch error" "$e,$s");
     }
   }
 

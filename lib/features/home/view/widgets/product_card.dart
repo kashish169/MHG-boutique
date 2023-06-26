@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/mainwrapper/controller/main_wrapper_controller.dart';
@@ -13,6 +14,7 @@ import 'package:mhg/widgets/primary_button.dart';
 import 'package:mhg/widgets/product_counter.dart';
 import '../../../../widgets/heart_widget.dart';
 import '../../../../widgets/rating_widget.dart';
+import '../../../auth/signin/view/pages/sign_in_page.dart';
 import '../../models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
@@ -201,6 +203,16 @@ class ProductCard extends StatelessWidget {
                                     wishListModel!.isAddToBag,
                                 color: AppColors.secondary,
                                 onTap: () async {
+                                  if (App.token.isEmpty) {
+                                    Get.toNamed(
+                                      SignInPage.routeName,
+                                      arguments: {
+                                        'country': "UAE",
+                                        'is_guest': true,
+                                      },
+                                    );
+                                    return;
+                                  }
                                   if (wishListModel != null) {
                                     wishListModel?.isAddToBag = true;
                                   } else {

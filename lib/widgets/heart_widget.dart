@@ -9,6 +9,9 @@ import 'package:mhg/features/products_page/controller/product_controller.dart';
 import 'package:mhg/features/search/controller/search_controller.dart';
 import 'package:mhg/widgets/three_bounce_loading.dart';
 
+import '../app/app.dart';
+import '../features/auth/signin/view/pages/sign_in_page.dart';
+
 class FavouriteWidget extends StatefulWidget {
   final double? height;
   final double? width;
@@ -48,6 +51,16 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
       return IconButton(
           padding: EdgeInsets.zero,
           onPressed: () async {
+            if (App.token.isEmpty) {
+              Get.toNamed(
+                SignInPage.routeName,
+                arguments: {
+                  'country': "UAE",
+                  'is_guest': true,
+                },
+              );
+              return;
+            }
             if (widget.itemId != null) {
               if (widget.inWishlist == 1) {
                 bool res = await controller.removeFromWishList(widget.itemId!);

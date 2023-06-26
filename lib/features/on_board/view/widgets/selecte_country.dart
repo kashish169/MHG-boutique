@@ -25,11 +25,11 @@ class SelectCountryView extends StatelessWidget {
                 isSelectCountry: true,
                 onChange: (val) {
                   controller.selectCountry(controller.countryList[index].name,
-                      controller.countryList[index].image);
+                      controller.countryList[index].flagLink);
                 },
                 selected: controller.countryList[index].name,
                 groupValue: controller.selectedCountry,
-                image: controller.countryList[index].image,
+                image: controller.countryList[index].flagLink,
               ),
             )));
   }

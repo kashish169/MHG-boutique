@@ -10,6 +10,7 @@ class Api {
     'Content-Type': 'application/json',
     'Authorization': "Bearer ${App.token}",
   };
+  static String countryLink = "/api/v1/countries/index";
   static String signUp = "/api/v1/users/auth/register";
   static String loginEmail = "/api/v1/users/auth/login";
   static String login = "/api/v1/users/auth/login-with-phone";

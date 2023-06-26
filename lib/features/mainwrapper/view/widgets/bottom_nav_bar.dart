@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
+import 'package:mhg/features/auth/signin/view/pages/sign_in_page.dart';
 import 'package:mhg/features/categories/controller/categories_controller.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
@@ -43,6 +45,18 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
         children: navBarItems(
           index: controller.navBarIndex.value,
           onTap: (index) {
+            if (App.token.isEmpty) {
+              if (index == 2 || index == 3 || index == 4) {
+                Get.toNamed(
+                  SignInPage.routeName,
+                  arguments: {
+                    'country': "UAE",
+                    'is_guest': true,
+                  },
+                );
+                return;
+              }
+            }
             selectedIndex = index;
             controller.navBarIndex.value = selectedIndex;
             widget.tabController.animateTo(index);
