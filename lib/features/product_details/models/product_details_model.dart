@@ -68,7 +68,6 @@ class ProductDetailsModel {
   List<ProductTag> productTags;
   List<ProductModel> relatedProducts;
   List<ProductReviewModel> productReviews;
-
   bool isLoadingQuantity;
 
   ProductDetailsModel({
