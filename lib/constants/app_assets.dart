@@ -71,4 +71,5 @@ class AppAssets {
   static String sendIcon = "assets/icons/send.png";
   static String americanExpress = "assets/icons/american_express.jpg";
   static String mada = "assets/icons/mada.png";
+  static String scanbackground = "assets/images/scanbackground.png";
 }
