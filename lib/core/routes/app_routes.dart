@@ -154,8 +154,8 @@ class AppRoutes {
       name: '/add_payment_method_web_view',
       page: () => AddPaymentMethodWebViewPage(),
     ),
-    // GetPage(
-    //     name: '/map', page: () => StoresMapPage(), binding: StoresMapBinding()),
+    GetPage(
+        name: '/map', page: () => StoresMapPage(), binding: StoresMapBinding()),
     GetPage(
       name: '/terms_and_conditions',
       page: () => TermsAndConidtionsPage(),
