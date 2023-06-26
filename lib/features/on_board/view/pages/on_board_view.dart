@@ -155,7 +155,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 27),
                     child: Text(
-                      'Change location & language',
+                      'Change location',
                       textAlign: TextAlign.start,
                       style: Theme.of(context)
                           .textTheme
@@ -221,57 +221,57 @@ class _OnBoardViewState extends State<OnBoardView> {
                                 ),
                               ],
                             ))),
-                    SizedBox(
-                        height: 30,
-                        child: VerticalDivider(
-                          thickness: 1,
-                          color: AppColors.white,
-                          width: 5,
-                        )),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                        flex: 4,
-                        child: InkWell(
-                          onTap: () {
-                            controller.openselcetLangage();
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 15),
-                                child: Image.asset(
-                                  AppAssets.global,
-                                  color: AppColors.white.withOpacity(0.7),
-                                  height: 20,
-                                ),
-                              ),
-                              FittedBox(
-                                child: Text(
-                                  controller.selectedLang,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall!
-                                      .copyWith(
-                                          color:
-                                              AppColors.white.withOpacity(0.7)),
-                                ),
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 15),
-                                  child: Icon(
-                                    Icons.keyboard_arrow_up_sharp,
-                                    color: AppColors.white.withOpacity(0.7),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ))
+                    // SizedBox(
+                    //     height: 30,
+                    //     child: VerticalDivider(
+                    //       thickness: 1,
+                    //       color: AppColors.white,
+                    //       width: 5,
+                    //     )),
+                    // const SizedBox(
+                    //   width: 15,
+                    // ),
+                    // Expanded(
+                    //     flex: 4,
+                    //     child: InkWell(
+                    //       onTap: () {
+                    //         controller.openselcetLangage();
+                    //       },
+                    //       child: Row(
+                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //         children: [
+                    //           Padding(
+                    //             padding: const EdgeInsets.only(right: 15),
+                    //             child: Image.asset(
+                    //               AppAssets.global,
+                    //               color: AppColors.white.withOpacity(0.7),
+                    //               height: 20,
+                    //             ),
+                    //           ),
+                    //           // FittedBox(
+                    //           //   child: Text(
+                    //           //     controller.selectedLang,
+                    //           //     style: Theme.of(context)
+                    //           //         .textTheme
+                    //           //         .displaySmall!
+                    //           //         .copyWith(
+                    //           //             color:
+                    //           //                 AppColors.white.withOpacity(0.7)),
+                    //           //   ),
+                    //           // ),
+                    //           // Expanded(
+                    //           //   child: Padding(
+                    //           //     padding: const EdgeInsets.only(
+                    //           //         left: 10, right: 15),
+                    //           //     child: Icon(
+                    //           //       Icons.keyboard_arrow_up_sharp,
+                    //           //       color: AppColors.white.withOpacity(0.7),
+                    //           //     ),
+                    //           //   ),
+                    //           // ),
+                    //         ],
+                    //       ),
+                    //     ))
                   ],
                 ),
                 const SizedBox(

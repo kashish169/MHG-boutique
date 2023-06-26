@@ -77,6 +77,9 @@ class SignInForm extends StatelessWidget {
                           : Icons.visibility_off_rounded))),
               inputType: TextInputType.text,
               obscure: controller.isVisable.value,
+              validator:(value){
+                return controller.validatePassword(value!);
+              },
             ),
           ),
           const SizedBox(

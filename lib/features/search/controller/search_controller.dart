@@ -20,7 +20,7 @@ class SearchingController extends GetxController {
   @override
   void onInit() {
     paginate();
-   // filterSearchForProduct();
+  filterSearchForProduct();
 
     super.onInit();
   }
@@ -57,6 +57,7 @@ class SearchingController extends GetxController {
     scrollController.addListener(() {
       if (scrollController.position.extentAfter <= 600 &&
           productList.isNotEmpty &&
+          productList.length<last&&
           isLoading.isFalse &&
           isFetching.isFalse) {
         page++;
@@ -105,8 +106,11 @@ class SearchingController extends GetxController {
         if (statusCode == 200) {
           var json = r.object["data"];
           log('json $json');
+          last=json['products']['total'];
           List products = json['products']['data'];
+
           productList += products.map((e) => ProductModel.fromJson(e)).toList();
+
           log(productList.length.toString());
         } else {
           if (page > 1) {
@@ -151,6 +155,7 @@ class SearchingController extends GetxController {
   }
 
   onSelectRecentSearch(String selected) {
+    resetPaginate();
     // isSearch = true;
     update();
     productList.clear();

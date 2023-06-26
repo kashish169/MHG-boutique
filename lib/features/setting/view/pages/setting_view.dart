@@ -21,8 +21,8 @@ class SettingPage extends StatelessWidget {
       appBar: customAppBar(context, title: "Settings"),
       body: Column(
         children: [
-          const LanguageWidget(),
-          const DividerWidget(),
+          // const LanguageWidget(),
+          // const DividerWidget(),
           const CountryWidget(),
           const DividerWidget(),
           const SizedBox(

@@ -59,6 +59,17 @@ class SignInController extends GetxController {
       return null;
     }
   }
+  String? validatePassword(String value) {
+    if (value.isEmpty) {
+      return 'please enter a password';
+    } if (value.length<6) {
+      return 'password must be 6 characters at least';
+    }else {
+      return null;
+    }
+  }
+
+
 
   logWithNum() {
     logWithEmail.value = false;
