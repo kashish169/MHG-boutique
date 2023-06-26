@@ -106,30 +106,33 @@ class FiltersWidget extends StatelessWidget {
               border: Border.all(color: AppColors.secondaryBlack),
               borderRadius: const BorderRadius.all(Radius.circular(5)),
               color: AppColors.white),
-          child: DropdownButtonHideUnderline(
-            child: DropdownButton(
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall!
-                  .copyWith(color: AppColors.secondaryBlack, fontSize: 14),
-              isExpanded: true,
-              value: controller.selectedSortBy.value,
-              icon: Image.asset(
-                AppAssets.arrowDown,
-                height: 8,
-                color: AppColors.primary,
-              ),
-              items: controller.sortByList.map((itemss) {
-                return DropdownMenuItem<String>(
-                    value: itemss, child: Text(itemss));
-              }).toList(),
-              onChanged: (newValue) {
-                controller.selectedSortBy.value = newValue!;
+          child: Obx(() => DropdownButtonHideUnderline(
+                child: DropdownButton(
+                  style: Theme.of(context)
+                      .textTheme
+                      .displaySmall!
+                      .copyWith(color: AppColors.secondaryBlack, fontSize: 14),
+                  isExpanded: true,
+                  value: controller.selectedSortBy.value,
+                  icon: Image.asset(
+                    AppAssets.arrowDown,
+                    height: 8,
+                    color: AppColors.primary,
+                  ),
+                  items: controller.sortByList.map((itemss) {
+                    return DropdownMenuItem<String>(
+                        value: itemss, child: Text(itemss));
+                  }).toList(),
+                  onChanged: (newValue) {
+                    controller.selectedSortBy.value = newValue!;
+                    controller.resetPaginate();
+                    controller.searchWord = controller.selectedScent.value;
+                    controller.getProducts(controller.searchWord);
 
-                // print(controller.categoryValue.value);
-              },
-            ),
-          ),
+                    // print(controller.categoryValue.value);
+                  },
+                ),
+              )),
         )
       ],
     );
