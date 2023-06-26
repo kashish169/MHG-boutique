@@ -162,7 +162,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
               hasIcon: true,
               color: checkoutController.isLoadingRedeem.isTrue
                   ? AppColors.grey
-                  : AppColors.primary,
+                  : AppColors.secondary,
               isLoading: checkoutController.isLoadingCreateOrder.value,
               onPress: checkoutController.isLoadingRedeem.isTrue
                   ? () {}

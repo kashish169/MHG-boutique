@@ -34,7 +34,7 @@ class CartModel {
         weight: json["weight"],
         options: Options.fromJson(json["options"]),
         taxRate: json["taxRate"],
-        instance: json["instance"],
+        instance: json["instance"].toString(),
       );
 }
 
@@ -64,9 +64,9 @@ class Options {
         color: json["color"],
         image: json["image"],
         imageLink: json["image_link"],
-        discountPrice: json["discount_price"],
+        discountPrice: json["discount_price"].toString(),
         itemTag: json["item_tag"],
-        discountParcent: json["discount_parcent"],
+        discountParcent: json["discount_parcent"].toString(),
         voucher: json["voucher"],
       );
 }

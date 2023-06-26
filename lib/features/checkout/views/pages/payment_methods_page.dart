@@ -66,6 +66,7 @@ class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
                               padding: const EdgeInsets.only(top: 10),
                               child: Center(
                                 child: PlaceOrderButton(
+                                  color: AppColors.secondary,
                                   title: 'Add Card',
                                   width: 300,
                                   hasIcon: false,

@@ -17,6 +17,7 @@ class CheckOutButton extends StatelessWidget {
         alignment: Alignment.centerRight,
         children: [
           PrimaryButton(
+            color: AppColors.secondary,
             height: 44,
             width: 300,
             title: 'Checkout',
