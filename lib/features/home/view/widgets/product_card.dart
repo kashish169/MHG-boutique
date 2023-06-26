@@ -105,10 +105,11 @@ class ProductCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 5),
+
                        Visibility(
-                         visible: model?.averageRate.toString()!='0',
+                         visible: isWishList == true&& model?.averageRate!=null&&model?.averageRate!='0',
                          child: Expanded(
-                          child: RatingWidget(initialRating: double.parse(model!.averageRate.toString()),),
+                          child: RatingWidget(initialRating: double.parse(model?.averageRate!=null?model!.averageRate!.toString():'0'),),
                       ),
                        ),
                     ],
