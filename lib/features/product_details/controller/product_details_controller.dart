@@ -199,8 +199,17 @@ class ProductDetailsController extends GetxController {
           var message = r.object["message"];
           log("REVIEW RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
+            reviewNote.clear();
             var json = r.object["data"]["review"];
             var model = ReviewModel.fromJson(json);
+            // for (int i = 0; i < productsReviews.length; i++) {
+            //   if (model.id == productsReviews[i].id) {
+            //     print('${model.id}');
+            //     print('===========${productsReviews[i].id}');
+            //   } else {
+            //     print('add');
+            //   }
+            // }
             productsReviews.add(ProductReviewModel(
               id: model.id,
               rating: model.rating,
@@ -215,6 +224,7 @@ class ProductDetailsController extends GetxController {
                 imageLink: profileController.model.value?.imageLink,
               ),
             ));
+
             AppToasts.successToast("Your review has been added successfully");
             Get.back();
           } else {

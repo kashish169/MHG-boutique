@@ -1,7 +1,7 @@
 class ProductReviewModel {
   int id;
   int rating;
-  String feedback;
+  dynamic feedback;
   int productId;
   int userId;
   DateTime createdAt;

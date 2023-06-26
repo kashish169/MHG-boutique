@@ -83,7 +83,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
               Text(
                 '250 pts',
                 style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 22,
+                    fontSize: 15,
                     color: AppColors.secondaryBlack,
                     fontWeight: FontWeight.w600),
               ),

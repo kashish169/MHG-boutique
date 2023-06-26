@@ -50,6 +50,7 @@ class ProductAddReviewDialog extends StatelessWidget {
                           isSelcted: true,
                           title: "Cancel",
                           onTap: () {
+                            controller.reviewNote.clear();
                             Get.back();
                           }),
                     ),
