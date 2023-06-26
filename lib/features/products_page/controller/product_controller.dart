@@ -13,7 +13,14 @@ import '../models/categories_brand_model.dart';
 
 class ProductsController extends GetxController {
   late ProductsRepository productsRepository;
-  RxList<ProductTagModel> scentList = <ProductTagModel>[].obs;
+
+  RxList<ProductTagModel> scentList = <ProductTagModel>[
+    ProductTagModel(
+        id: 5,
+        name: 'All',
+        createdAt: DateTime.parse("1969-07-20 20:18:04Z"),
+        updatedAt: DateTime.parse("1969-07-20 20:18:04Z"))
+  ].obs;
   RxString selectedScent = ''.obs;
   RxBool isLoading = false.obs;
   RxBool isLoadingList = false.obs;
@@ -31,10 +38,9 @@ class ProductsController extends GetxController {
   }
 
   RxList<ProductModel> products = <ProductModel>[].obs;
-
   String? searchWord;
   RxString selectedSortBy = 'Featured'.obs;
-  RxList sortByList = <String>['Featured'].obs;
+  RxList sortByList = <String>['Featured', 'Best Sellers', 'New Arrival'].obs;
   ScrollController scrollController = ScrollController();
   int? brandId;
   int? categoryId;
@@ -42,6 +48,7 @@ class ProductsController extends GetxController {
   RxInt selectedCategoryIndex = (-1).obs;
   @override
   Future<void> onInit() async {
+    selectedScent = scentList[0].name.obs;
     var args = Get.arguments;
     categoryId = args["categoryId"];
     brandId = args["brandId"];
@@ -87,6 +94,7 @@ class ProductsController extends GetxController {
 
   Future<void> getProducts(String? search) async {
     log("Search:$search");
+    log("Search:$selectedSortBy");
     log("page:$page");
     try {
       if (page == 1) {
@@ -107,7 +115,14 @@ class ProductsController extends GetxController {
       }
       log("query $query");
       Either<Failure, ApiResponse> results =
-          await productsRepository.getCategoryProduct(query);
+          await productsRepository.getCategoryProduct(
+        query: query,
+        featured: selectedSortBy.value == 'Featured' ? 1 : 0,
+        bestSaller: selectedSortBy.value == 'Best Sellers' ? 1 : 0,
+        newArrival: selectedSortBy.value == 'New Arrival' ? 1 : 0,
+      );
+      print(query);
+      print(selectedSortBy.value);
 
       if (page == 1) {
         isLoadingList(false);
