@@ -269,7 +269,7 @@ class CheckoutController extends GetxController {
       if (promoCode.isNotEmpty) {
         query += "&coupon=$promoCode";
       }
-      if (isRedeem == true) {
+      if (hasRedeem.isTrue) {
         query += "&redeem=1";
       } else {
         query += "&redeem=0";

@@ -12,11 +12,11 @@ class ProductModel {
   String enAbout;
   String frAbout;
   dynamic itemTag;
-  String price;
-  String discount;
-  String discountPrice;
+  dynamic price;
+  dynamic discount;
+  dynamic discountPrice;
   int quantity;
-  String sold;
+  dynamic sold;
   String? primaryImage;
   String? image2;
   String? image3;
@@ -131,11 +131,11 @@ class ProductModel {
         enAbout: json["en_About"],
         frAbout: json["fr_About"],
         itemTag: json["ItemTag"],
-        price: json["Price"],
-        discount: json["Discount"],
-        discountPrice: json["Discount_Price"],
+        price: json["Price"].toString(),
+        discount: json["Discount"].toString(),
+        discountPrice: json["Discount_Price"].toString(),
         quantity: json["Quantity"],
-        sold: json["Sold"],
+        sold: json["Sold"].toString(),
         primaryImage: json["Primary_Image"],
         image2: json["Image2"],
         image3: json["Image3"],

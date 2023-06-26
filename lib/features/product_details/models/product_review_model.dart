@@ -1,6 +1,6 @@
 class ProductReviewModel {
   int id;
-  int rating;
+  dynamic rating;
   String feedback;
   int productId;
   int userId;

@@ -33,6 +33,7 @@ class HomeCategoryCard extends StatelessWidget {
             image: model.imageLink,
             height: 45,
             width: 45,
+            fit: BoxFit.fitWidth,
           ),
         ],
       ),
