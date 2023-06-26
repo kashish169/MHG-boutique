@@ -61,6 +61,7 @@ class _CartCounterWidgetState extends State<CartCounterWidget> {
           widget.model.isLoadingQuantity = false;
           if (mounted) setState(() {});
           controller.getTotalCartPrice();
+
           Get.find<MyCartController>().getCart();
           Get.find<CheckoutController>().orderPrice();
         },
