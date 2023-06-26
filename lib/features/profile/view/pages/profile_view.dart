@@ -135,6 +135,7 @@ class ProfileView extends StatelessWidget {
                 title: 'Log out',
                 onTap: () async {
                   bool notifayMe = App.notifyMe!;
+                  App.token = '';
                   await StoragePref.clear();
                   await StoragePref.setbool(
                     key: 'notifyme',

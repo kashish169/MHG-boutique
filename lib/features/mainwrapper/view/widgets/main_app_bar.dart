@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
 import 'package:mhg/features/notifications/view/pages/notifications_page.dart';
-import 'package:mhg/features/profile/controller/profile_controller.dart';
+import '../../../../app/app.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
+import '../../../auth/signin/view/pages/sign_in_page.dart';
 import '../../controller/main_wrapper_controller.dart';
 
 AppBar mainAppBar({
@@ -38,6 +38,16 @@ AppBar mainAppBar({
       ),
       IconButton(
         onPressed: () {
+          if (App.token.isEmpty) {
+            Get.toNamed(
+              SignInPage.routeName,
+              arguments: {
+                'country': "UAE",
+                'is_guest': true,
+              },
+            );
+            return;
+          }
           Get.toNamed(NotificationsPage.routeName);
         },
         icon: Image.asset(

@@ -4,6 +4,8 @@ import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/product_details/view/widgets/product_details_counter_widget.dart';
 import 'package:mhg/widgets/primary_button.dart';
+import '../../../../app/app.dart';
+import '../../../auth/signin/view/pages/sign_in_page.dart';
 import '../../controller/product_details_controller.dart';
 
 class ProductDetailsBrandCard extends StatelessWidget {
@@ -105,6 +107,16 @@ class ProductDetailsBrandCard extends StatelessWidget {
                           title: 'Add to Bag',
                           isLoading: controller.isLoadingAdd.value,
                           onTap: () async {
+                            if (App.token.isEmpty) {
+                              Get.toNamed(
+                                SignInPage.routeName,
+                                arguments: {
+                                  'country': "UAE",
+                                  'is_guest': true,
+                                },
+                              );
+                              return;
+                            }
                             var result = await controller.addProductToCart(
                               productId: controller.model.id,
                             );

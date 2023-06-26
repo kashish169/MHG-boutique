@@ -22,12 +22,6 @@ class ProfileController extends GetxController {
   RxBool firstCall = true.obs;
   RxBool loadingUpdateCard = false.obs;
 
-  @override
-  Future<void> onInit() async {
-    getProfileInfo();
-    super.onInit();
-  }
-
   Future<void> getProfileInfo() async {
     if (model.value == null) {
       isLoading(true);
