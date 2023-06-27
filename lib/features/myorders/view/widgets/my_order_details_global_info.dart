@@ -14,165 +14,176 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final profileController = Get.find<ProfileController>();
     return Obx(() => Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30    ),
-          child: Column(
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Visibility(
-                visible: double.parse(model.heartsDiscount) != 0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
+              Expanded(child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Visibility(
+                    visible: double.parse(model.heartsDiscount) != 0,
+                    child: Text(
                       'Hearts Discount',
                       style: Theme.of(context)
                           .textTheme
                           .displaySmall
                           ?.copyWith(
-                        fontSize: 16,
+                        fontSize: 15,
+                        height: 1.4,
                         color: AppColors.label,
                       ),
                     ),
-                    Text(
-                      "${profileController.currnecy.value} ${model.heartsDiscount}",
-                      style: Theme.of(context)
-                          .textTheme
-                          .displayMedium
-                          ?.copyWith(
-                        color: AppColors.mediumLabel,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Visibility(
-                visible: double.parse(model.couponAmount) != 0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    FittedBox(
+                  ),
+
+                  Visibility(
+                    visible: double.parse(model.couponAmount) != 0,
+                    child:  FittedBox(
                       child: Text(
                         'Coupon Amount',
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall
                             ?.copyWith(
-                          fontSize: 16,
+                          height: 1.4,
+                          fontSize: 15,
                           color: AppColors.label,
                         ),
                       ),
                     ),
-                    Text(
-                      "${profileController.currnecy.value} ${model.couponAmount}",
-                      style: Theme.of(context)
-                          .textTheme
-                          .displayMedium
-                          ?.copyWith(
-                        color: AppColors.mediumLabel,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Visibility(
-                visible: double.parse(model.subTotal) != 0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    FittedBox(
+                  ),
+                  Visibility(
+                    visible: double.parse(model.subTotal) != 0,
+                    child: FittedBox(
                       child: Text(
                         'Subtotal',
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall
                             ?.copyWith(
-                          fontSize: 16,
+                          height: 1.4,
+                          fontSize: 15,
                           color: AppColors.label,
                         ),
                       ),
                     ),
-                    Text(
+                  ),
+                  Visibility(
+                    visible: double.parse(model.tax) != 0,
+                    child:  FittedBox(
+                      child: Text(
+                        'Tax',
+
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall
+                            ?.copyWith(
+                          height: 1.4,
+                          fontSize: 15,
+                          color: AppColors.label,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: double.parse(model.grandTotal) != 0,
+                    child: Text(
+                      'Total',
+                      style: Theme.of(context)
+                          .textTheme
+                          .displaySmall
+                          ?.copyWith(
+                        height: 1.4,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.dBlack,
+                      ),
+                    ),
+                  ),
+                ],
+              )),
+              Expanded(child: SizedBox()),
+              Expanded(child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Visibility(
+                    visible: double.parse(model.heartsDiscount) != 0,
+                    child: Text(
+                      "${profileController.currnecy.value} ${model.heartsDiscount}",
+                      style: Theme.of(context)
+                          .textTheme
+                          .displaySmall
+                          ?.copyWith(
+                        height: 1.4,
+                        color: AppColors.mediumLabel,
+
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+
+                  Visibility(
+                    visible: double.parse(model.couponAmount) != 0,
+                    child: Text(
+                      "${profileController.currnecy.value} ${model.couponAmount}",
+                      style: Theme.of(context)
+                          .textTheme
+                          .displaySmall
+                          ?.copyWith(
+                        height: 1.4,
+                        color: AppColors.mediumLabel,
+
+                        fontSize: 15,
+                      ),
+                    )
+                  ),
+                  Visibility(
+                    visible: double.parse(model.subTotal) != 0,
+                    child: Text(
                       "${profileController.currnecy.value} ${model.subTotal}",
                       style: Theme.of(context)
                           .textTheme
-                          .displayMedium
+                          .displaySmall
                           ?.copyWith(
+                        height: 1.4,
                         color: AppColors.mediumLabel,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
+
+                        fontSize: 15,
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Visibility(
-                visible: double.parse(model.tax) != 0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    FittedBox(
-                      child: Text(
-                        'Tax',
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall
-                            ?.copyWith(
-                          fontSize: 16,
-                          color: AppColors.label,
-                        ),
-                      ),
-                    ),
-                    Text(
+                    )
+                  ),
+                  Visibility(
+                    visible: double.parse(model.tax) != 0,
+                    child: Text(
                       "${profileController.currnecy.value} ${model.tax}",
                       style:Theme.of(context)
                           .textTheme
-                          .displayMedium
+                          .displaySmall
                           ?.copyWith(
+                        height: 1.4,
                         color: AppColors.mediumLabel,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
+
+                        fontSize: 15,
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Visibility(
-                visible: double.parse(model.grandTotal) != 0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    FittedBox(
-                      child: Text(
-                        'Total',
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall
-                            ?.copyWith(
-                          fontSize: 16,
-                          color: AppColors.label,
-                        ),
-                      ),
-                    ),
-                    Text(
+                    )
+                  ),
+                  Visibility(
+                    visible: double.parse(model.grandTotal) != 0,
+                    child: Text(
                       "${profileController.currnecy.value} ${model.grandTotal}",
                       style: Theme.of(context)
                           .textTheme
                           .displayMedium
                           ?.copyWith(
-                        color: AppColors.mediumLabel,
+                        height: 1.4,
+                        color: AppColors.dBlack,
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                        fontSize: 15,
                       ),
                     ),
-                  ],
-                ),
-              ),
+                  ),
+                ],
+              )),
             ],
           ),
         ));
