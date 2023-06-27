@@ -89,7 +89,7 @@ class FiltersWidget extends StatelessWidget {
     return Row(
       children: [
         Text(
-          'Sort By',
+          'Filter By',
           style: Theme.of(context)
               .textTheme
               .displaySmall
