@@ -90,6 +90,7 @@ class ProfileController extends GetxController {
       Either<Failure, ApiResponse> results = await profileRepo.sendHearts(body);
       isLoading(false);
       results.fold((l) {
+       
         AppToasts.errorToast(l.message);
         log("SEND HEARTS METHODS RESPONSE ERROR ${l.message}");
       }, (r) async {
