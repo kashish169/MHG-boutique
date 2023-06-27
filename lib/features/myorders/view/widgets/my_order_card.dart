@@ -85,18 +85,15 @@ class MyOrderCard extends StatelessWidget {
                     children: <TextSpan>[
                       TextSpan(text: 'Status:',
                         style:Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontSize: 14,
-                          // color: AppColors.mediumLabel,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+
                         ),
 
                       ),
                       TextSpan(text:Get.find<MyOrdersController>().getStatus(model.orderStatus),
                         style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontSize: 14,
-                          // color: AppColors.mediumLabel,
-                        //  color: Get.find<MyOrdersController>().getStatusColor(model.orderStatus),
-                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+
                         ),
 
                       )
