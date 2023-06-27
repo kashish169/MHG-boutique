@@ -50,11 +50,16 @@ class ProfileController extends GetxController {
             App.countryId = model.value?.country?.id;
             App.currency = "${model.value?.country?.currency.currency}";
             currnecy.value = App.currency;
+            await StoragePref.setInt(
+              key: 'countryid',
+              value: App.countryId ?? 1,
+            );
             await StoragePref.setString(
               key: 'currency',
               value: App.currency,
             );
             log("currency is : ${App.currency}");
+            log("countryId is : ${App.countryId}");
             firstCall(false);
           } else if (statusCode == 400) {
             AppToasts.errorToast(message);
