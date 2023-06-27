@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
@@ -18,6 +19,8 @@ class ProfileController extends GetxController {
   late ProfileRepo profileRepo;
   late Rxn<ProfileInfoModal> model = Rxn<ProfileInfoModal>();
   SendHeartsModel sendHeartsModel = SendHeartsModel();
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController heartsController = TextEditingController();
 
   ProfileController() {
     profileRepo = Get.find<ProfileRepoImpl>();
