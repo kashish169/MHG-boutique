@@ -58,7 +58,7 @@ class ProductsPage extends StatelessWidget {
                                   },
                                   child: controller.products.isEmpty &&
                                           controller.isLoading.isFalse &&
-                                          controller.isFetching.isFalse
+                                          controller.isFetching.isFalse &&controller.isLoadingCategories.isTrue
                                       ? Center(
                                           child: Text(
                                             'No Results!',

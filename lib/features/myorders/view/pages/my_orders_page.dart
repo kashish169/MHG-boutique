@@ -73,20 +73,20 @@ class _MyOrdersPageState extends State<MyOrdersPage>
                   ),
                 ],
               ),
-              GetX<MyOrdersController>(builder: (controller) {
-                if (controller.isLoading.isTrue) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (controller.isError.isTrue) {
-                  return RetryButton(
-                    onTap: () {
-                      controller.getMyOrders();
-                    },
-                  );
-                }
-                return Expanded(
-                  child: TabBarView(
+              Expanded(
+                child: GetX<MyOrdersController>(builder: (controller) {
+                  if (controller.isLoading.isTrue) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (controller.isError.isTrue) {
+                    return RetryButton(
+                      onTap: () {
+                        controller.getMyOrders();
+                      },
+                    );
+                  }
+                  return TabBarView(
                     physics: const NeverScrollableScrollPhysics(),
                     controller: _tabController,
                     children: [
@@ -103,9 +103,9 @@ class _MyOrdersPageState extends State<MyOrdersPage>
                         name: 'Cancelled Orders',
                       ),
                     ],
-                  ),
-                );
-              })
+                  );
+                }),
+              )
             ],
           )),
     );

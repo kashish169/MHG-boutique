@@ -42,7 +42,7 @@ class Data {
   dynamic tax;
   dynamic shippingCharge;
   dynamic discount;
-  double? grandTotal;
+  dynamic grandTotal;
 
   Data(
       {this.subtotal,

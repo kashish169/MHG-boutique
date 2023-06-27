@@ -70,40 +70,70 @@ class _QRPageState extends State<QRPage> {
                   ),
                 )),
           ),
+          const SizedBox(height: 10),
           Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 30,
-              vertical: 20,
-            ),
-            child: Image.asset(
-              AppAssets.starGif,
-              height: 178,
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(8),
+                  ),
+                  child: Stack(
+                    alignment: Alignment.topCenter,
+                    children: [
+                      Image.asset(
+                        AppAssets.scanbackground,
+                        width: double.infinity,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Text(
+                          'Scan To Earn',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(
+                                fontSize: 16,
+                                color: AppColors.white,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Image.asset(
+                  AppAssets.starGif,
+                  height: 150,
+                  width: double.infinity,
+                ),
+              ],
             ),
           ),
           Expanded(
               flex: 5,
               child: Container(
                 width: double.infinity,
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                padding: const EdgeInsets.symmetric(horizontal: 50),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.vertical(
+                      bottom: Radius.circular(8),
+                    ),
                     border: Border.all(
-                  color: AppColors.primary,
-                )),
+                      color: AppColors.primary,
+                    )),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(
-                      height: 15,
-                    ),
+                    const SizedBox(height: 20),
                     Text(
                       'Scan to collect Points',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                             fontSize: 18,
                           ),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 5),
                     InkWell(
                         onTap: () {},
                         child: Container(
@@ -117,19 +147,21 @@ class _QRPageState extends State<QRPage> {
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
                         )),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 5),
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.all(25),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 25, vertical: 10),
                         child: Image.network(
                           controller.model.value!.qrLink,
                         ),
                       ),
-                    )
+                    ),
+                    const SizedBox(height: 5),
                   ],
                 ),
               )),
-          const Expanded(child: SizedBox())
+          const SizedBox(height: 15),
         ],
       ),
     );

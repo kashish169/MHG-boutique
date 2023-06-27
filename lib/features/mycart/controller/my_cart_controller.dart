@@ -46,11 +46,13 @@ class MyCartController extends GetxController {
             getTotalCartPrice();
           } else {
             AppToasts.errorToast(message);
+            isError(true);
           }
         },
       );
     } catch (e, s) {
       log("$e $s");
+      isError(true);
     }
   }
 

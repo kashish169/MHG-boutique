@@ -24,7 +24,7 @@ class InformationForm extends StatelessWidget {
   final bool? inInputNumber;
   final String? Function(String?)? validator;
   final TextEditingController textController;
-  
+
   final PersonalInformationController controller = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -48,11 +48,14 @@ class InformationForm extends StatelessWidget {
           header == 'Phone number'
               ? Row(
                   children: [
-                     CountryButtonPicker(isFromShippingAddress: false,),
+                    CountryButtonPicker(
+                      isFromShippingAddress: false,
+                    ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: CustomFormField(
                         controller: textController,
+                        hint: hint,
                         validator: validator,
                         inputType: inInputNumber == null
                             ? TextInputType.name
@@ -88,6 +91,7 @@ class InformationForm extends StatelessWidget {
                       ? TextInputType.name
                       : TextInputType.number,
                   readOnly: isEnableToEdit,
+                  hint: hint,
                   suffixIcon: IconButton(
                     onPressed: onTap,
                     icon: SizedBox(

@@ -4,6 +4,8 @@ import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/product_details/view/widgets/product_details_counter_widget.dart';
 import 'package:mhg/widgets/primary_button.dart';
+import '../../../../app/app.dart';
+import '../../../auth/signin/view/pages/sign_in_page.dart';
 import '../../controller/product_details_controller.dart';
 
 class ProductDetailsBrandCard extends StatelessWidget {
@@ -71,24 +73,26 @@ class ProductDetailsBrandCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 5),
-          Row(
-            children: [
-              Image.asset(
-                AppAssets.starIcon,
-                height: 17,
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              Text(
-                '250 pts',
-                style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 22,
-                    color: AppColors.secondaryBlack,
-                    fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
+          controller.model.pts != null
+              ? Row(
+                  children: [
+                    Image.asset(
+                      AppAssets.starIcon,
+                      height: 17,
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      '${controller.model.pts} pts',
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          fontSize: 15,
+                          color: AppColors.secondaryBlack,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                )
+              : SizedBox(),
           StatefulBuilder(builder: (context, setState) {
             return controller.model.inCart == 1
                 ? ProductDetailsCounterWidget(
@@ -100,11 +104,22 @@ class ProductDetailsBrandCard extends StatelessWidget {
                       bottom: 15,
                     ),
                     child: Obx(() => PrimaryButton(
+                          color: AppColors.secondary,
                           fontSize: 16,
                           height: 42,
                           title: 'Add to Bag',
                           isLoading: controller.isLoadingAdd.value,
                           onTap: () async {
+                            if (App.token.isEmpty) {
+                              Get.toNamed(
+                                SignInPage.routeName,
+                                arguments: {
+                                  'country': App.countryName,
+                                  'is_guest': true,
+                                },
+                              );
+                              return;
+                            }
                             var result = await controller.addProductToCart(
                               productId: controller.model.id,
                             );

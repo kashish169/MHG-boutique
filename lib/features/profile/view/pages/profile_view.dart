@@ -3,15 +3,18 @@ import 'package:get/get.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
+import 'package:mhg/features/about_us/view/pages/about_us_page.dart';
 import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
 import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/view/pages/qr_view.dart';
+import 'package:mhg/features/profile/view/pages/send_points.dart';
 import 'package:mhg/features/profile/view/widgets/reward_widget.dart';
 import 'package:mhg/features/rewards/pages/rewards_page.dart';
 import 'package:mhg/features/setting/view/pages/setting_view.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import '../../../../widgets/divider_widget.dart';
+import '../../../checkout/views/pages/payment_methods_page.dart';
 import '../widgets/profile_card.dart';
 import '../widgets/profile_follow_us_widget.dart';
 import '../widgets/profile_header.dart';
@@ -85,6 +88,14 @@ class ProfileView extends StatelessWidget {
               ),
               const DividerWidget(),
               ProfileCard(
+                icon: AppAssets.reward,
+                title: 'Send Points',
+                onTap: () async {
+                  await Get.toNamed(SendPointsPage.routeName);
+                },
+              ),
+              const DividerWidget(),
+              ProfileCard(
                   icon: AppAssets.scan,
                   title: 'Scan QR to collect Rewards',
                   onTap: () async {
@@ -97,6 +108,13 @@ class ProfileView extends StatelessWidget {
               ProfileCard(
                 icon: AppAssets.payment,
                 title: 'Payment information',
+                onTap: () {
+                  Get.to(
+                    () => const PaymentMethodsPage(
+                      isProfile: true,
+                    ),
+                  );
+                },
               ),
               const DividerWidget(),
               ProfileCard(
@@ -108,7 +126,7 @@ class ProfileView extends StatelessWidget {
                 icon: AppAssets.about,
                 title: 'About MHGboutique',
                 onTap: () {
-                  Get.toNamed('/about_us');
+                  Get.toNamed(AboutUsPage.routeName);
                 },
               ),
               const DividerWidget(),
@@ -120,7 +138,7 @@ class ProfileView extends StatelessWidget {
               ProfileCard(
                 icon: AppAssets.store,
                 title: 'Find Our Stores',
-                onTap: (){
+                onTap: () {
                   Get.toNamed('/map');
                 },
               ),
@@ -133,15 +151,13 @@ class ProfileView extends StatelessWidget {
                 icon: AppAssets.logout,
                 title: 'Log out',
                 onTap: () async {
-                  print(App.notifyMe);
                   bool notifayMe = App.notifyMe!;
-                  print(notifayMe);
+                  App.token = '';
                   await StoragePref.clear();
                   await StoragePref.setbool(
                     key: 'notifyme',
                     value: notifayMe,
                   );
-                  print(App.notifyMe);
                   Get.offAllNamed(OnBoardView.routeName);
                 },
               ),

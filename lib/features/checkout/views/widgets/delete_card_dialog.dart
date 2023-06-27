@@ -56,7 +56,7 @@ deleteCardDialog({
                               onTap: onConfirm,
                               height: 35,
                               width: 60,
-                              color: AppColors.primary,
+                              color: AppColors.secondary,
                             ),
                           ),
                         ),

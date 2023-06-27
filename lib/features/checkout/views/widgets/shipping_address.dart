@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/personal_infromation/view/pages/personal_information.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import '../../../../widgets/retry_button.dart';
 
@@ -19,7 +20,7 @@ class ShippingAddress extends StatelessWidget {
       }
       return InkWell(
         onTap: () async {
-          await Get.toNamed("/personal_information", arguments: {
+          await Get.toNamed(PersonalInformation.routeName, arguments: {
             "profile": controller.model.value,
           });
         },
@@ -58,7 +59,9 @@ class ShippingAddress extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 3),
                       child: Text(
-                        controller.model.value!.street ?? '',
+                        controller.model.value!.street!.isEmpty
+                            ? 'Add your address'
+                            : controller.model.value!.street!,
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
                                   fontSize: 16,
@@ -67,14 +70,18 @@ class ShippingAddress extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      controller.model.value!.state ?? '',
+                      controller.model.value!.state!.isEmpty
+                          ? 'Add your state'
+                          : controller.model.value!.state!,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                             fontSize: 16,
                             color: AppColors.mediumLabel,
                           ),
                     ),
-                     Text(
-                      controller.model.value!.zipCode ?? '',
+                    Text(
+                      controller.model.value!.zipCode!.isEmpty
+                          ? 'Add your zipcode'
+                          : controller.model.value!.zipCode!,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                             fontSize: 16,
                             color: AppColors.mediumLabel,

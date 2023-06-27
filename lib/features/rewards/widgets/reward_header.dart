@@ -92,7 +92,7 @@ class RewardHeader extends StatelessWidget {
                       ),
                     ),
                   ),
-                  controller.model.value!.nextTierPts != 0 ||
+                  controller.model.value!.nextTierPts != "0.00" ||
                           controller.model.value!.nextTier == null
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -141,7 +141,7 @@ class RewardHeader extends StatelessWidget {
                         ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: controller.model.value!.nextTierPts != 0
+                    child: controller.model.value!.nextTierPts != "0.00"
                         ? Text(
                             '${controller.model.value!.nextTierPtsLeft} Until ${controller.model.value!.nextTier}',
                             style: Theme.of(context)
@@ -157,7 +157,7 @@ class RewardHeader extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-              child: controller.model.value!.nextTierPts != 0 ||
+              child: controller.model.value!.nextTierPts != "0.00" ||
                       controller.model.value!.nextTier == null
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.start,

@@ -269,7 +269,7 @@ class CheckoutController extends GetxController {
       if (promoCode.isNotEmpty) {
         query += "&coupon=$promoCode";
       }
-      if (isRedeem == true) {
+      if (hasRedeem.isTrue) {
         query += "&redeem=1";
       } else {
         query += "&redeem=0";
@@ -313,6 +313,21 @@ class CheckoutController extends GetxController {
 
   Future<void> createOrder() async {
     try {
+      var userName = profileController.model.value!.name;
+      var email = profileController.model.value!.email;
+      var street = profileController.model.value?.street;
+      var state = profileController.model.value?.state;
+      var zipCode = profileController.model.value?.zipCode;
+      var countryName = profileController.model.value?.country?.name;
+      var promoCode = codeController.text.trim();
+      if (street!.isEmpty ||
+          state!.isEmpty ||
+          zipCode!.isEmpty ||
+          countryName == null ||
+          countryName.isEmpty) {
+        AppToasts.errorToast("Please complete your personal information");
+        return;
+      }
       if (paymentMethodValue.isEmpty) {
         AppToasts.errorToast("Choose payment method");
         return;
@@ -322,21 +337,6 @@ class CheckoutController extends GetxController {
           AppToasts.errorToast("Choose payment method");
           return;
         }
-      }
-      var userName = profileController.model.value!.name;
-      var email = profileController.model.value!.email;
-      var street = profileController.model.value!.street;
-      var state = profileController.model.value!.state;
-      var zipCode = profileController.model.value!.zipCode;
-      var countryName = profileController.model.value!.countryName;
-      var promoCode = codeController.text.trim();
-      if (street!.isEmpty ||
-          state!.isEmpty ||
-          zipCode!.isEmpty ||
-          countryName == null ||
-          countryName.isEmpty) {
-        AppToasts.errorToast("Please complete your personal information");
-        return;
       }
       String objectData = orderModelToJson(
         OrderModel(
@@ -400,10 +400,10 @@ class CheckoutController extends GetxController {
     }
   }
 
-  void _onOrderSuccess() {
-    Get.find<MyCartController>().getCart();
-    profileController.getProfileInfo();
+  void _onOrderSuccess() async {
     Get.offAndToNamed(MyOrdersPage.routeName);
+    Get.find<MyCartController>().getCart();
+    await profileController.getProfileInfo();
     AppToasts.successToast(
       'Your order has been submitted successfully!',
     );

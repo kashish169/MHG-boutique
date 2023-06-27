@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants/app_colors.dart';
@@ -33,7 +34,10 @@ class CustomValueSelector extends StatelessWidget {
                 height: 60,
                 width: 40,
                 decoration: BoxDecoration(
-                    image: DecorationImage(image: AssetImage(image)),
+                    image: DecorationImage(
+                        image: CachedNetworkImageProvider(
+                      image,
+                    )),
                     shape: BoxShape.circle,
                     border: Border.all(color: AppColors.grey))),
             SizedBox(

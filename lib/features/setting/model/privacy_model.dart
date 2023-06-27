@@ -1,11 +1,11 @@
-class PraivacyModel {
+class PrivacyModel {
   int id;
   String location;
   String englishDescription;
   String arabicDescription;
   dynamic createdAt;
   dynamic updatedAt;
-  PraivacyModel({
+  PrivacyModel({
     required this.id,
     required this.location,
     required this.englishDescription,
@@ -13,7 +13,7 @@ class PraivacyModel {
     required this.createdAt,
     required this.updatedAt,
   });
-  factory PraivacyModel.fromJson(Map<String, dynamic> json) => PraivacyModel(
+  factory PrivacyModel.fromJson(Map<String, dynamic> json) => PrivacyModel(
         id: json['id'],
         location: json['location'],
         englishDescription: json['en_description'],

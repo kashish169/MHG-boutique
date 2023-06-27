@@ -7,6 +7,7 @@ import '../../home/models/store_model.dart';
 class ProductDetailsModel {
   int id;
   dynamic externalId;
+  dynamic pts;
   dynamic sku;
   dynamic categoryId;
   int storeId;
@@ -18,11 +19,11 @@ class ProductDetailsModel {
   dynamic enAbout;
   dynamic frAbout;
   dynamic itemTag;
-  String price;
+  dynamic price;
   dynamic discount;
   dynamic discountPrice;
   int quantity;
-  String sold;
+  dynamic sold;
   String primaryImage;
   dynamic image2;
   dynamic image3;
@@ -71,6 +72,7 @@ class ProductDetailsModel {
   bool isLoadingQuantity;
 
   ProductDetailsModel({
+    this.pts,
     required this.id,
     this.externalId,
     this.sku,
@@ -139,6 +141,7 @@ class ProductDetailsModel {
   factory ProductDetailsModel.fromJson(Map<String, dynamic> json) =>
       ProductDetailsModel(
         id: json["id"],
+        pts: json["pts"],
         externalId: json["external_id"],
         sku: json["sku"],
         categoryId: json["Category_Id"],
@@ -151,11 +154,11 @@ class ProductDetailsModel {
         enAbout: json["en_About"],
         frAbout: json["fr_About"],
         itemTag: json["ItemTag"],
-        price: json["Price"],
-        discount: json["Discount"],
-        discountPrice: json["Discount_Price"],
+        price: json["Price"].toString(),
+        discount: json["Discount"].toString(),
+        discountPrice: json["Discount_Price"].toString(),
         quantity: json["Quantity"],
-        sold: json["Sold"],
+        sold: json["Sold"].toString(),
         primaryImage: json["Primary_Image"],
         image2: json["Image2"],
         image3: json["Image3"],

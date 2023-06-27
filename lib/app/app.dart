@@ -11,6 +11,9 @@ class App {
   static String fcmToken = "";
   static String token = '';
   static bool? notifyMe;
+  static int? countryId;
+  static String currency = 'AED';
+  static String countryName = '';
 
   static Future<void> initSettings() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -19,11 +22,13 @@ class App {
     await dotenv.load(fileName: ".env");
     token = await StoragePref.getString("token");
     notifyMe = await StoragePref.getbool("notifyme");
+    countryId = await StoragePref.getInt("countryid");
     NotificationService.init();
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.dark,
     );
     log("ACCESS TOKEN : $token");
     log("NOTIFY ME : $notifyMe");
+    log("COUNTRY ID : $countryId");
   }
 }

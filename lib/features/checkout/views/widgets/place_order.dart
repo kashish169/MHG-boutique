@@ -45,13 +45,18 @@ class _PlaceOrderState extends State<PlaceOrder> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'SUBTOTAL',
-                        style:
-                            Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 16,
-                                  color: AppColors.label,
-                                ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'SUBTOTAL',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: 16,
+                                color: AppColors.label,
+                              ),
+                        ),
                       ),
                       const SizedBox(height: 10),
                       Text(
@@ -60,6 +65,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             Theme.of(context).textTheme.displayMedium?.copyWith(
                                   color: AppColors.mediumLabel,
                                   fontWeight: FontWeight.bold,
+                                  fontSize: 17,
                                 ),
                       ),
                     ],
@@ -69,13 +75,18 @@ class _PlaceOrderState extends State<PlaceOrder> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        'TAX',
-                        style:
-                            Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 16,
-                                  color: AppColors.label,
-                                ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'TAX',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: 16,
+                                color: AppColors.label,
+                              ),
+                        ),
                       ),
                       const SizedBox(height: 10),
                       Text(
@@ -84,9 +95,49 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             Theme.of(context).textTheme.displayMedium?.copyWith(
                                   color: AppColors.mediumLabel,
                                   fontWeight: FontWeight.bold,
+                                  fontSize: 17,
                                 ),
                       ),
                     ],
+                  ),
+                ),
+                Visibility(
+                  visible:
+                      checkoutController.orderPriceModal.data?.shippingCharge ==
+                              0
+                          ? false
+                          : true,
+                  child: Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            'SHIPPING',
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                                  fontSize: 16,
+                                  color: AppColors.label,
+                                ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          '\$${checkoutController.orderPriceModal.data?.shippingCharge}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(
+                                color: AppColors.mediumLabel,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                              ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Visibility(
@@ -98,15 +149,18 @@ class _PlaceOrderState extends State<PlaceOrder> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          'DISCOUNT',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                fontSize: 16,
-                                color: AppColors.label,
-                              ),
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            'DISCOUNT',
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                                  fontSize: 16,
+                                  color: AppColors.label,
+                                ),
+                          ),
                         ),
                         const SizedBox(height: 10),
                         Text(
@@ -117,6 +171,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                               ?.copyWith(
                                 color: AppColors.mediumLabel,
                                 fontWeight: FontWeight.bold,
+                                fontSize: 17,
                               ),
                         ),
                       ],
@@ -127,13 +182,18 @@ class _PlaceOrderState extends State<PlaceOrder> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        'TOTAL',
-                        style:
-                            Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 16,
-                                  color: AppColors.label,
-                                ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'TOTAL',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: 16,
+                                color: AppColors.label,
+                              ),
+                        ),
                       ),
                       const SizedBox(height: 10),
                       Text(
@@ -142,6 +202,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             Theme.of(context).textTheme.displayMedium?.copyWith(
                                   color: AppColors.mediumLabel,
                                   fontWeight: FontWeight.bold,
+                                  fontSize: 17,
                                 ),
                       ),
                     ],
@@ -158,7 +219,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
               hasIcon: true,
               color: checkoutController.isLoadingRedeem.isTrue
                   ? AppColors.grey
-                  : AppColors.primary,
+                  : AppColors.secondary,
               isLoading: checkoutController.isLoadingCreateOrder.value,
               onPress: checkoutController.isLoadingRedeem.isTrue
                   ? () {}

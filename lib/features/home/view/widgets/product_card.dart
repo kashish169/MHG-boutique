@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/mainwrapper/controller/main_wrapper_controller.dart';
@@ -7,12 +8,13 @@ import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
 import 'package:mhg/features/my_wish_list/view/widget/wish_list_counter.dart';
 import 'package:mhg/features/product_details/controller/product_details_controller.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
-import 'package:mhg/features/product_details/view/widgets/product_details_counter_widget.dart';
+// import 'package:mhg/features/product_details/view/widgets/product_details_counter_widget.dart';
 import 'package:mhg/widgets/net_image.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import 'package:mhg/widgets/product_counter.dart';
 import '../../../../widgets/heart_widget.dart';
 import '../../../../widgets/rating_widget.dart';
+import '../../../auth/signin/view/pages/sign_in_page.dart';
 import '../../models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
@@ -75,10 +77,12 @@ class ProductCard extends StatelessWidget {
                     top: Radius.circular(20),
                   ),
                   child: NetImage(
-                      image: isWishList == false
-                          ? model!.primaryImageLink
-                          : wishListModel!.options.imageLink,
-                      height: AppDimensions.productHeight(context)),
+                    image: isWishList == false
+                        ? model!.primaryImageLink
+                        : wishListModel!.options.imageLink,
+                    height: AppDimensions.productHeight(context),
+                    width: 182,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Padding(
@@ -105,9 +109,21 @@ class ProductCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 5),
-                      const Expanded(
-                        child: RatingWidget(),
-                      ),
+                      isWishList == true
+                          ? const SizedBox()
+                          : Visibility(
+                              visible:
+                                  double.parse("${model?.averageRate}") == 0
+                                      ? false
+                                      : true,
+                              child: Expanded(
+                                child: RatingWidget(
+                                  initialRating:
+                                      double.parse("${model?.averageRate}"),
+                                  isEnableToRate: false,
+                                ),
+                              ),
+                            ),
                     ],
                   ),
                 ),
@@ -201,6 +217,16 @@ class ProductCard extends StatelessWidget {
                                     wishListModel!.isAddToBag,
                                 color: AppColors.secondary,
                                 onTap: () async {
+                                  if (App.token.isEmpty) {
+                                    Get.toNamed(
+                                      SignInPage.routeName,
+                                      arguments: {
+                                        'country': App.countryName,
+                                        'is_guest': true,
+                                      },
+                                    );
+                                    return;
+                                  }
                                   if (wishListModel != null) {
                                     wishListModel?.isAddToBag = true;
                                   } else {

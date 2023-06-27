@@ -55,8 +55,10 @@ class _AddPaymentMethodWebViewPageState
             }
           },
         ),
-      )
-      ..loadRequest(Uri.parse(widget.url!));
+      );
+    if (widget.url != null) {
+      webViewController.loadRequest(Uri.parse(widget.url ?? ''));
+    }
     super.initState();
   }
 
@@ -68,15 +70,22 @@ class _AddPaymentMethodWebViewPageState
         context,
         title: widget.title ?? 'Add Payment Method',
       ),
-      body: Obx(() => SizedBox(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: checkoutController.loadingPercentage.value != 100
-                ? const LoadingWidget()
-                : WebViewWidget(
-                    controller: webViewController,
-                  ),
-          )),
+      body: widget.url == null
+          ? Center(
+              child: Text(
+                "INVALID URL",
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
+            )
+          : Obx(() => SizedBox(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: checkoutController.loadingPercentage.value != 100
+                    ? const LoadingWidget()
+                    : WebViewWidget(
+                        controller: webViewController,
+                      ),
+              )),
     );
   }
 }

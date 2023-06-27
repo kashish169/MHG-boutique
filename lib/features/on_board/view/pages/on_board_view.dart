@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/constants/app_assets.dart';
+// import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/on_board/controller/on_board_controller.dart';
 import 'package:mhg/features/on_board/view/widgets/buttons.dart';
+import 'package:mhg/widgets/loading_widget.dart';
+import 'package:mhg/widgets/net_image.dart';
+import 'package:mhg/widgets/retry_button.dart';
+import 'package:mhg/widgets/three_bounce_loading.dart';
 // import 'package:mhg/features/on_board/view/widgets/page_viewer.dart';
 // import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -155,7 +159,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 27),
                     child: Text(
-                      'Change location & language',
+                      'Change location',
                       textAlign: TextAlign.start,
                       style: Theme.of(context)
                           .textTheme
@@ -174,106 +178,136 @@ class _OnBoardViewState extends State<OnBoardView> {
                     color: AppColors.white.withOpacity(.5),
                   ),
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                        flex: 7,
-                        child: InkWell(
-                            onTap: () {
-                              controller.openselcetCountry();
+                controller.isLoading
+                    ? const Padding(
+                        padding: EdgeInsets.all(13.0),
+                        child: LoadingThreeBounce(),
+                      )
+                    : controller.isError
+                        ? TextButton(
+                            onPressed: () {
+                              controller.getCountries();
                             },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 13),
-                                      height: 30,
-                                      width: 30,
-                                      child: Image.asset(
-                                          controller.selctedCountryFlage)),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Text(
-                                    controller.selectedCountry,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displaySmall!
-                                        .copyWith(
-                                            color: AppColors.white
-                                                .withOpacity(0.7)),
-                                    textAlign: TextAlign.center,
+                            child: Text(
+                              'Retry',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall
+                                  ?.copyWith(
+                                    color: AppColors.white,
                                   ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    child: Icon(
-                                      Icons.keyboard_arrow_up_sharp,
-                                      color: AppColors.white.withOpacity(0.7),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ))),
-                    SizedBox(
-                        height: 30,
-                        child: VerticalDivider(
-                          thickness: 1,
-                          color: AppColors.white,
-                          width: 5,
-                        )),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                        flex: 4,
-                        child: InkWell(
-                          onTap: () {
-                            controller.openselcetLangage();
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            ))
+                        : Row(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 15),
-                                child: Image.asset(
-                                  AppAssets.global,
-                                  color: AppColors.white.withOpacity(0.7),
-                                  height: 20,
-                                ),
-                              ),
-                              FittedBox(
-                                child: Text(
-                                  controller.selectedLang,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall!
-                                      .copyWith(
-                                          color:
-                                              AppColors.white.withOpacity(0.7)),
-                                ),
-                              ),
                               Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 15),
-                                  child: Icon(
-                                    Icons.keyboard_arrow_up_sharp,
-                                    color: AppColors.white.withOpacity(0.7),
-                                  ),
-                                ),
-                              ),
+                                  flex: 7,
+                                  child: InkWell(
+                                      onTap: () {
+                                        controller.openselcetCountry();
+                                      },
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 13),
+                                                height: 37,
+                                                width: 37,
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(25),
+                                                  child: NetImage(
+                                                    image: controller
+                                                        .selectedCountryFlage,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                )),
+                                          ),
+                                          Expanded(
+                                            flex: 9,
+                                            child: Text(
+                                              controller.selectedCountry,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .displaySmall!
+                                                  .copyWith(
+                                                      color: AppColors.white
+                                                          .withOpacity(0.7)),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 10),
+                                              child: Icon(
+                                                Icons.keyboard_arrow_up_sharp,
+                                                color: AppColors.white
+                                                    .withOpacity(0.7),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ))),
+                              // SizedBox(
+                              //     height: 30,
+                              //     child: VerticalDivider(
+                              //       thickness: 1,
+                              //       color: AppColors.white,
+                              //       width: 5,
+                              //     )),
+                              // const SizedBox(
+                              //   width: 15,
+                              // ),
+                              // Expanded(
+                              //     flex: 4,
+                              //     child: InkWell(
+                              //       onTap: () {
+                              //         controller.openselcetLangage();
+                              //       },
+                              //       child: Row(
+                              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              //         children: [
+                              //           Padding(
+                              //             padding: const EdgeInsets.only(right: 15),
+                              //             child: Image.asset(
+                              //               AppAssets.global,
+                              //               color: AppColors.white.withOpacity(0.7),
+                              //               height: 20,
+                              //             ),
+                              //           ),
+                              //           // FittedBox(
+                              //           //   child: Text(
+                              //           //     controller.selectedLang,
+                              //           //     style: Theme.of(context)
+                              //           //         .textTheme
+                              //           //         .displaySmall!
+                              //           //         .copyWith(
+                              //           //             color:
+                              //           //                 AppColors.white.withOpacity(0.7)),
+                              //           //   ),
+                              //           // ),
+                              //           // Expanded(
+                              //           //   child: Padding(
+                              //           //     padding: const EdgeInsets.only(
+                              //           //         left: 10, right: 15),
+                              //           //     child: Icon(
+                              //           //       Icons.keyboard_arrow_up_sharp,
+                              //           //       color: AppColors.white.withOpacity(0.7),
+                              //           //     ),
+                              //           //   ),
+                              //           // ),
+                              //         ],
+                              //       ),
+                              //     ))
                             ],
                           ),
-                        ))
-                  ],
-                ),
                 const SizedBox(
                   height: 15,
                 )
