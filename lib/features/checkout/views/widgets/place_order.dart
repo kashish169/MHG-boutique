@@ -43,187 +43,169 @@ class _PlaceOrderState extends State<PlaceOrder> {
               children: [
                 Expanded(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          'SUBTOTAL',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                fontSize: 16,
-                                color: AppColors.label,
-                              ),
+                          'Subtotal',
+                          style:
+                          Theme.of(context).textTheme.displaySmall?.copyWith(
+                            height: 1.4,
+                            fontSize: 16,
+                            color: AppColors.label,
+                          ),
                         ),
                       ),
-                      const SizedBox(height: 10),
-                      FittedBox(
-                        child: Text(
-                          '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.subtotal}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayMedium
-                              ?.copyWith(
-                                color: AppColors.mediumLabel,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          'TAX',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                fontSize: 16,
-                                color: AppColors.label,
-                              ),
+                          'Tax',
+                          style:
+                          Theme.of(context).textTheme.displaySmall?.copyWith(
+                            height: 1.4,
+                            fontSize: 16,
+                            color: AppColors.label,
+                          ),
                         ),
                       ),
-                      const SizedBox(height: 10),
-                      FittedBox(
-                        child: Text(
-                          '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayMedium
-                              ?.copyWith(
-                                color: AppColors.mediumLabel,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Visibility(
-                  visible:
-                      checkoutController.orderPriceModal.data?.shippingCharge ==
-                              0
-                          ? false
-                          : true,
-                  child: Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        FittedBox(
+                      Visibility(
+                        visible:
+                        checkoutController.orderPriceModal.data?.shippingCharge ==
+                            0
+                            ? false
+                            : true,
+                        child: FittedBox(
                           fit: BoxFit.scaleDown,
                           child: Text(
-                            'SHIPPING',
+                            'Shipping',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
                                 ?.copyWith(
-                                  fontSize: 16,
-                                  color: AppColors.label,
-                                ),
+                              height: 1.4,
+                              fontSize: 16,
+                              color: AppColors.label,
+                            ),
                           ),
                         ),
-                        const SizedBox(height: 10),
-                        FittedBox(
+                      ),
+                      Visibility(
+                        visible:
+                        checkoutController.orderPriceModal.data?.discount == 0
+                            ? false
+                            : true,
+                        child:FittedBox(
+                          fit: BoxFit.scaleDown,
                           child: Text(
-                            '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.shippingCharge}',
+                            'Discount',
                             style: Theme.of(context)
                                 .textTheme
-                                .displayMedium
+                                .displaySmall
                                 ?.copyWith(
-                                  color: AppColors.mediumLabel,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
-                                ),
+                              height: 1.4,
+                              fontSize: 16,
+                              color: AppColors.label,
+                            ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                      Text(
+                        'Total',
+                        style:
+                        Theme.of(context).textTheme.displaySmall?.copyWith(
+                          height: 1.4,
+                          fontSize: 16,
+                          color: AppColors.dBlack,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Visibility(
-                  visible:
+                Expanded(child: SizedBox(),),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FittedBox(
+                      child: Text(
+                        '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.subtotal}',
+                        style:
+                        Theme.of(context).textTheme.displaySmall?.copyWith(
+                          height: 1.4,
+                          color: AppColors.mediumLabel,
+
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                    FittedBox(
+                      child: Text(
+                        '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax}',
+                        style:
+                        Theme.of(context).textTheme.displaySmall?.copyWith(
+                          height: 1.4,
+                          color: AppColors.mediumLabel,
+
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                    Visibility(
+                      visible:
+                      checkoutController.orderPriceModal.data?.shippingCharge ==
+                          0
+                          ? false
+                          : true,
+                      child: FittedBox(
+                        child: Text(
+                          '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.shippingCharge}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                            height: 1.4,
+                            color: AppColors.mediumLabel,
+
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Visibility(
+                      visible:
                       checkoutController.orderPriceModal.data?.discount == 0
                           ? false
                           : true,
-                  child: Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            'DISCOUNT',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  fontSize: 16,
-                                  color: AppColors.label,
-                                ),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        FittedBox(
-                          child: Text(
-                            '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.discount}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displayMedium
-                                ?.copyWith(
-                                  color: AppColors.mediumLabel,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      FittedBox(
-                        fit: BoxFit.scaleDown,
+                      child: FittedBox(
                         child: Text(
-                          'TOTAL',
+                          '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.discount}',
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall
                               ?.copyWith(
-                                fontSize: 16,
-                                color: AppColors.label,
-                              ),
+                            height: 1.4,
+                            color: AppColors.dBlack,
+
+                            fontSize: 16,
+                          ),
+                        ),
+                      )
+                    ),
+                    FittedBox(
+                      child: Text(
+                        '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.grandTotal}',
+                        style:
+                        Theme.of(context).textTheme.displayMedium?.copyWith(
+                          height: 1.4,
+                          color: AppColors.dBlack,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
                       ),
-                      const SizedBox(height: 10),
-                      FittedBox(
-                        child: Text(
-                          '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.grandTotal}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayMedium
-                              ?.copyWith(
-                                color: AppColors.mediumLabel,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                    ),
+                  ],
+                )
               ],
             );
           }),
