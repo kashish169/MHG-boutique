@@ -129,7 +129,7 @@ class SignInController extends GetxController {
             value: token,
           );
           log("ACCESS TOKEN : $token");
-          Get.toNamed(MainWrapper.routeName);
+          Get.offAllNamed(MainWrapper.routeName);
         } else if (statusCode == 400) {
           AppToasts.errorToast(message);
         } else {
@@ -175,7 +175,7 @@ class SignInController extends GetxController {
             value: token,
           );
           log("ACCESS TOKEN : $token");
-          Get.toNamed(MainWrapper.routeName);
+          Get.offAllNamed(MainWrapper.routeName);
         } else if (statusCode == 400) {
           AppToasts.errorToast(message);
         } else {
