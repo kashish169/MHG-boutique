@@ -80,16 +80,11 @@ class ProfileController extends GetxController {
 
   sendHearts(hearts, phone) async {
     try {
-      Object body = SendHeartsRequestModel(
-        hearts: hearts,
+      var body = SendHeartsRequestModel(
+        hearts: double.parse(hearts),
         phoneNumber: phone,
       ).toJson();
-      log(
-        SendHeartsRequestModel(
-          hearts: hearts,
-          phoneNumber: phone,
-        ).toJson().toString(),
-      );
+
       isLoading(true);
       isError(false);
       Either<Failure, ApiResponse> results = await profileRepo.sendHearts(body);
@@ -109,7 +104,6 @@ class ProfileController extends GetxController {
           AppToasts.errorToast(message);
         }
       });
-      Get.back();
     } catch (e, s) {
       log("$e $s");
     }

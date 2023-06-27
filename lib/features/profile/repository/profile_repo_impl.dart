@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:mhg/core/api/api.dart';
@@ -25,6 +27,6 @@ class ProfileRepoImpl implements ProfileRepo {
       await httpService.post(
         url: Api.sendHearts,
         isAuthorized: true,
-        body: body
+        body: json.encode(body)
       );
 }

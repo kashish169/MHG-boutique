@@ -1,5 +1,5 @@
 class SendHeartsRequestModel {
-  int? hearts;
+  double? hearts;
   String? phoneNumber;
 
   SendHeartsRequestModel({this.hearts, this.phoneNumber});
