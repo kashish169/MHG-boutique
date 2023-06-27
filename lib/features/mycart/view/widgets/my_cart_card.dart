@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/widgets/net_image.dart';
 import '../../../../constants/app_dimensions.dart';
+import '../../../profile/controller/profile_controller.dart';
 import '../../models/cart_model.dart';
 import 'cart_counter_widget.dart';
 import 'delete_cart_button.dart';
@@ -17,6 +19,7 @@ class MyCartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileController = Get.find<ProfileController>();
     return Stack(
       alignment: AlignmentDirectional.topEnd,
       children: [
@@ -78,48 +81,48 @@ class MyCartCard extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 15),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Dhs. ${model.options.discountPrice}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  fontSize: 14,
-                                  color: AppColors.mediumLabel,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        Expanded(
-                          child: Visibility(
-                            visible: double.parse(
-                                      model.options.discountParcent ?? '0',
-                                    ).round() ==
-                                    0
-                                ? false
-                                : true,
-                            child: Text(
-                              'Dhs. ${model.weight}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall
-                                  ?.copyWith(
-                                    fontSize: 12,
-                                    color: AppColors.lightLabel,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
+                    Obx(() => Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                '${profileController.currnecy.value} ${model.options.discountPrice}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall
+                                    ?.copyWith(
+                                      fontSize: 14,
+                                      color: AppColors.mediumLabel,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
                             ),
-                          ),
-                        ),
-                        CartCounterWidget(
-                          model: model,
-                        ),
-                      ],
-                    ),
+                            const SizedBox(width: 4),
+                            Expanded(
+                              child: Visibility(
+                                visible: double.parse(
+                                          model.options.discountParcent ?? '0',
+                                        ).round() ==
+                                        0
+                                    ? false
+                                    : true,
+                                child: Text(
+                                  '${profileController.currnecy.value} ${model.weight}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall
+                                      ?.copyWith(
+                                        fontSize: 12,
+                                        color: AppColors.lightLabel,
+                                        decoration: TextDecoration.lineThrough,
+                                      ),
+                                ),
+                              ),
+                            ),
+                            CartCounterWidget(
+                              model: model,
+                            ),
+                          ],
+                        )),
                     const SizedBox(height: 10),
                   ],
                 ),

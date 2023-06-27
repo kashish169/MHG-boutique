@@ -143,7 +143,7 @@ class _QRPageState extends State<QRPage> {
                           ),
                           padding: const EdgeInsets.all(8),
                           child: Text(
-                            'Collect 50 Pts per 10 Dhs',
+                            'Collect 50 Pts per 10 ${controller.currnecy.value}',
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
                         )),

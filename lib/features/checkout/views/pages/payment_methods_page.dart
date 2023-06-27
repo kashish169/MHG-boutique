@@ -10,7 +10,8 @@ import 'package:mhg/widgets/retry_button.dart';
 
 class PaymentMethodsPage extends StatefulWidget {
   static String routeName = '/payment_methods';
-  const PaymentMethodsPage({super.key});
+  final bool isProfile;
+  const PaymentMethodsPage({super.key, this.isProfile = false});
 
   @override
   State<PaymentMethodsPage> createState() => _PaymentMethodsPageState();
@@ -18,6 +19,14 @@ class PaymentMethodsPage extends StatefulWidget {
 
 class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
   final CheckoutController checkoutController = Get.find<CheckoutController>();
+  @override
+  void initState() {
+    if (widget.isProfile == true) {
+      checkoutController.getUserPaymentMethods();
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

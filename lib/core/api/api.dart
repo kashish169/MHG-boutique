@@ -5,11 +5,13 @@ class Api {
   static String baseUrl = dotenv.env["ROOT_API"] ?? "";
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
+    'Country-Id': "${App.countryId}",
   };
   static Map<String, String> authorizedheaders = {
     'Content-Type': 'application/json',
     'Authorization': "Bearer ${App.token}",
   };
+  static String countryLink = "/api/v1/countries/index";
   static String signUp = "/api/v1/users/auth/register";
   static String loginEmail = "/api/v1/users/auth/login";
   static String login = "/api/v1/users/auth/login-with-phone";

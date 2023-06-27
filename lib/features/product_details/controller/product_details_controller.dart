@@ -203,9 +203,10 @@ class ProductDetailsController extends GetxController {
             var json = r.object["data"]["review"];
             var model = ReviewModel.fromJson(json);
             // for (int i = 0; i < productsReviews.length; i++) {
-            //   if (model.id == productsReviews[i].id) {
+            //   if (model.userId == productsReviews[i].user.id) {
             //     print('${model.id}');
             //     print('===========${productsReviews[i].id}');
+            //     print('update');
             //   } else {
             //     print('add');
             //   }
@@ -224,7 +225,6 @@ class ProductDetailsController extends GetxController {
                 imageLink: profileController.model.value?.imageLink,
               ),
             ));
-
             AppToasts.successToast("Your review has been added successfully");
             Get.back();
           } else {

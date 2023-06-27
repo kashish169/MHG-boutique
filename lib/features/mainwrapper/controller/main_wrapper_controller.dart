@@ -34,12 +34,8 @@ class MainWrapperController extends GetxController {
     } catch (e) {
       log('$e');
     }
-
-    @override
-    void onInit() {
-      super.onInit();
-    }
   }
+
   Future<bool> addProductToCart({
     required int productId,
   }) async {
@@ -53,41 +49,44 @@ class MainWrapperController extends GetxController {
         "qty": 1,
       };
       Either<Failure, ApiResponse> results =
-      await mainWrapperRepo.addProductToCart(
+          await mainWrapperRepo.addProductToCart(
         body: jsonEncode(body),
       );
       isLoadingAdd(false);
       results.fold(
-            (l) {
+        (l) {
           AppToasts.errorToast(l.message);
           log("ADD PRODUCT TO CART RESPONSE ERROR ${l.message}");
           isErrorAdd(true);
           result = false;
         },
-            (r) {
+        (r) {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("ADD PRODUCT TO CART CART RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
             result = true;
-            bool fromArrival=false;
-            List<ProductModel> temp = Get.find<HomeController>().newArrivalsList;
+            bool fromArrival = false;
+            List<ProductModel> temp =
+                Get.find<HomeController>().newArrivalsList;
             for (int i = 0; i < temp.length; i++) {
               if (temp[i].id == productId) {
                 temp[i].inCart = 1;
-                temp[i].cartQty=1;
-                fromArrival=true;
+                temp[i].cartQty = 1;
+                fromArrival = true;
               }
             }
-            List<ProductModel>  temp2 = Get.find<HomeController>().topSellersList;
+            List<ProductModel> temp2 =
+                Get.find<HomeController>().topSellersList;
             for (int i = 0; i < temp2.length; i++) {
               if (temp2[i].id == productId) {
                 temp2[i].inCart = 1;
-                temp2[i].cartQty=1;
-                fromArrival=false;
+                temp2[i].cartQty = 1;
+                fromArrival = false;
               }
             }
-            Get.find<HomeController>().updateList(fromArrival==true?temp:temp2, fromArrival);
+            Get.find<HomeController>()
+                .updateList(fromArrival == true ? temp : temp2, fromArrival);
             AppToasts.successToast(
               "The product has been added to the bag",
             );

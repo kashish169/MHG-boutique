@@ -1,11 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/myorders/models/order_model.dart';
 import 'package:mhg/widgets/net_image.dart';
 import '../../../../constants/app_dimensions.dart';
-
+import '../../../profile/controller/profile_controller.dart';
 
 class OrderDetailsCard extends StatelessWidget {
   final OrderDetail model;
@@ -13,14 +12,12 @@ class OrderDetailsCard extends StatelessWidget {
   const OrderDetailsCard({
     super.key,
     required this.model,
-
   });
 
   @override
   Widget build(BuildContext context) {
-  log(model.imageLink);
+    final profileController = Get.find<ProfileController>();
     return Container(
-
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(8),
@@ -47,9 +44,9 @@ class OrderDetailsCard extends StatelessWidget {
                 Text(
                   model.productName,
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 16,
-                    color: AppColors.mediumLabel,
-                  ),
+                        fontSize: 16,
+                        color: AppColors.mediumLabel,
+                      ),
                 ),
                 const SizedBox(height: 10),
                 Row(
@@ -57,81 +54,63 @@ class OrderDetailsCard extends StatelessWidget {
                   children: [
                     Text(
                       'Order Id:${model.orderId}',
-                      style: Theme.of(context)
-                          .textTheme
-                          .displaySmall
-                          ?.copyWith(
-                        fontSize: 12,
-                        color: AppColors.lightLabel,
-                      ),
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            fontSize: 12,
+                            color: AppColors.lightLabel,
+                          ),
                     ),
-
                     Text(
                       'Product Id:${model.productId}',
-                      style: Theme.of(context)
-                          .textTheme
-                          .displaySmall
-                          ?.copyWith(
-                        fontSize: 12,
-                        color: AppColors.lightLabel,
-                      ),
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            fontSize: 12,
+                            color: AppColors.lightLabel,
+                          ),
                     ),
-
                   ],
                 ),
                 const SizedBox(height: 15),
-                Text(
-                  'Price: Dhs. ${model.price}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .displaySmall
-                      ?.copyWith(
-                    fontSize: 14,
-                    color: AppColors.mediumLabel,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Obx(() => Text(
+                      'Price: ${profileController.currnecy.value} ${model.price}',
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            fontSize: 14,
+                            color: AppColors.mediumLabel,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    )),
                 const SizedBox(height: 4),
                 Text(
                   'Quantity: ${model.quantity}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .displaySmall
-                      ?.copyWith(
-                    fontSize: 14,
-                    color: AppColors.mediumLabel,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                        fontSize: 14,
+                        color: AppColors.mediumLabel,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  'Total Price: Dhs. ${model.totalPrice}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .displaySmall
-                      ?.copyWith(
-                    fontSize: 14,
-                    color: AppColors.mediumLabel,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Obx(() => Text(
+                      'Total Price: ${profileController.currnecy.value} ${model.totalPrice}',
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            fontSize: 14,
+                            color: AppColors.mediumLabel,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    )),
                 Text(
                   'Quantity: ${model.quantity}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .displaySmall
-                      ?.copyWith(
-                    fontSize: 14,
-                    color: AppColors.mediumLabel,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                        fontSize: 14,
+                        color: AppColors.mediumLabel,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
                 const SizedBox(height: 4),
                 const SizedBox(height: 10),
               ],
             ),
           ),
-          SizedBox(width: 5,)
+          SizedBox(
+            width: 5,
+          )
         ],
       ),
     );

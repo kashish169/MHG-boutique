@@ -4,8 +4,10 @@ import 'package:mhg/app/app.dart';
 // import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/product_details/view/widgets/product_details_comment.dart';
 import 'package:mhg/widgets/primary_button.dart';
+import '../../../../app/app.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/rating_widget.dart';
+import '../../../auth/signin/view/pages/sign_in_page.dart';
 import '../../controller/product_details_controller.dart';
 import 'product_add_review_dialog.dart';
 
@@ -103,6 +105,16 @@ class ProductDetailsReview extends StatelessWidget {
                     color: AppColors.secondary,
                     title: "Add Comment",
                     onTap: () {
+                      if (App.token.isEmpty) {
+                        Get.toNamed(
+                          SignInPage.routeName,
+                          arguments: {
+                            'country': App.countryName,
+                            'is_guest': true,
+                          },
+                        );
+                        return;
+                      }
                       Get.defaultDialog(
                         title: "Add Review",
                         titleStyle: Theme.of(context).textTheme.headline2,

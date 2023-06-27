@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/mainwrapper/controller/main_wrapper_controller.dart';
@@ -7,12 +8,13 @@ import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
 import 'package:mhg/features/my_wish_list/view/widget/wish_list_counter.dart';
 import 'package:mhg/features/product_details/controller/product_details_controller.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
-import 'package:mhg/features/product_details/view/widgets/product_details_counter_widget.dart';
+import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/net_image.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import 'package:mhg/widgets/product_counter.dart';
 import '../../../../widgets/heart_widget.dart';
 import '../../../../widgets/rating_widget.dart';
+import '../../../auth/signin/view/pages/sign_in_page.dart';
 import '../../models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
@@ -37,6 +39,8 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<MainWrapperController>();
+    final profileController = Get.find<ProfileController>();
+
     return InkWell(
       onTap: () async {
         if (isDetails) {
@@ -75,10 +79,12 @@ class ProductCard extends StatelessWidget {
                     top: Radius.circular(20),
                   ),
                   child: NetImage(
-                      image: isWishList == false
-                          ? model!.primaryImageLink
-                          : wishListModel!.options.imageLink,
-                      height: AppDimensions.productHeight(context)),
+                    image: isWishList == false
+                        ? model!.primaryImageLink
+                        : wishListModel!.options.imageLink,
+                    height: AppDimensions.productHeight(context),
+                    width: 182,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Padding(
@@ -105,6 +111,7 @@ class ProductCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 5),
+<<<<<<< HEAD
 
                        Visibility(
                          visible:  model?.averageRate!=null&&model?.averageRate!='0',
@@ -118,74 +125,91 @@ class ProductCard extends StatelessWidget {
                     child: Expanded(
                       child: RatingWidget(initialRating: double.parse(model?.averageRate!=null?model!.averageRate!.toString():'0'),),
                     ),),
+=======
+                      isWishList == true
+                          ? const SizedBox()
+                          : Visibility(
+                              visible:
+                                  double.parse("${model?.averageRate}") == 0
+                                      ? false
+                                      : true,
+                              child: Expanded(
+                                child: RatingWidget(
+                                  initialRating:
+                                      double.parse("${model?.averageRate}"),
+                                  isEnableToRate: false,
+                                ),
+                              ),
+                            ),
+>>>>>>> 41d77afdce41021259b4fdfd3dcb94152246ebc1
                     ],
                   ),
                 ),
                 const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                  ),
-                  child: Row(
-                    children: [
-                      Visibility(
-                        visible: double.parse(
-                              isWishList == false
-                                  ? model!.discount
-                                  : wishListModel!.discount.toString(),
-                            ).round() !=
-                            0,
-                        child: Expanded(
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              'Dhs. ${isWishList == false ? model!.price : wishListModel!.price}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall
-                                  ?.copyWith(
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                            ),
-                          ),
-                        ),
+                Obx(() => Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
                       ),
-                      const SizedBox(width: 10),
-                      double.parse(
-                                isWishList == false
-                                    ? model!.discount
-                                    : wishListModel!.discount.toString(),
-                              ).round() ==
-                              0
-                          ? FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                'Dhs. ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displaySmall
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            )
-                          : Expanded(
+                      child: Row(
+                        children: [
+                          Visibility(
+                            visible: double.parse(
+                                  isWishList == false
+                                      ? model!.discount
+                                      : wishListModel!.discount.toString(),
+                                ).round() !=
+                                0,
+                            child: Expanded(
                               child: FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
-                                  'Dhs. ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                                  '${profileController.currnecy.value} ${isWishList == false ? model!.price : wishListModel!.price}',
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
                                       ?.copyWith(
-                                        fontWeight: FontWeight.bold,
+                                        decoration: TextDecoration.lineThrough,
                                       ),
                                 ),
                               ),
                             ),
-                    ],
-                  ),
-                ),
+                          ),
+                          const SizedBox(width: 10),
+                          double.parse(
+                                    isWishList == false
+                                        ? model!.discount
+                                        : wishListModel!.discount.toString(),
+                                  ).round() ==
+                                  0
+                              ? FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    '${profileController.currnecy.value} ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                )
+                              : Expanded(
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Text(
+                                      '${profileController.currnecy.value} ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displaySmall
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                        ],
+                      ),
+                    )),
                 const SizedBox(height: 10),
                 StatefulBuilder(builder: (context, setState) {
                   return model?.inCart == 1
@@ -211,6 +235,16 @@ class ProductCard extends StatelessWidget {
                                     wishListModel!.isAddToBag,
                                 color: AppColors.secondary,
                                 onTap: () async {
+                                  if (App.token.isEmpty) {
+                                    Get.toNamed(
+                                      SignInPage.routeName,
+                                      arguments: {
+                                        'country': App.countryName,
+                                        'is_guest': true,
+                                      },
+                                    );
+                                    return;
+                                  }
                                   if (wishListModel != null) {
                                     wishListModel?.isAddToBag = true;
                                   } else {

@@ -249,13 +249,7 @@ class PersonalInformation extends StatelessWidget {
                             ),
                           ),
                         ),
-                        if (controller.enableEditOnName == false ||
-                            controller.enableEditOnState == false ||
-                            controller.enableEditOnZipCode == false ||
-                            controller.enableEditOnEmail == false ||
-                            controller.enableEditOnPassword == false ||
-                            controller.enableEditOnNumber.isFalse ||
-                            controller.enableEditOnAddress == false)
+                        if (controller.isEdit.isTrue)
                           PersonalInfoButton(
                               text: "Save",
                               onTap: () {

@@ -27,6 +27,7 @@ class BottomSignIn extends StatelessWidget {
               width: double.infinity,
 
               onTap: () {
+                controller.isOTP.trigger(false);
                 if (controller.formKey.currentState!.validate()) {
                   AppHelper.closeKeyboard();
                   controller.signInWithOutOtp();
@@ -45,6 +46,7 @@ class BottomSignIn extends StatelessWidget {
                     width: double.infinity,
                     color: AppColors.secondary,
                     onTap: () {
+                      controller.isOTP.trigger(true);
                       if (controller.formKey.currentState!.validate()) {
                         AppHelper.closeKeyboard();
                         String phoneNumber = controller.phone.text.trim();

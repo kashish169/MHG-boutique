@@ -13,6 +13,7 @@ import 'package:mhg/features/rewards/pages/rewards_page.dart';
 import 'package:mhg/features/setting/view/pages/setting_view.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import '../../../../widgets/divider_widget.dart';
+import '../../../checkout/views/pages/payment_methods_page.dart';
 import '../widgets/profile_card.dart';
 import '../widgets/profile_follow_us_widget.dart';
 import '../widgets/profile_header.dart';
@@ -98,6 +99,13 @@ class ProfileView extends StatelessWidget {
               ProfileCard(
                 icon: AppAssets.payment,
                 title: 'Payment information',
+                onTap: () {
+                  Get.to(
+                    () => const PaymentMethodsPage(
+                      isProfile: true,
+                    ),
+                  );
+                },
               ),
               const DividerWidget(),
               ProfileCard(
@@ -135,6 +143,7 @@ class ProfileView extends StatelessWidget {
                 title: 'Log out',
                 onTap: () async {
                   bool notifayMe = App.notifyMe!;
+                  App.token = '';
                   await StoragePref.clear();
                   await StoragePref.setbool(
                     key: 'notifyme',

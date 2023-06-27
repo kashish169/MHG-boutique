@@ -22,11 +22,14 @@ class CheckoutPage extends StatelessWidget {
       backgroundColor: AppColors.white2,
       appBar: customAppBar(context, title: 'Checkout'),
       body: GetX<CheckoutController>(initState: (state) async {
-        state.controller?.getUserPaymentMethods();
+        await state.controller?.getUserPaymentMethods();
         if (state.controller!.paymentMethodsList.isEmpty) {
-          state.controller?.getPaymentMethods();
+          await state.controller?.getPaymentMethods();
         }
-        state.controller?.orderPrice();
+        if (profileController.model.value == null) {
+          await profileController.getProfileInfo();
+        }
+        await state.controller?.orderPrice();
       }, builder: (controller) {
         if (controller.isLoading.isTrue ||
             controller.isLoadingPaymentMethods.isTrue ||
@@ -35,14 +38,14 @@ class CheckoutPage extends StatelessWidget {
         } else if (controller.isError.isTrue ||
             controller.isErrorPaymentMethods.isTrue ||
             profileController.isError.isTrue) {
-          return RetryButton(onTap: () {
-            controller.getUserPaymentMethods();
+          return RetryButton(onTap: () async {
+            await controller.getUserPaymentMethods();
             if (controller.isErrorPaymentMethods.isTrue) {
-              controller.getPaymentMethods();
+              await controller.getPaymentMethods();
             }
-            controller.orderPrice();
+            await controller.orderPrice();
             if (profileController.isError.isTrue) {
-              profileController.getProfileInfo();
+              await profileController.getProfileInfo();
             }
           });
         }

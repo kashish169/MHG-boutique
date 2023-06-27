@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
@@ -108,7 +109,6 @@ class WishListController extends GetxController {
       results.fold(
         (l) {
           isError(true);
-          // AppToasts.errorToast(l.message);
           log("Wish List ${l.message}");
         },
         (r) {
@@ -184,5 +184,13 @@ class WishListController extends GetxController {
       wishListItems[index].options.cartQuantity = 1;
       update();
     }
+  }
+
+  @override
+  void onInit() {
+    if (App.token.isNotEmpty) {
+      getWishList();
+    }
+    super.onInit();
   }
 }
