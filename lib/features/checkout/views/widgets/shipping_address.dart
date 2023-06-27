@@ -90,7 +90,7 @@ class ShippingAddress extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 3),
                       child: Text(
-                        controller.model.value!.countryName ?? '',
+                        controller.model.value!.country?.name ?? '',
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
                                   fontSize: 16,
