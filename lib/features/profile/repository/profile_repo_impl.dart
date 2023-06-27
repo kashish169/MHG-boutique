@@ -19,4 +19,12 @@ class ProfileRepoImpl implements ProfileRepo {
         url: Api.profile,
         isAuthorized: true,
       );
+
+  @override
+  Future<Either<Failure, ApiResponse>> sendHearts(Object body) async =>
+      await httpService.post(
+        url: Api.sendHearts,
+        isAuthorized: true,
+        body: body
+      );
 }

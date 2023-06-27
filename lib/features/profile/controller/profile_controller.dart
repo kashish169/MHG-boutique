@@ -7,12 +7,16 @@ import 'package:mhg/core/models/api_response.dart';
 import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
 import 'package:mhg/features/profile/models/profle_info_model.dart';
+import 'package:mhg/features/profile/models/send_hearts_model.dart';
+import 'package:mhg/features/profile/models/send_hearts_request_model.dart';
 import 'package:mhg/features/profile/repository/profile_repo_impl.dart';
 import 'package:mhg/features/profile/repository/profile_repository.dart';
+import 'package:mhg/widgets/loading_widget.dart';
 
 class ProfileController extends GetxController {
   late ProfileRepo profileRepo;
   late Rxn<ProfileInfoModal> model = Rxn<ProfileInfoModal>();
+  SendHeartsModel sendHeartsModel = SendHeartsModel();
 
   ProfileController() {
     profileRepo = Get.find<ProfileRepoImpl>();
@@ -68,6 +72,43 @@ class ProfileController extends GetxController {
       return AppAssets.moghram;
     } else {
       return AppAssets.molah;
+    }
+  }
+
+  sendHearts(hearts, phone) async {
+    try {
+      Object body = SendHeartsRequestModel(
+        hearts: hearts,
+        phoneNumber: phone,
+      ).toJson();
+      log(
+        SendHeartsRequestModel(
+          hearts: hearts,
+          phoneNumber: phone,
+        ).toJson().toString(),
+      );
+      isLoading(true);
+      isError(false);
+      Either<Failure, ApiResponse> results = await profileRepo.sendHearts(body);
+      isLoading(false);
+      results.fold((l) {
+        AppToasts.errorToast(l.message);
+        log("SEND HEARTS METHODS RESPONSE ERROR ${l.message}");
+      }, (r) async {
+        var statusCode = r.object["code"];
+        var message = r.object["message"];
+        log("SEND HEARTS METHODS RESPONSE STATUS $statusCode");
+        log("${r.object}");
+        if (statusCode == 200) {
+          sendHeartsModel = SendHeartsModel.fromJson(r.object);
+          AppToasts.successToast('Hearts has been sent Successfully!');
+        } else {
+          AppToasts.errorToast(message);
+        }
+      });
+      Get.back();
+    } catch (e, s) {
+      log("$e $s");
     }
   }
 }
