@@ -39,6 +39,7 @@ class CartModel {
 }
 
 class Options {
+  dynamic brandName;
   dynamic size;
   dynamic color;
   String? image;
@@ -49,6 +50,7 @@ class Options {
   String? voucher;
 
   Options({
+    this.brandName,
     this.size,
     this.color,
     this.image,
@@ -60,6 +62,7 @@ class Options {
   });
 
   factory Options.fromJson(Map<String, dynamic> json) => Options(
+        brandName: json["brand_name"],
         size: json["size"],
         color: json["color"],
         image: json["image"],

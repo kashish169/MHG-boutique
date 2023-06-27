@@ -69,7 +69,7 @@ class MyCartCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          model.options.itemTag ?? '',
+                          model.options.brandName ?? '',
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall
