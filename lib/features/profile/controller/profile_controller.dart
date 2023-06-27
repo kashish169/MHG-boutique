@@ -14,6 +14,7 @@ import 'package:mhg/features/profile/models/send_hearts_request_model.dart';
 import 'package:mhg/features/profile/repository/profile_repo_impl.dart';
 import 'package:mhg/features/profile/repository/profile_repository.dart';
 import 'package:mhg/widgets/loading_widget.dart';
+import '../../../core/storage/storage_pref.dart';
 
 class ProfileController extends GetxController {
   late ProfileRepo profileRepo;
@@ -21,6 +22,7 @@ class ProfileController extends GetxController {
   SendHeartsModel sendHeartsModel = SendHeartsModel();
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController heartsController = TextEditingController();
+  RxString countryCode = ''.obs;
 
   ProfileController() {
     profileRepo = Get.find<ProfileRepoImpl>();
@@ -29,8 +31,10 @@ class ProfileController extends GetxController {
   RxBool isError = false.obs;
   RxBool firstCall = true.obs;
   RxBool loadingUpdateCard = false.obs;
+  RxString currnecy = "...".obs;
 
   Future<void> getProfileInfo() async {
+    log("________________getProfileInfo");
     try {
       if (model.value == null) {
         isLoading(true);
@@ -43,14 +47,27 @@ class ProfileController extends GetxController {
       loadingUpdateCard(false);
       results.fold(
         (l) {
+          getProfileInfo();
           isError(true);
         },
         (r) async {
-          log("${r.object}");
           int statusCode = r.object['code'];
           var message = r.object['message'];
           if (statusCode == 200) {
             model.value = ProfileInfoModal.fromJson(r.object["data"]);
+            App.countryId = model.value?.country?.id;
+            App.currency = "${model.value?.country?.currency.currency}";
+            currnecy.value = App.currency;
+            await StoragePref.setInt(
+              key: 'countryid',
+              value: App.countryId ?? 1,
+            );
+            await StoragePref.setString(
+              key: 'currency',
+              value: App.currency,
+            );
+            log("currency is : ${App.currency}");
+            log("countryId is : ${App.countryId}");
             firstCall(false);
           } else if (statusCode == 400) {
             AppToasts.errorToast(message);
@@ -82,7 +99,7 @@ class ProfileController extends GetxController {
     try {
       var body = SendHeartsRequestModel(
         hearts: double.parse(hearts),
-        phoneNumber: phone,
+        phoneNumber: countryCode.value+ phone,
       ).toJson();
 
       isLoading(true);
@@ -90,7 +107,6 @@ class ProfileController extends GetxController {
       Either<Failure, ApiResponse> results = await profileRepo.sendHearts(body);
       isLoading(false);
       results.fold((l) {
-       
         AppToasts.errorToast(l.message);
         log("SEND HEARTS METHODS RESPONSE ERROR ${l.message}");
       }, (r) async {
@@ -108,12 +124,33 @@ class ProfileController extends GetxController {
     } catch (e, s) {
       log("$e $s");
     }
+  }
+
+  String validateMobile(String? value) {
+    String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+    RegExp regExp = RegExp(pattern);
+    if (value != null) {
+      if (value.isEmpty) {
+        return 'Please enter mobile number';
+      } else if (!regExp.hasMatch(value)) {
+        return 'Please enter valid mobile number';
+      }
+    } else {
+      return 'Please enter mobile number';
+    }
+    return '';
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
     @override
     void onInit() {
       if (App.token.isNotEmpty) {
         getProfileInfo();
+      } else {
+        currnecy.value = App.currency;
       }
-      super.onInit();
     }
   }
 }

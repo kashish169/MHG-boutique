@@ -37,6 +37,7 @@ class ProductDetailsInfoCard extends StatelessWidget {
             height: 5,
           ),
           const DividerWidget(),
+          const SizedBox(height: 10),
           Html(
             data: controller.model.enDescription,
             style: {

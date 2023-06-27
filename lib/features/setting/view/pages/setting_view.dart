@@ -23,11 +23,9 @@ class SettingPage extends StatelessWidget {
         children: [
           // const LanguageWidget(),
           // const DividerWidget(),
-          const CountryWidget(),
-          const DividerWidget(),
-          const SizedBox(
-            height: 30,
-          ),
+          // const CountryWidget(),
+          // const DividerWidget(),
+          const SizedBox(height: 30),
           const DividerWidget(),
           const AllowNotification(),
           const DividerWidget(),

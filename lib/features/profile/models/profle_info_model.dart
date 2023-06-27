@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:mhg/features/on_board/model/country_model.dart';
 
 ProfileInfoModal profileInfoModalFromJson(String str) =>
     ProfileInfoModal.fromJson(json.decode(str));
@@ -80,7 +81,7 @@ class ProfileInfoModal {
   String? state;
   String? zipCode;
   String? countryName;
-  Country? country;
+  CountryModel? country;
 
   factory ProfileInfoModal.fromJson(Map<String, dynamic> json) =>
       ProfileInfoModal(
@@ -122,68 +123,8 @@ class ProfileInfoModal {
         countryName: json['country_name'],
         country: json['country'] == null
             ? null
-            : Country.fromJson(
+            : CountryModel.fromJson(
                 json['country'],
               ),
       );
-}
-
-class CountryModal {
-  Country? country;
-
-  CountryModal({this.country});
-
-  CountryModal.fromJson(Map<String, dynamic> json) {
-    country =
-        json['country'] != null ? Country.fromJson(json['country']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (country != null) {
-      data['country'] = country!.toJson();
-    }
-    return data;
-  }
-}
-
-class Country {
-  int? id;
-  String? name;
-  String? flag;
-  int? currencyId;
-  String? createdAt;
-  String? updatedAt;
-  String? flagLink;
-
-  Country(
-      {this.id,
-      this.name,
-      this.flag,
-      this.currencyId,
-      this.createdAt,
-      this.updatedAt,
-      this.flagLink});
-
-  Country.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    flag = json['flag'];
-    currencyId = json['currency_id'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    flagLink = json['flag_link'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['flag'] = flag;
-    data['currency_id'] = currencyId;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    data['flag_link'] = flagLink;
-    return data;
-  }
 }

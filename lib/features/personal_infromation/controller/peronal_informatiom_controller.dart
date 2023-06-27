@@ -114,9 +114,8 @@ class PersonalInformationController extends GetxController {
         bool success = r.object['isSuccessful'];
         var message = r.object['message'];
         if (success == true) {
-          Get.back();
-
           AppToasts.errorToast("Updated Successfully");
+          Get.back();
           profileController.getProfileInfo();
         } else {
           AppToasts.errorToast(message);
@@ -236,11 +235,7 @@ class PersonalInformationController extends GetxController {
               setCountry(
                 profileController.model.value?.country?.name,
               );
-              App.countryId = profileController.model.value?.country?.id;
-              await StoragePref.setInt(
-                key: 'countryid',
-                value: App.countryId ?? 1,
-              );
+
               update();
             }
           } else {

@@ -59,14 +59,18 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Text(
-                        '\$${checkoutController.orderPriceModal.data?.subtotal}',
-                        style:
-                            Theme.of(context).textTheme.displayMedium?.copyWith(
-                                  color: AppColors.mediumLabel,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
-                                ),
+                      FittedBox(
+                        child: Text(
+                          '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.subtotal}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(
+                                color: AppColors.mediumLabel,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                              ),
+                        ),
                       ),
                     ],
                   ),
@@ -89,14 +93,18 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Text(
-                        '\$${checkoutController.orderPriceModal.data?.tax}',
-                        style:
-                            Theme.of(context).textTheme.displayMedium?.copyWith(
-                                  color: AppColors.mediumLabel,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
-                                ),
+                      FittedBox(
+                        child: Text(
+                          '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(
+                                color: AppColors.mediumLabel,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                              ),
+                        ),
                       ),
                     ],
                   ),
@@ -125,16 +133,18 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           ),
                         ),
                         const SizedBox(height: 10),
-                        Text(
-                          '\$${checkoutController.orderPriceModal.data?.shippingCharge}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayMedium
-                              ?.copyWith(
-                                color: AppColors.mediumLabel,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                              ),
+                        FittedBox(
+                          child: Text(
+                            '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.shippingCharge}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .displayMedium
+                                ?.copyWith(
+                                  color: AppColors.mediumLabel,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17,
+                                ),
+                          ),
                         ),
                       ],
                     ),
@@ -163,16 +173,18 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           ),
                         ),
                         const SizedBox(height: 10),
-                        Text(
-                          '\$${checkoutController.orderPriceModal.data?.discount}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayMedium
-                              ?.copyWith(
-                                color: AppColors.mediumLabel,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                              ),
+                        FittedBox(
+                          child: Text(
+                            '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.discount}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .displayMedium
+                                ?.copyWith(
+                                  color: AppColors.mediumLabel,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17,
+                                ),
+                          ),
                         ),
                       ],
                     ),
@@ -196,14 +208,18 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Text(
-                        '\$${checkoutController.orderPriceModal.data?.grandTotal}',
-                        style:
-                            Theme.of(context).textTheme.displayMedium?.copyWith(
-                                  color: AppColors.mediumLabel,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
-                                ),
+                      FittedBox(
+                        child: Text(
+                          '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.grandTotal}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(
+                                color: AppColors.mediumLabel,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                              ),
+                        ),
                       ),
                     ],
                   ),

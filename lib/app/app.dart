@@ -23,6 +23,10 @@ class App {
     token = await StoragePref.getString("token");
     notifyMe = await StoragePref.getbool("notifyme");
     countryId = await StoragePref.getInt("countryid");
+    currency = await StoragePref.getString("currency");
+    if (currency.isEmpty) {
+      currency = "AED";
+    }
     NotificationService.init();
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.dark,
@@ -30,5 +34,6 @@ class App {
     log("ACCESS TOKEN : $token");
     log("NOTIFY ME : $notifyMe");
     log("COUNTRY ID : $countryId");
+    log("currency is : $currency");
   }
 }

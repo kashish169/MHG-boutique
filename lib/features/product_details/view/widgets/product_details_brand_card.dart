@@ -6,6 +6,7 @@ import 'package:mhg/features/product_details/view/widgets/product_details_counte
 import 'package:mhg/widgets/primary_button.dart';
 import '../../../../app/app.dart';
 import '../../../auth/signin/view/pages/sign_in_page.dart';
+import '../../../profile/controller/profile_controller.dart';
 import '../../controller/product_details_controller.dart';
 
 class ProductDetailsBrandCard extends StatelessWidget {
@@ -14,6 +15,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<ProductDetailsController>();
+    final profileController = Get.find<ProfileController>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -45,33 +47,34 @@ class ProductDetailsBrandCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 5),
-          Row(
-            children: [
-              Visibility(
-                visible: double.parse(
-                      controller.model.discount,
-                    ).round() !=
-                    0,
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.only(end: 10),
-                  child: Text(
-                    'Dhs. ${controller.model.price}',
+          Obx(() => Row(
+                children: [
+                  Visibility(
+                    visible: double.parse(
+                          controller.model.discount,
+                        ).round() !=
+                        0,
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.only(end: 10),
+                      child: Text(
+                        '${profileController.currnecy.value} ${controller.model.price}',
+                        style:
+                            Theme.of(context).textTheme.displayMedium?.copyWith(
+                                  fontSize: 16,
+                                  color: AppColors.lightLabel,
+                                  decoration: TextDecoration.lineThrough,
+                                ),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    '${profileController.currnecy.value} ${controller.model.discountPrice}',
                     style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                          fontSize: 16,
-                          color: AppColors.lightLabel,
-                          decoration: TextDecoration.lineThrough,
+                          fontSize: 15,
                         ),
                   ),
-                ),
-              ),
-              Text(
-                'Dhs. ${controller.model.discountPrice}',
-                style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      fontSize: 15,
-                    ),
-              ),
-            ],
-          ),
+                ],
+              )),
           const SizedBox(height: 5),
           controller.model.pts != null
               ? Row(

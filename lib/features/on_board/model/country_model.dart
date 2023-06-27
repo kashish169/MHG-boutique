@@ -1,3 +1,5 @@
+import 'currency_model.dart';
+
 class CountryModel {
   int id;
   int currencyId;
@@ -6,7 +8,7 @@ class CountryModel {
   String flagLink;
   dynamic createdAt;
   dynamic updatedAt;
-  Currency currency;
+  CurrencyModel currency;
   CountryModel({
     required this.id,
     required this.currencyId,
@@ -25,37 +27,7 @@ class CountryModel {
         flagLink: json['flag_link'],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        currency: Currency.fromJson(json["currency"]),
-      );
-}
-
-class Currency {
-  int id;
-  String currency;
-  dynamic iso;
-  dynamic symbol;
-  dynamic convertFromUsd;
-  dynamic createdAt;
-  dynamic updatedAt;
-
-  Currency({
-    required this.id,
-    required this.currency,
-    this.iso,
-    this.symbol,
-    this.convertFromUsd,
-    this.createdAt,
-    this.updatedAt,
-  });
-
-  factory Currency.fromJson(Map<String, dynamic> json) => Currency(
-        id: json["id"],
-        currency: json["currency"],
-        iso: json["iso"],
-        symbol: json["symbol"],
-        convertFromUsd: json["convert_from_usd"].toDouble(),
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        currency: CurrencyModel.fromJson(json["currency"]),
       );
 }
 

@@ -92,9 +92,14 @@ class OnboardController extends GetxController {
             if (countryList.isNotEmpty) {
               selectedCountryFlage = countryList.first.flagLink;
               App.countryId = countryList.first.id;
+              App.currency = countryList.first.currency.currency;
               await StoragePref.setInt(
                 key: 'countryid',
                 value: App.countryId ?? 1,
+              );
+              await StoragePref.setString(
+                key: 'currency',
+                value: App.currency,
               );
             }
           } else {
