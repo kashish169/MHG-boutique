@@ -378,6 +378,12 @@ class CheckoutController extends GetxController {
           log("${r.object}");
           if (statusCode == 201) {
             var url = r.object["data"];
+            if (url == null) {
+              AppToasts.errorToast(
+                "You can’t use this card because it’s not 3DS enrolled",
+              );
+              return;
+            }
             var results = await Get.to(
               () => AddPaymentMethodWebViewPage(
                 title: "3DS Authentication",
