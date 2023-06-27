@@ -99,7 +99,7 @@ class ProfileController extends GetxController {
         log("${r.object}");
         if (statusCode == 200) {
           sendHeartsModel = SendHeartsModel.fromJson(r.object);
-          AppToasts.successToast('Hearts has been sent Successfully!');
+          AppToasts.successToast('Points has been sent Successfully!');
         } else {
           AppToasts.errorToast(message);
         }
