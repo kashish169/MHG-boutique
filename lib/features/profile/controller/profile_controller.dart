@@ -96,33 +96,45 @@ class ProfileController extends GetxController {
   }
 
   sendHearts(hearts, phone) async {
-    try {
-      var body = SendHeartsRequestModel(
-        hearts: double.parse(hearts),
-        phoneNumber: countryCode.value+ phone,
-      ).toJson();
+    String validatedPhone = validateMobile(phone);
+    if (heartsController.text.isEmpty || phoneNumberController.text.isEmpty) {
+      AppToasts.errorToast('Fields can not be empty !');
+    }
+    if (validatedPhone == 'Please enter mobile number' ||
+        validatedPhone == '') {
+      AppToasts.errorToast('Please enter mobile number !');
+    } else if (validatedPhone == 'Please enter valid mobile number') {
+      AppToasts.errorToast('Please enter valid mobile number');
+    } else {
+      try {
+        var body = SendHeartsRequestModel(
+          hearts: double.parse(hearts),
+          phoneNumber: countryCode.value + phone,
+        ).toJson();
 
-      isLoading(true);
-      isError(false);
-      Either<Failure, ApiResponse> results = await profileRepo.sendHearts(body);
-      isLoading(false);
-      results.fold((l) {
-        AppToasts.errorToast(l.message);
-        log("SEND HEARTS METHODS RESPONSE ERROR ${l.message}");
-      }, (r) async {
-        var statusCode = r.object["code"];
-        var message = r.object["message"];
-        log("SEND HEARTS METHODS RESPONSE STATUS $statusCode");
-        log("${r.object}");
-        if (statusCode == 200) {
-          sendHeartsModel = SendHeartsModel.fromJson(r.object);
-          AppToasts.successToast('Points has been sent Successfully!');
-        } else {
-          AppToasts.errorToast(message);
-        }
-      });
-    } catch (e, s) {
-      log("$e $s");
+        isLoading(true);
+        isError(false);
+        Either<Failure, ApiResponse> results =
+            await profileRepo.sendHearts(body);
+        isLoading(false);
+        results.fold((l) {
+          AppToasts.errorToast(l.message);
+          log("SEND HEARTS METHODS RESPONSE ERROR ${l.message}");
+        }, (r) async {
+          var statusCode = r.object["code"];
+          var message = r.object["message"];
+          log("SEND HEARTS METHODS RESPONSE STATUS $statusCode");
+          log("${r.object}");
+          if (statusCode == 200) {
+            sendHeartsModel = SendHeartsModel.fromJson(r.object);
+            AppToasts.successToast('Points has been sent Successfully!');
+          } else {
+            AppToasts.errorToast(message);
+          }
+        });
+      } catch (e, s) {
+        log("$e $s");
+      }
     }
   }
 
