@@ -88,10 +88,12 @@ class ProfileView extends StatelessWidget {
               ),
               const DividerWidget(),
               ProfileCard(
-                icon: AppAssets.reward,
+                icon: AppAssets.sendPoints,
                 title: 'Send Points',
                 onTap: () async {
-                  await Get.toNamed(SendPointsPage.routeName);
+                  await Get.dialog(const SendPointsPage());
+                  controller.phoneNumberController.clear();
+                  controller.pointsController.clear();
                 },
               ),
               const DividerWidget(),

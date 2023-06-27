@@ -1,110 +1,108 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/checkout/views/widgets/place_order_button.dart';
-
 import 'package:mhg/features/profile/controller/profile_controller.dart';
-import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
-import 'package:mhg/widgets/loading_widget.dart';
-import 'package:mhg/widgets/retry_button.dart';
 
 class SendPointsPage extends StatelessWidget {
   static String routeName = '/send_points';
-  ProfileController controller = Get.find();
-  SendPointsPage({super.key});
+  const SendPointsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: customAppBar(context, title: "Send Points"),
-      body: Obx(() => Column(
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
+    ProfileController controller = Get.find();
+    return Dialog(
+      insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Form(
+        key: controller.formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                "Send Points",
+                style: Theme.of(context).textTheme.displayMedium,
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.75,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.75,
-                      child: CustomFormField(
-                        hint: 'Your phone number',
-                        inputType: TextInputType.number,
-                        validator: (val) => controller.validateMobile(val),
-                        onTap: () {},
-                        controller: controller.phoneNumberController,
-                        obscure: false,
-                        prefixWidget: Padding(
-                          padding: const EdgeInsets.only(bottom: 3.0),
-                          child: CountryCodePicker(
-                            onChanged: (value) {
-                             
-                              controller.countryCode(value.dialCode);
-                            },
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .displaySmall!
-                                .copyWith(
-                                  color: AppColors.black3,
-                                ),
-                            initialSelection: 'UAE',
-                            favorite: const ['+971', 'UAE'],
-                            showCountryOnly: false,
-                            showOnlyCountryWhenClosed: false,
-                            alignLeft: false,
-                            dialogTextStyle: Theme.of(context)
-                                .textTheme
-                                .displaySmall!
-                                .copyWith(
-                                  color: AppColors.black3,
-                                ),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+              ),
+              child: CustomFormField(
+                hint: 'Your phone number',
+                inputType: TextInputType.number,
+                validator: (val) => AppHelper.validation(val!, 9, 9, 'Number'),
+                controller: controller.phoneNumberController,
+                obscure: false,
+                prefixWidget: Padding(
+                  padding: const EdgeInsets.only(bottom: 3.0),
+                  child: CountryCodePicker(
+                    onChanged: (value) {
+                      controller.countryCode(value.dialCode);
+                    },
+                    searchStyle:
+                        Theme.of(context).textTheme.displaySmall!.copyWith(
+                              color: AppColors.label,
+                            ),
+                    textStyle:
+                        Theme.of(context).textTheme.displaySmall!.copyWith(
+                              color: AppColors.label,
+                            ),
+                    initialSelection: 'UAE',
+                    favorite: const ['+971', 'UAE'],
+                    showCountryOnly: false,
+                    showOnlyCountryWhenClosed: false,
+                    alignLeft: false,
+                    dialogTextStyle:
+                        Theme.of(context).textTheme.displaySmall!.copyWith(
+                              color: AppColors.label,
+                            ),
+                  ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.75,
-                child: CustomFormField(
-                  hint: 'Your Points',
-                  inputType: TextInputType.number,
-                  validator: (val) {
-                    return AppHelper.validation(val!, 1, 500, '');
-                  },
-                  onTap: () {},
-                  controller: controller.heartsController,
-                  obscure: false,
-                ),
+              child: CustomFormField(
+                hint: 'Your Points',
+                inputType: const TextInputType.numberWithOptions(decimal: true),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
+                ],
+                validator: (val) {
+                  return AppHelper.validation(val!, 1, 500, '');
+                },
+                controller: controller.pointsController,
+                obscure: false,
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.05,
-              ),
-              controller.isLoading.value
-                  ? const LoadingWidget()
-                  : PlaceOrderButton(
-                      color: AppColors.secondary,
-                      title: 'Send',
-                      width: 300,
-                      hasIcon: false,
-                      onPress: () {
-                        controller.sendHearts(
-                          controller.heartsController.text,
-                          controller.phoneNumberController.text,
-                        );
-                      },
-                    ),
-            ],
-          )),
+            ),
+            const SizedBox(height: 10),
+            PlaceOrderButton(
+              color: AppColors.secondary,
+              title: 'Send',
+              width: 250,
+              hasIcon: false,
+              onPress: () {
+                if (controller.formKey.currentState!.validate()) {
+                  controller.sendHearts();
+                }
+              },
+            ),
+            const SizedBox(height: 15),
+          ],
+        ),
+      ),
     );
   }
 }

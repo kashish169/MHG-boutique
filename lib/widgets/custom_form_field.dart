@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mhg/constants/app_colors.dart';
 
 class CustomFormField extends StatelessWidget {
@@ -23,6 +24,7 @@ class CustomFormField extends StatelessWidget {
     this.onTapOutsidel,
     this.onFieldSubmitted,
     this.isFileWhite,
+    this.inputFormatters,
   });
 
   final Widget? prefixWidget;
@@ -44,6 +46,7 @@ class CustomFormField extends StatelessWidget {
   final Function(String)? onFieldSubmitted;
   final void Function(PointerDownEvent)? onTapOutsidel;
   final bool? isFileWhite;
+  final List<TextInputFormatter>? inputFormatters;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -56,6 +59,7 @@ class CustomFormField extends StatelessWidget {
         keyboardType: inputType,
         controller: controller,
         onTap: onTap,
+        inputFormatters: inputFormatters,
         onTapOutside: onTapOutsidel,
         textAlign: isAlignCenter != null ? TextAlign.center : TextAlign.start,
         readOnly: readOnly ?? false,

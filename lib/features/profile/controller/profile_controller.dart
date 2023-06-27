@@ -23,7 +23,7 @@ class ProfileController extends GetxController {
   late Rxn<ProfileInfoModal> model = Rxn<ProfileInfoModal>();
   SendHeartsModel sendHeartsModel = SendHeartsModel();
   TextEditingController phoneNumberController = TextEditingController();
-  TextEditingController heartsController = TextEditingController();
+  TextEditingController pointsController = TextEditingController();
   RxString countryCode = ''.obs;
 
   ProfileController() {
@@ -34,9 +34,9 @@ class ProfileController extends GetxController {
   RxBool firstCall = true.obs;
   RxBool loadingUpdateCard = false.obs;
   RxString currnecy = "...".obs;
+  final formKey = GlobalKey<FormState>();
 
   Future<void> getProfileInfo() async {
-    log("________________getProfileInfo");
     try {
       if (model.value == null) {
         isLoading(true);
@@ -97,46 +97,37 @@ class ProfileController extends GetxController {
     }
   }
 
-  sendHearts(hearts, phone) async {
-    String validatedPhone = validateMobile(countryCode.value + phone);
-    if (heartsController.text.isEmpty || phoneNumberController.text.isEmpty) {
-      AppToasts.errorToast('Fields can not be empty !');
-    }
-    if (validatedPhone == 'Please enter mobile number' ||
-        validatedPhone == '') {
-      AppToasts.errorToast('Please enter mobile number !');
-    } else if (validatedPhone == 'Please enter valid mobile number') {
-      AppToasts.errorToast('Please enter valid mobile number');
-    } else {
-      try {
-        var body = SendHeartsRequestModel(
-          hearts: double.parse(hearts),
-          phoneNumber: countryCode.value + phone,
-        ).toJson();
-
-        isLoading(true);
-        isError(false);
-        Either<Failure, ApiResponse> results =
-            await profileRepo.sendHearts(body);
-        isLoading(false);
-        results.fold((l) {
-          AppToasts.errorToast(l.message);
-          log("SEND HEARTS METHODS RESPONSE ERROR ${l.message}");
-        }, (r) async {
-          var statusCode = r.object["code"];
-          var message = r.object["message"];
-          log("SEND HEARTS METHODS RESPONSE STATUS $statusCode");
-          log("${r.object}");
-          if (statusCode == 200) {
-            sendHeartsModel = SendHeartsModel.fromJson(r.object);
-            AppToasts.successToast('Points has been sent Successfully!');
-          } else {
-            AppToasts.errorToast(message);
-          }
-        });
-      } catch (e, s) {
-        log("$e $s");
-      }
+  Future<void> sendHearts() async {
+    try {
+      var body = SendHeartsRequestModel(
+        hearts: double.parse(pointsController.text.trim()),
+        phoneNumber: countryCode.value + phoneNumberController.text.trim(),
+      ).toJson();
+      Get.dialog(
+        const LoadingWidget(),
+        barrierDismissible: false,
+      );
+      Either<Failure, ApiResponse> results = await profileRepo.sendHearts(body);
+      Get.back();
+      results.fold((l) {
+        AppToasts.errorToast(l.message);
+        log("SEND HEARTS METHODS RESPONSE ERROR ${l.message}");
+      }, (r) async {
+        var statusCode = r.object["code"];
+        var message = r.object["message"];
+        log("SEND HEARTS METHODS RESPONSE STATUS $statusCode");
+        log("${r.object}");
+        if (statusCode == 200) {
+          sendHeartsModel = SendHeartsModel.fromJson(r.object);
+          AppToasts.successToast('Points has been sent Successfully!');
+          getProfileInfo();
+          Get.back();
+        } else {
+          AppToasts.errorToast(message);
+        }
+      });
+    } catch (e, s) {
+      log("$e $s");
     }
   }
 
