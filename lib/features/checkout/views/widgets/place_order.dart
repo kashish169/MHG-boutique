@@ -48,7 +48,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                     FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text(
-                        'SUBTOTAL',
+                        'Subtotal',
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall
@@ -68,7 +68,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             ?.copyWith(
                               color: AppColors.mediumLabel,
                               fontWeight: FontWeight.bold,
-                              fontSize: 17,
+                              fontSize: 16,
                             ),
                       ),
                     ),
@@ -81,7 +81,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                     FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text(
-                        'TAX',
+                        'Tax',
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall
@@ -101,7 +101,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             ?.copyWith(
                               color: AppColors.mediumLabel,
                               fontWeight: FontWeight.bold,
-                              fontSize: 17,
+                              fontSize: 16,
                             ),
                       ),
                     ),
@@ -120,7 +120,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          'SHIPPING',
+                          'Shipping',
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall
@@ -140,7 +140,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                               ?.copyWith(
                                 color: AppColors.mediumLabel,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                                fontSize: 16,
                               ),
                         ),
                       ),
@@ -159,7 +159,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          'DISCOUNT',
+                          'Discount',
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall
@@ -179,7 +179,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                               ?.copyWith(
                                 color: AppColors.mediumLabel,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                                fontSize: 16,
                               ),
                         ),
                       ),
@@ -193,7 +193,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                     FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text(
-                        'TOTAL',
+                        'Total',
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall
@@ -213,7 +213,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             ?.copyWith(
                               color: AppColors.mediumLabel,
                               fontWeight: FontWeight.bold,
-                              fontSize: 17,
+                              fontSize: 16,
                             ),
                       ),
                     ),
