@@ -8,6 +8,7 @@ import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
 import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/view/pages/qr_view.dart';
+import 'package:mhg/features/profile/view/pages/send_points.dart';
 import 'package:mhg/features/profile/view/widgets/reward_widget.dart';
 import 'package:mhg/features/rewards/pages/rewards_page.dart';
 import 'package:mhg/features/setting/view/pages/setting_view.dart';
@@ -83,6 +84,14 @@ class ProfileView extends StatelessWidget {
                 onTap: () async {
                   await Get.toNamed(RewardsPage.routeName);
                   controller.getProfileInfo();
+                },
+              ),
+              const DividerWidget(),
+              ProfileCard(
+                icon: AppAssets.reward,
+                title: 'Send Points',
+                onTap: () async {
+                  await Get.toNamed(SendPointsPage.routeName);
                 },
               ),
               const DividerWidget(),
