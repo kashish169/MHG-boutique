@@ -38,7 +38,7 @@ class Api {
   static String productRoute = "/api/v1/product";
   static String productDetails = "$productRoute/product-details";
   static String addReview = "$productRoute/add-review";
-static String sendHearts = "/api/v1//users/send-hearts";
+static String sendHearts = "/api/v1/users/send-hearts";
   static String storeCategories = "/api/v1/category/store";
   static String menus = "/api/v1/category/menus";
   static String filterProduct = "/api/v1/product/filter?store_id=1";

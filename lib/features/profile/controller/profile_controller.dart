@@ -15,6 +15,8 @@ import 'package:mhg/features/profile/repository/profile_repo_impl.dart';
 import 'package:mhg/features/profile/repository/profile_repository.dart';
 import '../../../core/storage/storage_pref.dart';
 import 'package:mhg/widgets/loading_widget.dart';
+import 'package:mhg/widgets/loading_widget.dart';
+import '../../../core/storage/storage_pref.dart';
 
 class ProfileController extends GetxController {
   late ProfileRepo profileRepo;
@@ -22,6 +24,7 @@ class ProfileController extends GetxController {
   SendHeartsModel sendHeartsModel = SendHeartsModel();
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController heartsController = TextEditingController();
+  RxString countryCode = ''.obs;
 
   ProfileController() {
     profileRepo = Get.find<ProfileRepoImpl>();
@@ -98,7 +101,7 @@ class ProfileController extends GetxController {
     try {
       var body = SendHeartsRequestModel(
         hearts: double.parse(hearts),
-        phoneNumber: phone,
+        phoneNumber: countryCode.value + phone,
       ).toJson();
 
       isLoading(true);
@@ -125,13 +128,28 @@ class ProfileController extends GetxController {
     }
   }
 
+  String validateMobile(String? value) {
+    String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+    RegExp regExp = RegExp(pattern);
+    if (value != null) {
+      if (value.isEmpty) {
+        return 'Please enter mobile number';
+      } else if (!regExp.hasMatch(value)) {
+        return 'Please enter valid mobile number';
+      }
+    } else {
+      return 'Please enter mobile number';
+    }
+    return '';
+  }
+
   @override
   void onInit() {
     if (App.token.isNotEmpty) {
       getProfileInfo();
     } else {
       currnecy.value = App.currency;
-      super.onInit();
     }
+    super.onInit();
   }
 }

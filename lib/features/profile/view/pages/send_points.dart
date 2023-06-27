@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
@@ -20,27 +21,62 @@ class SendPointsPage extends StatelessWidget {
     return Scaffold(
       appBar: customAppBar(context, title: "Send Points"),
       body: Obx(() => Column(
-        
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height*0.1,),
               SizedBox(
-                width: MediaQuery.of(context).size.width*0.75,
-                child: CustomFormField(
-                  hint: 'Your phone number',
-                  
-                  validator: (val) {
-                    return AppHelper.validation(val!, 1, 500, '');
-                  },
-                  onTap: () {},
-                  controller: controller.phoneNumberController,
-                  obscure: false,
+                height: MediaQuery.of(context).size.height * 0.1,
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.75,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.75,
+                      child: CustomFormField(
+                        hint: 'Your phone number',
+                        inputType: TextInputType.number,
+                        validator: (val) => controller.validateMobile(val),
+                        onTap: () {},
+                        controller: controller.phoneNumberController,
+                        obscure: false,
+                        prefixWidget: Padding(
+                          padding: const EdgeInsets.only(bottom: 3.0),
+                          child: CountryCodePicker(
+                            onChanged: (value) {
+                              controller.countryCode(value.dialCode);
+                            },
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .displaySmall!
+                                .copyWith(
+                                  color: AppColors.black3,
+                                ),
+                            initialSelection: 'UAE',
+                            favorite: const ['+971', 'UAE'],
+                            showCountryOnly: false,
+                            showOnlyCountryWhenClosed: false,
+                            alignLeft: false,
+                            dialogTextStyle: Theme.of(context)
+                                .textTheme
+                                .displaySmall!
+                                .copyWith(
+                                  color: AppColors.black3,
+                                ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
-             const  SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               SizedBox(
-                 width: MediaQuery.of(context).size.width*0.75,
+                width: MediaQuery.of(context).size.width * 0.75,
                 child: CustomFormField(
                   hint: 'Your Points',
+                  inputType: TextInputType.number,
                   validator: (val) {
                     return AppHelper.validation(val!, 1, 500, '');
                   },
@@ -49,28 +85,23 @@ class SendPointsPage extends StatelessWidget {
                   obscure: false,
                 ),
               ),
-               SizedBox(height: MediaQuery.of(context).size.height*0.03,),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.05,
+              ),
               controller.isLoading.value
                   ? const LoadingWidget()
-                  : controller.isError.value
-                      ? RetryButton(
-                          onTap: () => controller.sendHearts(
-                            controller.heartsController.text,
-                            controller.phoneNumberController.text,
-                          ),
-                        )
-                      : PlaceOrderButton(
-                          color: AppColors.secondary,
-                          title: 'Send',
-                          width: 300,
-                          hasIcon: false,
-                          onPress: () {
-                            controller.sendHearts(
-                              controller.heartsController.text,
-                              controller.phoneNumberController.text,
-                            );
-                          },
-                        ),
+                  : PlaceOrderButton(
+                      color: AppColors.secondary,
+                      title: 'Send',
+                      width: 300,
+                      hasIcon: false,
+                      onPress: () {
+                        controller.sendHearts(
+                          controller.heartsController.text,
+                          controller.phoneNumberController.text,
+                        );
+                      },
+                    ),
             ],
           )),
     );
