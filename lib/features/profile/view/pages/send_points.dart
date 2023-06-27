@@ -40,7 +40,7 @@ class SendPointsPage extends StatelessWidget {
               SizedBox(
                  width: MediaQuery.of(context).size.width*0.75,
                 child: CustomFormField(
-                  hint: 'Your hearts number',
+                  hint: 'Your Points',
                   validator: (val) {
                     return AppHelper.validation(val!, 1, 500, '');
                   },
