@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/myorders/controller/my_orders_controller.dart';
 import 'package:mhg/features/myorders/models/order_model.dart';
 import 'package:mhg/widgets/net_image.dart';
 import '../../../../constants/app_dimensions.dart';
@@ -8,10 +9,10 @@ import '../../../profile/controller/profile_controller.dart';
 
 class OrderDetailsCard extends StatelessWidget {
   final OrderDetail model;
-
+  final int orderStatus;
   const OrderDetailsCard({
     super.key,
-    required this.model,
+    required this.model, required this.orderStatus,
   });
 
   @override
@@ -44,9 +45,9 @@ class OrderDetailsCard extends StatelessWidget {
                 Text(
                   model.productName,
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 16,
-                        color: AppColors.mediumLabel,
-                      ),
+                    fontSize: 16,
+                    color: AppColors.mediumLabel,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Row(
@@ -55,53 +56,82 @@ class OrderDetailsCard extends StatelessWidget {
                     Text(
                       'Order Id:${model.orderId}',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 12,
-                            color: AppColors.lightLabel,
-                          ),
+                        fontSize: 12,
+                        color: AppColors.lightLabel,
+                      ),
                     ),
                     Text(
                       'Product Id:${model.productId}',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 12,
-                            color: AppColors.lightLabel,
-                          ),
+                        fontSize: 12,
+                        color: AppColors.lightLabel,
+                      ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 15),
                 Obx(() => Text(
-                      'Price: ${profileController.currnecy.value} ${model.price}',
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 14,
-                            color: AppColors.mediumLabel,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    )),
+                  'Price: ${profileController.currnecy.value} ${model.price}',
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    fontSize: 14,
+                    color: AppColors.mediumLabel,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
                 const SizedBox(height: 4),
                 Text(
                   'Quantity: ${model.quantity}',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 14,
-                        color: AppColors.mediumLabel,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    fontSize: 14,
+                    color: AppColors.mediumLabel,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Obx(() => Text(
-                      'Total Price: ${profileController.currnecy.value} ${model.totalPrice}',
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 14,
-                            color: AppColors.mediumLabel,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    )),
+                  'Total Price: ${profileController.currnecy.value} ${model.totalPrice}',
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    fontSize: 14,
+                    color: AppColors.mediumLabel,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
                 Text(
                   'Quantity: ${model.quantity}',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 14,
-                        color: AppColors.mediumLabel,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    fontSize: 14,
+                    color: AppColors.mediumLabel,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Visibility(
+                  visible:orderStatus!=6&& orderStatus!=5,
+
+                  child:RichText(
+                    text: TextSpan(
+
+                        children: <TextSpan>[
+                          TextSpan(text: 'Status:',
+                            style:Theme.of(context).textTheme.displaySmall?.copyWith(
+                              fontSize: 14,
+                              color: AppColors.mediumLabel,
+                              fontWeight: FontWeight.bold,
+                            ),
+
+                          ),
+                          TextSpan(text:Get.find<MyOrdersController>().getStatus(orderStatus),
+                            style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                              fontSize: 14,
+                              color: AppColors.mediumLabel,
+                             // color: Get.find<MyOrdersController>().getStatusColor(orderStatus),
+                              fontWeight: FontWeight.bold,
+                            ),
+
+                          )
+                        ]
+                    ),
+                  ),
+
                 ),
                 const SizedBox(height: 4),
                 const SizedBox(height: 10),

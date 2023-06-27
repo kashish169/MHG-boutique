@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_colors.dart';
 import '../../../../../core/helper/app_helper.dart';
 import '../../../../../widgets/primary_button.dart';
 import '../../../otp/view/pages/otp.dart';
@@ -20,10 +21,11 @@ class BottomSignIn extends StatelessWidget {
               horizontal: 25,
             ),
             child: PrimaryButton(
+              color: AppColors.secondary,
               title: 'Login',
               height: 50,
               width: double.infinity,
-              color: const Color(0XFF232323),
+
               onTap: () {
                 controller.isOTP.trigger(false);
                 if (controller.formKey.currentState!.validate()) {
@@ -42,7 +44,7 @@ class BottomSignIn extends StatelessWidget {
                     title: 'Login with Otp',
                     height: 50,
                     width: double.infinity,
-                    color: const Color(0XFF232323),
+                    color: AppColors.secondary,
                     onTap: () {
                       controller.isOTP.trigger(true);
                       if (controller.formKey.currentState!.validate()) {

@@ -28,13 +28,13 @@ class ProductCard extends StatelessWidget {
 
   const ProductCard(
       {super.key,
-      this.model,
-      this.isDetails = false,
-      this.isProductPage = false,
-      this.isSearch = false,
-      this.fromArrival = false,
-      this.wishListModel,
-      this.isWishList = false});
+        this.model,
+        this.isDetails = false,
+        this.isProductPage = false,
+        this.isSearch = false,
+        this.fromArrival = false,
+        this.wishListModel,
+        this.isWishList = false});
 
   @override
   Widget build(BuildContext context) {
@@ -105,8 +105,8 @@ class ProductCard extends StatelessWidget {
                                 .textTheme
                                 .displaySmall
                                 ?.copyWith(
-                                  fontSize: 16,
-                                ),
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ),
@@ -114,151 +114,151 @@ class ProductCard extends StatelessWidget {
                       isWishList == true
                           ? const SizedBox()
                           : Visibility(
-                              visible:
-                                  double.parse("${model?.averageRate}") == 0
-                                      ? false
-                                      : true,
-                              child: Expanded(
-                                child: RatingWidget(
-                                  initialRating:
-                                      double.parse("${model?.averageRate}"),
-                                  isEnableToRate: false,
-                                ),
-                              ),
-                            ),
+                        visible:
+                        double.parse("${model?.averageRate}") == 0
+                            ? false
+                            : true,
+                        child: Expanded(
+                          child: RatingWidget(
+                            initialRating:
+                            double.parse("${model?.averageRate}"),
+                            isEnableToRate: false,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 10),
                 Obx(() => Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                      ),
-                      child: Row(
-                        children: [
-                          Visibility(
-                            visible: double.parse(
-                                  isWishList == false
-                                      ? model!.discount
-                                      : wishListModel!.discount.toString(),
-                                ).round() !=
-                                0,
-                            child: Expanded(
-                              child: FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(
-                                  '${profileController.currnecy.value} ${isWishList == false ? model!.price : wishListModel!.price}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall
-                                      ?.copyWith(
-                                        decoration: TextDecoration.lineThrough,
-                                      ),
-                                ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                  ),
+                  child: Row(
+                    children: [
+                      Visibility(
+                        visible: double.parse(
+                          isWishList == false
+                              ? model!.discount
+                              : wishListModel!.discount.toString(),
+                        ).round() !=
+                            0,
+                        child: Expanded(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              '${profileController.currnecy.value} ${isWishList == false ? model!.price : wishListModel!.price}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall
+                                  ?.copyWith(
+                                decoration: TextDecoration.lineThrough,
                               ),
                             ),
                           ),
-                          const SizedBox(width: 10),
-                          double.parse(
-                                    isWishList == false
-                                        ? model!.discount
-                                        : wishListModel!.discount.toString(),
-                                  ).round() ==
-                                  0
-                              ? FittedBox(
-                                  fit: BoxFit.scaleDown,
-                                  child: Text(
-                                    '${profileController.currnecy.value} ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displaySmall
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                )
-                              : Expanded(
-                                  child: FittedBox(
-                                    fit: BoxFit.scaleDown,
-                                    child: Text(
-                                      '${profileController.currnecy.value} ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .displaySmall
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                        ],
+                        ),
                       ),
-                    )),
+                      const SizedBox(width: 10),
+                      double.parse(
+                        isWishList == false
+                            ? model!.discount
+                            : wishListModel!.discount.toString(),
+                      ).round() ==
+                          0
+                          ? FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          '${profileController.currnecy.value} ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                          : Expanded(
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            '${profileController.currnecy.value} ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )),
                 const SizedBox(height: 10),
                 StatefulBuilder(builder: (context, setState) {
                   return model?.inCart == 1
                       ? ProductCounter(
-                          model: model!,
-                        )
+                    model: model!,
+                  )
                       : wishListModel?.options.inCart == 1
-                          ? Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: WishListCounterrWidget(
-                                model: wishListModel!,
-                                fromSearch: true,
-                              ),
-                            )
-                          : Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: PrimaryButton(
-                                fontSize: 16,
-                                height: 35,
-                                title: 'Add to Bag',
-                                isLoading: model?.isLoading ??
-                                    wishListModel!.isAddToBag,
-                                color: AppColors.secondary,
-                                onTap: () async {
-                                  if (App.token.isEmpty) {
-                                    Get.toNamed(
-                                      SignInPage.routeName,
-                                      arguments: {
-                                        'country': App.countryName,
-                                        'is_guest': true,
-                                      },
-                                    );
-                                    return;
-                                  }
-                                  if (wishListModel != null) {
-                                    wishListModel?.isAddToBag = true;
-                                  } else {
-                                    model!.isLoading = true;
-                                  }
-                                  setState(() {});
-                                  var result =
-                                      await controller.addProductToCart(
-                                    productId: model?.id ?? wishListModel!.id,
-                                  );
-                                  if (wishListModel != null) {
-                                    wishListModel?.isAddToBag = false;
-                                  } else {
-                                    model!.isLoading = false;
-                                  }
-                                  if (result) {
-                                    if (wishListModel != null) {
-                                      wishListModel?.options.inCart = 1;
-                                      wishListModel?.options.cartQuantity = 1;
-                                    } else {
-                                      model!.inCart = 1;
-                                      model!.cartQty = 1;
-                                    }
-                                    setState(() {});
-                                  }
-                                },
-                                width: double.infinity,
-                                elevation: 0,
-                              ),
-                            );
+                      ? Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: WishListCounterrWidget(
+                      model: wishListModel!,
+                      fromSearch: true,
+                    ),
+                  )
+                      : Padding(
+                    padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: PrimaryButton(
+                      fontSize: 16,
+                      height: 35,
+                      title: 'Add to Bag',
+                      isLoading: model?.isLoading ??
+                          wishListModel!.isAddToBag,
+                      color: AppColors.secondary,
+                      onTap: () async {
+                        if (App.token.isEmpty) {
+                          Get.toNamed(
+                            SignInPage.routeName,
+                            arguments: {
+                              'country': App.countryName,
+                              'is_guest': true,
+                            },
+                          );
+                          return;
+                        }
+                        if (wishListModel != null) {
+                          wishListModel?.isAddToBag = true;
+                        } else {
+                          model!.isLoading = true;
+                        }
+                        setState(() {});
+                        var result =
+                        await controller.addProductToCart(
+                          productId: model?.id ?? wishListModel!.id,
+                        );
+                        if (wishListModel != null) {
+                          wishListModel?.isAddToBag = false;
+                        } else {
+                          model!.isLoading = false;
+                        }
+                        if (result) {
+                          if (wishListModel != null) {
+                            wishListModel?.options.inCart = 1;
+                            wishListModel?.options.cartQuantity = 1;
+                          } else {
+                            model!.inCart = 1;
+                            model!.cartQty = 1;
+                          }
+                          setState(() {});
+                        }
+                      },
+                      width: double.infinity,
+                      elevation: 0,
+                    ),
+                  );
                 }),
               ],
             ),
@@ -266,10 +266,10 @@ class ProductCard extends StatelessWidget {
               from: isProductPage
                   ? 'product'
                   : isSearch
-                      ? 'search'
-                      : isDetails == true
-                          ? 'productDetails'
-                          : 'home',
+                  ? 'search'
+                  : isDetails == true
+                  ? 'productDetails'
+                  : 'home',
               itemId: isWishList == false ? model!.id : wishListModel!.id,
               inWishlist: isWishList == false ? model!.inWishlist : 1,
               fromArrival: false,
