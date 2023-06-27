@@ -96,7 +96,7 @@ class ProfileController extends GetxController {
   }
 
   sendHearts(hearts, phone) async {
-    String validatedPhone = validateMobile(phone);
+    String validatedPhone = validateMobile(countryCode.value + phone);
     if (heartsController.text.isEmpty || phoneNumberController.text.isEmpty) {
       AppToasts.errorToast('Fields can not be empty !');
     }
