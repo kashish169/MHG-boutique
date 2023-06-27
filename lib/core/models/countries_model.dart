@@ -1,3 +1,5 @@
+import '../../features/on_board/model/currency_model.dart';
+
 class CountriesModel {
   bool? isSuccessful;
   bool? hasContent;
@@ -50,15 +52,18 @@ class Data {
   String? createdAt;
   String? updatedAt;
   String? flagLink;
+  CurrencyModel? currency;
 
-  Data(
-      {this.id,
-      this.name,
-      this.flag,
-      this.currencyId,
-      this.createdAt,
-      this.updatedAt,
-      this.flagLink});
+  Data({
+    this.id,
+    this.name,
+    this.flag,
+    this.currencyId,
+    this.createdAt,
+    this.updatedAt,
+    this.flagLink,
+    this.currency,
+  });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -68,6 +73,7 @@ class Data {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     flagLink = json['flag_link'];
+    currency = CurrencyModel.fromJson(json["currency"]);
   }
 
   Map<String, dynamic> toJson() {

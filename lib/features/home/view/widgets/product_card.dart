@@ -8,7 +8,7 @@ import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
 import 'package:mhg/features/my_wish_list/view/widget/wish_list_counter.dart';
 import 'package:mhg/features/product_details/controller/product_details_controller.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
-// import 'package:mhg/features/product_details/view/widgets/product_details_counter_widget.dart';
+import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/net_image.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import 'package:mhg/widgets/product_counter.dart';
@@ -39,6 +39,8 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<MainWrapperController>();
+    final profileController = Get.find<ProfileController>();
+
     return InkWell(
       onTap: () async {
         if (isDetails) {
@@ -128,70 +130,70 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                  ),
-                  child: Row(
-                    children: [
-                      Visibility(
-                        visible: double.parse(
-                              isWishList == false
-                                  ? model!.discount
-                                  : wishListModel!.discount.toString(),
-                            ).round() !=
-                            0,
-                        child: Expanded(
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              'Dhs. ${isWishList == false ? model!.price : wishListModel!.price}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall
-                                  ?.copyWith(
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                            ),
-                          ),
-                        ),
+                Obx(() => Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
                       ),
-                      const SizedBox(width: 10),
-                      double.parse(
-                                isWishList == false
-                                    ? model!.discount
-                                    : wishListModel!.discount.toString(),
-                              ).round() ==
-                              0
-                          ? FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                'Dhs. ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displaySmall
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            )
-                          : Expanded(
+                      child: Row(
+                        children: [
+                          Visibility(
+                            visible: double.parse(
+                                  isWishList == false
+                                      ? model!.discount
+                                      : wishListModel!.discount.toString(),
+                                ).round() !=
+                                0,
+                            child: Expanded(
                               child: FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
-                                  'Dhs. ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                                  '${profileController.currnecy.value} ${isWishList == false ? model!.price : wishListModel!.price}',
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
                                       ?.copyWith(
-                                        fontWeight: FontWeight.bold,
+                                        decoration: TextDecoration.lineThrough,
                                       ),
                                 ),
                               ),
                             ),
-                    ],
-                  ),
-                ),
+                          ),
+                          const SizedBox(width: 10),
+                          double.parse(
+                                    isWishList == false
+                                        ? model!.discount
+                                        : wishListModel!.discount.toString(),
+                                  ).round() ==
+                                  0
+                              ? FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    '${profileController.currnecy.value} ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                )
+                              : Expanded(
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Text(
+                                      '${profileController.currnecy.value} ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displaySmall
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                        ],
+                      ),
+                    )),
                 const SizedBox(height: 10),
                 StatefulBuilder(builder: (context, setState) {
                   return model?.inCart == 1

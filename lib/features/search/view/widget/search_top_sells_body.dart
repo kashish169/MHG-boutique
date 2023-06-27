@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/widgets/net_image.dart';
 
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/app_dimensions.dart';
 import '../../../../widgets/heart_widget.dart';
+import '../../../profile/controller/profile_controller.dart';
 
 class SearchTopSellsBody extends StatelessWidget {
   const SearchTopSellsBody({super.key, required this.model, this.onTap});
@@ -12,6 +14,7 @@ class SearchTopSellsBody extends StatelessWidget {
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
+    final profileController = Get.find<ProfileController>();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 7),
       child: Material(
@@ -68,13 +71,13 @@ class SearchTopSellsBody extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    "Dhs. ${model.price} ",
-                    style: Theme.of(context)
-                        .textTheme
-                        .displayLarge!
-                        .copyWith(fontSize: 12, color: AppColors.darkGrey),
-                  ),
+                  Obx(() => Text(
+                        "${profileController.currnecy.value} ${model.price} ",
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayLarge!
+                            .copyWith(fontSize: 12, color: AppColors.darkGrey),
+                      )),
                 ],
               ),
             )

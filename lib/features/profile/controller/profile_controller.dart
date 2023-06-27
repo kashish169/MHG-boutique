@@ -10,6 +10,7 @@ import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
 import 'package:mhg/features/profile/models/profle_info_model.dart';
 import 'package:mhg/features/profile/repository/profile_repo_impl.dart';
 import 'package:mhg/features/profile/repository/profile_repository.dart';
+import '../../../core/storage/storage_pref.dart';
 
 class ProfileController extends GetxController {
   late ProfileRepo profileRepo;
@@ -22,8 +23,10 @@ class ProfileController extends GetxController {
   RxBool isError = false.obs;
   RxBool firstCall = true.obs;
   RxBool loadingUpdateCard = false.obs;
+  RxString currnecy = "...".obs;
 
   Future<void> getProfileInfo() async {
+    log("________________getProfileInfo");
     try {
       if (model.value == null) {
         isLoading(true);
@@ -36,14 +39,22 @@ class ProfileController extends GetxController {
       loadingUpdateCard(false);
       results.fold(
         (l) {
+          getProfileInfo();
           isError(true);
         },
         (r) async {
-          log("${r.object}");
           int statusCode = r.object['code'];
           var message = r.object['message'];
           if (statusCode == 200) {
             model.value = ProfileInfoModal.fromJson(r.object["data"]);
+            App.countryId = model.value?.country?.id;
+            App.currency = "${model.value?.country?.currency.currency}";
+            currnecy.value = App.currency;
+            await StoragePref.setString(
+              key: 'currency',
+              value: App.currency,
+            );
+            log("currency is : ${App.currency}");
             firstCall(false);
           } else if (statusCode == 400) {
             AppToasts.errorToast(message);
@@ -75,6 +86,8 @@ class ProfileController extends GetxController {
   void onInit() {
     if (App.token.isNotEmpty) {
       getProfileInfo();
+    } else {
+      currnecy.value = App.currency;
     }
     super.onInit();
   }

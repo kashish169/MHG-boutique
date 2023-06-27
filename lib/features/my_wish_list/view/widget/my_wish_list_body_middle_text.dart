@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../constants/app_colors.dart';
+import '../../../profile/controller/profile_controller.dart';
 
 class BodyMiddleText extends StatelessWidget {
   const BodyMiddleText({super.key, required this.brand, required this.price});
@@ -8,6 +10,7 @@ class BodyMiddleText extends StatelessWidget {
   final String price;
   @override
   Widget build(BuildContext context) {
+    final profileController = Get.find<ProfileController>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Column(
@@ -35,13 +38,13 @@ class BodyMiddleText extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Text(
-            "Dhs. $price",
-            style: Theme.of(context)
-                .textTheme
-                .displayMedium!
-                .copyWith(fontSize: 14, color: AppColors.darkGrey),
-          ),
+          Obx(() => Text(
+                "${profileController.currnecy.value} $price",
+                style: Theme.of(context)
+                    .textTheme
+                    .displayMedium!
+                    .copyWith(fontSize: 14, color: AppColors.darkGrey),
+              )),
           const SizedBox(
             height: 10,
           ),
