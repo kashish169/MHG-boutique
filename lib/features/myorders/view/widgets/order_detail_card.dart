@@ -12,7 +12,8 @@ class OrderDetailsCard extends StatelessWidget {
   final int orderStatus;
   const OrderDetailsCard({
     super.key,
-    required this.model, required this.orderStatus,
+    required this.model,
+    required this.orderStatus,
   });
 
   @override
@@ -45,9 +46,9 @@ class OrderDetailsCard extends StatelessWidget {
                 Text(
                   model.productName,
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 16,
-                    color: AppColors.mediumLabel,
-                  ),
+                        fontSize: 16,
+                        color: AppColors.mediumLabel,
+                      ),
                 ),
                 const SizedBox(height: 10),
                 Row(
@@ -56,77 +57,69 @@ class OrderDetailsCard extends StatelessWidget {
                     Text(
                       'Order ID:${model.orderId}',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 12,
-                        color: AppColors.lightLabel,
-                      ),
+                            fontSize: 12,
+                            color: AppColors.lightLabel,
+                          ),
                     ),
                     Text(
                       'Product ID:${model.productId}',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 12,
-                        color: AppColors.lightLabel,
-                      ),
+                            fontSize: 12,
+                            color: AppColors.lightLabel,
+                          ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 15),
                 Obx(() => Text(
-                  'Price: ${profileController.currnecy.value} ${model.price}',
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 14,
-                    color: AppColors.mediumLabel,
-
-                  ),
-                )),
+                      'Price: ${profileController.currnecy.value} ${model.price}',
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            fontSize: 14,
+                            color: AppColors.mediumLabel,
+                          ),
+                    )),
                 const SizedBox(height: 4),
                 Text(
                   'Quantity: ${model.quantity}',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 14,
-                    color: AppColors.mediumLabel,
-
-                  ),
+                        fontSize: 14,
+                        color: AppColors.mediumLabel,
+                      ),
                 ),
-
                 const SizedBox(height: 4),
                 Visibility(
-                  visible:orderStatus!=6&& orderStatus!=5,
-
-                  child:RichText(
-                    text: TextSpan(
-
-                        children: <TextSpan>[
-                          TextSpan(text: 'Status: ',
-                            style:Theme.of(context).textTheme.displaySmall?.copyWith(
-                              fontSize: 14,
-                              color: AppColors.mediumLabel,
-
-                            ),
-
-                          ),
-                          TextSpan(text:Get.find<MyOrdersController>().getStatus(orderStatus),
-                            style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                              fontSize: 14,
-                              color: AppColors.mediumLabel,
-                             // color: Get.find<MyOrdersController>().getStatusColor(orderStatus),
-
-                            ),
-
-                          )
-                        ]
-                    ),
+                  visible: orderStatus != 6 && orderStatus != 5,
+                  child: RichText(
+                    text: TextSpan(children: <TextSpan>[
+                      TextSpan(
+                        text: 'Status: ',
+                        style:
+                            Theme.of(context).textTheme.displaySmall?.copyWith(
+                                  fontSize: 14,
+                                  color: AppColors.mediumLabel,
+                                ),
+                      ),
+                      TextSpan(
+                        text: Get.find<MyOrdersController>()
+                            .getStatus(orderStatus),
+                        style:
+                            Theme.of(context).textTheme.displaySmall?.copyWith(
+                                  fontSize: 14,
+                                  color: AppColors.mediumLabel,
+                                  // color: Get.find<MyOrdersController>().getStatusColor(orderStatus),
+                                ),
+                      )
+                    ]),
                   ),
-
                 ),
                 const SizedBox(height: 4),
                 Obx(() => Text(
-                  'Total Price: ${profileController.currnecy.value} ${model.totalPrice}',
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 14,
-                    color: AppColors.mediumLabel,
-
-                  ),
-                )),
+                      'Total Price: ${profileController.currnecy.value} ${model.totalPrice}',
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            fontSize: 14,
+                            color: AppColors.mediumLabel,
+                          ),
+                    )),
                 const SizedBox(height: 10),
               ],
             ),

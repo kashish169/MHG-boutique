@@ -41,7 +41,6 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
             children: navBarItems(
               index: controller.navBarIndex.value,
               onTap: (index) {
-                Get.until((route) => route.isFirst);
                 if (App.token.isEmpty) {
                   if (index == 2 || index == 3 || index == 4) {
                     Get.toNamed(
@@ -54,6 +53,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
                     return;
                   }
                 }
+                Get.until((route) => route.isFirst);
                 selectedIndex = index;
                 controller.navBarIndex.value = selectedIndex;
                 if (selectedIndex == 0) {

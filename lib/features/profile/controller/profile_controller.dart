@@ -74,6 +74,13 @@ class ProfileController extends GetxController {
           } else if (statusCode == 400) {
             AppToasts.errorToast(message);
           } else if (statusCode == 401) {
+            bool notifayMe = App.notifyMe ?? false;
+            App.token = '';
+            await StoragePref.clear();
+            await StoragePref.setbool(
+              key: 'notifyme',
+              value: notifayMe,
+            );
             Get.offAllNamed(OnBoardView.routeName);
           } else {
             isError(true);
@@ -131,19 +138,38 @@ class ProfileController extends GetxController {
     }
   }
 
-  String validateMobile(String? value) {
-    String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-    RegExp regExp = RegExp(pattern);
-    if (value != null) {
-      if (value.isEmpty) {
-        return 'Please enter mobile number';
-      } else if (!regExp.hasMatch(value)) {
-        return 'Please enter valid mobile number';
-      }
-    } else {
-      return 'Please enter mobile number';
+  Future<void> logOut() async {
+    try {
+      Get.dialog(
+        const LoadingWidget(),
+        barrierDismissible: false,
+      );
+      Either<Failure, ApiResponse> results = await profileRepo.logOut();
+      Get.back();
+      results.fold((l) {
+        AppToasts.errorToast(l.message);
+        log("LOGOUT RESPONSE ERROR ${l.message}");
+      }, (r) async {
+        var statusCode = r.object["code"];
+        var message = r.object["message"];
+        log("LOGOUT RESPONSE STATUS $statusCode");
+        log("${r.object}");
+        if (statusCode == 200) {
+          bool notifayMe = App.notifyMe ?? false;
+          App.token = '';
+          await StoragePref.clear();
+          await StoragePref.setbool(
+            key: 'notifyme',
+            value: notifayMe,
+          );
+          Get.offAllNamed(OnBoardView.routeName);
+        } else {
+          AppToasts.errorToast(message);
+        }
+      });
+    } catch (e, s) {
+      log("$e $s");
     }
-    return '';
   }
 
   @override
