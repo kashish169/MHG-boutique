@@ -39,8 +39,9 @@ class ProductsController extends GetxController {
 
   RxList<ProductModel> products = <ProductModel>[].obs;
   String? searchWord;
-  RxString selectedSortBy = 'Featured'.obs;
-  RxList sortByList = <String>['Featured', 'Best Sellers', 'New Arrival'].obs;
+  RxString selectedSortBy = 'None'.obs;
+  RxList sortByList =
+      <String>['None', 'Featured', 'Best Sellers', 'New Arrival'].obs;
   ScrollController scrollController = ScrollController();
   int? brandId;
   int? categoryId;
@@ -129,6 +130,7 @@ class ProductsController extends GetxController {
           await productsRepository.getCategoryProduct(
         query: query,
       );
+      print(selectedScent);
       print(query);
       print(selectedSortBy.value);
 
@@ -190,8 +192,11 @@ class ProductsController extends GetxController {
           var message = r.object["message"];
           if (statusCode == 200) {
             var json = r.object["data"];
-            scentList += List<ProductTagModel>.from(
-                json['productTags'].map((x) => ProductTagModel.fromJson(x)));
+            List tagsList = json['productTags'];
+            if (scentList.length < tagsList.length) {
+              scentList += List<ProductTagModel>.from(
+                  json['productTags'].map((x) => ProductTagModel.fromJson(x)));
+            }
           } else {
             AppToasts.errorToast(message);
           }
