@@ -9,6 +9,7 @@ import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import '../../../../widgets/dynamic_grid_view.dart';
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 
 class ProductsPage extends StatelessWidget {
   static String routeName = '/products_page';
@@ -20,6 +21,7 @@ class ProductsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.white2,
       appBar: customAppBar(context, title: 'Products'),
+      bottomNavigationBar: const BottomNavBarWidget(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -58,7 +60,8 @@ class ProductsPage extends StatelessWidget {
                                   },
                                   child: controller.products.isEmpty &&
                                           controller.isLoading.isFalse &&
-                                          controller.isFetching.isFalse &&controller.isLoadingCategories.isTrue
+                                          controller.isFetching.isFalse &&
+                                          controller.isLoadingCategories.isTrue
                                       ? Center(
                                           child: Text(
                                             'No Results!',

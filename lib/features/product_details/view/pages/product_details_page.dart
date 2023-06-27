@@ -9,6 +9,7 @@ import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/divider_widget.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 import '../widgets/product_reviews.dart';
 
 class ProductDetailsPage extends StatelessWidget {
@@ -20,6 +21,7 @@ class ProductDetailsPage extends StatelessWidget {
     return GetX<ProductDetailsController>(builder: (controller) {
       return Scaffold(
         appBar: customAppBar(context, title: controller.productName.value),
+        bottomNavigationBar: const BottomNavBarWidget(),
         body: Obx(() {
           if (controller.isLoading.isTrue) {
             return const LoadingWidget();

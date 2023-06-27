@@ -5,6 +5,7 @@ import 'package:mhg/widgets/custom_app_bar.dart';
 import '../../../../constants/app_dimensions.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 import '../widget/about_us_body.dart';
 
 class AboutUsPage extends StatelessWidget {
@@ -14,6 +15,7 @@ class AboutUsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const BottomNavBarWidget(),
       appBar: customAppBar(context, title: 'About us'),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),

@@ -13,11 +13,7 @@ import '../../controller/main_wrapper_controller.dart';
 import 'bottom_nav_bar_items.dart';
 
 class BottomNavBarWidget extends StatefulWidget {
-  final TabController tabController;
-  final GlobalKey<ScaffoldState> scaffoldKey;
-  const BottomNavBarWidget(
-      {Key? key, required this.tabController, required this.scaffoldKey})
-      : super(key: key);
+  const BottomNavBarWidget({Key? key}) : super(key: key);
 
   @override
   State<BottomNavBarWidget> createState() => _BottomNavBarWidgetState();
@@ -40,48 +36,45 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
         ),
         boxShadow: AppColors.shadow(0.5),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: navBarItems(
-          index: controller.navBarIndex.value,
-          onTap: (index) {
-            if (App.token.isEmpty) {
-              if (index == 2 || index == 3 || index == 4) {
-                Get.toNamed(
-                  SignInPage.routeName,
-                  arguments: {
-                    'country': App.countryName,
-                    'is_guest': true,
-                  },
-                );
-                return;
-              }
-            }
-            selectedIndex = index;
-            controller.navBarIndex.value = selectedIndex;
-            widget.tabController.animateTo(index);
-            if (widget.scaffoldKey.currentState!.isDrawerOpen == true) {
-              Navigator.pop(context);
-            }
-            if (selectedIndex == 0) {
-              Get.find<HomeController>().getHome();
-            }
-            if (selectedIndex == 1) {
-              Get.find<CategoriesController>().getCategories();
-            }
-            if (selectedIndex == 2) {
-              Get.find<WishListController>().getWishList();
-            }
-            if (selectedIndex == 4) {
-              Get.find<ProfileController>().getProfileInfo();
-            }
-            if (selectedIndex == 3) {
-              Get.find<MyCartController>().getCart();
-            }
-            if (mounted) setState(() {});
-          },
-        ),
-      ),
+      child: Obx(() => Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: navBarItems(
+              index: controller.navBarIndex.value,
+              onTap: (index) {
+                Get.until((route) => route.isFirst);
+                if (App.token.isEmpty) {
+                  if (index == 2 || index == 3 || index == 4) {
+                    Get.toNamed(
+                      SignInPage.routeName,
+                      arguments: {
+                        'country': App.countryName,
+                        'is_guest': true,
+                      },
+                    );
+                    return;
+                  }
+                }
+                selectedIndex = index;
+                controller.navBarIndex.value = selectedIndex;
+                if (selectedIndex == 0) {
+                  Get.find<HomeController>().getHome();
+                }
+                if (selectedIndex == 1) {
+                  Get.find<CategoriesController>().getCategories();
+                }
+                if (selectedIndex == 2) {
+                  Get.find<WishListController>().getWishList();
+                }
+                if (selectedIndex == 4) {
+                  Get.find<ProfileController>().getProfileInfo();
+                }
+                if (selectedIndex == 3) {
+                  Get.find<MyCartController>().getCart();
+                }
+                if (mounted) setState(() {});
+              },
+            ),
+          )),
     );
   }
 }

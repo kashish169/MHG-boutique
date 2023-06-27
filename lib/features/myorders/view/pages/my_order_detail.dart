@@ -7,6 +7,8 @@ import 'package:mhg/features/myorders/view/widgets/order_detail_card.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/divider_widget.dart';
 
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
+
 class MyOrderDetailPage extends StatelessWidget {
   static String routeName = '/my_orders_details';
 
@@ -17,6 +19,7 @@ class MyOrderDetailPage extends StatelessWidget {
     final MyOrder model = Get.arguments as MyOrder;
     return Scaffold(
       appBar: customAppBar(context, title: 'Order Details'),
+      bottomNavigationBar: const BottomNavBarWidget(),
       body: Column(
         children: [
           Expanded(
@@ -28,9 +31,8 @@ class MyOrderDetailPage extends StatelessWidget {
                 itemCount: model.orderDetails.length,
                 itemBuilder: (context, index) {
                   return OrderDetailsCard(
-                    model: model.orderDetails[index],
-                    orderStatus:model.orderStatus
-                  );
+                      model: model.orderDetails[index],
+                      orderStatus: model.orderStatus);
                 },
                 separatorBuilder: (context, index) {
                   return const SizedBox(height: 9);

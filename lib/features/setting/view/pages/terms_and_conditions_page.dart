@@ -7,6 +7,7 @@ import 'package:mhg/features/setting/controller/setting_controller.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 import '../widgets/custom_privacy_widget.dart';
 
 class TermsAndConidtionsPage extends StatelessWidget {
@@ -17,6 +18,7 @@ class TermsAndConidtionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(context, title: "Terms & Conditions"),
+      bottomNavigationBar: const BottomNavBarWidget(),
       body: SingleChildScrollView(
         child: GetX<SettingController>(
           builder: (controller) => controller.isLoadingTerms.value

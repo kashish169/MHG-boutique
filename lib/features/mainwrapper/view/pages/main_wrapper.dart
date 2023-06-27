@@ -17,25 +17,14 @@ class MainWrapper extends StatefulWidget {
   State<MainWrapper> createState() => _MainWrapperState();
 }
 
-class _MainWrapperState extends State<MainWrapper>
-    with TickerProviderStateMixin {
+class _MainWrapperState extends State<MainWrapper> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  late TabController tabController;
-  int currentIndex = 0;
+
   final mainController = Get.find<MainWrapperController>();
 
   @override
   void initState() {
     super.initState();
-    tabController = TabController(
-      initialIndex: currentIndex,
-      length: _children.length,
-      vsync: this,
-    );
-    tabController.addListener(() {
-      currentIndex = tabController.index;
-      if (mounted) setState(() {});
-    });
   }
 
   final List<Widget> _children = [
@@ -50,24 +39,16 @@ class _MainWrapperState extends State<MainWrapper>
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      onDrawerChanged: (isOpened) {
-        if (mounted) setState(() {});
-      },
       appBar: mainAppBar(
         context: context,
         scaffoldKey: scaffoldKey,
-        currentIndex: currentIndex,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavBarWidget(
-        scaffoldKey: scaffoldKey,
-        tabController: tabController,
-      ),
-      body: TabBarView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: tabController,
-        children: _children,
-      ),
+      bottomNavigationBar: const BottomNavBarWidget(),
+      body: Obx(() => IndexedStack(
+            index: mainController.navBarIndex.value,
+            children: _children,
+          )),
     );
   }
 }

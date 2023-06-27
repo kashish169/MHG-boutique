@@ -5,6 +5,7 @@ import 'package:mhg/features/rewards/widgets/reward_header.dart';
 import 'package:mhg/features/rewards/widgets/reward_levels_widget.dart';
 import 'package:mhg/features/rewards/widgets/scan_qr_card.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
+import '../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 
 class RewardsPage extends StatelessWidget {
   static String routeName = '/reward';
@@ -15,6 +16,7 @@ class RewardsPage extends StatelessWidget {
     final controller = Get.find<ProfileController>();
     return Scaffold(
       appBar: customAppBar(context, title: "Rewards"),
+      bottomNavigationBar: const BottomNavBarWidget(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

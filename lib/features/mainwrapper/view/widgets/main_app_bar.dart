@@ -11,7 +11,6 @@ import '../../controller/main_wrapper_controller.dart';
 AppBar mainAppBar({
   required BuildContext context,
   required GlobalKey<ScaffoldState> scaffoldKey,
-  required int currentIndex,
 }) {
   final controller = Get.find<MainWrapperController>();
   return AppBar(

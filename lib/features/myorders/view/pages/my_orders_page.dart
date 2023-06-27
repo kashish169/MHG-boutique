@@ -5,6 +5,7 @@ import 'package:mhg/features/myorders/controller/my_orders_controller.dart';
 import 'package:mhg/features/myorders/view/widgets/tab_bar_card.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/retry_button.dart';
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 import '../widgets/my_orders_list_widget.dart';
 
 class MyOrdersPage extends StatefulWidget {
@@ -33,6 +34,7 @@ class _MyOrdersPageState extends State<MyOrdersPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(context, title: 'My Orders'),
+      bottomNavigationBar: const BottomNavBarWidget(),
       body: DefaultTabController(
           length: 3,
           child: Column(

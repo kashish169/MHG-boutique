@@ -8,6 +8,8 @@ import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
+
 class PaymentMethodsPage extends StatefulWidget {
   static String routeName = '/payment_methods';
   final bool isProfile;
@@ -31,6 +33,7 @@ class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white2,
+      bottomNavigationBar: const BottomNavBarWidget(),
       appBar: customAppBar(
         context,
         title: 'Payment Methods',

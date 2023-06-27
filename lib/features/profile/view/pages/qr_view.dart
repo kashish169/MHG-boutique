@@ -5,6 +5,8 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
+
 class QRPage extends StatefulWidget {
   const QRPage({Key? key}) : super(key: key);
 
@@ -18,6 +20,7 @@ class _QRPageState extends State<QRPage> {
     final controller = Get.find<ProfileController>();
     return Scaffold(
       appBar: customAppBar(context, title: "Scan Your Qr"),
+      bottomNavigationBar: const BottomNavBarWidget(),
       body: Column(
         children: [
           Padding(
