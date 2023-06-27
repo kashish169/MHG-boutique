@@ -29,6 +29,7 @@ class MyOrderDetailPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return OrderDetailsCard(
                     model: model.orderDetails[index],
+                    orderStatus:model.orderStatus
                   );
                 },
                 separatorBuilder: (context, index) {
