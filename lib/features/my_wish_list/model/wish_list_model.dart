@@ -2,6 +2,8 @@ class WishListModel {
   String? rowId;
   int id;
   int qty;
+  dynamic averageRate;
+  dynamic pts;
   String name;
   dynamic price;
   dynamic weight;
@@ -12,7 +14,10 @@ class WishListModel {
   bool isAddToBag;
   bool isDeleteItem;
   bool isLoadingDelete;
+
   WishListModel({
+    this.averageRate,
+    this.pts,
     required this.rowId,
     required this.id,
     required this.qty,
@@ -29,6 +34,10 @@ class WishListModel {
   });
 
   factory WishListModel.fromJson(Map<String, dynamic> json) => WishListModel(
+        averageRate: json["avarage_rate"] != null
+            ? json["avarage_rate"].toString()
+            : '0',
+        pts: json["pts"],
         rowId: json['rowId'],
         id: json['id'],
         qty: json['qty'],
@@ -47,9 +56,9 @@ class OptionsModel {
   dynamic color;
   String image;
   String imageLink;
-  String discountPrice;
+  dynamic discountPrice;
   dynamic itemTag;
-  String discountParcent;
+  dynamic discountParcent;
   String voucher;
   int inCart;
   int cartQuantity;
@@ -74,9 +83,9 @@ class OptionsModel {
         color: json['color'],
         image: json['image'],
         imageLink: json['image_link'],
-        discountPrice: json['discount_price'],
+        discountPrice: json['discount_price'].toString(),
         itemTag: json['item_tag'],
-        discountParcent: json['discount_parcent'],
+        discountParcent: json['discount_parcent'].toString(),
         voucher: json['voucher'],
         inCart: json['in_cart'],
         cartQuantity: json['cart_qty'],

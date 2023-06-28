@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/product_details/models/product_review_model.dart';
-import 'package:mhg/widgets/net_image.dart';
+// import 'package:mhg/widgets/net_image.dart';
 import '../../../../core/helper/app_helper.dart';
 import '../../../../widgets/rating_widget.dart';
 

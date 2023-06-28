@@ -12,6 +12,7 @@ class ProfileRewardBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<ProfileController>();
+
     return Obx(() => Padding(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
           child: Container(
@@ -44,7 +45,7 @@ class ProfileRewardBox extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      controller.model.value!.nextTierPts != 0 ||
+                      controller.model.value!.nextTierPts != "0.00" ||
                               controller.model.value!.nextTier == null
                           ? Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -52,21 +53,9 @@ class ProfileRewardBox extends StatelessWidget {
                               children: [
                                 Expanded(
                                     child: LinearPercentIndicator(
-                                  //leaner progress bar
-                                  // animation: true,
                                   padding: EdgeInsets.zero,
                                   lineHeight: 12.0,
-                                  percent:
-                                      controller.model.value!.nextTierPts == 0
-                                          ? 1.0
-                                          : double.parse(controller
-                                                      .model.value!.hearts ??
-                                                  '0') /
-                                              double.parse(
-                                                controller
-                                                    .model.value!.nextTierPts
-                                                    .toString(),
-                                              ),
+                                  percent: indicatorPercent(),
                                   barRadius: const Radius.circular(10),
                                   progressColor: const Color(0XFF6E8674),
                                   backgroundColor: Colors.grey[300],
@@ -101,7 +90,7 @@ class ProfileRewardBox extends StatelessWidget {
                             ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: controller.model.value!.nextTierPts != 0
+                        child: controller.model.value!.nextTierPts != "0.00"
                             ? Builder(builder: (context) {
                                 return controller.loadingUpdateCard.isTrue
                                     ? const LoadingThreeBounce()
@@ -130,7 +119,7 @@ class ProfileRewardBox extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-                  child: controller.model.value!.nextTierPts != 0 ||
+                  child: controller.model.value!.nextTierPts != "0.00" ||
                           controller.model.value!.nextTier == null
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -167,5 +156,17 @@ class ProfileRewardBox extends StatelessWidget {
             ),
           ),
         ));
+  }
+}
+
+double indicatorPercent() {
+  final controller = Get.find<ProfileController>();
+  if (controller.model.value!.nextTierPts == 0) {
+    return 1.0;
+  } else {
+    return double.parse(controller.model.value!.hearts ?? '0') /
+        double.parse(
+          controller.model.value!.nextTierPts.toString(),
+        );
   }
 }

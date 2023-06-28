@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 // import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
 import 'package:mhg/widgets/net_image.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/heart_widget.dart';
+import '../../../profile/controller/profile_controller.dart';
 
 class SearchItemWishListBody extends StatelessWidget {
   const SearchItemWishListBody(
@@ -12,6 +14,7 @@ class SearchItemWishListBody extends StatelessWidget {
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
+    final profileController = Get.find<ProfileController>();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 7),
       child: Material(
@@ -52,14 +55,14 @@ class SearchItemWishListBody extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        Text(
-                          "Dhs. ${model.price}",
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayLarge!
-                              .copyWith(
-                                  fontSize: 12, color: AppColors.darkGrey),
-                        ),
+                        Obx(() => Text(
+                              "${profileController.currnecy.value} ${model.price}",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displayLarge!
+                                  .copyWith(
+                                      fontSize: 12, color: AppColors.darkGrey),
+                            )),
                         const SizedBox(
                           height: 10,
                         ),

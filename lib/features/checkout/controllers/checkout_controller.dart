@@ -269,7 +269,7 @@ class CheckoutController extends GetxController {
       if (promoCode.isNotEmpty) {
         query += "&coupon=$promoCode";
       }
-      if (isRedeem == true) {
+      if (hasRedeem.isTrue) {
         query += "&redeem=1";
       } else {
         query += "&redeem=0";
@@ -378,6 +378,12 @@ class CheckoutController extends GetxController {
           log("${r.object}");
           if (statusCode == 201) {
             var url = r.object["data"];
+            if (url == null) {
+              AppToasts.errorToast(
+                "You can’t use this card because it’s not 3DS enrolled",
+              );
+              return;
+            }
             var results = await Get.to(
               () => AddPaymentMethodWebViewPage(
                 title: "3DS Authentication",
@@ -400,10 +406,10 @@ class CheckoutController extends GetxController {
     }
   }
 
-  void _onOrderSuccess() {
-    profileController.getProfileInfo();
-    Get.find<MyCartController>().getCart();
+  void _onOrderSuccess() async {
     Get.offAndToNamed(MyOrdersPage.routeName);
+    Get.find<MyCartController>().getCart();
+    await profileController.getProfileInfo();
     AppToasts.successToast(
       'Your order has been submitted successfully!',
     );

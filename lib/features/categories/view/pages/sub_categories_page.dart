@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/features/categories/models/categories_model.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 import '../widgets/category_list_tile.dart';
 
 class SubCategoriesPage extends StatelessWidget {
@@ -14,6 +15,7 @@ class SubCategoriesPage extends StatelessWidget {
     String title = data[1];
     return Scaffold(
       appBar: customAppBar(context, title: title),
+      bottomNavigationBar: const BottomNavBarWidget(),
       body: SafeArea(
         child: ListView.builder(
             padding: const EdgeInsetsDirectional.only(bottom: 10),

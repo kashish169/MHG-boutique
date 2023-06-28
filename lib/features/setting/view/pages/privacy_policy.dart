@@ -4,6 +4,7 @@ import '../../../../constants/app_dimensions.dart';
 import '../../../../widgets/custom_app_bar.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 import '../../controller/setting_controller.dart';
 import '../widgets/custom_privacy_widget.dart';
 
@@ -15,6 +16,7 @@ class PrivacyPolicyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(context, title: "Privacy Policy"),
+      bottomNavigationBar: const BottomNavBarWidget(),
       body: GetX<SettingController>(
         builder: (controller) => controller.isLoadingPrivacy.value
             ? Column(

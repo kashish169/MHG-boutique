@@ -74,7 +74,7 @@ class SignUpController extends GetxController {
           key: "token",
           value: token,
         );
-        Get.toNamed(MainWrapper.routeName);
+        Get.offAllNamed(MainWrapper.routeName);
       } else {
         AppToasts.errorToast(message);
       }

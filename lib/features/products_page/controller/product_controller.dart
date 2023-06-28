@@ -13,7 +13,14 @@ import '../models/categories_brand_model.dart';
 
 class ProductsController extends GetxController {
   late ProductsRepository productsRepository;
-  RxList<ProductTagModel> scentList = <ProductTagModel>[].obs;
+
+  RxList<ProductTagModel> scentList = <ProductTagModel>[
+    ProductTagModel(
+        id: 5,
+        name: 'All',
+        createdAt: DateTime.parse("1969-07-20 20:18:04Z"),
+        updatedAt: DateTime.parse("1969-07-20 20:18:04Z"))
+  ].obs;
   RxString selectedScent = ''.obs;
   RxBool isLoading = false.obs;
   RxBool isLoadingList = false.obs;
@@ -31,21 +38,24 @@ class ProductsController extends GetxController {
   }
 
   RxList<ProductModel> products = <ProductModel>[].obs;
-
   String? searchWord;
-  RxString selectedSortBy = 'Featured'.obs;
-  RxList sortByList = <String>['Featured'].obs;
+  RxString selectedSortBy = 'None'.obs;
+  RxList sortByList =
+      <String>['None', 'Featured', 'Best Sellers', 'New Arrival'].obs;
   ScrollController scrollController = ScrollController();
   int? brandId;
   int? categoryId;
   List<CategoryBrandModel> categoriesList = [];
   RxInt selectedCategoryIndex = (-1).obs;
+  String? categoryName;
+
   @override
   Future<void> onInit() async {
+    selectedScent = scentList[0].name.obs;
     var args = Get.arguments;
     categoryId = args["categoryId"];
     brandId = args["brandId"];
-
+    categoryName = args["categoryName"];
     if (brandId != null) {
       await getCategoriesByBrandId();
     }
@@ -87,6 +97,7 @@ class ProductsController extends GetxController {
 
   Future<void> getProducts(String? search) async {
     log("Search:$search");
+    log("Search:$selectedSortBy");
     log("page:$page");
     try {
       if (page == 1) {
@@ -105,9 +116,23 @@ class ProductsController extends GetxController {
       if (search != null) {
         query += "&search=$search";
       }
+      if (selectedSortBy.value == 'Featured') {
+        query += "&featured=1";
+      }
+      if (selectedSortBy.value == 'Best Sellers') {
+        query += "&best_sale=1";
+      }
+      if (selectedSortBy.value == 'New Arrival') {
+        query += "&new_arrival=1";
+      }
       log("query $query");
       Either<Failure, ApiResponse> results =
-          await productsRepository.getCategoryProduct(query);
+          await productsRepository.getCategoryProduct(
+        query: query,
+      );
+      print(selectedScent);
+      print(query);
+      print(selectedSortBy.value);
 
       if (page == 1) {
         isLoadingList(false);
@@ -167,8 +192,11 @@ class ProductsController extends GetxController {
           var message = r.object["message"];
           if (statusCode == 200) {
             var json = r.object["data"];
-            scentList += List<ProductTagModel>.from(
-                json['productTags'].map((x) => ProductTagModel.fromJson(x)));
+            List tagsList = json['productTags'];
+            if (scentList.length < tagsList.length) {
+              scentList += List<ProductTagModel>.from(
+                  json['productTags'].map((x) => ProductTagModel.fromJson(x)));
+            }
           } else {
             AppToasts.errorToast(message);
           }

@@ -45,11 +45,12 @@ class ProductAddReviewDialog extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: PrimaryButton(
                           color: AppColors.white,
-                          height: 50,
+                          height: 44,
                           reverseColor: true,
                           isSelcted: true,
                           title: "Cancel",
                           onTap: () {
+                            controller.reviewNote.clear();
                             Get.back();
                           }),
                     ),
@@ -58,8 +59,9 @@ class ProductAddReviewDialog extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: PrimaryButton(
-                        height: 50,
+                        height: 44,
                         title: "Send",
+                        color: AppColors.secondary,
                         onTap: () {
                           controller.addReview(
                             productId: productId,

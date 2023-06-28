@@ -29,7 +29,7 @@ class PlaceOrderButton extends StatelessWidget {
         alignment: Alignment.centerRight,
         children: [
           PrimaryButton(
-            color: color,
+            color: color??AppColors.secondary,
             height: 44,
             width: width,
             title: title,

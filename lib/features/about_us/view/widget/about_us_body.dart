@@ -25,7 +25,7 @@ class AboutUsBody extends StatelessWidget {
           height: 20,
         ),
         Html(
-          data: aboutUsModel.englishdescriotion1,
+          data: '', //aboutUsModel.englishdescriotion1
           style: {
             "body": Style(
                 color: Colors.black,

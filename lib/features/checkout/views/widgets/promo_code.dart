@@ -79,6 +79,7 @@ class PromoCode extends StatelessWidget {
                   ),
                   const SizedBox(width: 20),
                   PlaceOrderButton(
+                    color: AppColors.secondary,
                       title: 'Apply',
                       width: MediaQuery.of(context).size.width * 0.3,
                       hasIcon: false,

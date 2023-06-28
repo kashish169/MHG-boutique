@@ -7,6 +7,7 @@ import 'package:mhg/features/personal_infromation/view/widget/inforamation_form.
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/net_image.dart';
 import '../../../../widgets/custom_app_bar.dart';
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 import '../widget/delete_account_dialog.dart';
 import '../widget/personal_info_button.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -21,6 +22,7 @@ class PersonalInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(context, title: "Personal Information"),
+      bottomNavigationBar: const BottomNavBarWidget(),
       body: GetBuilder<PersonalInformationController>(
           builder: (controller) => controller.isLoading
               ? const LoadingWidget()
@@ -249,13 +251,7 @@ class PersonalInformation extends StatelessWidget {
                             ),
                           ),
                         ),
-                        if (controller.enableEditOnName == false ||
-                            controller.enableEditOnState == false ||
-                            controller.enableEditOnZipCode == false ||
-                            controller.enableEditOnEmail == false ||
-                            controller.enableEditOnPassword == false ||
-                            controller.enableEditOnNumber.isFalse ||
-                            controller.enableEditOnAddress == false)
+                        if (controller.isEdit.isTrue)
                           PersonalInfoButton(
                               text: "Save",
                               onTap: () {

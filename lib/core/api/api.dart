@@ -5,11 +5,13 @@ class Api {
   static String baseUrl = dotenv.env["ROOT_API"] ?? "";
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
+    'Country-Id': "${App.countryId}",
   };
   static Map<String, String> authorizedheaders = {
     'Content-Type': 'application/json',
     'Authorization': "Bearer ${App.token}",
   };
+  static String countryLink = "/api/v1/countries/index";
   static String signUp = "/api/v1/users/auth/register";
   static String loginEmail = "/api/v1/users/auth/login";
   static String login = "/api/v1/users/auth/login-with-phone";
@@ -36,7 +38,7 @@ class Api {
   static String productRoute = "/api/v1/product";
   static String productDetails = "$productRoute/product-details";
   static String addReview = "$productRoute/add-review";
-
+  static String sendHearts = "/api/v1/users/send-hearts";
   static String storeCategories = "/api/v1/category/store";
   static String menus = "/api/v1/category/menus";
   static String filterProduct = "/api/v1/product/filter?store_id=1";
@@ -51,4 +53,5 @@ class Api {
   static String createOrder = "/api/v1/order/create";
   static String paymentMethods = "/api/v1/order/payment-methods";
   static String myOrders = "/api/v1/users/orders";
+  static String logOut = "/api/v1/users/auth/logout";
 }

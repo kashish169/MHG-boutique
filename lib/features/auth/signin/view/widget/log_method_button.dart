@@ -25,7 +25,7 @@ class LogMethodButton extends StatelessWidget {
                   height: controller.numberLogHight.value,
                   width: controller.numberLogwidth.value,
                   color: controller.logWithNumber.value == true
-                      ? AppColors.primary
+                      ? AppColors.secondary
                       : AppColors.white,
                   onTap: () {
                     controller.logWithNum();
@@ -44,7 +44,7 @@ class LogMethodButton extends StatelessWidget {
                   reverseColor: !controller.logWithEmail.value,
                   width: controller.emailLogwidth.value,
                   color: controller.logWithEmail.value == true
-                      ? AppColors.primary
+                      ? AppColors.secondary
                       : AppColors.white,
                   onTap: () {
                     controller.loginWithEmail();

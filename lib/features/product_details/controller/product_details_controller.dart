@@ -199,8 +199,18 @@ class ProductDetailsController extends GetxController {
           var message = r.object["message"];
           log("REVIEW RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
+            reviewNote.clear();
             var json = r.object["data"]["review"];
             var model = ReviewModel.fromJson(json);
+            // for (int i = 0; i < productsReviews.length; i++) {
+            //   if (model.userId == productsReviews[i].user.id) {
+            //     print('${model.id}');
+            //     print('===========${productsReviews[i].id}');
+            //     print('update');
+            //   } else {
+            //     print('add');
+            //   }
+            // }
             productsReviews.add(ProductReviewModel(
               id: model.id,
               rating: model.rating,

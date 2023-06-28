@@ -38,7 +38,7 @@ class PrimaryButton extends StatelessWidget {
       elevation: elevation,
       height: height,
       minWidth: width,
-      color: color ?? AppColors.primary,
+      color: color ?? AppColors.secondary,
       shape: RoundedRectangleBorder(
         side: BorderSide(
             color: isSelcted == null

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/constants/app_dimensions.dart';
-import 'package:mhg/features/home/controller/home_controller.dart';
-import 'package:mhg/features/home/view/widgets/home_top_sellers_widget.dart';
-import 'package:mhg/widgets/loading_widget.dart';
-import 'package:mhg/widgets/retry_button.dart';
+// import 'package:mhg/constants/app_dimensions.dart';
+// import 'package:mhg/features/home/controller/home_controller.dart';
+// import 'package:mhg/features/home/view/widgets/home_top_sellers_widget.dart';
+// import 'package:mhg/widgets/loading_widget.dart';
+// import 'package:mhg/widgets/retry_button.dart';
 import '../../../home/view/widgets/product_card.dart';
 import '../../controller/product_details_controller.dart';
 
@@ -43,12 +43,12 @@ class SimilarProductsWidget extends StatelessWidget {
             child: Row(
               children: [
                 for (int index = 0;
-                index < controller.model.relatedProducts.length;
-                index++)
+                    index < controller.model.relatedProducts.length;
+                    index++)
                   ProductCard(
                     model: controller.model.relatedProducts[index],
                     isDetails: true,
-                   fromArrival: controller.fromArrival,
+                    fromArrival: controller.fromArrival,
                   )
               ],
             ),

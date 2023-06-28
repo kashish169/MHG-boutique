@@ -152,10 +152,11 @@ class SignUpPage extends StatelessWidget {
                                 horizontal: 25,
                               ),
                               child: PrimaryButton(
+                                color: AppColors.secondary,
                                 title: 'Sign up',
                                 height: 50,
                                 width: double.infinity,
-                                color: const Color(0XFF232323),
+
                                 onTap: () {
                                   var formState =
                                       controller.formKey.currentState;
@@ -185,6 +186,7 @@ class SignUpPage extends StatelessWidget {
                                   ),
                             ),
                             MaterialButton(
+
                               padding: EdgeInsets.zero,
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,

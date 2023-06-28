@@ -10,6 +10,7 @@ import 'package:mhg/features/setting/view/widgets/country_widget.dart';
 import 'package:mhg/features/setting/view/widgets/language_widget.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 import '../../../../widgets/divider_widget.dart';
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 
 class SettingPage extends StatelessWidget {
   static String routeName = '/setting';
@@ -19,15 +20,14 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(context, title: "Settings"),
+      bottomNavigationBar: const BottomNavBarWidget(),
       body: Column(
         children: [
-          const LanguageWidget(),
-          const DividerWidget(),
-          const CountryWidget(),
-          const DividerWidget(),
-          const SizedBox(
-            height: 30,
-          ),
+          // const LanguageWidget(),
+          // const DividerWidget(),
+          // const CountryWidget(),
+          // const DividerWidget(),
+          const SizedBox(height: 30),
           const DividerWidget(),
           const AllowNotification(),
           const DividerWidget(),

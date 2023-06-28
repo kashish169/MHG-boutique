@@ -8,9 +8,12 @@ import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
+
 class PaymentMethodsPage extends StatefulWidget {
   static String routeName = '/payment_methods';
-  const PaymentMethodsPage({super.key});
+  final bool isProfile;
+  const PaymentMethodsPage({super.key, this.isProfile = false});
 
   @override
   State<PaymentMethodsPage> createState() => _PaymentMethodsPageState();
@@ -19,9 +22,18 @@ class PaymentMethodsPage extends StatefulWidget {
 class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
   final CheckoutController checkoutController = Get.find<CheckoutController>();
   @override
+  void initState() {
+    if (widget.isProfile == true) {
+      checkoutController.getUserPaymentMethods();
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white2,
+      bottomNavigationBar: const BottomNavBarWidget(),
       appBar: customAppBar(
         context,
         title: 'Payment Methods',
@@ -66,6 +78,7 @@ class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
                               padding: const EdgeInsets.only(top: 10),
                               child: Center(
                                 child: PlaceOrderButton(
+                                  color: AppColors.secondary,
                                   title: 'Add Card',
                                   width: 300,
                                   hasIcon: false,

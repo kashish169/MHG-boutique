@@ -29,6 +29,17 @@ class StoragePref {
     return await box.read(key);
   }
 
+  static Future<void> setInt({
+    required String key,
+    required int value,
+  }) async {
+    await box.write(key, value);
+  }
+
+  static Future<int> getInt(String key) async {
+    return await box.read(key) ?? 1;
+  }
+
   static Future<void> clear() async {
     App.token = '';
     log("ACCESS TOKEN ${App.token}");

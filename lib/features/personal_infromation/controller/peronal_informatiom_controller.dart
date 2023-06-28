@@ -48,6 +48,7 @@ class PersonalInformationController extends GetxController {
   RxString countryCode = '+971'.obs;
   RxString countryFlag = AppAssets.flag.obs;
   RxInt countryId = 0.obs;
+  RxBool isEdit = false.obs;
 
   @override
   void onInit() {
@@ -68,8 +69,8 @@ class PersonalInformationController extends GetxController {
   }
 
   setCountry(val) {
+    isEdit.trigger(true);
     selectedCountry = val;
-
     countryId(countriesModel.data!.firstWhere(
       (element) {
         return element.name == val;
@@ -113,9 +114,8 @@ class PersonalInformationController extends GetxController {
         bool success = r.object['isSuccessful'];
         var message = r.object['message'];
         if (success == true) {
-          Get.back();
-
           AppToasts.errorToast("Updated Successfully");
+          Get.back();
           profileController.getProfileInfo();
         } else {
           AppToasts.errorToast(message);
@@ -125,36 +125,43 @@ class PersonalInformationController extends GetxController {
   }
 
   enableName() {
+    isEdit.trigger(true);
     enableEditOnName = !enableEditOnName;
     update();
   }
 
   enableEmail() {
+    isEdit.trigger(true);
     enableEditOnEmail = !enableEditOnEmail;
     update();
   }
 
   enablePassword() {
+    isEdit.trigger(true);
     enableEditOnPassword = !enableEditOnPassword;
     update();
   }
 
   enableNumber() {
+    isEdit.trigger(true);
     enableEditOnNumber.value = !enableEditOnNumber.value;
     update();
   }
 
   enableAddress() {
+    isEdit.trigger(true);
     enableEditOnAddress = !enableEditOnAddress;
     update();
   }
 
   enableState() {
+    isEdit.trigger(true);
     enableEditOnState = !enableEditOnState;
     update();
   }
 
   enableZipCode() {
+    isEdit.trigger(true);
     enableEditOnZipCode = !enableEditOnZipCode;
     update();
   }
@@ -217,7 +224,7 @@ class PersonalInformationController extends GetxController {
           showSnackBar(l.message);
           log("GET COUNTRIES RESPONSE ERROR ${l.message}");
         },
-        (r) {
+        (r) async {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("GET COUNTRIES RESPONSE STATUS $statusCode");
@@ -225,7 +232,10 @@ class PersonalInformationController extends GetxController {
           if (statusCode == 200) {
             if (r.object["data"] != null) {
               countriesModel = CountriesModel.fromJson(r.object);
-              setCountry(countriesModel.data![0].name);
+              setCountry(
+                profileController.model.value?.country?.name,
+              );
+
               update();
             }
           } else {

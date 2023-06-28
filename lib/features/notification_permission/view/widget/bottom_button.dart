@@ -47,6 +47,7 @@ class BottomButton extends StatelessWidget {
 }
 
 Future<void> setNotifyMe(bool value) async {
+  App.notifyMe = value;
   await StoragePref.setbool(
     key: 'notifyme',
     value: value,

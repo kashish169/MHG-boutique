@@ -30,6 +30,7 @@ import 'package:mhg/features/product_details/view/pages/product_details_page.dar
 import 'package:mhg/features/products_page/binding/products_page_binding.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
 import 'package:mhg/features/profile/view/pages/profile_view.dart';
+import 'package:mhg/features/profile/view/pages/send_points.dart';
 import 'package:mhg/features/rewards/pages/rewards_page.dart';
 import 'package:mhg/features/search/view/pages/search_page.dart';
 import 'package:mhg/features/setting/binding/setting_binding.dart';
@@ -168,6 +169,10 @@ class AppRoutes {
     GetPage(
       name: '/privacy_policy',
       page: () => PrivacyPolicyPage(),
+    ),
+      GetPage(
+      name: '/send_points',
+      page: () => SendPointsPage(),
     ),
   ];
 }

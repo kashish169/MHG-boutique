@@ -9,6 +9,7 @@ import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
 import '../../../home/controller/home_controller.dart';
 import '../../../home/view/widgets/product_card.dart';
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 import '../widget/custom_search_section.dart';
 import '../widget/recent_search_body.dart';
 import '../widget/search_form.dart';
@@ -23,6 +24,7 @@ class SearchPage extends StatelessWidget {
     final controller = Get.find<SearchingController>();
     return Scaffold(
       backgroundColor: AppColors.white2,
+      bottomNavigationBar: const BottomNavBarWidget(),
       appBar: customAppBar(
         context,
         title: "Search",

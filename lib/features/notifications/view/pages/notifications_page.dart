@@ -7,6 +7,7 @@ import 'package:mhg/features/notifications/view/widgets/notification_item.dart';
 import 'package:mhg/widgets/divider_widget.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 
 class NotificationsPage extends StatelessWidget {
   static String routeName = '/notify';
@@ -15,6 +16,7 @@ class NotificationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const BottomNavBarWidget(),
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle.light,
         centerTitle: true,

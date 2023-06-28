@@ -4,4 +4,6 @@ import 'package:mhg/core/models/failure.dart';
 
 abstract class ProfileRepo {
   Future<Either<Failure, ApiResponse>> getInfo();
+  Future<Either<Failure, ApiResponse>> sendHearts(Object body);
+  Future<Either<Failure, ApiResponse>> logOut();
 }
