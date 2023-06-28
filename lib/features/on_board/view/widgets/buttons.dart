@@ -33,6 +33,7 @@ class OnBoardButtons extends StatelessWidget {
                             arguments: {
                               'country': controller.selectedCountry,
                               'is_guest': false,
+                              'flag':controller.selectedCountryFlage
                             },
                           );
                         },

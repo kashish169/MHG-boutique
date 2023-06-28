@@ -1,63 +1,65 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mhg/features/auth/signin/view/widget/show_country_picker.dart';
-import '../../controller/sign_in_controller.dart';
-
-class CountryButtonPick extends StatelessWidget {
-  const CountryButtonPick({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    SignInController controller = Get.find();
-    return MaterialButton(
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      padding: EdgeInsets.zero,
-      minWidth: 0,
-      onPressed: () {
-        showCountries(
-          context,
-          (p0) {
-            controller.countryCode.value = "+${p0.phoneCode}";
-            controller.countryFlag.value = p0.flagEmoji;
-          },
-        );
-      },
-      child: SizedBox(
-        width: 110,
-        child: Row(
-          children: [
-            const SizedBox(
-              width: 5,
-            ),
-            Obx(() => controller.countryFlag.contains('uae')
-                ? Image.asset(
-                    controller.countryFlag.value,
-                    height: 20,
-                  )
-                : Text(
-                    controller.countryFlag.value,
-                    style: Theme.of(context).textTheme.headline2,
-                  )),
-            Obx(
-              () => Text(
-                controller.countryCode.value,
-                style: Theme.of(context).textTheme.displaySmall,
-              ),
-            ),
-            const Icon(
-              Icons.arrow_drop_down_outlined,
-            ),
-            const SizedBox(
-              height: 30,
-              child: VerticalDivider(
-                width: 1,
-                thickness: 1,
-                color: Color(0XFFBCBCBC),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:mhg/features/auth/signin/view/widget/show_country_picker.dart';
+// import 'package:mhg/features/on_board/controller/on_board_controller.dart';
+// import '../../controller/sign_in_controller.dart';
+//
+// class CountryButtonPick extends StatelessWidget {
+//   const CountryButtonPick({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     SignInController controller = Get.find();
+//     return MaterialButton(
+//       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+//       padding: EdgeInsets.zero,
+//       minWidth: 0,
+//       onPressed: () {
+//         showCountries(
+//           context,
+//           (p0) {
+//             controller.countryCode.value =Get.find<OnboardController>().selectedCountry;
+//             controller.countryFlag.value =Get.find<OnboardController>().selectedCountryFlage??p0.flagEmoji;
+//
+//           },
+//         );
+//       },
+//       child: SizedBox(
+//         width: 110,
+//         child: Row(
+//           children: [
+//             const SizedBox(
+//               width: 5,
+//             ),
+//             Obx(() => controller.countryFlag.contains('uae')
+//                 ? Image.asset(
+//                     controller.countryFlag.value,
+//                     height: 20,
+//                   )
+//                 : Text(
+//                     controller.countryFlag.value,
+//                     style: Theme.of(context).textTheme.headline2,
+//                   )),
+//             Obx(
+//               () => Text(
+//                 controller.countryCode.value,
+//                 style: Theme.of(context).textTheme.displaySmall,
+//               ),
+//             ),
+//             const Icon(
+//               Icons.arrow_drop_down_outlined,
+//             ),
+//             const SizedBox(
+//               height: 30,
+//               child: VerticalDivider(
+//                 width: 1,
+//                 thickness: 1,
+//                 color: Color(0XFFBCBCBC),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

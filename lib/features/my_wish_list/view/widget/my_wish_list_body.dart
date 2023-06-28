@@ -64,7 +64,7 @@ class _MyWishBodyState extends State<MyWishBody> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 15),
+                        const SizedBox(height: 35),
                         TopBodyHeader(title: widget.model.name),
                         const SizedBox(height: 10),
                         BodyMiddleText(

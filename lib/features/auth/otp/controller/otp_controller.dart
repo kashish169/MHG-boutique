@@ -7,19 +7,19 @@ class OtpController extends GetxController {
       Get.put(VerificationController());
   Timer? timer;
   int remainingSeconds = 1;
-  int times = 60;
+  RxInt times = 30.obs;
 
   void startTimer(int seconds) {
-    times = 60;
+    times.value = 30;
     const duration = Duration(seconds: 1);
     remainingSeconds = seconds;
     timer = Timer.periodic(duration, (time) {
       if (remainingSeconds == 0) {
-        times = remainingSeconds;
+        times.value = remainingSeconds;
         time.cancel();
         update();
       } else {
-        times = remainingSeconds;
+        times.value = remainingSeconds;
         remainingSeconds--;
         update();
       }
@@ -29,14 +29,14 @@ class OtpController extends GetxController {
 
   void resendCode() {
     if (times == 0) {
-      startTimer(60);
+      startTimer(30);
       verificationController.sendOtpCode();
     }
   }
 
   @override
   void onReady() {
-    startTimer(60);
+    startTimer(30);
     super.onReady();
   }
 

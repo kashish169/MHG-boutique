@@ -38,10 +38,10 @@ class RedeemCardButton extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Radio(
-                      toggleable: true,
-                      value: true,
-                      groupValue: checkoutController.hasRedeem.value,
+                  Checkbox(
+                    //  toggleable: true,
+                      value: checkoutController.hasRedeem.value,
+                    //  groupValue: checkoutController.hasRedeem.value,
                       onChanged: (val) {
                         checkoutController.hasRedeem.value =
                             !checkoutController.hasRedeem.value;

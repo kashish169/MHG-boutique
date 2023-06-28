@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +17,7 @@ class SendPointsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProfileController controller = Get.find();
+
     return Dialog(
       insetPadding: const EdgeInsets.symmetric(horizontal: 20),
       shape: RoundedRectangleBorder(
@@ -56,8 +59,8 @@ class SendPointsPage extends StatelessWidget {
                         Theme.of(context).textTheme.displaySmall!.copyWith(
                               color: AppColors.label,
                             ),
-                    initialSelection: 'UAE',
-                    favorite: const ['+971', 'UAE'],
+                    initialSelection: controller.countryCode.value,
+                    
                     showCountryOnly: false,
                     showOnlyCountryWhenClosed: false,
                     alignLeft: false,

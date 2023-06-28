@@ -17,9 +17,9 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<SignInController>();
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+    //resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.white,
-      extendBodyBehindAppBar: true,
+     extendBodyBehindAppBar: true,
       appBar: controller.isGuest.isFalse
           ? const PreferredSize(
               preferredSize: Size.zero,

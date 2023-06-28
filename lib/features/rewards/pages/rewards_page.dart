@@ -17,23 +17,25 @@ class RewardsPage extends StatelessWidget {
     return Scaffold(
       appBar: customAppBar(context, title: "Rewards"),
       bottomNavigationBar: const BottomNavBarWidget(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              'Good Morning ${controller.model.value!.name}',
-              style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    fontSize: 18,
-                  ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                'Good Morning ${controller.model.value!.name}',
+                style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                      fontSize: 18,
+                    ),
+              ),
             ),
-          ),
-          const RewardHeader(),
-          const ScanQrCard(),
-          const RewardLevelsWidget(),
-        ],
+            const RewardHeader(),
+            const ScanQrCard(),
+            const RewardLevelsWidget(),
+          ],
+        ),
       ),
     );
   }

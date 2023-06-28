@@ -35,13 +35,13 @@ class BottomCartWidget extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
               )),
-          Text(
-            'Free Domestic Shipping',
-            style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                  fontSize: 16,
-                  color: AppColors.label,
-                ),
-          ),
+          // Text(
+          //   'Free Domestic Shipping',
+          //   style: Theme.of(context).textTheme.displaySmall?.copyWith(
+          //         fontSize: 16,
+          //         color: AppColors.label,
+          //       ),
+          // ),
           const SizedBox(height: 15),
           const CheckOutButton(),
           const SizedBox(height: 15),

@@ -6,6 +6,7 @@ import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/core/models/api_response.dart';
+import 'package:mhg/core/models/countries.dart';
 import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/features/on_board/view/pages/on_board_view.dart';
 import 'package:mhg/features/profile/models/profle_info_model.dart';
@@ -57,6 +58,7 @@ class ProfileController extends GetxController {
           var message = r.object['message'];
           if (statusCode == 200) {
             model.value = ProfileInfoModal.fromJson(r.object["data"]);
+           separatePhoneAndDialCode(model.value!.number!);
             App.countryId = model.value?.country?.id;
             App.currency = "${model.value?.country?.currency.currency}";
             currnecy.value = App.currency;
@@ -172,10 +174,34 @@ class ProfileController extends GetxController {
     }
   }
 
+  separatePhoneAndDialCode(String phoneWithDialCode) {
+    Map<String, String> foundedCountry = {};
+    for (var country in Countries.allCountries) {
+      String dialCode = country["dial_code"].toString();
+      if (phoneWithDialCode.contains(dialCode)) {
+        foundedCountry = country;
+      }
+    }
+
+    if (foundedCountry.isNotEmpty) {
+      var dialCode = phoneWithDialCode.substring(
+        0,
+        foundedCountry["dial_code"]!.length,
+      );
+      var newPhoneNumber = phoneWithDialCode.substring(
+        foundedCountry["dial_code"]!.length,
+      );
+
+      countryCode.value = dialCode;
+      print({dialCode, newPhoneNumber});
+    }
+  }
+
   @override
   void onInit() {
     if (App.token.isNotEmpty) {
       getProfileInfo();
+
     } else {
       currnecy.value = App.currency;
     }

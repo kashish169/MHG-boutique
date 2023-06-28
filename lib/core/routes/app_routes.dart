@@ -170,7 +170,7 @@ class AppRoutes {
       name: '/privacy_policy',
       page: () => PrivacyPolicyPage(),
     ),
-      GetPage(
+    GetPage(
       name: '/send_points',
       page: () => SendPointsPage(),
     ),
