@@ -211,20 +211,21 @@ class ProductDetailsController extends GetxController {
             //     print('add');
             //   }
             // }
-            productsReviews.add(ProductReviewModel(
-              id: model.id,
-              rating: model.rating,
-              feedback: model.feedback,
-              productId: productId,
-              userId: profileController.model.value!.id,
-              createdAt: model.createdAt,
-              updatedAt: model.updatedAt,
-              user: User(
-                id: profileController.model.value!.id,
-                name: profileController.model.value?.name ?? '',
-                imageLink: profileController.model.value?.imageLink,
-              ),
-            ));
+            // productsReviews.add(ProductReviewModel(
+            //   id: model.id,
+            //   rating: model.rating,
+            //   feedback: model.feedback,
+            //   productId: productId,
+            //   userId: profileController.model.value!.id,
+            //   createdAt: model.createdAt,
+            //   updatedAt: model.updatedAt,
+            //   user: User(
+            //     id: profileController.model.value!.id,
+            //     name: profileController.model.value?.name ?? '',
+            //     imageLink: profileController.model.value?.imageLink,
+            //   ),
+            // ));
+            getProductDetails();
             AppToasts.successToast("Your review has been added successfully");
             Get.back();
           } else {

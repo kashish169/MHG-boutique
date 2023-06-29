@@ -13,15 +13,15 @@ class FiltersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<ProductsController>();
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 11),
+      padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
+
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: _scentWidget(context, controller),
           ),
-          const SizedBox(
-            width: 3,
-          ),
+
           Expanded(child: _sortByWidget(context, controller))
         ],
       ),
@@ -44,7 +44,7 @@ class FiltersWidget extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           height: 35,
-          width: AppDimensions.screenWidth(context) / 3.2,
+          width: AppDimensions.screenWidth(context) / 3.25,
           decoration: BoxDecoration(
               border: Border.all(color: AppColors.secondaryBlack),
               borderRadius: const BorderRadius.all(Radius.circular(5)),
@@ -101,7 +101,7 @@ class FiltersWidget extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           height: 35,
-          width: AppDimensions.screenWidth(context) / 3.2,
+          width: AppDimensions.screenWidth(context) / 3.25,
           decoration: BoxDecoration(
               border: Border.all(color: AppColors.secondaryBlack),
               borderRadius: const BorderRadius.all(Radius.circular(5)),
@@ -118,7 +118,9 @@ class FiltersWidget extends StatelessWidget {
                     child: DropdownButton(
                       style: Theme.of(context).textTheme.displaySmall!.copyWith(
                           color: AppColors.secondaryBlack, fontSize: 14),
+                      isDense: true,
                       isExpanded: true,
+
                       value: controller.selectedSortBy.value,
                       icon: Image.asset(
                         AppAssets.arrowDown,
