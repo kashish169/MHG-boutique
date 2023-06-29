@@ -39,10 +39,12 @@ class ProductDetailsController extends GetxController {
   List<String> productImages = [];
   RxList<ProductReviewModel> productsReviews = <ProductReviewModel>[].obs;
 
-  Future<void> getProductDetails() async {
+  Future<void> getProductDetails({bool withoutLoading=false}) async {
     productImages.clear();
     try {
-      isLoading(true);
+      if(!withoutLoading) {
+        isLoading(true);
+      }
       isError(false);
       Either<Failure, ApiResponse> results =
           await productDetailsRepository.getProductDetails(
@@ -151,6 +153,7 @@ class ProductDetailsController extends GetxController {
             AppToasts.successToast(
               "The product has been added to the bag",
             );
+            update();
           } else {
             result = false;
             isErrorAdd(true);
@@ -225,7 +228,7 @@ class ProductDetailsController extends GetxController {
             //     imageLink: profileController.model.value?.imageLink,
             //   ),
             // ));
-            getProductDetails();
+            getProductDetails(withoutLoading: true);
             AppToasts.successToast("Your review has been added successfully");
             Get.back();
           } else {
