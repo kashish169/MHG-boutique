@@ -1,61 +1,67 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
 import 'package:mhg/features/auth/signin/view/widget/show_country_picker.dart';
-import '../../controller/sign_in_controller.dart';
 
 class CountryButtonPick extends StatelessWidget {
   const CountryButtonPick({super.key});
 
   @override
   Widget build(BuildContext context) {
-    SignInController controller = Get.find();
-    return MaterialButton(
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      padding: EdgeInsets.zero,
-      minWidth: 0,
-      onPressed: () {
-        showCountries(
-          context,
-          (p0) {
-            controller.countryCode.value = "+${p0.phoneCode}";
-            controller.countryFlag.value = p0.flagEmoji;
-          },
-        );
-      },
-      child: SizedBox(
-        width: 110,
-        child: Row(
-          children: [
-            const SizedBox(
-              width: 5,
-            ),
-            Obx(() => controller.countryFlag.contains('uae')
-                ? Image.asset(
-                    controller.countryFlag.value,
-                    height: 20,
-                  )
-                : Text(
-                    controller.countryFlag.value,
-                    style: Theme.of(context).textTheme.headline2,
-                  )),
-            Obx(
-              () => Text(
+    return GetBuilder<SignInController>(
+
+      builder: (controller) => MaterialButton(
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: EdgeInsets.zero,
+        minWidth: 0,
+        onPressed: () {
+
+          showCountries(
+            context,
+                (p0) {
+              controller.selectCountry(p0);
+            },
+          );
+        },
+        child: SizedBox(
+          width: 110,
+          child: Row(
+            children: [
+              const SizedBox(width: 8),
+              controller.firstCountryFlag.isNotEmpty
+                  ? Image.network(
+                controller.firstCountryFlag.value,
+                height: 20,
+              )
+                  :
+              controller.countryFlag.value.contains('uae')?
+              Image.asset(
+                controller.countryFlag.value,
+                height: 20,
+              ):
+              Text(
+                controller.countryFlag.value,
+
+              ),
+              Text(
                 controller.countryCode.value,
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-            ),
-            const Icon(
-              Icons.arrow_drop_down_outlined,
-            ),
-            const SizedBox(
-              height: 30,
-              child: VerticalDivider(
-                width: 1,
-                thickness: 1,
-                color: Color(0XFFBCBCBC),
+              const Icon(
+                Icons.arrow_drop_down_outlined,
               ),
-            ),
-          ],
+              const SizedBox(
+                height: 30,
+                child: VerticalDivider(
+                  width: 1,
+                  thickness: 1,
+                  color: Color(0XFFBCBCBC),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

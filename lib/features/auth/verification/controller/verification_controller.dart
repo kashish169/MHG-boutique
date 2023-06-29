@@ -28,11 +28,17 @@ class VerificationController extends GetxController {
   String type = '';
   RxString countryCode = '+971'.obs;
   RxString countryFlag = AppAssets.flag.obs;
+  RxString firstCountryFlag = ''.obs;
 
   @override
   void onInit() {
     var args = Get.arguments;
     type = args["type"];
+    if(signUpController.firstCountryFlag.isNotEmpty){
+       firstCountryFlag.value=signUpController.firstCountryFlag.value;
+    }else{
+      countryFlag.value=signUpController.countryFlag;
+    }
     countryCode.value = args["countryCode"];
     var phoneNumber = args["phone"];
     phone.setText(phoneNumber);

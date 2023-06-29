@@ -23,11 +23,15 @@ class SignUpController extends GetxController {
   SignUpController() {
     signUpRepo = Get.find<SignUpRepoImpl>();
   }
+
+
+
   final signInController = Get.find<SignInController>();
   bool isLoading = false;
   bool iserror = false;
   String countryCode = '+971';
   String countryFlag = AppAssets.flag;
+  RxString firstCountryFlag = ''.obs;
   final formKey = GlobalKey<FormState>();
   final formKey2 = GlobalKey<FormState>();
   final TextEditingController name = TextEditingController();
@@ -38,6 +42,7 @@ class SignUpController extends GetxController {
   String accountType = 'normal';
 
   Future<void> signUp() async {
+    log(countryCode);
     isLoading = true;
     update();
     var body = signUpModelToJson(SignUpModel(
@@ -86,9 +91,10 @@ class SignUpController extends GetxController {
     update();
   }
 
-  selcteCountry(Country country) {
+  selectCountry(Country country) {
     countryFlag = country.flagEmoji;
     countryCode = "+${country.phoneCode}";
+    firstCountryFlag.value = '';
     log(country.flagEmoji);
     update();
   }

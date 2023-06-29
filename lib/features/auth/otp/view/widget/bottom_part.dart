@@ -17,16 +17,16 @@ class OtpBottomPart extends StatelessWidget {
             'Didn’t receive code?',
             style: Theme.of(context).textTheme.displaySmall,
           ),
-          TextButton(
+          Obx(() => TextButton(
               onPressed: () {
                 controller.resendCode();
               },
               child: Text(
                 "Resend code",
                 style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                      color: AppColors.red,
-                    ),
-              ))
+                  color: controller.times==0?AppColors.red:AppColors.darkGrey2.withOpacity(.5),
+                ),
+              )))
         ],
       ),
     );

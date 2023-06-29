@@ -24,6 +24,9 @@ class _MainWrapperState extends State<MainWrapper> {
 
   @override
   void initState() {
+    final args=Get.arguments;
+    mainController.globalGuestCountryCode=args['country_code'];
+    mainController.globalGuestCountryFlag=args['flag'];
     super.initState();
   }
 

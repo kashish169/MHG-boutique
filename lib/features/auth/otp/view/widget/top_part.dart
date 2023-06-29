@@ -26,7 +26,7 @@ class OtpTopPart extends StatelessWidget {
               height: 20,
             ),
             Text(
-                "OTP has been sent to your mobile\nEnter your 4 digit code here",
+                "OTP has been sent to your mobile\nEnter your 6 digit code here",
                 style: Theme.of(context).textTheme.displaySmall!.copyWith(
                       fontSize: 15,
                       color: AppColors.label,

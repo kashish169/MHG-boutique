@@ -21,7 +21,7 @@ class SearchingController extends GetxController {
   void onInit() {
     paginate();
 
-  filterSearchForProduct();
+ // filterSearchForProduct();
 
     super.onInit();
   }

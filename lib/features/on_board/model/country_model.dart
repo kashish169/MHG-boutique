@@ -6,11 +6,14 @@ class CountryModel {
   String name;
   String falg;
   String flagLink;
+  String prefix;
   dynamic createdAt;
   dynamic updatedAt;
   CurrencyModel currency;
+
   CountryModel({
     required this.id,
+    required this.prefix,
     required this.currencyId,
     required this.name,
     required this.falg,
@@ -19,8 +22,10 @@ class CountryModel {
     required this.updatedAt,
     required this.currency,
   });
+
   factory CountryModel.fromJson(Map<String, dynamic> json) => CountryModel(
         id: json['id'],
+        prefix: json['prefix'],
         currencyId: json['currency_id'],
         name: json['name'],
         falg: json['flag'],
@@ -38,6 +43,7 @@ class TermsModel {
   String arabicDescription;
   dynamic createdAt;
   dynamic updatedAt;
+
   TermsModel({
     required this.id,
     required this.location,

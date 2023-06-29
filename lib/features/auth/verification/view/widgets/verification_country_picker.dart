@@ -26,6 +26,11 @@ class VerificationCountryPickerWidget extends StatelessWidget {
           child: Row(
             children: [
               const SizedBox(width: 8),
+              controller.firstCountryFlag.isNotEmpty
+                  ? Image.network(
+                controller.firstCountryFlag.value,
+                height: 20,
+              ):
               controller.countryFlag.contains('uae')
                   ? Image.asset(
                       controller.countryFlag.value,

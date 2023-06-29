@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/auth/sign_up/controller/sign_up_controller.dart';
+import 'package:mhg/features/auth/signin/view/widget/country_button_pick.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -11,10 +14,34 @@ import 'package:get/get.dart';
 import '../../../verification/view/pages/verfication_page.dart';
 import '../../../widgets/country_picker_widget.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   static String routeName = '/signUp';
   const SignUpPage({super.key});
 
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  @override
+  void initState() {
+    var args = Get.arguments;
+    final SignUpController controller=Get.find();
+    bool firstFlag=args['isFirstFlag'];
+    controller.countryCode = args['country_code']??'+971';
+    if(firstFlag){
+
+      controller.firstCountryFlag.value = args["flag"] ?? '';
+    }else{
+      controller.firstCountryFlag.value='';
+      controller.countryFlag=args["flag"] ??AppAssets.flag;
+    }
+
+    setState(() {
+
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

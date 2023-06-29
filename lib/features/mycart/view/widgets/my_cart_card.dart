@@ -24,6 +24,7 @@ class MyCartCard extends StatelessWidget {
       alignment: AlignmentDirectional.topEnd,
       children: [
         Container(
+
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.circular(8),
@@ -46,7 +47,7 @@ class MyCartCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 35),
                     Text(
                       model.name,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(

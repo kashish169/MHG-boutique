@@ -80,7 +80,7 @@ class OrderDetailsCard extends StatelessWidget {
                     )),
                 const SizedBox(height: 4),
                 Text(
-                  'Quantity: ${model.quantity}',
+                  'Quantity: ${double.parse(model.quantity).toInt()}',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontSize: 14,
                         color: AppColors.mediumLabel,

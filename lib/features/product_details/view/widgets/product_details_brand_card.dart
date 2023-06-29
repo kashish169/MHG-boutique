@@ -76,7 +76,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                 ],
               )),
           const SizedBox(height: 5),
-          controller.model.pts != null
+          controller.model.pts != null && controller.model.pts!=0
               ? Row(
                   children: [
                     Image.asset(

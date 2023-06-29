@@ -34,6 +34,7 @@ class SelectCountryView extends StatelessWidget {
                           onTap: () {
                             controller.selectCountry(
                               id: controller.countryList[index].id,
+                              prefix: controller.countryList[index].prefix,
                               country: controller.countryList[index].name,
                               countryFlage:
                                   controller.countryList[index].flagLink,
@@ -46,6 +47,7 @@ class SelectCountryView extends StatelessWidget {
                             isSelectCountry: true,
                             onChange: (val) {
                               controller.selectCountry(
+                                prefix: controller.countryList[index].prefix,
                                 id: controller.countryList[index].id,
                                 country: controller.countryList[index].name,
                                 countryFlage:

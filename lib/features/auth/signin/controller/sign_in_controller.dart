@@ -33,8 +33,10 @@ class SignInController extends GetxController {
   RxBool isLoading = false.obs;
   RxString countryCode = '+971'.obs;
   RxString countryFlag = AppAssets.flag.obs;
+  RxString firstCountryFlag = ''.obs;
   RxInt roleInd = 0.obs;
   String selectedCountryName = '';
+
   RxBool logWithEmail = false.obs;
   RxBool logWithNumber = true.obs;
   RxDouble numberLogHight = 53.0.obs;
@@ -44,14 +46,7 @@ class SignInController extends GetxController {
   RxBool isGuest = false.obs;
   RxBool isOTP = false.obs;
 
-  @override
-  void onInit() {
-    var args = Get.arguments;
-    selectedCountryName = args["country"];
-    isGuest.value = args["is_guest"];
-    log("selectedCountryName $selectedCountryName");
-    super.onInit();
-  }
+
 
   changeVisibility() {
     isVisable.value = !isVisable.value;
@@ -188,7 +183,9 @@ class SignInController extends GetxController {
   selectCountry(Country country) {
     countryFlag.value = country.flagEmoji;
     countryCode.value = "+${country.phoneCode}";
+    firstCountryFlag.value='';
     log("+${country.phoneCode}");
+    log(countryFlag.value);
     update();
   }
 }

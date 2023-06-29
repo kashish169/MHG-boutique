@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
@@ -13,6 +15,7 @@ class HomeCategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return InkWell(
       onTap: () {
         if (model.categoryId == null && model.allActiveSubMenus.isEmpty) {
@@ -33,7 +36,7 @@ class HomeCategoryCard extends StatelessWidget {
       },
       child: Container(
         padding:
-            const EdgeInsetsDirectional.symmetric(horizontal: 14, vertical: 10),
+            const EdgeInsetsDirectional.symmetric(horizontal: 12, vertical: 10),
         decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: BorderRadiusDirectional.circular(8),
@@ -44,18 +47,17 @@ class HomeCategoryCard extends StatelessWidget {
             Expanded(
               child: Text(
                 model.enName,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+
                 style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      fontSize: 15,
+                      fontSize: 14,
                     ),
               ),
             ),
             NetImage(
               image: model.imageLink,
               height: 45,
-              width: 45,
-              fit: BoxFit.fitWidth,
+              width: 35,
+              fit: BoxFit.contain,
             ),
           ],
         ),
