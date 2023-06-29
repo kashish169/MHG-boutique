@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
@@ -9,13 +11,31 @@ import 'package:get/get.dart';
 import '../widget/bottom_sign_in.dart';
 import '../widget/log_method_button.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
   static String routeName = '/signIn';
   const SignInPage({super.key});
 
   @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  @override
+  void initState() {
+    var args = Get.arguments;
+
+    final controller=Get.find<SignInController>();
+    controller.selectedCountryName = args["country"];
+    controller.firstCountryFlag.value=args["flag"]??'';
+    controller.isGuest.value = args["is_guest"];
+    controller.countryCode.value=args['country_code']??'+971';
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
+
     final controller = Get.find<SignInController>();
+
     return Scaffold(
     //resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.white,

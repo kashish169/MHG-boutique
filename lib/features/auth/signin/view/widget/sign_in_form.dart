@@ -38,7 +38,7 @@ class SignInForm extends StatelessWidget {
                         height: 22,
                       ),
                     ),
-                    prefixWidget: const CountryPickerWidget(),
+                    prefixWidget: const CountryButtonPick(),
                     inputType: TextInputType.number,
                     obscure: false,
                   ),

@@ -46,15 +46,7 @@ class SignInController extends GetxController {
   RxBool isGuest = false.obs;
   RxBool isOTP = false.obs;
 
-  @override
-  void onInit() {
-    var args = Get.arguments;
-    selectedCountryName = args["country"];
-    firstCountryFlag.value=args["flag"]??'';
-    isGuest.value = args["is_guest"];
-    log("selectedCountryName $selectedCountryName");
-    super.onInit();
-  }
+
 
   changeVisibility() {
     isVisable.value = !isVisable.value;

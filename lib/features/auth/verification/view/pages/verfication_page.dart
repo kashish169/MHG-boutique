@@ -43,7 +43,7 @@ class VerificationPage extends StatelessWidget {
                       height: AppDimensions.screenHeight(context) / 20,
                     ),
                     Text(
-                        "We have sent you 4 digit code to verify \nyour phone number",
+                        "We have sent you 6 digit code to verify \nyour phone number",
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.displaySmall),
                     SizedBox(

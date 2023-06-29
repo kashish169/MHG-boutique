@@ -78,7 +78,12 @@ class BottomSignIn extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Get.toNamed(SignUpPage.routeName);
+                  Get.toNamed(SignUpPage.routeName, arguments: {
+                    'country_code': controller.countryCode.value,
+                    'flag':controller.firstCountryFlag.isNotEmpty?controller.firstCountryFlag.value:controller.countryFlag.value,
+                    'isFirstFlag':controller.firstCountryFlag.isNotEmpty
+
+                  });
                 },
                 child: Text(
                   "Sign Up",

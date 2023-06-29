@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/auth/sign_up/controller/sign_up_controller.dart';
 import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
 import 'package:mhg/features/auth/signin/view/widget/show_country_picker.dart';
 
@@ -10,7 +11,7 @@ class CountryPickerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SignInController>(
+    return GetBuilder<SignUpController>(
 
       builder: (controller) => MaterialButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -36,17 +37,17 @@ class CountryPickerWidget extends StatelessWidget {
                 height: 20,
               )
                   :
-              controller.countryFlag.value.contains('uae')?
+              controller.countryFlag.contains('uae')?
               Image.asset(
-                controller.countryFlag.value,
+                controller.countryFlag,
                 height: 20,
               ):
               Text(
-                controller.countryFlag.value,
+                controller.countryFlag,
 
               ),
               Text(
-                controller.countryCode.value,
+                controller.countryCode,
                 style: Theme.of(context).textTheme.displaySmall,
               ),
               const Icon(

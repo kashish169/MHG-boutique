@@ -41,6 +41,7 @@ class OnboardController extends GetxController {
   ];
   String selectedCountry = 'United Arab Emirates';
   int selectedCountryId = 1;
+  String selectedCountryCode = '+971';
   String? selectedCountryFlage;
   List<CountryModel> countryList = [];
   String selectedLang = 'English';
@@ -91,6 +92,7 @@ class OnboardController extends GetxController {
             countryList = json.map((e) => CountryModel.fromJson(e)).toList();
             if (countryList.isNotEmpty) {
               selectedCountryFlage = countryList.first.flagLink;
+
               App.countryId = countryList.first.id;
               App.currency = countryList.first.currency.currency;
               await StoragePref.setInt(
@@ -119,6 +121,7 @@ class OnboardController extends GetxController {
 
   selectCountry({
     required String country,
+    required String prefix,
     required String countryFlage,
     required int id,
     required String currency,
@@ -126,6 +129,7 @@ class OnboardController extends GetxController {
     selectedCountry = country;
     selectedCountryFlage = countryFlage;
     selectedCountryId = id;
+    selectedCountryCode=prefix;
     App.countryId = selectedCountryId;
     App.currency = currency;
     App.countryName = selectedCountry;
