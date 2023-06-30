@@ -39,10 +39,12 @@ class ProductDetailsController extends GetxController {
   List<String> productImages = [];
   RxList<ProductReviewModel> productsReviews = <ProductReviewModel>[].obs;
 
-  Future<void> getProductDetails() async {
+  Future<void> getProductDetails({bool withoutLoading=false}) async {
     productImages.clear();
     try {
-      isLoading(true);
+      if(!withoutLoading) {
+        isLoading(true);
+      }
       isError(false);
       Either<Failure, ApiResponse> results =
           await productDetailsRepository.getProductDetails(
@@ -151,6 +153,7 @@ class ProductDetailsController extends GetxController {
             AppToasts.successToast(
               "The product has been added to the bag",
             );
+            update();
           } else {
             result = false;
             isErrorAdd(true);
@@ -211,20 +214,21 @@ class ProductDetailsController extends GetxController {
             //     print('add');
             //   }
             // }
-            productsReviews.add(ProductReviewModel(
-              id: model.id,
-              rating: model.rating,
-              feedback: model.feedback,
-              productId: productId,
-              userId: profileController.model.value!.id,
-              createdAt: model.createdAt,
-              updatedAt: model.updatedAt,
-              user: User(
-                id: profileController.model.value!.id,
-                name: profileController.model.value?.name ?? '',
-                imageLink: profileController.model.value?.imageLink,
-              ),
-            ));
+            // productsReviews.add(ProductReviewModel(
+            //   id: model.id,
+            //   rating: model.rating,
+            //   feedback: model.feedback,
+            //   productId: productId,
+            //   userId: profileController.model.value!.id,
+            //   createdAt: model.createdAt,
+            //   updatedAt: model.updatedAt,
+            //   user: User(
+            //     id: profileController.model.value!.id,
+            //     name: profileController.model.value?.name ?? '',
+            //     imageLink: profileController.model.value?.imageLink,
+            //   ),
+            // ));
+            getProductDetails(withoutLoading: true);
             AppToasts.successToast("Your review has been added successfully");
             Get.back();
           } else {

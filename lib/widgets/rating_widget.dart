@@ -26,7 +26,7 @@ class RatingWidget extends StatelessWidget {
           minRating: 1,
           ignoreGestures: isEnableToRate! ? false : true,
           direction: Axis.horizontal,
-          allowHalfRating: true,
+          allowHalfRating: false,
           itemCount: 5,
           itemSize: starSize == null ? 10 : starSize!,
           itemPadding: EdgeInsets.zero,
