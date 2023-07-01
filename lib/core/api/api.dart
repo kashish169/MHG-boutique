@@ -13,6 +13,7 @@ class Api {
   };
   static String countryLink = "/api/v1/countries/index";
   static String signUp = "/api/v1/users/auth/register";
+  static String forgetPassword = "/api/v1/users/auth/reset-password-request";
   static String otp = "/api/v1/users/auth/send-otp";
   static String loginEmail = "/api/v1/users/auth/login";
   static String login = "/api/v1/users/auth/login-with-phone";

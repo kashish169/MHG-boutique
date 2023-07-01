@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/forgot_password/pages/forget_view.dart';
 import '../../../../../core/helper/app_helper.dart';
 import '../../../../../widgets/primary_button.dart';
 import '../../../otp/view/pages/otp.dart';
@@ -9,12 +10,15 @@ import '../../controller/sign_in_controller.dart';
 
 class BottomSignIn extends StatelessWidget {
   BottomSignIn({super.key});
+
   final SignInController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return GetX<SignInController>(builder: (controller) {
       return Column(
         children: [
+
           Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 25,
@@ -25,7 +29,6 @@ class BottomSignIn extends StatelessWidget {
               title: 'Login',
               height: 50,
               width: double.infinity,
-
               onTap: () {
                 controller.isOTP.trigger(false);
                 if (controller.formKey.currentState!.validate()) {
@@ -80,9 +83,10 @@ class BottomSignIn extends StatelessWidget {
                 onPressed: () {
                   Get.toNamed(SignUpPage.routeName, arguments: {
                     'country_code': controller.countryCode.value,
-                    'flag':controller.firstCountryFlag.isNotEmpty?controller.firstCountryFlag.value:controller.countryFlag.value,
-                    'isFirstFlag':controller.firstCountryFlag.isNotEmpty
-
+                    'flag': controller.firstCountryFlag.isNotEmpty
+                        ? controller.firstCountryFlag.value
+                        : controller.countryFlag.value,
+                    'isFirstFlag': controller.firstCountryFlag.isNotEmpty
                   });
                 },
                 child: Text(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/auth/widgets/country_picker_widget.dart';
+import 'package:mhg/features/forgot_password/pages/forget_view.dart';
 import '../../../../../constants/app_assets.dart';
 import '../../../../../core/helper/app_helper.dart';
 import '../../../../../widgets/custom_form_field.dart';
@@ -9,7 +11,9 @@ import 'country_button_pick.dart';
 
 class SignInForm extends StatelessWidget {
   SignInForm({super.key});
+
   final SignInController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return GetX<SignInController>(builder: (controller) {
@@ -87,6 +91,28 @@ class SignInForm extends StatelessWidget {
               },
             ),
           ),
+          if (controller.logWithEmail.isTrue)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Align(
+                alignment: AlignmentDirectional.topEnd,
+                child: GestureDetector(
+                  onTap: () {
+                    Get.toNamed(ForgetPasswordView.routeName,arguments: controller.email.text);
+                  },
+                  child: Text(
+                    "Forgot password?",
+
+                    style: Theme.of(context)
+                        .textTheme
+                        .displaySmall
+                        ?.copyWith(color:AppColors.secondary,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           const SizedBox(
             height: 20,
           ),
