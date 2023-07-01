@@ -1,8 +1,5 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:mhg/features/about_us/view/pages/about_us_page.dart';
-import 'package:mhg/features/allproducts/view/pages/all_products_page.dart';
 import 'package:mhg/features/auth/sign_up/binding/sign_up_binding.dart';
 import 'package:mhg/features/auth/sign_up/view/pages/sign_up_view.dart';
 import 'package:mhg/features/auth/verification/binding/verification_binding.dart';
@@ -33,6 +30,7 @@ import 'package:mhg/features/products_page/binding/products_page_binding.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
 import 'package:mhg/features/profile/view/pages/profile_view.dart';
 import 'package:mhg/features/profile/view/pages/send_points.dart';
+import 'package:mhg/features/rewards/bindings/reward_bindings.dart';
 import 'package:mhg/features/rewards/pages/rewards_page.dart';
 import 'package:mhg/features/search/view/pages/search_page.dart';
 import 'package:mhg/features/setting/binding/setting_binding.dart';
@@ -93,9 +91,9 @@ class AppRoutes {
       page: () => const ProfileView(),
     ),
     GetPage(
-      name: '/reward',
-      page: () => const RewardsPage(),
-    ),
+        name: '/reward',
+        page: () => const RewardsPage(),
+        binding: ReqwardsBindings()),
     GetPage(
         name: '/notify',
         page: () => const NotificationsPage(),
