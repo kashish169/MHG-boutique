@@ -33,7 +33,7 @@ class RewardsPage extends StatelessWidget {
             ),
             const RewardHeader(),
             const ScanQrCard(),
-            const RewardLevelsWidget(),
+            RewardLevelsWidget(),
           ],
         ),
       ),
