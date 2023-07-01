@@ -67,6 +67,7 @@ class VerificationPage extends StatelessWidget {
                           inputType: TextInputType.number,
                           obscure: false,
                           controller: controller.phone,
+
                           validator: (val) {
                             return AppHelper.validation(val!, 9, 9, 'Number');
                           },

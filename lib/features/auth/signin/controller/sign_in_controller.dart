@@ -89,13 +89,14 @@ class SignInController extends GetxController {
     emailLogwidth.value = (double.infinity * 0.35);
   }
 
-  Future<void> signIn() async {
+  Future<void> signIn({required String verificationCode,required String phone}) async {
     Get.dialog(
       const LoadingWidget(),
       barrierDismissible: false,
     );
     var body = signInModelToJson(SignInModel(
-      phone: countryCode + phone.text.trim(),
+      verificationCode: verificationCode,
+      phone: phone,
       fcmToken: App.fcmToken,
     ));
     Either<Failure, ApiResponse> results = await signInRepo.signIn(

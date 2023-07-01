@@ -5,6 +5,7 @@ String signUpModelToJson(SignUpModel data) => json.encode(data.toJson());
 class SignUpModel {
   SignUpModel({
     required this.email,
+    required this.verificationCode,
     required this.userName,
     required this.password,
     required this.phoneNumber,
@@ -16,6 +17,7 @@ class SignUpModel {
     this.notifyMe,
     required this.countryName,
   });
+
   String userName;
   String email;
   String phoneNumber;
@@ -27,9 +29,11 @@ class SignUpModel {
   int? notifyMe;
   String? token;
   String countryName;
+  String verificationCode;
 
   Map<String, dynamic> toJson() => {
         "name": userName,
+        "verification_code": verificationCode,
         "phone_number": phoneNumber,
         "email": email,
         "fcm_token": fcmToken ?? '',

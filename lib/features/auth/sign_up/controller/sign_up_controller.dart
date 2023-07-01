@@ -41,14 +41,16 @@ class SignUpController extends GetxController {
   bool isVisable = true;
   String accountType = 'normal';
 
-  Future<void> signUp() async {
+  Future<void> signUp({required String verificationCode,required String phone}) async {
+    log(phone);
     log(countryCode);
     isLoading = true;
     update();
     var body = signUpModelToJson(SignUpModel(
+      verificationCode: verificationCode,
       email: email.text.trim(),
       userName: name.text.trim(),
-      phoneNumber: countryCode + phone.text.trim(),
+      phoneNumber: phone,
       password: password.text.trim(),
       accountType: accountType,
       fcmToken: App.fcmToken,
