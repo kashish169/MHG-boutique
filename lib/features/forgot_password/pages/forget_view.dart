@@ -22,6 +22,7 @@ class ForgetPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final  controller = Get.find<ForgetController>();
+
     return Obx(()=>Scaffold(
       appBar: customAppBar(context, title: 'Forgot password'),
       body: ModalProgressHUD(
