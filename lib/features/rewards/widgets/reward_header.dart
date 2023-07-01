@@ -139,19 +139,20 @@ class RewardHeader extends StatelessWidget {
                             ),
                           ),
                         ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: controller.model.value!.nextTierPts != "0.00"
-                        ? Text(
-                            '${controller.model.value!.nextTierPtsLeft} Until ${controller.model.value!.nextTier}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                    fontSize: 10, color: AppColors.white),
-                          )
-                        : const SizedBox(),
-                  )
+                  if (controller.model.value?.nextTier != null)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: controller.model.value!.nextTierPts != "0.00"
+                          ? Text(
+                              '${controller.model.value!.nextTierPtsLeft} Until ${controller.model.value!.nextTier}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall
+                                  ?.copyWith(
+                                      fontSize: 10, color: AppColors.white),
+                            )
+                          : const SizedBox(),
+                    )
                 ],
               ),
             ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
-import 'package:mhg/features/rewards/widgets/reward_header.dart';
 import 'package:mhg/features/rewards/widgets/reward_levels_widget.dart';
 import 'package:mhg/features/rewards/widgets/scan_qr_card.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 import '../../mainwrapper/view/widgets/bottom_nav_bar.dart';
+import '../../profile/view/widgets/reward_widget.dart';
 
 class RewardsPage extends StatelessWidget {
   static String routeName = '/reward';
@@ -31,7 +31,7 @@ class RewardsPage extends StatelessWidget {
                     ),
               ),
             ),
-            const RewardHeader(),
+            const ProfileRewardBox(),
             const ScanQrCard(),
             RewardLevelsWidget(),
           ],
