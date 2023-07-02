@@ -21,7 +21,7 @@ class NotificationsPage extends StatelessWidget {
         systemOverlayStyle: SystemUiOverlayStyle.light,
         centerTitle: true,
         title: Text(
-          'Notifications',
+          'Notifications'.tr,
           style: Theme.of(context)
               .textTheme
               .displayMedium
@@ -53,7 +53,7 @@ class NotificationsPage extends StatelessWidget {
         return controller.notificationsList.isEmpty
             ? Center(
                 child: Text(
-                  'Notifications will appear here!',
+                  'Notifications will appear here!'.tr,
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
               )

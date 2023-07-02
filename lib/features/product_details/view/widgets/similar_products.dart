@@ -25,7 +25,7 @@ class SimilarProductsWidget extends StatelessWidget {
             vertical: 10,
           ),
           child: Text(
-            'You might also like',
+            'You might also like'.tr,
             style: Theme.of(context)
                 .textTheme
                 .displaySmall

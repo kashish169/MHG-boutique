@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../constants/app_colors.dart';
 
@@ -12,7 +13,7 @@ class SearchTopSellers extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Top Sellers",
+          Text("Top Sellers".tr,
               style: Theme.of(context)
                   .textTheme
                   .displaySmall!
@@ -22,7 +23,7 @@ class SearchTopSellers extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    "View All",
+                    "View All".tr,
                     style: Theme.of(context)
                         .textTheme
                         .displaySmall!

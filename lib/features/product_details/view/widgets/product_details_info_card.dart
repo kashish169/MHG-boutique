@@ -26,7 +26,7 @@ class ProductDetailsInfoCard extends StatelessWidget {
               vertical: 10,
             ),
             child: Text(
-              'Product Details',
+              'Product Details'.tr,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 16,
                     color: AppColors.mediumLabel,

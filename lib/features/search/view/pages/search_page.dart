@@ -27,7 +27,7 @@ class SearchPage extends StatelessWidget {
       bottomNavigationBar: const BottomNavBarWidget(),
       appBar: customAppBar(
         context,
-        title: "Search",
+        title: "Search".tr,
       ),
       body: SingleChildScrollView(
         controller: controller.scrollController,
@@ -50,7 +50,7 @@ class SearchPage extends StatelessWidget {
                               height: 50,
                               child: Center(
                                 child: Text(
-                                  'Top Sellers is empty!',
+                                  'Top Sellers is empty!'.tr,
                                   style:
                                       Theme.of(context).textTheme.displaySmall,
                                 ),
@@ -60,7 +60,7 @@ class SearchPage extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            const CustomSearchSection(title: " Items You've Wishlisted"),
+            CustomSearchSection(title: " Items You've Wishlisted".tr),
             GetX<WishListController>(
               builder: (wishListController) => wishListController
                       .isLoading.isTrue
@@ -96,7 +96,7 @@ class SearchPage extends StatelessWidget {
                               height: 50,
                               child: Center(
                                 child: Text(
-                                  'Wish list is empty!',
+                                  'Wish list is empty!'.tr,
                                   style:
                                       Theme.of(context).textTheme.displaySmall,
                                 ),

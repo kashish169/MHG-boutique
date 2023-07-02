@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/features/categories/view/widgets/categories_brand_card.dart';
 
 class CategoryExploreOurBrandsWidget extends StatelessWidget {
@@ -15,7 +16,7 @@ class CategoryExploreOurBrandsWidget extends StatelessWidget {
             horizontal: 26,
           ),
           child: Text(
-            'Explore Our Brands',
+            'Explore Our Brands'.tr,
             style: Theme.of(context).textTheme.displayMedium?.copyWith(
                   fontWeight: FontWeight.normal,
                   fontSize: 18,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/core/languages/languages.dart';
 import 'package:mhg/features/product_details/view/widgets/product_details_counter_widget.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import '../../../../app/app.dart';
@@ -22,7 +23,9 @@ class ProductDetailsBrandCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            controller.model.enProductName,
+            isAR()
+                ? controller.model.frProductName
+                : controller.model.enProductName,
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   fontSize: 22,
                   color: AppColors.mediumLabel,
@@ -32,7 +35,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Brand: ',
+                'Brand: '.tr,
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     color: AppColors.lightLabel2, fontSize: 16, height: 1.7),
               ),
@@ -76,7 +79,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                 ],
               )),
           const SizedBox(height: 5),
-          controller.model.pts != null && controller.model.pts!=0
+          controller.model.pts != null && controller.model.pts != 0
               ? Row(
                   children: [
                     Image.asset(
@@ -110,7 +113,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                           color: AppColors.secondary,
                           fontSize: 16,
                           height: 42,
-                          title: 'Add to Bag',
+                          title: 'Add to Bag'.tr,
                           isLoading: controller.isLoadingAdd.value,
                           onTap: () async {
                             if (App.token.isEmpty) {
