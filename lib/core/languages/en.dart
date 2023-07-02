@@ -42,10 +42,8 @@ Map<String, String> en_US = {
   'You might also like': 'You might also like',
   '(Reviewed By': '(Reviewed By',
   'People)': 'People)',
-  'Persons)': 'Person)'
-  "Wish list is empty!": "Wish list is empty!",
+  'Persons)': 'Person)',
   "Share": "Share",
-  "Add to Bag": "Add to Bag",
-  "Brand:" :"Brand:",
-  "Bag is empty!" : "Bag is empty!", "TOTAL" : "TOTAL"
+  "Brand:": "Brand:",
+  "Bag is empty!": "Bag is empty!", "TOTAL": "TOTAL"
 };
