@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/core/languages/en.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import '../widget/my_wish_list_body.dart';
+import 'package:mhg/core/languages/languages.dart';
 
 class MyWishList extends StatefulWidget {
   MyWishList({super.key});
@@ -52,7 +54,8 @@ class _MyWishListState extends State<MyWishList> {
                               )
                             : Center(
                                 child: Text(
-                                  'Wish list is empty!',
+                                  'Wish list is empty!'.tr,
+                                
                                   style:
                                       Theme.of(context).textTheme.displaySmall,
                                 ),

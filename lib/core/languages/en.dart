@@ -10,4 +10,9 @@ Map<String, String> en_US = {
   "EXPERIENCE LUXURY WITH OUR": "EXPERIENCE LUXURY WITH OUR",
   "EXQUISITE PERFUMES FOR ALL": "EXQUISITE PERFUMES FOR ALL",
   "OCCASIONS": "OCCASIONS",
+  "Wish list is empty!": "Wish list is empty!",
+  "Share": "Share",
+  "Add to Bag": "Add to Bag",
+  "Brand:" :"Brand:",
+  "Bag is empty!" : "Bag is empty!", "TOTAL" : "TOTAL"
 };

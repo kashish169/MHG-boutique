@@ -27,7 +27,7 @@ class _BodyButtonsState extends State<BodyButtons> {
           child: Padding(
             padding: const EdgeInsets.only(right: 5),
             child: PrimaryButton(
-              title: "Share",
+              title: "Share".tr,
               onTap: () async {
                 DeepLinkSevice.shareProduct(widget.model.id);
               },
@@ -46,7 +46,7 @@ class _BodyButtonsState extends State<BodyButtons> {
                     left: 5,
                   ),
                   child: PrimaryButton(
-                    title: "Add to Bag",
+                    title: "Add to Bag".tr,
                     isLoading: widget.model.isAddToBag,
                     onTap: () async {
                       widget.model.isAddToBag = true;

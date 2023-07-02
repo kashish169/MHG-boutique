@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +8,7 @@ import 'package:mhg/features/categories/models/categories_model.dart';
 import 'package:mhg/features/categories/view/pages/sub_categories_page.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
 import 'package:mhg/widgets/net_image.dart';
-import '../../models/category_model.dart';
+
 
 class HomeCategoryCard extends StatelessWidget {
   final Menu model;
