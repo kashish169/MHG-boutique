@@ -101,7 +101,7 @@ class SignInForm extends StatelessWidget {
                     Get.toNamed(ForgetPasswordView.routeName,arguments: controller.email.text);
                   },
                   child: Text(
-                    "Forgot password?",
+                    "Forgot Password?",
 
                     style: Theme.of(context)
                         .textTheme
