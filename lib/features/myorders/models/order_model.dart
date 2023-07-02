@@ -28,6 +28,10 @@ class MyOrdersModel {
 
 class MyOrder {
   int id;
+  dynamic cancelRequested;
+  dynamic returnRequested;
+  dynamic cancelReason;
+  dynamic returnReason;
   String orderNumber;
   dynamic orderBill;
   int userId;
@@ -62,6 +66,10 @@ class MyOrder {
     required this.id,
     required this.orderNumber,
     this.orderBill,
+    this.cancelRequested,
+    this.returnRequested,
+    this.cancelReason,
+    this.returnReason,
     required this.userId,
     this.billingId,
     this.shippingId,
@@ -92,6 +100,10 @@ class MyOrder {
   });
 
   factory MyOrder.fromJson(Map<String, dynamic> json) => MyOrder(
+        cancelRequested: json["cancel_requested"],
+        returnRequested: json["return_requested"],
+        cancelReason: json["cancel_reason"],
+        returnReason: json["return_reason"],
         id: json["id"],
         orderNumber: json["Order_Number"],
         orderBill: json["order_bill"],

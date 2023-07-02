@@ -55,5 +55,7 @@ class Api {
   static String createOrder = "/api/v1/order/create";
   static String paymentMethods = "/api/v1/order/payment-methods";
   static String myOrders = "/api/v1/users/orders";
+  static String cancelOrder = "/api/v1/order/cancel-order";
+  static String returnOrder = "/api/v1/order/return-order";
   static String logOut = "/api/v1/users/auth/logout";
 }

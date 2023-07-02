@@ -24,4 +24,20 @@ class MyOrdersRepoImpl implements MyOrdersRepository {
         isAuthorized: true,
       );
 
+  @override
+  Future<Either<Failure, ApiResponse>> cancelOrder({required Object body}) async =>
+      httpService.post(
+        url: Api.cancelOrder,
+        isAuthorized: true,
+        body: body,
+      );
+
+  @override
+  Future<Either<Failure, ApiResponse>> returnOrder({required Object body}) async =>
+      httpService.post(
+        url: Api.returnOrder,
+        isAuthorized: true,
+        body: body,
+      );
+
 }
