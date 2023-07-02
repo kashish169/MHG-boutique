@@ -63,7 +63,7 @@ class _SignInPageState extends State<SignInPage> {
                         height: AppDimensions.screenHeight(context) / 10,
                       ),
                       Text(
-                        "Login",
+                        "Login".tr,
                         style: Theme.of(context)
                             .textTheme
                             .displayMedium

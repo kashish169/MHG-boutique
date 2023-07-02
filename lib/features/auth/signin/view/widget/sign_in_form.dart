@@ -51,7 +51,7 @@ class SignInForm extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   child: CustomFormField(
-                    hint: 'Email address',
+                    hint: 'Email address'.tr,
                     controller: controller.email,
                     suffixIcon: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -71,7 +71,7 @@ class SignInForm extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: CustomFormField(
-              hint: 'Password',
+              hint: 'Password'.tr,
               controller: controller.password,
               suffixIcon: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -101,7 +101,7 @@ class SignInForm extends StatelessWidget {
                     Get.toNamed(ForgetPasswordView.routeName,arguments: controller.email.text);
                   },
                   child: Text(
-                    "Forgot Password?",
+                    "Forgot Password?".tr,
 
                     style: Theme.of(context)
                         .textTheme

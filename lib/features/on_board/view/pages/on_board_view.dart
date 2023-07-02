@@ -98,7 +98,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                                   fontWeight: FontWeight.w500),
                         ),
                         const SizedBox(
-                          height: 5,
+                          height: 3,
                         ),
                         Text(
                           "EXQUISITE PERFUMES FOR ALL".tr,
@@ -112,7 +112,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                                   fontWeight: FontWeight.w500),
                         ),
                         const SizedBox(
-                          height: 5,
+                          height: 3,
                         ),
                         Text(
                           "OCCASIONS".tr,
@@ -157,11 +157,11 @@ class _OnBoardViewState extends State<OnBoardView> {
                 // ),
                 const OnBoardButtons(),
                 Align(
-                  alignment: Alignment.topLeft,
+                  alignment: AlignmentDirectional.topStart,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 27),
                     child: Text(
-                      'Change location',
+                      'Change location'.tr,
                       textAlign: TextAlign.start,
                       style: Theme.of(context)
                           .textTheme
@@ -267,52 +267,52 @@ class _OnBoardViewState extends State<OnBoardView> {
                               const SizedBox(
                                 width: 15,
                               ),
-                              Expanded(
-                                  flex: 4,
-                                  child: InkWell(
-                                    onTap: () {
-                                      controller.openselcetLangage();
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 15),
-                                          child: Image.asset(
-                                            AppAssets.global,
-                                            color: AppColors.white
-                                                .withOpacity(0.7),
-                                            height: 20,
-                                          ),
-                                        ),
-                                        FittedBox(
-                                            child: Obx(
-                                          () => Text(
-                                            controller.selectedLang.value,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .displaySmall!
-                                                .copyWith(
-                                                    color: AppColors.white
-                                                        .withOpacity(0.7)),
-                                          ),
-                                        )),
-                                        Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10, right: 15),
-                                            child: Icon(
-                                              Icons.keyboard_arrow_up_sharp,
-                                              color: AppColors.white
-                                                  .withOpacity(0.7),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ))
+                              // Expanded(
+                              //     flex: 4,
+                              //     child: InkWell(
+                              //       onTap: () {
+                              //         controller.openselcetLangage();
+                              //       },
+                              //       child: Row(
+                              //         mainAxisAlignment:
+                              //             MainAxisAlignment.spaceBetween,
+                              //         children: [
+                              //           Padding(
+                              //             padding:
+                              //                 const EdgeInsets.only(right: 15),
+                              //             child: Image.asset(
+                              //               AppAssets.global,
+                              //               color: AppColors.white
+                              //                   .withOpacity(0.7),
+                              //               height: 20,
+                              //             ),
+                              //           ),
+                              //           FittedBox(
+                              //               child: Obx(
+                              //             () => Text(
+                              //               controller.selectedLang.value,
+                              //               style: Theme.of(context)
+                              //                   .textTheme
+                              //                   .displaySmall!
+                              //                   .copyWith(
+                              //                       color: AppColors.white
+                              //                           .withOpacity(0.7)),
+                              //             ),
+                              //           )),
+                              //           Expanded(
+                              //             child: Padding(
+                              //               padding: const EdgeInsets.only(
+                              //                   left: 10, right: 15),
+                              //               child: Icon(
+                              //                 Icons.keyboard_arrow_up_sharp,
+                              //                 color: AppColors.white
+                              //                     .withOpacity(0.7),
+                              //               ),
+                              //             ),
+                              //           ),
+                              //         ],
+                              //       ),
+                              //     ))
                             ],
                           ),
                 const SizedBox(

@@ -52,7 +52,8 @@ class _MyWishListState extends State<MyWishList> {
                               )
                             : Center(
                                 child: Text(
-                                  'Wish list is empty!',
+                                  'Wish list is empty!'.tr,
+                                
                                   style:
                                       Theme.of(context).textTheme.displaySmall,
                                 ),

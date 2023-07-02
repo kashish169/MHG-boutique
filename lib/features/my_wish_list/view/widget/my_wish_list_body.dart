@@ -11,6 +11,7 @@ import '../../../../widgets/delete_icon_button.dart';
 import '../../../../widgets/three_bounce_loading.dart';
 import 'my_wish_list_body_header.dart';
 import 'my_wish_list_body_middle_text.dart';
+import 'package:mhg/core/languages/languages.dart';
 
 class MyWishBody extends StatefulWidget {
   MyWishBody(
@@ -65,7 +66,10 @@ class _MyWishBodyState extends State<MyWishBody> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 35),
-                        TopBodyHeader(title: widget.model.name),
+                        TopBodyHeader(
+                            title:  isAR() 
+                                ? widget.model.options.arName
+                                : widget.model.options.enName),
                         const SizedBox(height: 10),
                         BodyMiddleText(
                           brand: widget.model.options.brand,
@@ -77,7 +81,7 @@ class _MyWishBodyState extends State<MyWishBody> {
                     ),
                   ),
                   Align(
-                    alignment: Alignment.topRight,
+                    alignment:   Alignment.topRight,
                     child: widget.model.isDeleteItem
                         ? Container(
                             height: 25,
