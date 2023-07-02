@@ -39,10 +39,10 @@ class ProductDetailsController extends GetxController {
   List<String> productImages = [];
   RxList<ProductReviewModel> productsReviews = <ProductReviewModel>[].obs;
 
-  Future<void> getProductDetails({bool withoutLoading=false}) async {
+  Future<void> getProductDetails({bool withoutLoading = false}) async {
     productImages.clear();
     try {
-      if(!withoutLoading) {
+      if (!withoutLoading) {
         isLoading(true);
       }
       isError(false);
@@ -65,6 +65,7 @@ class ProductDetailsController extends GetxController {
             var json = r.object["data"]["product"];
             model = ProductDetailsModel.fromJson(json);
             productsReviews.value = model.productReviews;
+            productName.value = model.enProductName;
             productImages.add(
               model.primaryImageLink,
             );

@@ -6,6 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
 import 'package:mhg/core/services/notification_service.dart';
+import '../core/services/deep_link_service.dart';
 
 class App {
   static String fcmToken = "";

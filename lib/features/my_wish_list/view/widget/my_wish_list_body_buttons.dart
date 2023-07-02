@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/core/services/deep_link_service.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/my_wish_list/view/widget/wish_list_counter.dart';
 
@@ -27,7 +28,9 @@ class _BodyButtonsState extends State<BodyButtons> {
             padding: const EdgeInsets.only(right: 5),
             child: PrimaryButton(
               title: "Share",
-              onTap: () {},
+              onTap: () async {
+                DeepLinkSevice.shareProduct(widget.model.id);
+              },
               fontSize: 12,
               color: AppColors.white,
               height: 35,
