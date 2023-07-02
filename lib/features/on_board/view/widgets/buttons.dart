@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
@@ -30,14 +28,14 @@ class OnBoardButtons extends StatelessWidget {
                   onTap: controller.isLoading
                       ? () {}
                       : () {
-
                           Get.offAllNamed(
                             SignInPage.routeName,
                             arguments: {
                               'country': controller.selectedCountry,
                               'is_guest': false,
-                              'flag':controller.selectedCountryFlage,
-                              'country_code':controller.selectedCountryCode
+                              'flag': controller.selectedCountryFlage,
+                              'country_code': controller.selectedCountryCode,
+                              'id': controller.selectedCountryId,
                             },
                           );
                         },
@@ -58,8 +56,8 @@ class OnBoardButtons extends StatelessWidget {
                         MainWrapper.routeName,
                         arguments: {
                           'country': controller.selectedCountry,
-                          'flag':controller.selectedCountryFlage,
-                          'country_code':controller.selectedCountryCode
+                          'flag': controller.selectedCountryFlage,
+                          'country_code': controller.selectedCountryCode
                         },
                       );
                     },

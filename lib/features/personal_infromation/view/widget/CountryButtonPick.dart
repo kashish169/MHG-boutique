@@ -6,8 +6,8 @@ import 'package:mhg/features/auth/signin/view/widget/show_country_picker.dart';
 import 'package:mhg/features/personal_infromation/controller/peronal_informatiom_controller.dart';
 
 class CountryButtonPicker extends StatelessWidget {
-  bool isFromShippingAddress;
-  CountryButtonPicker({
+  final bool isFromShippingAddress;
+  const CountryButtonPicker({
     super.key,
     required this.isFromShippingAddress,
   });
@@ -43,7 +43,7 @@ class CountryButtonPicker extends StatelessWidget {
           isFromShippingAddress == false
               ? SizedBox(
                   height: 30,
-                  child:  VerticalDivider(
+                  child: VerticalDivider(
                     width: 1,
                     thickness: 1,
                     color: Color(0XFFBCBCBC),

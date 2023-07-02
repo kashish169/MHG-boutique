@@ -36,6 +36,7 @@ class SignInController extends GetxController {
   RxString firstCountryFlag = ''.obs;
   RxInt roleInd = 0.obs;
   String selectedCountryName = '';
+  late int selectedCountrId;
 
   RxBool logWithEmail = false.obs;
   RxBool logWithNumber = true.obs;
@@ -45,8 +46,6 @@ class SignInController extends GetxController {
   RxDouble numberLogwidth = (double.infinity * 0.35).obs;
   RxBool isGuest = false.obs;
   RxBool isOTP = false.obs;
-
-
 
   changeVisibility() {
     isVisable.value = !isVisable.value;
@@ -89,7 +88,8 @@ class SignInController extends GetxController {
     emailLogwidth.value = (double.infinity * 0.35);
   }
 
-  Future<void> signIn({required String verificationCode,required String phone}) async {
+  Future<void> signIn(
+      {required String verificationCode, required String phone}) async {
     Get.dialog(
       const LoadingWidget(),
       barrierDismissible: false,
@@ -184,7 +184,7 @@ class SignInController extends GetxController {
   selectCountry(Country country) {
     countryFlag.value = country.flagEmoji;
     countryCode.value = "+${country.phoneCode}";
-    firstCountryFlag.value='';
+    firstCountryFlag.value = '';
     log("+${country.phoneCode}");
     log(countryFlag.value);
     update();
