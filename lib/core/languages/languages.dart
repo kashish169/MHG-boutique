@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/internacionalization.dart';
 import '../../app/app.dart';
 import 'ar.dart';
@@ -12,7 +14,7 @@ class Language extends Translations {
 }
 
 bool isAR() {
-  if (App.lang == "ar_AE") {
+  if (Get.locale == const Locale("ar_AE")) {
     return true;
   } else {
     return false;
