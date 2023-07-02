@@ -90,11 +90,11 @@ class PersonalInformation extends StatelessWidget {
                                     header: 'State',
                                     hint: 'Add your state',
                                     validator: (val) {
-                                      if(val!.isEmpty) {
+                                      if (val!.isEmpty) {
                                         return null;
                                       }
                                       return AppHelper.validation(
-                                          val!, 1, 500, '');
+                                          val, 1, 500, '');
                                     },
                                     onTap: () {
                                       controller.enableState();
