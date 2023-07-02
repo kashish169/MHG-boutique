@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
@@ -10,15 +11,20 @@ import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/features/myorders/models/order_model.dart';
 import 'package:mhg/features/myorders/repository/my_orders_repo.dart';
 import 'package:mhg/features/myorders/repository/my_orders_repo_impl.dart';
+import 'package:flutter/material.dart';
+import '../../../widgets/show_snakBar.dart';
 
 class MyOrdersController extends GetxController {
+  final formKey = GlobalKey<FormState>();
   RxBool isLoading = false.obs;
   RxBool isError = false.obs;
+  RxBool showMessage = false.obs;
   late MyOrdersRepository myOrdersRepository;
   late MyOrdersModel myOrdersModel;
   RxList<MyOrder> orders = <MyOrder>[].obs;
   RxList<MyOrder> returns = <MyOrder>[].obs;
   RxList<MyOrder> cancelled = <MyOrder>[].obs;
+  TextEditingController message = TextEditingController();
 
   MyOrdersController() {
     myOrdersRepository = Get.find<MyOrdersRepoImpl>();
@@ -61,6 +67,10 @@ class MyOrdersController extends GetxController {
   }
 
   filterOrders() {
+    returns.clear();
+    cancelled.clear();
+    orders.clear();
+
     for (int i = 0; i < myOrdersModel.orders.length; i++) {
       if (myOrdersModel.orders[i].orderStatus == 6) {
         returns.add(myOrdersModel.orders[i]);
@@ -90,8 +100,8 @@ class MyOrdersController extends GetxController {
     }
     return temp;
   }
-  Color getStatusColor(int ind) {
 
+  Color getStatusColor(int ind) {
     if (ind == 1) {
       return AppColors.primary;
     }
@@ -108,5 +118,59 @@ class MyOrdersController extends GetxController {
       return AppColors.secondary;
     }
     return AppColors.secondary;
+  }
+
+  Future<void> cancelOrder({required String orderNumber}) async {
+    var body =
+        jsonEncode({"order_number": orderNumber, "message": message.text});
+    Either<Failure, ApiResponse> results = await myOrdersRepository.cancelOrder(
+      body: body,
+    );
+
+    results.fold(
+      (l) {
+        showSnackBar(l.message);
+      },
+      (r) async {
+        log("${r.object}");
+        int statusCode = r.object["code"];
+        var message = r.object['message'];
+        if (statusCode == 200) {
+          getMyOrders();
+          AppToasts.successToast(r.object['data']);
+        } else if (statusCode == 400) {
+          AppToasts.errorToast(message);
+        } else {
+          AppToasts.errorToast(message);
+        }
+      },
+    );
+  }
+
+  Future<void> returnOrder({required String orderNumber}) async {
+    var body =
+        jsonEncode({"order_number": orderNumber, "message": message.text});
+    Either<Failure, ApiResponse> results = await myOrdersRepository.returnOrder(
+      body: body,
+    );
+
+    results.fold(
+      (l) {
+        showSnackBar(l.message);
+      },
+      (r) async {
+        log("${r.object}");
+        int statusCode = r.object["code"];
+        var message = r.object['message'];
+        if (statusCode == 200) {
+          getMyOrders();
+          AppToasts.successToast(r.object['data']);
+        } else if (statusCode == 400) {
+          AppToasts.errorToast(message);
+        } else {
+          AppToasts.errorToast(message);
+        }
+      },
+    );
   }
 }
