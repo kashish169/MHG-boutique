@@ -23,7 +23,7 @@ class SelectLanguageView extends StatelessWidget {
                 controller.selectLanguage(controller.langList[index].name);
               },
               selected: controller.langList[index].name,
-              groupValue: controller.selectedLang,
+              groupValue: controller.selectedLang.value,
               image: controller.langList[index].image,
             ),
           )),

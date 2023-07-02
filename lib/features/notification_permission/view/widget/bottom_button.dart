@@ -19,7 +19,7 @@ class BottomButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(right: 8),
             child: PrimaryButton(
-              title: "Yes, Notify me",
+              title: "Yes, Notify me".tr,
               width: 100,
               color: AppColors.primary,
               height: 50,
@@ -32,7 +32,7 @@ class BottomButton extends StatelessWidget {
         Expanded(
           flex: 3,
           child: PrimaryButton(
-            title: "Not Now",
+            title: "Not Now".tr,
             width: 100,
             color: Colors.transparent,
             height: 50,
