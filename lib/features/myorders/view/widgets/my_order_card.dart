@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/core/helper/app_helper.dart';
+import 'package:mhg/features/checkout/views/widgets/place_order_button.dart';
 import 'package:mhg/features/myorders/controller/my_orders_controller.dart';
 import 'package:mhg/features/myorders/models/order_model.dart';
 import 'package:mhg/features/myorders/view/pages/my_order_detail.dart';
@@ -136,10 +137,10 @@ class MyOrderCard extends StatelessWidget {
                               showDialog<void>(
                                 context: context,
                                 barrierDismissible:
-                                    false, // user must tap button!
+                                    true, // user must tap button!
                                 builder: (BuildContext context) {
                                   return buildAlertCancelDialog(
-                                      context, controller);
+                                      context, controller, true);
                                 },
                               );
                             },
@@ -157,7 +158,8 @@ class MyOrderCard extends StatelessWidget {
                                 barrierDismissible:
                                     false, // user must tap button!
                                 builder: (BuildContext context) {
-                                  return buildAlertDialog(context, controller);
+                                  return buildAlertCancelDialog(
+                                      context, controller, false);
                                 },
                               );
                             },
@@ -185,7 +187,7 @@ class MyOrderCard extends StatelessWidget {
                                 ),
                       ),
                       TextSpan(
-                        text: 'Reason: '+model.returnReason.toString(),
+                        text: 'Reason: ' + model.returnReason.toString(),
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
                                   fontSize: 16,
@@ -210,10 +212,9 @@ class MyOrderCard extends StatelessWidget {
                                 ),
                       ),
                       TextSpan(
-                        text: 'Reason: '+model.cancelReason.toString(),
+                        text: 'Reason: ' + model.cancelReason.toString(),
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-
                                   fontSize: 16,
                                 ),
                       )
@@ -226,110 +227,66 @@ class MyOrderCard extends StatelessWidget {
     );
   }
 
-  AlertDialog buildAlertCancelDialog(
-      BuildContext context, MyOrdersController controller) {
-    return AlertDialog(
-      title: Center(
-        child: Text('Cancel Order',
-            style: Theme.of(context)
-                .textTheme
-                .displaySmall
-                ?.copyWith(fontSize: 20)),
+  Dialog buildAlertCancelDialog(
+      BuildContext context, MyOrdersController controller, bool isCancel) {
+    return Dialog(
+      insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
       ),
-      content: SingleChildScrollView(
-        child: CustomFormField(
-          multiLine: true,
-          hint: "Reason",
-          obscure: false,
-          controller: controller.message,
-        ),
-      ),
-      actions: <Widget>[
-        MaterialButton(
-          color: AppColors.secondary,
-          child: Text('confirm',
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall
-                  ?.copyWith(fontSize: 10, color: AppColors.white)),
-          onPressed: () {
-            if (controller.message.text.isEmpty) {
-              AppToasts.errorToast("please fill the reason field");
-              return;
-            }
-            Get.back();
-            Get.find<MyOrdersController>()
-                .cancelOrder(orderNumber: model.orderNumber);
-            controller.message.clear();
-          },
-        ),
-        MaterialButton(
-          color: AppColors.red,
-          child: Text('cancel',
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall
-                  ?.copyWith(fontSize: 10, color: AppColors.white)),
-          onPressed: () {
-            Get.back();
-            controller.message.clear();
-          },
-        ),
-      ],
-    );
-  }
+      child: Form(
+        key: controller.formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                isCancel ? "Cancel Order" : "Return Order",
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+              ),
+              child: CustomFormField(
+                  hint: 'Reason',
+                  obscure: false,
+                  inputType: TextInputType.text,
+                  validator: (val) {
+                    if (val!.isEmpty) {
+                      return "This field is required";
+                    }
+                    return null;
+                  },
+                  controller: controller.message),
+            ),
+            const SizedBox(height: 10),
+            PlaceOrderButton(
+              color: AppColors.secondary,
+              title: 'Confirm',
+              width: 250,
+              hasIcon: false,
+              onPress: () {
+                if (controller.formKey.currentState!.validate()) {
+                  Get.back();
+                  if (isCancel) {
+                    Get.find<MyOrdersController>()
+                        .cancelOrder(orderNumber: model.orderNumber);
+                  } else {
+                    Get.find<MyOrdersController>()
+                        .returnOrder(orderNumber: model.orderNumber);
+                  }
 
-  AlertDialog buildAlertDialog(
-      BuildContext context, MyOrdersController controller) {
-    return AlertDialog(
-      title: Center(
-        child: Text('Return Order',
-            style: Theme.of(context)
-                .textTheme
-                .displaySmall
-                ?.copyWith(fontSize: 20)),
-      ),
-      content: SingleChildScrollView(
-        child: CustomFormField(
-          multiLine: true,
-          hint: "Reason",
-          obscure: false,
-          controller: controller.message,
+                  controller.message.clear();
+                }
+              },
+            ),
+            const SizedBox(height: 15),
+          ],
         ),
       ),
-      actions: <Widget>[
-        MaterialButton(
-          color: AppColors.secondary,
-          child: Text('confirm',
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall
-                  ?.copyWith(fontSize: 10, color: AppColors.white)),
-          onPressed: () {
-            if (controller.message.text.isEmpty) {
-              AppToasts.errorToast("please fill the reason field");
-              return;
-            }
-
-            Get.back();
-            Get.find<MyOrdersController>()
-                .returnOrder(orderNumber: model.orderNumber);
-            controller.message.clear();
-          },
-        ),
-        MaterialButton(
-          color: AppColors.red,
-          child: Text('cancel',
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall
-                  ?.copyWith(fontSize: 10, color: AppColors.white)),
-          onPressed: () {
-            controller.message.clear();
-            Get.back();
-          },
-        ),
-      ],
     );
   }
 }

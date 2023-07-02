@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import '../../../widgets/show_snakBar.dart';
 
 class MyOrdersController extends GetxController {
+  final formKey = GlobalKey<FormState>();
   RxBool isLoading = false.obs;
   RxBool isError = false.obs;
   RxBool showMessage = false.obs;
