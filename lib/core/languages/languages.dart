@@ -1,4 +1,5 @@
 import 'package:get/get_navigation/src/root/internacionalization.dart';
+import '../../app/app.dart';
 import 'ar.dart';
 import 'en.dart';
 
@@ -8,4 +9,12 @@ class Language extends Translations {
         'ar_AE': ar_AE,
         'en_EN': en_US,
       };
+}
+
+bool isAR() {
+  if (App.lang == "ar_AE") {
+    return true;
+  } else {
+    return false;
+  }
 }

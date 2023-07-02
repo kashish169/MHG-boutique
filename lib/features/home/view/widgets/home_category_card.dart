@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/core/languages/languages.dart';
 import 'package:mhg/features/categories/models/categories_model.dart';
 import 'package:mhg/features/categories/view/pages/sub_categories_page.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
@@ -15,7 +16,6 @@ class HomeCategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return InkWell(
       onTap: () {
         if (model.categoryId == null && model.allActiveSubMenus.isEmpty) {
@@ -46,8 +46,7 @@ class HomeCategoryCard extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                model.enName,
-
+                isAR() ? model.frName : model.enName,
                 style: Theme.of(context).textTheme.displaySmall?.copyWith(
                       fontSize: 14,
                     ),

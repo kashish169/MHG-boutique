@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -65,8 +67,8 @@ class AppHelper {
   static Locale setLocale() {
     var lang = App.lang;
     if (lang.isEmpty) {
-      return Get.deviceLocale ?? const Locale('en', 'US');
-    } else if (lang == 'en') {
+      return const Locale('en', 'US');
+    } else if (lang == 'en_US') {
       return const Locale('en', 'US');
     } else {
       return const Locale('ar', 'AE');
@@ -74,8 +76,9 @@ class AppHelper {
   }
 
   static Future<void> updateLanguage(Locale locale) async {
-    App.lang = "${locale.countryCode}";
-    await StoragePref.setString(key: 'lang', value: "${locale.countryCode}");
+    log("CODE ${locale.languageCode}");
+    App.lang = locale.languageCode;
+    await StoragePref.setString(key: 'lang', value: locale.languageCode);
     await Get.updateLocale(locale);
   }
 }
