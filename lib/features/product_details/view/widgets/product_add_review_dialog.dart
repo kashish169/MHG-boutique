@@ -33,7 +33,7 @@ class ProductAddReviewDialog extends StatelessWidget {
                 controller: controller.reviewNote,
                 obscure: false,
                 multiLine: true,
-                hint: 'Write Your Review Here ...',
+                hint: 'Write Your Review Here ...'.tr,
               ),
               const SizedBox(
                 height: 30,
@@ -48,7 +48,7 @@ class ProductAddReviewDialog extends StatelessWidget {
                           height: 44,
                           reverseColor: true,
                           isSelcted: true,
-                          title: "Cancel",
+                          title: "Cancel".tr,
                           onTap: () {
                             controller.reviewNote.clear();
                             Get.back();
@@ -60,7 +60,7 @@ class ProductAddReviewDialog extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: PrimaryButton(
                         height: 44,
-                        title: "Send",
+                        title: "Send".tr,
                         color: AppColors.secondary,
                         onTap: () {
                           controller.addReview(

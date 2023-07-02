@@ -4,7 +4,6 @@ import 'package:mhg/app/app.dart';
 // import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/product_details/view/widgets/product_details_comment.dart';
 import 'package:mhg/widgets/primary_button.dart';
-import '../../../../app/app.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/rating_widget.dart';
 import '../../../auth/signin/view/pages/sign_in_page.dart';
@@ -29,7 +28,7 @@ class ProductDetailsReview extends StatelessWidget {
                   horizontal: 10,
                 ),
                 child: Text(
-                  "Reviews",
+                  "Reviews".tr,
                   style: Theme.of(context)
                       .textTheme
                       .displaySmall
@@ -68,8 +67,8 @@ class ProductDetailsReview extends StatelessWidget {
                         ),
                         Text(
                           controller.productsReviews.length > 1
-                              ? "(Reviewed By ${controller.productsReviews.length} People)"
-                              : "(Reviewed By ${controller.productsReviews.length} Persons)",
+                              ? '${'(Reviewed By'.tr} ${controller.productsReviews.length} ${'People)'.tr}'
+                              : '${'(Reviewed By'.tr} ${controller.productsReviews.length} ${'Persons)'.tr}',
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall!
@@ -103,7 +102,7 @@ class ProductDetailsReview extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 40),
                   child: PrimaryButton(
                     color: AppColors.secondary,
-                    title: "Add Comment",
+                    title: "Add Comment".tr,
                     onTap: () {
                       if (App.token.isEmpty) {
                         Get.toNamed(
@@ -116,7 +115,7 @@ class ProductDetailsReview extends StatelessWidget {
                         return;
                       }
                       Get.defaultDialog(
-                        title: "Add Review",
+                        title: "Add Review".tr,
                         titleStyle: Theme.of(context).textTheme.headline2,
                         titlePadding: const EdgeInsets.only(
                           top: 20,

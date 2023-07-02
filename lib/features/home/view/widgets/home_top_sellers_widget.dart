@@ -20,7 +20,7 @@ class HomeTopSellersWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  'Top Sellers',
+                  'Top Sellers'.tr,
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
                         fontWeight: FontWeight.normal,
                         fontSize: 18,

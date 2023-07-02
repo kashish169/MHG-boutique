@@ -18,7 +18,7 @@ class HomeExploreOurBrandsWidget extends StatelessWidget {
             horizontal: 20,
           ),
           child: Text(
-            'Explore Our Brands',
+            'Explore Our Brands'.tr,
             style: Theme.of(context).textTheme.displayMedium?.copyWith(
                   fontWeight: FontWeight.normal,
                   fontSize: 18,

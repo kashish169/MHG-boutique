@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
@@ -8,7 +6,6 @@ import 'package:mhg/features/categories/models/categories_model.dart';
 import 'package:mhg/features/categories/view/pages/sub_categories_page.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
 import 'package:mhg/widgets/net_image.dart';
-import '../../models/category_model.dart';
 
 class HomeCategoryCard extends StatelessWidget {
   final Menu model;
@@ -26,12 +23,14 @@ class HomeCategoryCard extends StatelessWidget {
             ProductsPage.routeName,
             arguments: {
               "categoryId": model.categoryId,
-              "categoryName": model.enName,
+              "categoryName": isAR() ? model.enName : model.enName,
             },
           );
         } else {
-          Navigator.pushNamed(context, SubCategoriesPage.routeName,
-              arguments: [model.allActiveSubMenus, model.enName]);
+          Navigator.pushNamed(context, SubCategoriesPage.routeName, arguments: [
+            model.allActiveSubMenus,
+            isAR() ? model.frName : model.enName
+          ]);
         }
       },
       child: Container(

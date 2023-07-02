@@ -24,7 +24,7 @@ class RecentSearchBody extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const CustomSearchSection(title: "Recent Searches"),
+          CustomSearchSection(title: "Recent Searches".tr),
           const SizedBox(
             height: 5,
           ),
@@ -62,7 +62,7 @@ class RecentSearchBody extends StatelessWidget {
                                 height: 50,
                                 child: Center(
                                   child: Text(
-                                    'No Recent Search!',
+                                    'No Recent Search!'.tr,
                                     style: Theme.of(context)
                                         .textTheme
                                         .displaySmall,

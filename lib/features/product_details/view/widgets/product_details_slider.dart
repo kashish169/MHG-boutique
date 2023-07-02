@@ -37,7 +37,7 @@ class ProductDetailsSlider extends StatelessWidget {
             ),
           ),
         ),
-         SizedBox(
+        SizedBox(
           height: 430,
           child: Align(
               alignment: AlignmentDirectional.bottomEnd,
@@ -48,7 +48,7 @@ class ProductDetailsSlider extends StatelessWidget {
                   inWishlist: controller.model.inWishlist,
                   itemId: controller.productId,
                   height: 31,
-                 fromArrival: controller.fromArrival,
+                  fromArrival: controller.fromArrival,
                 ),
               )),
         )
