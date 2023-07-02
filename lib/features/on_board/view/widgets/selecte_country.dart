@@ -16,7 +16,7 @@ class SelectCountryView extends StatelessWidget {
     return GetBuilder<OnboardController>(
         builder: (controller) => CustomBottomSheet(
             height: AppDimensions.screenHeight(context) / 2,
-            selectText: "Select your Country",
+            selectText: "Select your Country".tr,
             valueWidget: controller.isLoading
                 ? const LoadingWidget(
                     isWhite: true,

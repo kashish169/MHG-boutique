@@ -41,5 +41,33 @@ Map<String, String> ar_AE = {
   'You might also like': 'قد يعجبك ايضا',
   '(Reviewed By': '(تمت مراجعته من قبل',
   'People)': 'أشخاص)',
-  'Persons)': 'شخص)'
+  'Persons)': 'شخص)',
+  'Login': "تسجيل الدخول",
+  'Guest': 'زائر',
+  'Change location': 'تغيير الموقع',
+  "Select Language": 'اختر لغة',
+  "Select your Country": 'اختر دولتك',
+  'English': 'الانجليزية',
+  'Arabic': 'العربية',
+  'With Phone Number': 'باستخدام رقم الموبايل',
+  'With Email': 'باستخدام الايميل',
+  'Email address': 'الايميل',
+  'Password': 'كلمة السر',
+  'Forgot Password?': 'نسيت كلمة المرور',
+  'Login with Otp': 'سجل باستخدام Otp',
+  "Don't have an account?": 'ليس لديك حساب',
+  'Sign Up': 'انشاء حساب',
+  'Full name': 'الاسم الكامل',
+  'Phone number': 'رقم الهاتف',
+  "By continuing sign up you agree to the":
+      'باستكمالك تسجيل الدخول انت توافق على',
+  "Terms & conditions": 'المعايير و الشروط',
+  "Already have an account?": 'لديك حساب مسبقا',
+  'Sign in': 'سجل دخولك',
+  "Verify Phone Number": 'تأكيد رقم الهاتف',
+  "We have sent you 6 digit code to verify \nyour phone number":
+      ' لقد ارسلنا لك كود من ست خانات لتاكيد\n رقم هاتفك',
+  'Continue': 'متابعة',
+  "OTP has been sent to your mobile\nEnter your 6 digit code here":
+      'تم ارسال الى رقمك الهاتف ادخل الرمز المكون من ست ارقام هنا'
 };

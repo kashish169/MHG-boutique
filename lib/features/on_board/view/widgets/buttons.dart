@@ -23,7 +23,7 @@ class OnBoardButtons extends StatelessWidget {
             Expanded(
                 flex: 2,
                 child: OnBoardButton(
-                  title: 'Login',
+                  title: 'Login'.tr,
                   height: 50,
                   radius: 10,
                   color: AppColors.dGreen,
@@ -47,7 +47,7 @@ class OnBoardButtons extends StatelessWidget {
             ),
             Expanded(
                 child: OnBoardButton(
-              title: 'Guest',
+              title: 'Guest'.tr,
               height: 50,
               radius: 10,
               color: AppColors.dGreen,

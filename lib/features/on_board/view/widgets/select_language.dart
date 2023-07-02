@@ -13,11 +13,11 @@ class SelectLanguageView extends StatelessWidget {
     return GetBuilder<OnboardController>(
       builder: (controller) => CustomBottomSheet(
           height: 280,
-          selectText: "Select Language",
+          selectText: "Select Language".tr,
           valueWidget: ListView.builder(
             itemCount: controller.langList.length,
             itemBuilder: (context, index) => CustomValueSelector(
-              textValue: controller.langList[index].name,
+              textValue: controller.langList[index].showName,
               isSelectCountry: false,
               onChange: (val) {
                 controller.selectLanguage(controller.langList[index].name);
