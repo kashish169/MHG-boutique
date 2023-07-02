@@ -20,7 +20,7 @@ class MyCartPage extends StatelessWidget {
       return controller.cartItemsList.isEmpty
           ? Center(
               child: Text(
-                'Bag is empty!',
+                'Bag is empty!'.tr,
                 style: Theme.of(context).textTheme.displaySmall,
               ),
             )

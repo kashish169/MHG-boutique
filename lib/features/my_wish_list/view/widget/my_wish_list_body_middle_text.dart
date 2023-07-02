@@ -20,7 +20,7 @@ class BodyMiddleText extends StatelessWidget {
             textAlign: TextAlign.center,
             text: TextSpan(children: <TextSpan>[
               TextSpan(
-                text: 'Brand:',
+                text: 'Brand:'.tr,
                 style: Theme.of(context)
                     .textTheme
                     .displaySmall!
