@@ -48,8 +48,9 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
                       arguments: {
                         'country': App.countryName,
                         'is_guest': true,
-                        'country_code':Get.find<MainWrapperController>().globalGuestCountryCode,
-                        'flag':Get.find<MainWrapperController>().globalGuestCountryFlag,
+                        'country_code': controller.globalGuestCountryCode,
+                        'flag': controller.globalGuestCountryFlag,
+                        'id': controller.globalGuestCountryId,
                       },
                     );
                     return;

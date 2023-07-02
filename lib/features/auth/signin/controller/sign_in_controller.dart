@@ -36,7 +36,7 @@ class SignInController extends GetxController {
   RxString firstCountryFlag = ''.obs;
   RxInt roleInd = 0.obs;
   String selectedCountryName = '';
-  late int selectedCountrId;
+  late int selectedCountryId;
 
   RxBool logWithEmail = false.obs;
   RxBool logWithNumber = true.obs;

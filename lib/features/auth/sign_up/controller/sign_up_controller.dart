@@ -55,7 +55,7 @@ class SignUpController extends GetxController {
       fcmToken: App.fcmToken,
       countryName: signInController.selectedCountryName,
       notifyMe: App.notifyMe == true ? 1 : 0,
-      countryId: signInController.selectedCountrId,
+      countryId: signInController.selectedCountryId,
     ));
     Either<Failure, ApiResponse> results = await signUpRepo.signUp(
       body: body,

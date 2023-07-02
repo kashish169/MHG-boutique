@@ -25,6 +25,7 @@ class MainWrapperController extends GetxController {
   RxBool isErrorAdd = false.obs;
   String? globalGuestCountryCode;
   String? globalGuestCountryFlag;
+  int? globalGuestCountryId;
 
   Future<void> launchUrl(String url) async {
     try {

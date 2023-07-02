@@ -29,7 +29,7 @@ class _SignInPageState extends State<SignInPage> {
     controller.firstCountryFlag.value = args["flag"] ?? '';
     controller.isGuest.value = args["is_guest"];
     controller.countryCode.value = args['country_code'] ?? '+971';
-    controller.selectedCountrId = args['id'];
+    controller.selectedCountryId = args['id'];
     super.initState();
   }
 
