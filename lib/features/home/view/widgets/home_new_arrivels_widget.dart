@@ -20,7 +20,7 @@ class HomeNewArrivelsWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  'New Arrivals',
+                  'New Arrivals'.tr,
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
                         fontWeight: FontWeight.normal,
                         fontSize: 18,

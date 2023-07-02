@@ -24,12 +24,12 @@ class _MainWrapperState extends State<MainWrapper> {
 
   @override
   void initState() {
-    final args=Get.arguments;
-    if(Get.arguments!=null){
-      mainController.globalGuestCountryCode=args['country_code'];
-      mainController.globalGuestCountryFlag=args['flag'];
+    final args = Get.arguments;
+    if (Get.arguments != null) {
+      mainController.globalGuestCountryCode = args['country_code'];
+      mainController.globalGuestCountryFlag = args['flag'];
+      mainController.globalGuestCountryId = args['id'];
     }
-
     super.initState();
   }
 

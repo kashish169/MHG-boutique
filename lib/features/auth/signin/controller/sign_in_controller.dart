@@ -36,6 +36,7 @@ class SignInController extends GetxController {
   RxString firstCountryFlag = ''.obs;
   RxInt roleInd = 0.obs;
   String selectedCountryName = '';
+  late int selectedCountryId;
 
   RxBool logWithEmail = false.obs;
   RxBool logWithNumber = true.obs;
@@ -45,8 +46,6 @@ class SignInController extends GetxController {
   RxDouble numberLogwidth = (double.infinity * 0.35).obs;
   RxBool isGuest = false.obs;
   RxBool isOTP = false.obs;
-
-
 
   changeVisibility() {
     isVisable.value = !isVisable.value;
@@ -89,13 +88,15 @@ class SignInController extends GetxController {
     emailLogwidth.value = (double.infinity * 0.35);
   }
 
-  Future<void> signIn() async {
+  Future<void> signIn(
+      {required String verificationCode, required String phone}) async {
     Get.dialog(
       const LoadingWidget(),
       barrierDismissible: false,
     );
     var body = signInModelToJson(SignInModel(
-      phone: countryCode + phone.text.trim(),
+      verificationCode: verificationCode,
+      phone: phone,
       fcmToken: App.fcmToken,
     ));
     Either<Failure, ApiResponse> results = await signInRepo.signIn(
@@ -183,7 +184,7 @@ class SignInController extends GetxController {
   selectCountry(Country country) {
     countryFlag.value = country.flagEmoji;
     countryCode.value = "+${country.phoneCode}";
-    firstCountryFlag.value='';
+    firstCountryFlag.value = '';
     log("+${country.phoneCode}");
     log(countryFlag.value);
     update();

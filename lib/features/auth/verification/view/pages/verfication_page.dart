@@ -25,7 +25,7 @@ class VerificationPage extends StatelessWidget {
         builder: (controller) {
           return SafeArea(
             child: Stack(
-              alignment: Alignment.topLeft,
+              alignment: AlignmentDirectional.topStart,
               children: [
                 Column(
                   children: [
@@ -33,7 +33,7 @@ class VerificationPage extends StatelessWidget {
                       height: AppDimensions.screenHeight(context) / 10,
                     ),
                     Text(
-                      "Verify Phone Number",
+                      "Verify Phone Number".tr,
                       style: Theme.of(context)
                           .textTheme
                           .displayMedium
@@ -43,7 +43,7 @@ class VerificationPage extends StatelessWidget {
                       height: AppDimensions.screenHeight(context) / 20,
                     ),
                     Text(
-                        "We have sent you 6 digit code to verify \nyour phone number",
+                        "We have sent you 6 digit code to verify \nyour phone number".tr,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.displaySmall),
                     SizedBox(
@@ -67,6 +67,7 @@ class VerificationPage extends StatelessWidget {
                           inputType: TextInputType.number,
                           obscure: false,
                           controller: controller.phone,
+
                           validator: (val) {
                             return AppHelper.validation(val!, 9, 9, 'Number');
                           },
@@ -79,7 +80,7 @@ class VerificationPage extends StatelessWidget {
                         horizontal: 25,
                       ),
                       child: PrimaryButton(
-                        title: 'Continue',
+                        title: 'Continue'.tr,
                         height: 50,
                         width: double.infinity,
                         color: const Color(0XFF232323),

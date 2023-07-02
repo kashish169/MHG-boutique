@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
 import 'package:mhg/core/services/notification_service.dart';
@@ -14,6 +15,7 @@ class App {
   static int? countryId;
   static String currency = 'AED';
   static String countryName = '';
+  static String lang = '';
 
   static Future<void> initSettings() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +26,10 @@ class App {
     notifyMe = await StoragePref.getbool("notifyme");
     countryId = await StoragePref.getInt("countryid");
     currency = await StoragePref.getString("currency");
+    lang = await StoragePref.getString("lang");
+    if (lang.isEmpty) {
+      lang = "en_US";
+    }
     if (currency.isEmpty) {
       currency = "AED";
     }
@@ -35,5 +41,6 @@ class App {
     log("NOTIFY ME : $notifyMe");
     log("COUNTRY ID : $countryId");
     log("currency is : $currency");
+    log("LANG is : $lang");
   }
 }

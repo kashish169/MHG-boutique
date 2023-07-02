@@ -1,21 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_assets.dart';
-import 'package:mhg/constants/app_colors.dart';
+import '../model/rewards_tiers_model.dart';
 
 class LevelCard extends StatelessWidget {
-  final String title;
-  final String description;
-  final String icon;
-  final bool isLocked;
-  final Color color;
-
+  final TiersModel model;
   const LevelCard({
     super.key,
-    required this.title,
-    required this.description,
-    required this.isLocked,
-    required this.icon,
-    required this.color,
+    required this.model,
   });
 
   @override
@@ -25,11 +16,11 @@ class LevelCard extends StatelessWidget {
         vertical: 10,
         horizontal: 16,
       ),
-      color: color,
+      color: model.color,
       child: Row(
         children: [
           Image.asset(
-            icon,
+            model.image,
             height: 60,
           ),
           const SizedBox(width: 10),
@@ -38,27 +29,23 @@ class LevelCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  title,
+                  model.name,
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
                         fontWeight: FontWeight.normal,
-                        color: color == AppColors.molah
-                            ? AppColors.white
-                            : AppColors.label,
+                        color: model.textColor,
                       ),
                 ),
                 Text(
-                  description,
+                  model.description,
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        color: color == AppColors.molah
-                            ? AppColors.white
-                            : AppColors.label,
+                        color: model.textColor,
                       ),
                 ),
               ],
             ),
           ),
           Visibility(
-            visible: isLocked,
+            visible: model.isLocked,
             child: Image.asset(
               AppAssets.locked,
               height: 32,

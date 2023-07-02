@@ -23,23 +23,24 @@ class _SignInPageState extends State<SignInPage> {
   @override
   void initState() {
     var args = Get.arguments;
-
-    final controller=Get.find<SignInController>();
+    print(args['id']);
+    final controller = Get.find<SignInController>();
     controller.selectedCountryName = args["country"];
-    controller.firstCountryFlag.value=args["flag"]??'';
+    controller.firstCountryFlag.value = args["flag"] ?? '';
     controller.isGuest.value = args["is_guest"];
-    controller.countryCode.value=args['country_code']??'+971';
+    controller.countryCode.value = args['country_code'] ?? '+971';
+    controller.selectedCountryId = args['id'];
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-
     final controller = Get.find<SignInController>();
 
     return Scaffold(
-    //resizeToAvoidBottomInset: false,
+      //resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.white,
-     extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: true,
       appBar: controller.isGuest.isFalse
           ? const PreferredSize(
               preferredSize: Size.zero,
@@ -63,7 +64,7 @@ class _SignInPageState extends State<SignInPage> {
                         height: AppDimensions.screenHeight(context) / 10,
                       ),
                       Text(
-                        "Login",
+                        "Login".tr,
                         style: Theme.of(context)
                             .textTheme
                             .displayMedium

@@ -24,8 +24,6 @@ class SignUpController extends GetxController {
     signUpRepo = Get.find<SignUpRepoImpl>();
   }
 
-
-
   final signInController = Get.find<SignInController>();
   bool isLoading = false;
   bool iserror = false;
@@ -41,19 +39,23 @@ class SignUpController extends GetxController {
   bool isVisable = true;
   String accountType = 'normal';
 
-  Future<void> signUp() async {
+  Future<void> signUp(
+      {required String verificationCode, required String phone}) async {
+    log(phone);
     log(countryCode);
     isLoading = true;
     update();
     var body = signUpModelToJson(SignUpModel(
+      verificationCode: verificationCode,
       email: email.text.trim(),
       userName: name.text.trim(),
-      phoneNumber: countryCode + phone.text.trim(),
+      phoneNumber: phone,
       password: password.text.trim(),
       accountType: accountType,
       fcmToken: App.fcmToken,
       countryName: signInController.selectedCountryName,
       notifyMe: App.notifyMe == true ? 1 : 0,
+      countryId: signInController.selectedCountryId,
     ));
     Either<Failure, ApiResponse> results = await signUpRepo.signUp(
       body: body,

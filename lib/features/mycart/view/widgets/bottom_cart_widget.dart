@@ -22,7 +22,7 @@ class BottomCartWidget extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           Text(
-            'TOTAL',
+            'TOTAL'.tr,
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   fontSize: 16,
                   color: AppColors.label,

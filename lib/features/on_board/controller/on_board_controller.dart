@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
+import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
 
 import '../../../constants/app_toasts.dart';
@@ -44,10 +45,10 @@ class OnboardController extends GetxController {
   String selectedCountryCode = '+971';
   String? selectedCountryFlage;
   List<CountryModel> countryList = [];
-  String selectedLang = 'English';
+  RxString selectedLang = 'English'.obs;
   List<LanguageModel> langList = [
-    LanguageModel(name: 'English', image: AppAssets.ukFlag),
-    LanguageModel(name: 'Arabic', image: AppAssets.uaeFlage),
+    LanguageModel(name: 'English', image: AppAssets.ukFlag,showName:'English'.tr ),
+    LanguageModel(name: 'Arabic'.tr, image: AppAssets.uaeFlage,showName:'Arabic'.tr),
   ];
   PageController pageController = PageController();
   RxInt activeIndex = 0.obs;
@@ -64,6 +65,11 @@ class OnboardController extends GetxController {
   void onInit() {
     getCountries();
     isFirstLaunch();
+    if (App.lang == "en") {
+      selectedLang.value = "ENGLISH";
+    } else {
+      selectedLang.value = "ARABIC";
+    }
     super.onInit();
   }
 
@@ -129,7 +135,7 @@ class OnboardController extends GetxController {
     selectedCountry = country;
     selectedCountryFlage = countryFlage;
     selectedCountryId = id;
-    selectedCountryCode=prefix;
+    selectedCountryCode = prefix;
     App.countryId = selectedCountryId;
     App.currency = currency;
     App.countryName = selectedCountry;
@@ -137,8 +143,13 @@ class OnboardController extends GetxController {
     update();
   }
 
-  selectLanguage(String language) {
-    selectedLang = language;
+  selectLanguage(String language) async {
+    selectedLang.value = language;
+    if (selectedLang.value == "English") {
+      await AppHelper.updateLanguage(const Locale("en_US"));
+    } else {
+      await AppHelper.updateLanguage(const Locale("ar_AE"));
+    }
     update();
   }
 

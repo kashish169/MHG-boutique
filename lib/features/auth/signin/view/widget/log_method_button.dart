@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
 import 'package:mhg/widgets/primary_button.dart';
 
@@ -19,7 +20,7 @@ class LogMethodButton extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: PrimaryButton(
-                  title: 'With Phone Number',
+                  title: 'With Phone Number'.tr,
                   isSelcted: !controller.logWithNumber.value,
                   reverseColor: !controller.logWithNumber.value,
                   height: controller.numberLogHight.value,
@@ -28,17 +29,21 @@ class LogMethodButton extends StatelessWidget {
                       ? AppColors.secondary
                       : AppColors.white,
                   onTap: () {
+                    AppHelper.closeKeyboard();
                     controller.logWithNum();
                   },
                 ),
               ),
+            ),
+            const SizedBox(
+              width: 5,
             ),
             Expanded(
               flex: 1,
               child: Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: PrimaryButton(
-                  title: 'With Email',
+                  title: 'With Email'.tr,
                   height: controller.emailLogHight.value,
                   isSelcted: !controller.logWithEmail.value,
                   reverseColor: !controller.logWithEmail.value,
@@ -47,6 +52,7 @@ class LogMethodButton extends StatelessWidget {
                       ? AppColors.secondary
                       : AppColors.white,
                   onTap: () {
+                    AppHelper.closeKeyboard();
                     controller.loginWithEmail();
                   },
                 ),

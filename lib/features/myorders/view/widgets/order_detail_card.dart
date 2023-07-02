@@ -32,7 +32,7 @@ class OrderDetailsCard extends StatelessWidget {
               start: Radius.circular(8),
             ),
             child: NetImage(
-              image: model.imageLink,
+              image: model.image,
               width: 120,
               height: AppDimensions.productHeight(context) / 1.3,
             ),

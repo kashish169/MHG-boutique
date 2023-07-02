@@ -9,6 +9,7 @@ import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/models/product_model.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../core/services/deep_link_service.dart';
 import '../repository/main_wrapper_repo_impl.dart';
 import '../repository/main_wrapper_repository.dart';
 
@@ -24,6 +25,7 @@ class MainWrapperController extends GetxController {
   RxBool isErrorAdd = false.obs;
   String? globalGuestCountryCode;
   String? globalGuestCountryFlag;
+  int? globalGuestCountryId;
 
   Future<void> launchUrl(String url) async {
     try {
@@ -106,5 +108,11 @@ class MainWrapperController extends GetxController {
       result = false;
     }
     return result;
+  }
+
+  @override
+  void onInit() {
+    DeepLinkSevice.initDynamicLink();
+    super.onInit();
   }
 }

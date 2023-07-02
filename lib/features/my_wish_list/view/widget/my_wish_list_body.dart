@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
@@ -11,6 +10,7 @@ import '../../../../widgets/delete_icon_button.dart';
 import '../../../../widgets/three_bounce_loading.dart';
 import 'my_wish_list_body_header.dart';
 import 'my_wish_list_body_middle_text.dart';
+import 'package:mhg/core/languages/languages.dart';
 
 class MyWishBody extends StatefulWidget {
   MyWishBody(
@@ -45,7 +45,8 @@ class _MyWishBodyState extends State<MyWishBody> {
           child: Row(
             children: [
               Container(
-                height: AppDimensions.productHeight(context) / 1.3,
+                // height: AppDimensions.productHeight(context) / 1.2,
+                // height: 170,
                 width: 120,
                 decoration: const BoxDecoration(
                   borderRadius:
@@ -54,7 +55,10 @@ class _MyWishBodyState extends State<MyWishBody> {
                 child: ClipRRect(
                     borderRadius: const BorderRadius.horizontal(
                         left: Radius.circular(12)),
-                    child: NetImage(image: widget.model.options.imageLink)),
+                    child: NetImage(
+                      image: widget.model.options.imageLink,
+                      fit: BoxFit.fitHeight,
+                    )),
               ),
               Expanded(
                   child: Stack(
@@ -64,9 +68,17 @@ class _MyWishBodyState extends State<MyWishBody> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 35),
-                        TopBodyHeader(title: widget.model.name),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 32),
+                        SizedBox(
+                          height: 25,
+                          child: FittedBox(
+                            child: TopBodyHeader(
+                                title: isAR()
+                                    ? widget.model.options.arName
+                                    : widget.model.options.enName),
+                          ),
+                        ),
+                        // const SizedBox(height: 10),
                         BodyMiddleText(
                           brand: widget.model.options.brand,
                           price: widget.model.price.toString(),

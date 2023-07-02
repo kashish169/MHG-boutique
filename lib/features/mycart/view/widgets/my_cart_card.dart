@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/widgets/net_image.dart';
-import '../../../../constants/app_dimensions.dart';
 import '../../../profile/controller/profile_controller.dart';
 import '../../models/cart_model.dart';
 import 'cart_counter_widget.dart';
@@ -24,7 +23,6 @@ class MyCartCard extends StatelessWidget {
       alignment: AlignmentDirectional.topEnd,
       children: [
         Container(
-
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.circular(8),
@@ -39,7 +37,7 @@ class MyCartCard extends StatelessWidget {
                 child: NetImage(
                   image: model.options.imageLink,
                   width: 120,
-                  height: AppDimensions.productHeight(context) / 1.3,
+                  // height: AppDimensions.productHeight(context) / 1.3,
                 ),
               ),
               const SizedBox(width: 10),
@@ -47,7 +45,7 @@ class MyCartCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 35),
+                    const SizedBox(height: 32),
                     Text(
                       model.name,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(

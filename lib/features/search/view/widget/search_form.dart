@@ -16,30 +16,27 @@ class SearchForm extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: CustomFormField(
           inputType: TextInputType.name,
-          onChanged: (val){
-           if( val==''){
-             controller.resetPaginate();
-           }
+          onChanged: (val) {
+            if (val == '') {
+              controller.resetPaginate();
+            }
           },
           onFieldSubmitted: (val) {
             controller.resetPaginate();
             controller.serach.text.isNotEmpty
                 ? searchController.filterSearchForProduct()
                 : null;
-
           },
           obscure: false,
           oneSideBorder: false,
           controller: controller.serach,
-          hint: "What Are You Looking For ?",
+          hint: "What Are You Looking For ?".tr,
           prefixWidget: IconButton(
               onPressed: () {
                 controller.resetPaginate();
                 controller.serach.text.isNotEmpty
                     ? searchController.filterSearchForProduct()
                     : null;
-
-
               },
               icon: SizedBox(
                 height: 20,

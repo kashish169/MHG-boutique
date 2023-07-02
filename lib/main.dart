@@ -1,10 +1,13 @@
 import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/splash/view/splash_view.dart';
 import 'package:mhg/theme/theme.dart';
 import 'app/app.dart';
+import 'core/languages/languages.dart';
 import 'core/routes/app_routes.dart';
 
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -25,6 +28,8 @@ class MHG extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.themeData,
       getPages: AppRoutes.getRoutes,
+      translations: Language(),
+      locale: const Locale('en', 'US'),
       initialRoute: SplashView.routeName,
     );
   }

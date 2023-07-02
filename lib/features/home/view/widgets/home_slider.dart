@@ -23,7 +23,7 @@ class HomeSlider extends StatelessWidget {
             horizontal: 20,
           ),
           child: Text(
-            "What's New",
+            "What's New".tr,
             style: Theme.of(context).textTheme.displayMedium?.copyWith(
                   fontSize: 22,
                   fontWeight: FontWeight.normal,

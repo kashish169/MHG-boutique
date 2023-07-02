@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 
 class ENotificationsTopPart extends StatelessWidget {
@@ -25,7 +26,7 @@ class ENotificationsTopPart extends StatelessWidget {
                       ),
                 ),
                 const SizedBox(height: 10),
-                Text("THE ULTIMATE HOUSE OF EMIRATI LUXURY",
+                Text("THE ULTIMATE HOUSE OF EMIRATI LUXURY".tr,
                     style: Theme.of(context).textTheme.headline1!.copyWith(
                           fontSize: 10,
                           fontWeight: FontWeight.w400,
@@ -41,7 +42,7 @@ class ENotificationsTopPart extends StatelessWidget {
               children: [
                 Center(
                   child: Text(
-                    "NOTIFICATIONS",
+                    "NOTIFICATIONS".tr,
                     style: Theme.of(context)
                         .textTheme
                         .displayLarge!
@@ -50,7 +51,7 @@ class ENotificationsTopPart extends StatelessWidget {
                 ),
                 const SizedBox(height: 40),
                 Text(
-                  "WOULD YOU LIKE TO GET NOTIFICATIONS",
+                  "WOULD YOU LIKE TO GET NOTIFICATIONS".tr,
                   style: Theme.of(context).textTheme.displayLarge!.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
@@ -58,7 +59,7 @@ class ENotificationsTopPart extends StatelessWidget {
                       ),
                 ),
                 const SizedBox(height: 10),
-                Text("to Stay up to date on latest offers and more",
+                Text("to Stay up to date on latest offers and more".tr,
                     style: Theme.of(context).textTheme.headline1!.copyWith(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,

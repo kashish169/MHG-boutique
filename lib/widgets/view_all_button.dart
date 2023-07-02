@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ViewAllButton extends StatelessWidget {
   final VoidCallback onTap;
@@ -11,7 +12,7 @@ class ViewAllButton extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            'View All',
+            'View All'.tr,
             style: Theme.of(context).textTheme.displaySmall,
           ),
           const SizedBox(width: 5),
