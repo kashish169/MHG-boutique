@@ -63,6 +63,8 @@ class OptionsModel {
   int inCart;
   int cartQuantity;
   String brand;
+  String enName;
+  String arName;
 
   OptionsModel({
     required this.size,
@@ -76,6 +78,8 @@ class OptionsModel {
     required this.inCart,
     required this.cartQuantity,
     required this.brand,
+    required this.arName,
+    required this.enName,
   });
 
   factory OptionsModel.fromJson(Map<String, dynamic> json) => OptionsModel(
@@ -90,5 +94,7 @@ class OptionsModel {
         inCart: json['in_cart'],
         cartQuantity: json['cart_qty'],
         brand: json['brand_name'],
+        enName:  json['en_name'],
+        arName:  json['ar_name'],
       );
 }

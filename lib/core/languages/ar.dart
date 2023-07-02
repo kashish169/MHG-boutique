@@ -11,7 +11,7 @@ Map<String, String> ar_AE = {
   "OCCASIONS": "المناسبات",
   "Wish list is empty!": "قائمة الرغبات فارغة !",
   "Share": "شارك",
-  "Add to Bag": "أضف إلى الحقيبة ",
-  "Brand:" : "الماركة",
+  "Add to Bag": "أضف للحقيبة",
+  "Brand:" : "الماركة :",
   "Bag is empty!" :"الحقيبة فارغة!" , "TOTAL" : "المجموع"
 };

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/core/languages/languages.dart';
 import 'package:mhg/core/services/deep_link_service.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/my_wish_list/view/widget/wish_list_counter.dart';
@@ -21,11 +22,12 @@ class _BodyButtonsState extends State<BodyButtons> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment:
+           CrossAxisAlignment.end,
       children: [
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.only(right: 5),
+            padding:   isAR() ? const EdgeInsets.only(right: 0): const EdgeInsets.only(left: 5),
             child: PrimaryButton(
               title: "Share".tr,
               onTap: () async {
@@ -43,8 +45,8 @@ class _BodyButtonsState extends State<BodyButtons> {
           return widget.model.options.inCart == 0
               ? Padding(
                   padding: const EdgeInsets.only(
-                    left: 5,
-                  ),
+                          left: 5,
+                        ),
                   child: PrimaryButton(
                     title: "Add to Bag".tr,
                     isLoading: widget.model.isAddToBag,
@@ -64,6 +66,7 @@ class _BodyButtonsState extends State<BodyButtons> {
                     fontSize: 12,
                     color: AppColors.secondary,
                     height: 35,
+                   
                   ))
               : Padding(
                   padding: const EdgeInsets.only(bottom: 10),
