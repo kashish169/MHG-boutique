@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/setting/repository/settings_repo.dart';
-
 import '../../../constants/app_toasts.dart';
 import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
@@ -34,6 +32,7 @@ class SettingController extends GetxController {
   RxBool isErrorPrivacy = false.obs;
   late TermsModel termsModel;
   late PrivacyModel privacyModel;
+
   @override
   void onInit() {
     getPraivacyData();

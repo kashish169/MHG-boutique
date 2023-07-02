@@ -1,11 +1,11 @@
 import 'dart:developer';
-
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/setting/controller/setting_controller.dart';
+import 'package:mhg/widgets/primary_button.dart';
 
 class AllowAds extends StatelessWidget {
   const AllowAds({Key? key}) : super(key: key);
@@ -15,8 +15,12 @@ class AllowAds extends StatelessWidget {
     final controller = Get.find<SettingController>();
     return Obx(() => InkWell(
           onTap: () async {
-            await _initPlugin(context);
-            controller.adsAllowed.value = !controller.adsAllowed.value;
+            TrackingStatus status = await _initPlugin(context);
+            if (status == TrackingStatus.authorized) {
+              controller.adsAllowed.value = !controller.adsAllowed.value;
+            } else {
+              controller.adsAllowed.value = false;
+            }
           },
           child: ColoredBox(
             color: AppColors.white,
@@ -62,9 +66,13 @@ class AllowAds extends StatelessWidget {
                     value: controller.adsAllowed.value,
                     activeColor: Colors.white, activeTrackColor: Colors.black,
                     onChanged: (bool value) async {
-                      await _initPlugin(context);
-                      controller.adsAllowed.value =
-                          !controller.adsAllowed.value;
+                      TrackingStatus status = await _initPlugin(context);
+                      if (status == TrackingStatus.authorized) {
+                        controller.adsAllowed.value =
+                            !controller.adsAllowed.value;
+                      } else {
+                        controller.adsAllowed.value = false;
+                      }
                     },
                   )
                 ],
@@ -75,7 +83,7 @@ class AllowAds extends StatelessWidget {
   }
 }
 
-Future<void> _initPlugin(BuildContext context) async {
+Future<TrackingStatus> _initPlugin(BuildContext context) async {
   final TrackingStatus status =
       await AppTrackingTransparency.trackingAuthorizationStatus;
   // If the system can show an authorization request dialog
@@ -90,26 +98,36 @@ Future<void> _initPlugin(BuildContext context) async {
     final TrackingStatus status =
         await AppTrackingTransparency.requestTrackingAuthorization();
     log("status $status");
+    return status;
   }
 
   final uuid = await AppTrackingTransparency.getAdvertisingIdentifier();
-  print("UUID: $uuid");
+  log("UUID: $uuid");
+  return status;
 }
 
 Future<void> showCustomTrackingDialog(BuildContext context) async =>
     await showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Dear User'),
-        content: const Text(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        content: Text(
           'We care about your privacy and data security. We keep this app free by showing ads. '
           'Can we continue to use your data to tailor ads for you?\n\nYou can change your choice anytime in the app settings. '
           'Our partners will collect data and use a unique identifier on your device to show you ads.',
+          style: Theme.of(context).textTheme.displaySmall,
         ),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Continue'),
+          Center(
+            child: PrimaryButton(
+                width: 180,
+                height: 40,
+                title: 'Continue',
+                onTap: () {
+                  Get.back();
+                }),
           ),
         ],
       ),

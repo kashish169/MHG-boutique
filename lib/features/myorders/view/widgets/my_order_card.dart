@@ -254,12 +254,12 @@ class MyOrderCard extends StatelessWidget {
                   hint: 'Reason',
                   obscure: false,
                   inputType: TextInputType.text,
-                  validator: (val) {
-                    if (val!.isEmpty) {
-                      return "This field is required";
-                    }
-                    return null;
-                  },
+                  // validator: (val) {
+                  //   if (val!.isEmpty) {
+                  //     return "This field is required";
+                  //   }
+                  //   return null;
+                  // },
                   controller: controller.message),
             ),
             const SizedBox(height: 10),
@@ -270,7 +270,6 @@ class MyOrderCard extends StatelessWidget {
               hasIcon: false,
               onPress: () {
                 if (controller.formKey.currentState!.validate()) {
-                  Get.back();
                   if (isCancel) {
                     Get.find<MyOrdersController>()
                         .cancelOrder(orderNumber: model.orderNumber);

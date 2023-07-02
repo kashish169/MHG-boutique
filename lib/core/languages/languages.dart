@@ -15,7 +15,6 @@ class Language extends Translations {
 }
 
 bool isAR() {
-  log("_____________-${Get.locale}");
   if ("${Get.locale}" == "ar_AE") {
     return true;
   } else {

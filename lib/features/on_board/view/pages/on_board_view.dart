@@ -257,16 +257,16 @@ class _OnBoardViewState extends State<OnBoardView> {
                                           ),
                                         ],
                                       ))),
-                              SizedBox(
-                                  height: 30,
-                                  child: VerticalDivider(
-                                    thickness: 1,
-                                    color: AppColors.white,
-                                    width: 5,
-                                  )),
-                              const SizedBox(
-                                width: 15,
-                              ),
+                              // SizedBox(
+                              //     height: 30,
+                              //     child: VerticalDivider(
+                              //       thickness: 1,
+                              //       color: AppColors.white,
+                              //       width: 5,
+                              //     )),
+                              // const SizedBox(
+                              //   width: 15,
+                              // ),
                               // Expanded(
                               //     flex: 4,
                               //     child: InkWell(

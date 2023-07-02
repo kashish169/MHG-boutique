@@ -12,6 +12,7 @@ import 'package:mhg/features/myorders/models/order_model.dart';
 import 'package:mhg/features/myorders/repository/my_orders_repo.dart';
 import 'package:mhg/features/myorders/repository/my_orders_repo_impl.dart';
 import 'package:flutter/material.dart';
+import 'package:mhg/widgets/loading_widget.dart';
 import '../../../widgets/show_snakBar.dart';
 
 class MyOrdersController extends GetxController {
@@ -123,9 +124,14 @@ class MyOrdersController extends GetxController {
   Future<void> cancelOrder({required String orderNumber}) async {
     var body =
         jsonEncode({"order_number": orderNumber, "message": message.text});
+    Get.dialog(
+      const LoadingWidget(),
+      barrierDismissible: false,
+    );
     Either<Failure, ApiResponse> results = await myOrdersRepository.cancelOrder(
       body: body,
     );
+    Get.back();
 
     results.fold(
       (l) {
@@ -138,6 +144,7 @@ class MyOrdersController extends GetxController {
         if (statusCode == 200) {
           getMyOrders();
           AppToasts.successToast(r.object['data']);
+          Get.back();
         } else if (statusCode == 400) {
           AppToasts.errorToast(message);
         } else {
@@ -150,10 +157,14 @@ class MyOrdersController extends GetxController {
   Future<void> returnOrder({required String orderNumber}) async {
     var body =
         jsonEncode({"order_number": orderNumber, "message": message.text});
+    Get.dialog(
+      const LoadingWidget(),
+      barrierDismissible: false,
+    );
     Either<Failure, ApiResponse> results = await myOrdersRepository.returnOrder(
       body: body,
     );
-
+    Get.back();
     results.fold(
       (l) {
         showSnackBar(l.message);
@@ -165,6 +176,7 @@ class MyOrdersController extends GetxController {
         if (statusCode == 200) {
           getMyOrders();
           AppToasts.successToast(r.object['data']);
+          Get.back();
         } else if (statusCode == 400) {
           AppToasts.errorToast(message);
         } else {
