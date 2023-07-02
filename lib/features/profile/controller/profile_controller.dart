@@ -58,8 +58,8 @@ class ProfileController extends GetxController {
           var message = r.object['message'];
           if (statusCode == 200) {
             model.value = ProfileInfoModal.fromJson(r.object["data"]);
-            log('neee'+model.value!.nextTierPts.toString());
-           separatePhoneAndDialCode(model.value!.number!);
+            log('neee${model.value!.nextTierPts}');
+            separatePhoneAndDialCode(model.value!.number ?? '');
             App.countryId = model.value?.country?.id;
             App.currency = "${model.value?.country?.currency.currency}";
             currnecy.value = App.currency;
@@ -202,7 +202,6 @@ class ProfileController extends GetxController {
   void onInit() {
     if (App.token.isNotEmpty) {
       getProfileInfo();
-
     } else {
       currnecy.value = App.currency;
     }

@@ -27,4 +27,14 @@ class SettingsRepoImpl implements SettingsRepo {
         url: Api.termsAndConidtionsLink,
         isAuthorized: true,
       );
+
+  @override
+  Future<Either<Failure, ApiResponse>> updateNotification(
+    Object body,
+  ) async =>
+      await httpService.post(
+        url: Api.updateProfile,
+        isAuthorized: true,
+        body: body,
+      );
 }
