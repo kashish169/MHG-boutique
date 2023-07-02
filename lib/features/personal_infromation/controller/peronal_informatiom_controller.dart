@@ -221,6 +221,8 @@ class PersonalInformationController extends GetxController {
       update();
       results.fold(
         (l) {
+          iserror = true;
+          update();
           showSnackBar(l.message);
           log("GET COUNTRIES RESPONSE ERROR ${l.message}");
         },

@@ -16,6 +16,7 @@ class SignUpModel {
     this.token,
     this.notifyMe,
     required this.countryName,
+    required this.countryId,
   });
 
   String userName;
@@ -30,6 +31,7 @@ class SignUpModel {
   String? token;
   String countryName;
   String verificationCode;
+  int countryId;
 
   Map<String, dynamic> toJson() => {
         "name": userName,
@@ -44,5 +46,6 @@ class SignUpModel {
         'notify_me': notifyMe,
         'token': token,
         'country_name': countryName,
+        'country_id': countryId,
       };
 }

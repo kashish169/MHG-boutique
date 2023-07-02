@@ -6,6 +6,7 @@ import 'package:mhg/features/personal_infromation/controller/peronal_informatiom
 import 'package:mhg/features/personal_infromation/view/widget/inforamation_form.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/net_image.dart';
+import 'package:mhg/widgets/retry_button.dart';
 import '../../../../widgets/custom_app_bar.dart';
 import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 import '../widget/delete_account_dialog.dart';
@@ -26,148 +27,156 @@ class PersonalInformation extends StatelessWidget {
       body: GetBuilder<PersonalInformationController>(
           builder: (controller) => controller.isLoading
               ? const LoadingWidget()
-              : Obx(() => Form(
-                    key: controller.formKey,
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: SingleChildScrollView(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, right: 20, top: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  InformationForm(
-                                    header: 'Full Name',
-                                    hint: controller.profileInfo.name,
-                                    validator: (val) {
-                                      return AppHelper.validation(
-                                          val!, 1, 500, '');
-                                    },
-                                    onTap: () {
-                                      controller.enableName();
-                                    },
-                                    textController: controller.name,
-                                    isEnableToEdit: controller.enableEditOnName,
-                                  ),
-                                  InformationForm(
-                                    header: 'Email',
-                                    hint: controller.profileInfo.email,
-                                    validator: (val) {
-                                      return AppHelper.validation(
-                                          val!, 1, 500, 'email');
-                                    },
-                                    onTap: () {
-                                      controller.enableEmail();
-                                    },
-                                    textController: controller.email,
-                                    isEnableToEdit:
-                                        controller.enableEditOnEmail,
-                                  ),
-                                  InformationForm(
-                                    header: 'Phone number',
-                                    hint: "Add your Number",
-                                    onTap: () {
-                                      controller.enableNumber();
-                                    },
-                                    textController: controller.phone,
-                                    inInputNumber: true,
-                                    isEnableToEdit:
-                                        controller.enableEditOnNumber.value,
-                                  ),
-                                  InformationForm(
-                                    textController: controller.address,
-                                    header: 'Address',
-                                    hint: 'Add your address',
-                                    onTap: () {
-                                      controller.enableAddress();
-                                    },
-                                    isEnableToEdit:
-                                        controller.enableEditOnAddress,
-                                  ),
-                                  InformationForm(
-                                    header: 'State',
-                                    hint: 'Add your state',
-                                    validator: (val) {
-                                      if (val!.isEmpty) {
-                                        return null;
-                                      }
-                                      return AppHelper.validation(
-                                          val, 1, 500, '');
-                                    },
-                                    onTap: () {
-                                      controller.enableState();
-                                    },
-                                    textController: controller.state,
-                                    isEnableToEdit:
-                                        controller.enableEditOnState,
-                                  ),
-                                  InformationForm(
-                                    header: 'Zip Code',
-                                    hint: 'Add your zip code',
-                                    onTap: () {
-                                      controller.enableZipCode();
-                                    },
-                                    textController: controller.zipCode,
-                                    isEnableToEdit:
-                                        controller.enableEditOnZipCode,
-                                  ),
-                                  Column(
+              : controller.iserror
+                  ? RetryButton(onTap: () {
+                      controller.getAllCountries();
+                    })
+                  : Obx(() => Form(
+                        key: controller.formKey,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: SingleChildScrollView(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 20, right: 20, top: 20),
+                                  child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      const SizedBox(
-                                        height: 20,
+                                      InformationForm(
+                                        header: 'Full Name',
+                                        hint: controller.profileInfo.name,
+                                        validator: (val) {
+                                          return AppHelper.validation(
+                                              val!, 1, 500, '');
+                                        },
+                                        onTap: () {
+                                          controller.enableName();
+                                        },
+                                        textController: controller.name,
+                                        isEnableToEdit:
+                                            controller.enableEditOnName,
                                       ),
-                                      Text(
-                                        "Country",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .displaySmall!
-                                            .copyWith(
-                                                fontSize: 16,
-                                                color: AppColors.lightGray2),
+                                      InformationForm(
+                                        header: 'Email',
+                                        hint: controller.profileInfo.email,
+                                        validator: (val) {
+                                          return AppHelper.validation(
+                                              val!, 1, 500, 'email');
+                                        },
+                                        onTap: () {
+                                          controller.enableEmail();
+                                        },
+                                        textController: controller.email,
+                                        isEnableToEdit:
+                                            controller.enableEditOnEmail,
                                       ),
-                                      const SizedBox(
-                                        height: 10,
+                                      InformationForm(
+                                        header: 'Phone number',
+                                        hint: "Add your Number",
+                                        onTap: () {
+                                          controller.enableNumber();
+                                        },
+                                        textController: controller.phone,
+                                        inInputNumber: true,
+                                        isEnableToEdit:
+                                            controller.enableEditOnNumber.value,
                                       ),
-                                      DropdownButtonHideUnderline(
-                                        child: DropdownButton2<String>(
-                                          isExpanded: true,
-                                          value: controller.selectedCountry,
-                                          onChanged: (value) {
-                                            controller.setCountry(value);
-                                          },
-                                          hint: Text(
-                                            'Select Country',
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              color:
-                                                  Theme.of(context).hintColor,
-                                            ),
+                                      InformationForm(
+                                        textController: controller.address,
+                                        header: 'Address',
+                                        hint: 'Add your address',
+                                        onTap: () {
+                                          controller.enableAddress();
+                                        },
+                                        isEnableToEdit:
+                                            controller.enableEditOnAddress,
+                                      ),
+                                      InformationForm(
+                                        header: 'State',
+                                        hint: 'Add your state',
+                                        validator: (val) {
+                                          if (val!.isEmpty) {
+                                            return null;
+                                          }
+                                          return AppHelper.validation(
+                                              val, 1, 500, '');
+                                        },
+                                        onTap: () {
+                                          controller.enableState();
+                                        },
+                                        textController: controller.state,
+                                        isEnableToEdit:
+                                            controller.enableEditOnState,
+                                      ),
+                                      InformationForm(
+                                        header: 'Zip Code',
+                                        hint: 'Add your zip code',
+                                        onTap: () {
+                                          controller.enableZipCode();
+                                        },
+                                        textController: controller.zipCode,
+                                        isEnableToEdit:
+                                            controller.enableEditOnZipCode,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const SizedBox(
+                                            height: 20,
                                           ),
-                                          items: controller.countriesModel.data!
-                                              .map(
-                                                (item) =>
-                                                    DropdownMenuItem<String>(
-                                                  value: item.name,
-                                                  child: RichText(
-                                                    text: TextSpan(
-                                                      children: [
-                                                        WidgetSpan(
-                                                          child: NetImage(
-                                                            image:
-                                                                item.flagLink!,
-                                                            height: 20,
-                                                            width: 20,
-                                                          ),
-                                                        ),
-                                                        TextSpan(
-                                                          text:
-                                                              ' ${item.name!}',
-                                                          style:
-                                                              Theme.of(context)
+                                          Text(
+                                            "Country",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .displaySmall!
+                                                .copyWith(
+                                                    fontSize: 16,
+                                                    color:
+                                                        AppColors.lightGray2),
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          DropdownButtonHideUnderline(
+                                            child: DropdownButton2<String>(
+                                              isExpanded: true,
+                                              value: controller.selectedCountry,
+                                              onChanged: (value) {
+                                                controller.setCountry(value);
+                                              },
+                                              hint: Text(
+                                                'Select Country',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  color: Theme.of(context)
+                                                      .hintColor,
+                                                ),
+                                              ),
+                                              items: controller
+                                                  .countriesModel.data!
+                                                  .map(
+                                                    (item) => DropdownMenuItem<
+                                                        String>(
+                                                      value: item.name,
+                                                      child: RichText(
+                                                        text: TextSpan(
+                                                          children: [
+                                                            WidgetSpan(
+                                                              child: NetImage(
+                                                                image: item
+                                                                    .flagLink!,
+                                                                height: 20,
+                                                                width: 20,
+                                                              ),
+                                                            ),
+                                                            TextSpan(
+                                                              text:
+                                                                  ' ${item.name!}',
+                                                              style: Theme.of(
+                                                                      context)
                                                                   .textTheme
                                                                   .displaySmall!
                                                                   .copyWith(
@@ -176,107 +185,114 @@ class PersonalInformation extends StatelessWidget {
                                                                     color: AppColors
                                                                         .black3,
                                                                   ),
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
-                                              .toList(),
-                                          dropdownSearchData:
-                                              DropdownSearchData(
-                                            searchController: _searchController,
-                                            searchInnerWidgetHeight: 50,
-                                            searchInnerWidget: Container(
-                                              height: 50,
-                                              padding: const EdgeInsets.only(
-                                                top: 8,
-                                                bottom: 4,
-                                                right: 8,
-                                                left: 8,
-                                              ),
-                                              child: TextFormField(
-                                                expands: true,
-                                                maxLines: null,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .displaySmall!
-                                                    .copyWith(
-                                                      fontSize: 14,
-                                                      color: AppColors.black3,
-                                                    ),
-                                                controller: _searchController,
-                                                decoration: InputDecoration(
-                                                  isDense: true,
-                                                  contentPadding:
-                                                      const EdgeInsets
-                                                          .symmetric(
-                                                    horizontal: 10,
-                                                    vertical: 8,
-                                                  ),
-                                                  hintText:
-                                                      'Search for a country...',
-                                                  hintStyle: Theme.of(context)
-                                                      .textTheme
-                                                      .displaySmall!
-                                                      .copyWith(
-                                                        fontSize: 14,
-                                                        color: AppColors
-                                                            .lightGray2,
                                                       ),
-                                                  border: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
+                                                    ),
+                                                  )
+                                                  .toList(),
+                                              dropdownSearchData:
+                                                  DropdownSearchData(
+                                                searchController:
+                                                    _searchController,
+                                                searchInnerWidgetHeight: 50,
+                                                searchInnerWidget: Container(
+                                                  height: 50,
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                    top: 8,
+                                                    bottom: 4,
+                                                    right: 8,
+                                                    left: 8,
+                                                  ),
+                                                  child: TextFormField(
+                                                    expands: true,
+                                                    maxLines: null,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .displaySmall!
+                                                        .copyWith(
+                                                          fontSize: 14,
+                                                          color:
+                                                              AppColors.black3,
+                                                        ),
+                                                    controller:
+                                                        _searchController,
+                                                    decoration: InputDecoration(
+                                                      isDense: true,
+                                                      contentPadding:
+                                                          const EdgeInsets
+                                                              .symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 8,
+                                                      ),
+                                                      hintText:
+                                                          'Search for a country...',
+                                                      hintStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .displaySmall!
+                                                              .copyWith(
+                                                                fontSize: 14,
+                                                                color: AppColors
+                                                                    .lightGray2,
+                                                              ),
+                                                      border:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8),
+                                                      ),
+                                                    ),
                                                   ),
                                                 ),
+                                                searchMatchFn:
+                                                    (item, searchValue) {
+                                                  return (item.value
+                                                      .toString()
+                                                      .contains(
+                                                        searchValue,
+                                                      ));
+                                                },
                                               ),
+                                              onMenuStateChange: (isOpen) {
+                                                if (!isOpen) {
+                                                  _searchController.clear();
+                                                }
+                                              },
                                             ),
-                                            searchMatchFn: (item, searchValue) {
-                                              return (item.value
-                                                  .toString()
-                                                  .contains(
-                                                    searchValue,
-                                                  ));
-                                            },
                                           ),
-                                          onMenuStateChange: (isOpen) {
-                                            if (!isOpen) {
-                                              _searchController.clear();
-                                            }
-                                          },
-                                        ),
+                                        ],
                                       ),
                                     ],
                                   ),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                        if (controller.isEdit.isTrue)
-                          PersonalInfoButton(
-                              text: "Save",
-                              onTap: () {
-                                controller.updateInformation();
-                              },
-                              isDelete: false),
-                        PersonalInfoButton(
-                            text: "Delete Account",
-                            onTap: () {
-                              deleteAccountDialog(
-                                context: context,
-                                message:
-                                    'Are you sure you want to delete this account ?',
-                                onConfirm: () {
-                                  controller.deleteAccount();
+                            if (controller.isEdit.isTrue)
+                              PersonalInfoButton(
+                                  text: "Save",
+                                  onTap: () {
+                                    controller.updateInformation();
+                                  },
+                                  isDelete: false),
+                            PersonalInfoButton(
+                                text: "Delete Account",
+                                onTap: () {
+                                  deleteAccountDialog(
+                                    context: context,
+                                    message:
+                                        'Are you sure you want to delete this account ?',
+                                    onConfirm: () {
+                                      controller.deleteAccount();
+                                    },
+                                  );
                                 },
-                              );
-                            },
-                            isDelete: true),
-                      ],
-                    ),
-                  ))),
+                                isDelete: true),
+                          ],
+                        ),
+                      ))),
     );
   }
 }
