@@ -47,8 +47,8 @@ class OnboardController extends GetxController {
   List<CountryModel> countryList = [];
   RxString selectedLang = 'English'.obs;
   List<LanguageModel> langList = [
-    LanguageModel(name: 'English', image: AppAssets.ukFlag),
-    LanguageModel(name: 'Arabic', image: AppAssets.uaeFlage),
+    LanguageModel(name: 'English', image: AppAssets.ukFlag,showName:'English'.tr ),
+    LanguageModel(name: 'Arabic'.tr, image: AppAssets.uaeFlage,showName:'Arabic'.tr),
   ];
   PageController pageController = PageController();
   RxInt activeIndex = 0.obs;

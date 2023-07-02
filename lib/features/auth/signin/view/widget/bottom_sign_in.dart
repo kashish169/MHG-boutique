@@ -26,7 +26,7 @@ class BottomSignIn extends StatelessWidget {
             ),
             child: PrimaryButton(
               color: AppColors.secondary,
-              title: 'Login',
+              title: 'Login'.tr,
               height: 50,
               width: double.infinity,
               onTap: () {
@@ -44,7 +44,7 @@ class BottomSignIn extends StatelessWidget {
                     horizontal: 25,
                   ),
                   child: PrimaryButton(
-                    title: 'Login with Otp',
+                    title: 'Login with Otp'.tr,
                     height: 50,
                     width: double.infinity,
                     color: AppColors.secondary,
@@ -73,7 +73,7 @@ class BottomSignIn extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Don't have an account?",
+                "Don't have an account?".tr,
                 style: Theme.of(context)
                     .textTheme
                     .displaySmall
@@ -90,7 +90,7 @@ class BottomSignIn extends StatelessWidget {
                   });
                 },
                 child: Text(
-                  "Sign Up",
+                  "Sign Up".tr,
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         color: Colors.red,
                       ),

@@ -51,7 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
         builder: (controller) {
           return SafeArea(
             child: Stack(
-              alignment: Alignment.topLeft,
+              alignment: AlignmentDirectional.topStart,
               children: [
                 ModalProgressHUD(
                     inAsyncCall: controller.isLoading,
@@ -64,7 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               height: AppDimensions.screenHeight(context) / 10,
                             ),
                             Text(
-                              "Sign up",
+                              "Sign Up".tr,
                               style: Theme.of(context)
                                   .textTheme
                                   .displayMedium
@@ -77,7 +77,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 20),
                               child: CustomFormField(
-                                hint: 'Full name',
+                                hint: 'Full name'.tr,
                                 controller: controller.name,
                                 suffixIcon: Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -102,7 +102,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 20),
                               child: CustomFormField(
-                                hint: 'Email address',
+                                hint: 'Email address'.tr,
                                 controller: controller.email,
                                 suffixIcon: Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -123,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 20),
                               child: CustomFormField(
-                                hint: 'Phone number',
+                                hint: 'Phone number'.tr,
                                 suffixIcon: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 15),
@@ -146,7 +146,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 20),
                               child: CustomFormField(
-                                hint: 'Password',
+                                hint: 'Password'.tr,
                                 controller: controller.password,
                                 suffixIcon: Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -180,7 +180,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               child: PrimaryButton(
                                 color: AppColors.secondary,
-                                title: 'Sign up',
+                                title: 'Sign Up'.tr,
                                 height: 50,
                                 width: double.infinity,
 
@@ -204,7 +204,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                             ),
                             Text(
-                              "By continuing sign up you agree to the",
+                              "By continuing sign up you agree to the".tr,
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall
@@ -220,7 +220,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               onPressed: () {
                                 Get.toNamed(SignUpPage.routeName);
                               },
-                              child: Text("Terms & conditions",
+                              child: Text("Terms & conditions".tr,
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -233,7 +233,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Already have an account?",
+                                  "Already have an account?".tr,
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -246,7 +246,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       Get.back();
                                     },
                                     child: Text(
-                                      "Sign in",
+                                      "Sign in".tr,
                                       style: Theme.of(context)
                                           .textTheme
                                           .displaySmall
