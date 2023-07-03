@@ -28,7 +28,7 @@ class OtpController extends GetxController {
   }
 
   void resendCode() {
-    if (times == 0) {
+    if (times.value == 0) {
       startTimer(30);
       verificationController.sendOtpCode();
     }

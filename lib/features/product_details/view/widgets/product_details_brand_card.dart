@@ -7,6 +7,7 @@ import 'package:mhg/features/product_details/view/widgets/product_details_counte
 import 'package:mhg/widgets/primary_button.dart';
 import '../../../../app/app.dart';
 import '../../../auth/signin/view/pages/sign_in_page.dart';
+import '../../../mainwrapper/controller/main_wrapper_controller.dart';
 import '../../../profile/controller/profile_controller.dart';
 import '../../controller/product_details_controller.dart';
 
@@ -17,6 +18,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<ProductDetailsController>();
     final profileController = Get.find<ProfileController>();
+    final mainController = Get.find<MainWrapperController>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -122,6 +124,10 @@ class ProductDetailsBrandCard extends StatelessWidget {
                                 arguments: {
                                   'country': App.countryName,
                                   'is_guest': true,
+                                  'country_code':
+                                      mainController.globalGuestCountryCode,
+                                  'flag': mainController.globalGuestCountryFlag,
+                                  'id': mainController.globalGuestCountryId,
                                 },
                               );
                               return;

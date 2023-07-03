@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
-import 'package:mhg/features/auth/sign_up/repository/sign_up_repository.dart';
 import 'package:mhg/features/auth/verification/repository/verification_repository.dart';
 import '../../../../core/api/api.dart';
 import '../../../../core/httpservices/http_services_impl.dart';
@@ -20,6 +17,4 @@ class VerificationRepoImpl implements VerificationRepo {
   @override
   Future<Either<Failure, ApiResponse>> sendOtp({required Object body}) async =>
       await httpService.post(url: Api.otp, body: body);
-
-
 }

@@ -46,7 +46,7 @@ class ProfileInfoModal {
   });
 
   int id;
-  int? externalId;
+  dynamic externalId;
   String qrCode;
   String name;
   String email;

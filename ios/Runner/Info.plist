@@ -8,8 +8,6 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Mhg</string>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>Mhg requires permission to deliver personalized ads to you.</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>MHG</string>
+	<string>MHGBoutique</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -39,6 +37,12 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>MHGBoutique want to access your location, so you can check nearest stores.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>MHGBoutique want to access your location, so you can check nearest stores.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>MHGBoutique requires permission to deliver personalized ads to you.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>

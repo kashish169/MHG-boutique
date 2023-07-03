@@ -11,6 +11,7 @@ import 'package:mhg/widgets/three_bounce_loading.dart';
 
 import '../app/app.dart';
 import '../features/auth/signin/view/pages/sign_in_page.dart';
+import '../features/mainwrapper/controller/main_wrapper_controller.dart';
 
 class FavouriteWidget extends StatefulWidget {
   final double? height;
@@ -39,6 +40,7 @@ class FavouriteWidget extends StatefulWidget {
 class _FavouriteWidgetState extends State<FavouriteWidget> {
   @override
   Widget build(BuildContext context) {
+    final mainController = Get.find<MainWrapperController>();
     return InkWell(child: GetX<WishListController>(builder: (controller) {
       if (controller.isLoading.isTrue) {
         return Container(
@@ -57,6 +59,9 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                 arguments: {
                   'country': App.countryName,
                   'is_guest': true,
+                  'country_code': mainController.globalGuestCountryCode,
+                  'flag': mainController.globalGuestCountryFlag,
+                  'id': mainController.globalGuestCountryId,
                 },
               );
               return;

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
@@ -7,12 +9,14 @@ import '../../../profile/controller/profile_controller.dart';
 
 class MyOrderDetailsGlobalInfo extends StatelessWidget {
   final MyOrder model;
+
   const MyOrderDetailsGlobalInfo({Key? key, required this.model})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final profileController = Get.find<ProfileController>();
+
     return Obx(() => Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
           child: Row(
@@ -24,13 +28,16 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
                 children: [
                   Visibility(
                     visible: double.parse(model.heartsDiscount) != 0,
-                    child: Text(
-                      'Hearts Discount',
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 15,
-                            height: 1.4,
-                            color: AppColors.label,
-                          ),
+                    child: FittedBox(
+                      child: Text(
+                        'Hearts Discount',
+                        style:
+                            Theme.of(context).textTheme.displaySmall?.copyWith(
+                                  fontSize: 15,
+                                  height: 1.4,
+                                  color: AppColors.label,
+                                ),
+                      ),
                     ),
                   ),
                   Visibility(
@@ -157,10 +164,9 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
                     child: Text(
                       "${profileController.currnecy.value} ${model.deliveryCharge}",
                       style:
-                          Theme.of(context).textTheme.displayMedium?.copyWith(
+                          Theme.of(context).textTheme.displaySmall?.copyWith(
                                 height: 1.4,
-                                color: AppColors.dBlack,
-                                fontWeight: FontWeight.bold,
+                                color: AppColors.mediumLabel,
                                 fontSize: 15,
                               ),
                     ),
