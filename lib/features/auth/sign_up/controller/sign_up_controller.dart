@@ -12,6 +12,7 @@ import '../../../../core/api/api.dart';
 import '../../../../core/models/api_response.dart';
 import '../../../../core/models/failure.dart';
 import '../../../../core/storage/storage_pref.dart';
+import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/show_snack_bar.dart';
 import '../models/sign_up_model.dart';
 import '../repository/sign_up_repo_impl.dart';
@@ -43,8 +44,10 @@ class SignUpController extends GetxController {
       {required String verificationCode, required String phone}) async {
     log(phone);
     log(countryCode);
-    isLoading = true;
-    update();
+    Get.dialog(
+      const LoadingWidget(),
+      barrierDismissible: false,
+    );
     var body = signUpModelToJson(SignUpModel(
       verificationCode: verificationCode,
       email: email.text.trim(),
@@ -60,8 +63,7 @@ class SignUpController extends GetxController {
     Either<Failure, ApiResponse> results = await signUpRepo.signUp(
       body: body,
     );
-    isLoading = false;
-    update();
+    Get.back();
     results.fold((l) {
       log(l.message);
       showSnackBar(l.message);
