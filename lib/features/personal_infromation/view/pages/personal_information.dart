@@ -78,6 +78,10 @@ class PersonalInformation extends StatelessWidget {
                                         onTap: () {
                                           controller.enableNumber();
                                         },
+                                        validator: (val) {
+                                          return AppHelper.validation(
+                                              val!, 9, 9, 'Number');
+                                        },
                                         textController: controller.phone,
                                         inInputNumber: true,
                                         isEnableToEdit:

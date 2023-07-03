@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
-import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
 import 'package:mhg/features/auth/verification/controller/verification_controller.dart';
 import 'package:mhg/features/auth/otp/view/pages/otp.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
@@ -9,7 +8,6 @@ import 'package:mhg/widgets/primary_button.dart';
 import '../../../../../constants/app_assets.dart';
 import 'package:get/get.dart';
 import '../../../../../core/helper/app_helper.dart';
-import '../../../widgets/country_picker_widget.dart';
 import '../widgets/verification_country_picker.dart';
 
 class VerificationPage extends StatelessWidget {
@@ -43,7 +41,8 @@ class VerificationPage extends StatelessWidget {
                       height: AppDimensions.screenHeight(context) / 20,
                     ),
                     Text(
-                        "We have sent you 6 digit code to verify \nyour phone number".tr,
+                        "We have sent you 6 digit code to verify \nyour phone number"
+                            .tr,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.displaySmall),
                     SizedBox(
@@ -67,7 +66,6 @@ class VerificationPage extends StatelessWidget {
                           inputType: TextInputType.number,
                           obscure: false,
                           controller: controller.phone,
-
                           validator: (val) {
                             return AppHelper.validation(val!, 9, 9, 'Number');
                           },
@@ -83,7 +81,7 @@ class VerificationPage extends StatelessWidget {
                         title: 'Continue'.tr,
                         height: 50,
                         width: double.infinity,
-                        color: const Color(0XFF232323),
+                        color: AppColors.secondary,
                         onTap: () {
                           Get.find<VerificationController>().sendOtpCode();
                           Get.toNamed(OtpPage.routeName);
