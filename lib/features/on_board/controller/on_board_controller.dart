@@ -47,8 +47,10 @@ class OnboardController extends GetxController {
   List<CountryModel> countryList = [];
   RxString selectedLang = 'English'.obs;
   List<LanguageModel> langList = [
-    LanguageModel(name: 'English', image: AppAssets.ukFlag,showName:'English'.tr ),
-    LanguageModel(name: 'Arabic'.tr, image: AppAssets.uaeFlage,showName:'Arabic'.tr),
+    LanguageModel(
+        name: 'English', image: AppAssets.ukFlag, showName: 'English'.tr),
+    LanguageModel(
+        name: 'Arabic'.tr, image: AppAssets.uaeFlage, showName: 'Arabic'.tr),
   ];
   PageController pageController = PageController();
   RxInt activeIndex = 0.obs;
@@ -98,7 +100,7 @@ class OnboardController extends GetxController {
             countryList = json.map((e) => CountryModel.fromJson(e)).toList();
             if (countryList.isNotEmpty) {
               selectedCountryFlage = countryList.first.flagLink;
-
+              App.countryName = countryList.first.name;
               App.countryId = countryList.first.id;
               App.currency = countryList.first.currency.currency;
               await StoragePref.setInt(

@@ -228,6 +228,11 @@ class ProductCard extends StatelessWidget {
                                       arguments: {
                                         'country': App.countryName,
                                         'is_guest': true,
+                                        'country_code':
+                                            controller.globalGuestCountryCode,
+                                        'flag':
+                                            controller.globalGuestCountryFlag,
+                                        'id': controller.globalGuestCountryId,
                                       },
                                     );
                                     return;

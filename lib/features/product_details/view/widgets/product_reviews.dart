@@ -7,6 +7,7 @@ import 'package:mhg/widgets/primary_button.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/rating_widget.dart';
 import '../../../auth/signin/view/pages/sign_in_page.dart';
+import '../../../mainwrapper/controller/main_wrapper_controller.dart';
 import '../../controller/product_details_controller.dart';
 import 'product_add_review_dialog.dart';
 
@@ -16,6 +17,7 @@ class ProductDetailsReview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<ProductDetailsController>();
+    final mainController = Get.find<MainWrapperController>();
 
     return Container(
       color: AppColors.white3,
@@ -110,6 +112,10 @@ class ProductDetailsReview extends StatelessWidget {
                           arguments: {
                             'country': App.countryName,
                             'is_guest': true,
+                            'country_code':
+                                mainController.globalGuestCountryCode,
+                            'flag': mainController.globalGuestCountryFlag,
+                            'id': mainController.globalGuestCountryId,
                           },
                         );
                         return;
