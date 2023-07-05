@@ -96,21 +96,18 @@ class ProductCard extends StatelessWidget {
                     children: [
                       Expanded(
                         flex: 2,
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            isWishList == false
-                                ? model!.enProductName
-                                : wishListModel!.name,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  fontSize: 16,
-                                ),
-                          ),
+                        child: Text(
+                          isWishList == false
+                              ? model!.enProductName
+                              : wishListModel!.name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: 16,
+                              ),
                         ),
                       ),
                       const SizedBox(width: 5),
@@ -135,7 +132,7 @@ class ProductCard extends StatelessWidget {
                 const SizedBox(height: 10),
                 Obx(() => Padding(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
+                        horizontal: 5,
                       ),
                       child: Row(
                         children: [
@@ -161,7 +158,14 @@ class ProductCard extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 10),
+                          Visibility(
+                              visible: double.parse(
+                                    isWishList == false
+                                        ? model!.discount
+                                        : wishListModel!.discount.toString(),
+                                  ).round() !=
+                                  0,
+                              child: const SizedBox(width: 10)),
                           double.parse(
                                     isWishList == false
                                         ? model!.discount

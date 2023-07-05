@@ -24,6 +24,7 @@ class NotificationItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              if(model.createdAt!=null)
             Align(
               alignment: Alignment.topRight,
               child: Text(AppHelper.difference(model.createdAt!),style: Theme.of(context).textTheme.displaySmall?.copyWith(fontSize: 10,
