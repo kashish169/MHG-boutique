@@ -86,7 +86,9 @@ class NotificationController extends GetxController {
     }
     results.fold(
           (l) {
-        page--;
+            if(page>1) {
+              page--;
+            }
         log('$l');
       },
           (r) {
@@ -99,7 +101,9 @@ class NotificationController extends GetxController {
           update();
         }else{
           log(r.object.toString());
-          page--;
+          if(page>1) {
+            page--;
+          }
         }
       },
     );

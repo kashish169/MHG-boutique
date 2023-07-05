@@ -51,6 +51,8 @@ class HomeSlider extends StatelessWidget {
             loop: false,
             itemCount: controller.slidersList.length,
             outer: true,
+            autoplay: true,
+            duration: 3,
             pagination: SwiperPagination(
               builder: CustomDotSwiperPaginationBuilder(
                 color: AppColors.primary,
