@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/categories/models/categories_model.dart';
 import 'package:mhg/features/categories/view/pages/sub_categories_page.dart';
+import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
 import 'package:mhg/widgets/divider_widget.dart';
 
@@ -22,6 +23,17 @@ class CategoryListTile extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (model.categoryId == null && model.allActiveSubMenus.isEmpty) {
+          if(model.id != null){
+            Get.toNamed(
+              ProductDetailsPage.routeName,
+              arguments: {
+                "id": model.id,
+                "fromArrival":false,
+                "name":model.enName
+              },
+            );
+
+          }
           return;
         }
         if (model.allActiveSubMenus.isEmpty) {

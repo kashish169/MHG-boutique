@@ -14,14 +14,12 @@ class FiltersWidget extends StatelessWidget {
     final controller = Get.find<ProductsController>();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
-
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: _scentWidget(context, controller),
           ),
-
           Expanded(child: _sortByWidget(context, controller))
         ],
       ),
@@ -69,7 +67,8 @@ class FiltersWidget extends StatelessWidget {
                   ),
                   items: controller.scentList.map((itemss) {
                     return DropdownMenuItem<String>(
-                        value: itemss.name, child: Text(itemss.name));
+                        value: itemss.name,
+                        child: FittedBox(child: Text(itemss.name)));
                   }).toList(),
                   onChanged: (newValue) {
                     controller.selectedScent.value = newValue!;
@@ -120,7 +119,6 @@ class FiltersWidget extends StatelessWidget {
                           color: AppColors.secondaryBlack, fontSize: 14),
                       isDense: true,
                       isExpanded: true,
-
                       value: controller.selectedSortBy.value,
                       icon: Image.asset(
                         AppAssets.arrowDown,

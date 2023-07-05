@@ -82,46 +82,45 @@ class MyCartCard extends StatelessWidget {
                     const SizedBox(height: 15),
                     Obx(() => Row(
                           children: [
-                            Expanded(
+                            Text(
+                              '${profileController.currnecy.value} ${model.options.discountPrice}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall
+                                  ?.copyWith(
+                                    fontSize: 14,
+                                    color: AppColors.mediumLabel,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                            const SizedBox(width: 8),
+                            Visibility(
+                              visible: double.parse(
+                                        model.options.discountParcent ?? '0',
+                                      ).round() ==
+                                      0
+                                  ? false
+                                  : true,
                               child: Text(
-                                '${profileController.currnecy.value} ${model.options.discountPrice}',
+                                '${profileController.currnecy.value} ${model.weight}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall
                                     ?.copyWith(
-                                      fontSize: 14,
-                                      color: AppColors.mediumLabel,
-                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                      color: AppColors.lightLabel,
+                                      decoration: TextDecoration.lineThrough,
                                     ),
                               ),
                             ),
-                            const SizedBox(width: 4),
-                            Expanded(
-                              child: Visibility(
-                                visible: double.parse(
-                                          model.options.discountParcent ?? '0',
-                                        ).round() ==
-                                        0
-                                    ? false
-                                    : true,
-                                child: Text(
-                                  '${profileController.currnecy.value} ${model.weight}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall
-                                      ?.copyWith(
-                                        fontSize: 12,
-                                        color: AppColors.lightLabel,
-                                        decoration: TextDecoration.lineThrough,
-                                      ),
-                                ),
-                              ),
-                            ),
-                            CartCounterWidget(
-                              model: model,
-                            ),
                           ],
                         )),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: CartCounterWidget(
+                        model: model,
+                      ),
+                    ),
                     const SizedBox(height: 10),
                   ],
                 ),
