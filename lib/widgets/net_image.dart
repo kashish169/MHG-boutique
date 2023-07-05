@@ -45,8 +45,8 @@ class NetImage extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
-                  AppAssets.loadingHolder,
-                  fit: BoxFit.cover,
+                  AppAssets.logo,
+                  fit: BoxFit.contain,
                 ),
               ),
           errorWidget: (context, url, error) =>
