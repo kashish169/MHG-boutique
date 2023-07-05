@@ -16,19 +16,19 @@ class CustomPrivacyWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Html(
-              data: title,
-              style: {
-                "body": Style(
-                    color: Colors.black,
-                    margin: Margins.symmetric(
-                      horizontal: 20,
-                    ))
-              },
-            ),
-            const SizedBox(
-              height: 20,
-            ),
+            // Html(
+            //   data: title,
+            //   style: {
+            //     "body": Style(
+            //         color: Colors.black,
+            //         margin: Margins.symmetric(
+            //           horizontal: 20,
+            //         ))
+            //   },
+            // ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
             Html(
               data: subTitle,
               style: {
