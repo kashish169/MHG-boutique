@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:mhg/constants/app_dimensions.dart';
 import '../constants/app_assets.dart';
 
 class NetImage extends StatelessWidget {
@@ -45,8 +46,8 @@ class NetImage extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
-                  AppAssets.loadingHolder,
-                  fit: BoxFit.cover,
+                  AppAssets.logo,
+                  fit: BoxFit.contain,
                 ),
               ),
           errorWidget: (context, url, error) =>
