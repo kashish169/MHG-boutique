@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/auth/otp/controller/otp_controller.dart';
 import 'package:mhg/features/auth/otp/view/widget/pin_put_field.dart';
+import 'package:mhg/features/auth/verification/controller/verification_controller.dart';
 import '../../../../../constants/app_colors.dart';
 
 class OtpTopPart extends StatelessWidget {
   const OtpTopPart({super.key});
   @override
   Widget build(BuildContext context) {
+    final controller=Get.find<VerificationController>();
     return Expanded(
       child: SingleChildScrollView(
         child: Column(
@@ -16,6 +18,8 @@ class OtpTopPart extends StatelessWidget {
               height: 20,
             ),
             Text(
+              controller.type=='reset'?
+                  "Verification":
               "Login".tr,
               style: Theme.of(context)
                   .textTheme
@@ -26,6 +30,8 @@ class OtpTopPart extends StatelessWidget {
               height: 20,
             ),
             Text(
+              controller.email.text.isNotEmpty?
+              "OTP has been sent to your email\nEnter your 6 digit code here".tr:
                 "OTP has been sent to your mobile\nEnter your 6 digit code here".tr,
                 style: Theme.of(context).textTheme.displaySmall!.copyWith(
                       fontSize: 15,

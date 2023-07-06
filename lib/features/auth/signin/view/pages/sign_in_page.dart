@@ -23,13 +23,13 @@ class _SignInPageState extends State<SignInPage> {
   @override
   void initState() {
     var args = Get.arguments;
-    print(args['id']);
+
     final controller = Get.find<SignInController>();
-    controller.selectedCountryName = args["country"];
+    controller.selectedCountryName = args["country"]??'';
     controller.firstCountryFlag.value = args["flag"] ?? '';
     controller.isGuest.value = args["is_guest"];
     controller.countryCode.value = args['country_code'] ?? '+971';
-    controller.selectedCountryId = args['id'];
+    controller.selectedCountryId = args['id']??0;
     super.initState();
   }
 

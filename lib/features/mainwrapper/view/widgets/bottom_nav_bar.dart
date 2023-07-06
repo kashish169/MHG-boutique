@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/features/auth/signin/view/pages/sign_in_page.dart';
 import 'package:mhg/features/categories/controller/categories_controller.dart';
-import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
@@ -73,7 +72,6 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
                   Get.find<ProfileController>().getProfileInfo();
                 }
                 if (selectedIndex == 3) {
-                  Get.find<CheckoutController>().orderPrice();
                   Get.find<MyCartController>().getCart();
                 }
                 if (mounted) setState(() {});

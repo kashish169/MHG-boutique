@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/auth/widgets/country_picker_widget.dart';
-import 'package:mhg/features/forgot_password/pages/forget_view.dart';
+import 'package:mhg/features/forgot_password/view/pages/forget_view.dart';
+
 import '../../../../../constants/app_assets.dart';
 import '../../../../../core/helper/app_helper.dart';
 import '../../../../../widgets/custom_form_field.dart';
@@ -91,28 +92,47 @@ class SignInForm extends StatelessWidget {
               },
             ),
           ),
-          if (controller.logWithEmail.isTrue)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Align(
-                alignment: AlignmentDirectional.topEnd,
-                child: GestureDetector(
-                  onTap: () {
-                    Get.toNamed(ForgetPasswordView.routeName,arguments: controller.email.text);
-                  },
-                  child: Text(
-                    "Forgot Password?".tr,
-
-                    style: Theme.of(context)
-                        .textTheme
-                        .displaySmall
-                        ?.copyWith(color:AppColors.secondary,
-                      decoration: TextDecoration.underline,
+          controller.logWithEmail.isTrue
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Align(
+                    alignment: AlignmentDirectional.topEnd,
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.toNamed(ForgetPasswordView.routeName,
+                            arguments:[ controller.email.text,'email']);
+                      },
+                      child: Text(
+                        "Forgot Password?".tr,
+                        style:
+                            Theme.of(context).textTheme.displaySmall?.copyWith(
+                                  color: AppColors.secondary,
+                                  decoration: TextDecoration.underline,
+                                ),
+                      ),
+                    ),
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Align(
+                    alignment: AlignmentDirectional.topEnd,
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.toNamed(ForgetPasswordView.routeName,
+                            arguments: [controller.phone.text,'phone']);
+                      },
+                      child: Text(
+                        "Forgot Password?".tr,
+                        style:
+                            Theme.of(context).textTheme.displaySmall?.copyWith(
+                                  color: AppColors.secondary,
+                                  decoration: TextDecoration.underline,
+                                ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
           const SizedBox(
             height: 20,
           ),

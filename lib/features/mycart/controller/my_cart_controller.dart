@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/mycart/repository/my_cart_repo.dart';
@@ -230,7 +231,9 @@ class MyCartController extends GetxController {
   }
   @override
   void onInit() {
-    getCart();
+    if(App.token.isNotEmpty) {
+      getCart();
+    }
     super.onInit();
   }
 

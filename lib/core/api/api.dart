@@ -13,8 +13,10 @@ class Api {
   };
   static String countryLink = "/api/v1/countries/index";
   static String signUp = "/api/v1/users/auth/register";
-  static String forgetPassword = "/api/v1/users/auth/reset-password-request";
+  static String forgetPassword = "/api/v1/users/auth/reset-password-request-new";
+  static String resetPassword = "/api/v1/users/auth/reset-password";
   static String otp = "/api/v1/users/auth/send-otp";
+  static String verifyOtp = "/api/v1/users/auth/verify-reset-password-otp";
   static String loginEmail = "/api/v1/users/auth/login";
   static String login = "/api/v1/users/auth/login-with-phone";
   static String profile = "/api/v1/users/profile";

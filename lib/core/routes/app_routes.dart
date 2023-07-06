@@ -10,7 +10,9 @@ import 'package:mhg/features/checkout/binding/checkout_bindings.dart';
 import 'package:mhg/features/checkout/views/pages/add_payment_method_webview_page.dart';
 import 'package:mhg/features/checkout/views/pages/payment_methods_page.dart';
 import 'package:mhg/features/forgot_password/binding/forget_password_binding.dart';
-import 'package:mhg/features/forgot_password/pages/forget_view.dart';
+import 'package:mhg/features/forgot_password/view/pages/forget_view.dart';
+import 'package:mhg/features/forgot_password/view/pages/reset_password.dart';
+
 import 'package:mhg/features/mainwrapper/binding/main_wrapper_bindings.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
 import 'package:mhg/features/checkout/views/pages/checkout_page.dart';
@@ -177,6 +179,10 @@ class AppRoutes {
     GetPage(
         name: '/forgot_password',
         page: () => const ForgetPasswordView(),
+        binding: ForgetPasswordBinding()),
+    GetPage(
+        name: '/reset_password',
+        page: () => const ResetPasswordView(),
         binding: ForgetPasswordBinding()),
   ];
 }

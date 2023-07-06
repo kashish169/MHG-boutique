@@ -17,4 +17,7 @@ class VerificationRepoImpl implements VerificationRepo {
   @override
   Future<Either<Failure, ApiResponse>> sendOtp({required Object body}) async =>
       await httpService.post(url: Api.otp, body: body);
+  @override
+  Future<Either<Failure, ApiResponse>> verifyOtp({required Object body}) async =>
+      await httpService.post(url: Api.verifyOtp, body: body);
 }

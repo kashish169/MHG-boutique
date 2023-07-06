@@ -26,6 +26,12 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
         url: Api.forgetPassword,
         body: body,
       );
-
+  @override
+  Future<Either<Failure, ApiResponse>> resetPassword(
+      {required String body})async =>
+      await httpService.post(
+        url: Api.resetPassword,
+        body: body,
+      );
 
 }
