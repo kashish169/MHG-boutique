@@ -61,23 +61,24 @@ class _OnBoardViewState extends State<OnBoardView> {
                     children: [
                       SizedBox(
                           height: AppDimensions.screenHeight(context) * 0.12),
-                      Text(
-                        "MHGboutique",
-                        style:
-                            Theme.of(context).textTheme.displayLarge!.copyWith(
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColors.white,
-                                ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text("THE ULTIMATE HOUSE OF EMIRATI LUXURY".tr,
-                          style:
-                              Theme.of(context).textTheme.headline1!.copyWith(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColors.white.withOpacity(0.5),
-                                  )),
+                      Image.asset(AppAssets.logo,width: 250,)
+                      // Text(
+                      //   "MHGboutique",
+                      //   style:
+                      //       Theme.of(context).textTheme.displayLarge!.copyWith(
+                      //             fontSize: 35,
+                      //             fontWeight: FontWeight.w400,
+                      //             color: AppColors.white,
+                      //           ),
+                      // ),
+                      // const SizedBox(height: 5),
+                      // Text("THE ULTIMATE HOUSE OF EMIRATI LUXURY".tr,
+                      //     style:
+                      //         Theme.of(context).textTheme.headline1!.copyWith(
+                      //               fontSize: 10,
+                      //               fontWeight: FontWeight.w400,
+                      //               color: AppColors.white.withOpacity(0.5),
+                      //             )),
                       // const SizedBox(height: 60),
                     ],
                   ),

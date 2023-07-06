@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../../../constants/app_assets.dart';
 import '../widget/bottom_button.dart';
 import '../widget/top_part.dart';
@@ -8,6 +9,9 @@ class NotificationPermissionPage extends StatelessWidget {
   const NotificationPermissionPage({super.key});
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: Colors.white
+    ));
     return Scaffold(
         body: Stack(
       children: [

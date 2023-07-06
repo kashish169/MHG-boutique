@@ -8,6 +8,7 @@ import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
 import 'package:mhg/features/my_wish_list/repository/wish_list_repo.dart';
 import 'package:mhg/features/my_wish_list/repository/wish_list_repo_impl.dart';
+import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
 
@@ -157,6 +158,7 @@ class WishListController extends GetxController {
           log("ADD PRODUCT TO CART CART RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
             result = true;
+            Get.find<MyCartController>().getCart();
             AppToasts.successToast(
               "The product has been added to the bag",
             );

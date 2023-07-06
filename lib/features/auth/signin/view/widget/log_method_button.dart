@@ -20,12 +20,15 @@ class LogMethodButton extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: PrimaryButton(
-                  title: 'With Phone Number'.tr,
+                  title: 'Phone Number'.tr,
                   isSelcted: !controller.logWithNumber.value,
                   reverseColor: !controller.logWithNumber.value,
-                  height: controller.numberLogHight.value,
+                  height: 45,
                   width: controller.numberLogwidth.value,
                   color: controller.logWithNumber.value == true
+                      ? AppColors.white
+                      : AppColors.secondary,
+                  fontColor:controller.logWithNumber.value == true
                       ? AppColors.secondary
                       : AppColors.white,
                   onTap: () {
@@ -43,12 +46,15 @@ class LogMethodButton extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: PrimaryButton(
-                  title: 'With Email'.tr,
-                  height: controller.emailLogHight.value,
+                  title: 'Email'.tr,
+                  height: 45,
                   isSelcted: !controller.logWithEmail.value,
                   reverseColor: !controller.logWithEmail.value,
                   width: controller.emailLogwidth.value,
                   color: controller.logWithEmail.value == true
+                      ?AppColors.white
+                      : AppColors.secondary,
+                  fontColor:controller.logWithEmail.value == true
                       ? AppColors.secondary
                       : AppColors.white,
                   onTap: () {

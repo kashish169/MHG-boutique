@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_fonts.dart';
 import '../../controller/main_wrapper_controller.dart';
+import 'package:badges/badges.dart' as badge;
 
 List<Widget> navBarItems({
   required int index,
@@ -34,7 +36,9 @@ List<Widget> navBarItems({
       _icon(
         icon: AppAssets.bag,
         label: 'Bag',
+        enableBadge: true,
         index: 3,
+
         color: index == 3 ? AppColors.secondary : AppColors.white,
         onTap: () => onTap(3),
         iconSize: 22,
@@ -54,6 +58,7 @@ Widget _icon({
   required String label,
   required VoidCallback onTap,
   required int index,
+  bool? enableBadge,
   required Color color,
   double? iconSize,
 }) {
@@ -66,6 +71,17 @@ Widget _icon({
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            enableBadge == true&&Get.find<MyCartController>().cartItemsList.isNotEmpty
+                ? badge.Badge(
+              badgeContent: Text(
+                  "${Get.find<MyCartController>().cartItemsList.length}"),
+              child: Image.asset(
+                icon,
+                height: iconSize ?? 25,
+                width: iconSize ?? 25,
+                color: color,
+              ),
+            ):
             Image.asset(
               icon,
               height: iconSize ?? 25,

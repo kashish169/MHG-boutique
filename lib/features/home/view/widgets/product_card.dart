@@ -69,7 +69,7 @@ class ProductCard extends StatelessWidget {
         margin: const EdgeInsetsDirectional.only(end: 12),
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
           boxShadow: AppColors.shadow(0.2),
         ),
         child: Stack(
@@ -77,17 +77,12 @@ class ProductCard extends StatelessWidget {
           children: [
             Column(
               children: [
-                ClipRRect(
-                  borderRadius: const BorderRadiusDirectional.vertical(
-                    top: Radius.circular(20),
-                  ),
-                  child: NetImage(
-                    image: isWishList == false
-                        ? model!.primaryImageLink
-                        : wishListModel!.options.imageLink,
-                    height: AppDimensions.productHeight(context),
-                    width: 182,
-                  ),
+                NetImage(
+                  image: isWishList == false
+                      ? model!.primaryImageLink
+                      : wishListModel!.options.imageLink,
+                  height: AppDimensions.productHeight(context),
+                  width: 182,
                 ),
                 const SizedBox(height: 10),
                 Padding(
@@ -202,76 +197,76 @@ class ProductCard extends StatelessWidget {
                       ),
                     )),
                 const SizedBox(height: 10),
-                StatefulBuilder(builder: (context, setState) {
-                  return model?.inCart == 1
-                      ? ProductCounter(
-                          model: model!,
-                        )
-                      : wishListModel?.options.inCart == 1
-                          ? Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: WishListCounterrWidget(
-                                model: wishListModel!,
-                                fromSearch: true,
-                              ),
-                            )
-                          : Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: PrimaryButton(
-                                fontSize: 16,
-                                height: 35,
-                                title: 'Add to Bag'.tr,
-                                isLoading: model?.isLoading ??
-                                    wishListModel!.isAddToBag,
-                                color: AppColors.secondary,
-                                onTap: () async {
-                                  if (App.token.isEmpty) {
-                                    Get.toNamed(
-                                      SignInPage.routeName,
-                                      arguments: {
-                                        'country': App.countryName,
-                                        'is_guest': true,
-                                        'country_code':
-                                            controller.globalGuestCountryCode,
-                                        'flag':
-                                            controller.globalGuestCountryFlag,
-                                        'id': controller.globalGuestCountryId,
-                                      },
-                                    );
-                                    return;
-                                  }
-                                  if (wishListModel != null) {
-                                    wishListModel?.isAddToBag = true;
-                                  } else {
-                                    model!.isLoading = true;
-                                  }
-                                  setState(() {});
-                                  var result =
-                                      await controller.addProductToCart(
-                                    productId: model?.id ?? wishListModel!.id,
-                                  );
-                                  if (wishListModel != null) {
-                                    wishListModel?.isAddToBag = false;
-                                  } else {
-                                    model!.isLoading = false;
-                                  }
-                                  if (result) {
-                                    if (wishListModel != null) {
-                                      wishListModel?.options.inCart = 1;
-                                      wishListModel?.options.cartQuantity = 1;
-                                    } else {
-                                      model!.inCart = 1;
-                                      model!.cartQty = 1;
-                                    }
-                                    setState(() {});
-                                  }
-                                },
-                                width: double.infinity,
-                                elevation: 0,
-                              ),
-                            );
-                }),
+                // StatefulBuilder(builder: (context, setState) {
+                //   return model?.inCart == 1
+                //       ? ProductCounter(
+                //           model: model!,
+                //         )
+                //       : wishListModel?.options.inCart == 1
+                //           ? Padding(
+                //               padding: const EdgeInsets.only(bottom: 10),
+                //               child: WishListCounterrWidget(
+                //                 model: wishListModel!,
+                //                 fromSearch: true,
+                //               ),
+                //             )
+                //           : Padding(
+                //               padding:
+                //                   const EdgeInsets.symmetric(horizontal: 8.0),
+                //               child: PrimaryButton(
+                //                 fontSize: 16,
+                //                 height: 35,
+                //                 title: 'Add to Bag'.tr,
+                //                 isLoading: model?.isLoading ??
+                //                     wishListModel!.isAddToBag,
+                //                 color: AppColors.secondary,
+                //                 onTap: () async {
+                //                   if (App.token.isEmpty) {
+                //                     Get.toNamed(
+                //                       SignInPage.routeName,
+                //                       arguments: {
+                //                         'country': App.countryName,
+                //                         'is_guest': true,
+                //                         'country_code':
+                //                             controller.globalGuestCountryCode,
+                //                         'flag':
+                //                             controller.globalGuestCountryFlag,
+                //                         'id': controller.globalGuestCountryId,
+                //                       },
+                //                     );
+                //                     return;
+                //                   }
+                //                   if (wishListModel != null) {
+                //                     wishListModel?.isAddToBag = true;
+                //                   } else {
+                //                     model!.isLoading = true;
+                //                   }
+                //                   setState(() {});
+                //                   var result =
+                //                       await controller.addProductToCart(
+                //                     productId: model?.id ?? wishListModel!.id,
+                //                   );
+                //                   if (wishListModel != null) {
+                //                     wishListModel?.isAddToBag = false;
+                //                   } else {
+                //                     model!.isLoading = false;
+                //                   }
+                //                   if (result) {
+                //                     if (wishListModel != null) {
+                //                       wishListModel?.options.inCart = 1;
+                //                       wishListModel?.options.cartQuantity = 1;
+                //                     } else {
+                //                       model!.inCart = 1;
+                //                       model!.cartQty = 1;
+                //                     }
+                //                     setState(() {});
+                //                   }
+                //                 },
+                //                 width: double.infinity,
+                //                 elevation: 0,
+                //               ),
+                //             );
+                // }),
               ],
             ),
             FavouriteWidget(

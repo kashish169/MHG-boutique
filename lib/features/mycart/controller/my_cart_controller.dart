@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_toasts.dart';
+import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/mycart/repository/my_cart_repo.dart';
 import 'package:mhg/features/mycart/repository/my_cart_repo_impl.dart';
 import '../../../core/models/api_response.dart';
@@ -22,6 +23,9 @@ class MyCartController extends GetxController {
 
   RxList<CartModel> cartItemsList = <CartModel>[].obs;
   RxDouble totalPrice = 0.0.obs;
+  RxDouble discount = 0.0.obs;
+  RxDouble tax = 0.0.obs;
+  RxDouble subTotal = 0.0.obs;
 
   Future<void> getCart() async {
     try {
@@ -39,11 +43,15 @@ class MyCartController extends GetxController {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("CART RESPONSE STATUS $statusCode");
+          log(r.object["data"].toString());
           if (statusCode == 200) {
             var json = r.object["data"]["cart_items"];
             cartItemsList.value =
                 List<CartModel>.from(json.map((x) => CartModel.fromJson(x)));
             getTotalCartPrice();
+            getDiscount();
+            getSubTotalPrice();
+            getDiscount();
           } else {
             AppToasts.errorToast(message);
             isError(true);
@@ -81,6 +89,7 @@ class MyCartController extends GetxController {
           var message = r.object["message"];
           log("INCREASE CART RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
+            Get.find<CheckoutController>().orderPrice();
             result = true;
 
             log("CART ITEM QUANTITY INCREASED");
@@ -125,6 +134,7 @@ class MyCartController extends GetxController {
           if (statusCode == 200) {
             log("CART ITEM QUANTITY DECREASED");
             result = true;
+            Get.find<CheckoutController>().orderPrice();
           } else {
             AppToasts.errorToast(message);
             result = false;
@@ -185,4 +195,43 @@ class MyCartController extends GetxController {
     }
     debugPrint("TOTAL CART PRICE : $totalPrice");
   }
+  void getSubTotalPrice() {
+    subTotal.value = 0;
+    for (var element in cartItemsList) {
+      if (element.subtotal != null) {
+
+          subTotal.value += element.subtotal.toDouble();
+
+      }
+    }
+    debugPrint("TOTAL subTotal PRICE : $subTotal");
+  }
+  void getTax() {
+    tax.value = 0;
+    for (var element in cartItemsList) {
+      if (element.tax != null) {
+
+        tax.value += element.tax.toDouble();
+
+      }
+    }
+    debugPrint("TOTAL subTotal PRICE : $subTotal");
+  }
+  void getDiscount() {
+    discount.value = 0;
+    for (var element in cartItemsList) {
+      if (element.discount != null) {
+
+        discount.value += element.discount.toDouble();
+
+      }
+    }
+    debugPrint("TOTAL subTotal PRICE : $subTotal");
+  }
+  @override
+  void onInit() {
+    getCart();
+    super.onInit();
+  }
+
 }

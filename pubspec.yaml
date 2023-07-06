@@ -67,7 +67,7 @@ dependencies:
   firebase_dynamic_links:
   share_plus: ^7.0.2
   app_tracking_transparency: ^2.0.4
-
+  badges: ^3.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

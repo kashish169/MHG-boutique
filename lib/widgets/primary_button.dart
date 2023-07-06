@@ -13,6 +13,7 @@ class PrimaryButton extends StatelessWidget {
   final bool? reverseColor;
   final double? fontSize;
   final Color? color;
+  final Color? fontColor;
   final bool? isSelcted;
   final double? elevation;
 
@@ -30,6 +31,7 @@ class PrimaryButton extends StatelessWidget {
     this.color,
     this.isSelcted,
     this.elevation,
+    this.fontColor,
   });
 
   @override
@@ -44,25 +46,29 @@ class PrimaryButton extends StatelessWidget {
             color: isSelcted == null
                 ? AppColors.white
                 : isSelcted == false
-                    ? AppColors.white
-                    : AppColors.label),
+                ? AppColors.white
+                : AppColors.label),
         borderRadius: BorderRadius.circular(radius ?? 13),
       ),
       onPressed: onTap,
       child: isLoading
           ? const Center(
-              child: LoadingThreeBounce(),
-            )
+        child: LoadingThreeBounce(),
+      )
           : Text(
-              title,
-              style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: fontSize,
-                    color: reverseColor == true
-                        ? AppColors.secondary
-                        : AppColors.white,
-                  ),
-              textAlign: TextAlign.center,
-            ),
+        title,
+        style: Theme
+            .of(context)
+            .textTheme
+            .displaySmall
+            ?.copyWith(
+          fontSize: fontSize,
+          color: fontColor ?? (reverseColor == true
+              ? AppColors.secondary
+              : AppColors.white),
+        ),
+        textAlign: TextAlign.center,
+      ),
     );
   }
 }

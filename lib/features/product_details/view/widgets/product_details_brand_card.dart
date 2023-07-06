@@ -75,7 +75,8 @@ class ProductDetailsBrandCard extends StatelessWidget {
                   Text(
                     '${profileController.currnecy.value} ${controller.model.discountPrice}',
                     style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                          fontSize: 15,
+                          fontSize: 22,
+                      color: AppColors.mediumLabel
                         ),
                   ),
                 ],

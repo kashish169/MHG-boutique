@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/models/product_model.dart';
+import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/features/product_details/models/product_details_model.dart';
 import 'package:mhg/features/product_details/models/product_review_model.dart';
 import 'package:mhg/features/product_details/models/review_model.dart';
@@ -154,6 +155,7 @@ class ProductDetailsController extends GetxController {
             AppToasts.successToast(
               "The product has been added to the bag",
             );
+            Get.find<MyCartController>().getCart();
             update();
           } else {
             result = false;

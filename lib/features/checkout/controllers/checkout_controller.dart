@@ -433,4 +433,9 @@ class CheckoutController extends GetxController {
       return AppAssets.payment;
     }
   }
+  @override
+  void onInit() {
+    orderPrice();
+    super.onInit();
+  }
 }

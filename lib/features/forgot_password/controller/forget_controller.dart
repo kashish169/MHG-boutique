@@ -57,7 +57,7 @@ class ForgetController extends GetxController {
         var message = r.object['message'];
         if (statusCode == 200) {
           Get.back();
-          showSnackBar(r.object['data']);
+          successSnackBar(r.object['data']);
         } else if (statusCode == 400) {
           showSnackBar(message);
         } else {
