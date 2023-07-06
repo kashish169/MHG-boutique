@@ -18,8 +18,10 @@ import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/features/mycart/models/cart_model.dart';
 import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
+import 'package:mhg/features/success_order/view/success_order_view.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import '../../../constants/app_assets.dart';
+import '../../myorders/models/order_model.dart';
 
 /*
   TEST CARDS 
@@ -39,6 +41,7 @@ class CheckoutController extends GetxController {
   AddPaymentMethodsModel addPaymentMethodsModel = AddPaymentMethodsModel();
   RemovePaymentMethodsModel removePaymentMethodsModel =
       RemovePaymentMethodsModel();
+  // List<MyOrder> orderModel = [];
   OrderPriceModal orderPriceModal = OrderPriceModal();
   final TextEditingController codeController = TextEditingController();
   final ProfileController profileController = Get.find<ProfileController>();
@@ -407,7 +410,7 @@ class CheckoutController extends GetxController {
   }
 
   void _onOrderSuccess() async {
-    Get.offAndToNamed(MyOrdersPage.routeName);
+    Get.offAndToNamed(SuccessOrderView.route);
     Get.find<MyCartController>().getCart();
     await profileController.getProfileInfo();
     AppToasts.successToast(
