@@ -44,7 +44,7 @@ class BottomSignIn extends StatelessWidget {
                     horizontal: 25,
                   ),
                   child: PrimaryButton(
-                    title: 'Login with Otp'.tr,
+                    title: 'Login with OTP'.tr,
                     height: 50,
                     width: double.infinity,
                     color: AppColors.secondary,
