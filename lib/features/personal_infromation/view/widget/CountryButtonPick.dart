@@ -20,14 +20,14 @@ class CountryButtonPicker extends StatelessWidget {
       padding: EdgeInsets.zero,
       minWidth: 0,
       onPressed: () {
-        showCountries(
-          context,
-          (p0) {
-            controller.countryCode.value = "+${p0.phoneCode}";
-            controller.countryFlag.value = p0.flagEmoji;
-            controller.enableEditOnNumber.value = false;
-          },
-        );
+        // showCountries(
+        //   context,
+        //   (p0) {
+        //     controller.countryCode.value = "+${p0.phoneCode}";
+        //     controller.countryFlag.value = p0.flagEmoji;
+        //     controller.enableEditOnNumber.value = false;
+        //   },
+        // );
       },
       child: Row(
         children: [
