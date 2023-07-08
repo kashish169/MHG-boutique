@@ -8,9 +8,9 @@ class OtpController extends GetxController {
   VerificationController verificationController =
       Get.put(VerificationController());
   ForgetController? forgetController;
-  OtpController(){
+  OtpController(){log(Get.arguments.toString());
     if(Get.arguments["type"]=="reset") {
-      forgetController = Get.put(ForgetController());
+      forgetController = Get.find<ForgetController>();
     }
   }
 
