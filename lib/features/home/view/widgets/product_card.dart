@@ -29,13 +29,13 @@ class ProductCard extends StatelessWidget {
 
   const ProductCard(
       {super.key,
-      this.model,
-      this.isDetails = false,
-      this.isProductPage = false,
-      this.isSearch = false,
-      this.fromArrival = false,
-      this.wishListModel,
-      this.isWishList = false});
+        this.model,
+        this.isDetails = false,
+        this.isProductPage = false,
+        this.isSearch = false,
+        this.fromArrival = false,
+        this.wishListModel,
+        this.isWishList = false});
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +56,8 @@ class ProductCard extends StatelessWidget {
               "id": isWishList == false ? model!.id : wishListModel!.id,
               "name": isWishList == false
                   ? isAR()
-                      ? model!.frProductName
-                      : model!.enProductName
+                  ? model!.frProductName
+                  : model!.enProductName
                   : wishListModel!.name,
               "fromArrival": fromArrival
             },
@@ -90,7 +90,7 @@ class ProductCard extends StatelessWidget {
                   child: Row(
                     children: [
                       Expanded(
-                        flex: 2,
+
                         child: Text(
                           isWishList == false
                               ? model!.enProductName
@@ -101,101 +101,99 @@ class ProductCard extends StatelessWidget {
                               .textTheme
                               .displaySmall
                               ?.copyWith(
-                                fontSize: 16,
-                              ),
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 5),
                       isWishList == true
                           ? const SizedBox()
                           : Visibility(
-                              visible:
-                                  double.parse("${model?.averageRate}") == 0
-                                      ? false
-                                      : true,
-                              child: Expanded(
-                                child: RatingWidget(
-                                  initialRating:
-                                      double.parse("${model?.averageRate}"),
-                                  isEnableToRate: false,
-                                ),
-                              ),
-                            ),
+                        visible:
+                        double.parse("${model?.averageRate}") == 0
+                            ? false
+                            : true,
+                        child: RatingWidget(
+                          initialRating:
+                          double.parse("${model?.averageRate}"),
+                          isEnableToRate: false,
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 10),
                 Obx(() => Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 5,
-                      ),
-                      child: Row(
-                        children: [
-                          Visibility(
-                            visible: double.parse(
-                                  isWishList == false
-                                      ? model!.discount
-                                      : wishListModel!.discount.toString(),
-                                ).round() !=
-                                0,
-                            child: Expanded(
-                              child: FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(
-                                  '${profileController.currnecy.value} ${isWishList == false ? model!.price : wishListModel!.price}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall
-                                      ?.copyWith(
-                                        decoration: TextDecoration.lineThrough,
-                                      ),
-                                ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 5,
+                  ),
+                  child: Row(
+                    children: [
+                      Visibility(
+                        visible: double.parse(
+                          isWishList == false
+                              ? model!.discount
+                              : wishListModel!.discount.toString(),
+                        ).round() !=
+                            0,
+                        child: Expanded(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              '${profileController.currnecy.value} ${isWishList == false ? model!.price : wishListModel!.price}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall
+                                  ?.copyWith(
+                                decoration: TextDecoration.lineThrough,
                               ),
                             ),
                           ),
-                          Visibility(
-                              visible: double.parse(
-                                    isWishList == false
-                                        ? model!.discount
-                                        : wishListModel!.discount.toString(),
-                                  ).round() !=
-                                  0,
-                              child: const SizedBox(width: 10)),
-                          double.parse(
-                                    isWishList == false
-                                        ? model!.discount
-                                        : wishListModel!.discount.toString(),
-                                  ).round() ==
-                                  0
-                              ? FittedBox(
-                                  fit: BoxFit.scaleDown,
-                                  child: Text(
-                                    '${profileController.currnecy.value} ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displaySmall
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                )
-                              : Expanded(
-                                  child: FittedBox(
-                                    fit: BoxFit.scaleDown,
-                                    child: Text(
-                                      '${profileController.currnecy.value} ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .displaySmall
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                        ],
+                        ),
                       ),
-                    )),
+                      Visibility(
+                          visible: double.parse(
+                            isWishList == false
+                                ? model!.discount
+                                : wishListModel!.discount.toString(),
+                          ).round() !=
+                              0,
+                          child: const SizedBox(width: 10)),
+                      double.parse(
+                        isWishList == false
+                            ? model!.discount
+                            : wishListModel!.discount.toString(),
+                      ).round() ==
+                          0
+                          ? FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          '${profileController.currnecy.value} ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                          : Expanded(
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            '${profileController.currnecy.value} ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )),
                 const SizedBox(height: 10),
                 // StatefulBuilder(builder: (context, setState) {
                 //   return model?.inCart == 1
@@ -273,10 +271,10 @@ class ProductCard extends StatelessWidget {
               from: isProductPage
                   ? 'product'
                   : isSearch
-                      ? 'search'
-                      : isDetails == true
-                          ? 'productDetails'
-                          : 'home',
+                  ? 'search'
+                  : isDetails == true
+                  ? 'productDetails'
+                  : 'home',
               itemId: isWishList == false ? model!.id : wishListModel!.id,
               inWishlist: isWishList == false ? model!.inWishlist : 1,
               fromArrival: false,

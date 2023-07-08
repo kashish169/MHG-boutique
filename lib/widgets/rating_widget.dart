@@ -19,7 +19,7 @@ class RatingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: boxSize == null ? 30 : boxSize!,
+      // width: boxSize == null ? 30 : boxSize!,
       child: Center(
         child: RatingBar.builder(
           initialRating: initialRating ?? 3,
