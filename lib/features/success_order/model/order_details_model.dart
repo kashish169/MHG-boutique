@@ -1,19 +1,19 @@
 class OrderDetailsModel {
-  dynamic id;
+  int id;
   dynamic externalId;
-  dynamic orderId;
-  dynamic productId;
+  int orderId;
+  int productId;
   dynamic sku;
-  dynamic productName;
-  dynamic image;
+  String productName;
+  String image;
   dynamic size;
   dynamic color;
   dynamic price;
-  dynamic quantity;
+  int quantity;
   dynamic totalPrice;
   DateTime createdAt;
   DateTime updatedAt;
-  dynamic imageLink;
+  String imageLink;
 
   OrderDetailsModel(
       {required this.id,

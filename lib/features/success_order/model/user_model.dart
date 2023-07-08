@@ -1,27 +1,27 @@
 class UserModel {
-  dynamic id;
-  dynamic externalId;
-  dynamic qrCode;
-  dynamic name;
-  dynamic slug;
-  dynamic email;
-  dynamic accountType;
+  int id;
+  String externalId;
+  String qrCode;
+  String name;
+  String slug;
+  String email;
+  String accountType;
   dynamic googleId;
   dynamic facebookId;
   dynamic image;
-  dynamic number;
+  String number;
   dynamic gender;
   dynamic dOB;
-  dynamic streetAddress;
-  dynamic state;
-  dynamic zipCode;
+  String streetAddress;
+  String state;
+  String zipCode;
   dynamic about;
   dynamic isAdmin;
   dynamic status;
   dynamic countryName;
   dynamic countryId;
-  dynamic amountSpent;
-  dynamic hearts;
+  String amountSpent;
+  String hearts;
   dynamic referalCode;
   dynamic userReferalId;
   dynamic tierId;
@@ -32,13 +32,13 @@ class UserModel {
   dynamic personalizedAds;
   DateTime createdAt;
   DateTime updatedAt;
-  dynamic qrCodeLink;
-  dynamic imageLink;
-  dynamic invitationLink;
+  String qrCodeLink;
+  String imageLink;
+  String invitationLink;
 
   UserModel(
       {required this.id,
-      this.externalId,
+      required this.externalId,
       required this.qrCode,
       required this.name,
       required this.slug,

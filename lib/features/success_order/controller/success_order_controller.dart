@@ -11,13 +11,13 @@ import '../repository/success_order_repo_impl.dart';
 
 class SucessOrderController extends GetxController {
   late SuccessOrderRepo successOrderRepo;
-
   SucessOrderController() {
     successOrderRepo = Get.find<SuccessOrderRepoImpl>();
   }
   RxBool isLoading = false.obs;
   RxBool isError = false.obs;
   late Rxn<SuccessOrderModel> orderModel = Rxn<SuccessOrderModel>();
+  String orderNumber = Get.arguments['orderNumber'];
 
   @override
   void onInit() {
@@ -30,7 +30,7 @@ class SucessOrderController extends GetxController {
       isLoading(true);
       isError(false);
       Either<Failure, ApiResponse> results =
-          await successOrderRepo.getData('hzTXPo');
+          await successOrderRepo.getData(orderNumber);
       isLoading(false);
       results.fold(
         (l) {
@@ -43,9 +43,8 @@ class SucessOrderController extends GetxController {
           var stats = r.object['isSuccessful'];
           log("Privacy Status Code $statusCode");
           if (stats == true) {
-            var model = r.object['data'];
+            var model = r.object['data']['order'];
             orderModel.value = SuccessOrderModel.fromJson(model);
-            print(orderModel.value);
           } else {
             AppToasts.errorToast(message);
           }

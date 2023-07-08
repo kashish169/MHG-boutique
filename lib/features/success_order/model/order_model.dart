@@ -1,17 +1,20 @@
+import 'dart:convert';
+
+import 'package:mhg/features/success_order/model/shipning_model.dart';
 import 'package:mhg/features/success_order/model/user_model.dart';
 
 import 'order_details_model.dart';
 
 class SuccessOrderModel {
-  dynamic id;
+  int id;
   dynamic externalId;
-  dynamic orderNumber;
+  String orderNumber;
   dynamic orderBill;
-  dynamic userId;
+  int userId;
   dynamic billingId;
   dynamic shippingId;
-  dynamic billingAddress;
-  dynamic shippingAddress;
+  ShipningModel billingAddress;
+  ShipningModel shippingAddress;
   dynamic couponId;
   dynamic couponAmount;
   dynamic heartsDiscount;
@@ -19,12 +22,12 @@ class SuccessOrderModel {
   dynamic subTotal;
   dynamic tax;
   dynamic grandTotal;
-  dynamic isFreeDelivery;
-  dynamic isOrderSuccessful;
-  dynamic isOrderCompleted;
-  dynamic paymentMethod;
-  dynamic paymentStatus;
-  dynamic orderStatus;
+  int isFreeDelivery;
+  int isOrderSuccessful;
+  int isOrderCompleted;
+  String paymentMethod;
+  int paymentStatus;
+  int orderStatus;
   dynamic txn;
   dynamic appId;
   dynamic cartToken;
@@ -35,8 +38,8 @@ class SuccessOrderModel {
   dynamic name;
   dynamic number;
   dynamic orderStatusUrl;
-  dynamic cancelRequested;
-  dynamic returnRequested;
+  int cancelRequested;
+  int returnRequested;
   dynamic cancelReason;
   dynamic returnReason;
   dynamic storeId;
@@ -93,52 +96,54 @@ class SuccessOrderModel {
       this.coupon,
       this.store});
 
-  factory SuccessOrderModel.fromJson(Map<String, dynamic> json) =>
+  factory SuccessOrderModel.fromJson(Map<String, dynamic> jsons) =>
       SuccessOrderModel(
-        id: json['id'],
-        externalId: json['external_id'],
-        orderNumber: json['Order_Number'],
-        orderBill: json['order_bill'],
-        userId: json['User_Id'],
-        billingId: json['Billing_Id'],
-        shippingId: json['Shipping_Id'],
-        billingAddress: json['billing_address'],
-        shippingAddress: json['shipping_address'],
-        couponId: json['Coupon_Id'],
-        couponAmount: json['Coupon_Amount'],
-        heartsDiscount: json['hearts_discount'],
-        deliveryCharge: json['Delivery_Charge'],
-        subTotal: json['Sub_Total'],
-        tax: json['Tax'],
-        grandTotal: json['Grand_Total'],
-        isFreeDelivery: json['Is_Free_Delivery'],
-        isOrderSuccessful: json['Is_Order_Successful'],
-        isOrderCompleted: json['Is_Order_Completed'],
-        paymentMethod: json['Payment_Method'],
-        paymentStatus: json['Payment_Status'],
-        orderStatus: json['Order_Status'],
-        txn: json['txn'],
-        appId: json['app_id'],
-        cartToken: json['cart_token'],
-        checkoutId: json['checkout_id'],
-        checkoutToken: json['checkout_token'],
-        cancelledAt: json['cancelled_at'],
-        closedAt: json['closed_at'],
-        name: json['name'],
-        number: json['number'],
-        orderStatusUrl: json['order_status_url'],
-        cancelRequested: json['cancel_requested'],
-        returnRequested: json['return_requested'],
-        cancelReason: json['cancel_reason'],
-        returnReason: json['return_reason'],
-        storeId: json['store_id'],
-        deliveryAt: json['Delivery_At'],
-        createdAt: DateTime.parse(json['created_at']),
-        updatedAt: DateTime.parse(json['updated_at']),
+        id: jsons['id'],
+        externalId: jsons['external_id'],
+        orderNumber: jsons['Order_Number'],
+        orderBill: jsons['order_bill'],
+        userId: jsons['User_Id'],
+        billingId: jsons['Billing_Id'],
+        shippingId: jsons['Shipping_Id'],
+        billingAddress:
+            ShipningModel.fromJson(json.decode(jsons['billing_address'])),
+        shippingAddress:
+            ShipningModel.fromJson(json.decode(jsons['shipping_address'])),
+        couponId: jsons['Coupon_Id'],
+        couponAmount: jsons['Coupon_Amount'],
+        heartsDiscount: jsons['hearts_discount'],
+        deliveryCharge: jsons['Delivery_Charge'],
+        subTotal: jsons['Sub_Total'],
+        tax: jsons['Tax'],
+        grandTotal: jsons['Grand_Total'],
+        isFreeDelivery: jsons['Is_Free_Delivery'],
+        isOrderSuccessful: jsons['Is_Order_Successful'],
+        isOrderCompleted: jsons['Is_Order_Completed'],
+        paymentMethod: jsons['Payment_Method'],
+        paymentStatus: jsons['Payment_Status'],
+        orderStatus: jsons['Order_Status'],
+        txn: jsons['txn'],
+        appId: jsons['app_id'],
+        cartToken: jsons['cart_token'],
+        checkoutId: jsons['checkout_id'],
+        checkoutToken: jsons['checkout_token'],
+        cancelledAt: jsons['cancelled_at'],
+        closedAt: jsons['closed_at'],
+        name: jsons['name'],
+        number: jsons['number'],
+        orderStatusUrl: jsons['order_status_url'],
+        cancelRequested: jsons['cancel_requested'],
+        returnRequested: jsons['return_requested'],
+        cancelReason: jsons['cancel_reason'],
+        returnReason: jsons['return_reason'],
+        storeId: jsons['store_id'],
+        deliveryAt: jsons['Delivery_At'],
+        createdAt: DateTime.parse(jsons['created_at']),
+        updatedAt: DateTime.parse(jsons['updated_at']),
         orders: List<OrderDetailsModel>.from(
-            json["order_details"].map((x) => OrderDetailsModel.fromJson(x))),
-        userModel: UserModel.fromJson(json['user']),
-        coupon: json['coupon'],
-        store: json['store'],
+            jsons["order_details"].map((x) => OrderDetailsModel.fromJson(x))),
+        userModel: UserModel.fromJson(jsons['user']),
+        coupon: jsons['coupon'],
+        store: jsons['store'],
       );
 }
