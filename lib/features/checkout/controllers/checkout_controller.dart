@@ -134,6 +134,16 @@ class CheckoutController extends GetxController {
             paymentMethodsList = List<PaymentMethodsModel>.from(
                 json["payment_methods"]
                     .map((x) => PaymentMethodsModel.fromJson(x)));
+            GetPlatform.isIOS
+                ? paymentMethodsList.add(PaymentMethodsModel(
+                    id: 3,
+                    name: 'Apple Pay',
+                    image: '',
+                    slug: 'Apple Pay',
+                    status: 0,
+                    createdAt: DateTime.now(),
+                    updatedAt: DateTime.now()))
+                : null;
           } else {
             AppToasts.errorToast(message);
             isErrorPaymentMethods(true);
@@ -344,23 +354,26 @@ class CheckoutController extends GetxController {
       }
       String objectData = orderModelToJson(
         OrderModel(
-          billingName: userName,
-          billingEmail: email,
-          billingStreetAddress: street,
-          billingState: state,
-          billingZipcode: zipCode,
-          billingCountry: countryName,
-          shippingName: userName,
-          shippingEmail: email,
-          shippingStreetAddress: street,
-          shippingState: state,
-          shippingZipcode: zipCode,
-          shippingCountry: countryName,
-          redeem: hasRedeem.isTrue ? 1 : 0,
-          coupon: promoCode,
-          paymentMethod: paymentMethodValue.value,
-          onlinePaymentMethodId: userSelectedCardModel.value?.id,
-        ),
+            billingName: userName,
+            billingEmail: email,
+            billingStreetAddress: street,
+            billingState: state,
+            billingZipcode: zipCode,
+            billingCountry: countryName,
+            shippingName: userName,
+            shippingEmail: email,
+            shippingStreetAddress: street,
+            shippingState: state,
+            shippingZipcode: zipCode,
+            shippingCountry: countryName,
+            redeem: hasRedeem.isTrue ? 1 : 0,
+            coupon: promoCode,
+            paymentMethod: paymentMethodValue.value == 'Apple Pay'
+                ? 'TAP'
+                : paymentMethodValue.value,
+            onlinePaymentMethodId: userSelectedCardModel.value?.id,
+            paymentPlatForm:
+                paymentMethodValue.value == 'Apple Pay' ? 'apple' : ''),
       );
       log(objectData);
       Get.dialog(
@@ -382,6 +395,7 @@ class CheckoutController extends GetxController {
           log("${r.object}");
           if (statusCode == 201) {
             var url = r.object["data"];
+
             if (url == null) {
               AppToasts.errorToast(
                 "You can’t use this card because it’s not 3DS enrolled",
@@ -441,9 +455,10 @@ class CheckoutController extends GetxController {
       return AppAssets.payment;
     }
   }
+
   @override
   void onInit() {
-    if(App.token.isNotEmpty) {
+    if (App.token.isNotEmpty) {
       orderPrice();
     }
     super.onInit();

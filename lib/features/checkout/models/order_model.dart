@@ -19,7 +19,7 @@ class OrderModel {
   int redeem;
   String? paymentMethod;
   int? onlinePaymentMethodId;
-
+  String? paymentPlatForm;
   OrderModel({
     required this.billingName,
     required this.billingEmail,
@@ -37,6 +37,7 @@ class OrderModel {
     required this.redeem,
     required this.paymentMethod,
     required this.onlinePaymentMethodId,
+    this.paymentPlatForm,
   });
 
   Map<String, dynamic> toJson() {
@@ -61,6 +62,9 @@ class OrderModel {
         "online_payment_method_id",
         () => onlinePaymentMethodId,
       );
+    }
+    if (paymentMethod == 'Apple Pay') {
+      body.putIfAbsent('payment_platform', () => paymentPlatForm);
     }
     if (coupon.isNotEmpty) {
       body.putIfAbsent(
