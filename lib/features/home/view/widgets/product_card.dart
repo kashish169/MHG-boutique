@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
-import 'package:mhg/features/mainwrapper/controller/main_wrapper_controller.dart';
 import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
-import 'package:mhg/features/my_wish_list/view/widget/wish_list_counter.dart';
 import 'package:mhg/features/product_details/controller/product_details_controller.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/net_image.dart';
-import 'package:mhg/widgets/primary_button.dart';
-import 'package:mhg/widgets/product_counter.dart';
 import '../../../../core/languages/languages.dart';
 import '../../../../widgets/heart_widget.dart';
 import '../../../../widgets/rating_widget.dart';
-import '../../../auth/signin/view/pages/sign_in_page.dart';
 import '../../models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
@@ -39,7 +33,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<MainWrapperController>();
+    // final controller = Get.find<MainWrapperController>();
     final profileController = Get.find<ProfileController>();
 
     return InkWell(
@@ -65,11 +59,12 @@ class ProductCard extends StatelessWidget {
         }
       },
       child: Container(
-        width: 182,
+        width: 155,
         margin: const EdgeInsetsDirectional.only(end: 12),
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
+          borderRadius:
+              const BorderRadius.vertical(bottom: Radius.circular(20)),
           boxShadow: AppColors.shadow(0.2),
         ),
         child: Stack(
@@ -81,7 +76,7 @@ class ProductCard extends StatelessWidget {
                   image: isWishList == false
                       ? model!.primaryImageLink
                       : wishListModel!.options.imageLink,
-                  height: AppDimensions.productHeight(context),
+                  height: AppDimensions.productHeight(context) * 0.7,
                   width: 182,
                 ),
                 const SizedBox(height: 10),
@@ -100,7 +95,7 @@ class ProductCard extends StatelessWidget {
                               .textTheme
                               .displaySmall
                               ?.copyWith(
-                                fontSize: 16,
+                                fontSize: 13,
                               ),
                         ),
                       ),
@@ -172,8 +167,8 @@ class ProductCard extends StatelessWidget {
                                         .textTheme
                                         .displaySmall
                                         ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13),
                                   ),
                                 )
                               : Expanded(
