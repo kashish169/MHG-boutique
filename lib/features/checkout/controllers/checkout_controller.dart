@@ -17,8 +17,8 @@ import 'package:mhg/features/checkout/repository/checkout_repo_imp.dart';
 import 'package:mhg/features/checkout/views/pages/add_payment_method_webview_page.dart';
 import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/features/mycart/models/cart_model.dart';
-import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
+import 'package:mhg/features/success_order/view/pages/success_order_view.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import '../../../constants/app_assets.dart';
 
@@ -40,9 +40,11 @@ class CheckoutController extends GetxController {
   AddPaymentMethodsModel addPaymentMethodsModel = AddPaymentMethodsModel();
   RemovePaymentMethodsModel removePaymentMethodsModel =
       RemovePaymentMethodsModel();
+  // List<MyOrder> orderModel = [];
   OrderPriceModal orderPriceModal = OrderPriceModal();
   final TextEditingController codeController = TextEditingController();
   final ProfileController profileController = Get.find<ProfileController>();
+
   RxBool isLoading = false.obs;
   RxBool isLoadingPaymentMethods = false.obs;
   RxBool isErrorPaymentMethods = false.obs;
@@ -61,6 +63,7 @@ class CheckoutController extends GetxController {
   RxInt paymentMethodIndex = (-1).obs;
   List<UserPaymentMethodsModel> userPaymentMethodsCardsList = [];
   RxInt userPaymentMethodCardIndex = (-1).obs;
+  late String responseOredrNumber;
   final userSelectedCardModel = Rxn<UserPaymentMethodsModel>();
 
   Future<void> getUserPaymentMethods() async {
@@ -393,10 +396,13 @@ class CheckoutController extends GetxController {
               ),
             );
             if (results == true) {
-              _onOrderSuccess.call();
+              print('Order Number${r.object['data']['Order_Number']}');
+              responseOredrNumber = r.object['data']['Order_Number'];
+              _onOrderSuccess.call(responseOredrNumber);
             }
           } else if (statusCode == 200) {
-            _onOrderSuccess.call();
+            responseOredrNumber = r.object['data']['Order_Number'];
+            _onOrderSuccess.call(responseOredrNumber);
           } else {
             AppToasts.errorToast(message);
           }
@@ -407,8 +413,9 @@ class CheckoutController extends GetxController {
     }
   }
 
-  void _onOrderSuccess() async {
-    Get.offAndToNamed(MyOrdersPage.routeName);
+  void _onOrderSuccess(String orderNumber) async {
+    Get.offAndToNamed(SuccessOrderView.route,
+        arguments: {'orderNumber': orderNumber});
     Get.find<MyCartController>().getCart();
     await profileController.getProfileInfo();
     AppToasts.successToast(

@@ -21,6 +21,7 @@ class FavouriteWidget extends StatefulWidget {
   final int? itemId;
   final String from;
   final bool fromArrival;
+  final bool? isProductDetails;
 
   FavouriteWidget(
       {Key? key,
@@ -30,6 +31,7 @@ class FavouriteWidget extends StatefulWidget {
       this.fromArrival = false,
       this.itemId,
       this.inWishlist,
+      this.isProductDetails = false,
       required this.from})
       : super(key: key);
 
@@ -134,11 +136,15 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
           icon: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Image.asset(
-              widget.inWishlist == 1 ? AppAssets.wishlist : AppAssets.favourtie,
+              (widget.inWishlist == 1)
+                  ? AppAssets.wishlist
+                  : (widget.inWishlist == 0 && widget.isProductDetails == true)
+                      ? AppAssets.blackHeart
+                      : AppAssets.favourtie,
               height: widget.height ?? 24,
               width: widget.width,
-              color: widget.inWishlist == 1 ? AppColors.red : null,
-              fit: widget.inWishlist == 1 ? BoxFit.fill : null,
+              color: (widget.inWishlist == 0) ? null : AppColors.red,
+              fit: (widget.inWishlist == 0) ? null : BoxFit.fill,
             ),
           ));
     }));

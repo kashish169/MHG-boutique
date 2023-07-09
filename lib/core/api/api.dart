@@ -60,4 +60,5 @@ class Api {
   static String cancelOrder = "/api/v1/order/cancel-order";
   static String returnOrder = "/api/v1/order/return-order";
   static String logOut = "/api/v1/users/auth/logout";
+  static String successOrderLink = "/api/v1/order/track-order";
 }
