@@ -410,13 +410,11 @@ class CheckoutController extends GetxController {
               ),
             );
             if (results == true) {
-              print('Order Number${r.object['data']['Order_Number']}');
-              responseOredrNumber = r.object['data']['Order_Number'];
-              _onOrderSuccess.call(responseOredrNumber);
+              log("${r.object}");
+              _onOrderSuccess.call();
             }
           } else if (statusCode == 200) {
-            responseOredrNumber = r.object['data']['Order_Number'];
-            _onOrderSuccess.call(responseOredrNumber);
+            _onOrderSuccess.call();
           } else {
             AppToasts.errorToast(message);
           }
@@ -427,9 +425,8 @@ class CheckoutController extends GetxController {
     }
   }
 
-  void _onOrderSuccess(String orderNumber) async {
-    Get.offAndToNamed(SuccessOrderView.route,
-        arguments: {'orderNumber': orderNumber});
+  void _onOrderSuccess() async {
+    Get.offAndToNamed(SuccessOrderView.route);
     Get.find<MyCartController>().getCart();
     await profileController.getProfileInfo();
     AppToasts.successToast(

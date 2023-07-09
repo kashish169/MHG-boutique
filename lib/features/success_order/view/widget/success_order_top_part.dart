@@ -28,7 +28,7 @@ class SuccessOrderTopPart extends StatelessWidget {
               SuccessOrderCutomRow(
                 title: "SubTotal",
                 isAED: true,
-                subTitle: controller.orderModel.value!.subTotal,
+                subTitle: controller.orderModel.subTotal,
               ),
               const SizedBox(
                 height: 10,
@@ -36,7 +36,7 @@ class SuccessOrderTopPart extends StatelessWidget {
               SuccessOrderCutomRow(
                 title: "Shipning",
                 isAED: true,
-                subTitle: controller.orderModel.value!.deliveryCharge,
+                subTitle: controller.orderModel.deliveryCharge,
               ),
             ],
           ),
@@ -52,7 +52,7 @@ class SuccessOrderTopPart extends StatelessWidget {
             title: "Total",
             isTotal: true,
             isAED: true,
-            subTitle: controller.orderModel.value!.grandTotal,
+            subTitle: controller.orderModel.grandTotal,
           ),
         ),
       ],

@@ -1,4 +1,4 @@
-class ShipningModel {
+class ShippingModel {
   String name;
   String email;
   String street;
@@ -6,7 +6,7 @@ class ShipningModel {
   String zipcode;
   String country;
 
-  ShipningModel({
+  ShippingModel({
     required this.name,
     required this.email,
     required this.street,
@@ -15,7 +15,7 @@ class ShipningModel {
     required this.country,
   });
 
-  factory ShipningModel.fromJson(Map<String, dynamic> json) => ShipningModel(
+  factory ShippingModel.fromJson(Map<String, dynamic> json) => ShippingModel(
         name: json['name'],
         email: json['email'],
         street: json['street'],

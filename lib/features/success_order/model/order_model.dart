@@ -13,8 +13,8 @@ class SuccessOrderModel {
   int userId;
   dynamic billingId;
   dynamic shippingId;
-  ShipningModel billingAddress;
-  ShipningModel shippingAddress;
+  ShippingModel billingAddress;
+  ShippingModel shippingAddress;
   dynamic couponId;
   dynamic couponAmount;
   dynamic heartsDiscount;
@@ -106,9 +106,9 @@ class SuccessOrderModel {
         billingId: jsons['Billing_Id'],
         shippingId: jsons['Shipping_Id'],
         billingAddress:
-            ShipningModel.fromJson(json.decode(jsons['billing_address'])),
+            ShippingModel.fromJson(json.decode(jsons['billing_address'])),
         shippingAddress:
-            ShipningModel.fromJson(json.decode(jsons['shipping_address'])),
+            ShippingModel.fromJson(json.decode(jsons['shipping_address'])),
         couponId: jsons['Coupon_Id'],
         couponAmount: jsons['Coupon_Amount'],
         heartsDiscount: jsons['hearts_discount'],

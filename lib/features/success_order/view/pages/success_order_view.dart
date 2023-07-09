@@ -40,18 +40,16 @@ class SuccessOrderView extends StatelessWidget {
               : controller.isError.value
                   ? RetryButton(
                       onTap: () {
-                        controller.getData();
+                        controller.getMyOrders();
                       },
                     )
                   : SingleChildScrollView(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(
-                            height: 20,
-                          ),
                           Center(
                             child: Stack(
+                              alignment: Alignment.bottomCenter,
                               children: [
                                 Center(
                                   child: Image.asset(
@@ -63,7 +61,7 @@ class SuccessOrderView extends StatelessWidget {
                                 ),
                                 Positioned(
                                   top: MediaQuery.of(context).size.height * 0.2,
-                                  left: MediaQuery.of(context).size.width * 0.1,
+                                  // left: MediaQuery.of(context).size.width * 0.1,
                                   child: Center(
                                     child: Text(
                                       "Your order is confirmed!".tr,
@@ -104,7 +102,7 @@ class SuccessOrderView extends StatelessWidget {
                             child: PrimaryButton(
                                 height: 50,
                                 width: AppDimensions.screenWidth(context),
-                                title: 'Continue shipning',
+                                title: 'Continue shopping',
                                 onTap: () {
                                   Get.offAllNamed(MainWrapper.routeName);
                                 }),

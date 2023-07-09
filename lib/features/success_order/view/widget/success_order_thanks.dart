@@ -29,14 +29,14 @@ class SuccessOrderThanks extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'order ${controller.orderNumber}',
+              'order ',
               style: Theme.of(context).textTheme.displaySmall,
             ),
             const SizedBox(
               height: 5,
             ),
             Text(
-              'Thank You, ${controller.orderModel.value!.userModel.name}!',
+              'Thank You, ${controller.orderModel.user.name}!',
               style: Theme.of(context)
                   .textTheme
                   .displayMedium!
