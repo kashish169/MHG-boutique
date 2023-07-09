@@ -6,6 +6,8 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
+import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
+import 'package:mhg/features/mycart/view/widgets/my_cart_card.dart';
 import 'package:mhg/features/myorders/models/order_model.dart';
 import 'package:mhg/features/myorders/view/widgets/order_detail_card.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
@@ -27,7 +29,7 @@ class SuccessOrderView extends StatelessWidget {
   final SucessOrderController controller = Get.find();
   final CheckoutController checkoutController = Get.put(CheckoutController());
   final ProfileController profileController = Get.find<ProfileController>();
-
+  final MyCartController myCartController  = Get.find<MyCartController>();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
@@ -79,33 +81,36 @@ class SuccessOrderView extends StatelessWidget {
                               ],
                             ),
                           ),
-                          /*   Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: ListView.separated(
-                                physics: const BouncingScrollPhysics(),
-                                padding: const EdgeInsets.all(18),
-                                itemCount: model.orderDetails.length,
-                                itemBuilder: (context, index) {
-                                  return OrderDetailsCard(
-                                    model: model.orderDetails[index],
-                                    orderStatus: model.orderStatus,
-                                  );
-                                },
-                                separatorBuilder: (context, index) {
-                                  return const SizedBox(height: 9);
-                                },
-                              ),
-                            ),
-                          ), */
+                         Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                     /*  Obx(
+                        () => ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: const EdgeInsets.all(18),
+                          itemCount: myCartController.cartItemsList.length,
+                          itemBuilder: (context, index) {
+                            return MyCartCard(
+                              model: myCartController.cartItemsList[index],
+                              isCheckOut: true,
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(height: 9);
+                          },
+                        ),
+                      ), */
+                    ],
+                  ),
                           const Divider(),
                           const SuccessOrderContactInformation(),
                           const Divider(),
                           const SuccessOrderShippingAddress(),
                           const Divider(),
                           SuccessOrderPaymentMethod(
-                              controller: checkoutController,
-                             ),
+                            controller: checkoutController,
+                          ),
                           const Divider(),
                           ConfirmationFooter(
                             checkoutController: checkoutController,
