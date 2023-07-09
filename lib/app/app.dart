@@ -15,7 +15,7 @@ class App {
   static bool? notifyMe;
   static int? countryId;
   static String currency = 'AED';
-  static String countryName = '';
+  static String countryName = 'United Arab Emirates';
   static String lang = '';
 
   static Future<void> initSettings() async {
@@ -26,7 +26,7 @@ class App {
     token = await StoragePref.getString("token");
     notifyMe = await StoragePref.getbool("notifyme");
     countryId = await StoragePref.getInt("countryid");
-    currency = await StoragePref.getString("currency");
+    // currency = await StoragePref.getString("currency");
     lang = await StoragePref.getString("lang");
     if (lang.isEmpty) {
       lang = "en_US";
@@ -46,6 +46,7 @@ class App {
     HttpOverrides.global = MyHttpOverrides();
   }
 }
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
