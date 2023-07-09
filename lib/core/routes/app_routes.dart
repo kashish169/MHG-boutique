@@ -10,7 +10,9 @@ import 'package:mhg/features/checkout/binding/checkout_bindings.dart';
 import 'package:mhg/features/checkout/views/pages/add_payment_method_webview_page.dart';
 import 'package:mhg/features/checkout/views/pages/payment_methods_page.dart';
 import 'package:mhg/features/forgot_password/binding/forget_password_binding.dart';
-import 'package:mhg/features/forgot_password/pages/forget_view.dart';
+import 'package:mhg/features/forgot_password/view/pages/forget_view.dart';
+import 'package:mhg/features/forgot_password/view/pages/reset_password.dart';
+
 import 'package:mhg/features/mainwrapper/binding/main_wrapper_bindings.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
 import 'package:mhg/features/checkout/views/pages/checkout_page.dart';
@@ -41,6 +43,8 @@ import 'package:mhg/features/splash/binding/splash_binding.dart';
 import 'package:mhg/features/splash/view/splash_view.dart';
 import 'package:mhg/features/stroresmap/bindings/stores_map_binding.dart';
 import 'package:mhg/features/stroresmap/view/pages/stores_map_page.dart';
+import 'package:mhg/features/success_order/binding/success_order_binding.dart';
+import 'package:mhg/features/success_order/view/pages/success_order_view.dart';
 import '../../features/about_us/binding/about_us_bindings.dart';
 import '../../features/auth/otp/view/pages/otp.dart';
 import '../../features/categories/view/pages/categories_page.dart';
@@ -118,6 +122,11 @@ class AppRoutes {
       page: () => const MyOrderDetailPage(),
     ),
     GetPage(
+      name: '/success_orders',
+      page: () => SuccessOrderView(),
+      binding: SuccessOrderBinding(),
+    ),
+    GetPage(
       name: '/product_details',
       page: () => const ProductDetailsPage(),
       binding: ProductDetailsBinding(),
@@ -177,6 +186,10 @@ class AppRoutes {
     GetPage(
         name: '/forgot_password',
         page: () => const ForgetPasswordView(),
+        binding: ForgetPasswordBinding()),
+    GetPage(
+        name: '/reset_password',
+        page: () => const ResetPasswordView(),
         binding: ForgetPasswordBinding()),
   ];
 }

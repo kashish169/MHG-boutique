@@ -5,6 +5,9 @@ class CartModel {
   String name;
   dynamic price;
   dynamic weight;
+  dynamic tax;
+  dynamic subtotal;
+  dynamic discount;
   Options options;
   dynamic taxRate;
   dynamic instance;
@@ -12,6 +15,9 @@ class CartModel {
   bool isLoadingQuantity;
 
   CartModel({
+    this.tax,
+    this.subtotal,
+    this.discount,
     required this.rowId,
     required this.id,
     required this.qty,
@@ -26,6 +32,9 @@ class CartModel {
   });
 
   factory CartModel.fromJson(Map<String, dynamic> json) => CartModel(
+        tax: json["tax"],
+        subtotal: json["subtotal"],
+        discount: json["discount"],
         rowId: json["rowId"],
         id: json["id"],
         qty: json["qty"],

@@ -144,129 +144,129 @@ class PersonalInformation extends StatelessWidget {
                                           const SizedBox(
                                             height: 10,
                                           ),
-                                          DropdownButtonHideUnderline(
-                                            child: DropdownButton2<String>(
-                                              isExpanded: true,
-                                              value: controller.selectedCountry,
-                                              onChanged: (value) {
-                                                controller.setCountry(value);
-                                              },
-                                              hint: Text(
-                                                'Select Country',
-                                                style: TextStyle(
-                                                  fontSize: 14,
-                                                  color: Theme.of(context)
-                                                      .hintColor,
-                                                ),
-                                              ),
-                                              items: controller
-                                                  .countriesModel.data!
-                                                  .map(
-                                                    (item) => DropdownMenuItem<
-                                                        String>(
-                                                      value: item.name,
-                                                      child: RichText(
-                                                        text: TextSpan(
-                                                          children: [
-                                                            WidgetSpan(
-                                                              child: NetImage(
-                                                                image: item
-                                                                    .flagLink!,
-                                                                height: 20,
-                                                                width: 20,
-                                                              ),
-                                                            ),
-                                                            TextSpan(
-                                                              text:
-                                                                  ' ${item.name!}',
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .displaySmall!
-                                                                  .copyWith(
-                                                                    fontSize:
-                                                                        14,
-                                                                    color: AppColors
-                                                                        .black3,
-                                                                  ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  )
-                                                  .toList(),
-                                              dropdownSearchData:
-                                                  DropdownSearchData(
-                                                searchController:
-                                                    _searchController,
-                                                searchInnerWidgetHeight: 50,
-                                                searchInnerWidget: Container(
-                                                  height: 50,
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                    top: 8,
-                                                    bottom: 4,
-                                                    right: 8,
-                                                    left: 8,
-                                                  ),
-                                                  child: TextFormField(
-                                                    expands: true,
-                                                    maxLines: null,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .displaySmall!
-                                                        .copyWith(
-                                                          fontSize: 14,
-                                                          color:
-                                                              AppColors.black3,
-                                                        ),
-                                                    controller:
-                                                        _searchController,
-                                                    decoration: InputDecoration(
-                                                      isDense: true,
-                                                      contentPadding:
-                                                          const EdgeInsets
-                                                              .symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 8,
-                                                      ),
-                                                      hintText:
-                                                          'Search for a country...',
-                                                      hintStyle:
-                                                          Theme.of(context)
-                                                              .textTheme
-                                                              .displaySmall!
-                                                              .copyWith(
-                                                                fontSize: 14,
-                                                                color: AppColors
-                                                                    .lightGray2,
-                                                              ),
-                                                      border:
-                                                          OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                searchMatchFn:
-                                                    (item, searchValue) {
-                                                  return (item.value
-                                                      .toString()
-                                                      .contains(
-                                                        searchValue,
-                                                      ));
-                                                },
-                                              ),
-                                              onMenuStateChange: (isOpen) {
-                                                if (!isOpen) {
-                                                  _searchController.clear();
-                                                }
-                                              },
-                                            ),
-                                          ),
+                                          // DropdownButtonHideUnderline(
+                                          //   child: DropdownButton2<String>(
+                                          //     isExpanded: true,
+                                          //     value: controller.selectedCountry,
+                                          //     onChanged: (value) {
+                                          //       controller.setCountry(value);
+                                          //     },
+                                          //     hint: Text(
+                                          //       'Select Country',
+                                          //       style: TextStyle(
+                                          //         fontSize: 14,
+                                          //         color: Theme.of(context)
+                                          //             .hintColor,
+                                          //       ),
+                                          //     ),
+                                          //     items: controller
+                                          //         .countriesModel.data!
+                                          //         .map(
+                                          //           (item) => DropdownMenuItem<
+                                          //               String>(
+                                          //             value: item.name,
+                                          //             child: RichText(
+                                          //               text: TextSpan(
+                                          //                 children: [
+                                          //                   WidgetSpan(
+                                          //                     child: NetImage(
+                                          //                       image: item
+                                          //                           .flagLink!,
+                                          //                       height: 20,
+                                          //                       width: 20,
+                                          //                     ),
+                                          //                   ),
+                                          //                   TextSpan(
+                                          //                     text:
+                                          //                         ' ${item.name!}',
+                                          //                     style: Theme.of(
+                                          //                             context)
+                                          //                         .textTheme
+                                          //                         .displaySmall!
+                                          //                         .copyWith(
+                                          //                           fontSize:
+                                          //                               14,
+                                          //                           color: AppColors
+                                          //                               .black3,
+                                          //                         ),
+                                          //                   ),
+                                          //                 ],
+                                          //               ),
+                                          //             ),
+                                          //           ),
+                                          //         )
+                                          //         .toList(),
+                                          //     dropdownSearchData:
+                                          //         DropdownSearchData(
+                                          //       searchController:
+                                          //           _searchController,
+                                          //       searchInnerWidgetHeight: 50,
+                                          //       searchInnerWidget: Container(
+                                          //         height: 50,
+                                          //         padding:
+                                          //             const EdgeInsets.only(
+                                          //           top: 8,
+                                          //           bottom: 4,
+                                          //           right: 8,
+                                          //           left: 8,
+                                          //         ),
+                                          //         child: TextFormField(
+                                          //           expands: true,
+                                          //           maxLines: null,
+                                          //           style: Theme.of(context)
+                                          //               .textTheme
+                                          //               .displaySmall!
+                                          //               .copyWith(
+                                          //                 fontSize: 14,
+                                          //                 color:
+                                          //                     AppColors.black3,
+                                          //               ),
+                                          //           controller:
+                                          //               _searchController,
+                                          //           decoration: InputDecoration(
+                                          //             isDense: true,
+                                          //             contentPadding:
+                                          //                 const EdgeInsets
+                                          //                     .symmetric(
+                                          //               horizontal: 10,
+                                          //               vertical: 8,
+                                          //             ),
+                                          //             hintText:
+                                          //                 'Search for a country...',
+                                          //             hintStyle:
+                                          //                 Theme.of(context)
+                                          //                     .textTheme
+                                          //                     .displaySmall!
+                                          //                     .copyWith(
+                                          //                       fontSize: 14,
+                                          //                       color: AppColors
+                                          //                           .lightGray2,
+                                          //                     ),
+                                          //             border:
+                                          //                 OutlineInputBorder(
+                                          //               borderRadius:
+                                          //                   BorderRadius
+                                          //                       .circular(8),
+                                          //             ),
+                                          //           ),
+                                          //         ),
+                                          //       ),
+                                          //       searchMatchFn:
+                                          //           (item, searchValue) {
+                                          //         return (item.value
+                                          //             .toString()
+                                          //             .contains(
+                                          //               searchValue,
+                                          //             ));
+                                          //       },
+                                          //     ),
+                                          //     onMenuStateChange: (isOpen) {
+                                          //       if (!isOpen) {
+                                          //         _searchController.clear();
+                                          //       }
+                                          //     },
+                                          //   ),
+                                          // ),
                                         ],
                                       ),
                                     ],

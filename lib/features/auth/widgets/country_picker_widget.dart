@@ -19,40 +19,45 @@ class CountryPickerWidget extends StatelessWidget {
         minWidth: 0,
         onPressed: () {
 
-          showCountries(
-            context,
-                (p0) {
-              controller.selectCountry(p0);
-            },
-          );
+          // showCountries(
+          //   context,
+          //       (p0) {
+          //     controller.selectCountry(p0);
+          //   },
+          // );
         },
         child: SizedBox(
           width: 110,
           child: Row(
             children: [
               const SizedBox(width: 8),
-              controller.firstCountryFlag.isNotEmpty
-                  ? Image.network(
-                controller.firstCountryFlag.value,
-                height: 20,
-              )
-                  :
-              controller.countryFlag.contains('uae')?
               Image.asset(
                 controller.countryFlag,
                 height: 20,
-              ):
-              Text(
-                controller.countryFlag,
-
               ),
+              // controller.firstCountryFlag.isNotEmpty
+              //     ? Image.network(
+              //   controller.firstCountryFlag.value,
+              //   height: 20,
+              // )
+              //     :
+              // controller.countryFlag.contains('uae')?
+              // Image.asset(
+              //   controller.countryFlag,
+              //   height: 20,
+              // ):
+              // Text(
+              //   controller.countryFlag,
+              //
+              // ),
               Text(
                 controller.countryCode,
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-              const Icon(
-                Icons.arrow_drop_down_outlined,
-              ),
+              SizedBox(width: 2,),
+              // const Icon(
+              //   Icons.arrow_drop_down_outlined,
+              // ),
               const SizedBox(
                 height: 30,
                 child: VerticalDivider(

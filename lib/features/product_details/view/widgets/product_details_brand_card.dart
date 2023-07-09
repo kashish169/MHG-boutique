@@ -29,9 +29,9 @@ class ProductDetailsBrandCard extends StatelessWidget {
                 ? controller.model.frProductName
                 : controller.model.enProductName,
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                  fontSize: 22,
-                  color: AppColors.mediumLabel,
-                ),
+                fontSize: 19,
+                color: AppColors.mediumLabel,
+                fontWeight: FontWeight.w500),
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,15 +39,18 @@ class ProductDetailsBrandCard extends StatelessWidget {
               Text(
                 'Brand: '.tr,
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    color: AppColors.lightLabel2, fontSize: 16, height: 1.7),
+                    color: AppColors.lightLabel2,
+                    fontSize: 14,
+                    height: 1.7,
+                    fontWeight: FontWeight.w500),
               ),
               const SizedBox(width: 4),
               Text(
                 controller.model.brand.enBrandName,
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      fontSize: 16,
-                      color: AppColors.mediumLabel,
-                    ),
+                    fontSize: 14,
+                    color: AppColors.mediumLabel,
+                    fontWeight: FontWeight.w500),
               ),
             ],
           ),
@@ -63,20 +66,23 @@ class ProductDetailsBrandCard extends StatelessWidget {
                       padding: const EdgeInsetsDirectional.only(end: 10),
                       child: Text(
                         '${profileController.currnecy.value} ${controller.model.price}',
-                        style:
-                            Theme.of(context).textTheme.displayMedium?.copyWith(
-                                  fontSize: 16,
-                                  color: AppColors.lightLabel,
-                                  decoration: TextDecoration.lineThrough,
-                                ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayMedium
+                            ?.copyWith(
+                                fontSize: 14,
+                                color: AppColors.lightLabel,
+                                decoration: TextDecoration.lineThrough,
+                                fontWeight: FontWeight.w500),
                       ),
                     ),
                   ),
                   Text(
                     '${profileController.currnecy.value} ${controller.model.discountPrice}',
                     style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                          fontSize: 15,
-                        ),
+                        fontSize: 19,
+                        color: AppColors.mediumLabel,
+                        fontWeight: FontWeight.w500),
                   ),
                 ],
               )),
@@ -95,12 +101,12 @@ class ProductDetailsBrandCard extends StatelessWidget {
                       '${controller.model.pts} pts',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: 15,
-                          color: AppColors.secondaryBlack,
-                          fontWeight: FontWeight.w600),
+                          color: AppColors.mediumLabel,
+                          fontWeight: FontWeight.w500),
                     ),
                   ],
                 )
-              : SizedBox(),
+              : const SizedBox(),
           StatefulBuilder(builder: (context, setState) {
             return controller.model.inCart == 1
                 ? ProductDetailsCounterWidget(

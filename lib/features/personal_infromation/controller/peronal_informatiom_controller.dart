@@ -233,11 +233,11 @@ class PersonalInformationController extends GetxController {
 
           if (statusCode == 200) {
             if (r.object["data"] != null) {
+              log("COUNTRIES ${r.object["data"]}");
               countriesModel = CountriesModel.fromJson(r.object);
-              setCountry(
-                profileController.model.value?.country?.name,
-              );
-
+              // setCountry(
+              //   profileController.model.value?.country?.name,
+              // );
               update();
             }
           } else {

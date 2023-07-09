@@ -12,6 +12,7 @@ import '../widgets/verification_country_picker.dart';
 
 class VerificationPage extends StatelessWidget {
   static String routeName = '/verification';
+
   const VerificationPage({super.key});
 
   @override
@@ -84,7 +85,8 @@ class VerificationPage extends StatelessWidget {
                         color: AppColors.secondary,
                         onTap: () {
                           Get.find<VerificationController>().sendOtpCode();
-                          Get.toNamed(OtpPage.routeName);
+                          Get.toNamed(OtpPage.routeName,
+                              arguments: {"type": "signup"});
                         },
                       ),
                     ),

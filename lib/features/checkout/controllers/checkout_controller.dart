@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/core/models/api_response.dart';
 import 'package:mhg/core/models/failure.dart';
@@ -16,8 +17,8 @@ import 'package:mhg/features/checkout/repository/checkout_repo_imp.dart';
 import 'package:mhg/features/checkout/views/pages/add_payment_method_webview_page.dart';
 import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/features/mycart/models/cart_model.dart';
-import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
+import 'package:mhg/features/success_order/view/pages/success_order_view.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import '../../../constants/app_assets.dart';
 
@@ -39,9 +40,11 @@ class CheckoutController extends GetxController {
   AddPaymentMethodsModel addPaymentMethodsModel = AddPaymentMethodsModel();
   RemovePaymentMethodsModel removePaymentMethodsModel =
       RemovePaymentMethodsModel();
+  // List<MyOrder> orderModel = [];
   OrderPriceModal orderPriceModal = OrderPriceModal();
   final TextEditingController codeController = TextEditingController();
   final ProfileController profileController = Get.find<ProfileController>();
+
   RxBool isLoading = false.obs;
   RxBool isLoadingPaymentMethods = false.obs;
   RxBool isErrorPaymentMethods = false.obs;
@@ -60,6 +63,7 @@ class CheckoutController extends GetxController {
   RxInt paymentMethodIndex = (-1).obs;
   List<UserPaymentMethodsModel> userPaymentMethodsCardsList = [];
   RxInt userPaymentMethodCardIndex = (-1).obs;
+  late String responseOredrNumber;
   final userSelectedCardModel = Rxn<UserPaymentMethodsModel>();
 
   Future<void> getUserPaymentMethods() async {
@@ -130,6 +134,16 @@ class CheckoutController extends GetxController {
             paymentMethodsList = List<PaymentMethodsModel>.from(
                 json["payment_methods"]
                     .map((x) => PaymentMethodsModel.fromJson(x)));
+            GetPlatform.isIOS
+                ? paymentMethodsList.add(PaymentMethodsModel(
+                    id: 3,
+                    name: 'Apple Pay',
+                    image: '',
+                    slug: 'Apple Pay',
+                    status: 0,
+                    createdAt: DateTime.now(),
+                    updatedAt: DateTime.now()))
+                : null;
           } else {
             AppToasts.errorToast(message);
             isErrorPaymentMethods(true);
@@ -340,23 +354,26 @@ class CheckoutController extends GetxController {
       }
       String objectData = orderModelToJson(
         OrderModel(
-          billingName: userName,
-          billingEmail: email,
-          billingStreetAddress: street,
-          billingState: state,
-          billingZipcode: zipCode,
-          billingCountry: countryName,
-          shippingName: userName,
-          shippingEmail: email,
-          shippingStreetAddress: street,
-          shippingState: state,
-          shippingZipcode: zipCode,
-          shippingCountry: countryName,
-          redeem: hasRedeem.isTrue ? 1 : 0,
-          coupon: promoCode,
-          paymentMethod: paymentMethodValue.value,
-          onlinePaymentMethodId: userSelectedCardModel.value?.id,
-        ),
+            billingName: userName,
+            billingEmail: email,
+            billingStreetAddress: street,
+            billingState: state,
+            billingZipcode: zipCode,
+            billingCountry: countryName,
+            shippingName: userName,
+            shippingEmail: email,
+            shippingStreetAddress: street,
+            shippingState: state,
+            shippingZipcode: zipCode,
+            shippingCountry: countryName,
+            redeem: hasRedeem.isTrue ? 1 : 0,
+            coupon: promoCode,
+            paymentMethod: paymentMethodValue.value == 'Apple Pay'
+                ? 'TAP'
+                : paymentMethodValue.value,
+            onlinePaymentMethodId: userSelectedCardModel.value?.id,
+            paymentPlatForm:
+                paymentMethodValue.value == 'Apple Pay' ? 'apple' : ''),
       );
       log(objectData);
       Get.dialog(
@@ -378,6 +395,7 @@ class CheckoutController extends GetxController {
           log("${r.object}");
           if (statusCode == 201) {
             var url = r.object["data"];
+
             if (url == null) {
               AppToasts.errorToast(
                 "You can’t use this card because it’s not 3DS enrolled",
@@ -392,6 +410,7 @@ class CheckoutController extends GetxController {
               ),
             );
             if (results == true) {
+              log("${r.object}");
               _onOrderSuccess.call();
             }
           } else if (statusCode == 200) {
@@ -407,7 +426,7 @@ class CheckoutController extends GetxController {
   }
 
   void _onOrderSuccess() async {
-    Get.offAndToNamed(MyOrdersPage.routeName);
+    Get.offAndToNamed(SuccessOrderView.route);
     Get.find<MyCartController>().getCart();
     await profileController.getProfileInfo();
     AppToasts.successToast(
@@ -432,5 +451,13 @@ class CheckoutController extends GetxController {
     } else {
       return AppAssets.payment;
     }
+  }
+
+  @override
+  void onInit() {
+    if (App.token.isNotEmpty) {
+      orderPrice();
+    }
+    super.onInit();
   }
 }

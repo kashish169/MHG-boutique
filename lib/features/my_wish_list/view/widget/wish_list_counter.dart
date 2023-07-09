@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
@@ -42,6 +43,7 @@ class _WishListCounterrWidgetState extends State<WishListCounterrWidget> {
             quantity: 1,
           );
           if (result == true) {
+            Get.find<CheckoutController>().orderPrice();
             widget.model.options.cartQuantity = value;
             bool fromArrival = false;
             List<ProductModel> temp =
@@ -76,6 +78,7 @@ class _WishListCounterrWidgetState extends State<WishListCounterrWidget> {
             quantity: 1,
           );
           if (result == true) {
+            Get.find<CheckoutController>().orderPrice();
             widget.model.options.cartQuantity = value;
             bool fromArrival = false;
             List<ProductModel> temp =

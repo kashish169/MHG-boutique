@@ -14,6 +14,7 @@ import 'package:mhg/features/auth/sign_up/controller/sign_up_controller.dart';
 import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
 import 'package:mhg/features/auth/verification/repository/verification_repo_impl.dart';
 import 'package:mhg/features/auth/verification/repository/verification_repository.dart';
+import 'package:mhg/features/forgot_password/view/pages/reset_password.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 import '../../../../constants/app_assets.dart';
@@ -33,6 +34,7 @@ class VerificationController extends GetxController {
   String verificationIdCode = '';
   final TextEditingController codeController = TextEditingController();
   final TextEditingController phone = TextEditingController();
+  final TextEditingController email = TextEditingController();
   final smartAuth = SmartAuth();
   FirebaseAuth auth = FirebaseAuth.instance;
   String smsCode = '';
@@ -54,7 +56,13 @@ class VerificationController extends GetxController {
     }
     countryCode.value = args["countryCode"];
     var phoneNumber = args["phone"];
-     phone.setText(phoneNumber);
+    if (phoneNumber != null) {
+      phone.setText(phoneNumber);
+    }
+
+    if (args["email"] != null) {
+      email.setText(args["email"]);
+    }
     log("countryCode ${countryCode.value}");
     log("PhoneNumber $phoneNumber");
     log("Type $type");
@@ -83,11 +91,10 @@ class VerificationController extends GetxController {
     log('___PhoneNumber is : $phoneNumber');
     log('called');
     isLoading(true);
-    Either<Failure, ApiResponse> results =  await verificationRepo.sendOtp(
+    Either<Failure, ApiResponse> results = await verificationRepo.sendOtp(
         body: jsonEncode({"phone_number": phoneNumber}));
 
     isLoading(false);
-
 
     results.fold((l) {
       log(l.message);
@@ -104,7 +111,66 @@ class VerificationController extends GetxController {
           await SmsAutoFill().listenForCode();
         }
         AppToasts.successToast(r.object['data']);
+      } else {
+        AppToasts.errorToast(message);
+      }
+    });
+    // await auth.verifyPhoneNumber(
+    //   phoneNumber: phoneNumber,
+    //   timeout: const Duration(seconds: 30),
+    //   verificationCompleted: (PhoneAuthCredential authCredential) async {
+    //     print('${authCredential.smsCode}');
+    //   },
+    //   verificationFailed: (FirebaseAuthException authException) {
+    //     isLoading(false);
+    //     print("${authException.message}");
+    //     showSnackBar("${authException.message}");
+    //   },
+    //   codeSent: (String code, int? forceResendingToken) async {
+    //     isLoading(false);
+    //     verificationIdCode = code;
+    //     print("verificationId is $code");
+    //     if (Platform.isAndroid) {
+    //       var appSignature = SmsAutoFill().getAppSignature;
+    //       log("appSignature $appSignature");
+    //       await SmsAutoFill().listenForCode();
+    //     }
+    //   },
+    //   codeAutoRetrievalTimeout: (String code) {
+    //     isLoading(false);
+    //     verificationIdCode = code;
+    //     print("verificationId is $code");
+    //     print("Timout");
+    //   },
+    // );
+  }
+  Future<void> verifyResetPasswordOtp(String code) async {
+    String phoneNumber = countryCode.value + phone.text.trim();
+    isLoading(true);
+    log(email.text);
+    Map data=email.text.isNotEmpty?{
+      "email":email.text,
+      "otp":code,
+    }:{
+      "phone_number":phoneNumber,
+      "otp":code,
+    };
+    log(data.toString());
+    Either<Failure, ApiResponse> results = await verificationRepo.verifyOtp(
+        body: jsonEncode(data));
 
+    isLoading(false);
+
+    results.fold((l) {
+      log(l.message);
+      showSnackBar(l.message);
+    }, (r) async {
+      log("${r.object}");
+      log('response');
+      bool success = r.object['isSuccessful'];
+      var message = r.object['message'];
+      if (success == true) {
+      Get.toNamed(ResetPasswordView.routeName,arguments: code);
       } else {
         AppToasts.errorToast(message);
       }
@@ -141,9 +207,11 @@ class VerificationController extends GetxController {
 
   Future signInWithCredential(String sms) async {
     if (type == 'signin') {
-      signInController.signIn(verificationCode: sms,phone:countryCode + phone.text.trim());
+      signInController.signIn(
+          verificationCode: sms, phone: countryCode + phone.text.trim());
     } else {
-      signUpController.signUp(verificationCode: sms,phone:countryCode + phone.text.trim());
+      signUpController.signUp(
+          verificationCode: sms, phone: countryCode + phone.text.trim());
     }
     // isLoading(true);
     // var credential = PhoneAuthProvider.credential(

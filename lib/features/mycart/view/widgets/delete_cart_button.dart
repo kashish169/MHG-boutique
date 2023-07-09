@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/delete_icon_button.dart';
 import '../../../../widgets/three_bounce_loading.dart';
@@ -39,6 +40,7 @@ class _DeleteCartButtonState extends State<DeleteCartButton> {
                 (element) => element.id == widget.model.id,
               );
               controller.getTotalCartPrice();
+              Get.find<CheckoutController>().orderPrice();
             },
           );
   }

@@ -6,13 +6,15 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/core/helper/app_helper.dart';
+import 'package:mhg/features/auth/signin/view/widget/country_button_pick.dart';
+import 'package:mhg/features/forgot_password/controller/forget_controller.dart';
+import 'package:mhg/features/forgot_password/view/widgets/country_picker.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 
-import '../controller/forget_controller.dart';
 
 class ForgetPasswordView extends StatelessWidget {
   static String routeName='forgot_password';
@@ -39,20 +41,26 @@ class ForgetPasswordView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                       vertical: 10, horizontal: 20),
                   child: CustomFormField(
-                    hint: 'Email address',
-                    controller: controller.email,
+                    hint: controller.type=='email'?'Email address':'Phone number',
+                    controller: controller.textController,
                     suffixIcon: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 15),
                         child: Image.asset(
-                          AppAssets.message,
+                          controller.type=='email'? AppAssets.message:AppAssets.phone,
                           height: 14,
                         )),
-                    inputType: TextInputType.text,
+                    prefixWidget: controller.type=='email'?null:  CountryButtonPick2(),
+                    inputType:controller.type=='email'?TextInputType.text: TextInputType.number,
+
                     obscure: false,
                     validator: (val) {
-                      return AppHelper.validation(
+                      if(controller.type=='email') {
+                        return AppHelper.validation(
                           val!, 1, 500, 'email');
+                      }else{
+                        return AppHelper.validation(val!, 9, 9, 'Number');
+                      }
                     },
                   ),
                 ),

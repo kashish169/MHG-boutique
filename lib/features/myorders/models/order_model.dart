@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import '../../success_order/model/shipning_model.dart';
+
 MyOrdersModel myOrdersModelFromJson(String str) =>
     MyOrdersModel.fromJson(json.decode(str));
 
@@ -37,8 +39,8 @@ class MyOrder {
   int userId;
   dynamic billingId;
   dynamic shippingId;
-  String billingAddress;
-  String shippingAddress;
+  ShippingModel billingAddress;
+  ShippingModel shippingAddress;
   dynamic couponId;
   String couponAmount;
   String heartsDiscount;
@@ -110,8 +112,10 @@ class MyOrder {
         userId: json["User_Id"],
         billingId: json["Billing_Id"],
         shippingId: json["Shipping_Id"],
-        billingAddress: json["billing_address"],
-        shippingAddress: json["shipping_address"],
+        billingAddress:
+            ShippingModel.fromJson(jsonDecode(json['billing_address'])),
+        shippingAddress:
+            ShippingModel.fromJson(jsonDecode(json['shipping_address'])),
         couponId: json["Coupon_Id"],
         couponAmount: json["Coupon_Amount"].toString(),
         heartsDiscount: json["hearts_discount"].toString(),

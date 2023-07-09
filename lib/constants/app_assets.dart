@@ -14,6 +14,7 @@ class AppAssets {
   static String bag = "assets/icons/bag.png";
   static String profile = "assets/icons/profile.png";
   static String wishlist = "assets/icons/wishlist.png";
+  static String blackHeart = "assets/icons/black heart.png";
   static String brands = "assets/icons/brands.png";
   static String notification = "assets/icons/notification.png";
   static String search = "assets/icons/search.png";
@@ -73,4 +74,5 @@ class AppAssets {
   static String mada = "assets/icons/mada.png";
   static String scanbackground = "assets/images/scanbackground.png";
   static String sendPoints = "assets/icons/send-points.png";
+  static String orderSuccess = "assets/icons/conf.gif";
 }

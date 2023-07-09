@@ -6,9 +6,11 @@ import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/auth/sign_up/controller/sign_up_controller.dart';
 import 'package:mhg/features/auth/signin/view/widget/country_button_pick.dart';
+import 'package:mhg/features/setting/view/pages/terms_and_conditions_page.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../../constants/app_assets.dart';
 import 'package:get/get.dart';
 import '../../../verification/view/pages/verfication_page.dart';
@@ -217,8 +219,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               padding: EdgeInsets.zero,
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              onPressed: () {
-                                Get.toNamed(SignUpPage.routeName);
+                              onPressed: () async {
+                               await launchUrl(Uri.parse('https://www.mhgboutique.com/pages/terms-conditions'));
                               },
                               child: Text("Terms & conditions".tr,
                                   style: Theme.of(context)
