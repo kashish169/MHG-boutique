@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
@@ -19,9 +20,10 @@ class SuccessOrderView extends StatelessWidget {
   final SucessOrderController controller = Get.find();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: GetX<SucessOrderController>(
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+    return Scaffold(
+      body: SafeArea(
+        child: GetX<SucessOrderController>(
           builder: (controller) => controller.isLoading.value
               ? const LoadingWidget()
               : controller.isError.value
