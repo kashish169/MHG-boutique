@@ -13,10 +13,10 @@ AppBar customAppBar(
       onPressed: () {
         Get.back();
       },
-      icon: Icon(
+      icon: title != 'Confirmation'? Icon(
         Icons.arrow_back_ios,
         color: AppColors.white,
-      ),
+      ) : const SizedBox.shrink(),
     ),
     backgroundColor: AppColors.primary,
     title: Text(title,

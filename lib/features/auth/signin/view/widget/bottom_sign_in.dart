@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/features/forgot_password/pages/forget_view.dart';
+
 import '../../../../../core/helper/app_helper.dart';
 import '../../../../../widgets/primary_button.dart';
 import '../../../otp/view/pages/otp.dart';
@@ -44,7 +44,7 @@ class BottomSignIn extends StatelessWidget {
                     horizontal: 25,
                   ),
                   child: PrimaryButton(
-                    title: 'Login with Otp'.tr,
+                    title: 'Login with OTP'.tr,
                     height: 50,
                     width: double.infinity,
                     color: AppColors.secondary,

@@ -4,10 +4,12 @@ import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_toasts.dart';
+import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
 import 'package:mhg/features/my_wish_list/repository/wish_list_repo.dart';
 import 'package:mhg/features/my_wish_list/repository/wish_list_repo_impl.dart';
+import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
 
@@ -157,6 +159,8 @@ class WishListController extends GetxController {
           log("ADD PRODUCT TO CART CART RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
             result = true;
+            Get.find<MyCartController>().getCart();
+            Get.find<CheckoutController>().orderPrice();
             AppToasts.successToast(
               "The product has been added to the bag",
             );

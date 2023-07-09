@@ -40,8 +40,7 @@ class SignInController extends GetxController {
 
   RxBool logWithEmail = false.obs;
   RxBool logWithNumber = true.obs;
-  RxDouble numberLogHight = 53.0.obs;
-  RxDouble emailLogHight = 45.0.obs;
+
   RxDouble emailLogwidth = (double.infinity * 0.3).obs;
   RxDouble numberLogwidth = (double.infinity * 0.35).obs;
   RxBool isGuest = false.obs;
@@ -73,8 +72,7 @@ class SignInController extends GetxController {
   logWithNum() {
     logWithEmail.value = false;
     logWithNumber.value = true;
-    numberLogHight.value = 53.0;
-    emailLogHight.value = 45.0;
+
     numberLogwidth.value = (double.infinity * 0.35);
     emailLogwidth.value = (double.infinity * 0.3);
   }
@@ -82,8 +80,7 @@ class SignInController extends GetxController {
   loginWithEmail() {
     logWithEmail.value = true;
     logWithNumber.value = false;
-    numberLogHight.value = 45.0;
-    emailLogHight.value = 53.0;
+
     numberLogwidth.value = (double.infinity * 0.3);
     emailLogwidth.value = (double.infinity * 0.35);
   }

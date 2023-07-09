@@ -61,23 +61,24 @@ class _OnBoardViewState extends State<OnBoardView> {
                     children: [
                       SizedBox(
                           height: AppDimensions.screenHeight(context) * 0.12),
-                      Text(
-                        "MHGboutique",
-                        style:
-                            Theme.of(context).textTheme.displayLarge!.copyWith(
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColors.white,
-                                ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text("THE ULTIMATE HOUSE OF EMIRATI LUXURY".tr,
-                          style:
-                              Theme.of(context).textTheme.headline1!.copyWith(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColors.white.withOpacity(0.5),
-                                  )),
+                      Image.asset(AppAssets.logo,width: 250,)
+                      // Text(
+                      //   "MHGboutique",
+                      //   style:
+                      //       Theme.of(context).textTheme.displayLarge!.copyWith(
+                      //             fontSize: 35,
+                      //             fontWeight: FontWeight.w400,
+                      //             color: AppColors.white,
+                      //           ),
+                      // ),
+                      // const SizedBox(height: 5),
+                      // Text("THE ULTIMATE HOUSE OF EMIRATI LUXURY".tr,
+                      //     style:
+                      //         Theme.of(context).textTheme.headline1!.copyWith(
+                      //               fontSize: 10,
+                      //               fontWeight: FontWeight.w400,
+                      //               color: AppColors.white.withOpacity(0.5),
+                      //             )),
                       // const SizedBox(height: 60),
                     ],
                   ),
@@ -156,23 +157,23 @@ class _OnBoardViewState extends State<OnBoardView> {
                 //   ),
                 // ),
                 const OnBoardButtons(),
-                Align(
-                  alignment: AlignmentDirectional.topStart,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 27),
-                    child: Text(
-                      'Change location'.tr,
-                      textAlign: TextAlign.start,
-                      style: Theme.of(context)
-                          .textTheme
-                          .displayMedium
-                          ?.copyWith(
-                              color: AppColors.white.withOpacity(0.7),
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                ),
+                // Align(
+                //   alignment: AlignmentDirectional.topStart,
+                //   child: Padding(
+                //     padding: const EdgeInsets.symmetric(horizontal: 27),
+                //     child: Text(
+                //       'Change location'.tr,
+                //       textAlign: TextAlign.start,
+                //       style: Theme.of(context)
+                //           .textTheme
+                //           .displayMedium
+                //           ?.copyWith(
+                //               color: AppColors.white.withOpacity(0.7),
+                //               fontSize: 15,
+                //               fontWeight: FontWeight.w400),
+                //     ),
+                //   ),
+                // ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: Divider(
@@ -203,60 +204,58 @@ class _OnBoardViewState extends State<OnBoardView> {
                             children: [
                               Expanded(
                                   flex: 7,
-                                  child: InkWell(
-                                      onTap: () {
-                                        controller.openselcetCountry();
-                                      },
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Expanded(
-                                            flex: 2,
-                                            child: Container(
-                                                margin:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 13),
-                                                height: 37,
-                                                width: 37,
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(25),
-                                                  child: NetImage(
-                                                    image: controller
-                                                        .selectedCountryFlage,
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                )),
-                                          ),
-                                          Expanded(
-                                            flex: 9,
-                                            child: Text(
-                                              controller.selectedCountry,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .displaySmall!
-                                                  .copyWith(
-                                                      color: AppColors.white
-                                                          .withOpacity(0.7)),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 2,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10),
-                                              child: Icon(
-                                                Icons.keyboard_arrow_up_sharp,
-                                                color: AppColors.white
-                                                    .withOpacity(0.7),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.end,
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Container(
+                                            margin:
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 13),
+                                            height: 37,
+                                            width: 37,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                              child: NetImage(
+                                                image: controller
+                                                    .selectedCountryFlage,
+                                                fit: BoxFit.cover,
                                               ),
-                                            ),
-                                          ),
-                                        ],
-                                      ))),
+                                            )),
+                                      ),
+                                      Expanded(
+                                        flex: 9,
+                                        child: Text(
+                                          controller.selectedCountry,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .displaySmall!
+                                              .copyWith(
+                                                  color: AppColors.white
+                                                      .withOpacity(0.7)),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                      const Expanded(
+                                        flex: 2,
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsets.symmetric(
+                                                  horizontal: 10),
+                                          child: SizedBox()
+
+                                          // Icon(
+                                          //   Icons.keyboard_arrow_up_sharp,
+                                          //   color: AppColors.white
+                                          //       .withOpacity(0.7),
+                                          // ),
+                                        ),
+                                      ),
+                                    ],
+                                  )),
                               // SizedBox(
                               //     height: 30,
                               //     child: VerticalDivider(

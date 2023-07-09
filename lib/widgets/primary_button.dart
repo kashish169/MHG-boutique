@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/widgets/three_bounce_loading.dart';
 import '../constants/app_colors.dart';
 
@@ -13,13 +14,16 @@ class PrimaryButton extends StatelessWidget {
   final bool? reverseColor;
   final double? fontSize;
   final Color? color;
+  final Color? fontColor;
   final bool? isSelcted;
   final double? elevation;
+  final bool isApplePay;
 
   const PrimaryButton({
     super.key,
     required this.title,
     this.isLoading = false,
+    this.isApplePay = false,
     required this.onTap,
     this.height,
     this.width,
@@ -30,6 +34,7 @@ class PrimaryButton extends StatelessWidget {
     this.color,
     this.isSelcted,
     this.elevation,
+    this.fontColor,
   });
 
   @override
@@ -49,20 +54,40 @@ class PrimaryButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(radius ?? 13),
       ),
       onPressed: onTap,
-      child: isLoading
+      child: (isLoading)
           ? const Center(
               child: LoadingThreeBounce(),
             )
-          : Text(
-              title,
-              style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: fontSize,
-                    color: reverseColor == true
-                        ? AppColors.secondary
-                        : AppColors.white,
+          : (isLoading == false && isApplePay == true)
+              ? SizedBox(
+                  width: width,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Pay with ',
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall!
+                            .copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                          height: 40, child: Image.asset(AppAssets.applepay))
+                    ],
                   ),
-              textAlign: TextAlign.center,
-            ),
+                )
+              : Text(
+                  title,
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                        fontSize: fontSize,
+                        color: fontColor ??
+                            (reverseColor == true
+                                ? AppColors.secondary
+                                : AppColors.white),
+                      ),
+                  textAlign: TextAlign.center,
+                ),
     );
   }
 }

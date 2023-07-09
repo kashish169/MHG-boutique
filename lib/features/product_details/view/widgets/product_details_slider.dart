@@ -42,11 +42,12 @@ class ProductDetailsSlider extends StatelessWidget {
         SizedBox(
           height: 430,
           child: Align(
-              alignment: AlignmentDirectional.bottomEnd,
+              alignment: AlignmentDirectional.topEnd,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
+                padding: const EdgeInsets.only(left: 8, right: 8, top: 60),
                 child: FavouriteWidget(
                   from: 'productDetails',
+                  isProductDetails: true,
                   inWishlist: controller.model.inWishlist,
                   itemId: controller.productId,
                   height: 31,
@@ -59,13 +60,13 @@ class ProductDetailsSlider extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
               child: IconButton(
-
-                onPressed: (){
+                onPressed: () {
                   DeepLinkSevice.shareProduct(controller.model.id);
-
                 },
-                icon: Image.asset(AppAssets.upload,
-                height: 30,),
+                icon: Image.asset(
+                  AppAssets.upload,
+                  height: 30,
+                ),
               ),
             )),
       ],

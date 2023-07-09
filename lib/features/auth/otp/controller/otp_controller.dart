@@ -1,10 +1,19 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:mhg/features/auth/verification/controller/verification_controller.dart';
+import 'package:mhg/features/forgot_password/controller/forget_controller.dart';
 
 class OtpController extends GetxController {
   VerificationController verificationController =
       Get.put(VerificationController());
+  ForgetController? forgetController;
+  OtpController(){log(Get.arguments.toString());
+    if(Get.arguments["type"]=="reset") {
+      forgetController = Get.find<ForgetController>();
+    }
+  }
+
   Timer? timer;
   int remainingSeconds = 1;
   RxInt times = 30.obs;
@@ -28,9 +37,18 @@ class OtpController extends GetxController {
   }
 
   void resendCode() {
+
     if (times.value == 0) {
       startTimer(30);
-      verificationController.sendOtpCode();
+
+
+
+      if(verificationController.type=='reset'){
+        forgetController?.forgetPassword();
+      }else{
+        verificationController.sendOtpCode();
+      }
+
     }
   }
 

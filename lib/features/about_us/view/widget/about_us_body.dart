@@ -8,49 +8,15 @@ class AboutUsBody extends StatelessWidget {
   final AboutUsModel aboutUsModel;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Html(
-          data: aboutUsModel.englishtitle1,
-          style: {
-            "body": Style(
-                color: Colors.black,
-                margin: Margins.symmetric(
-                  horizontal: 20,
-                ))
-          },
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Html(
-          data: '', //aboutUsModel.englishdescriotion1
-          style: {
-            "body": Style(
-                color: Colors.black,
-                margin: Margins.symmetric(
-                  horizontal: 20,
-                ))
-          },
-        ),
-        Html(
-          data: aboutUsModel.englishsubTitle ?? '',
-          style: {
-            "body": Style(
-                color: Colors.black,
-                margin: Margins.symmetric(
-                  horizontal: 20,
-                ))
-          },
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: NetImage(image: aboutUsModel.imageLink))
-      ],
+    return Html(
+      data: aboutUsModel.englishdescriotion1 ?? '',
+      style: {
+        "body": Style(
+            color: Colors.black,
+            margin: Margins.symmetric(
+              horizontal: 20,
+            ))
+      },
     );
   }
 }
