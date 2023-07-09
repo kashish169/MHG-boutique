@@ -7,12 +7,10 @@ import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
 import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
-import 'package:mhg/features/mycart/view/widgets/my_cart_card.dart';
-import 'package:mhg/features/myorders/models/order_model.dart';
-import 'package:mhg/features/myorders/view/widgets/order_detail_card.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/success_order/view/widget/confirmation_footer.dart';
 import 'package:mhg/features/success_order/view/widget/success_order_contact_info.dart';
+import 'package:mhg/features/success_order/view/widget/success_order_items.dart';
 import 'package:mhg/features/success_order/view/widget/success_order_payment_method.dart';
 import 'package:mhg/features/success_order/view/widget/success_order_shipping_address.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
@@ -29,7 +27,7 @@ class SuccessOrderView extends StatelessWidget {
   final SucessOrderController controller = Get.find();
   final CheckoutController checkoutController = Get.put(CheckoutController());
   final ProfileController profileController = Get.find<ProfileController>();
-  final MyCartController myCartController  = Get.find<MyCartController>();
+  final MyCartController myCartController = Get.find<MyCartController>();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
@@ -81,28 +79,10 @@ class SuccessOrderView extends StatelessWidget {
                               ],
                             ),
                           ),
-                         Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                     /*  Obx(
-                        () => ListView.separated(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          padding: const EdgeInsets.all(18),
-                          itemCount: myCartController.cartItemsList.length,
-                          itemBuilder: (context, index) {
-                            return MyCartCard(
-                              model: myCartController.cartItemsList[index],
-                              isCheckOut: true,
-                            );
-                          },
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(height: 9);
-                          },
-                        ),
-                      ), */
-                    ],
-                  ),
+                          SuccessOrderItems(
+                            profileController: profileController,
+                            controller: controller,
+                          ),
                           const Divider(),
                           const SuccessOrderContactInformation(),
                           const Divider(),
