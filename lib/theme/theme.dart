@@ -28,19 +28,19 @@ class AppTheme {
         fontSize: 28,
         color: AppColors.label,
         fontWeight: FontWeight.w600,
-        fontFamily: AppFonts.INTER,
+        fontFamily: AppFonts.Century_Gothic,
       ),
       displayMedium: TextStyle(
         fontSize: 20,
         color: AppColors.label,
         fontWeight: FontWeight.w600,
-        fontFamily: AppFonts.INTER,
+        fontFamily: AppFonts.Century_Gothic,
       ),
       displaySmall: TextStyle(
         fontSize: 14,
         color: AppColors.label,
         fontWeight: FontWeight.w400,
-        fontFamily: AppFonts.INTER,
+        fontFamily: AppFonts.Century_Gothic,
       ),
     ),
   );
