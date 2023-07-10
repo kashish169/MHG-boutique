@@ -29,6 +29,7 @@ class ForgetController extends GetxController {
   final GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
   TextEditingController textController = TextEditingController();
   TextEditingController newPassword = TextEditingController();
+  TextEditingController confirmNewPassword = TextEditingController();
   TextEditingController otp = TextEditingController();
   TextEditingController messageController = TextEditingController();
   RxString countryCode = '+971'.obs;
@@ -56,6 +57,19 @@ class ForgetController extends GetxController {
   String? validatePassword(String value) {
     if (value.isEmpty) {
       return 'enter your password';
+    }
+    if (value.length < 6) {
+      return 'password must be 6 characters at least';
+    } else {
+      return null;
+    }
+  }
+  String? validatePasswordConfirmation(String value) {
+    if (value.isEmpty) {
+      return 'enter your password';
+    }
+    if (value!=newPassword.text) {
+      return 'Passwords don\'t match';
     }
     if (value.length < 6) {
       return 'password must be 6 characters at least';
