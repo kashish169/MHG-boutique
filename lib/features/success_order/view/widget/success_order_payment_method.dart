@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
-import 'package:mhg/features/checkout/models/user_payment_methods_model.dart';
 
 class SuccessOrderPaymentMethod extends StatelessWidget {
   CheckoutController controller;
 
-   SuccessOrderPaymentMethod({
+  SuccessOrderPaymentMethod({
     super.key,
     required this.controller,
-   
   });
 
   @override

@@ -9,6 +9,7 @@ class NetImage extends StatelessWidget {
   final BoxFit? fit;
   final Widget? placeHolder;
   final Color? color;
+  final bool isProductCard;
 
   const NetImage({
     super.key,
@@ -18,6 +19,7 @@ class NetImage extends StatelessWidget {
     this.fit,
     this.placeHolder,
     this.color,
+    this.isProductCard = false,
   });
 
   @override
@@ -25,7 +27,7 @@ class NetImage extends StatelessWidget {
     return Builder(builder: (context) {
       if (image == null) {
         return ClipRRect(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(isProductCard == false ? 12 : 0),
           child: Image.asset(
             AppAssets.loadingHolder,
             fit: BoxFit.cover,
@@ -43,7 +45,8 @@ class NetImage extends StatelessWidget {
           placeholder: (context, url) =>
               placeHolder ??
               ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius:
+                    BorderRadius.circular(isProductCard == false ? 12 : 0),
                 child: Image.asset(
                   AppAssets.logo,
                   fit: BoxFit.contain,

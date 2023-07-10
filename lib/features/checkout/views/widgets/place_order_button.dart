@@ -9,7 +9,7 @@ class PlaceOrderButton extends StatelessWidget {
   final String title;
   final double? width;
   final bool hasIcon;
-  final Function onPress;
+  final VoidCallback onPress;
   final bool isLoading;
   final Color? color;
   PlaceOrderButton({
@@ -29,12 +29,12 @@ class PlaceOrderButton extends StatelessWidget {
         alignment: Alignment.centerRight,
         children: [
           PrimaryButton(
-            color: color??AppColors.secondary,
+            color: color ?? AppColors.secondary,
             height: 44,
             width: width,
             title: title,
             isLoading: isLoading,
-            onTap: () => onPress(),
+            onTap: onPress,
           ),
           hasIcon
               ? Padding(

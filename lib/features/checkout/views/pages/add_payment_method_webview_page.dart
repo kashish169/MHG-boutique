@@ -5,6 +5,7 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/loading_widget.dart';
+import 'package:mhg/widgets/primary_button.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class AddPaymentMethodWebViewPage extends StatefulWidget {
@@ -12,12 +13,16 @@ class AddPaymentMethodWebViewPage extends StatefulWidget {
   final String? title;
   final String? url;
   final bool is3dAUth;
+  final bool? isAddCard;
+  final bool? isProfile;
 
   const AddPaymentMethodWebViewPage({
     super.key,
     this.title,
     this.url,
     this.is3dAUth = false,
+    this.isAddCard = false,
+    this.isProfile = false,
   });
 
   @override
@@ -29,6 +34,7 @@ class _AddPaymentMethodWebViewPageState
     extends State<AddPaymentMethodWebViewPage> {
   final CheckoutController checkoutController = Get.find<CheckoutController>();
   late final WebViewController webViewController;
+  bool isAddedSuccessful = false;
 
   @override
   void initState() {
@@ -46,11 +52,18 @@ class _AddPaymentMethodWebViewPageState
           onPageFinished: (url) async {
             checkoutController.loadingPercentage(100);
             log("REDIRECT URL $url");
+
             if (widget.is3dAUth == true) {
               if (url.contains("thank-you")) {
                 Get.back(result: true);
               }
             } else {
+              if (widget.isAddCard == true) {
+                if (url.contains("Thank")) {
+                  isAddedSuccessful = true;
+                  if (mounted) setState(() {});
+                }
+              }
               checkoutController.getUserPaymentMethods();
             }
           },
@@ -70,22 +83,42 @@ class _AddPaymentMethodWebViewPageState
         context,
         title: widget.title ?? 'Add Payment Method',
       ),
-      body: widget.url == null
-          ? Center(
-              child: Text(
-                "INVALID URL",
-                style: Theme.of(context).textTheme.displayMedium,
+      body: SafeArea(
+        child: Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            widget.url == null
+                ? Center(
+                    child: Text(
+                      "INVALID URL",
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
+                  )
+                : Obx(() => SizedBox(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      child: checkoutController.loadingPercentage.value != 100
+                          ? const LoadingWidget()
+                          : WebViewWidget(
+                              controller: webViewController,
+                            ),
+                    )),
+            Visibility(
+              visible: isAddedSuccessful,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: PrimaryButton(
+                    width: 220,
+                    height: 45,
+                    title: widget.isProfile == true ? "Done" : "Return to Cart",
+                    onTap: () {
+                      Get.back();
+                    }),
               ),
             )
-          : Obx(() => SizedBox(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: checkoutController.loadingPercentage.value != 100
-                    ? const LoadingWidget()
-                    : WebViewWidget(
-                        controller: webViewController,
-                      ),
-              )),
+          ],
+        ),
+      ),
     );
   }
 }
