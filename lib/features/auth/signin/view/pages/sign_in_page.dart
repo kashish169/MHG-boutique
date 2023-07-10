@@ -34,7 +34,6 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     final controller = Get.find<SignInController>();
 
-<<<<<<< HEAD
     return SafeArea(
       child: Scaffold(
         //resizeToAvoidBottomInset: false,
@@ -79,49 +78,6 @@ class _SignInPageState extends State<SignInPage> {
             );
           },
         ),
-=======
-    return Scaffold(
-      //resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.white,
-      extendBodyBehindAppBar: false,
-      appBar: controller.isGuest.isFalse
-          ? AppBar(
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-            )
-          : AppBar(
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              leading: const ArrowBack(),
-            ),
-      body: GetX<SignInController>(
-        builder: (controller) {
-          return SingleChildScrollView(
-            child: Form(
-              key: controller.formKey,
-              child: ModalProgressHUD(
-                  inAsyncCall: controller.isLoading.value,
-                  child: Column(
-                    children: [
-                      Text(
-                        "Login".tr,
-                        style: Theme.of(context)
-                            .textTheme
-                            .displayMedium
-                            ?.copyWith(color: Colors.black, fontSize: 22),
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      LogMethodButton(),
-                      SignInForm(),
-                      BottomSignIn()
-                    ],
-                  )),
-            ),
-          );
-        },
->>>>>>> origin/a.nezam
       ),
     );
   }

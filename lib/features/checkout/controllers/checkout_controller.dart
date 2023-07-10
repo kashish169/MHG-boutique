@@ -354,6 +354,7 @@ class CheckoutController extends GetxController {
           return;
         }
       }
+      print(paymentMethodValue.value);
       String objectData = orderModelToJson(
         OrderModel(
             billingName: userName,
