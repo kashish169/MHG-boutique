@@ -75,4 +75,5 @@ class AppAssets {
   static String scanbackground = "assets/images/scanbackground.png";
   static String sendPoints = "assets/icons/send-points.png";
   static String orderSuccess = "assets/icons/conf.gif";
+  static String chachLoadImage = "assets/icons/Favi Icon.png";
 }
