@@ -124,26 +124,26 @@ class PersonalInformation extends StatelessWidget {
                                         isEnableToEdit:
                                             controller.enableEditOnZipCode,
                                       ),
-                                      Column(
+                                      const Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          const SizedBox(
+                                          SizedBox(
                                             height: 20,
                                           ),
-                                          Text(
-                                            "Country",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .displaySmall!
-                                                .copyWith(
-                                                    fontSize: 16,
-                                                    color:
-                                                        AppColors.lightGray2),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
+                                          // Text(
+                                          //   "Country",
+                                          //   style: Theme.of(context)
+                                          //       .textTheme
+                                          //       .displaySmall!
+                                          //       .copyWith(
+                                          //           fontSize: 16,
+                                          //           color:
+                                          //               AppColors.lightGray2),
+                                          // ),
+                                          // const SizedBox(
+                                          //   height: 10,
+                                          // ),
                                           // DropdownButtonHideUnderline(
                                           //   child: DropdownButton2<String>(
                                           //     isExpanded: true,
