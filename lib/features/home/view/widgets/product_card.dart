@@ -63,8 +63,8 @@ class ProductCard extends StatelessWidget {
         margin: const EdgeInsetsDirectional.only(end: 12),
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius:
-              const BorderRadius.vertical(bottom: Radius.circular(20)),
+          // borderRadius:
+          //     const BorderRadius.vertical(bottom: Radius.circular(20)),
           boxShadow: AppColors.shadow(0.2),
         ),
         child: Stack(
@@ -73,6 +73,7 @@ class ProductCard extends StatelessWidget {
             Column(
               children: [
                 NetImage(
+                  isProductCard: true,
                   image: isWishList == false
                       ? model!.primaryImageLink
                       : wishListModel!.options.imageLink,
