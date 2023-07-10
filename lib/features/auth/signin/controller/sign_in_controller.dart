@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:country_picker/country_picker.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mhg/app/app.dart';
@@ -185,5 +186,13 @@ class SignInController extends GetxController {
     log("+${country.phoneCode}");
     log(countryFlag.value);
     update();
+  }
+
+  @override
+  void onInit() {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.dark,
+    );
+    super.onInit();
   }
 }

@@ -124,7 +124,7 @@ class PersonalInformation extends StatelessWidget {
                                         isEnableToEdit:
                                             controller.enableEditOnZipCode,
                                       ),
-                                      const Column(
+                                      Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
