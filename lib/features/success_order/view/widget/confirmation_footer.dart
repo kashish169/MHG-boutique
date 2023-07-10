@@ -44,20 +44,7 @@ class ConfirmationFooter extends StatelessWidget {
                             ),
                       ),
                     ),
-                    FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        'Tax',
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall
-                            ?.copyWith(
-                              height: 1.4,
-                              fontSize: 16,
-                              color: AppColors.label,
-                            ),
-                      ),
-                    ),
+
                     Visibility(
                       visible: checkoutController
                                   .orderPriceModal
@@ -116,6 +103,25 @@ class ConfirmationFooter extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                     ),
+                    Visibility(
+                      visible: checkoutController
+                          .orderPriceModal.data?.tax ==
+                          0
+                          ? false
+                          : true,
+
+                      child: FittedBox(
+                        child: Text(
+                          'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} in texas',
+                          style:
+                          Theme.of(context).textTheme.displaySmall?.copyWith(
+                            height: 1.4,
+                            color: AppColors.dBlack,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -139,19 +145,7 @@ class ConfirmationFooter extends StatelessWidget {
                           ),
                     ),
                   ),
-                  FittedBox(
-                    child: Text(
-                      '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax}',
-                      style: Theme.of(context)
-                          .textTheme
-                          .displaySmall
-                          ?.copyWith(
-                            height: 1.4,
-                            color: AppColors.mediumLabel,
-                            fontSize: 16,
-                          ),
-                    ),
-                  ),
+
                   Visibility(
                     visible: checkoutController
                                 .orderPriceModal
