@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
 import 'package:mhg/features/notification_permission/view/pages/norification_permission.dart';
@@ -23,6 +24,9 @@ class SplashController extends GetxController {
   @override
   void onInit() {
     initialRoute();
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.light,
+    );
     super.onInit();
   }
 }

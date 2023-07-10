@@ -162,7 +162,7 @@ class CheckoutController extends GetxController {
         .replaceRange(0, 2, "");
   }
 
-  Future<void> addPaymentMethod() async {
+  Future<void> addPaymentMethod({bool isProfile = false}) async {
     try {
       Get.dialog(
         const LoadingWidget(),
@@ -187,6 +187,8 @@ class CheckoutController extends GetxController {
               Get.to(
                 () => AddPaymentMethodWebViewPage(
                   url: addPaymentMethodsModel.data!.link!,
+                  isAddCard: true,
+                  isProfile: isProfile,
                 ),
               );
             }
@@ -404,7 +406,9 @@ class CheckoutController extends GetxController {
             }
             var results = await Get.to(
               () => AddPaymentMethodWebViewPage(
-                title: "3DS Authentication",
+                title: paymentMethodValue.value == 'Apple Pay'
+                    ? 'Apple Pay'
+                    : "3DS Authentication",
                 url: url,
                 is3dAUth: true,
               ),

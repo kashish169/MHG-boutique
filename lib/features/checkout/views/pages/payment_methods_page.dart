@@ -82,7 +82,10 @@ class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
                                   title: 'Add Card',
                                   width: 300,
                                   hasIcon: false,
-                                  onPress: checkoutController.addPaymentMethod,
+                                  onPress: () =>
+                                      checkoutController.addPaymentMethod(
+                                    isProfile: widget.isProfile,
+                                  ),
                                 ),
                               ),
                             )
