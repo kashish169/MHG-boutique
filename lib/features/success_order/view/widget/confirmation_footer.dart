@@ -17,12 +17,12 @@ class ConfirmationFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-         padding: const EdgeInsets.all(10),
+          padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.1),
       color: AppColors.white2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 15),
+          
           Row(
             children: [
               Expanded(
@@ -204,7 +204,7 @@ class ConfirmationFooter extends StatelessWidget {
                           .displayMedium
                           ?.copyWith(
                             height: 1.4,
-                            color: AppColors.dBlack,
+                            color: AppColors.mediumLabel,
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),

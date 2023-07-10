@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
-import 'package:mhg/features/checkout/models/user_payment_methods_model.dart';
 
 class SuccessOrderPaymentMethod extends StatelessWidget {
   CheckoutController controller;
@@ -15,7 +14,7 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.1),
       child: Row(
         children: [
           Expanded(
@@ -45,8 +44,8 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                     ),
-                    /* Text(
-                      'ending ${controller.getCodedNumber(model.cardNumber)}',
+                  controller.paymentMethodValue.value != 'COD'? Text(
+                      'ending ${controller.getCodedNumber(controller.userSelectedCardModel.value!.cardNumber)}',
                       maxLines: null,
                       overflow: TextOverflow.fade,
                       softWrap: true,
@@ -55,7 +54,7 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
                             color: AppColors.mediumLabel,
                             fontWeight: FontWeight.bold,
                           ),
-                    ) */
+                    ) :const SizedBox.shrink()
                   ],
                 ),
               ],

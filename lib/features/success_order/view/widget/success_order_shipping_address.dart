@@ -19,66 +19,72 @@ class SuccessOrderShippingAddress extends StatelessWidget {
         );
       }
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.1),
         child: Row(
           children: [
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 4.0),
-                    child: Text(
-                      'Shipping Address',
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontSize: 16,
-                          color: AppColors.label,
-                          fontWeight: FontWeight.bold),
-                    ),
+                  Text(
+                    'Shipping Address',
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                        fontSize: 16,
+                        color: AppColors.label,
+                        fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                 const SizedBox(height: 10,),
                   Text(
                     controller.model.value!.name,
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontSize: 16,
-                          color: AppColors.mediumLabel,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: 16,
+                                color: AppColors.mediumLabel,
+                              ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 3),
-                    child: Text(
-                      controller.model.value!.street!,
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 16,
-                            color: AppColors.mediumLabel,
-                          ),
-                    ),
+                  Text(
+                    controller.model.value!.street!,
+                   style: Theme.of(context)
+                            .textTheme
+                            .displaySmall
+                            ?.copyWith(
+                              fontSize: 16,
+                              color: AppColors.mediumLabel,
+                            ),
                   ),
                   Text(
                     controller.model.value!.state!,
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontSize: 16,
-                          color: AppColors.mediumLabel,
-                        ),
+                    style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: 16,
+                                color: AppColors.mediumLabel,
+                              ),
                   ),
                   Text(
                     controller.model.value!.zipCode!,
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontSize: 16,
-                          color: AppColors.mediumLabel,
-                        ),
+                     style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: 16,
+                                color: AppColors.mediumLabel,
+                              ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 3),
                     child: Text(
                       controller.model.value!.country?.name ?? '',
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 16,
-                            color: AppColors.mediumLabel,
-                          ),
+                       style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: 16,
+                                color: AppColors.mediumLabel,
+                              ),
                     ),
                   ),
                 ],
