@@ -98,8 +98,8 @@ class PersonalInformation extends StatelessWidget {
                                             controller.enableEditOnAddress,
                                       ),
                                       InformationForm(
-                                        header: 'State',
-                                        hint: 'Add your state',
+                                        header: 'City',
+                                        hint: 'Add your city',
                                         validator: (val) {
                                           if (val!.isEmpty) {
                                             return null;
