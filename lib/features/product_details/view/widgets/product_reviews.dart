@@ -47,15 +47,15 @@ class ProductDetailsReview extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                   Visibility(
-                     visible:controller.model.avarageRate!=0,
-                     child:  Text(
-                     "${controller.model.avarageRate}",
-                     style: Theme.of(context)
-                         .textTheme
-                         .displayLarge!
-                         .copyWith(color: AppColors.dBlack, fontSize: 44),
-                   ),),
+                   // Visibility(
+                   //   visible:controller.model.avarageRate!=0,
+                   //   child:  Text(
+                   //   "${controller.model.avarageRate}",
+                   //   style: Theme.of(context)
+                   //       .textTheme
+                   //       .displayLarge!
+                   //       .copyWith(color: AppColors.dBlack, fontSize: 44),
+                   // ),),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

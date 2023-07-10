@@ -48,7 +48,7 @@ class NetImage extends StatelessWidget {
                 borderRadius:
                     BorderRadius.circular(isProductCard == false ? 12 : 0),
                 child: Image.asset(
-                  AppAssets.logo,
+                  AppAssets.fav,
                   fit: BoxFit.contain,
                 ),
               ),
