@@ -79,8 +79,9 @@ class PersonalInformation extends StatelessWidget {
                                           controller.enableNumber();
                                         },
                                         validator: (val) {
-                                          return AppHelper.validation(
-                                              val!, 9, 9, 'Number');
+                                          return AppHelper.validatePhone(
+                                            val!,
+                                          );
                                         },
                                         textController: controller.phone,
                                         inInputNumber: true,

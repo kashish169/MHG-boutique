@@ -28,22 +28,20 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   void initState() {
     var args = Get.arguments;
-    final SignUpController controller=Get.find();
-    bool firstFlag=args['isFirstFlag'];
-    controller.countryCode = args['country_code']??'+971';
-    if(firstFlag){
-
+    final SignUpController controller = Get.find();
+    bool firstFlag = args['isFirstFlag'];
+    controller.countryCode = args['country_code'] ?? '+971';
+    if (firstFlag) {
       controller.firstCountryFlag.value = args["flag"] ?? '';
-    }else{
-      controller.firstCountryFlag.value='';
-      controller.countryFlag=args["flag"] ??AppAssets.flag;
+    } else {
+      controller.firstCountryFlag.value = '';
+      controller.countryFlag = args["flag"] ?? AppAssets.flag;
     }
 
-    setState(() {
-
-    });
+    setState(() {});
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,8 +137,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 obscure: false,
                                 controller: controller.phone,
                                 validator: (val) {
-                                  return AppHelper.validation(
-                                      val!, 9, 9, 'Number');
+                                  return AppHelper.validatePhone(val!);
                                 },
                               ),
                             ),
@@ -185,7 +182,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                 title: 'Sign Up'.tr,
                                 height: 50,
                                 width: double.infinity,
-
                                 onTap: () {
                                   var formState =
                                       controller.formKey.currentState;
@@ -215,12 +211,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ),
                             ),
                             MaterialButton(
-
                               padding: EdgeInsets.zero,
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
                               onPressed: () async {
-                               await launchUrl(Uri.parse('https://www.mhgboutique.com/pages/terms-conditions'));
+                                await launchUrl(Uri.parse(
+                                    'https://www.mhgboutique.com/pages/terms-conditions'));
                               },
                               child: Text("Terms & conditions".tr,
                                   style: Theme.of(context)

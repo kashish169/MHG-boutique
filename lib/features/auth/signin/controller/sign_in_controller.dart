@@ -51,20 +51,23 @@ class SignInController extends GetxController {
     isVisable.value = !isVisable.value;
   }
 
-  String? validatePhone(String value) {
-    if (GetUtils.isPhoneNumber(countryCode.value + value) == false) {
-      return 'enter valid phone number';
-    } else {
-      return null;
-    }
-  }
+  // String? validatePhone(String value) {
+  //   bool validate =
+  //       RegExp(r'^(?:\+971|00971|0)?(?:50|51|52|55|56|2|3|4|6|7|9)\d{7}$')
+  //           .hasMatch(value);
+  //   if (validate == false) {
+  //     return 'Please enter a valid phone number';
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   String? validatePassword(String value) {
     if (value.isEmpty) {
-      return 'enter your password';
+      return 'Password must be at least 6 characters long and contain a combination of letters, numbers, and special characters';
     }
     if (value.length < 6) {
-      return 'password must be 6 characters at least';
+      return 'Password must be at least 6 characters long and contain a combination of letters, numbers,and special characters';
     } else {
       return null;
     }
