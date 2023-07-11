@@ -31,6 +31,7 @@ class Menu {
   String url;
   int status;
   int? categoryId;
+  int? productId;
   int? parentId;
   DateTime createdAt;
   DateTime updatedAt;
@@ -47,6 +48,7 @@ class Menu {
     required this.url,
     required this.status,
     this.categoryId,
+    this.productId,
     this.parentId,
     required this.createdAt,
     required this.updatedAt,
@@ -59,6 +61,7 @@ class Menu {
     image: json["image"],
     enName: json["en_name"],
     frName: json["fr_name"],
+    productId: json["product_id"],
     slug: json["slug"],
     isStatic: json["is_static"],
     url: json["url"],
@@ -76,6 +79,7 @@ class Menu {
     "image": image,
     "en_name": enName,
     "fr_name": frName,
+    "product_id": productId,
     "slug": slug,
     "is_static": isStatic,
     "url": url,

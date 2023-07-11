@@ -407,7 +407,9 @@ class CheckoutController extends GetxController {
             }
             var results = await Get.to(
               () => AddPaymentMethodWebViewPage(
-                title: "3DS Authentication",
+                title: paymentMethodValue.value == 'Apple Pay'
+                    ? 'Apple Pay'
+                    : "3DS Authentication",
                 url: url,
                 is3dAUth: true,
               ),

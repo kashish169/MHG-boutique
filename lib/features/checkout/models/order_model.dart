@@ -57,7 +57,7 @@ class OrderModel {
       "redeem": redeem,
       "payment_method": paymentMethod,
     };
-    if (paymentMethod == "TAP") {
+    if (paymentMethod == "TAP" && paymentPlatForm != 'apple') {
       body.putIfAbsent(
         "online_payment_method_id",
         () => onlinePaymentMethodId,
