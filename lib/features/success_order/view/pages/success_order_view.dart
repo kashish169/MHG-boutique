@@ -87,7 +87,7 @@ class SuccessOrderView extends StatelessWidget {
                           const SuccessOrderShippingAddress(),
                           const Divider(),
                           SuccessOrderPaymentMethod(
-                            controller: checkoutController,
+                            controller: controller,
                           ),
                           const Divider(),
                           ConfirmationFooter(

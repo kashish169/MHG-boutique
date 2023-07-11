@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
+import 'package:mhg/features/myorders/controller/my_orders_controller.dart';
+import 'package:mhg/features/success_order/controller/success_order_controller.dart';
 
 class SuccessOrderPaymentMethod extends StatelessWidget {
-  CheckoutController controller;
+  SucessOrderController controller;
 
   SuccessOrderPaymentMethod({
     super.key,
@@ -12,6 +15,7 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
@@ -36,7 +40,7 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      controller.paymentMethodValue.value,
+                      '${controller.orderModel.paymentMethod} ${controller.orderModel.tapPaymentMethod?.cardType??''}',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                             fontSize: 14,
                             color: AppColors.mediumLabel,
