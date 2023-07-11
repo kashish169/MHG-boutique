@@ -45,14 +45,7 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ):
-              Text(
-                controller.orderModel.paymentMethod,
-                style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      fontSize: 14,
-                      color: AppColors.mediumLabel,
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
+              SizedBox()
               /* Text(
                       'ending ${controller.getCodedNumber(model.cardNumber)}',
                       maxLines: null,
