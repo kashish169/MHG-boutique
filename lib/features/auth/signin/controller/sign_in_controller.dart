@@ -64,10 +64,10 @@ class SignInController extends GetxController {
 
   String? validatePassword(String value) {
     if (value.isEmpty) {
-      return 'Password must be at least 6 characters long and contain a combination of letters, numbers, and special characters';
+      return 'Password must be at least 6 characters long';
     }
     if (value.length < 6) {
-      return 'Password must be at least 6 characters long and contain a combination of letters, numbers,and special characters';
+      return 'Password must be at least 6 characters long';
     } else {
       return null;
     }

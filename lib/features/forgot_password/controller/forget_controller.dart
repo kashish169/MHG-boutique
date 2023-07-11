@@ -60,7 +60,7 @@ class ForgetController extends GetxController {
       return 'Please fill out this field';
     }
     if (value.length < 6) {
-      return 'Password must be at least 6 characters long and contain a combination of letters, numbers, and special characters';
+      return 'Password must be at least 6 characters long';
     } else {
       return null;
     }
@@ -74,7 +74,7 @@ class ForgetController extends GetxController {
       return 'Passwords do not match. Please try again';
     }
     if (value.length < 6) {
-      return 'Password must be at least 6 characters long and contain a combination of letters, numbers, and special characters';
+      return 'Password must be at least 6 characters long';
     } else {
       return null;
     }
