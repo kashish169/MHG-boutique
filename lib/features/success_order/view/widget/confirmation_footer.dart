@@ -107,7 +107,7 @@ class ConfirmationFooter extends StatelessWidget {
                       visible: checkoutController
                           .orderPriceModal.data?.tax ==
                           0
-                          ? true
+                          ? false
                           : true,
 
                       child: FittedBox(
