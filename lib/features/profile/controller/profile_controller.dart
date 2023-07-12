@@ -203,8 +203,7 @@ class ProfileController extends GetxController {
  launchMyUrl(String url) async {
 
    if(await canLaunchUrl(Uri.parse(url))){
-
-       await launchUrl(Uri.parse(url));
+     await launchUrl(Uri.parse(url));
 
 
    }else {
