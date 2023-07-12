@@ -17,7 +17,8 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
   Widget build(BuildContext context) {
     final checkoutController = Get.find<CheckoutController>();
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width * 0.1),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -4,23 +4,22 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/success_order/controller/success_order_controller.dart';
 
 class SuccessOrderContactInformation extends StatelessWidget {
-  const SuccessOrderContactInformation({
+  SucessOrderController controller;
+   SuccessOrderContactInformation({
     super.key,
+    required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
-    final SucessOrderController sucessOrderController =
-        Get.find<SucessOrderController>();
-    return Obx(
-      () => Padding(
+    return Padding(
         padding: EdgeInsets.symmetric(
             horizontal: MediaQuery.of(context).size.width * 0.1),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Contact Information',
+              'Contact Information'.tr,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   fontSize: 16,
                   color: AppColors.label,
@@ -30,21 +29,21 @@ class SuccessOrderContactInformation extends StatelessWidget {
               height: 10,
             ),
             Text(
-              sucessOrderController.orderModel.user.name,
+              controller.orderModel.user.name,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 16,
                     color: AppColors.mediumLabel,
                   ),
             ),
             Text(
-              sucessOrderController.orderModel.user.email,
+              controller.orderModel.user.email,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 16,
                     color: AppColors.mediumLabel,
                   ),
             ),
             Text(
-              sucessOrderController.orderModel.user.number,
+              controller.orderModel.user.number,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 16,
                     color: AppColors.mediumLabel,
@@ -52,7 +51,6 @@ class SuccessOrderContactInformation extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

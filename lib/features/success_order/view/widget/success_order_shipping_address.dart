@@ -9,7 +9,8 @@ class SuccessOrderShippingAddress extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<SucessOrderController>();
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width * 0.1),
       child: Row(
         children: [
           Expanded(
