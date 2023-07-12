@@ -28,6 +28,8 @@ class SuccessOrderView extends StatelessWidget {
   final CheckoutController checkoutController = Get.put(CheckoutController());
   final ProfileController profileController = Get.find<ProfileController>();
   final MyCartController myCartController = Get.find<MyCartController>();
+  final SucessOrderController sucessOrderController =
+        Get.put(SucessOrderController());
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
@@ -86,7 +88,9 @@ class SuccessOrderView extends StatelessWidget {
                           const SizedBox(
                             height: 15,
                           ),
-                          const SuccessOrderContactInformation(),
+                           SuccessOrderContactInformation(
+                            controller: sucessOrderController,
+                          ),
                           const SizedBox(
                             height: 15,
                           ),
