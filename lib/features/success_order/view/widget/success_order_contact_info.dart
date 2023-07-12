@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/retry_button.dart';
+import 'package:mhg/features/success_order/controller/success_order_controller.dart';
 
 class SuccessOrderContactInformation extends StatelessWidget {
   const SuccessOrderContactInformation({
@@ -11,16 +11,17 @@ class SuccessOrderContactInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetX<ProfileController>(builder: (_) {
-      if (_.isError.isTrue) {
+    return GetX<SucessOrderController>(builder: (controller) {
+      if (controller.isError.isTrue) {
         return RetryButton(
           onTap: () {
-            _.getProfileInfo();
+            controller.getMyOrders();
           },
         );
       }
       return Padding(
-        padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.1),
+        padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width * 0.1),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -31,38 +32,29 @@ class SuccessOrderContactInformation extends StatelessWidget {
                   color: AppColors.label,
                   fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 10,),
-            Text(
-              _.model.value!.name,
-              style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                fontSize: 16,
-                                color: AppColors.mediumLabel,
-                              ),
+            const SizedBox(
+              height: 10,
             ),
             Text(
-              _.model.value!.email
-                  ,
-              style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                fontSize: 16,
-                                color: AppColors.mediumLabel,
-                              ),
+              controller.orderModel.user.name,
+              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    fontSize: 16,
+                    color: AppColors.mediumLabel,
+                  ),
             ),
-             Text(
-              _.model.value!.number.toString()
-                  ,
-             style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                fontSize: 16,
-                                color: AppColors.mediumLabel,
-                              ),
+            Text(
+             controller.orderModel.user.email,
+              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    fontSize: 16,
+                    color: AppColors.mediumLabel,
+                  ),
+            ),
+            Text(
+              controller.orderModel.user.number,
+              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    fontSize: 16,
+                    color: AppColors.mediumLabel,
+                  ),
             ),
           ],
         ),
