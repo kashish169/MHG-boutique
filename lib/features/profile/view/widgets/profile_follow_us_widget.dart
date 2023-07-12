@@ -31,7 +31,9 @@ class ProfileFollowUsWidget extends StatelessWidget {
           children: [
             IconButton(
               onPressed: (){
-                  controller.launchMyUrl('http://www.facebook.com/mhgboutique.ae');
+
+                controller.launchFacebookPage();
+
               },
               icon: Image.asset(
                 AppAssets.facebook,

@@ -222,6 +222,26 @@ class ProfileController extends GetxController {
 
  }
  }
+ launchFacebookPage() async {
+   String fbProtocolUrl='';
+   if (Platform.isIOS) {
+     fbProtocolUrl = 'fb://profile/426595437908808';
+   } else {
+     fbProtocolUrl = 'fb://page/426595437908808';
+   }
+
+   String fallbackUrl = 'http://www.facebook.com/mhgboutique.ae';
+
+   try {
+     bool launched = await launchUrl(Uri.parse(fbProtocolUrl),mode: LaunchMode.externalApplication);
+
+     if (!launched) {
+       await launchMyUrl('http://www.facebook.com/mhgboutique.ae');
+     }
+   } catch (e) {
+     throw 'Could not launch ';
+   }
+ }
 
 
   @override
