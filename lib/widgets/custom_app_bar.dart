@@ -11,12 +11,12 @@ AppBar customAppBar(
     systemOverlayStyle: SystemUiOverlayStyle.light,
     leading: IconButton(
       onPressed: () {
-        Get.back();
+       title != 'Confirmation'? Get.back() : Get.offNamedUntil('/main_wrapper', (route) => false);
       },
-      icon: title != 'Confirmation'? Icon(
+      icon:  Icon(
         Icons.arrow_back_ios,
         color: AppColors.white,
-      ) : const SizedBox.shrink(),
+      ) ,
     ),
     backgroundColor: AppColors.primary,
     title: Text(title,

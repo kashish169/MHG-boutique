@@ -20,7 +20,7 @@ class SuccessOrderContactInformation extends StatelessWidget {
         );
       }
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.1),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -34,26 +34,35 @@ class SuccessOrderContactInformation extends StatelessWidget {
             const SizedBox(height: 10,),
             Text(
               _.model.value!.name,
-              style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 16,
-                    color: AppColors.mediumLabel,
-                  ),
+              style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: 16,
+                                color: AppColors.mediumLabel,
+                              ),
             ),
             Text(
               _.model.value!.email
                   ,
-              style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 16,
-                    color: AppColors.mediumLabel,
-                  ),
+              style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: 16,
+                                color: AppColors.mediumLabel,
+                              ),
             ),
              Text(
               _.model.value!.number.toString()
                   ,
-              style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 16,
-                    color: AppColors.mediumLabel,
-                  ),
+             style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: 16,
+                                color: AppColors.mediumLabel,
+                              ),
             ),
           ],
         ),
