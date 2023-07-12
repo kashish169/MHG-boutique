@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mhg/features/profile/controller/profile_controller.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../../widgets/divider_widget.dart';
 
@@ -7,6 +9,7 @@ class ProfileFollowUsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller=Get.find<ProfileController>();
     return Column(
       children: [
         const DividerWidget(),
@@ -26,23 +29,34 @@ class ProfileFollowUsWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              AppAssets.facebook,
-              height: 30,
+            IconButton(
+              onPressed: (){
+                  controller.launchMyUrl('http://www.facebook.com/mhgboutique.ae');
+              },
+              icon: Image.asset(
+                AppAssets.facebook,
+                height: 30,
+              ),
             ),
-            const SizedBox(
-              width: 10,
+
+            IconButton(
+              onPressed: (){
+                controller.launchMyUrl('https://www.instagram.com/mhgboutique');
+              },
+              icon: Image.asset(
+                AppAssets.insta,
+                height: 30,
+              ),
             ),
-            Image.asset(
-              AppAssets.insta,
-              height: 30,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Image.asset(
-              AppAssets.twitter,
-              height: 30,
+
+            IconButton(
+              onPressed: (){
+                controller.launchMyUrl('https://www.twitter.com/mhgboutique');
+              },
+              icon: Image.asset(
+                AppAssets.twitter,
+                height: 30,
+              ),
             ),
             const SizedBox(
               width: 10,

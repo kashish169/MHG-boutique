@@ -77,4 +77,5 @@ class AppAssets {
   static String sendPoints = "assets/icons/send-points.png";
   static String orderSuccess = "assets/icons/conf.gif";
   static String chachLoadImage = "assets/icons/Favi Icon.png";
+  static String whatsApp="assets/icons/whatsApp.png";
 }
