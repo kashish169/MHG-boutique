@@ -48,8 +48,8 @@ class NetImage extends StatelessWidget {
                 borderRadius:
                     BorderRadius.circular(isProductCard == false ? 12 : 0),
                 child: Image.asset(
-                  AppAssets.logo,
-                  fit: BoxFit.contain,
+                  AppAssets.chachLoadImage,
+                  // fit: BoxFit.contain,
                 ),
               ),
           errorWidget: (context, url, error) =>

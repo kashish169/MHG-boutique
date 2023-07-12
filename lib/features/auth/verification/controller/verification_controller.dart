@@ -44,6 +44,7 @@ class VerificationController extends GetxController {
   RxString countryCode = '+971'.obs;
   RxString countryFlag = AppAssets.flag.obs;
   RxString firstCountryFlag = ''.obs;
+  final formKey = GlobalKey<FormState>();
 
   @override
   void onInit() {
@@ -144,20 +145,23 @@ class VerificationController extends GetxController {
     //   },
     // );
   }
+
   Future<void> verifyResetPasswordOtp(String code) async {
     String phoneNumber = countryCode.value + phone.text.trim();
     isLoading(true);
     log(email.text);
-    Map data=email.text.isNotEmpty?{
-      "email":email.text,
-      "otp":code,
-    }:{
-      "phone_number":phoneNumber,
-      "otp":code,
-    };
+    Map data = email.text.isNotEmpty
+        ? {
+            "email": email.text,
+            "otp": code,
+          }
+        : {
+            "phone_number": phoneNumber,
+            "otp": code,
+          };
     log(data.toString());
-    Either<Failure, ApiResponse> results = await verificationRepo.verifyOtp(
-        body: jsonEncode(data));
+    Either<Failure, ApiResponse> results =
+        await verificationRepo.verifyOtp(body: jsonEncode(data));
 
     isLoading(false);
 
@@ -170,7 +174,7 @@ class VerificationController extends GetxController {
       bool success = r.object['isSuccessful'];
       var message = r.object['message'];
       if (success == true) {
-      Get.toNamed(ResetPasswordView.routeName,arguments: code);
+        Get.toNamed(ResetPasswordView.routeName, arguments: code);
       } else {
         AppToasts.errorToast(message);
       }

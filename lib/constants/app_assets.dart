@@ -1,5 +1,6 @@
 class AppAssets {
   static String logo = "assets/images/logo.png";
+  static String fav = "assets/images/fav.png";
   static String logoWhite = "assets/images/Logo-white.png";
   static String splash = "assets/images/splash.jpg";
   static String global = "assets/icons/global.png";
@@ -75,4 +76,5 @@ class AppAssets {
   static String scanbackground = "assets/images/scanbackground.png";
   static String sendPoints = "assets/icons/send-points.png";
   static String orderSuccess = "assets/icons/conf.gif";
+  static String chachLoadImage = "assets/icons/Favi Icon.png";
 }

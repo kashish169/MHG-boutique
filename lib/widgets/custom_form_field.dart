@@ -67,6 +67,7 @@ class CustomFormField extends StatelessWidget {
               color: AppColors.label,
             ),
         decoration: InputDecoration(
+          errorMaxLines: 3,
           suffixIconConstraints:
               const BoxConstraints(minHeight: 15, minWidth: 15),
           contentPadding:

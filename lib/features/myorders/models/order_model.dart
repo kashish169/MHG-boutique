@@ -63,6 +63,7 @@ class MyOrder {
   User user;
   dynamic coupon;
   dynamic store;
+  TapPaymentMethod? tapPaymentMethod;
 
   MyOrder({
     required this.id,
@@ -99,9 +100,11 @@ class MyOrder {
     required this.user,
     this.coupon,
     this.store,
+    this.tapPaymentMethod,
   });
 
   factory MyOrder.fromJson(Map<String, dynamic> json) => MyOrder(
+    tapPaymentMethod: json["tap_payment_method"] == null ? null : TapPaymentMethod.fromJson(json["tap_payment_method"]),
         cancelRequested: json["cancel_requested"],
         returnRequested: json["return_requested"],
         cancelReason: json["cancel_reason"],
@@ -142,6 +145,7 @@ class MyOrder {
       );
 
   Map<String, dynamic> toJson() => {
+    "tap_payment_method": tapPaymentMethod?.toJson(),
         "id": id,
         "Order_Number": orderNumber,
         "order_bill": orderBill,
@@ -395,3 +399,91 @@ class User {
         "invitation_link": invitationLink,
       };
 }
+
+
+
+
+
+
+
+class TapPaymentMethod {
+  int id;
+  int isDefault;
+  String token;
+  String customerId;
+  String cardId;
+  String cardType;
+  String customerName;
+  String customerEmail;
+  String customerPhone;
+  String cardHolderName;
+  String cardNumber;
+  String cardExpMonth;
+  String cardExpYear;
+  String cardCvc;
+  int userId;
+
+  TapPaymentMethod({
+    required this.id,
+    required this.isDefault,
+    required this.token,
+    required this.customerId,
+    required this.cardId,
+    required this.cardType,
+    required this.customerName,
+    required this.customerEmail,
+    required this.customerPhone,
+    required this.cardHolderName,
+    required this.cardNumber,
+    required this.cardExpMonth,
+    required this.cardExpYear,
+    required this.cardCvc,
+    required this.userId,
+  });
+
+  factory TapPaymentMethod.fromJson(Map<String, dynamic> json) => TapPaymentMethod(
+    id: json["id"],
+    isDefault: json["is_default"],
+    token: json["token"],
+    customerId: json["customer_id"],
+    cardId: json["card_id"],
+    cardType: json["card_type"],
+    customerName: json["customer_name"],
+    customerEmail: json["customer_email"],
+    customerPhone: json["customer_phone"],
+    cardHolderName: json["card_holder_name"],
+    cardNumber: json["card_number"],
+    cardExpMonth: json["card_exp_month"],
+    cardExpYear: json["card_exp_year"],
+    cardCvc: json["card_cvc"],
+    userId: json["user_id"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "is_default": isDefault,
+    "token": token,
+    "customer_id": customerId,
+    "card_id": cardId,
+    "card_type": cardType,
+    "customer_name":customerName,
+    "customer_email": customerEmail,
+    "customer_phone": customerPhone,
+    "card_holder_name": cardHolderName,
+    "card_number": cardNumber,
+    "card_exp_month": cardExpMonth,
+    "card_exp_year": cardExpYear,
+    "card_cvc": cardCvc,
+    "user_id": userId,
+  };
+}
+
+
+
+
+
+
+
+
+
+

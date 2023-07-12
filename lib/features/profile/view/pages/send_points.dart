@@ -40,7 +40,9 @@ class SendPointsPage extends StatelessWidget {
               child: CustomFormField(
                 hint: 'Your phone number',
                 inputType: TextInputType.number,
-                validator: (val) => AppHelper.validation(val!, 9, 9, 'Number'),
+                validator: (val) => AppHelper.validatePhone(
+                  val!,
+                ),
                 controller: controller.phoneNumberController,
                 obscure: false,
                 prefixWidget: Padding(

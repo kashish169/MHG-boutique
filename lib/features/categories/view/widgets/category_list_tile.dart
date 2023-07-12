@@ -23,11 +23,11 @@ class CategoryListTile extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (model.categoryId == null && model.allActiveSubMenus.isEmpty) {
-          if(model.id != null){
+          if(model.productId != null){
             Get.toNamed(
               ProductDetailsPage.routeName,
               arguments: {
-                "id": model.id,
+                "id": model.productId,
                 "fromArrival":false,
                 "name":model.enName
               },

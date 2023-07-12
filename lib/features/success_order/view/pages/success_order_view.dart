@@ -60,11 +60,12 @@ class SuccessOrderView extends StatelessWidget {
                                   ),
                                 ),
                                 Positioned(
-                                  top: MediaQuery.of(context).size.height * 0.2,
+                                  top: MediaQuery.of(context).size.height * 0.18,
                                   // left: MediaQuery.of(context).size.width * 0.1,
                                   child: Center(
                                     child: Text(
-                                      "Your order is confirmed!".tr,
+                                      "Your order is confirmed!".tr  + '\n ${controller.orderModel.orderNumber}',
+                                      textAlign: TextAlign.center,
                                       style: Theme.of(context)
                                           .textTheme
                                           .displayMedium
@@ -105,7 +106,7 @@ class SuccessOrderView extends StatelessWidget {
                             height: 15,
                           ),
                           SuccessOrderPaymentMethod(
-                            controller: checkoutController,
+                            controller: controller,
                           ),
                           const SizedBox(
                             height: 15,
