@@ -40,21 +40,19 @@ class SuccessOrderShipningCard extends StatelessWidget {
                     children: [
                       SuccessOrderCustomCardText(
                         title: 'Connection Information',
-                        subTitle: controller.orderModel.value!.userModel.email,
+                        subTitle: controller.orderModel.user.email,
                       ),
                       SuccessOrderCustomShipning(
                         title: 'Shipning Address',
-                        shipningModel:
-                            controller.orderModel.value!.shippingAddress,
+                        shipningModel: controller.orderModel.shippingAddress,
                       ),
                       SuccessOrderCustomCardText(
                         title: 'Shipning Method',
-                        subTitle: controller.orderModel.value!.paymentMethod,
+                        subTitle: controller.orderModel.paymentMethod,
                       ),
                       SuccessOrderCustomShipning(
                         title: 'Biling Address',
-                        shipningModel:
-                            controller.orderModel.value!.billingAddress,
+                        shipningModel: controller.orderModel.billingAddress,
                         isFinalText: true,
                       ),
                     ],

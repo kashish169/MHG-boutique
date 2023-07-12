@@ -9,7 +9,7 @@ class SuccessOrderCustomShipning extends StatelessWidget {
       required this.shipningModel,
       this.isFinalText = false});
   final String title;
-  final ShipningModel shipningModel;
+  final ShippingModel shipningModel;
   final bool isFinalText;
   @override
   Widget build(BuildContext context) {

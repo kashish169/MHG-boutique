@@ -95,6 +95,7 @@ class SendPointsPage extends StatelessWidget {
               hasIcon: false,
               onPress: () {
                 if (controller.formKey.currentState!.validate()) {
+                  AppHelper.closeKeyboard();
                   controller.sendHearts();
                 }
               },

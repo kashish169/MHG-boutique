@@ -5,10 +5,9 @@ import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 class SuccessOrderPaymentMethod extends StatelessWidget {
   CheckoutController controller;
 
-   SuccessOrderPaymentMethod({
+  SuccessOrderPaymentMethod({
     super.key,
     required this.controller,
-   
   });
 
   @override

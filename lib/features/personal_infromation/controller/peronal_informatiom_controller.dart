@@ -47,7 +47,7 @@ class PersonalInformationController extends GetxController {
   bool iserror = false;
   RxString countryCode = '+971'.obs;
   RxString countryFlag = AppAssets.flag.obs;
-  RxInt countryId = 0.obs;
+  RxInt countryId = 1.obs;
   RxBool isEdit = false.obs;
 
   @override
@@ -235,6 +235,7 @@ class PersonalInformationController extends GetxController {
             if (r.object["data"] != null) {
               log("COUNTRIES ${r.object["data"]}");
               countriesModel = CountriesModel.fromJson(r.object);
+              log(countriesModel.toString());
               // setCountry(
               //   profileController.model.value?.country?.name,
               // );

@@ -20,4 +20,10 @@ class SuccessOrderRepoImpl implements SuccessOrderRepo {
         url: "${Api.successOrderLink}?order_number=$orderNumber",
         isAuthorized: true,
       );
+
+  @override
+  Future<Either<Failure, ApiResponse>> getOrders() async => httpService.get(
+        url: Api.myOrders,
+        isAuthorized: true,
+      );
 }

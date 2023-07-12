@@ -44,13 +44,13 @@ class ProductDetailsSlider extends StatelessWidget {
           child: Align(
               alignment: AlignmentDirectional.topEnd,
               child: Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8, top: 60),
+                padding: const EdgeInsets.only(left: 8, right: 8, top: 50),
                 child: FavouriteWidget(
                   from: 'productDetails',
                   isProductDetails: true,
                   inWishlist: controller.model.inWishlist,
                   itemId: controller.productId,
-                  height: 31,
+                  height: 24,
                   fromArrival: controller.fromArrival,
                 ),
               )),
@@ -65,7 +65,7 @@ class ProductDetailsSlider extends StatelessWidget {
                 },
                 icon: Image.asset(
                   AppAssets.upload,
-                  height: 30,
+                  height: 24,
                 ),
               ),
             )),
