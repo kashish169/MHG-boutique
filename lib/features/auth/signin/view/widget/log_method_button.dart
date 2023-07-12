@@ -26,11 +26,13 @@ class LogMethodButton extends StatelessWidget {
                   height: 45,
                   width: controller.numberLogwidth.value,
                   color: controller.logWithNumber.value == true
-                      ? AppColors.white
+                      ? AppColors.primary
                       : AppColors.secondary,
-                  fontColor:controller.logWithNumber.value == true
-                      ? AppColors.secondary
-                      : AppColors.white,
+                  fontColor:
+                      //  controller.logWithNumber.value == true
+                      //     ? AppColors.secondary
+                      //     :
+                      AppColors.white,
                   onTap: () {
                     AppHelper.closeKeyboard();
                     controller.logWithNum();
@@ -52,11 +54,13 @@ class LogMethodButton extends StatelessWidget {
                   reverseColor: !controller.logWithEmail.value,
                   width: controller.emailLogwidth.value,
                   color: controller.logWithEmail.value == true
-                      ?AppColors.white
+                      ? AppColors.primary
                       : AppColors.secondary,
-                  fontColor:controller.logWithEmail.value == true
-                      ? AppColors.secondary
-                      : AppColors.white,
+                  fontColor:
+                      //  controller.logWithEmail.value == true
+                      //     ? AppColors.secondary
+                      //     :
+                      AppColors.white,
                   onTap: () {
                     AppHelper.closeKeyboard();
                     controller.loginWithEmail();
