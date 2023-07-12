@@ -161,17 +161,18 @@ class ProfileView extends StatelessWidget {
                     const SizedBox(height: 15),
                     const SizedBox(height: 15),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 10),
                       child: Row(
                         children: [
                           Expanded(
-                              child: GestureDetector(
-                                onTap: (){
-                                  controller.launchMyUrl('mailto:care@hilal.cc');
-                                },
-                                child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                              child: InkWell(
+                            onTap: () {
+                              controller.launchMyUrl('mailto:care@hilal.cc');
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
                                 Image.asset(
                                   AppAssets.message,
                                   color: AppColors.secondaryBlack,
@@ -181,11 +182,12 @@ class ProfileView extends StatelessWidget {
                                   width: 10,
                                 ),
                                 Text('Email',
-                                    style:
-                                        Theme.of(context).textTheme.displaySmall)
-                            ],
-                          ),
-                              )),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall)
+                              ],
+                            ),
+                          )),
                           const SizedBox(
                               height: 25,
                               child: VerticalDivider(
@@ -193,13 +195,13 @@ class ProfileView extends StatelessWidget {
                                 color: Colors.grey,
                               )),
                           Expanded(
-                              child: GestureDetector(
-                                onTap: (){
-                                 controller.launchMyUrl('tel://+9710506333911');
-                                },
-                                child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                              child: InkWell(
+                            onTap: () {
+                              controller.launchMyUrl('tel://+9710506333911');
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
                                 Image.asset(
                                   AppAssets.phone,
                                   color: AppColors.secondaryBlack,
@@ -209,11 +211,12 @@ class ProfileView extends StatelessWidget {
                                   width: 10,
                                 ),
                                 Text('Call us',
-                                    style:
-                                        Theme.of(context).textTheme.displaySmall)
-                            ],
-                          ),
-                              )),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall)
+                              ],
+                            ),
+                          )),
                           const SizedBox(
                               height: 25,
                               child: VerticalDivider(
@@ -221,28 +224,27 @@ class ProfileView extends StatelessWidget {
                                 color: Colors.grey,
                               )),
                           Expanded(
-                              child: GestureDetector(
-                                onTap: (){
-                                  controller.connectViaWhatsApp('+9710557396666');
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      AppAssets.whatsApp,
-
-                                      height: 20,
-
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text('WhatsApp',
-                                        style:
-                                        Theme.of(context).textTheme.displaySmall)
-                                  ],
+                              child: InkWell(
+                            onTap: () {
+                              controller.connectViaWhatsApp('+9710557396666');
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  AppAssets.whatsApp,
+                                  height: 20,
                                 ),
-                              )),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text('WhatsApp',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall)
+                              ],
+                            ),
+                          )),
                         ],
                       ),
                     ),

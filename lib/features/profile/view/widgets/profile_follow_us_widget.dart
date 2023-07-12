@@ -9,7 +9,7 @@ class ProfileFollowUsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller=Get.find<ProfileController>();
+    final controller = Get.find<ProfileController>();
     return Column(
       children: [
         const DividerWidget(),
@@ -30,19 +30,16 @@ class ProfileFollowUsWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              onPressed: (){
-
+              onPressed: () {
                 controller.launchFacebookPage();
-
               },
               icon: Image.asset(
                 AppAssets.facebook,
                 height: 30,
               ),
             ),
-
             IconButton(
-              onPressed: (){
+              onPressed: () {
                 controller.launchMyUrl('https://www.instagram.com/mhgboutique');
               },
               icon: Image.asset(
@@ -50,9 +47,8 @@ class ProfileFollowUsWidget extends StatelessWidget {
                 height: 30,
               ),
             ),
-
             IconButton(
-              onPressed: (){
+              onPressed: () {
                 controller.launchMyUrl('https://www.twitter.com/mhgboutique');
               },
               icon: Image.asset(

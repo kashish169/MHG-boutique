@@ -18,8 +18,6 @@ import 'package:mhg/features/profile/repository/profile_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../core/storage/storage_pref.dart';
 import 'package:mhg/widgets/loading_widget.dart';
-import 'package:mhg/widgets/loading_widget.dart';
-import '../../../core/storage/storage_pref.dart';
 
 class ProfileController extends GetxController {
   late ProfileRepo profileRepo;
@@ -200,48 +198,45 @@ class ProfileController extends GetxController {
       print({dialCode, newPhoneNumber});
     }
   }
- launchMyUrl(String url) async {
 
-   if(await canLaunchUrl(Uri.parse(url))){
-     await launchUrl(Uri.parse(url));
+  launchMyUrl(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
+  connectViaWhatsApp(String phone) async {
+    String url = "whatsapp://send?phone=$phone";
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
-   }else {
-   throw 'Could not launch $url';
-   }
+  launchFacebookPage() async {
+    String fbProtocolUrl = '';
+    if (Platform.isIOS) {
+      fbProtocolUrl = 'fb://profile/426595437908808';
+    } else {
+      fbProtocolUrl = 'fb://page/426595437908808';
+    }
 
+    String fallbackUrl = 'http://www.facebook.com/mhgboutique.ae';
 
- }
- connectViaWhatsApp(String phone) async {
-   String url=  "whatsapp://send?phone=$phone";
-   if (await canLaunchUrl(Uri.parse(url))) {
-   await launchUrl(Uri.parse(url));
-   } else {
-   throw 'Could not launch $url';
+    try {
+      bool launched = await launchUrl(Uri.parse(fbProtocolUrl),
+          mode: LaunchMode.externalApplication);
 
- }
- }
- launchFacebookPage() async {
-   String fbProtocolUrl='';
-   if (Platform.isIOS) {
-     fbProtocolUrl = 'fb://profile/426595437908808';
-   } else {
-     fbProtocolUrl = 'fb://page/426595437908808';
-   }
-
-   String fallbackUrl = 'http://www.facebook.com/mhgboutique.ae';
-
-   try {
-     bool launched = await launchUrl(Uri.parse(fbProtocolUrl),mode: LaunchMode.externalApplication);
-
-     if (!launched) {
-       await launchMyUrl('http://www.facebook.com/mhgboutique.ae');
-     }
-   } catch (e) {
-     throw 'Could not launch ';
-   }
- }
-
+      if (!launched) {
+        await launchMyUrl('http://www.facebook.com/mhgboutique.ae');
+      }
+    } catch (e) {
+      throw 'Could not launch ';
+    }
+  }
 
   @override
   void onInit() {

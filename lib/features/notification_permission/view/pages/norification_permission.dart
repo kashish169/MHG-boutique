@@ -9,11 +9,8 @@ class NotificationPermissionPage extends StatelessWidget {
   const NotificationPermissionPage({super.key});
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.white
-    ));
-    return Scaffold(
-        body: Stack(
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+    return Stack(
       children: [
         Container(
           decoration: const BoxDecoration(
@@ -34,6 +31,6 @@ class NotificationPermissionPage extends StatelessWidget {
           ),
         ),
       ],
-    ));
+    );
   }
 }
