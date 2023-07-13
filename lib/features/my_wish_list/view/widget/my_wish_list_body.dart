@@ -8,7 +8,6 @@ import 'package:mhg/widgets/net_image.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/delete_icon_button.dart';
 import '../../../../widgets/three_bounce_loading.dart';
-import 'my_wish_list_body_header.dart';
 import 'my_wish_list_body_middle_text.dart';
 import 'package:mhg/core/languages/languages.dart';
 
@@ -46,8 +45,8 @@ class _MyWishBodyState extends State<MyWishBody> {
             children: [
               Container(
                 // height: AppDimensions.productHeight(context) / 1.2,
-                // height: 170,
-                width: 120,
+                // height: 140,
+                width: 102,
                 decoration: const BoxDecoration(
                     // borderRadius:
                     // BorderRadius.horizontal(left: Radius.circular(12)),
@@ -63,30 +62,33 @@ class _MyWishBodyState extends State<MyWishBody> {
               Expanded(
                   child: Stack(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 7),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 25),
-                        TopBodyHeader(
-                            title: isAR()
-                                ? widget.model.options.arName
-                                : widget.model.options.enName),
-                        // const SizedBox(height: 10),
-                        BodyMiddleText(
-                          brand: widget.model.options.brand,
-                          price: widget.model.price.toString(),
-                        ),
-                        BodyButtons(
-                            addToBag: widget.addToBag, model: widget.model),
-                      ],
-                    ),
-                  ),
                   Align(
                     alignment: Alignment.topRight,
-                    // top: -3,
-                    // right: 0,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 7),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 10),
+
+                          // const SizedBox(height: 10),
+                          BodyMiddleText(
+                            brand: widget.model.options.brand,
+                            price: widget.model.price.toString(),
+                            name: isAR()
+                                ? widget.model.options.arName
+                                : widget.model.options.enName,
+                          ),
+                          BodyButtons(
+                              addToBag: widget.addToBag, model: widget.model),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    // alignment: Alignment.topRight,
+                    top: -6,
+                    right: 0,
                     child: widget.model.isDeleteItem
                         ? Container(
                             height: 25,

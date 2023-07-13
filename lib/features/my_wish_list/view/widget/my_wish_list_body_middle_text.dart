@@ -3,11 +3,17 @@ import 'package:get/get.dart';
 
 import '../../../../constants/app_colors.dart';
 import '../../../profile/controller/profile_controller.dart';
+import 'my_wish_list_body_header.dart';
 
 class BodyMiddleText extends StatelessWidget {
-  const BodyMiddleText({super.key, required this.brand, required this.price});
+  const BodyMiddleText(
+      {super.key,
+      required this.brand,
+      required this.price,
+      required this.name});
   final String brand;
   final String price;
+  final String name;
   @override
   Widget build(BuildContext context) {
     final profileController = Get.find<ProfileController>();
@@ -36,8 +42,9 @@ class BodyMiddleText extends StatelessWidget {
             ]),
           ),
           const SizedBox(
-            height: 13,
+            height: 9,
           ),
+          TopBodyHeader(title: name),
           Obx(() => Text(
                 "${profileController.currnecy.value} $price",
                 style: Theme.of(context)
@@ -46,7 +53,7 @@ class BodyMiddleText extends StatelessWidget {
                     .copyWith(fontSize: 10, color: AppColors.darkGrey),
               )),
           const SizedBox(
-            height: 8,
+            height: 6,
           ),
         ],
       ),
