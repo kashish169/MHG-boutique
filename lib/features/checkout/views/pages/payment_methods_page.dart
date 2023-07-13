@@ -32,7 +32,6 @@ class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white2,
       bottomNavigationBar: const BottomNavBarWidget(),
       appBar: customAppBar(
         context,

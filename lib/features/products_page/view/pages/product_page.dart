@@ -19,7 +19,6 @@ class ProductsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white2,
       appBar: customAppBar(context, title: 'Products'),
       bottomNavigationBar: const BottomNavBarWidget(),
       body: Column(

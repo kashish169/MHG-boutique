@@ -20,7 +20,6 @@ class CheckoutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final profileController = Get.find<ProfileController>();
     return Scaffold(
-      backgroundColor: AppColors.white2,
       bottomNavigationBar: const BottomNavBarWidget(),
       appBar: customAppBar(context, title: 'Secure Checkout'),
       body: GetX<CheckoutController>(initState: (state) async {

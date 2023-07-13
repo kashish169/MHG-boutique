@@ -23,7 +23,6 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<SearchingController>();
     return Scaffold(
-      backgroundColor: AppColors.white2,
       bottomNavigationBar: const BottomNavBarWidget(),
       appBar: customAppBar(
         context,

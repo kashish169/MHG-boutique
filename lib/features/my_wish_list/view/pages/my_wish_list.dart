@@ -18,48 +18,42 @@ class _MyWishListState extends State<MyWishList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: AppColors.white2,
-        body: GetX<WishListController>(builder: (controller) {
-          return controller.isLoading.value
-              ? const LoadingWidget()
-              : controller.isError.value
-                  ? RetryButton(onTap: () => controller.getWishList())
-                  : Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        controller.wishListItems.isNotEmpty
-                            ? Expanded(
-                                child: ListView.builder(
-                                    itemCount: controller.wishListItems.length,
-                                    itemBuilder: (context, index) => MyWishBody(
-                                          addToBag: () async {
-                                            controller.chechBeforAdd(index);
-                                          },
-                                          model:
-                                              controller.wishListItems[index],
-                                          onTap: () {
-                                            controller.wishListItems[index]
-                                                .isLoadingDelete = true;
-                                            controller.removeFromWishList(
-                                                controller
-                                                    .wishListItems[index].id);
-                                          },
-                                        )),
-                              )
-                            : Center(
-                                child: Text(
-                                  'Wish list is empty!'.tr,
-                                
-                                  style:
-                                      Theme.of(context).textTheme.displaySmall,
-                                ),
-                              )
-                      ],
-                    );
-        }));
+    return Scaffold(body: GetX<WishListController>(builder: (controller) {
+      return controller.isLoading.value
+          ? const LoadingWidget()
+          : controller.isError.value
+              ? RetryButton(onTap: () => controller.getWishList())
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    controller.wishListItems.isNotEmpty
+                        ? Expanded(
+                            child: ListView.builder(
+                                itemCount: controller.wishListItems.length,
+                                itemBuilder: (context, index) => MyWishBody(
+                                      addToBag: () async {
+                                        controller.chechBeforAdd(index);
+                                      },
+                                      model: controller.wishListItems[index],
+                                      onTap: () {
+                                        controller.wishListItems[index]
+                                            .isLoadingDelete = true;
+                                        controller.removeFromWishList(
+                                            controller.wishListItems[index].id);
+                                      },
+                                    )),
+                          )
+                        : Center(
+                            child: Text(
+                              'Wish list is empty!'.tr,
+                              style: Theme.of(context).textTheme.displaySmall,
+                            ),
+                          )
+                  ],
+                );
+    }));
   }
 }

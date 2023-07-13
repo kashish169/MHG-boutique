@@ -46,7 +46,6 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.white,
       body: GetBuilder<SignUpController>(
         builder: (controller) {
           return SafeArea(

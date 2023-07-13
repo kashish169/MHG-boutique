@@ -19,7 +19,6 @@ class VerificationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.white,
       body: GetBuilder<VerificationController>(
         builder: (controller) {
           return SafeArea(

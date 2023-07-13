@@ -36,7 +36,6 @@ class _SignInPageState extends State<SignInPage> {
 
     return Scaffold(
       //resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.white,
       extendBodyBehindAppBar: false,
       appBar: controller.isGuest.isFalse
           ? AppBar(
