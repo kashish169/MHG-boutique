@@ -23,16 +23,15 @@ class CategoryListTile extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (model.categoryId == null && model.allActiveSubMenus.isEmpty) {
-          if(model.productId != null){
+          if (model.productId != null) {
             Get.toNamed(
               ProductDetailsPage.routeName,
               arguments: {
                 "id": model.productId,
-                "fromArrival":false,
-                "name":model.enName
+                "fromArrival": false,
+                "name": model.enName
               },
             );
-
           }
           return;
         }
@@ -66,7 +65,7 @@ class CategoryListTile extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .displaySmall
-                          ?.copyWith(fontSize: 16),
+                          ?.copyWith(fontSize: 14),
                     ),
                   ),
                   Icon(

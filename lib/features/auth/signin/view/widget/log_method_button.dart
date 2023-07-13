@@ -21,16 +21,17 @@ class LogMethodButton extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 10),
                 child: PrimaryButton(
                   title: 'Phone Number'.tr,
-                  isSelcted: !controller.logWithNumber.value,
                   reverseColor: !controller.logWithNumber.value,
                   height: 45,
                   width: controller.numberLogwidth.value,
                   color: controller.logWithNumber.value == true
-                      ? AppColors.white
+                      ? AppColors.primary
                       : AppColors.secondary,
-                  fontColor:controller.logWithNumber.value == true
-                      ? AppColors.secondary
-                      : AppColors.white,
+                  fontColor:
+                      //  controller.logWithNumber.value == true
+                      //     ? AppColors.secondary
+                      //     :
+                      AppColors.white,
                   onTap: () {
                     AppHelper.closeKeyboard();
                     controller.logWithNum();
@@ -48,15 +49,16 @@ class LogMethodButton extends StatelessWidget {
                 child: PrimaryButton(
                   title: 'Email'.tr,
                   height: 45,
-                  isSelcted: !controller.logWithEmail.value,
                   reverseColor: !controller.logWithEmail.value,
                   width: controller.emailLogwidth.value,
                   color: controller.logWithEmail.value == true
-                      ?AppColors.white
+                      ? AppColors.primary
                       : AppColors.secondary,
-                  fontColor:controller.logWithEmail.value == true
-                      ? AppColors.secondary
-                      : AppColors.white,
+                  fontColor:
+                      //  controller.logWithEmail.value == true
+                      //     ? AppColors.secondary
+                      //     :
+                      AppColors.white,
                   onTap: () {
                     AppHelper.closeKeyboard();
                     controller.loginWithEmail();

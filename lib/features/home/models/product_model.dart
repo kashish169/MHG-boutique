@@ -1,3 +1,5 @@
+import 'package:mhg/features/home/models/brand_model.dart';
+
 class ProductModel {
   int id;
   dynamic externalId;
@@ -53,6 +55,7 @@ class ProductModel {
   String? image3Link;
   String? image4Link;
   String? image5Link;
+  BrandModel? brand;
   dynamic shopifyProductType;
   dynamic shopifyVendor;
   dynamic weight;
@@ -60,6 +63,7 @@ class ProductModel {
   bool isLoading;
 
   ProductModel({
+    required this.brand,
     this.averageRate,
     this.pts,
     required this.id,
@@ -123,7 +127,9 @@ class ProductModel {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         id: json["id"],
-        averageRate: json["avarage_rate"]!=null?json["avarage_rate"].toString():'0',
+        averageRate: json["avarage_rate"] != null
+            ? json["avarage_rate"].toString()
+            : '0',
         pts: json["pts"],
         externalId: json["external_id"],
         sku: json["sku"],
@@ -180,5 +186,7 @@ class ProductModel {
         shopifyVendor: json['shopify_vendor'],
         weight: json['weight'],
         weightUnit: json['weight_unit'],
+        brand:
+            json["brand"] == null ? null : BrandModel.fromJson(json["brand"]),
       );
 }

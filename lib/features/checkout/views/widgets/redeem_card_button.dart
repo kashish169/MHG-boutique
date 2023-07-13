@@ -39,9 +39,9 @@ class RedeemCardButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Checkbox(
-                    //  toggleable: true,
+                      //  toggleable: true,
                       value: checkoutController.hasRedeem.value,
-                    //  groupValue: checkoutController.hasRedeem.value,
+                      //  groupValue: checkoutController.hasRedeem.value,
                       onChanged: (val) {
                         checkoutController.hasRedeem.value =
                             !checkoutController.hasRedeem.value;
@@ -52,7 +52,7 @@ class RedeemCardButton extends StatelessWidget {
                   Text(
                     'Redeem ${profileController.model.value!.hearts!} Pts',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontSize: 16,
+                          fontSize: 14,
                           color: AppColors.label,
                         ),
                   ),

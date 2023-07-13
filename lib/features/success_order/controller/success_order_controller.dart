@@ -48,6 +48,7 @@ class SucessOrderController extends GetxController {
           orderModel = myOrdersModel.orders.first;
           log(r.object["data"].toString());
         } else {
+          isError(true);
           AppToasts.errorToast(message);
         }
       },

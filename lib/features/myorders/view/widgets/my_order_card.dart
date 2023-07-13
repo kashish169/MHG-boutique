@@ -52,7 +52,7 @@ class MyOrderCard extends StatelessWidget {
                               .textTheme
                               .displaySmall
                               ?.copyWith(
-                                fontSize: 16,
+                                fontSize: 14,
                               ),
                         ),
                       ],
@@ -69,7 +69,7 @@ class MyOrderCard extends StatelessWidget {
                               .textTheme
                               .displaySmall
                               ?.copyWith(
-                                fontSize: 16,
+                                fontSize: 14,
                               ),
                         ),
                         const SizedBox(height: 10),
@@ -79,7 +79,7 @@ class MyOrderCard extends StatelessWidget {
                               .textTheme
                               .displaySmall
                               ?.copyWith(
-                                fontSize: 12,
+                                fontSize: 10,
                               ),
                         ),
                       ],
@@ -88,6 +88,7 @@ class MyOrderCard extends StatelessWidget {
                   const SizedBox(width: 5),
                   const Icon(
                     Icons.arrow_forward_ios,
+                    size: 20,
                   ),
                 ],
               ),
@@ -107,7 +108,7 @@ class MyOrderCard extends StatelessWidget {
                                   .textTheme
                                   .displaySmall
                                   ?.copyWith(
-                                    fontSize: 16,
+                                    fontSize: 14,
                                   ),
                             ),
                             TextSpan(
@@ -117,7 +118,7 @@ class MyOrderCard extends StatelessWidget {
                                   .textTheme
                                   .displaySmall
                                   ?.copyWith(
-                                    fontSize: 16,
+                                    fontSize: 14,
                                   ),
                             )
                           ]),
@@ -183,14 +184,14 @@ class MyOrderCard extends StatelessWidget {
                         text: 'You asked to return this order\n',
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: 14,
                                 ),
                       ),
                       TextSpan(
-                        text: 'Reason: ' + model.returnReason.toString(),
+                        text: 'Reason: ${model.returnReason}',
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: 14,
                                 ),
                       )
                     ]),
@@ -208,14 +209,14 @@ class MyOrderCard extends StatelessWidget {
                         text: 'You asked to cancel this order\n',
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: 14,
                                 ),
                       ),
                       TextSpan(
-                        text: 'Reason: ' + model.cancelReason.toString(),
+                        text: 'Reason: ${model.cancelReason}',
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: 14,
                                 ),
                       )
                     ]),

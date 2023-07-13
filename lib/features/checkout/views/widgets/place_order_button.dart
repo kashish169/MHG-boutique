@@ -30,7 +30,7 @@ class PlaceOrderButton extends StatelessWidget {
         children: [
           PrimaryButton(
             color: color ?? AppColors.secondary,
-            height: 44,
+            height: 40,
             width: width,
             title: title,
             isLoading: isLoading,

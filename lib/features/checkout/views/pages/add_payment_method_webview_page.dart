@@ -78,7 +78,6 @@ class _AddPaymentMethodWebViewPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white2,
       appBar: customAppBar(
         context,
         title: widget.title ?? 'Add Payment Method',

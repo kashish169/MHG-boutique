@@ -19,7 +19,6 @@ class VerificationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.white,
       body: GetBuilder<VerificationController>(
         builder: (controller) {
           return SafeArea(
@@ -53,6 +52,7 @@ class VerificationPage extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 20),
                       child: Form(
+                        key: controller.formKey,
                         child: CustomFormField(
                           suffixIcon: IconButton(
                             onPressed: () {
@@ -68,7 +68,9 @@ class VerificationPage extends StatelessWidget {
                           obscure: false,
                           controller: controller.phone,
                           validator: (val) {
-                            return AppHelper.validation(val!, 9, 9, 'Number');
+                            return AppHelper.validatePhone(
+                              val!,
+                            );
                           },
                         ),
                       ),
@@ -84,9 +86,12 @@ class VerificationPage extends StatelessWidget {
                         width: double.infinity,
                         color: AppColors.secondary,
                         onTap: () {
-                          Get.find<VerificationController>().sendOtpCode();
-                          Get.toNamed(OtpPage.routeName,
-                              arguments: {"type": "signup"});
+                          var formData = controller.formKey.currentState;
+                          if (formData!.validate()) {
+                            Get.find<VerificationController>().sendOtpCode();
+                            Get.toNamed(OtpPage.routeName,
+                                arguments: {"type": "signup"});
+                          }
                         },
                       ),
                     ),

@@ -17,6 +17,7 @@ class HomeMiddleSectionWidget extends StatelessWidget {
       visible: controller.middleSectionMainImage.isEmpty ? false : true,
       child: Column(
         children: [
+          const SizedBox(height: 20),
           InkWell(
             onTap: () {
               Get.toNamed(
@@ -43,7 +44,7 @@ class HomeMiddleSectionWidget extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           color: AppColors.white,
-                          fontSize: 16,
+                          fontSize: 14,
                         ),
                   ),
                 ),
@@ -86,7 +87,7 @@ class HomeMiddleSectionWidget extends StatelessWidget {
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
                                   color: AppColors.white,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                 ),
                       ),
                     ),

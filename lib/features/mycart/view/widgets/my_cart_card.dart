@@ -49,11 +49,11 @@ class MyCartCard extends StatelessWidget {
                     Text(
                       model.name,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 16,
+                            fontSize: 14,
                             color: AppColors.mediumLabel,
                           ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 8),
                     Row(
                       children: [
                         Text(
@@ -62,7 +62,7 @@ class MyCartCard extends StatelessWidget {
                               .textTheme
                               .displaySmall
                               ?.copyWith(
-                                fontSize: 12,
+                                fontSize: 10,
                                 color: AppColors.lightLabel,
                               ),
                         ),
@@ -73,13 +73,13 @@ class MyCartCard extends StatelessWidget {
                               .textTheme
                               .displaySmall
                               ?.copyWith(
-                                fontSize: 12,
+                                fontSize: 10,
                                 color: AppColors.mediumLabel,
                               ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 8),
                     Obx(() => Row(
                           children: [
                             Text(
@@ -88,7 +88,7 @@ class MyCartCard extends StatelessWidget {
                                   .textTheme
                                   .displaySmall
                                   ?.copyWith(
-                                    fontSize: 14,
+                                    fontSize: 12,
                                     color: AppColors.mediumLabel,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -107,7 +107,7 @@ class MyCartCard extends StatelessWidget {
                                     .textTheme
                                     .displaySmall
                                     ?.copyWith(
-                                      fontSize: 12,
+                                      fontSize: 10,
                                       color: AppColors.lightLabel,
                                       decoration: TextDecoration.lineThrough,
                                     ),

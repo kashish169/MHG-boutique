@@ -31,7 +31,7 @@ class PaymentMethod extends StatelessWidget {
             child: Text(
               'Payment Method',
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 16,
+                    fontSize: 15,
                     color: AppColors.label,
                   ),
             ),
@@ -54,28 +54,34 @@ class PaymentMethod extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Obx(
-                        () => Radio(
-                          value: true,
-                          groupValue:
-                              checkoutController.paymentMethodIndex.value ==
-                                      index
-                                  ? true
-                                  : false,
-                          onChanged: (val) {
-                            checkoutController.paymentMethodIndex.value = index;
-                            checkoutController.paymentMethodValue.value =
-                                checkoutController
-                                    .paymentMethodsList[index].slug;
-                            log(checkoutController
-                                .paymentMethodsList[index].slug);
-                          },
+                        () => Padding(
+                          padding: const EdgeInsetsDirectional.only(start: 8),
+                          child: Radio(
+                            value: true,
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                            groupValue:
+                                checkoutController.paymentMethodIndex.value ==
+                                        index
+                                    ? true
+                                    : false,
+                            onChanged: (val) {
+                              checkoutController.paymentMethodIndex.value =
+                                  index;
+                              checkoutController.paymentMethodValue.value =
+                                  checkoutController
+                                      .paymentMethodsList[index].slug;
+                              log(checkoutController
+                                  .paymentMethodsList[index].slug);
+                            },
+                          ),
                         ),
                       ),
                       Text(
                         checkoutController.paymentMethodsList[index].name,
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: 13,
                                   color: AppColors.label,
                                 ),
                       ),

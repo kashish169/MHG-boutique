@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
+import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/about_us/view/pages/about_us_page.dart';
 import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
@@ -160,24 +161,32 @@ class ProfileView extends StatelessWidget {
                     const SizedBox(height: 15),
                     const SizedBox(height: 15),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 10),
                       child: Row(
                         children: [
                           Expanded(
-                              child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                AppAssets.message,
-                                height: 20,
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text('Email',
-                                  style:
-                                      Theme.of(context).textTheme.displaySmall)
-                            ],
+                              child: InkWell(
+                            onTap: () {
+                              controller.launchMyUrl('mailto:care@hilal.cc');
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  AppAssets.message,
+                                  color: AppColors.secondaryBlack,
+                                  height: 20,
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text('Email',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall)
+                              ],
+                            ),
                           )),
                           const SizedBox(
                               height: 25,
@@ -186,20 +195,55 @@ class ProfileView extends StatelessWidget {
                                 color: Colors.grey,
                               )),
                           Expanded(
-                              child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                AppAssets.phone,
-                                height: 20,
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text('Call us',
-                                  style:
-                                      Theme.of(context).textTheme.displaySmall)
-                            ],
+                              child: InkWell(
+                            onTap: () {
+                              controller.launchMyUrl('tel://+9710506333911');
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  AppAssets.phone,
+                                  color: AppColors.secondaryBlack,
+                                  height: 20,
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text('Call us',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall)
+                              ],
+                            ),
+                          )),
+                          const SizedBox(
+                              height: 25,
+                              child: VerticalDivider(
+                                thickness: 1,
+                                color: Colors.grey,
+                              )),
+                          Expanded(
+                              child: InkWell(
+                            onTap: () {
+                              controller.connectViaWhatsApp('+9710557396666');
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  AppAssets.whatsApp,
+                                  height: 20,
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text('WhatsApp',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall)
+                              ],
+                            ),
                           )),
                         ],
                       ),

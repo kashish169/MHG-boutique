@@ -32,8 +32,8 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
       decoration: BoxDecoration(
         color: AppColors.primary,
         borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(12),
-        ),
+            // top: Radius.circular(12),
+            ),
         boxShadow: AppColors.shadow(0.5),
       ),
       child: Obx(() => Row(

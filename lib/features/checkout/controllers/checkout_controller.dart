@@ -310,6 +310,7 @@ class CheckoutController extends GetxController {
           log("ORDER PRICE METHODS RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
             if (r.object["data"] != null) {
+              log(orderPriceModal.toString());
               orderPriceModal = OrderPriceModal.fromJson(r.object);
               if (isRedeem == true) {
                 AppToasts.successToast(
@@ -354,6 +355,7 @@ class CheckoutController extends GetxController {
           return;
         }
       }
+      print(paymentMethodValue.value);
       String objectData = orderModelToJson(
         OrderModel(
             billingName: userName,

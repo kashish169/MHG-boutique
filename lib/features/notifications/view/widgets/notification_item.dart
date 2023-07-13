@@ -6,10 +6,10 @@ import 'package:mhg/core/helper/app_helper.dart';
 import '../../models/notification_model.dart';
 
 class NotificationItem extends StatelessWidget {
- final NotificationModel model;
+  final NotificationModel model;
   const NotificationItem({
-    super.key, required this.model,
-
+    super.key,
+    required this.model,
   });
 
   @override
@@ -17,42 +17,55 @@ class NotificationItem extends StatelessWidget {
     return Container(
       color: const Color(0XFFDDDDDD),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: InkWell(
-        
-          onTap: (){},
+          onTap: () {},
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if(model.createdAt!=null)
-            Align(
-              alignment: Alignment.topRight,
-              child: Text(AppHelper.difference(model.createdAt!),style: Theme.of(context).textTheme.displaySmall?.copyWith(fontSize: 10,
-              color: AppColors.grey),),
-            ),
+              if (model.createdAt != null)
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Text(
+                    AppHelper.difference(model.createdAt!),
+                    style: Theme.of(context)
+                        .textTheme
+                        .displaySmall
+                        ?.copyWith(fontSize: 10, color: AppColors.grey),
+                  ),
+                ),
               Row(
                 children: [
                   FittedBox(
-                    child: Text(model.title,style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      color: const Color(0xFF515C6F),
-                    ),),
+                    child: Text(
+                      model.title,
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            color: const Color(0xFF515C6F),
+                          ),
+                    ),
                   ),
-                  const SizedBox(width: 5,),
-                  Image.asset(AppAssets.alert,
-                  height: 25,),
-
-
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Image.asset(
+                    AppAssets.alert,
+                    height: 25,
+                  ),
                 ],
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Padding(
                 padding: const EdgeInsets.only(right: 50),
-                child: Text(model.body,style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                  fontSize: 14,
-                  color: const Color(0xFF515C6F),
-                ),),
+                child: Text(
+                  model.body,
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                        fontSize: 12,
+                        color: const Color(0xFF515C6F),
+                      ),
+                ),
               ),
-
             ],
           ),
         ),

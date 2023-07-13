@@ -75,5 +75,7 @@ class AppAssets {
   static String mada = "assets/icons/mada.png";
   static String scanbackground = "assets/images/scanbackground.png";
   static String sendPoints = "assets/icons/send-points.png";
-  static String orderSuccess = "assets/icons/conf.gif";
+  static String orderSuccess = "assets/icons/conf.png";
+  static String chachLoadImage = "assets/icons/Favi Icon.png";
+  static String whatsApp="assets/icons/whatsApp.png";
 }

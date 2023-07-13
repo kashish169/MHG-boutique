@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/features/auth/widgets/country_picker_widget.dart';
 import 'package:mhg/features/forgot_password/view/pages/forget_view.dart';
 
 import '../../../../../constants/app_assets.dart';
@@ -31,7 +30,7 @@ class SignInForm extends StatelessWidget {
                   ),
                   child: CustomFormField(
                     validator: (value) {
-                      return controller.validatePhone(value!);
+                      return AppHelper.validatePhone(value!);
                     },
                     controller: controller.phone,
                     suffixIcon: IconButton(
@@ -66,6 +65,7 @@ class SignInForm extends StatelessWidget {
                       if (controller.logWithEmail.isTrue) {
                         return AppHelper.validation(val!, 1, 500, 'email');
                       }
+                      return null;
                     },
                   ),
                 ),
@@ -83,12 +83,13 @@ class SignInForm extends StatelessWidget {
                       child: Icon(controller.isVisable.value
                           ? Icons.visibility
                           : Icons.visibility_off_rounded))),
-              inputType: TextInputType.text,
+              inputType: TextInputType.multiline,
               obscure: controller.isVisable.value,
               validator: (value) {
                 if (controller.isOTP.isFalse) {
                   return controller.validatePassword(value!);
                 }
+                return null;
               },
             ),
           ),
@@ -100,7 +101,7 @@ class SignInForm extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         Get.toNamed(ForgetPasswordView.routeName,
-                            arguments:[ controller.email.text,'email']);
+                            arguments: [controller.email.text, 'email']);
                       },
                       child: Text(
                         "Forgot Password?".tr,
@@ -120,7 +121,7 @@ class SignInForm extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         Get.toNamed(ForgetPasswordView.routeName,
-                            arguments: [controller.phone.text,'phone']);
+                            arguments: [controller.phone.text, 'phone']);
                       },
                       child: Text(
                         "Forgot Password?".tr,

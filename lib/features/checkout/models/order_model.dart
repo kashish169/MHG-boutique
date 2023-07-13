@@ -63,7 +63,7 @@ class OrderModel {
         () => onlinePaymentMethodId,
       );
     }
-    if (paymentPlatForm == 'apple') {
+    if (paymentMethod == 'TAP') {
       body.putIfAbsent('payment_platform', () => paymentPlatForm);
     }
     if (coupon.isNotEmpty) {

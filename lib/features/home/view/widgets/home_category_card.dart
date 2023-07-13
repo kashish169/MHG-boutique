@@ -38,8 +38,7 @@ class HomeCategoryCard extends StatelessWidget {
             const EdgeInsetsDirectional.symmetric(horizontal: 12, vertical: 10),
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadiusDirectional.circular(8),
-          boxShadow: AppColors.shadow(0.3),
+          boxShadow: AppColors.shadow(0.2),
         ),
         child: Row(
           children: [
@@ -47,10 +46,11 @@ class HomeCategoryCard extends StatelessWidget {
               child: Text(
                 isAR() ? model.frName : model.enName,
                 style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      fontSize: 14,
+                      fontSize: 12,
                     ),
               ),
             ),
+            const SizedBox(width: 4),
             NetImage(
               image: model.imageLink,
               height: 45,

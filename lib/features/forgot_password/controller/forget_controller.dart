@@ -36,43 +36,45 @@ class ForgetController extends GetxController {
   RxString countryFlag = AppAssets.flag.obs;
   RxString firstCountryFlag = ''.obs;
 
-  String type='';
+  String type = '';
 
   @override
   void onInit() {
     String initEmail = Get.arguments[0];
     textController.text = initEmail;
-    type= Get.arguments[1];
+    type = Get.arguments[1];
     super.onInit();
   }
 
   String? validateEmail(String email) {
     var value = AppHelper.validation(email, 1, 500, 'email');
     if (value == false) {
-      return 'enter valid email';
+      return 'Please enter a valid email address';
     } else {
       return null;
     }
   }
+
   String? validatePassword(String value) {
     if (value.isEmpty) {
-      return 'enter your password';
+      return 'Please fill out this field';
     }
     if (value.length < 6) {
-      return 'password must be 6 characters at least';
+      return 'Password must be at least 6 characters long';
     } else {
       return null;
     }
   }
+
   String? validatePasswordConfirmation(String value) {
     if (value.isEmpty) {
-      return 'enter your password';
+      return 'Please fill out this field';
     }
-    if (value!=newPassword.text) {
-      return 'Passwords don\'t match';
+    if (value != newPassword.text) {
+      return 'Passwords do not match. Please try again';
     }
     if (value.length < 6) {
-      return 'password must be 6 characters at least';
+      return 'Password must be at least 6 characters long';
     } else {
       return null;
     }
@@ -81,14 +83,12 @@ class ForgetController extends GetxController {
   Future<void> forgetPassword() async {
     log("called");
     isLoading(true);
-    Map data= type=='email'?{
-      'email': textController.text.trim()
-    }:{
-      'phone_number': countryCode.value+textController.text.trim()
-    };
+    Map data = type == 'email'
+        ? {'email': textController.text.trim()}
+        : {'phone_number': countryCode.value + textController.text.trim()};
 
-    Either<Failure, ApiResponse> results = await forgetPasswordRepo
-        .forgetPassword(body: jsonEncode(data));
+    Either<Failure, ApiResponse> results =
+        await forgetPasswordRepo.forgetPassword(body: jsonEncode(data));
     isLoading(false);
     results.fold(
       (l) {
@@ -99,20 +99,25 @@ class ForgetController extends GetxController {
         int statusCode = r.object['code'];
         var message = r.object['message'];
         if (statusCode == 200) {
-          if(type=='email')
-          {
+          if (type == 'email') {
             log(textController.text);
-            Get.toNamed(OtpPage.routeName,arguments: {
-              "type": "reset",
-              "countryCode": countryCode.value,
-              "email": textController.text,
-            },);
-          }else{
-            Get.toNamed(OtpPage.routeName,arguments: {
-              "type": "reset",
-              "countryCode": countryCode.value,
-              "phone": textController.text,
-            },);
+            Get.toNamed(
+              OtpPage.routeName,
+              arguments: {
+                "type": "reset",
+                "countryCode": countryCode.value,
+                "email": textController.text,
+              },
+            );
+          } else {
+            Get.toNamed(
+              OtpPage.routeName,
+              arguments: {
+                "type": "reset",
+                "countryCode": countryCode.value,
+                "phone": textController.text,
+              },
+            );
           }
           successSnackBar(r.object['data']);
         } else if (statusCode == 400) {
@@ -123,27 +128,25 @@ class ForgetController extends GetxController {
       },
     );
   }
+
   Future<void> resetPaassword() async {
     log("called");
     isLoading(true);
-    Map data= {
-      'otp': otp.text,
-      'password':newPassword.text
-    };
+    Map data = {'otp': otp.text, 'password': newPassword.text};
 
-    Either<Failure, ApiResponse> results = await forgetPasswordRepo
-        .resetPassword(body: jsonEncode(data));
+    Either<Failure, ApiResponse> results =
+        await forgetPasswordRepo.resetPassword(body: jsonEncode(data));
     isLoading(false);
     results.fold(
-          (l) {
+      (l) {
         showSnackBar(l.message);
       },
-          (r) async {
+      (r) async {
         log("${r.object}");
         int statusCode = r.object['code'];
         var message = r.object['message'];
         if (statusCode == 200) {
-          Get.offAllNamed(SignInPage.routeName,arguments: {"is_guest":false});
+          Get.offAllNamed(SignInPage.routeName, arguments: {"is_guest": false});
           successSnackBar(r.object['data']);
         } else if (statusCode == 400) {
           showSnackBar(message);
@@ -153,10 +156,11 @@ class ForgetController extends GetxController {
       },
     );
   }
+
   selectCountry(Country country) {
     countryFlag.value = country.flagEmoji;
     countryCode.value = "+${country.phoneCode}";
-    log( countryCode.value);
+    log(countryCode.value);
     firstCountryFlag.value = '';
     log("+${country.phoneCode}");
     log(countryFlag.value);

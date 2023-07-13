@@ -1,9 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
-import 'package:mhg/features/auth/signin/view/widget/show_country_picker.dart';
+// import 'package:mhg/features/auth/signin/view/widget/show_country_picker.dart';
 
 class CountryButtonPick extends StatelessWidget {
   const CountryButtonPick({super.key});
@@ -11,7 +9,6 @@ class CountryButtonPick extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SignInController>(
-
       builder: (controller) => MaterialButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         padding: EdgeInsets.zero,
@@ -53,7 +50,9 @@ class CountryButtonPick extends StatelessWidget {
                 controller.countryCode.value,
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-              const SizedBox(width: 2,),
+              const SizedBox(
+                width: 2,
+              ),
               // const Icon(
               //   Icons.arrow_drop_down_outlined,
               // ),
@@ -72,4 +71,3 @@ class CountryButtonPick extends StatelessWidget {
     );
   }
 }
-

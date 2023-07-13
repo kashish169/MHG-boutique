@@ -46,7 +46,7 @@ class OrderDetailsCard extends StatelessWidget {
                 Text(
                   model.productName,
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 16,
+                        fontSize: 14,
                         color: AppColors.mediumLabel,
                       ),
                 ),
@@ -57,14 +57,14 @@ class OrderDetailsCard extends StatelessWidget {
                     Text(
                       'Order ID:${model.orderId}',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 12,
+                            fontSize: 10,
                             color: AppColors.lightLabel,
                           ),
                     ),
                     Text(
                       'Product ID:${model.productId}',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 12,
+                            fontSize: 10,
                             color: AppColors.lightLabel,
                           ),
                     ),
@@ -74,7 +74,7 @@ class OrderDetailsCard extends StatelessWidget {
                 Obx(() => Text(
                       'Price: ${profileController.currnecy.value} ${model.price}',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 14,
+                            fontSize: 12,
                             color: AppColors.mediumLabel,
                           ),
                     )),
@@ -82,7 +82,7 @@ class OrderDetailsCard extends StatelessWidget {
                 Text(
                   'Quantity: ${double.parse(model.quantity).toInt()}',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 14,
+                        fontSize: 12,
                         color: AppColors.mediumLabel,
                       ),
                 ),
@@ -95,7 +95,7 @@ class OrderDetailsCard extends StatelessWidget {
                         text: 'Status: ',
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 14,
+                                  fontSize: 12,
                                   color: AppColors.mediumLabel,
                                 ),
                       ),
@@ -104,7 +104,7 @@ class OrderDetailsCard extends StatelessWidget {
                             .getStatus(orderStatus),
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 14,
+                                  fontSize: 12,
                                   color: AppColors.mediumLabel,
                                   // color: Get.find<MyOrdersController>().getStatusColor(orderStatus),
                                 ),
@@ -116,7 +116,7 @@ class OrderDetailsCard extends StatelessWidget {
                 Obx(() => Text(
                       'Total Price: ${profileController.currnecy.value} ${model.totalPrice}',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 14,
+                            fontSize: 12,
                             color: AppColors.mediumLabel,
                           ),
                     )),

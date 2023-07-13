@@ -6,6 +6,7 @@ import '../constants/app_colors.dart';
 class AppTheme {
   static ThemeData themeData = ThemeData.light().copyWith(
     primaryColor: AppColors.primary,
+    scaffoldBackgroundColor: AppColors.white,
     brightness: Brightness.light,
     colorScheme: ColorScheme.fromSwatch().copyWith(
       secondary: AppColors.primary,
@@ -37,7 +38,7 @@ class AppTheme {
         fontFamily: AppFonts.Century_Gothic,
       ),
       displaySmall: TextStyle(
-        fontSize: 14,
+        fontSize: 13,
         color: AppColors.label,
         fontWeight: FontWeight.w400,
         fontFamily: AppFonts.Century_Gothic,

@@ -49,6 +49,7 @@ class PersonalInformationController extends GetxController {
   RxString countryFlag = AppAssets.flag.obs;
   RxInt countryId = 1.obs;
   RxBool isEdit = false.obs;
+  List<CountryDataModel> countriesList = [];
 
   @override
   void onInit() {
@@ -64,7 +65,12 @@ class PersonalInformationController extends GetxController {
     state.text = profileInfo.state ?? '';
     address.text = profileInfo.street ?? '';
     zipCode.text = profileInfo.zipCode ?? '';
-
+    countriesList.add(CountryDataModel(
+      id: 1,
+      name: "United Arab Emirates",
+      flagLink:
+          "https://api.mhgboutique.com/uploaded_files/country/64a413436c91b1688474435.png",
+    ));
     super.onInit();
   }
 

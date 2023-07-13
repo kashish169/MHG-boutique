@@ -28,6 +28,9 @@ class SuccessOrderView extends StatelessWidget {
   final CheckoutController checkoutController = Get.put(CheckoutController());
   final ProfileController profileController = Get.find<ProfileController>();
   final MyCartController myCartController = Get.find<MyCartController>();
+  final SucessOrderController sucessOrderController =
+      Get.put(SucessOrderController());
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
@@ -47,34 +50,38 @@ class SuccessOrderView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Center(
-                            child: Stack(
-                              alignment: Alignment.bottomCenter,
-                              children: [
-                                Center(
-                                  child: Image.asset(
-                                    AppAssets.orderSuccess,
-                                    height: Get.height * 0.25,
-                                    width: Get.width * 0.3,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                Positioned(
-                                  top: MediaQuery.of(context).size.height * 0.2,
-                                  // left: MediaQuery.of(context).size.width * 0.1,
-                                  child: Center(
-                                    child: Text(
-                                      "Your order is confirmed!".tr,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .displayLarge
-                                          ?.copyWith(
-                                              color: AppColors.secondary,
-                                              fontWeight: FontWeight.w300),
+                          SizedBox(
+                            height: Get.height * 0.23,
+                            child: Center(
+                              child: Stack(
+                                alignment: Alignment.bottomCenter,
+                                children: [
+                                  Center(
+                                    child: Image.asset(
+                                      AppAssets.orderSuccess,
+                                      height: 70,
+                                      width: 70,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
-                                )
-                              ],
+                                  Positioned(
+                                    top: Get.height * 0.16,
+                                    child: Center(
+                                      child: Text(
+                                        "Your order is confirmed!".tr +
+                                            '\n ${controller.orderModel.orderNumber}',
+                                        textAlign: TextAlign.center,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displayMedium
+                                            ?.copyWith(
+                                                color: AppColors.secondary,
+                                                fontWeight: FontWeight.normal),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                           SuccessOrderItems(
@@ -82,14 +89,40 @@ class SuccessOrderView extends StatelessWidget {
                             controller: controller,
                           ),
                           const Divider(),
-                          const SuccessOrderContactInformation(),
-                          const Divider(),
-                          const SuccessOrderShippingAddress(),
-                          const Divider(),
-                          SuccessOrderPaymentMethod(
-                            controller: checkoutController,
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          SuccessOrderContactInformation(
+                            controller: sucessOrderController,
+                          ),
+                          const SizedBox(
+                            height: 15,
                           ),
                           const Divider(),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          const SuccessOrderShippingAddress(),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          const Divider(),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          SuccessOrderPaymentMethod(
+                            controller: controller,
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          const Divider(),
+                          const SizedBox(
+                            height: 15,
+                          ),
                           ConfirmationFooter(
                             checkoutController: checkoutController,
                             profileController: profileController,
@@ -98,7 +131,9 @@ class SuccessOrderView extends StatelessWidget {
                             height: 5,
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    MediaQuery.of(context).size.width * 0.110),
                             child: PrimaryButton(
                                 height: 50,
                                 width: AppDimensions.screenWidth(context),

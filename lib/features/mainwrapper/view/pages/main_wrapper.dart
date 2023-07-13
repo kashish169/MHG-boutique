@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/my_wish_list/view/pages/my_wish_list.dart';
 import 'package:mhg/features/profile/view/pages/profile_view.dart';
@@ -41,13 +40,6 @@ class _MainWrapperState extends State<MainWrapper> {
     const MyCartPage(),
     const ProfileView()
   ];
-  @override
-  void dispose() {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle.light,
-    );
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

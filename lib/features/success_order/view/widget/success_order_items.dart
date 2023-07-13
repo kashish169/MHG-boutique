@@ -53,7 +53,7 @@ class SuccessOrderItems extends StatelessWidget {
                                 ),
                       ),
                       const SizedBox(height: 10),
-                      Row(
+                   /*    Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
@@ -77,7 +77,7 @@ class SuccessOrderItems extends StatelessWidget {
                                 ),
                           ),
                         ],
-                      ),
+                      ), */
                       const SizedBox(height: 15),
                       Obx(() => Text(
                             'Price: ${profileController.currnecy.value} ${controller.orderModel.orderDetails[index].price}',

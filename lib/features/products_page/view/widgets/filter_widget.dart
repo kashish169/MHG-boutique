@@ -34,7 +34,7 @@ class FiltersWidget extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .displaySmall
-              ?.copyWith(fontSize: 14, color: AppColors.secondaryBlack),
+              ?.copyWith(color: AppColors.secondaryBlack),
         ),
         const SizedBox(
           width: 3,
@@ -50,10 +50,9 @@ class FiltersWidget extends StatelessWidget {
           child: Obx(() => DropdownButtonHideUnderline(
                 child: DropdownButton2(
                   isDense: true,
-                  style: Theme.of(context)
-                      .textTheme
-                      .displaySmall!
-                      .copyWith(color: AppColors.secondaryBlack, fontSize: 14),
+                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                        color: AppColors.secondaryBlack,
+                      ),
                   isExpanded: true,
                   value: controller.selectedScent.value != ''
                       ? controller.selectedScent.value
@@ -92,7 +91,7 @@ class FiltersWidget extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .displaySmall
-              ?.copyWith(fontSize: 14, color: AppColors.secondaryBlack),
+              ?.copyWith(color: AppColors.secondaryBlack),
         ),
         const SizedBox(
           width: 3,
@@ -116,7 +115,8 @@ class FiltersWidget extends StatelessWidget {
               : Obx(() => DropdownButtonHideUnderline(
                     child: DropdownButton(
                       style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                          color: AppColors.secondaryBlack, fontSize: 14),
+                            color: AppColors.secondaryBlack,
+                          ),
                       isDense: true,
                       isExpanded: true,
                       value: controller.selectedSortBy.value,

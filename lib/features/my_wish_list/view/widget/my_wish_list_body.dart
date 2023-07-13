@@ -8,7 +8,6 @@ import 'package:mhg/widgets/net_image.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/delete_icon_button.dart';
 import '../../../../widgets/three_bounce_loading.dart';
-import 'my_wish_list_body_header.dart';
 import 'my_wish_list_body_middle_text.dart';
 import 'package:mhg/core/languages/languages.dart';
 
@@ -36,60 +35,60 @@ class _MyWishBodyState extends State<MyWishBody> {
       child: Material(
         shadowColor: AppColors.white2,
         elevation: 3,
-        borderRadius: BorderRadius.circular(12),
+        // borderRadius: BorderRadius.circular(12),
         child: Container(
           decoration: BoxDecoration(
             color: AppColors.white,
-            borderRadius: BorderRadius.circular(12),
+            // borderRadius: BorderRadius.circular(12),
           ),
           child: Row(
             children: [
               Container(
                 // height: AppDimensions.productHeight(context) / 1.2,
-                // height: 170,
-                width: 120,
+                // height: 140,
+                width: 102,
                 decoration: const BoxDecoration(
-                  borderRadius:
-                      BorderRadius.horizontal(left: Radius.circular(12)),
-                ),
+                    // borderRadius:
+                    // BorderRadius.horizontal(left: Radius.circular(12)),
+                    ),
                 child: ClipRRect(
-                    borderRadius: const BorderRadius.horizontal(
-                        left: Radius.circular(12)),
+                    // borderRadius: const BorderRadius.horizontal(
+                    //     left: Radius.circular(12)),
                     child: NetImage(
-                      image: widget.model.options.imageLink,
-                      fit: BoxFit.fitHeight,
-                    )),
+                  image: widget.model.options.imageLink,
+                  fit: BoxFit.fitHeight,
+                )),
               ),
               Expanded(
                   child: Stack(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 32),
-                        SizedBox(
-                          height: 25,
-                          child: FittedBox(
-                            child: TopBodyHeader(
-                                title: isAR()
-                                    ? widget.model.options.arName
-                                    : widget.model.options.enName),
-                          ),
-                        ),
-                        // const SizedBox(height: 10),
-                        BodyMiddleText(
-                          brand: widget.model.options.brand,
-                          price: widget.model.price.toString(),
-                        ),
-                        BodyButtons(
-                            addToBag: widget.addToBag, model: widget.model),
-                      ],
-                    ),
-                  ),
                   Align(
                     alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 7),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 10),
+
+                          // const SizedBox(height: 10),
+                          BodyMiddleText(
+                            brand: widget.model.options.brand,
+                            price: widget.model.price.toString(),
+                            name: isAR()
+                                ? widget.model.options.arName
+                                : widget.model.options.enName,
+                          ),
+                          BodyButtons(
+                              addToBag: widget.addToBag, model: widget.model),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    // alignment: Alignment.topRight,
+                    top: -6,
+                    right: 0,
                     child: widget.model.isDeleteItem
                         ? Container(
                             height: 25,

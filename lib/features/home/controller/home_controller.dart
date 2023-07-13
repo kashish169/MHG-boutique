@@ -73,7 +73,7 @@ class HomeController extends GetxController {
             brandsList.value = data.brands;
             categories.value = data.categories;
             footerSlider.value = data.footerSliders;
-            recentSearchList.value = data.recentSearch.reversed.toList();
+            recentSearchList.value = data.recentSearch;
             middleSectionList.value = data.middleSections;
             if (middleSectionList.isNotEmpty) {
               middleSectionMainImage.value = middleSectionList.first.imageLink;

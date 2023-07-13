@@ -37,10 +37,10 @@ class PromoCode extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Add Promo Code',
+                        'Add Voucher Code',
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: 15,
                                   color: AppColors.label,
                                 ),
                       ),
@@ -51,7 +51,7 @@ class PromoCode extends StatelessWidget {
                             .displayMedium
                             ?.copyWith(
                                 color: AppColors.lightLabel2,
-                                fontSize: 12,
+                                fontSize: 10,
                                 height: 1.7),
                       ),
                     ],
@@ -68,18 +68,24 @@ class PromoCode extends StatelessWidget {
                   Expanded(
                     child: SizedBox(
                       height: 44,
-                      child: CustomFormField(
-                        obscure: false,
-                        readOnly: checkoutController.isLoadingPromo.value,
-                        hint: 'Enter Code Here',
-                        controller: checkoutController.codeController,
-                        oneSideBorder: true,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(width: 0.5)),
+                        child: CustomFormField(
+                          obscure: false,
+                          readOnly: checkoutController.isLoadingPromo.value,
+                          hint: 'Enter Code Here',
+                          controller: checkoutController.codeController,
+                          oneSideBorder: true,
+                          isPromo: true,
+                        ),
                       ),
                     ),
                   ),
                   const SizedBox(width: 20),
                   PlaceOrderButton(
-                    color: AppColors.secondary,
+                      color: AppColors.secondary,
                       title: 'Apply',
                       width: MediaQuery.of(context).size.width * 0.3,
                       hasIcon: false,
