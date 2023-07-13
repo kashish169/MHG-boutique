@@ -6,7 +6,7 @@ class CountriesModel {
   int? code;
   String? message;
   String? detailedError;
-  List<Data>? data;
+  List<CountryDataModel>? data;
 
   CountriesModel(
       {this.isSuccessful,
@@ -23,9 +23,9 @@ class CountriesModel {
     message = json['message'];
     detailedError = json['detailed_error'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <CountryDataModel>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(CountryDataModel.fromJson(v));
       });
     }
   }
@@ -44,7 +44,7 @@ class CountriesModel {
   }
 }
 
-class Data {
+class CountryDataModel {
   int? id;
   String? name;
   String? flag;
@@ -54,7 +54,7 @@ class Data {
   String? flagLink;
   CurrencyModel? currency;
 
-  Data({
+  CountryDataModel({
     this.id,
     this.name,
     this.flag,
@@ -65,7 +65,7 @@ class Data {
     this.currency,
   });
 
-  Data.fromJson(Map<String, dynamic> json) {
+  CountryDataModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     flag = json['flag'];

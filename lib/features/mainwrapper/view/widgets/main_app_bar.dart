@@ -33,17 +33,12 @@ AppBar mainAppBar({
                 if (controller.isLoading.isTrue) {
                   return Text(
                     '${controller.greeting()},....',
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
                           color: AppColors.white,
                           fontSize: 16,
                         ),
                   );
                 } else if (controller.isError.isTrue) {
-                  // return RetryButton(
-                  //   onTap: () {
-                  //     controller.getProfileInfo();
-                  //   },
-                  // );
                   Text(
                     "${controller.greeting()}, ....",
                     style: Theme.of(context).textTheme.displayMedium?.copyWith(
