@@ -11,55 +11,57 @@ class HomeNewArrivelsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsetsDirectional.only(start: 20),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  'New Arrivals'.tr,
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16,
-                      ),
-                ),
-              ),
-              ViewAllButton(onTap: () {
-                Get.to(() => AllProductsPage(
-                      products: controller.newArrivalsList,
-                    ));
-              }),
-            ],
-          ),
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          physics: const BouncingScrollPhysics(),
-          child: Padding(
-            padding: const EdgeInsetsDirectional.symmetric(
-              horizontal: 20,
-              vertical: 10,
-            ),
+    return Visibility(
+      visible: controller.newArrivalsList.isNotEmpty,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsetsDirectional.only(start: 20),
             child: Row(
               children: [
-                for (int index = 0;
-                    index < controller.newArrivalsList.length;
-                    index++)
-                  Obx(
-                    () => ProductCard(
-                      fromArrival: true,
-                      model: controller.newArrivalsList[index],
-                    ),
-                  )
+                Expanded(
+                  child: Text(
+                    'New Arrivals'.tr,
+                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 16,
+                        ),
+                  ),
+                ),
+                ViewAllButton(onTap: () {
+                  Get.to(() => AllProductsPage(
+                        products: controller.newArrivalsList,
+                      ));
+                }),
               ],
             ),
           ),
-        ),
-        const SizedBox(height: 20),
-      ],
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+              child: Row(
+                children: [
+                  for (int index = 0;
+                      index < controller.newArrivalsList.length;
+                      index++)
+                    Obx(
+                      () => ProductCard(
+                        fromArrival: true,
+                        model: controller.newArrivalsList[index],
+                      ),
+                    )
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

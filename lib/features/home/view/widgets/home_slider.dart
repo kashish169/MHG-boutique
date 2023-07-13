@@ -4,9 +4,7 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/widgets/net_image.dart';
-import '../../../../constants/app_colors.dart';
 import '../../../mainwrapper/controller/main_wrapper_controller.dart';
-import 'custom_dot_swiper.dart';
 
 class HomeSlider extends StatelessWidget {
   const HomeSlider({super.key});
@@ -17,22 +15,6 @@ class HomeSlider extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Padding(
-        //   padding: const EdgeInsets.symmetric(
-        //     vertical: 10,
-        //     horizontal: 20,
-        //   ),
-        //   child: Text(
-        //     "What's New".tr,
-        //     style: Theme.of(context).textTheme.displayMedium?.copyWith(
-        //           fontSize: 22,
-        //           fontWeight: FontWeight.normal,
-        //         ),
-        //   ),
-        // ),
-        const SizedBox(
-          height: 20,
-        ),
         SizedBox(
           height: AppDimensions.screenWidth(context) * 1.2,
           width: AppDimensions.screenWidth(context),
@@ -54,14 +36,6 @@ class HomeSlider extends StatelessWidget {
             loop: false,
             itemCount: controller.slidersList.length,
             outer: true,
-            // autoplay: true,
-            // duration: 3,
-            // pagination: SwiperPagination(
-            //   builder: CustomDotSwiperPaginationBuilder(
-            //     color: AppColors.primary,
-            //     activeColor: AppColors.white,
-            //   ),
-            // ),
           ),
         ),
       ],

@@ -43,7 +43,7 @@ class ShippingAddress extends StatelessWidget {
                         'Shipping Address',
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: 15,
                                   color: AppColors.label,
                                 ),
                       ),
@@ -51,7 +51,7 @@ class ShippingAddress extends StatelessWidget {
                     Text(
                       controller.model.value!.name,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 16,
+                            fontSize: 14,
                             color: AppColors.mediumLabel,
                             fontWeight: FontWeight.bold,
                           ),
@@ -64,7 +64,7 @@ class ShippingAddress extends StatelessWidget {
                             : controller.model.value!.street!,
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   color: AppColors.mediumLabel,
                                 ),
                       ),
@@ -74,7 +74,7 @@ class ShippingAddress extends StatelessWidget {
                           ? 'Add your state'
                           : controller.model.value!.state!,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 16,
+                            fontSize: 14,
                             color: AppColors.mediumLabel,
                           ),
                     ),
@@ -83,7 +83,7 @@ class ShippingAddress extends StatelessWidget {
                           ? 'Add your zipcode'
                           : controller.model.value!.zipCode!,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 16,
+                            fontSize: 14,
                             color: AppColors.mediumLabel,
                           ),
                     ),
@@ -93,7 +93,7 @@ class ShippingAddress extends StatelessWidget {
                         controller.model.value!.country?.name ?? '',
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   color: AppColors.mediumLabel,
                                 ),
                       ),

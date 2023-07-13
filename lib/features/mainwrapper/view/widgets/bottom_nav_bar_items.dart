@@ -95,7 +95,7 @@ Widget _icon({
                 child: Text(
                   label,
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 10,
                     color: color,
                     fontWeight: FontWeight.w400,
                     fontFamily: AppFonts.Century_Gothic,

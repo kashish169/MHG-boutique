@@ -17,9 +17,10 @@ class ProfileCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        color:AppColors.white,
+        color: AppColors.white,
         height: 60,
         child: ListTile(
+          minLeadingWidth: 0,
           leading: Image.asset(
             icon,
             height: 25,

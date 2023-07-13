@@ -31,7 +31,7 @@ class ProductCategoryItem extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .displaySmall
-              ?.copyWith(fontSize: 14, color: AppColors.secondaryBlack),
+              ?.copyWith(color: AppColors.secondaryBlack),
         ),
       ),
     );

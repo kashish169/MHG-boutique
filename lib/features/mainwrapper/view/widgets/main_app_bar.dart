@@ -23,20 +23,20 @@ AppBar mainAppBar({
         padding: const EdgeInsets.all(10.0),
         child: App.token.isEmpty
             ? Text(
-          controller.greeting(),
-                style: Theme.of(context)
-                    .textTheme
-                    .displaySmall
-                    ?.copyWith(color: AppColors.white),
+                controller.greeting(),
+                style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                      color: AppColors.white,
+                      fontSize: 16,
+                    ),
               )
             : GetX<ProfileController>(builder: (controller) {
                 if (controller.isLoading.isTrue) {
                   return Text(
-                    controller.greeting(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .displaySmall
-                        ?.copyWith(color: AppColors.white),
+                    '${controller.greeting()},....',
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          color: AppColors.white,
+                          fontSize: 16,
+                        ),
                   );
                 } else if (controller.isError.isTrue) {
                   // return RetryButton(
@@ -46,18 +46,18 @@ AppBar mainAppBar({
                   // );
                   Text(
                     "${controller.greeting()}, ....",
-                    style: Theme.of(context)
-                        .textTheme
-                        .displayMedium
-                        ?.copyWith(color: AppColors.white),
+                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                          color: AppColors.white,
+                          fontSize: 16,
+                        ),
                   );
                 }
                 return Text(
                   "${controller.greeting()}, ${controller.model.value!.name}",
-                  style: Theme.of(context)
-                      .textTheme
-                      .displayMedium
-                      ?.copyWith(color: AppColors.white),
+                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                        color: AppColors.white,
+                        fontSize: 16,
+                      ),
                 );
               })),
     actions: [
