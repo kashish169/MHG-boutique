@@ -141,7 +141,7 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                   : (widget.inWishlist == 0 && widget.isProductDetails == true)
                       ? AppAssets.blackHeart
                       : AppAssets.favourtie,
-              height: widget.height ?? 24,
+              height: widget.height ?? 18,
               width: widget.width,
               color: (widget.inWishlist == 0) ? null : AppColors.red,
               fit: (widget.inWishlist == 0) ? null : BoxFit.fill,

@@ -97,6 +97,16 @@ class ProfileController extends GetxController {
       isError(true);
     }
   }
+  String greeting() {
+    var hour = DateTime.now().hour;
+    if (hour < 12) {
+      return 'Good Morning'.tr;
+    }
+    if (hour < 17) {
+      return 'Good Afternoon'.tr;
+    }
+    return 'Good Evening'.tr;
+  }
 
   String getLevelIcon() {
     if (model.value!.currentTier == "Mojab") {

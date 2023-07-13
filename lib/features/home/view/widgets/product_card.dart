@@ -59,65 +59,70 @@ class ProductCard extends StatelessWidget {
         }
       },
       child: Container(
+
         width: 155,
         margin: const EdgeInsetsDirectional.only(end: 12),
         decoration: BoxDecoration(
           color: AppColors.white,
           // borderRadius:
           //     const BorderRadius.vertical(bottom: Radius.circular(20)),
-          boxShadow: AppColors.shadow(0.2),
+          // boxShadow: AppColors.shadow(0.2),
         ),
         child: Stack(
           alignment: Alignment.topRight,
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 NetImage(
                   isProductCard: true,
                   image: isWishList == false
                       ? model!.primaryImageLink
                       : wishListModel!.options.imageLink,
-                  height: AppDimensions.productHeight(context) * 0.7,
+                  height: AppDimensions.productHeight(context) * 0.97,
                   width: 182,
                 ),
                 const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsetsDirectional.symmetric(horizontal: 5),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          isWishList == false
-                              ? model!.enProductName
-                              : wishListModel!.name,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                fontSize: 13,
-                              ),
-                        ),
-                      ),
-                      const SizedBox(width: 5),
-                      isWishList == true
-                          ? const SizedBox()
-                          : Visibility(
-                              visible:
-                                  double.parse("${model?.averageRate}") == 0
-                                      ? false
-                                      : true,
-                              child: RatingWidget(
-                                initialRating:
-                                    double.parse("${model?.averageRate}"),
-                                isEnableToRate: false,
-                              ),
-                            ),
-                    ],
+                  child: Text(
+                    isWishList == false
+                        ? model!.brand.enBrandName
+                        : wishListModel!.options.brand,
+                    maxLines: 2,
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context)
+                        .textTheme
+                        .displaySmall
+                        ?.copyWith(
+                color: AppColors.grey,
+                      fontSize: 12,
+                    ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 2,),
+                SizedBox(
+                  height: 30,
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.symmetric(horizontal: 5),
+                    child: Text(
+                      isWishList == false
+                          ? model!.enProductName
+                          : wishListModel!.name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context)
+                          .textTheme
+                          .displaySmall
+                          ?.copyWith(
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ),
+
+
                 Obx(() => Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 5,
