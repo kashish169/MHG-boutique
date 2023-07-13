@@ -59,7 +59,6 @@ class ProductCard extends StatelessWidget {
         }
       },
       child: Container(
-
         width: 150,
         margin: const EdgeInsetsDirectional.only(end: 12),
         decoration: BoxDecoration(
@@ -87,41 +86,37 @@ class ProductCard extends StatelessWidget {
                   padding: const EdgeInsetsDirectional.symmetric(horizontal: 5),
                   child: Text(
                     isWishList == false
-                        ? model!.brand.enBrandName
+                        ? model!.brand?.enBrandName ?? ''
                         : wishListModel!.options.brand,
                     maxLines: 2,
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context)
-                        .textTheme
-                        .displaySmall
-                        ?.copyWith(
-                color: AppColors.grey,
-                      fontSize: 12,
-                    ),
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          color: AppColors.grey,
+                          fontSize: 12,
+                        ),
                   ),
                 ),
-                const SizedBox(height: 2,),
+                const SizedBox(
+                  height: 2,
+                ),
                 SizedBox(
                   height: 30,
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.symmetric(horizontal: 5),
+                    padding:
+                        const EdgeInsetsDirectional.symmetric(horizontal: 5),
                     child: Text(
                       isWishList == false
                           ? model!.enProductName
                           : wishListModel!.name,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context)
-                          .textTheme
-                          .displaySmall
-                          ?.copyWith(
-                        fontSize: 12,
-                      ),
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            fontSize: 12,
+                          ),
                     ),
                   ),
                 ),
-
 
                 Obx(() => Padding(
                       padding: const EdgeInsets.symmetric(
