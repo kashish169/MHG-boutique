@@ -25,6 +25,7 @@ class CustomFormField extends StatelessWidget {
     this.onFieldSubmitted,
     this.isFileWhite,
     this.inputFormatters,
+    this.isPromo,
   });
 
   final Widget? prefixWidget;
@@ -47,6 +48,7 @@ class CustomFormField extends StatelessWidget {
   final void Function(PointerDownEvent)? onTapOutsidel;
   final bool? isFileWhite;
   final List<TextInputFormatter>? inputFormatters;
+  final bool? isPromo;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -74,7 +76,7 @@ class CustomFormField extends StatelessWidget {
               oneSideBorder != null ? const EdgeInsets.all(12) : null,
           filled: readOnly == null ? true : false,
           hintStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
-              color: isFilled == null ? AppColors.grey : AppColors.black3),
+              color: isPromo != null ? AppColors.label:  isFilled == null ? AppColors.grey : AppColors.black3),
           hintText: hint,
           fillColor:
               isFileWhite == null ? const Color(0XFFF0F0F0) : AppColors.white,
