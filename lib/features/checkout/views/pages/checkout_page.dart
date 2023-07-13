@@ -22,7 +22,7 @@ class CheckoutPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.white2,
       bottomNavigationBar: const BottomNavBarWidget(),
-      appBar: customAppBar(context, title: 'Checkout'),
+      appBar: customAppBar(context, title: 'Secure Checkout'),
       body: GetX<CheckoutController>(initState: (state) async {
         await state.controller?.getUserPaymentMethods();
         if (state.controller!.paymentMethodsList.isEmpty) {

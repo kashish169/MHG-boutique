@@ -20,7 +20,7 @@ class CheckOutButton extends StatelessWidget {
             color: AppColors.secondary,
             height: 44,
             width: 300,
-            title: 'Checkout',
+            title: 'Secure Checkout',
             onTap: () {
               Get.toNamed(CheckoutPage.routeName);
             },
