@@ -101,7 +101,7 @@ class ProductCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 2,),
+                const SizedBox(height: 2,),
                 SizedBox(
                   height: 30,
                   child: Padding(
