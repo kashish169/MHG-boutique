@@ -6,22 +6,27 @@ class TopBodyHeader extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: Column(
-        children: [
-          Text(
-            title,
-            style: Theme.of(context)
-                .textTheme
-                .displaySmall!
-                .copyWith(fontSize: 16, color: AppColors.darkGrey),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              flex: 6,
+              child: Text(
+                title,
+                style: Theme.of(context)
+                    .textTheme
+                    .displaySmall!
+                    .copyWith(fontSize: 13, color: AppColors.darkGrey),
+              ),
+            ),
+            const Expanded(flex: 1, child: SizedBox())
+          ],
+        ),
+        const SizedBox(
+          height: 9,
+        ),
+      ],
     );
   }
 }

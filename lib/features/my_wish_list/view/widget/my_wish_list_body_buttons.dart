@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/core/languages/languages.dart';
+// import 'package:mhg/core/languages/languages.dart';
 import 'package:mhg/core/services/deep_link_service.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/my_wish_list/view/widget/wish_list_counter.dart';
@@ -22,31 +22,31 @@ class _BodyButtonsState extends State<BodyButtons> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment:
-           CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Expanded(
           child: Padding(
-            padding:   isAR() ? const EdgeInsets.only(right: 0): const EdgeInsets.only(left: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
             child: PrimaryButton(
               title: "Share".tr,
               onTap: () async {
                 DeepLinkSevice.shareProduct(widget.model.id);
               },
               fontSize: 12,
-              color: AppColors.white,
-              height: 35,
-              reverseColor: true,
-              isSelcted: true,
+              color: AppColors.secondary,
+              height: 30,
+              fontColor: AppColors.white,
+              // reverseColor: true,
+              // isSelcted: false,
             ),
           ),
         ),
         Expanded(child: StatefulBuilder(builder: (context, setState) {
           return widget.model.options.inCart == 0
               ? Padding(
-                  padding: const EdgeInsets.only(
-                          left: 5,
-                        ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 5,
+                  ),
                   child: PrimaryButton(
                     title: "Add to Bag".tr,
                     isLoading: widget.model.isAddToBag,
@@ -65,11 +65,10 @@ class _BodyButtonsState extends State<BodyButtons> {
                     },
                     fontSize: 12,
                     color: AppColors.secondary,
-                    height: 35,
-                   
+                    height: 30,
                   ))
               : Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.only(bottom: 8),
                   child: WishListCounterrWidget(model: widget.model),
                 );
         })),
