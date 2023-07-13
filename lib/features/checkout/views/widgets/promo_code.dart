@@ -37,7 +37,7 @@ class PromoCode extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Add Voucher code',
+                        'Add Voucher Code',
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
                                   fontSize: 15,
@@ -68,13 +68,18 @@ class PromoCode extends StatelessWidget {
                   Expanded(
                     child: SizedBox(
                       height: 44,
-                      child: CustomFormField(
-                        obscure: false,
-                        readOnly: checkoutController.isLoadingPromo.value,
-                        hint: 'Enter Code Here',
-                        controller: checkoutController.codeController,
-                        oneSideBorder: true,
-                        isPromo: true,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(width: 0.5)),
+                        child: CustomFormField(
+                          obscure: false,
+                          readOnly: checkoutController.isLoadingPromo.value,
+                          hint: 'Enter Code Here',
+                          controller: checkoutController.codeController,
+                          oneSideBorder: true,
+                          isPromo: true,
+                        ),
                       ),
                     ),
                   ),

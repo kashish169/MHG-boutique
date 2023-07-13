@@ -76,7 +76,11 @@ class CustomFormField extends StatelessWidget {
               oneSideBorder != null ? const EdgeInsets.all(12) : null,
           filled: readOnly == null ? true : false,
           hintStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
-              color: isPromo != null ? AppColors.label:  isFilled == null ? AppColors.grey : AppColors.black3),
+              color: isPromo != null
+                  ? AppColors.label
+                  : isFilled == null
+                      ? AppColors.grey
+                      : AppColors.black3),
           hintText: hint,
           fillColor:
               isFileWhite == null ? const Color(0XFFF0F0F0) : AppColors.white,
@@ -116,7 +120,10 @@ class CustomFormField extends StatelessWidget {
                       borderSide:
                           BorderSide(color: AppColors.lightGray3, width: 1)),
           disabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: AppColors.lightGray3, width: 1)),
+              borderSide: BorderSide(
+            color: AppColors.lightGray3,
+            width: 1,
+          )),
           focusedBorder: readOnly == null
               ? OutlineInputBorder(
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
