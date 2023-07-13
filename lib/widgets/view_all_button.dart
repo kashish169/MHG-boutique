@@ -18,7 +18,7 @@ class ViewAllButton extends StatelessWidget {
           const SizedBox(width: 5),
           const Icon(
             Icons.arrow_forward_ios,
-            size: 14,
+            size: 12,
           ),
         ],
       ),

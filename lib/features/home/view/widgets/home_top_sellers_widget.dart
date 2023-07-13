@@ -23,7 +23,7 @@ class HomeTopSellersWidget extends StatelessWidget {
                   'Top Sellers'.tr,
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
                         fontWeight: FontWeight.normal,
-                        fontSize: 18,
+                        fontSize: 16,
                       ),
                 ),
               ),

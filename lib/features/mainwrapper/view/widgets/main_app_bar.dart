@@ -23,19 +23,19 @@ AppBar mainAppBar({
         padding: const EdgeInsets.all(10.0),
         child: App.token.isEmpty
             ? Text(
-                "Ya Hala",
+          controller.greeting(),
                 style: Theme.of(context)
                     .textTheme
-                    .displayMedium
+                    .displaySmall
                     ?.copyWith(color: AppColors.white),
               )
             : GetX<ProfileController>(builder: (controller) {
                 if (controller.isLoading.isTrue) {
                   return Text(
-                    "Ya Hala",
+                    controller.greeting(),
                     style: Theme.of(context)
                         .textTheme
-                        .displayMedium
+                        .displaySmall
                         ?.copyWith(color: AppColors.white),
                   );
                 } else if (controller.isError.isTrue) {
@@ -45,7 +45,7 @@ AppBar mainAppBar({
                   //   },
                   // );
                   Text(
-                    "Ya Hala, ....",
+                    "${controller.greeting()}, ....",
                     style: Theme.of(context)
                         .textTheme
                         .displayMedium
@@ -53,7 +53,7 @@ AppBar mainAppBar({
                   );
                 }
                 return Text(
-                  "Ya Hala, ${controller.model.value!.name}",
+                  "${controller.greeting()}, ${controller.model.value!.name}",
                   style: Theme.of(context)
                       .textTheme
                       .displayMedium

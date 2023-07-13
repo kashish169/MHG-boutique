@@ -38,8 +38,8 @@ class HomeCategoryCard extends StatelessWidget {
             const EdgeInsetsDirectional.symmetric(horizontal: 12, vertical: 10),
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadiusDirectional.circular(8),
-          boxShadow: AppColors.shadow(0.3),
+          // borderRadius: BorderRadiusDirectional.circular(8),
+          // boxShadow: AppColors.shadow(0.3),
         ),
         child: Row(
           children: [

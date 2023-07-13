@@ -109,6 +109,17 @@ class MainWrapperController extends GetxController {
     return result;
   }
 
+
+  String greeting() {
+    var hour = DateTime.now().hour;
+    if (hour < 12) {
+      return 'Good Morning'.tr;
+    }
+    if (hour < 17) {
+      return 'Good Afternoon'.tr;
+    }
+    return 'Good Evening'.tr;
+  }
   @override
   void onInit() {
     DeepLinkSevice.initDynamicLink();

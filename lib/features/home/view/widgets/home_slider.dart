@@ -17,18 +17,21 @@ class HomeSlider extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 10,
-            horizontal: 20,
-          ),
-          child: Text(
-            "What's New".tr,
-            style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                  fontSize: 22,
-                  fontWeight: FontWeight.normal,
-                ),
-          ),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(
+        //     vertical: 10,
+        //     horizontal: 20,
+        //   ),
+        //   child: Text(
+        //     "What's New".tr,
+        //     style: Theme.of(context).textTheme.displayMedium?.copyWith(
+        //           fontSize: 22,
+        //           fontWeight: FontWeight.normal,
+        //         ),
+        //   ),
+        // ),
+        const SizedBox(
+          height: 20,
         ),
         SizedBox(
           height: AppDimensions.screenWidth(context) * 1.2,

@@ -21,6 +21,7 @@ class HomeShopByCategoryWidget extends StatelessWidget {
           child: Text(
             "Shop By Category".tr,
             style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                  fontSize: 16,
                   fontWeight: FontWeight.normal,
                 ),
           ),
