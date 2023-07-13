@@ -53,7 +53,7 @@ class MyCartCard extends StatelessWidget {
                             color: AppColors.mediumLabel,
                           ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 8),
                     Row(
                       children: [
                         Text(
@@ -79,7 +79,7 @@ class MyCartCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 8),
                     Obx(() => Row(
                           children: [
                             Text(
