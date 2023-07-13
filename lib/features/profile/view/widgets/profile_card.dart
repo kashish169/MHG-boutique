@@ -20,7 +20,7 @@ class ProfileCard extends StatelessWidget {
         color: AppColors.white,
         height: 60,
         child: ListTile(
-          minLeadingWidth: 0,
+          minLeadingWidth: 30,
           leading: Image.asset(
             icon,
             height: 25,
