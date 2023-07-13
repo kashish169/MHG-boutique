@@ -36,7 +36,7 @@ class _MyWishBodyState extends State<MyWishBody> {
       child: Material(
         shadowColor: AppColors.white2,
         elevation: 3,
-        borderRadius: BorderRadius.circular(12),
+        // borderRadius: BorderRadius.circular(12),
         child: Container(
           decoration: BoxDecoration(
             color: AppColors.white,
@@ -49,35 +49,30 @@ class _MyWishBodyState extends State<MyWishBody> {
                 // height: 170,
                 width: 120,
                 decoration: const BoxDecoration(
-                  borderRadius:
-                      BorderRadius.horizontal(left: Radius.circular(12)),
-                ),
+                    // borderRadius:
+                    // BorderRadius.horizontal(left: Radius.circular(12)),
+                    ),
                 child: ClipRRect(
-                    borderRadius: const BorderRadius.horizontal(
-                        left: Radius.circular(12)),
+                    // borderRadius: const BorderRadius.horizontal(
+                    //     left: Radius.circular(12)),
                     child: NetImage(
-                      image: widget.model.options.imageLink,
-                      fit: BoxFit.fitHeight,
-                    )),
+                  image: widget.model.options.imageLink,
+                  fit: BoxFit.fitHeight,
+                )),
               ),
               Expanded(
                   child: Stack(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 32),
-                        SizedBox(
-                          height: 25,
-                          child: FittedBox(
-                            child: TopBodyHeader(
-                                title: isAR()
-                                    ? widget.model.options.arName
-                                    : widget.model.options.enName),
-                          ),
-                        ),
+                        TopBodyHeader(
+                            title: isAR()
+                                ? widget.model.options.arName
+                                : widget.model.options.enName),
                         // const SizedBox(height: 10),
                         BodyMiddleText(
                           brand: widget.model.options.brand,

@@ -24,14 +24,14 @@ class BodyMiddleText extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .displaySmall!
-                    .copyWith(fontSize: 12, color: AppColors.lightGray4),
+                    .copyWith(fontSize: 10, color: AppColors.lightGray4),
               ),
               TextSpan(
                 text: " $brand",
                 style: Theme.of(context)
                     .textTheme
                     .displaySmall!
-                    .copyWith(fontSize: 12, color: AppColors.darkGrey),
+                    .copyWith(fontSize: 10, color: AppColors.darkGrey),
               )
             ]),
           ),
@@ -43,10 +43,10 @@ class BodyMiddleText extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .displayMedium!
-                    .copyWith(fontSize: 14, color: AppColors.darkGrey),
+                    .copyWith(fontSize: 10, color: AppColors.darkGrey),
               )),
           const SizedBox(
-            height: 10,
+            height: 5,
           ),
         ],
       ),

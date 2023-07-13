@@ -14,38 +14,37 @@ List<Widget> navBarItems({
     [
       _icon(
         icon: AppAssets.home,
-        label: 'Home',
+        label: 'HOME',
         index: 0,
         color: index == 0 ? AppColors.secondary : AppColors.white,
         onTap: () => onTap(0),
       ),
       _icon(
         icon: AppAssets.brands,
-        label: 'Categories',
+        label: 'CATEGORIES',
         index: 1,
         color: index == 1 ? AppColors.secondary : AppColors.white,
         onTap: () => onTap(1),
       ),
       _icon(
         icon: AppAssets.wishlist,
-        label: 'Wishlist',
+        label: 'WISHLIST',
         index: 2,
         color: index == 2 ? AppColors.secondary : AppColors.white,
         onTap: () => onTap(2),
       ),
       _icon(
         icon: AppAssets.bag,
-        label: 'Bag',
+        label: 'BAG',
         enableBadge: true,
         index: 3,
-
         color: index == 3 ? AppColors.secondary : AppColors.white,
         onTap: () => onTap(3),
         iconSize: 22,
       ),
       _icon(
         icon: AppAssets.profile,
-        label: 'Profile',
+        label: 'PROFILE',
         index: 4,
         color: index == 4 ? AppColors.secondary : AppColors.white,
         onTap: () => onTap(4),
@@ -71,23 +70,24 @@ Widget _icon({
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            enableBadge == true&&Get.find<MyCartController>().cartItemsList.isNotEmpty
+            enableBadge == true &&
+                    Get.find<MyCartController>().cartItemsList.isNotEmpty
                 ? badge.Badge(
-              badgeContent: Text(
-                  "${Get.find<MyCartController>().cartItemsList.length}"),
-              child: Image.asset(
-                icon,
-                height: iconSize ?? 25,
-                width: iconSize ?? 25,
-                color: color,
-              ),
-            ):
-            Image.asset(
-              icon,
-              height: iconSize ?? 25,
-              width: iconSize ?? 25,
-              color: color,
-            ),
+                    badgeContent: Text(
+                        "${Get.find<MyCartController>().cartItemsList.length}"),
+                    child: Image.asset(
+                      icon,
+                      height: iconSize ?? 25,
+                      width: iconSize ?? 25,
+                      color: color,
+                    ),
+                  )
+                : Image.asset(
+                    icon,
+                    height: iconSize ?? 25,
+                    width: iconSize ?? 25,
+                    color: color,
+                  ),
             const SizedBox(height: 4),
             FittedBox(
               child: Padding(
@@ -98,7 +98,7 @@ Widget _icon({
                     fontSize: 12,
                     color: color,
                     fontWeight: FontWeight.w400,
-                    fontFamily: AppFonts.INTER,
+                    fontFamily: AppFonts.Century_Gothic,
                   ),
                 ),
               ),

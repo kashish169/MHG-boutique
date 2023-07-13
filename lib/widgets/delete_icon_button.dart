@@ -11,7 +11,7 @@ class DeleteIconButton extends StatelessWidget {
       onPressed: onTap,
       icon: Image.asset(
         AppAssets.closeFill,
-        height: 25,
+        height: 19,
       ),
     );
   }
