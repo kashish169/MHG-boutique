@@ -36,7 +36,7 @@ class BodyMiddleText extends StatelessWidget {
             ]),
           ),
           const SizedBox(
-            height: 10,
+            height: 13,
           ),
           Obx(() => Text(
                 "${profileController.currnecy.value} $price",
@@ -46,7 +46,7 @@ class BodyMiddleText extends StatelessWidget {
                     .copyWith(fontSize: 10, color: AppColors.darkGrey),
               )),
           const SizedBox(
-            height: 5,
+            height: 8,
           ),
         ],
       ),

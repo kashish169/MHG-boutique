@@ -40,7 +40,7 @@ class _MyWishBodyState extends State<MyWishBody> {
         child: Container(
           decoration: BoxDecoration(
             color: AppColors.white,
-            borderRadius: BorderRadius.circular(12),
+            // borderRadius: BorderRadius.circular(12),
           ),
           child: Row(
             children: [
@@ -64,11 +64,11 @@ class _MyWishBodyState extends State<MyWishBody> {
                   child: Stack(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 7),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 32),
+                        const SizedBox(height: 25),
                         TopBodyHeader(
                             title: isAR()
                                 ? widget.model.options.arName
@@ -85,6 +85,8 @@ class _MyWishBodyState extends State<MyWishBody> {
                   ),
                   Align(
                     alignment: Alignment.topRight,
+                    // top: -3,
+                    // right: 0,
                     child: widget.model.isDeleteItem
                         ? Container(
                             height: 25,

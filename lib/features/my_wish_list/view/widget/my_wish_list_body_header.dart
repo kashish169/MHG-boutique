@@ -26,7 +26,7 @@ class TopBodyHeader extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 8,
+            height: 11,
           ),
         ],
       ),
