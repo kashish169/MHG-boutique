@@ -18,7 +18,7 @@ class ConfirmationFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
           padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.1),
-      color: AppColors.white2,
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -39,7 +39,7 @@ class ConfirmationFooter extends StatelessWidget {
                             .displaySmall
                             ?.copyWith(
                               height: 1.4,
-                              fontSize: 16,
+                              fontSize: 14,
                               color: AppColors.label,
                             ),
                       ),
@@ -62,7 +62,7 @@ class ConfirmationFooter extends StatelessWidget {
                               .displaySmall
                               ?.copyWith(
                                 height: 1.4,
-                                fontSize: 16,
+                                fontSize: 14,
                                 color: AppColors.label,
                               ),
                         ),
@@ -85,7 +85,7 @@ class ConfirmationFooter extends StatelessWidget {
                               .displaySmall
                               ?.copyWith(
                                 height: 1.4,
-                                fontSize: 16,
+                                fontSize: 14,
                                 color: AppColors.label,
                               ),
                         ),
@@ -98,7 +98,7 @@ class ConfirmationFooter extends StatelessWidget {
                           .displaySmall
                           ?.copyWith(
                             height: 1.4,
-                            fontSize: 16,
+                            fontSize: 14,
                             color: AppColors.dBlack,
                             fontWeight: FontWeight.bold,
                           ),
@@ -117,7 +117,7 @@ class ConfirmationFooter extends StatelessWidget {
                           Theme.of(context).textTheme.displaySmall?.copyWith(
                             height: 1.4,
                             color: AppColors.dBlack,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                       ),
@@ -141,7 +141,7 @@ class ConfirmationFooter extends StatelessWidget {
                           ?.copyWith(
                             height: 1.4,
                             color: AppColors.mediumLabel,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                     ),
                   ),
@@ -164,7 +164,7 @@ class ConfirmationFooter extends StatelessWidget {
                               height: 1.4,
                               color:
                                   AppColors.mediumLabel,
-                              fontSize: 16,
+                              fontSize: 14,
                             ),
                       ),
                     ),
@@ -186,7 +186,7 @@ class ConfirmationFooter extends StatelessWidget {
                               ?.copyWith(
                                 height: 1.4,
                                 color: AppColors.dBlack,
-                                fontSize: 16,
+                                fontSize: 14,
                               ),
                         ),
                       )),
@@ -200,7 +200,7 @@ class ConfirmationFooter extends StatelessWidget {
                             height: 1.4,
                             color: AppColors.mediumLabel,
                             fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                     ),
                   ),
@@ -208,11 +208,11 @@ class ConfirmationFooter extends StatelessWidget {
               )
             ],
           ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 10),
           SizedBox(
               height: AppDimensions.viewBottomPadding(
                       context) +
-                  15),
+                  10),
         ],
       ),
     );

@@ -27,13 +27,13 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
             child: Text(
               'Payment Method',
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                  fontSize: 16,
+                  fontSize: 14,
                   color: AppColors.label,
                   fontWeight: FontWeight.bold),
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: 5,
           ),
           Row(
             children: [
@@ -41,7 +41,7 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
               Text(
                 'Cash On Delivery',
                 style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                  fontSize: 14,
+                  fontSize: 12,
                   color: AppColors.mediumLabel,
                   fontWeight: FontWeight.bold,
                 ),
@@ -76,7 +76,7 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
                     Text(
                       controller.orderModel.tapPaymentMethod!.cardType,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 14,
+                            fontSize: 12,
                             color: AppColors.mediumLabel,
                             fontWeight: FontWeight.bold,
                           ),
@@ -90,7 +90,7 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
                         softWrap: true,
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 14,
+                                  fontSize: 12,
                                   color: AppColors.mediumLabel,
                                   fontWeight: FontWeight.bold,
                                 ),

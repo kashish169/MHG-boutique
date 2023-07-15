@@ -23,7 +23,7 @@ class SuccessOrderItems extends StatelessWidget {
         ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.all(18),
+          padding: const EdgeInsets.all(5),
           itemCount: controller.orderModel.orderDetails.length,
           itemBuilder: (context, index) {
             return Row(
@@ -48,11 +48,11 @@ class SuccessOrderItems extends StatelessWidget {
                         controller.orderModel.orderDetails[index].productName,
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   color: AppColors.mediumLabel,
                                 ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 4),
                    /*    Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -78,14 +78,14 @@ class SuccessOrderItems extends StatelessWidget {
                           ),
                         ],
                       ), */
-                      const SizedBox(height: 15),
+
                       Obx(() => Text(
                             'Price: ${profileController.currnecy.value} ${controller.orderModel.orderDetails[index].price}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
                                 ?.copyWith(
-                                  fontSize: 14,
+                                  fontSize: 11,
                                   color: AppColors.mediumLabel,
                                 ),
                           )),
@@ -94,7 +94,7 @@ class SuccessOrderItems extends StatelessWidget {
                         'Quantity: ${double.parse(controller.orderModel.orderDetails[index].quantity.toString()).toInt()}',
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 14,
+                                  fontSize: 11,
                                   color: AppColors.mediumLabel,
                                 ),
                       ),
@@ -124,29 +124,27 @@ class SuccessOrderItems extends StatelessWidget {
                     ]),
                   ),
                 ) ,*/
-                      const SizedBox(height: 4),
+                      // const SizedBox(height: 4),
                       Obx(() => Text(
                             'Total Price: ${profileController.currnecy.value} ${controller.orderModel.orderDetails[index].totalPrice}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
                                 ?.copyWith(
-                                  fontSize: 14,
+                                  fontSize: 11,
                                   color: AppColors.mediumLabel,
                                 ),
                           )),
-                      const SizedBox(height: 10),
+                      // const SizedBox(height: 5),
                     ],
                   ),
                 ),
-                const SizedBox(
-                  width: 5,
-                )
+
               ],
             );
           },
           separatorBuilder: (context, index) {
-            return const SizedBox(height: 9);
+            return const SizedBox(height: 5);
           },
         ),
       ],

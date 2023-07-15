@@ -22,18 +22,18 @@ class SuccessOrderShippingAddress extends StatelessWidget {
                   child: Text(
                     'Shipping Address',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 16,
+                        fontSize: 14,
                         color: AppColors.label,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 Text(
                   controller.orderModel.user.name,
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 16,
+                        fontSize: 14,
                         color: AppColors.mediumLabel,
                         fontWeight: FontWeight.bold,
                       ),
@@ -43,7 +43,7 @@ class SuccessOrderShippingAddress extends StatelessWidget {
                   child: Text(
                     controller.orderModel.user.streetAddress ?? '',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontSize: 16,
+                          fontSize: 14,
                           color: AppColors.mediumLabel,
                         ),
                   ),
@@ -51,14 +51,14 @@ class SuccessOrderShippingAddress extends StatelessWidget {
                 Text(
                   controller.orderModel.user.state ?? '',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 16,
+                        fontSize: 14,
                         color: AppColors.mediumLabel,
                       ),
                 ),
                 Text(
                   controller.orderModel.user.zipCode ?? '',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 16,
+                        fontSize: 14,
                         color: AppColors.mediumLabel,
                       ),
                 ),
@@ -67,7 +67,7 @@ class SuccessOrderShippingAddress extends StatelessWidget {
                   child: Text(
                     controller.orderModel.user.countryName ?? '',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontSize: 16,
+                          fontSize: 14,
                           color: AppColors.mediumLabel,
                         ),
                   ),

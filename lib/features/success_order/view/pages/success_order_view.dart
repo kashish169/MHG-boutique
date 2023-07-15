@@ -50,38 +50,27 @@ class SuccessOrderView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            height: Get.height * 0.23,
-                            child: Center(
-                              child: Stack(
-                                alignment: Alignment.bottomCenter,
-                                children: [
-                                  Center(
-                                    child: Image.asset(
-                                      AppAssets.orderSuccess,
-                                      height: 70,
-                                      width: 70,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: Get.height * 0.16,
-                                    child: Center(
-                                      child: Text(
-                                        "Your order is confirmed!".tr +
-                                            '\n ${controller.orderModel.orderNumber}',
-                                        textAlign: TextAlign.center,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .displayMedium
-                                            ?.copyWith(
-                                                color: AppColors.secondary,
-                                                fontWeight: FontWeight.normal),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                          const SizedBox(height: 20,),
+                          Center(
+                            child: Image.asset(
+                              AppAssets.orderSuccess,
+                              height: 60,
+                              width: 60,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const SizedBox(height: 5,),
+                          Center(
+                            child: Text(
+                              '${"Your order is confirmed!".tr}\n ${controller.orderModel.orderNumber}',
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displayMedium
+                                  ?.copyWith(
+                                fontSize: 15,
+                                  color: AppColors.secondary,
+                                  fontWeight: FontWeight.normal),
                             ),
                           ),
                           SuccessOrderItems(
@@ -90,38 +79,36 @@ class SuccessOrderView extends StatelessWidget {
                           ),
                           const Divider(),
                           const SizedBox(
-                            height: 15,
+                            height: 5,
                           ),
                           SuccessOrderContactInformation(
                             controller: sucessOrderController,
                           ),
                           const SizedBox(
-                            height: 15,
+                            height: 5,
                           ),
                           const Divider(),
                           const SizedBox(
-                            height: 15,
+                            height: 5,
                           ),
-                          const SizedBox(
-                            height: 15,
-                          ),
+
                           const SuccessOrderShippingAddress(),
                           const SizedBox(
-                            height: 15,
+                            height: 5,
                           ),
                           const Divider(),
                           const SizedBox(
-                            height: 15,
+                            height: 5,
                           ),
                           SuccessOrderPaymentMethod(
                             controller: controller,
                           ),
                           const SizedBox(
-                            height: 15,
+                            height: 5,
                           ),
                           const Divider(),
                           const SizedBox(
-                            height: 15,
+                            height: 5,
                           ),
                           ConfirmationFooter(
                             checkoutController: checkoutController,

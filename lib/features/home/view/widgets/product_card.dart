@@ -71,7 +71,7 @@ class ProductCard extends StatelessWidget {
           alignment: Alignment.topRight,
           children: [
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 NetImage(
                   isProductCard: true,
@@ -110,6 +110,7 @@ class ProductCard extends StatelessWidget {
                           ? model!.enProductName
                           : wishListModel!.name,
                       maxLines: 2,
+                      textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                             fontSize: 12,
@@ -123,6 +124,7 @@ class ProductCard extends StatelessWidget {
                         horizontal: 5,
                       ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Visibility(
                             visible: double.parse(
