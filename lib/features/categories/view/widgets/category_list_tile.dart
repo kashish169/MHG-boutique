@@ -53,7 +53,7 @@ class CategoryListTile extends StatelessWidget {
         children: [
           Container(
               color: AppColors.white,
-              height: 60,
+              height: 55,
               child: Row(
                 children: [
                   const SizedBox(
