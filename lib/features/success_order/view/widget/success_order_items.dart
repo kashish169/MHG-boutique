@@ -131,7 +131,7 @@ class SuccessOrderItems extends StatelessWidget {
                                 .textTheme
                                 .displaySmall
                                 ?.copyWith(
-                                  fontSize: 11,
+                                  fontSize: 14,
                                   color: AppColors.mediumLabel,
                                 ),
                           )),
