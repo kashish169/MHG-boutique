@@ -22,14 +22,14 @@ class SimilarProductsWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsetsDirectional.symmetric(
             horizontal: 20,
-            vertical: 10,
+            vertical: 5,
           ),
           child: Text(
             'You might also like'.tr,
             style: Theme.of(context)
                 .textTheme
                 .displaySmall
-                ?.copyWith(fontSize: 22, color: AppColors.darkGrey),
+                ?.copyWith(fontSize: 18, color: AppColors.darkGrey),
           ),
         ),
         SingleChildScrollView(

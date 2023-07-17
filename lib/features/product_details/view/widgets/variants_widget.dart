@@ -32,7 +32,8 @@ class VariantsWidget extends StatelessWidget {
                       padding:  const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.all(Radius.circular(15)),
-                        border: Border.all(color: controller.selectedVariantInd.value==index?AppColors.secondary:AppColors.grey),),
+                        border: Border.all(color: controller.selectedVariantInd.value==index?AppColors.secondary:AppColors.grey,
+                            width:controller.selectedVariantInd.value==index? 1.5:1),),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [

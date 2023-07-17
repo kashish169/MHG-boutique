@@ -31,7 +31,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                 ? controller.model.frProductName
                 : controller.model.enProductName,
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                fontSize: 19,
+                fontSize: 17,
                 color: AppColors.mediumLabel,
                 fontWeight: FontWeight.w500),
           ),
@@ -42,7 +42,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                 'Brand: '.tr,
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     color: AppColors.lightLabel2,
-                    fontSize: 14,
+                    fontSize: 12,
                     height: 1.7,
                     fontWeight: FontWeight.w500),
               ),
@@ -50,7 +50,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
               Text(
                 controller.model.brand.enBrandName,
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    fontSize: 14,
+                    fontSize: 12,
                     color: AppColors.mediumLabel,
                     fontWeight: FontWeight.w500),
               ),
@@ -72,7 +72,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                             .textTheme
                             .displayMedium
                             ?.copyWith(
-                                fontSize: 14,
+                                fontSize: 12,
                                 color: AppColors.lightLabel,
                                 decoration: TextDecoration.lineThrough,
                                 fontWeight: FontWeight.w500),
@@ -82,7 +82,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                   Obx(()=>Text(
                     '${profileController.currnecy.value} ${controller.model.variants[controller.selectedVariantInd.value].price}',
                     style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        fontSize: 19,
+                        fontSize: 17,
                         color: AppColors.mediumLabel,
                         fontWeight: FontWeight.w500),
                   )),
@@ -102,7 +102,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                     Text(
                       '${controller.model.pts} pts',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontSize: 15,
+                          fontSize: 13,
                           color: AppColors.mediumLabel,
                           fontWeight: FontWeight.w500),
                     ),
@@ -116,12 +116,12 @@ class ProductDetailsBrandCard extends StatelessWidget {
             )
                 : Padding(
               padding: const EdgeInsets.only(
-                top: 30,
-                bottom: 15,
+                top: 15,
+                bottom: 5,
               ),
               child: Obx(() => PrimaryButton(
                 color: AppColors.secondary,
-                fontSize: 16,
+                fontSize: 14,
                 height: 42,
                 title: 'Add to Bag'.tr,
                 isLoading: controller.isLoadingAdd.value,
