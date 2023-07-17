@@ -14,7 +14,7 @@ class HomeExploreOurBrandsWidget extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: 10,
+            vertical: 5,
             horizontal: 20,
           ),
           child: Text(
@@ -26,11 +26,11 @@ class HomeExploreOurBrandsWidget extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 170,
+          height: 160,
           child: ListView.separated(
             padding: const EdgeInsetsDirectional.symmetric(
               horizontal: 20,
-              vertical: 15,
+              vertical: 10,
             ),
             physics: const BouncingScrollPhysics(),
             itemCount: controller.brandsList.length,
@@ -41,7 +41,7 @@ class HomeExploreOurBrandsWidget extends StatelessWidget {
               );
             },
             separatorBuilder: (context, index) {
-              return const SizedBox(width: 12);
+              return const SizedBox(width: 8);
             },
           ),
         )

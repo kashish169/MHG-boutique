@@ -46,6 +46,9 @@ class MyCartController extends GetxController {
           log("CART RESPONSE STATUS $statusCode");
           log(r.object["data"].toString());
           if (statusCode == 200) {
+            log("////////////");
+            log(r.object["data"].toString());
+            log("////////////");
             var json = r.object["data"]["cart_items"];
             cartItemsList.value =
                 List<CartModel>.from(json.map((x) => CartModel.fromJson(x)));
@@ -68,12 +71,15 @@ class MyCartController extends GetxController {
   Future<bool> increaseCartItem({
     required int cartItemId,
     required int quantity,
+    required int variantId,
+
   }) async {
     bool result = false;
     try {
       Map<String, dynamic> body = {
         "item_id": cartItemId,
         "qty": quantity,
+        "variant_id":variantId
       };
       Either<Failure, ApiResponse> results =
           await myCartRepository.increaseCartItem(
@@ -111,12 +117,16 @@ class MyCartController extends GetxController {
   Future<bool> decreaseCartItem({
     required int cartItemId,
     required int quantity,
+    required int variantId,
+
   }) async {
     bool result = false;
     try {
       Map<String, dynamic> body = {
         "item_id": cartItemId,
         "qty": quantity,
+        "variant_id":variantId
+
       };
       Either<Failure, ApiResponse> results =
           await myCartRepository.decreaseCartItem(
@@ -149,9 +159,10 @@ class MyCartController extends GetxController {
     return result;
   }
 
-  Future<void> deleteCartItem(int cartItemId) async {
+  Future<void> deleteCartItem(int cartItemId,int variantId) async {
     try {
-      Map<String, dynamic> body = {"item_id": cartItemId};
+      Map<String, dynamic> body = {"item_id": cartItemId,
+        "variant_id":variantId};
       Either<Failure, ApiResponse> results =
           await myCartRepository.deleteCartItem(
         body: jsonEncode(body),

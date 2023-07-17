@@ -60,12 +60,9 @@ class ProductCard extends StatelessWidget {
       },
       child: Container(
         width: 150,
-        margin: const EdgeInsetsDirectional.only(end: 12),
+        // margin: const EdgeInsetsDirectional.only(end: 12),
         decoration: BoxDecoration(
           color: AppColors.white,
-          // borderRadius:
-          //     const BorderRadius.vertical(bottom: Radius.circular(20)),
-          // boxShadow: AppColors.shadow(0.2),
         ),
         child: Stack(
           alignment: Alignment.topRight,
@@ -110,6 +107,7 @@ class ProductCard extends StatelessWidget {
                           ? model!.enProductName
                           : wishListModel!.name,
                       maxLines: 2,
+                      textAlign: TextAlign.start,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                             fontSize: 12,
@@ -123,6 +121,7 @@ class ProductCard extends StatelessWidget {
                         horizontal: 5,
                       ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Visibility(
                             visible: double.parse(
@@ -136,6 +135,7 @@ class ProductCard extends StatelessWidget {
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   '${profileController.currnecy.value} ${isWishList == false ? model!.price : wishListModel!.price}',
+                                  textAlign: TextAlign.start,
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -164,6 +164,7 @@ class ProductCard extends StatelessWidget {
                                   fit: BoxFit.scaleDown,
                                   child: Text(
                                     '${profileController.currnecy.value} ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                                    textAlign: TextAlign.start,
                                     style: Theme.of(context)
                                         .textTheme
                                         .displaySmall
@@ -177,6 +178,7 @@ class ProductCard extends StatelessWidget {
                                     fit: BoxFit.scaleDown,
                                     child: Text(
                                       '${profileController.currnecy.value} ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
+                                      textAlign: TextAlign.start,
                                       style: Theme.of(context)
                                           .textTheme
                                           .displaySmall

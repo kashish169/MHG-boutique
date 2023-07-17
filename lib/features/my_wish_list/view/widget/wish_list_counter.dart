@@ -41,6 +41,8 @@ class _WishListCounterrWidgetState extends State<WishListCounterrWidget> {
           bool result = await Get.find<MyCartController>().increaseCartItem(
             cartItemId: widget.model.id,
             quantity: 1,
+            variantId: widget.model.options.variantId
+
           );
           if (result == true) {
             Get.find<CheckoutController>().orderPrice();
@@ -76,6 +78,8 @@ class _WishListCounterrWidgetState extends State<WishListCounterrWidget> {
           bool result = await Get.find<MyCartController>().decreaseCartItem(
             cartItemId: widget.model.id,
             quantity: 1,
+              variantId: widget.model.options.variantId
+
           );
           if (result == true) {
             Get.find<CheckoutController>().orderPrice();

@@ -1,6 +1,8 @@
 import 'package:mhg/features/home/models/brand_model.dart';
+import 'package:mhg/features/product_details/models/product_details_model.dart';
 
 class ProductModel {
+  List<Variant> variants;
   int id;
   dynamic externalId;
   dynamic sku;
@@ -63,6 +65,7 @@ class ProductModel {
   bool isLoading;
 
   ProductModel({
+    required this.variants,
     required this.brand,
     this.averageRate,
     this.pts,
@@ -126,6 +129,7 @@ class ProductModel {
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
+    variants: List<Variant>.from(json["variants"].map((x) => Variant.fromJson(x))),
         id: json["id"],
         averageRate: json["avarage_rate"] != null
             ? json["avarage_rate"].toString()
@@ -174,8 +178,8 @@ class ProductModel {
         voucher: json["Voucher"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        inCart: json["in_cart"],
-        cartQty: json["cart_qty"],
+        inCart: json["in_cart"]??0,
+        cartQty: json["cart_qty"]??0,
         inWishlist: json["in_wishlist"],
         primaryImageLink: json["primary_image_link"],
         image2Link: json["image2_link"],

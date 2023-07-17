@@ -26,6 +26,8 @@ class ProductDetailsController extends GetxController {
   RxBool isLoadingAdd = false.obs;
   RxBool isErrorAdd = false.obs;
   late int productId;
+  late int selectedVariantId;
+  RxInt selectedVariantInd=0.obs;
   late bool fromArrival;
   RxString productName = ''.obs;
   final profileController = Get.find<ProfileController>();
@@ -60,13 +62,22 @@ class ProductDetailsController extends GetxController {
           log("PRODUCT DETAILS RESPONSE ERROR ${l.message}");
         },
         (r) {
+
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("PRODUCT DETAILS RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
+            log(r.object["data"].toString());
             var json = r.object["data"]["product"];
             model = ProductDetailsModel.fromJson(json);
             productsReviews.value = model.productReviews;
+            selectedVariantId=model.variants[0].id;
+            for(int i=0;i<model.variants.length;i++){
+              if(model.variants[i].inCart==1){
+                selectedVariantId=model.variants[i].id;
+                selectedVariantInd.value=i;
+              }
+            }
             productName.value = model.enProductName;
             productImages.add(
               model.primaryImageLink,
@@ -114,6 +125,7 @@ class ProductDetailsController extends GetxController {
       Map<String, dynamic> body = {
         "item_id": productId,
         "qty": 1,
+        "variant_id":selectedVariantId
       };
       Either<Failure, ApiResponse> results =
           await productDetailsRepository.addProductToCart(

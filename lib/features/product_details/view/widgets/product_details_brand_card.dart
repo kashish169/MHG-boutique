@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/core/languages/languages.dart';
+import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/product_details/view/widgets/product_details_counter_widget.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import '../../../../app/app.dart';
@@ -10,6 +11,7 @@ import '../../../auth/signin/view/pages/sign_in_page.dart';
 import '../../../mainwrapper/controller/main_wrapper_controller.dart';
 import '../../../profile/controller/profile_controller.dart';
 import '../../controller/product_details_controller.dart';
+import 'package:get/get.dart';
 
 class ProductDetailsBrandCard extends StatelessWidget {
   const ProductDetailsBrandCard({Key? key}) : super(key: key);
@@ -29,7 +31,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                 ? controller.model.frProductName
                 : controller.model.enProductName,
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                fontSize: 19,
+                fontSize: 17,
                 color: AppColors.mediumLabel,
                 fontWeight: FontWeight.w500),
           ),
@@ -40,7 +42,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                 'Brand: '.tr,
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     color: AppColors.lightLabel2,
-                    fontSize: 14,
+                    fontSize: 12,
                     height: 1.7,
                     fontWeight: FontWeight.w500),
               ),
@@ -48,7 +50,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
               Text(
                 controller.model.brand.enBrandName,
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    fontSize: 14,
+                    fontSize: 12,
                     color: AppColors.mediumLabel,
                     fontWeight: FontWeight.w500),
               ),
@@ -70,20 +72,20 @@ class ProductDetailsBrandCard extends StatelessWidget {
                             .textTheme
                             .displayMedium
                             ?.copyWith(
-                                fontSize: 14,
+                                fontSize: 12,
                                 color: AppColors.lightLabel,
                                 decoration: TextDecoration.lineThrough,
                                 fontWeight: FontWeight.w500),
                       ),
                     ),
                   ),
-                  Text(
-                    '${profileController.currnecy.value} ${controller.model.discountPrice}',
+                  Obx(()=>Text(
+                    '${profileController.currnecy.value} ${controller.model.variants[controller.selectedVariantInd.value].price}',
                     style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        fontSize: 19,
+                        fontSize: 17,
                         color: AppColors.mediumLabel,
                         fontWeight: FontWeight.w500),
-                  ),
+                  )),
                 ],
               )),
           const SizedBox(height: 5),
@@ -100,7 +102,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                     Text(
                       '${controller.model.pts} pts',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontSize: 15,
+                          fontSize: 13,
                           color: AppColors.mediumLabel,
                           fontWeight: FontWeight.w500),
                     ),
@@ -108,49 +110,50 @@ class ProductDetailsBrandCard extends StatelessWidget {
                 )
               : const SizedBox(),
           StatefulBuilder(builder: (context, setState) {
-            return controller.model.inCart == 1
+            return Obx(()=>controller.model.variants[controller.selectedVariantInd.value].inCart == 1
                 ? ProductDetailsCounterWidget(
-                    model: controller.model,
-                  )
+              model: controller.model.variants[controller.selectedVariantInd.value],
+            )
                 : Padding(
-                    padding: const EdgeInsets.only(
-                      top: 30,
-                      bottom: 15,
-                    ),
-                    child: Obx(() => PrimaryButton(
-                          color: AppColors.secondary,
-                          fontSize: 16,
-                          height: 42,
-                          title: 'Add to Bag'.tr,
-                          isLoading: controller.isLoadingAdd.value,
-                          onTap: () async {
-                            if (App.token.isEmpty) {
-                              Get.toNamed(
-                                SignInPage.routeName,
-                                arguments: {
-                                  'country': App.countryName,
-                                  'is_guest': true,
-                                  'country_code':
-                                      mainController.globalGuestCountryCode,
-                                  'flag': mainController.globalGuestCountryFlag,
-                                  'id': mainController.globalGuestCountryId,
-                                },
-                              );
-                              return;
-                            }
-                            var result = await controller.addProductToCart(
-                              productId: controller.model.id,
-                            );
-                            if (result) {
-                              controller.model.inCart = 1;
-                              controller.model.cartQty = 1;
-                              setState(() {});
-                            }
-                          },
-                          width: double.infinity,
-                          elevation: 0,
-                        )),
+              padding: const EdgeInsets.only(
+                top: 15,
+                bottom: 5,
+              ),
+              child: Obx(() => PrimaryButton(
+                color: AppColors.secondary,
+                fontSize: 14,
+                height: 42,
+                title: 'Add to Bag'.tr,
+                isLoading: controller.isLoadingAdd.value,
+                onTap: () async {
+                  if (App.token.isEmpty) {
+                    Get.toNamed(
+                      SignInPage.routeName,
+                      arguments: {
+                        'country': App.countryName,
+                        'is_guest': true,
+                        'country_code':
+                        mainController.globalGuestCountryCode,
+                        'flag': mainController.globalGuestCountryFlag,
+                        'id': mainController.globalGuestCountryId,
+                      },
+                    );
+                    return;
+                  }
+                  var result = await controller.addProductToCart(
+                    productId: controller.model.id,
                   );
+                  if (result) {
+                    controller.model.variants[controller.selectedVariantInd.value].inCart = 1;
+                    controller.model.variants[controller.selectedVariantInd.value].cartQty = 1;
+                    Get.find<WishListController>().getWishList(withoutLoading: true);
+                    setState(() {});
+                  }
+                },
+                width: double.infinity,
+                elevation: 0,
+              )),
+            ));
           }),
           const SizedBox(height: 5),
         ],

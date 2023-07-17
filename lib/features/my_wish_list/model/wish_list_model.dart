@@ -1,6 +1,7 @@
 class WishListModel {
   String? rowId;
   int id;
+
   int qty;
   dynamic averageRate;
   dynamic pts;
@@ -52,6 +53,7 @@ class WishListModel {
 }
 
 class OptionsModel {
+  int variantId;
   dynamic size;
   dynamic color;
   String image;
@@ -67,6 +69,7 @@ class OptionsModel {
   String arName;
 
   OptionsModel({
+    required this.variantId,
     required this.size,
     required this.color,
     required this.image,
@@ -94,7 +97,8 @@ class OptionsModel {
         inCart: json['in_cart'],
         cartQuantity: json['cart_qty'],
         brand: json['brand_name'],
-        enName:  json['en_name'],
-        arName:  json['ar_name'],
+        enName: json['en_name'],
+        arName: json['ar_name'],
+        variantId: json["variant_id"],
       );
 }

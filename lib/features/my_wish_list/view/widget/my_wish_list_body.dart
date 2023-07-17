@@ -4,6 +4,7 @@ import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/my_wish_list/model/wish_list_model.dart';
 import 'package:mhg/features/my_wish_list/view/widget/my_wish_list_body_buttons.dart';
+import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/widgets/net_image.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/delete_icon_button.dart';
@@ -30,92 +31,105 @@ class _MyWishBodyState extends State<MyWishBody> {
   final HomeController homeController = Get.find();
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 15, left: 20, right: 20),
-      child: Material(
-        shadowColor: AppColors.white2,
-        elevation: 3,
-        // borderRadius: BorderRadius.circular(12),
-        child: Container(
-          decoration: BoxDecoration(
-            color: AppColors.white,
-            // borderRadius: BorderRadius.circular(12),
-          ),
-          child: Row(
-            children: [
-              Container(
-                // height: AppDimensions.productHeight(context) / 1.2,
-                // height: 140,
-                width: 102,
-                decoration: const BoxDecoration(
-                    // borderRadius:
-                    // BorderRadius.horizontal(left: Radius.circular(12)),
-                    ),
-                child: ClipRRect(
-                    // borderRadius: const BorderRadius.horizontal(
-                    //     left: Radius.circular(12)),
-                    child: NetImage(
-                  image: widget.model.options.imageLink,
-                  fit: BoxFit.fitHeight,
-                )),
-              ),
-              Expanded(
-                  child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 7),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 10),
+    return InkWell(
+      onTap: (){
+        Get.toNamed(
+          ProductDetailsPage.routeName,
+          arguments: {
+            "id": widget.model.id,
+            "name": widget.model.name
+            ,
+            "fromArrival": false
+          },
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 15, left: 20, right: 20),
+        child: Material(
+          shadowColor: AppColors.white2,
+          elevation: 3,
+          // borderRadius: BorderRadius.circular(12),
+          child: Container(
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              // borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              children: [
+                Container(
+                  // height: AppDimensions.productHeight(context) / 1.2,
+                  // height: 140,
+                  width: 102,
+                  decoration: const BoxDecoration(
+                      // borderRadius:
+                      // BorderRadius.horizontal(left: Radius.circular(12)),
+                      ),
+                  child: ClipRRect(
+                      // borderRadius: const BorderRadius.horizontal(
+                      //     left: Radius.circular(12)),
+                      child: NetImage(
+                    image: widget.model.options.imageLink,
+                    fit: BoxFit.fitHeight,
+                  )),
+                ),
+                Expanded(
+                    child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 7),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 10),
 
-                          // const SizedBox(height: 10),
-                          BodyMiddleText(
-                            brand: widget.model.options.brand,
-                            price: widget.model.price.toString(),
-                            name: isAR()
-                                ? widget.model.options.arName
-                                : widget.model.options.enName,
-                          ),
-                          BodyButtons(
-                              addToBag: widget.addToBag, model: widget.model),
-                        ],
+                            // const SizedBox(height: 10),
+                            BodyMiddleText(
+                              brand: widget.model.options.brand,
+                              price: widget.model.price.toString(),
+                              name: isAR()
+                                  ? widget.model.options.arName
+                                  : widget.model.options.enName,
+                            ),
+                            BodyButtons(
+                                addToBag: widget.addToBag, model: widget.model),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    // alignment: Alignment.topRight,
-                    top: -6,
-                    right: 0,
-                    child: widget.model.isDeleteItem
-                        ? Container(
-                            height: 25,
-                            width: 25,
-                            margin: const EdgeInsets.all(8),
-                            child: LoadingThreeBounce(
-                              color: AppColors.primary,
+                    Positioned(
+                      // alignment: Alignment.topRight,
+                      top: -6,
+                      right: 0,
+                      child: widget.model.isDeleteItem
+                          ? Container(
+                              height: 25,
+                              width: 25,
+                              margin: const EdgeInsets.all(8),
+                              child: LoadingThreeBounce(
+                                color: AppColors.primary,
+                              ),
+                            )
+                          : DeleteIconButton(
+                              onTap: () async {
+                                widget.model.isDeleteItem = true;
+                                if (mounted) setState(() {});
+                                await controller
+                                    .removeFromWishList(widget.model.id);
+                                widget.model.isDeleteItem = false;
+                                if (mounted) setState(() {});
+                                controller.wishListItems.removeWhere(
+                                  (element) => element.id == widget.model.id,
+                                );
+                                // controller.getTotalCartPrice();
+                              },
                             ),
-                          )
-                        : DeleteIconButton(
-                            onTap: () async {
-                              widget.model.isDeleteItem = true;
-                              if (mounted) setState(() {});
-                              await controller
-                                  .removeFromWishList(widget.model.id);
-                              widget.model.isDeleteItem = false;
-                              if (mounted) setState(() {});
-                              controller.wishListItems.removeWhere(
-                                (element) => element.id == widget.model.id,
-                              );
-                              // controller.getTotalCartPrice();
-                            },
-                          ),
-                  ),
-                ],
-              ))
-            ],
+                    ),
+                  ],
+                ))
+              ],
+            ),
           ),
         ),
       ),
