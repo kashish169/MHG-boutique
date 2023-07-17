@@ -10,7 +10,7 @@ import '../../../../constants/app_colors.dart';
 import '../../../../widgets/counter_widget.dart';
 
 class ProductDetailsCounterWidget extends StatefulWidget {
-  final ProductDetailsModel model;
+  final Variant model;
   const ProductDetailsCounterWidget({super.key, required this.model});
 
   @override
@@ -37,8 +37,10 @@ class _ProductDetailsCounterWidgetState
             widget.model.isLoadingQuantity = true;
             if (mounted) setState(() {});
             bool result = await Get.find<MyCartController>().increaseCartItem(
-              cartItemId: widget.model.id,
+              cartItemId: controller.model.id,
               quantity: 1,
+                variantId: controller.selectedVariantId
+
             );
             if (result == true) {
               Get.find<CheckoutController>().orderPrice();
@@ -72,8 +74,9 @@ class _ProductDetailsCounterWidgetState
             widget.model.isLoadingQuantity = true;
             if (mounted) setState(() {});
             bool result = await Get.find<MyCartController>().decreaseCartItem(
-              cartItemId: widget.model.id,
+              cartItemId: controller.model.id,
               quantity: 1,
+                variantId: controller.selectedVariantId
             );
             if (result == true) {
               Get.find<CheckoutController>().orderPrice();

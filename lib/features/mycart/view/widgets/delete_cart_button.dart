@@ -33,11 +33,11 @@ class _DeleteCartButtonState extends State<DeleteCartButton> {
             onTap: () async {
               widget.model.isDeleteItem = true;
               if (mounted) setState(() {});
-              await controller.deleteCartItem(widget.model.id);
+              await controller.deleteCartItem(widget.model.id,widget.model.options.variantId);
               widget.model.isDeleteItem = false;
               if (mounted) setState(() {});
               controller.cartItemsList.removeWhere(
-                (element) => element.id == widget.model.id,
+                (element) => element.options.variantId== widget.model.options.variantId,
               );
               controller.getTotalCartPrice();
               Get.find<CheckoutController>().orderPrice();

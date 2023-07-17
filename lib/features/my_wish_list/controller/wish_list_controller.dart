@@ -101,9 +101,12 @@ class WishListController extends GetxController {
     return result;
   }
 
-  Future<void> getWishList() async {
+  Future<void> getWishList({bool withoutLoading = false}) async {
     try {
-      isLoading(true);
+      if(withoutLoading==true){
+        isLoading(true);
+      }
+
       isError(false);
       Either<Failure, ApiResponse> results =
           await wishListRepository.getWishListData();
@@ -114,11 +117,14 @@ class WishListController extends GetxController {
           log("Wish List ${l.message}");
         },
         (r) {
+          log("here");
+          log(r.object["data"].toString());
           var statusCode = r.object["code"];
           var message = r.object["message"];
           var stats = r.object['isSuccessful'];
           log("Wish List Status Code $statusCode");
           if (stats == true) {
+
             List json = r.object["data"]['wishlist_items'];
             wishListItems.value =
                 json.map((e) => WishListModel.fromJson(e)).toList();

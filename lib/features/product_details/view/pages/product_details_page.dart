@@ -5,6 +5,7 @@ import 'package:mhg/features/product_details/view/widgets/product_details_brand_
 import 'package:mhg/features/product_details/view/widgets/product_details_info_card.dart';
 import 'package:mhg/features/product_details/view/widgets/product_details_slider.dart';
 import 'package:mhg/features/product_details/view/widgets/similar_products.dart';
+import 'package:mhg/features/product_details/view/widgets/variants_widget.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/divider_widget.dart';
 import '../../../../widgets/loading_widget.dart';
@@ -34,6 +35,7 @@ class ProductDetailsPage extends StatelessWidget {
               children: const [
                 ProductDetailsSlider(),
                 ProductDetailsBrandCard(),
+                VariantsWidget(),
                 DividerWidget(),
                 ProductDetailsInfoCard(),
                 SimilarProductsWidget(),

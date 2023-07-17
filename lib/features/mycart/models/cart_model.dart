@@ -1,6 +1,7 @@
 class CartModel {
   String rowId;
   int id;
+
   int qty;
   String name;
   dynamic price;
@@ -19,6 +20,7 @@ class CartModel {
     this.subtotal,
     this.discount,
     required this.rowId,
+
     required this.id,
     required this.qty,
     required this.name,
@@ -32,6 +34,7 @@ class CartModel {
   });
 
   factory CartModel.fromJson(Map<String, dynamic> json) => CartModel(
+
         tax: json["tax"],
         subtotal: json["subtotal"],
         discount: json["discount"],
@@ -48,6 +51,7 @@ class CartModel {
 }
 
 class Options {
+  int variantId;
   dynamic brandName;
   dynamic size;
   dynamic color;
@@ -59,6 +63,7 @@ class Options {
   String? voucher;
 
   Options({
+    required this.variantId,
     this.brandName,
     this.size,
     this.color,
@@ -71,6 +76,7 @@ class Options {
   });
 
   factory Options.fromJson(Map<String, dynamic> json) => Options(
+    variantId: json["variant_id"],
         brandName: json["brand_name"],
         size: json["size"],
         color: json["color"],

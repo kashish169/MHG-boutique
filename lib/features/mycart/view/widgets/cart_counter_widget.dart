@@ -33,6 +33,8 @@ class _CartCounterWidgetState extends State<CartCounterWidget> {
           bool result = await controller.increaseCartItem(
             cartItemId: widget.model.id,
             quantity: 1,
+              variantId: widget.model.options.variantId
+
           );
           if (result == true) {
             widget.model.qty = value;
@@ -74,6 +76,7 @@ class _CartCounterWidgetState extends State<CartCounterWidget> {
           bool result = await controller.decreaseCartItem(
             cartItemId: widget.model.id,
             quantity: 1,
+            variantId: widget.model.options.variantId
           );
           if (result == true) {
             widget.model.qty = value;
