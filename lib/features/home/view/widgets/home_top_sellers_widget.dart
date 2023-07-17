@@ -48,8 +48,11 @@ class HomeTopSellersWidget extends StatelessWidget {
                 for (int index = 0;
                     index < controller.topSellersList.length;
                     index++)
-                  Obx(() => ProductCard(
-                        model: controller.topSellersList[index],
+                  Obx(() => Padding(
+                        padding: const EdgeInsetsDirectional.only(end: 8),
+                        child: ProductCard(
+                          model: controller.topSellersList[index],
+                        ),
                       )),
               ],
             ),

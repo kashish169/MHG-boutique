@@ -51,9 +51,12 @@ class HomeNewArrivelsWidget extends StatelessWidget {
                       index < controller.newArrivalsList.length;
                       index++)
                     Obx(
-                      () => ProductCard(
-                        fromArrival: true,
-                        model: controller.newArrivalsList[index],
+                      () => Padding(
+                        padding: const EdgeInsetsDirectional.only(end: 8),
+                        child: ProductCard(
+                          fromArrival: true,
+                          model: controller.newArrivalsList[index],
+                        ),
                       ),
                     )
                 ],
