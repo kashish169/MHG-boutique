@@ -40,7 +40,7 @@ class PromoCode extends StatelessWidget {
                         'Add Voucher Code',
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 15,
+                                  fontSize: 13,
                                   color: AppColors.label,
                                 ),
                       ),
@@ -51,7 +51,7 @@ class PromoCode extends StatelessWidget {
                             .displayMedium
                             ?.copyWith(
                                 color: AppColors.lightLabel2,
-                                fontSize: 10,
+                                fontSize: 8,
                                 height: 1.7),
                       ),
                     ],
