@@ -40,6 +40,7 @@ class ProductCard extends StatelessWidget {
       onTap: () async {
         if (isDetails) {
           final controller = Get.find<ProductDetailsController>();
+          
           controller.productId = model!.id;
           controller.productName.value = model!.enProductName;
           controller.getProductDetails();

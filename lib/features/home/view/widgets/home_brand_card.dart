@@ -13,6 +13,7 @@ class HomeBrandCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        
         Get.toNamed(
           ProductsPage.routeName,
           arguments: {
