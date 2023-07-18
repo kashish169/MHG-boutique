@@ -131,7 +131,7 @@ class PersonalInformationController extends GetxController {
           countryId: countryId.value,
         ),
       );
-      print("country id ${countryId.value}");
+      print("selcetd city $selectedCity");
       Either<Failure, ApiResponse> results = await personalRepo.updateData(
         body: body,
       );
@@ -145,7 +145,7 @@ class PersonalInformationController extends GetxController {
         bool success = r.object['isSuccessful'];
         var message = r.object['message'];
         if (success == true) {
-          AppToasts.errorToast("Updated Successfully");
+          AppToasts.successToast("Updated Successfully");
           Get.back();
           profileController.getProfileInfo();
         } else {
