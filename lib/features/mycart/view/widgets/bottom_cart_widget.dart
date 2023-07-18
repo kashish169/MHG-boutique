@@ -119,7 +119,7 @@ class BottomCartWidget extends StatelessWidget {
                                 : true,
                         child: FittedBox(
                           child: Text(
-                            'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} in texas',
+                            'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} of taxes',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall

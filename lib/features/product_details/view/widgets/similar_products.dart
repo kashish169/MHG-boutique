@@ -45,10 +45,13 @@ class SimilarProductsWidget extends StatelessWidget {
                 for (int index = 0;
                     index < controller.model.relatedProducts.length;
                     index++)
-                  ProductCard(
-                    model: controller.model.relatedProducts[index],
-                    isDetails: true,
-                    fromArrival: controller.fromArrival,
+                  Padding(
+                    padding:const EdgeInsetsDirectional.only(end: 8),
+                    child: ProductCard(
+                      model: controller.model.relatedProducts[index],
+                      isDetails: true,
+                      fromArrival: controller.fromArrival,
+                    ),
                   )
               ],
             ),

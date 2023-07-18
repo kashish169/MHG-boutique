@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:mhg/constants/app_colors.dart';
 import '../constants/app_assets.dart';
 
 class NetImage extends StatelessWidget {
@@ -53,7 +54,9 @@ class NetImage extends StatelessWidget {
                 ),
               ),
           errorWidget: (context, url, error) =>
-              const Center(child: Icon(Icons.error)),
+                Container(
+                  color:AppColors.red
+                )
         );
       }
     });
