@@ -8,4 +8,6 @@ abstract class SearchRepository {
       {required String serchingProduct,
       required String storeiD,
       required String page});
+
+  Future<Either<Failure, ApiResponse>> autoCompleteSearch(String query);
 }

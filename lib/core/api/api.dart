@@ -13,7 +13,8 @@ class Api {
   };
   static String countryLink = "/api/v1/countries/index";
   static String signUp = "/api/v1/users/auth/register";
-  static String forgetPassword = "/api/v1/users/auth/reset-password-request-new";
+  static String forgetPassword =
+      "/api/v1/users/auth/reset-password-request-new";
   static String resetPassword = "/api/v1/users/auth/reset-password";
   static String otp = "/api/v1/users/auth/send-otp";
   static String verifyOtp = "/api/v1/users/auth/verify-reset-password-otp";
@@ -61,4 +62,5 @@ class Api {
   static String returnOrder = "/api/v1/order/return-order";
   static String logOut = "/api/v1/users/auth/logout";
   static String successOrderLink = "/api/v1/order/track-order";
+  static String autoComplete = "/api/v1/product/auto-complete";
 }
