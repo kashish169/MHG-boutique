@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/features/categories/models/categories_model.dart';
 import 'package:mhg/features/home/models/brand_model.dart';
 import 'package:mhg/features/home/models/home_model.dart';
@@ -67,7 +68,9 @@ class HomeController extends GetxController {
 
             var data = HomeModel.fromJson(json);
             homeModel = data;
+
             slidersList.value = data.sliders;
+       
             topSellersList.value = data.topSellers;
             newArrivalsList.value = data.newArrivals;
             brandsList.value = data.brands;
