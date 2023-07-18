@@ -6,6 +6,7 @@ import '../../../constants/app_toasts.dart';
 import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
 import '../../home/models/product_model.dart';
+import '../model/auto_search_product_model.dart';
 import '../model/search_model.dart';
 import '../repository/search_repo.dart';
 import '../repository/search_repo_impl.dart';
@@ -21,7 +22,7 @@ class SearchingController extends GetxController {
   void onInit() {
     paginate();
 
- // filterSearchForProduct();
+    // filterSearchForProduct();
 
     super.onInit();
   }
@@ -35,7 +36,7 @@ class SearchingController extends GetxController {
   int last = 1000;
   RxList<ProductModel> productList = <ProductModel>[].obs;
   List<SearchModel> serachResponsList = [];
-  TextEditingController serach = TextEditingController();
+  TextEditingController search = TextEditingController();
   ScrollController scrollController = ScrollController();
   bool isSearch = false;
 
@@ -45,11 +46,10 @@ class SearchingController extends GetxController {
     isFetching.trigger(false);
     productList.clear();
   }
+
   updateList(List<ProductModel> model, bool fromArrival) {
     for (int i = 0; i < model.length; i++) {
-
-        productList[i] = model[i];
-
+      productList[i] = model[i];
     }
   }
 
@@ -58,7 +58,7 @@ class SearchingController extends GetxController {
     scrollController.addListener(() {
       if (scrollController.position.extentAfter <= 600 &&
           productList.isNotEmpty &&
-          productList.length<last&&
+          productList.length < last &&
           isLoading.isFalse &&
           isFetching.isFalse) {
         page++;
@@ -82,7 +82,7 @@ class SearchingController extends GetxController {
 
     Either<Failure, ApiResponse> results = await searchRepo.filterProduct(
       storeiD: '1',
-      serchingProduct: serach.text,
+      serchingProduct: search.text,
       page: page.toString(),
     );
     if (page == 1) {
@@ -107,7 +107,7 @@ class SearchingController extends GetxController {
         if (statusCode == 200) {
           var json = r.object["data"];
           log('json $json');
-          last=json['products']['total'];
+          last = json['products']['total'];
           List products = json['products']['data'];
 
           productList += products.map((e) => ProductModel.fromJson(e)).toList();
@@ -128,7 +128,7 @@ class SearchingController extends GetxController {
     isLoading(true);
     isError(false);
 
-    Either<Failure, ApiResponse> results = await searchRepo.search(serach.text);
+    Either<Failure, ApiResponse> results = await searchRepo.search(search.text);
     isLoading(false);
     results.fold(
       (l) {
@@ -155,12 +155,34 @@ class SearchingController extends GetxController {
     );
   }
 
+  Future<List<AutoSearchProductModel>> autoCompleteSearch(String name) async {
+    List<AutoSearchProductModel> autoCompleteProducts = [];
+    String query = "?search=$name";
+    Either<Failure, ApiResponse> results =
+        await searchRepo.autoCompleteSearch(query);
+    results.fold(
+      (l) {
+        log("RESPONSE ERROR ${l.message}");
+      },
+      (r) {
+        var statusCode = r.object["code"];
+        if (statusCode == 200) {
+          var json = r.object["data"];
+          autoCompleteProducts = List<AutoSearchProductModel>.from(
+            json["products"].map((x) => AutoSearchProductModel.fromJson(x)),
+          );
+        }
+      },
+    );
+    return autoCompleteProducts;
+  }
+
   onSelectRecentSearch(String selected) {
     resetPaginate();
     // isSearch = true;
     update();
     productList.clear();
-    serach.text = selected;
+    search.text = selected;
     filterSearchForProduct();
     update();
   }

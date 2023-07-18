@@ -29,21 +29,21 @@ class SuccessOrderContactInformation extends StatelessWidget {
               height: 5,
             ),
             Text(
-              controller.orderModel.user.name,
+             "Name: ${controller.orderModel.user.name}",
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 14,
                     color: AppColors.mediumLabel,
                   ),
             ),
             Text(
-              controller.orderModel.user.email,
+            "Email: ${controller.orderModel.user.email}",
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 14,
                     color: AppColors.mediumLabel,
                   ),
             ),
             Text(
-              controller.orderModel.user.number,
+             "Phone Number: ${controller.orderModel.user.number}",
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 14,
                     color: AppColors.mediumLabel,

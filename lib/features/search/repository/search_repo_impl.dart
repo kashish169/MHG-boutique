@@ -31,4 +31,11 @@ class SearchRepoImplement implements SearchRepository {
             "${Api.filterProductLink}?store_id=$storeiD&search=$serchingProduct&page=$page",
         isAuthorized: App.token.isEmpty ? false : true,
       );
+
+  @override
+  Future<Either<Failure, ApiResponse>> autoCompleteSearch(String query) async =>
+      httpService.get(
+        url: Api.autoComplete + query,
+        isAuthorized: App.token.isEmpty ? false : true,
+      );
 }

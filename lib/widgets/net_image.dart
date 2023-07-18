@@ -29,7 +29,7 @@ class NetImage extends StatelessWidget {
         return ClipRRect(
           borderRadius: BorderRadius.circular(isProductCard == false ? 12 : 0),
           child: Image.asset(
-            AppAssets.loadingHolder,
+            AppAssets.chachLoadImage,
             fit: BoxFit.cover,
             height: height,
             width: width,

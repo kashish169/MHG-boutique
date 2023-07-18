@@ -15,6 +15,8 @@ class SliderModel {
   dynamic thumbnailLink;
   dynamic backgroundImageLink;
   dynamic link;
+  dynamic categoryId;
+  dynamic productId;
 
   SliderModel({
     required this.id,
@@ -33,6 +35,8 @@ class SliderModel {
     required this.thumbnailLink,
     required this.backgroundImageLink,
     required this.link,
+    required this.categoryId,
+    required this.productId,
   });
 
   factory SliderModel.fromJson(Map<String, dynamic> json) => SliderModel(
@@ -52,5 +56,7 @@ class SliderModel {
         thumbnailLink: json["thumbnail_link"],
         backgroundImageLink: json["background_image_link"],
         link: json["link"],
+        categoryId: json["category_id"],
+        productId: json["product_id"],
       );
 }

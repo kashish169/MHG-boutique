@@ -68,6 +68,7 @@ dependencies:
   share_plus: ^7.0.2
   app_tracking_transparency: ^2.0.4
   badges: ^3.0.2
+  flutter_typeahead: ^4.6.2
 
 dev_dependencies:
   flutter_test:

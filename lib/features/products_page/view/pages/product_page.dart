@@ -81,7 +81,7 @@ class ProductsPage extends StatelessWidget {
                                           crossAxisCount: 2,
                                           shrinkWrap: true,
                                           mainAxisSpacing: 15,
-                                          crossAxisSpacing: 5,
+                                          crossAxisSpacing: 0,
                                           itemCount: controller.products.length,
                                           builder: (ctx, index) {
                                             return Center(

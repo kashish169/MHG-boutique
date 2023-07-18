@@ -7,6 +7,7 @@ import 'package:mhg/core/models/countries.dart';
 import 'package:mhg/core/models/countries_model.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/models/profle_info_model.dart';
+import 'package:mhg/widgets/loading_widget.dart';
 import '../../../app/app.dart';
 import '../../../constants/app_toasts.dart';
 import '../../../core/models/api_response.dart';
@@ -49,20 +50,39 @@ class PersonalInformationController extends GetxController {
   RxString countryFlag = AppAssets.flag.obs;
   RxInt countryId = 1.obs;
   RxBool isEdit = false.obs;
+  String? selectedCity;
   List<CountryDataModel> countriesList = [];
+  List<String> citiesList = [
+    'Ajman',
+    'Abu Dhabi',
+    'Sharjah',
+    'Fujairah',
+    'Ras Al Khaimah',
+    'Dubai',
+    'Umm al Quwain'
+  ];
 
   @override
   void onInit() {
-    getAllCountries();
     profileInfo = Get.arguments["profile"];
+    print(profileInfo.state);
+    // selectedCity = profileInfo.state == '' ? null : profileInfo.state;
+    if (citiesList.contains(profileInfo.state)) {
+      selectedCity = profileInfo.state;
+    } else {
+      selectedCity = null;
+    }
+    getAllCountries();
+
     name.text = profileInfo.name;
     email.text = profileInfo.email;
+
     if (profileInfo.number != null) {
       separatePhoneAndDialCode(profileInfo.number!);
     } else {
       phone.text == 'Add your Number';
     }
-    state.text = profileInfo.state ?? '';
+    state.text = profileInfo.state!;
     address.text = profileInfo.street ?? '';
     zipCode.text = profileInfo.zipCode ?? '';
     countriesList.add(CountryDataModel(
@@ -86,12 +106,20 @@ class PersonalInformationController extends GetxController {
     update();
   }
 
+  setCity(val) {
+    selectedCity = val;
+    log('$selectedCity');
+    update();
+  }
+
   updateInformation() async {
     var formState = formKey.currentState;
 
     if (formState!.validate()) {
-      isLoading = true;
-
+      Get.dialog(
+        const LoadingWidget(),
+        barrierDismissible: false,
+      );
       update();
       var body = updateInfoModel(
         UpdateInfoModel(
@@ -101,18 +129,18 @@ class PersonalInformationController extends GetxController {
           number: countryCode + phone.text,
           notifyMe: App.notifyMe == true ? 1 : 0,
           isOptional: email.text == profileInfo.email ? true : false,
-          state: state.text,
+          state: selectedCity ?? '',
           zipCode: zipCode.text,
           countryId: countryId.value,
         ),
       );
-      print("country id ${countryId.value}");
+      print("selcetd city $selectedCity");
       Either<Failure, ApiResponse> results = await personalRepo.updateData(
         body: body,
       );
-      isLoading = false;
       update();
       results.fold((l) {
+        Get.back();
         log(l.message);
         showSnackBar(l.message);
       }, (r) async {
@@ -120,10 +148,12 @@ class PersonalInformationController extends GetxController {
         bool success = r.object['isSuccessful'];
         var message = r.object['message'];
         if (success == true) {
-          AppToasts.errorToast("Updated Successfully");
+          await profileController.getProfileInfo();
+          AppToasts.successToast("Updated Successfully");
           Get.back();
-          profileController.getProfileInfo();
+          Get.back();
         } else {
+          Get.back();
           AppToasts.errorToast(message);
         }
       });
