@@ -7,6 +7,7 @@ import 'package:mhg/core/models/countries.dart';
 import 'package:mhg/core/models/countries_model.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/models/profle_info_model.dart';
+import 'package:mhg/widgets/loading_widget.dart';
 import '../../../app/app.dart';
 import '../../../constants/app_toasts.dart';
 import '../../../core/models/api_response.dart';
@@ -115,8 +116,10 @@ class PersonalInformationController extends GetxController {
     var formState = formKey.currentState;
 
     if (formState!.validate()) {
-      isLoading = true;
-
+      Get.dialog(
+        const LoadingWidget(),
+        barrierDismissible: false,
+      );
       update();
       var body = updateInfoModel(
         UpdateInfoModel(
@@ -135,9 +138,9 @@ class PersonalInformationController extends GetxController {
       Either<Failure, ApiResponse> results = await personalRepo.updateData(
         body: body,
       );
-      isLoading = false;
       update();
       results.fold((l) {
+        Get.back();
         log(l.message);
         showSnackBar(l.message);
       }, (r) async {
@@ -145,10 +148,12 @@ class PersonalInformationController extends GetxController {
         bool success = r.object['isSuccessful'];
         var message = r.object['message'];
         if (success == true) {
+          await profileController.getProfileInfo();
           AppToasts.successToast("Updated Successfully");
           Get.back();
-          profileController.getProfileInfo();
+          Get.back();
         } else {
+          Get.back();
           AppToasts.errorToast(message);
         }
       });
