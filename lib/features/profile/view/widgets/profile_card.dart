@@ -38,6 +38,6 @@ class ProfileCard extends StatelessWidget {
           ),
         ),
       ),
-    )
+    );
   }
 }
