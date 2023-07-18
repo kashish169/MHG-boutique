@@ -54,9 +54,7 @@ class NetImage extends StatelessWidget {
                 ),
               ),
           errorWidget: (context, url, error) =>
-                Container(
-                  color:AppColors.red
-                )
+          const Center(child: Icon(Icons.error)),
         );
       }
     });
