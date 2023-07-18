@@ -30,9 +30,7 @@ class HomeSlider extends StatelessWidget {
                       ProductDetailsPage.routeName,
                       arguments: {
                         "id": controller.slidersList[index].productId,
-                        "name": isAR()
-                            ? controller.slidersList[index].frTitle
-                            : controller.slidersList[index].enTitle,
+                        "name": '',
                         "fromArrival": false,
                       },
                     );

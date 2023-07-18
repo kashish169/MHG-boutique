@@ -38,7 +38,7 @@ class HomeCategoryCard extends StatelessWidget {
             const EdgeInsetsDirectional.symmetric(horizontal: 12, vertical: 10),
         decoration: BoxDecoration(
           color: AppColors.white,
-          boxShadow: AppColors.shadow(0.2),
+          boxShadow: AppColors.shadow(0.1),
         ),
         child: Row(
           children: [

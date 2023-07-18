@@ -32,8 +32,8 @@ class HomeShopByCategoryWidget extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               crossAxisCount: 2,
               shrinkWrap: true,
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 20,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
               itemCount: controller.categories.length,
               builder: (ctx, index) {
                 return HomeCategoryCard(
