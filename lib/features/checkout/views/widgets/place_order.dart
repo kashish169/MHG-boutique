@@ -28,6 +28,19 @@ class _PlaceOrderState extends State<PlaceOrder> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 15),
+          FittedBox(
+            child: Text(
+              'Orders above AED 500 are eligible for free shipping',
+              style: Theme.of(context)
+                  .textTheme
+                  .displaySmall
+                  ?.copyWith(
+
+                fontSize: 8, color: AppColors.label,
+              ),
+            ),
+          ),
+         // const SizedBox(height: 5,),
           GetX<CheckoutController>(builder: (checkoutController) {
             if (checkoutController.isLoadingRedeem.isTrue) {
               return Padding(
@@ -55,7 +68,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                               .displaySmall
                               ?.copyWith(
                                 height: 1.4,
-                                fontSize: 16,
+                                fontSize: 14,
                                 color: AppColors.label,
                               ),
                         ),
@@ -81,25 +94,18 @@ class _PlaceOrderState extends State<PlaceOrder> {
                       //     ),
                       //   ),
                       // ),
-                      Visibility(
-                        visible: checkoutController
-                                    .orderPriceModal.data?.shippingCharge ==
-                                0
-                            ? false
-                            : true,
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            'Shipping',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  height: 1.4,
-                                  fontSize: 16,
-                                  color: AppColors.label,
-                                ),
-                          ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Shipping',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                height: 1.4,
+                                fontSize: 14,
+                                color: AppColors.label,
+                              ),
                         ),
                       ),
                       Visibility(
@@ -117,7 +123,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                 .displaySmall
                                 ?.copyWith(
                                   height: 1.4,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   color: AppColors.label,
                                 ),
                           ),
@@ -128,30 +134,12 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
                                   height: 1.4,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   color: AppColors.dBlack,
                                   fontWeight: FontWeight.bold,
                                 ),
                       ),
-                      Visibility(
-                        visible: checkoutController
-                            .orderPriceModal.data?.tax ==
-                            0
-                            ? false
-                            : true,
 
-                        child: FittedBox(
-                          child: Text(
-                            'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} in texas',
-                            style:
-                            Theme.of(context).textTheme.displaySmall?.copyWith(
-                              height: 1.4,
-                              color: AppColors.dBlack,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -168,29 +156,22 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             Theme.of(context).textTheme.displaySmall?.copyWith(
                                   height: 1.4,
                                   color: AppColors.mediumLabel,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                 ),
                       ),
                     ),
 
-                    Visibility(
-                      visible: checkoutController
-                                  .orderPriceModal.data?.shippingCharge ==
-                              0
-                          ? false
-                          : true,
-                      child: FittedBox(
-                        child: Text(
-                          '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.shippingCharge}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                height: 1.4,
-                                color: AppColors.mediumLabel,
-                                fontSize: 16,
-                              ),
-                        ),
+                    FittedBox(
+                      child: Text( checkoutController.orderPriceModal.data?.shippingCharge==0?'Free':
+                        '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.shippingCharge}',
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall
+                            ?.copyWith(
+                              height: 1.4,
+                              color: AppColors.mediumLabel,
+                              fontSize: 14,
+                            ),
                       ),
                     ),
                     Visibility(
@@ -208,7 +189,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                 ?.copyWith(
                                   height: 1.4,
                                   color: AppColors.dBlack,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                 ),
                           ),
                         )),
@@ -220,16 +201,36 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                   height: 1.4,
                                   color: AppColors.dBlack,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                 ),
                       ),
                     ),
 
                   ],
-                )
+                ),
+
               ],
             );
           }),
+          Visibility(
+            visible: checkoutController
+                .orderPriceModal.data?.tax ==
+                0
+                ? false
+                : true,
+
+            child: FittedBox(
+              child: Text(
+                'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} in texas',
+                style:
+                Theme.of(context).textTheme.displaySmall?.copyWith(
+                  height: 1.4,
+                  color: AppColors.dBlack,
+                  fontSize: 8,
+                ),
+              ),
+            ),
+          ),
           const SizedBox(height: 15),
           Obx(
             () => checkoutController.paymentMethodValue.value != 'Apple Pay'

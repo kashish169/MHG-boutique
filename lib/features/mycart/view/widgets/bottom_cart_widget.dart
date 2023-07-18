@@ -15,6 +15,7 @@ class BottomCartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<MyCartController>();
+    final checkoutController=Get.find<CheckoutController>();
     final profileController = Get.find<ProfileController>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,6 +25,21 @@ class BottomCartWidget extends StatelessWidget {
         ),
         const SizedBox(height: 15),
         PromoCode(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: FittedBox(
+            child: Text(
+              'Orders above AED 500 are eligible for free shipping',
+              style: Theme.of(context)
+                  .textTheme
+                  .displaySmall
+                  ?.copyWith(
+
+                fontSize: 8, color: AppColors.label,
+              ),
+            ),
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: GetX<CheckoutController>(initState: (state) async {
@@ -54,39 +70,32 @@ class BottomCartWidget extends StatelessWidget {
                               .textTheme
                               .displaySmall
                               ?.copyWith(
-                                height: 1.4,
-                                fontSize: 16,
-                                color: AppColors.label,
-                              ),
+                            height: 1.4,
+                            fontSize: 14,
+                            color: AppColors.label,
+                          ),
                         ),
                       ),
-                      Visibility(
-                        visible: checkoutController
-                                    .orderPriceModal.data?.shippingCharge ==
-                                0
-                            ? false
-                            : true,
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            'Shipping',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  height: 1.4,
-                                  fontSize: 16,
-                                  color: AppColors.label,
-                                ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Shipping',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                            height: 1.4,
+                            fontSize: 14,
+                            color: AppColors.label,
                           ),
                         ),
                       ),
                       Visibility(
                         visible:
-                            checkoutController.orderPriceModal.data?.discount ==
-                                    0
-                                ? false
-                                : true,
+                        checkoutController.orderPriceModal.data?.discount ==
+                            0
+                            ? false
+                            : true,
                         child: FittedBox(
                           fit: BoxFit.scaleDown,
                           child: Text(
@@ -95,42 +104,24 @@ class BottomCartWidget extends StatelessWidget {
                                 .textTheme
                                 .displaySmall
                                 ?.copyWith(
-                                  height: 1.4,
-                                  fontSize: 16,
-                                  color: AppColors.label,
-                                ),
+                              height: 1.4,
+                              fontSize: 14,
+                              color: AppColors.label,
+                            ),
                           ),
                         ),
                       ),
                       Text(
                         'Total',
                         style:
-                            Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  height: 1.4,
-                                  fontSize: 16,
-                                  color: AppColors.dBlack,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                      ),
-                      Visibility(
-                        visible:
-                            checkoutController.orderPriceModal.data?.tax == 0
-                                ? false
-                                : true,
-                        child: FittedBox(
-                          child: Text(
-                            'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} of taxes',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  height: 1.4,
-                                  color: AppColors.dBlack,
-                                  fontSize: 16,
-                                ),
-                          ),
+                        Theme.of(context).textTheme.displaySmall?.copyWith(
+                          height: 1.4,
+                          fontSize: 14,
+                          color: AppColors.dBlack,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
+
                     ],
                   ),
                 ),
@@ -144,39 +135,33 @@ class BottomCartWidget extends StatelessWidget {
                       child: Text(
                         '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.subtotal}',
                         style:
-                            Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  height: 1.4,
-                                  color: AppColors.mediumLabel,
-                                  fontSize: 16,
-                                ),
+                        Theme.of(context).textTheme.displaySmall?.copyWith(
+                          height: 1.4,
+                          color: AppColors.mediumLabel,
+                          fontSize: 14,
+                        ),
                       ),
                     ),
-                    Visibility(
-                      visible: checkoutController
-                                  .orderPriceModal.data?.shippingCharge ==
-                              0
-                          ? false
-                          : true,
-                      child: FittedBox(
-                        child: Text(
-                          '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.shippingCharge}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                height: 1.4,
-                                color: AppColors.mediumLabel,
-                                fontSize: 16,
-                              ),
+                    FittedBox(
+                      child: Text(
+                        checkoutController.orderPriceModal.data?.shippingCharge==0?'Free':
+                        '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.shippingCharge}',
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall
+                            ?.copyWith(
+                          height: 1.4,
+                          color: AppColors.mediumLabel,
+                          fontSize: 14,
                         ),
                       ),
                     ),
                     Visibility(
                         visible:
-                            checkoutController.orderPriceModal.data?.discount ==
-                                    0
-                                ? false
-                                : true,
+                        checkoutController.orderPriceModal.data?.discount ==
+                            0
+                            ? false
+                            : true,
                         child: FittedBox(
                           child: Text(
                             '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.discount}',
@@ -184,22 +169,22 @@ class BottomCartWidget extends StatelessWidget {
                                 .textTheme
                                 .displaySmall
                                 ?.copyWith(
-                                  height: 1.4,
-                                  color: AppColors.dBlack,
-                                  fontSize: 16,
-                                ),
+                              height: 1.4,
+                              color: AppColors.dBlack,
+                              fontSize: 14,
+                            ),
                           ),
                         )),
                     FittedBox(
                       child: Text(
                         '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.grandTotal}',
                         style:
-                            Theme.of(context).textTheme.displayMedium?.copyWith(
-                                  height: 1.4,
-                                  color: AppColors.dBlack,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
+                        Theme.of(context).textTheme.displayMedium?.copyWith(
+                          height: 1.4,
+                          color: AppColors.dBlack,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        ),
                       ),
                     ),
                   ],
@@ -207,6 +192,28 @@ class BottomCartWidget extends StatelessWidget {
               ],
             );
           }),
+        ),
+        Visibility(
+          visible:
+          checkoutController.orderPriceModal.data?.tax == 0
+              ? false
+              : true,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            child: FittedBox(
+              child: Text(
+                'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} of taxes',
+                style: Theme.of(context)
+                    .textTheme
+                    .displaySmall
+                    ?.copyWith(
+                  height: 1.4,
+                  color: AppColors.dBlack,
+                  fontSize: 8,
+                ),
+              ),
+            ),
+          ),
         ),
         // Row(
         //   children: [
@@ -316,6 +323,7 @@ class BottomCartWidget extends StatelessWidget {
         //         color: AppColors.label,
         //       ),
         // ),
+
         const SizedBox(height: 15),
         const CheckOutButton(),
         const SizedBox(height: 15),
