@@ -49,20 +49,35 @@ class PersonalInformationController extends GetxController {
   RxString countryFlag = AppAssets.flag.obs;
   RxInt countryId = 1.obs;
   RxBool isEdit = false.obs;
+  String? selectedCity;
   List<CountryDataModel> countriesList = [];
+  List<String> citiesList = [
+    'Ajman',
+    'Abu Dhabi',
+    'Sharjah',
+    'Fujairah',
+    'Ras Al Khaimah',
+    'Dubai',
+    'Umm al Quwain'
+  ];
 
   @override
   void onInit() {
-    getAllCountries();
     profileInfo = Get.arguments["profile"];
+    print(profileInfo.state);
+    selectedCity = profileInfo.state == '' ? null : profileInfo.state;
+    // print(selectedCity);
+    getAllCountries();
+
     name.text = profileInfo.name;
     email.text = profileInfo.email;
+
     if (profileInfo.number != null) {
       separatePhoneAndDialCode(profileInfo.number!);
     } else {
       phone.text == 'Add your Number';
     }
-    state.text = profileInfo.state ?? '';
+    state.text = profileInfo.state!;
     address.text = profileInfo.street ?? '';
     zipCode.text = profileInfo.zipCode ?? '';
     countriesList.add(CountryDataModel(
@@ -86,6 +101,12 @@ class PersonalInformationController extends GetxController {
     update();
   }
 
+  setCity(val) {
+    selectedCity = val;
+    log('$selectedCity');
+    update();
+  }
+
   updateInformation() async {
     var formState = formKey.currentState;
 
@@ -101,7 +122,7 @@ class PersonalInformationController extends GetxController {
           number: countryCode + phone.text,
           notifyMe: App.notifyMe == true ? 1 : 0,
           isOptional: email.text == profileInfo.email ? true : false,
-          state: state.text,
+          state: selectedCity ?? '',
           zipCode: zipCode.text,
           countryId: countryId.value,
         ),
