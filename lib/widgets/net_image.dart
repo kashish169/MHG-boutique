@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:mhg/constants/app_colors.dart';
 import '../constants/app_assets.dart';
 
 class NetImage extends StatelessWidget {
@@ -30,7 +29,7 @@ class NetImage extends StatelessWidget {
         return ClipRRect(
           borderRadius: BorderRadius.circular(isProductCard == false ? 12 : 0),
           child: Image.asset(
-            AppAssets.loadingHolder,
+            AppAssets.chachLoadImage,
             fit: BoxFit.cover,
             height: height,
             width: width,
@@ -54,7 +53,7 @@ class NetImage extends StatelessWidget {
                 ),
               ),
           errorWidget: (context, url, error) =>
-          const Center(child: Icon(Icons.error)),
+              const Center(child: Icon(Icons.error)),
         );
       }
     });
