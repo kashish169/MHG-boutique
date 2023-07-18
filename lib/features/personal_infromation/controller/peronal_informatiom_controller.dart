@@ -65,8 +65,12 @@ class PersonalInformationController extends GetxController {
   void onInit() {
     profileInfo = Get.arguments["profile"];
     print(profileInfo.state);
-    selectedCity = profileInfo.state == '' ? null : profileInfo.state;
-    // print(selectedCity);
+    // selectedCity = profileInfo.state == '' ? null : profileInfo.state;
+    if (citiesList.contains(profileInfo.state)) {
+      selectedCity = profileInfo.state;
+    } else {
+      selectedCity = null;
+    }
     getAllCountries();
 
     name.text = profileInfo.name;
