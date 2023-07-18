@@ -193,28 +193,29 @@ class BottomCartWidget extends StatelessWidget {
             );
           }),
         ),
-        Visibility(
-          visible:
-          checkoutController.orderPriceModal.data?.tax == 0
-              ? false
-              : true,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30),
-            child: FittedBox(
-              child: Text(
-                'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} of taxes',
-                style: Theme.of(context)
-                    .textTheme
-                    .displaySmall
-                    ?.copyWith(
-                  height: 1.4,
-                  color: AppColors.dBlack,
-                  fontSize: 8,
+      Padding(
+        padding:  EdgeInsets.only(left:Get.width*0.08),
+        child: Visibility(
+              visible: checkoutController
+                  .orderPriceModal.data?.tax ==
+                  0
+                  ? false
+                  : true,
+      
+              child: FittedBox(
+                child: Text(
+                  'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} of texas',
+                  style:
+                  Theme.of(context).textTheme.displaySmall?.copyWith(
+                    height: 1.4,
+                    color: AppColors.dBlack,
+                    fontSize: 8,
+                  ),
                 ),
               ),
             ),
-          ),
-        ),
+      ),
+          const SizedBox(height: 15),
         // Row(
         //   children: [
         //     Expanded(

@@ -43,6 +43,7 @@ class PersonalInformation extends StatelessWidget {
                                     InformationForm(
                                       header: 'Full Name',
                                       hint: controller.profileInfo.name,
+                                      
                                       validator: (val) {
                                         return AppHelper.validation(
                                             val!, 1, 500, '');

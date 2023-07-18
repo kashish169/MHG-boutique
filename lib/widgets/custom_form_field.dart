@@ -100,21 +100,21 @@ class CustomFormField extends StatelessWidget {
                               topLeft: Radius.circular(5.0),
                               bottomLeft: Radius.circular(5.0))
                           : const BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: const BorderSide(color: Colors.white),
+                      borderSide:  BorderSide(color: AppColors.lightGray3),
                     )
                   : UnderlineInputBorder(
                       borderSide:
                           BorderSide(color: AppColors.lightGray3, width: 1)),
           enabledBorder: readOnly == null
-              ? const OutlineInputBorder(
+              ?  OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(color: AppColors.lightGray3),
                 )
               : readOnly == false
                   ? OutlineInputBorder(
                       borderRadius:
                           const BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(color: AppColors.white),
+                      borderSide: BorderSide(color: AppColors.lightGray3),
                     )
                   : UnderlineInputBorder(
                       borderSide:
