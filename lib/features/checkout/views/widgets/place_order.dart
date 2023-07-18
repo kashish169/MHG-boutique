@@ -218,10 +218,11 @@ class _PlaceOrderState extends State<PlaceOrder> {
                 0
                 ? false
                 : true,
-
+          
             child: FittedBox(
+              
               child: Text(
-                'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} in texas',
+                'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} of texas',
                 style:
                 Theme.of(context).textTheme.displaySmall?.copyWith(
                   height: 1.4,

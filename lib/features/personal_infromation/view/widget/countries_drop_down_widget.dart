@@ -138,8 +138,8 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
                       vertical: 8,
                     ),
                     hintText: widget.isCountry
-                        ? 'Search for a country...'
-                        : 'Search for a emirate...',
+                        ? 'Search'
+                        : 'Search',
                     hintStyle:
                         Theme.of(context).textTheme.displaySmall!.copyWith(
                               fontSize: 14,
