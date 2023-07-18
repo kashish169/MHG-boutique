@@ -12,15 +12,15 @@ class InformationForm extends StatelessWidget {
       {super.key,
       required this.header,
       required this.hint,
-      this.onTap,
-      required this.isEnableToEdit,
+      // this.onTap,
+      // this.isEnableToEdit = true,
       this.inInputNumber,
       required this.textController,
       this.validator});
   final String header;
   final String hint;
-  final Function()? onTap;
-  final bool? isEnableToEdit;
+  // final Function()? onTap;
+  // final bool? isEnableToEdit;
   final bool? inInputNumber;
   final String? Function(String?)? validator;
   final TextEditingController textController;
@@ -60,25 +60,25 @@ class InformationForm extends StatelessWidget {
                         inputType: inInputNumber == null
                             ? TextInputType.name
                             : TextInputType.number,
-                        readOnly: isEnableToEdit,
-                        suffixIcon: IconButton(
-                          onPressed: onTap,
-                          icon: SizedBox(
-                            height: 25,
-                            width: 25,
-                            child: isEnableToEdit == true
-                                ? Image.asset(AppAssets.edit)
-                                : SizedBox(
-                                    height: 25,
-                                    width: 25,
-                                    child: Icon(
-                                      Icons.check,
-                                      color: AppColors.label,
-                                      size: 25,
-                                    ),
-                                  ),
-                          ),
-                        ),
+                        readOnly: false,
+                        // suffixIcon: IconButton(
+                        //   onPressed: onTap,
+                        //   icon: SizedBox(
+                        //     height: 25,
+                        //     width: 25,
+                        //     child: isEnableToEdit == true
+                        //         ? Image.asset(AppAssets.edit)
+                        //         : SizedBox(
+                        //             height: 25,
+                        //             width: 25,
+                        //             child: Icon(
+                        //               Icons.check,
+                        //               color: AppColors.label,
+                        //               size: 25,
+                        //             ),
+                        //           ),
+                        //   ),
+                        // ),
                         obscure: false,
                       ),
                     )
@@ -90,26 +90,27 @@ class InformationForm extends StatelessWidget {
                   inputType: inInputNumber == null
                       ? TextInputType.name
                       : TextInputType.number,
-                  readOnly: isEnableToEdit,
+                  // readOnly: isEnableToEdit,
+                  readOnly: false,
                   hint: hint,
-                  suffixIcon: IconButton(
-                    onPressed: onTap,
-                    icon: SizedBox(
-                      height: 25,
-                      width: 25,
-                      child: isEnableToEdit == true
-                          ? Image.asset(AppAssets.edit)
-                          : SizedBox(
-                              height: 25,
-                              width: 25,
-                              child: Icon(
-                                Icons.check,
-                                color: AppColors.label,
-                                size: 25,
-                              ),
-                            ),
-                    ),
-                  ),
+                  // suffixIcon: IconButton(
+                  //   onPressed: onTap,
+                  //   icon: SizedBox(
+                  //     height: 25,
+                  //     width: 25,
+                  //     child: isEnableToEdit == true
+                  //         ? Image.asset(AppAssets.edit)
+                  //         : SizedBox(
+                  //             height: 25,
+                  //             width: 25,
+                  //             child: Icon(
+                  //               Icons.check,
+                  //               color: AppColors.label,
+                  //               size: 25,
+                  //             ),
+                  //           ),
+                  //   ),
+                  // ),
                   obscure: false,
                 ),
         ],

@@ -1,13 +1,20 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/core/models/countries_model.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/net_image.dart';
 import '../../controller/peronal_informatiom_controller.dart';
 
 class CountriesDropDownWidget extends StatefulWidget {
-  const CountriesDropDownWidget({super.key});
-
+  const CountriesDropDownWidget(
+      {super.key,
+      required this.isCountry,
+      required this.countries,
+      required this.cities});
+  final bool isCountry;
+  final List<CountryDataModel> countries;
+  final List<String> cities;
   @override
   State<CountriesDropDownWidget> createState() =>
       _CountriesDropDownWidgetState();
@@ -24,7 +31,7 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
       children: [
         const SizedBox(height: 20),
         Text(
-          "Country",
+          widget.isCountry ? "Country" : 'Emirate',
           style: Theme.of(context)
               .textTheme
               .displaySmall!
@@ -36,47 +43,75 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
         DropdownButtonHideUnderline(
           child: DropdownButton2<String>(
             isExpanded: true,
-            value: "United Arab Emirates",
+            value: widget.isCountry
+                ? "United Arab Emirates"
+                : controller.selectedCity,
             onChanged: (value) {
-              controller.setCountry(value);
+              widget.isCountry
+                  ? controller.setCountry(value)
+                  : controller.setCity(value);
             },
             hint: Text(
-              'Select Country',
+              widget.isCountry ? 'Select Country' : 'Select Emirate',
               style: TextStyle(
                 fontSize: 14,
                 color: Theme.of(context).hintColor,
               ),
             ),
-            items: controller.countriesList
-                .map(
-                  (item) => DropdownMenuItem<String>(
-                    value: item.name,
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          WidgetSpan(
-                            child: NetImage(
-                              image: item.flagLink!,
-                              height: 20,
-                              width: 20,
-                            ),
-                          ),
-                          TextSpan(
-                            text: ' ${item.name!}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall!
-                                .copyWith(
-                                  fontSize: 14,
-                                  color: AppColors.black3,
+            items: widget.isCountry
+                ? widget.countries
+                    .map(
+                      (item) => DropdownMenuItem<String>(
+                        value: item.name,
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              WidgetSpan(
+                                child: NetImage(
+                                  image: item.flagLink!,
+                                  height: 20,
+                                  width: 20,
                                 ),
+                              ),
+                              TextSpan(
+                                text: ' ${item.name!}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall!
+                                    .copyWith(
+                                      fontSize: 14,
+                                      color: AppColors.black3,
+                                    ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                )
-                .toList(),
+                    )
+                    .toList()
+                : widget.cities
+                    .map(
+                      (e) => DropdownMenuItem<String>(
+                        value: e,
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: ' $e',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall!
+                                    .copyWith(
+                                      fontSize: 14,
+                                      color: AppColors.black3,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                    .toList(),
             dropdownSearchData: DropdownSearchData(
               searchController: _searchController,
               searchInnerWidgetHeight: 50,
@@ -102,7 +137,9 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
                       horizontal: 10,
                       vertical: 8,
                     ),
-                    hintText: 'Search for a country...',
+                    hintText: widget.isCountry
+                        ? 'Search for a country...'
+                        : 'Search for a emirate...',
                     hintStyle:
                         Theme.of(context).textTheme.displaySmall!.copyWith(
                               fontSize: 14,
