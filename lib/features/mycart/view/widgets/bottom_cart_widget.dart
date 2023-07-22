@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/widgets/retry_button.dart';
@@ -90,6 +91,7 @@ class BottomCartWidget extends StatelessWidget {
                           ),
                         ),
                       ),
+
                       Visibility(
                         visible:
                         checkoutController.orderPriceModal.data?.discount ==
@@ -111,6 +113,7 @@ class BottomCartWidget extends StatelessWidget {
                           ),
                         ),
                       ),
+
                       Text(
                         'Total',
                         style:
@@ -156,6 +159,7 @@ class BottomCartWidget extends StatelessWidget {
                         ),
                       ),
                     ),
+
                     Visibility(
                         visible:
                         checkoutController.orderPriceModal.data?.discount ==
@@ -175,6 +179,7 @@ class BottomCartWidget extends StatelessWidget {
                             ),
                           ),
                         )),
+
                     FittedBox(
                       child: Text(
                         '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.grandTotal}',
@@ -193,6 +198,32 @@ class BottomCartWidget extends StatelessWidget {
             );
           }),
         ),
+        Padding(
+           padding:  EdgeInsets.only(left:Get.width*0.08),
+          child: Visibility(
+              visible:
+              checkoutController.orderPriceModal.data?.hearts?.hearts ==
+                  0
+                  ? false
+                  : true,
+              child: Row(
+                children: [
+                  Image.asset(AppAssets.starIcon,height: 10,),
+                  const SizedBox(width: 2,),
+                  FittedBox(
+                    child: Text(
+                      'Earn ${checkoutController.orderPriceModal.data?.hearts?.hearts } Points',
+                      style:
+                      Theme.of(context).textTheme.displaySmall?.copyWith(
+                        height: 1.4,
+                        color: AppColors.dBlack,
+                        fontSize: 8,
+                      ),
+                    ),
+                  )
+                ],
+              )),
+        ),
       Padding(
         padding:  EdgeInsets.only(left:Get.width*0.08),
         child: Visibility(
@@ -204,7 +235,7 @@ class BottomCartWidget extends StatelessWidget {
       
               child: FittedBox(
                 child: Text(
-                  'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} of texas',
+                  'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} of taxes',
                   style:
                   Theme.of(context).textTheme.displaySmall?.copyWith(
                     height: 1.4,

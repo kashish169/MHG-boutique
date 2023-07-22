@@ -35,6 +35,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                 color: AppColors.mediumLabel,
                 fontWeight: FontWeight.w500),
           ),
+          const SizedBox(height: 5),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -43,7 +44,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     color: AppColors.lightLabel2,
                     fontSize: 12,
-                    height: 1.7,
+
                     fontWeight: FontWeight.w500),
               ),
               const SizedBox(width: 4),

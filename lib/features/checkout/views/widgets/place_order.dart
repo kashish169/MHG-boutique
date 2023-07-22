@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/checkout/views/widgets/place_order_button.dart';
+import 'package:mhg/features/personal_infromation/model/personal_model.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import 'package:mhg/widgets/retry_button.dart';
@@ -31,16 +33,13 @@ class _PlaceOrderState extends State<PlaceOrder> {
           FittedBox(
             child: Text(
               'Orders above AED 500 are eligible for free shipping',
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall
-                  ?.copyWith(
-
-                fontSize: 8, color: AppColors.label,
-              ),
+              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    fontSize: 8,
+                    color: AppColors.label,
+                  ),
             ),
           ),
-         // const SizedBox(height: 5,),
+          // const SizedBox(height: 5,),
           GetX<CheckoutController>(builder: (checkoutController) {
             if (checkoutController.isLoadingRedeem.isTrue) {
               return Padding(
@@ -108,6 +107,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                               ),
                         ),
                       ),
+
                       Visibility(
                         visible:
                             checkoutController.orderPriceModal.data?.discount ==
@@ -129,6 +129,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           ),
                         ),
                       ),
+
                       Text(
                         'Total',
                         style:
@@ -139,7 +140,6 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                   fontWeight: FontWeight.bold,
                                 ),
                       ),
-
                     ],
                   ),
                 ),
@@ -160,18 +160,19 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                 ),
                       ),
                     ),
-
                     FittedBox(
-                      child: Text( checkoutController.orderPriceModal.data?.shippingCharge==0?'Free':
-                        '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.shippingCharge}',
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall
-                            ?.copyWith(
-                              height: 1.4,
-                              color: AppColors.mediumLabel,
-                              fontSize: 14,
-                            ),
+                      child: Text(
+                        checkoutController
+                                    .orderPriceModal.data?.shippingCharge ==
+                                0
+                            ? 'Free'
+                            : '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.shippingCharge}',
+                        style:
+                            Theme.of(context).textTheme.displaySmall?.copyWith(
+                                  height: 1.4,
+                                  color: AppColors.mediumLabel,
+                                  fontSize: 14,
+                                ),
                       ),
                     ),
                     Visibility(
@@ -205,30 +206,54 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                 ),
                       ),
                     ),
-
                   ],
                 ),
-
               ],
             );
           }),
+          Obx(
+            () => Visibility(
+                visible:
+                    checkoutController.orderPriceModal.data?.hearts?.hearts ==
+                                0 ||
+                            checkoutController.hasRedeem.isTrue
+                        ? false
+                        : true,
+                child: Row(
+                  children: [
+                    Image.asset(
+                      AppAssets.starIcon,
+                      height: 10,
+                    ),
+                    const SizedBox(
+                      width: 2,
+                    ),
+                    FittedBox(
+                      child: Text(
+                        'Earn ${checkoutController.orderPriceModal.data?.hearts?.hearts} Points',
+                        style:
+                            Theme.of(context).textTheme.displaySmall?.copyWith(
+                                  height: 1.4,
+                                  color: AppColors.dBlack,
+                                  fontSize: 8,
+                                ),
+                      ),
+                    )
+                  ],
+                )),
+          ),
           Visibility(
-            visible: checkoutController
-                .orderPriceModal.data?.tax ==
-                0
+            visible: checkoutController.orderPriceModal.data?.tax == 0
                 ? false
                 : true,
-          
             child: FittedBox(
-              
               child: Text(
-                'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} of texas',
-                style:
-                Theme.of(context).textTheme.displaySmall?.copyWith(
-                  height: 1.4,
-                  color: AppColors.dBlack,
-                  fontSize: 8,
-                ),
+                'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} of taxes',
+                style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                      height: 1.4,
+                      color: AppColors.dBlack,
+                      fontSize: 8,
+                    ),
               ),
             ),
           ),
@@ -266,7 +291,9 @@ class _PlaceOrderState extends State<PlaceOrder> {
 
 class ApllePayButton extends StatelessWidget {
   const ApllePayButton({super.key, required this.onTap});
+
   final void Function() onTap;
+
   @override
   Widget build(BuildContext context) {
     return Center(

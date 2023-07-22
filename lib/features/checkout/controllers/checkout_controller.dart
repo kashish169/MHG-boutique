@@ -308,6 +308,7 @@ class CheckoutController extends GetxController {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("ORDER PRICE METHODS RESPONSE STATUS $statusCode");
+          log(r.object["data"].toString() );
           if (statusCode == 200) {
             if (r.object["data"] != null) {
               log(orderPriceModal.toString());
