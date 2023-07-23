@@ -61,6 +61,7 @@ class InformationForm extends StatelessWidget {
                             ? TextInputType.name
                             : TextInputType.number,
                         readOnly: false,
+                       
                         // suffixIcon: IconButton(
                         //   onPressed: onTap,
                         //   icon: SizedBox(
@@ -93,6 +94,7 @@ class InformationForm extends StatelessWidget {
                   // readOnly: isEnableToEdit,
                   readOnly: false,
                   hint: hint,
+                  
                   // suffixIcon: IconButton(
                   //   onPressed: onTap,
                   //   icon: SizedBox(

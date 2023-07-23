@@ -50,7 +50,9 @@ class SuccessOrderView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height: 20,),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           Center(
                             child: Image.asset(
                               AppAssets.orderSuccess,
@@ -59,7 +61,9 @@ class SuccessOrderView extends StatelessWidget {
                               fit: BoxFit.cover,
                             ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           Center(
                             child: Text(
                               '${"Your order is confirmed!".tr}\n ${controller.orderModel.orderNumber}',
@@ -68,9 +72,9 @@ class SuccessOrderView extends StatelessWidget {
                                   .textTheme
                                   .displayMedium
                                   ?.copyWith(
-                                fontSize: 15,
-                                  color: AppColors.secondary,
-                                  fontWeight: FontWeight.normal),
+                                      fontSize: 15,
+                                      color: AppColors.secondary,
+                                      fontWeight: FontWeight.normal),
                             ),
                           ),
                           SuccessOrderItems(
@@ -114,8 +118,12 @@ class SuccessOrderView extends StatelessWidget {
                             checkoutController: checkoutController,
                             profileController: profileController,
                           ),
+                          // ConfirmationFooter(
+                          //   checkoutController: checkoutController,
+                          //   profileController: profileController,
+                          // ),
                           const SizedBox(
-                            height: 5,
+                            height: 10,
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(

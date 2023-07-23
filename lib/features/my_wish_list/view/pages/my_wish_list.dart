@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/widgets/loading_widget.dart';
@@ -25,46 +26,75 @@ class _MyWishListState extends State<MyWishList> {
           ? const LoadingWidget()
           : controller.isError.value
               ? RetryButton(onTap: () => controller.getWishList())
-              : SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      controller.wishListItems.isNotEmpty
-                          ? ListView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: controller.wishListItems.length,
-                              itemBuilder: (context, index) => MyWishBody(
-                                    addToBag: () async {
-                                      controller.chechBeforAdd(index);
-                                    },
-                                    model: controller.wishListItems[index],
-                                    onTap: () {
-                                      controller.wishListItems[index]
-                                          .isLoadingDelete = true;
-                                      controller.removeFromWishList(
-                                          controller.wishListItems[index].id);
-                                    },
-                                  ))
-                          : Center(
-                              child: Text(
-                                'Wish list is empty!'.tr,
-                                style: Theme.of(context).textTheme.displaySmall,
-                              ),
+              : Column(
+                  children: [
+                    Expanded(
+                      // flex: 3,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const SizedBox(
+                              height: 20,
                             ),
-                      GetX<HomeController>(builder: (controller) {
-                        if (controller.isLoading.isTrue) {
-                          return const LoadingWidget();
-                        } else if (controller.isError.isTrue) {
-                          return RetryButton(onTap: () => controller.getHome());
-                        }
-                        return const HomeTopSellersWidget();
-                      }),
-                    ],
-                  ),
+                            controller.wishListItems.isNotEmpty
+                                ? ListView.builder(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: controller.wishListItems.length,
+                                    itemBuilder: (context, index) => MyWishBody(
+                                          addToBag: () async {
+                                            controller.chechBeforAdd(index);
+                                          },
+                                          model:
+                                              controller.wishListItems[index],
+                                          onTap: () {
+                                            controller.wishListItems[index]
+                                                .isLoadingDelete = true;
+                                            controller.removeFromWishList(
+                                                controller
+                                                    .wishListItems[index].id);
+                                          },
+                                        ))
+                                : Center(
+                                    child: Text(
+                                      'Wish list is empty!'.tr,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displaySmall,
+                                    ),
+                                  ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    // const SizedBox(
+                    //   height: 10,
+                    // ),
+                    GetX<HomeController>(builder: (controller) {
+                      if (controller.isLoading.isTrue) {
+                        return Column(
+                          children: [
+                            const LoadingWidget(),
+                            SizedBox(
+                              height: AppDimensions.screenHeight(context) * 0.1,
+                            )
+                          ],
+                        );
+                      } else if (controller.isError.isTrue) {
+                        return Column(
+                          children: [
+                            RetryButton(onTap: () => controller.getHome()),
+                            SizedBox(
+                              height: AppDimensions.screenHeight(context) * 0.1,
+                            )
+                          ],
+                        );
+                      }
+                      return const HomeTopSellersWidget();
+                    }),
+                  ],
                 );
     }));
   }

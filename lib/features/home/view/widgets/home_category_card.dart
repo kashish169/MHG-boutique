@@ -51,11 +51,15 @@ class HomeCategoryCard extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 4),
-            NetImage(
-              image: model.imageLink,
+            SizedBox(
               height: 45,
               width: 35,
-              fit: BoxFit.contain,
+              child: Center(
+                child: NetImage(
+                  image: model.imageLink,
+                  height: 15,
+                ),
+              ),
             ),
           ],
         ),

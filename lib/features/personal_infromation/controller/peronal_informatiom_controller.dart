@@ -130,7 +130,7 @@ class PersonalInformationController extends GetxController {
           notifyMe: App.notifyMe == true ? 1 : 0,
           isOptional: email.text == profileInfo.email ? true : false,
           state: selectedCity ?? '',
-          zipCode: zipCode.text,
+          zipCode: '00000',
           countryId: countryId.value,
         ),
       );
