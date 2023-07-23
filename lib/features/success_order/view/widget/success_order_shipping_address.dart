@@ -10,7 +10,7 @@ class SuccessOrderShippingAddress extends StatelessWidget {
     final controller = Get.find<SucessOrderController>();
     return Padding(
       padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.1),
+          horizontal: MediaQuery.of(context).size.width * 0.1),
       child: Row(
         children: [
           Expanded(
@@ -55,13 +55,13 @@ class SuccessOrderShippingAddress extends StatelessWidget {
                         color: AppColors.mediumLabel,
                       ),
                 ),
-                Text(
-                  controller.orderModel.user.zipCode ?? '',
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: 14,
-                        color: AppColors.mediumLabel,
-                      ),
-                ),
+                // Text(
+                //   controller.orderModel.user.zipCode ?? '',
+                //   style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                //         fontSize: 14,
+                //         color: AppColors.mediumLabel,
+                //       ),
+                // ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 3),
                   child: Text(

@@ -43,7 +43,7 @@ class PersonalInformation extends StatelessWidget {
                                     InformationForm(
                                       header: 'Full Name',
                                       hint: controller.profileInfo.name,
-                                      
+
                                       validator: (val) {
                                         return AppHelper.validation(
                                             val!, 1, 500, '');
@@ -115,15 +115,15 @@ class PersonalInformation extends StatelessWidget {
                                       countries: controller.countriesList,
                                       cities: controller.citiesList,
                                     ),
-                                    InformationForm(
-                                      header: 'Zip Code',
-                                      hint: 'Add your zip code',
-                                      // onTap: () {
-                                      //   controller.enableZipCode();
-                                      // },
-                                      textController: controller.zipCode,
-                                      // isEnableToEdit: true,
-                                    ),
+                                    // InformationForm(
+                                    //   header: 'Zip Code',
+                                    //   hint: 'Add your zip code',
+                                    //   // onTap: () {
+                                    //   //   controller.enableZipCode();
+                                    //   // },
+                                    //   textController: controller.zipCode,
+                                    //   // isEnableToEdit: true,
+                                    // ),
                                     CountriesDropDownWidget(
                                       isCountry: true,
                                       countries: controller.countriesList,

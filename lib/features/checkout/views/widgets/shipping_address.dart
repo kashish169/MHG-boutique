@@ -71,22 +71,22 @@ class ShippingAddress extends StatelessWidget {
                     ),
                     Text(
                       controller.model.value!.state!.isEmpty
-                          ? 'Add your state'
+                          ? 'Add your Emirate'
                           : controller.model.value!.state!,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                             fontSize: 14,
                             color: AppColors.mediumLabel,
                           ),
                     ),
-                    Text(
-                      controller.model.value!.zipCode!.isEmpty
-                          ? 'Add your zipcode'
-                          : controller.model.value!.zipCode!,
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 14,
-                            color: AppColors.mediumLabel,
-                          ),
-                    ),
+                    // Text(
+                    //   controller.model.value!.zipCode!.isEmpty
+                    //       ? 'Add your zipcode'
+                    //       : controller.model.value!.zipCode!,
+                    //   style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    //         fontSize: 14,
+                    //         color: AppColors.mediumLabel,
+                    //       ),
+                    // ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 3),
                       child: Text(
