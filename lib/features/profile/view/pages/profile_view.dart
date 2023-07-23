@@ -122,6 +122,7 @@ class ProfileView extends StatelessWidget {
                     const DividerWidget(),
                     ProfileCard(
                       icon: AppAssets.invite,
+                      height: 32,
                       title: 'Invite your friends',
                     ),
                     const DividerWidget(),

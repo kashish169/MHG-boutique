@@ -5,9 +5,11 @@ class ProfileCard extends StatelessWidget {
   final String icon;
   final String title;
   final Function()? onTap;
+  final double? height;
   const ProfileCard({
     super.key,
     required this.icon,
+    this.height,
     required this.title,
     this.onTap,
   });
@@ -24,7 +26,10 @@ class ProfileCard extends StatelessWidget {
             minLeadingWidth: 30,
             leading: Image.asset(
               icon,
-              height: 25,
+              height: height??25,
+
+              fit: BoxFit.fill,
+              color: AppColors.dBlack,
             ),
             title: Text(
               title,
