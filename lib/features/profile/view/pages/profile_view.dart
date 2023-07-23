@@ -122,6 +122,7 @@ class ProfileView extends StatelessWidget {
                     const DividerWidget(),
                     ProfileCard(
                       icon: AppAssets.invite,
+                      height: 32,
                       title: 'Invite your friends',
                     ),
                     const DividerWidget(),
@@ -145,10 +146,10 @@ class ProfileView extends StatelessWidget {
                         Get.toNamed('/map');
                       },
                     ),
-                    const DividerWidget(),
-                    const SizedBox(
-                      height: 40,
-                    ),
+                    // const DividerWidget(),
+                    // const SizedBox(
+                    //   height: 40,
+                    // ),
                     const DividerWidget(),
                     ProfileCard(
                       icon: AppAssets.logout,

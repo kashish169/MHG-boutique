@@ -169,10 +169,14 @@ class PaymentMethod extends StatelessWidget {
                     ],
                   ),
                 ),
+                
               ),
             ),
           ),
-          const RedeemCardButton(),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 4),
+            child: RedeemCardButton(),
+          ),
         ],
       );
     });

@@ -308,6 +308,7 @@ class CheckoutController extends GetxController {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("ORDER PRICE METHODS RESPONSE STATUS $statusCode");
+          log(r.object["data"].toString() );
           if (statusCode == 200) {
             if (r.object["data"] != null) {
               log(orderPriceModal.toString());
@@ -362,13 +363,13 @@ class CheckoutController extends GetxController {
             billingEmail: email,
             billingStreetAddress: street,
             billingState: state,
-            billingZipcode: zipCode,
+            billingZipcode: '00000',
             billingCountry: countryName,
             shippingName: userName,
             shippingEmail: email,
             shippingStreetAddress: street,
             shippingState: state,
-            shippingZipcode: zipCode,
+            shippingZipcode: '00000',
             shippingCountry: countryName,
             redeem: hasRedeem.isTrue ? 1 : 0,
             coupon: promoCode,

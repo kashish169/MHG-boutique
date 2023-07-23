@@ -43,13 +43,15 @@ class Data {
   dynamic shippingCharge;
   dynamic discount;
   dynamic grandTotal;
+  Hearts? hearts;
 
   Data(
       {this.subtotal,
       this.tax,
       this.shippingCharge,
       this.discount,
-      this.grandTotal});
+      this.grandTotal,
+      this.hearts});
 
   Data.fromJson(Map<String, dynamic> json) {
     subtotal = json['subtotal'];
@@ -57,6 +59,7 @@ class Data {
     shippingCharge = json['shipping_charge'];
     discount = json['discount'];
     grandTotal = json['grand_total'];
+    hearts = Hearts.fromJson(json["hearts"]);
   }
 
   Map<String, dynamic> toJson() {
@@ -68,4 +71,16 @@ class Data {
     data['grand_total'] = grandTotal;
     return data;
   }
+}
+
+class Hearts {
+  String tierName;
+  double hearts;
+
+  Hearts({required this.tierName, required this.hearts});
+
+  factory Hearts.fromJson(Map<String, dynamic> json) => Hearts(
+        tierName: json["tier_name"],
+        hearts: json["hearts"],
+      );
 }

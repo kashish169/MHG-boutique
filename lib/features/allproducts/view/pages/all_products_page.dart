@@ -18,13 +18,13 @@ class AllProductsPage extends StatelessWidget {
       appBar: customAppBar(context, title: 'All Products'),
       body: DynamicGridView(
         padding: const EdgeInsetsDirectional.symmetric(
-          horizontal: 8,
+          horizontal: 20,
           vertical: 25,
         ),
         crossAxisCount: 2,
         shrinkWrap: true,
-        mainAxisSpacing: 8,
-        crossAxisSpacing: 8,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
         itemCount: products.length,
         builder: (ctx, index) {
           return ProductCard(

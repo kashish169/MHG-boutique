@@ -35,6 +35,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                 color: AppColors.mediumLabel,
                 fontWeight: FontWeight.w500),
           ),
+          const SizedBox(height: 5),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -43,7 +44,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     color: AppColors.lightLabel2,
                     fontSize: 12,
-                    height: 1.7,
+
                     fontWeight: FontWeight.w500),
               ),
               const SizedBox(width: 4),
@@ -79,13 +80,16 @@ class ProductDetailsBrandCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Obx(()=>Text(
-                    '${profileController.currnecy.value} ${controller.model.variants[controller.selectedVariantInd.value].price}',
-                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        fontSize: 17,
-                        color: AppColors.mediumLabel,
-                        fontWeight: FontWeight.w500),
-                  )),
+                  Obx(() => Text(
+                        '${profileController.currnecy.value} ${controller.model.variants[controller.selectedVariantInd.value].price}',
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayMedium
+                            ?.copyWith(
+                                fontSize: 17,
+                                color: AppColors.mediumLabel,
+                                fontWeight: FontWeight.w500),
+                      )),
                 ],
               )),
           const SizedBox(height: 5),
@@ -110,50 +114,60 @@ class ProductDetailsBrandCard extends StatelessWidget {
                 )
               : const SizedBox(),
           StatefulBuilder(builder: (context, setState) {
-            return Obx(()=>controller.model.variants[controller.selectedVariantInd.value].inCart == 1
+            return Obx(() => controller.model
+                        .variants[controller.selectedVariantInd.value].inCart ==
+                    1
                 ? ProductDetailsCounterWidget(
-              model: controller.model.variants[controller.selectedVariantInd.value],
-            )
+                    model: controller
+                        .model.variants[controller.selectedVariantInd.value],
+                  )
                 : Padding(
-              padding: const EdgeInsets.only(
-                top: 15,
-                bottom: 5,
-              ),
-              child: Obx(() => PrimaryButton(
-                color: AppColors.secondary,
-                fontSize: 14,
-                height: 42,
-                title: 'Add to Bag'.tr,
-                isLoading: controller.isLoadingAdd.value,
-                onTap: () async {
-                  if (App.token.isEmpty) {
-                    Get.toNamed(
-                      SignInPage.routeName,
-                      arguments: {
-                        'country': App.countryName,
-                        'is_guest': true,
-                        'country_code':
-                        mainController.globalGuestCountryCode,
-                        'flag': mainController.globalGuestCountryFlag,
-                        'id': mainController.globalGuestCountryId,
-                      },
-                    );
-                    return;
-                  }
-                  var result = await controller.addProductToCart(
-                    productId: controller.model.id,
-                  );
-                  if (result) {
-                    controller.model.variants[controller.selectedVariantInd.value].inCart = 1;
-                    controller.model.variants[controller.selectedVariantInd.value].cartQty = 1;
-                    Get.find<WishListController>().getWishList(withoutLoading: true);
-                    setState(() {});
-                  }
-                },
-                width: double.infinity,
-                elevation: 0,
-              )),
-            ));
+                    padding: const EdgeInsets.only(
+                      top: 15,
+                      bottom: 5,
+                    ),
+                    child: Obx(() => PrimaryButton(
+                          color: AppColors.secondary,
+                          fontSize: 14,
+                          height: 42,
+                          title: 'Add to Bag'.tr,
+                          isLoading: controller.isLoadingAdd.value,
+                          onTap: () async {
+                            if (App.token.isEmpty) {
+                              Get.toNamed(
+                                SignInPage.routeName,
+                                arguments: {
+                                  'country': App.countryName,
+                                  'is_guest': true,
+                                  'country_code':
+                                      mainController.globalGuestCountryCode,
+                                  'flag': mainController.globalGuestCountryFlag,
+                                  'id': mainController.globalGuestCountryId,
+                                },
+                              );
+                              return;
+                            }
+                            var result = await controller.addProductToCart(
+                              productId: controller.model.id,
+                            );
+                            if (result) {
+                              controller
+                                  .model
+                                  .variants[controller.selectedVariantInd.value]
+                                  .inCart = 1;
+                              controller
+                                  .model
+                                  .variants[controller.selectedVariantInd.value]
+                                  .cartQty = 1;
+                              Get.find<WishListController>()
+                                  .getWishList(withoutLoading: true);
+                              setState(() {});
+                            }
+                          },
+                          width: double.infinity,
+                          elevation: 0,
+                        )),
+                  ));
           }),
           const SizedBox(height: 5),
         ],
