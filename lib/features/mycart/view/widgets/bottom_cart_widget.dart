@@ -165,7 +165,7 @@ class BottomCartWidget extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    'Tax VAT',
+                                    'Tax VAT 5% (Included)',
                                     style: Theme.of(context)
                                         .textTheme
                                         .displaySmall
@@ -177,7 +177,7 @@ class BottomCartWidget extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  '5% (Included)',
+                                  "${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -218,45 +218,45 @@ class BottomCartWidget extends StatelessWidget {
                               ),
                             ],
                           ),
+                          // Visibility(
+                          //   visible: checkoutController.orderPriceModal.data
+                          //                   ?.hearts?.hearts ==
+                          //               0 ||
+                          //           checkoutController.hasRedeem.isTrue
+                          //       ? false
+                          //       : true,
+                          // child:
+                          Row(
+                            children: [
+                              Image.asset(
+                                AppAssets.starIcon,
+                                height: 10,
+                              ),
+                              const SizedBox(
+                                width: 2,
+                              ),
+                              FittedBox(
+                                child: Text(
+                                  'Earn ${checkoutController.orderPriceModal.data?.hearts?.hearts} Points',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall
+                                      ?.copyWith(
+                                        height: 1.4,
+                                        color: AppColors.dBlack,
+                                        fontSize: 12,
+                                      ),
+                                ),
+                              )
+                            ],
+                          ),
+                          // ),
                         ],
                       ),
                     ),
                   ],
                 );
               }),
-              Obx(
-                () => Visibility(
-                    visible: checkoutController
-                                    .orderPriceModal.data?.hearts?.hearts ==
-                                0 ||
-                            checkoutController.hasRedeem.isTrue
-                        ? false
-                        : true,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          AppAssets.starIcon,
-                          height: 10,
-                        ),
-                        const SizedBox(
-                          width: 2,
-                        ),
-                        FittedBox(
-                          child: Text(
-                            'Earn ${checkoutController.orderPriceModal.data?.hearts?.hearts} Points',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  height: 1.4,
-                                  color: AppColors.dBlack,
-                                  fontSize: 12,
-                                ),
-                          ),
-                        )
-                      ],
-                    )),
-              ),
             ],
           ),
         ),
