@@ -57,6 +57,7 @@ class HomeCategoryCard extends StatelessWidget {
               child: Center(
                 child: NetImage(
                   image: model.imageLink,
+                  height: 15,
                 ),
               ),
             ),

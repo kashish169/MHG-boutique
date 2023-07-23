@@ -50,7 +50,7 @@ class NetImage extends StatelessWidget {
                 child: Center(
                   child: Image.asset(
                     AppAssets.chachLoadImage,
-                    height: 30,
+                    height: 20,
 
                     // fit: BoxFit.contain,
                   ),
