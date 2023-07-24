@@ -72,7 +72,8 @@ class ProductsPage extends StatelessWidget {
                                       : DynamicGridView(
                                           padding:
                                               const EdgeInsetsDirectional.only(
-                                            start: 10,
+                                            start: 15,
+                                            end: 15,
                                             top: 10,
                                             bottom: 15,
                                           ),

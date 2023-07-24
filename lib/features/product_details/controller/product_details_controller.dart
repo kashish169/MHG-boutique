@@ -78,25 +78,22 @@ class ProductDetailsController extends GetxController {
               }
             }
             productName.value = model.enProductName;
-            productImages.add(
-              model.primaryImageLink,
-            );
-            if (model.image2Link != null) {
+            if (model.image2 != null) {
               productImages.add(
                 model.image2Link,
               );
             }
-            if (model.image3Link != null) {
+            if (model.image3 != null) {
               productImages.add(
                 model.image3Link,
               );
             }
-            if (model.image4Link != null) {
+            if (model.image4 != null) {
               productImages.add(
                 model.image4Link,
               );
             }
-            if (model.image5Link != null) {
+            if (model.image5 != null) {
               productImages.add(
                 model.image5Link,
               );

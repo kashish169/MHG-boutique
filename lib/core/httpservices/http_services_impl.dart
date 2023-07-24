@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:mhg/app/app.dart';
 import '../api/api.dart';
 import '../models/api_response.dart';
 import 'package:http/http.dart' as http;
 import '../models/failure.dart';
+import '../storage/storage_pref.dart';
 import 'http_services_repository.dart';
 
 class HttpServiceImplementation implements HttpService {
@@ -28,6 +30,15 @@ class HttpServiceImplementation implements HttpService {
       final parsedResponse = jsonDecode(response.body);
       http.Response? responseData = handleResponse(response);
       if (responseData != null) {
+        if (App.sid.isEmpty) {
+          log("HEADERS ${response.headers["set-cookie"]}");
+          String sid = response.headers["set-cookie"] ?? "";
+          String result = sid.substring(0, sid.indexOf(';'));
+          await StoragePref.setString(
+            key: 'sid',
+            value: result,
+          );
+        }
         return Right(ApiResponse(response.statusCode, parsedResponse));
       } else {
         return Left(BadRequestError('${response.statusCode}'));

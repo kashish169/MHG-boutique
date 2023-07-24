@@ -104,7 +104,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                       width: 5,
                     ),
                     Text(
-                      '${controller.model.pts} pts',
+                      'Earn ${controller.model.pts} Points',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: 13,
                           color: AppColors.mediumLabel,
