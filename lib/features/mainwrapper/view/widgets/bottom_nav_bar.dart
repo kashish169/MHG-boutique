@@ -42,7 +42,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
               index: controller.navBarIndex.value,
               onTap: (index) {
                 if (App.token.isEmpty) {
-                  if (index == 2 || index == 3 || index == 4) {
+                  if (index == 3 || index == 4) {
                     Get.toNamed(
                       SignInPage.routeName,
                       arguments: {

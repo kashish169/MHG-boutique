@@ -56,7 +56,7 @@ class OnBoardButtons extends StatelessWidget {
                   : () {
                       Api.authorizedheaders = {
                         'Content-Type': 'application/json',
-                        'cookie': 'laravel_session=${App.uuidValue}'
+                        'Cookie': App.sid
                       };
                       Get.offAllNamed(
                         MainWrapper.routeName,

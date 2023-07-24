@@ -55,19 +55,19 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
       return IconButton(
           padding: EdgeInsets.zero,
           onPressed: () async {
-            if (App.token.isEmpty) {
-              Get.toNamed(
-                SignInPage.routeName,
-                arguments: {
-                  'country': App.countryName,
-                  'is_guest': true,
-                  'country_code': mainController.globalGuestCountryCode,
-                  'flag': mainController.globalGuestCountryFlag,
-                  'id': mainController.globalGuestCountryId,
-                },
-              );
-              return;
-            }
+            // if (App.token.isEmpty) {
+            //   Get.toNamed(
+            //     SignInPage.routeName,
+            //     arguments: {
+            //       'country': App.countryName,
+            //       'is_guest': true,
+            //       'country_code': mainController.globalGuestCountryCode,
+            //       'flag': mainController.globalGuestCountryFlag,
+            //       'id': mainController.globalGuestCountryId,
+            //     },
+            //   );
+            //   return;
+            // }
             if (widget.itemId != null) {
               if (widget.inWishlist == 1) {
                 bool res = await controller.removeFromWishList(widget.itemId!);

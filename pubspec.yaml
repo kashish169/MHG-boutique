@@ -69,7 +69,6 @@ dependencies:
   app_tracking_transparency: ^2.0.4
   badges: ^3.0.2
   flutter_typeahead: ^4.6.2
-  uuid: ^3.0.7
 
 dev_dependencies:
   flutter_test:
