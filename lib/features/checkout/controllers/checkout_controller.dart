@@ -308,7 +308,7 @@ class CheckoutController extends GetxController {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("ORDER PRICE METHODS RESPONSE STATUS $statusCode");
-          log(r.object["data"].toString() );
+          log(r.object["data"].toString());
           if (statusCode == 200) {
             if (r.object["data"] != null) {
               log(orderPriceModal.toString());
@@ -337,12 +337,16 @@ class CheckoutController extends GetxController {
       var state = profileController.model.value?.state;
       var zipCode = profileController.model.value?.zipCode;
       var countryName = profileController.model.value?.country?.name;
+      var shippingPhoneNumber = profileController.model.value!.number;
+      var billingPhoneNumber = profileController.model.value!.number;
       var promoCode = codeController.text.trim();
       if (street!.isEmpty ||
           state!.isEmpty ||
           zipCode!.isEmpty ||
           countryName == null ||
-          countryName.isEmpty) {
+          countryName.isEmpty ||
+          shippingPhoneNumber!.isEmpty ||
+          billingPhoneNumber!.isEmpty) {
         AppToasts.errorToast("Please complete your personal information");
         return;
       }
@@ -370,6 +374,8 @@ class CheckoutController extends GetxController {
             shippingStreetAddress: street,
             shippingState: state,
             shippingZipcode: '00000',
+            billingPhoneNumber: billingPhoneNumber,
+            shippingPhoneNumber: shippingPhoneNumber,
             shippingCountry: countryName,
             redeem: hasRedeem.isTrue ? 1 : 0,
             coupon: promoCode,
