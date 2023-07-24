@@ -27,7 +27,7 @@ class ProductDetailsController extends GetxController {
   RxBool isErrorAdd = false.obs;
   late int productId;
   late int selectedVariantId;
-  RxInt selectedVariantInd=0.obs;
+  RxInt selectedVariantInd = 0.obs;
   late bool fromArrival;
   RxString productName = ''.obs;
   final profileController = Get.find<ProfileController>();
@@ -62,7 +62,6 @@ class ProductDetailsController extends GetxController {
           log("PRODUCT DETAILS RESPONSE ERROR ${l.message}");
         },
         (r) {
-
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("PRODUCT DETAILS RESPONSE STATUS $statusCode");
@@ -71,33 +70,30 @@ class ProductDetailsController extends GetxController {
             var json = r.object["data"]["product"];
             model = ProductDetailsModel.fromJson(json);
             productsReviews.value = model.productReviews;
-            selectedVariantId=model.variants[0].id;
-            for(int i=0;i<model.variants.length;i++){
-              if(model.variants[i].inCart==1){
-                selectedVariantId=model.variants[i].id;
-                selectedVariantInd.value=i;
+            selectedVariantId = model.variants[0].id;
+            for (int i = 0; i < model.variants.length; i++) {
+              if (model.variants[i].inCart == 1) {
+                selectedVariantId = model.variants[i].id;
+                selectedVariantInd.value = i;
               }
             }
             productName.value = model.enProductName;
-            productImages.add(
-              model.primaryImageLink,
-            );
-            if (model.image2Link != null) {
+            if (model.image2 != null) {
               productImages.add(
                 model.image2Link,
               );
             }
-            if (model.image3Link != null) {
+            if (model.image3 != null) {
               productImages.add(
                 model.image3Link,
               );
             }
-            if (model.image4Link != null) {
+            if (model.image4 != null) {
               productImages.add(
                 model.image4Link,
               );
             }
-            if (model.image5Link != null) {
+            if (model.image5 != null) {
               productImages.add(
                 model.image5Link,
               );
@@ -125,7 +121,7 @@ class ProductDetailsController extends GetxController {
       Map<String, dynamic> body = {
         "item_id": productId,
         "qty": 1,
-        "variant_id":selectedVariantId
+        "variant_id": selectedVariantId
       };
       Either<Failure, ApiResponse> results =
           await productDetailsRepository.addProductToCart(
