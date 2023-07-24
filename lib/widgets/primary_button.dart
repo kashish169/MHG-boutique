@@ -15,7 +15,7 @@ class PrimaryButton extends StatelessWidget {
   final double? fontSize;
   final Color? color;
   final Color? fontColor;
-  final bool? isSelcted;
+  final bool? isSelected;
   final double? elevation;
   final bool isApplePay;
 
@@ -32,7 +32,7 @@ class PrimaryButton extends StatelessWidget {
     this.reverseColor,
     this.fontSize,
     this.color,
-    this.isSelcted,
+    this.isSelected,
     this.elevation,
     this.fontColor,
   });
@@ -45,7 +45,7 @@ class PrimaryButton extends StatelessWidget {
       minWidth: width,
       color: color ?? AppColors.secondary,
       shape: RoundedRectangleBorder(
-        side: (isSelcted == null || isSelcted == false)
+        side: (isSelected == null || isSelected == false)
             ? BorderSide.none
             : BorderSide(color: AppColors.label),
         borderRadius: BorderRadius.circular(radius ?? 0),

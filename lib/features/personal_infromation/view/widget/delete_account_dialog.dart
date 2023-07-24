@@ -42,7 +42,7 @@ deleteAccountDialog({
                                 width: 60,
                                 height: 35,
                                 reverseColor: true,
-                                isSelcted: true,
+                                isSelected: true,
                                 onTap: () {
                                   Get.back();
                                 }),

@@ -81,7 +81,6 @@ class CheckoutController extends GetxController {
       results.fold(
         (l) {
           isError(true);
-
           AppToasts.errorToast(l.message);
           log("USER PAYMENT METHODS RESPONSE ERROR ${l.message}");
         },
@@ -108,8 +107,6 @@ class CheckoutController extends GetxController {
                 }
               }
             }
-          } else {
-            AppToasts.errorToast(message);
           }
         },
       );
@@ -445,15 +442,6 @@ class CheckoutController extends GetxController {
     }
   }
 
-  void _onOrderSuccess() async {
-    Get.offAndToNamed(SuccessOrderView.route);
-    Get.find<MyCartController>().getCart();
-    await profileController.getProfileInfo();
-    AppToasts.successToast(
-      'Your order has been submitted successfully!',
-    );
-  }
-
   String getCardIcon(String cardType) {
     var card = cardType.trim().toLowerCase();
     if (card.contains('master')) {
@@ -477,13 +465,13 @@ class CheckoutController extends GetxController {
     var formData = formKey.currentState;
     if (formData!.validate()) {
       try {
-        var userName = guestName.text;
-        var email = guestEmail.text;
-        var street = guestAddress.text;
-        var state = guestEmirate.text;
-        var countryName = 'Uae';
-        var shippingPhoneNumber = guestNumber.text;
-        var billingPhoneNumber = guestNumber.text;
+        var userName = guestName.text.trim();
+        var email = guestEmail.text.trim();
+        var street = guestAddress.text.trim();
+        var state = guestEmirate.text.trim();
+        var countryName = 'United Arab Emirates';
+        var shippingPhoneNumber = "+971${guestNumber.text.trim()}";
+        var billingPhoneNumber = "+971${guestNumber.text.trim()}";
         var promoCode = codeController.text.trim();
 
         if (paymentMethodValue.isEmpty) {
@@ -496,7 +484,7 @@ class CheckoutController extends GetxController {
             return;
           }
         }
-        print(paymentMethodValue.value);
+        log(paymentMethodValue.value);
         String objectData = orderModelToJson(
           OrderModel(
               billingName: userName,
@@ -522,7 +510,7 @@ class CheckoutController extends GetxController {
               paymentPlatForm:
                   paymentMethodValue.value == 'Apple Pay' ? 'apple' : ''),
         );
-        log(objectData);
+        log("GUSET ORDER DATA :$objectData");
         Get.dialog(
           const LoadingWidget(),
           barrierDismissible: false,
@@ -573,6 +561,15 @@ class CheckoutController extends GetxController {
         log("$e $s");
       }
     }
+  }
+
+  void _onOrderSuccess() async {
+    Get.offAndToNamed(SuccessOrderView.route);
+    Get.find<MyCartController>().getCart();
+    await profileController.getProfileInfo();
+    AppToasts.successToast(
+      'Your order has been submitted successfully!',
+    );
   }
 
   @override

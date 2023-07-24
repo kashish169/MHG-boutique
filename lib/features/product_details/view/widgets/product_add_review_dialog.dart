@@ -47,7 +47,7 @@ class ProductAddReviewDialog extends StatelessWidget {
                           color: AppColors.white,
                           height: 44,
                           reverseColor: true,
-                          isSelcted: true,
+                          isSelected: true,
                           title: "Cancel".tr,
                           onTap: () {
                             controller.reviewNote.clear();
