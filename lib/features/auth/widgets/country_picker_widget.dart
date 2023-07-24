@@ -6,19 +6,20 @@ import 'package:mhg/features/auth/sign_up/controller/sign_up_controller.dart';
 import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
 import 'package:mhg/features/auth/signin/view/widget/show_country_picker.dart';
 
-class CountryPickerWidget extends StatelessWidget {
-  const CountryPickerWidget({super.key});
+import '../../../constants/app_assets.dart';
 
+class CountryPickerWidget extends StatelessWidget {
+  const CountryPickerWidget({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SignUpController>(
-
       builder: (controller) => MaterialButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         padding: EdgeInsets.zero,
         minWidth: 0,
         onPressed: () {
-
           // showCountries(
           //   context,
           //       (p0) {
@@ -54,7 +55,9 @@ class CountryPickerWidget extends StatelessWidget {
                 controller.countryCode,
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-              SizedBox(width: 2,),
+              SizedBox(
+                width: 2,
+              ),
               // const Icon(
               //   Icons.arrow_drop_down_outlined,
               // ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/checkout/views/widgets/checkout_items.dart';
@@ -27,9 +28,12 @@ class CheckoutPage extends StatelessWidget {
         if (state.controller!.paymentMethodsList.isEmpty) {
           await state.controller?.getPaymentMethods();
         }
-        if (profileController.model.value == null) {
-          await profileController.getProfileInfo();
+        if (App.token.isNotEmpty) {
+          if (profileController.model.value == null) {
+            await profileController.getProfileInfo();
+          }
         }
+
         await state.controller?.orderPrice();
       }, builder: (controller) {
         if (controller.isLoading.isTrue ||
@@ -45,16 +49,18 @@ class CheckoutPage extends StatelessWidget {
               await controller.getPaymentMethods();
             }
             await controller.orderPrice();
-            if (profileController.isError.isTrue) {
-              await profileController.getProfileInfo();
+            if (App.token.isNotEmpty) {
+              if (profileController.isError.isTrue) {
+                await profileController.getProfileInfo();
+              }
             }
           });
         }
         return SingleChildScrollView(
           child: Column(
             children: [
-              const ShippingAddress(),
-              divider(),
+              if (App.token.isNotEmpty) const ShippingAddress(),
+              if (App.token.isNotEmpty) divider(),
               const PaymentMethod(),
               divider(),
               const CheckoutItems(),

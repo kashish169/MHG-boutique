@@ -9,6 +9,8 @@ import 'package:mhg/features/checkout/views/widgets/redeem_card_button.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import 'package:mhg/widgets/three_bounce_loading.dart';
 
+import '../../../../app/app.dart';
+
 class PaymentMethod extends StatelessWidget {
   const PaymentMethod({super.key});
 
@@ -169,14 +171,14 @@ class PaymentMethod extends StatelessWidget {
                     ],
                   ),
                 ),
-                
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4),
-            child: RedeemCardButton(),
-          ),
+          if (App.token.isNotEmpty)
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 4),
+              child: RedeemCardButton(),
+            ),
         ],
       );
     });

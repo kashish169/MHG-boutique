@@ -44,7 +44,11 @@ class CheckoutController extends GetxController {
   OrderPriceModal orderPriceModal = OrderPriceModal();
   final TextEditingController codeController = TextEditingController();
   final ProfileController profileController = Get.find<ProfileController>();
-
+  final TextEditingController guestName = TextEditingController();
+  final TextEditingController guestEmail = TextEditingController();
+  final TextEditingController guestNumber = TextEditingController();
+  final TextEditingController guestEmirate = TextEditingController();
+  final TextEditingController guestAddress = TextEditingController();
   RxBool isLoading = false.obs;
   RxBool isLoadingPaymentMethods = false.obs;
   RxBool isErrorPaymentMethods = false.obs;
@@ -65,6 +69,7 @@ class CheckoutController extends GetxController {
   RxInt userPaymentMethodCardIndex = (-1).obs;
   late String responseOredrNumber;
   final userSelectedCardModel = Rxn<UserPaymentMethodsModel>();
+  final formKey = GlobalKey<FormState>();
 
   Future<void> getUserPaymentMethods() async {
     try {
@@ -279,9 +284,11 @@ class CheckoutController extends GetxController {
         isLoadingPromo(true);
         isErrorPromo(false);
       }
-      var countryId = profileController.model.value?.countryId;
+
+      var countryId = profileController
+          .model.value?.countryId; //will be used later in query
       var promoCode = codeController.text.trim();
-      var query = '?country=$countryId';
+      var query = '?country=1'; //to be changed later when we add countries
       if (promoCode.isNotEmpty) {
         query += "&coupon=$promoCode";
       }
@@ -466,11 +473,113 @@ class CheckoutController extends GetxController {
     }
   }
 
+  Future<void> guestCreateOrder() async {
+    var formData = formKey.currentState;
+    if (formData!.validate()) {
+      try {
+        var userName = guestName.text;
+        var email = guestEmail.text;
+        var street = guestAddress.text;
+        var state = guestEmirate.text;
+        var countryName = 'Uae';
+        var shippingPhoneNumber = guestNumber.text;
+        var billingPhoneNumber = guestNumber.text;
+        var promoCode = codeController.text.trim();
+
+        if (paymentMethodValue.isEmpty) {
+          AppToasts.errorToast("Choose payment method");
+          return;
+        }
+        if (paymentMethodValue.value == "TAP") {
+          if (userSelectedCardModel.value == null) {
+            AppToasts.errorToast("Choose payment method");
+            return;
+          }
+        }
+        print(paymentMethodValue.value);
+        String objectData = orderModelToJson(
+          OrderModel(
+              billingName: userName,
+              billingEmail: email,
+              billingStreetAddress: street,
+              billingState: state,
+              billingZipcode: '00000',
+              billingCountry: countryName,
+              shippingName: userName,
+              shippingEmail: email,
+              shippingStreetAddress: street,
+              shippingState: state,
+              shippingZipcode: '00000',
+              billingPhoneNumber: billingPhoneNumber,
+              shippingPhoneNumber: shippingPhoneNumber,
+              shippingCountry: countryName,
+              redeem: hasRedeem.isTrue ? 1 : 0,
+              coupon: promoCode,
+              paymentMethod: paymentMethodValue.value == 'Apple Pay'
+                  ? 'TAP'
+                  : paymentMethodValue.value,
+              onlinePaymentMethodId: userSelectedCardModel.value?.id,
+              paymentPlatForm:
+                  paymentMethodValue.value == 'Apple Pay' ? 'apple' : ''),
+        );
+        log(objectData);
+        Get.dialog(
+          const LoadingWidget(),
+          barrierDismissible: false,
+        );
+        Either<Failure, ApiResponse> results =
+            await checkoutRepository.createOrder(objectData);
+        Get.back();
+        results.fold(
+          (l) {
+            AppToasts.errorToast(l.message);
+            log("CREATE ORDER METHODS RESPONSE ERROR ${l.message}");
+          },
+          (r) async {
+            var statusCode = r.object["code"];
+            var message = r.object["message"];
+            log("CREATE ORDER METHODS RESPONSE STATUS $statusCode");
+            log("${r.object}");
+            if (statusCode == 201) {
+              var url = r.object["data"];
+
+              if (url == null) {
+                AppToasts.errorToast(
+                  "You can’t use this card because it’s not 3DS enrolled",
+                );
+                return;
+              }
+              var results = await Get.to(
+                () => AddPaymentMethodWebViewPage(
+                  title: paymentMethodValue.value == 'Apple Pay'
+                      ? 'Apple Pay'
+                      : "3DS Authentication",
+                  url: url,
+                  is3dAUth: true,
+                ),
+              );
+              if (results == true) {
+                log("${r.object}");
+                _onOrderSuccess.call();
+              }
+            } else if (statusCode == 200) {
+              _onOrderSuccess.call();
+            } else {
+              AppToasts.errorToast(message);
+            }
+          },
+        );
+      } catch (e, s) {
+        log("$e $s");
+      }
+    }
+  }
+
   @override
   void onInit() {
-    if (App.token.isNotEmpty) {
-      orderPrice();
-    }
+    // if (App.token.isNotEmpty) {
+    orderPrice();
+    // }
     super.onInit();
   }
 }

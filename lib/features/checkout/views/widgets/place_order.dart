@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
@@ -10,6 +11,8 @@ import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import 'package:mhg/widgets/three_bounce_loading.dart';
+
+import 'guest_order_dialog.dart';
 
 class PlaceOrder extends StatefulWidget {
   const PlaceOrder({super.key});
@@ -282,7 +285,19 @@ class _PlaceOrderState extends State<PlaceOrder> {
                     onPress: checkoutController.isLoadingRedeem.isTrue
                         ? () {}
                         : () {
-                            checkoutController.createOrder();
+                            if (App.token.isNotEmpty) {
+                              checkoutController.createOrder();
+                            } else {
+                              Get.defaultDialog(
+                                titlePadding: const EdgeInsets.only(top: 20),
+                                title: 'Fill field to complete order',
+                                titleStyle: Theme.of(context)
+                                    .textTheme
+                                    .displayMedium!
+                                    .copyWith(fontSize: 15),
+                                content: GuestOrderDialog(),
+                              );
+                            }
                           },
                   )
                 : ApllePayButton(
