@@ -20,6 +20,8 @@ class OrderModel {
   String? paymentMethod;
   int? onlinePaymentMethodId;
   String? paymentPlatForm;
+  String? shippingPhoneNumber;
+  String? billingPhoneNumber;
   OrderModel({
     required this.billingName,
     required this.billingEmail,
@@ -37,6 +39,8 @@ class OrderModel {
     required this.redeem,
     required this.paymentMethod,
     required this.onlinePaymentMethodId,
+    required this.shippingPhoneNumber,
+    required this.billingPhoneNumber,
     this.paymentPlatForm,
   });
 
@@ -56,6 +60,8 @@ class OrderModel {
       "shipping_country": shippingCountry,
       "redeem": redeem,
       "payment_method": paymentMethod,
+      'shipping_phone_number': shippingPhoneNumber,
+      'billing_phone_number': billingPhoneNumber,
     };
     if (paymentMethod == "TAP" && paymentPlatForm != 'apple') {
       body.putIfAbsent(

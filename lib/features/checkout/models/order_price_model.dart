@@ -75,7 +75,7 @@ class Data {
 
 class Hearts {
   String tierName;
-  double hearts;
+  dynamic hearts;
 
   Hearts({required this.tierName, required this.hearts});
 
