@@ -187,6 +187,7 @@ class MyOrderCard extends StatelessWidget {
                                   fontSize: 14,
                                 ),
                       ),
+                      if(model.returnReason!=null)
                       TextSpan(
                         text: 'Reason: ${model.returnReason}',
                         style:
@@ -212,6 +213,7 @@ class MyOrderCard extends StatelessWidget {
                                   fontSize: 14,
                                 ),
                       ),
+                      if(model.cancelReason!=null)
                       TextSpan(
                         text: 'Reason: ${model.cancelReason}',
                         style:
