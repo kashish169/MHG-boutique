@@ -38,6 +38,7 @@ class HttpServiceImplementation implements HttpService {
             key: 'sid',
             value: result,
           );
+          App.sid = result;
         }
         return Right(ApiResponse(response.statusCode, parsedResponse));
       } else {
