@@ -5,6 +5,7 @@ class ShippingModel {
   String state;
   String zipcode;
   String country;
+  String? phone;
 
   ShippingModel({
     required this.name,
@@ -13,6 +14,7 @@ class ShippingModel {
     required this.state,
     required this.zipcode,
     required this.country,
+    this.phone
   });
 
   factory ShippingModel.fromJson(Map<String, dynamic> json) => ShippingModel(
@@ -22,5 +24,6 @@ class ShippingModel {
         state: json['state'],
         zipcode: json['zipcode'],
         country: json['country'],
+    phone:json['phone_number'],
       );
 }
