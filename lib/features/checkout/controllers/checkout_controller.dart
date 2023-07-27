@@ -324,8 +324,6 @@ class CheckoutController extends GetxController {
                 );
               }
             }
-          } else {
-            AppToasts.errorToast(message);
           }
         },
       );
