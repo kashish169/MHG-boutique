@@ -62,15 +62,13 @@ dependencies:
   url_launcher: ^6.1.11
   webview_flutter: ^4.2.2
   radio_group_v2: ^2.1.2
-  google_maps_flutter: ^2.2.6
+  # google_maps_flutter: ^2.2.6
   flutter_animarker: ^3.2.0
   firebase_dynamic_links:
   share_plus: ^7.0.2
   app_tracking_transparency: ^2.0.4
   badges: ^3.0.2
   flutter_typeahead: ^4.6.2
- 
-  
 
 dev_dependencies:
   flutter_test:
@@ -106,7 +104,6 @@ flutter:
     - .env
     - assets/images/
     - assets/icons/
-   
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

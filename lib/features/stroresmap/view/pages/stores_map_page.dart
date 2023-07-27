@@ -73,38 +73,3 @@ class _StoresMapPageState extends State<StoresMapPage> {
     );
   }
 }
-
-/**
- * Animarker(
-            curve: Curves.linear,
-            rippleRadius: 0.2,
-            shouldAnimateCamera: false,
-            useRotation: false,
-            zoom: mapController.zoom,
-            duration: const Duration(milliseconds: 50),
-            mapId: _controller.future.then<int>((value) => value.mapId),
-            //Grab Google Map Id
-            markers: mapController.markers.values.toSet(),
-            child: GoogleMap(
-              onCameraMove: mapController.onGeoChanged,
-              compassEnabled: false,
-              zoomGesturesEnabled: true,
-              myLocationButtonEnabled: true,
-              myLocationEnabled: true,
-              mapToolbarEnabled: false,
-              zoomControlsEnabled: false,
-              mapType: MapType.normal,
-              initialCameraPosition: const CameraPosition(
-                target: LatLng(0, 0),
-                zoom: 0,
-              ),
-              onMapCreated: (GoogleMapController controller) async {
-                if (!_controller.isCompleted) {
-                  _controller.complete(controller);
-                }
-                mapController.googleMapController = controller;
-              },
-              markers: Set.from(mapController.myMarker),
-            ),
-          ),
- */

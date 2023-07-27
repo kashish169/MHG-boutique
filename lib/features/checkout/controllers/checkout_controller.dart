@@ -18,6 +18,7 @@ import 'package:mhg/features/checkout/views/pages/add_payment_method_webview_pag
 import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/features/mycart/models/cart_model.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
+import 'package:mhg/features/success_order/view/pages/guest_sucess_order.dart';
 import 'package:mhg/features/success_order/view/pages/success_order_view.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import '../../../constants/app_assets.dart';
@@ -136,16 +137,18 @@ class CheckoutController extends GetxController {
             paymentMethodsList = List<PaymentMethodsModel>.from(
                 json["payment_methods"]
                     .map((x) => PaymentMethodsModel.fromJson(x)));
-            GetPlatform.isIOS
-                ? paymentMethodsList.add(PaymentMethodsModel(
-                    id: 3,
-                    name: 'Apple Pay',
-                    image: '',
-                    slug: 'Apple Pay',
-                    status: 0,
-                    createdAt: DateTime.now(),
-                    updatedAt: DateTime.now()))
-                : null;
+            if (App.token.isNotEmpty) {
+              GetPlatform.isIOS
+                  ? paymentMethodsList.add(PaymentMethodsModel(
+                      id: 3,
+                      name: 'Apple Pay',
+                      image: '',
+                      slug: 'Apple Pay',
+                      status: 0,
+                      createdAt: DateTime.now(),
+                      updatedAt: DateTime.now()))
+                  : null;
+            }
           } else {
             AppToasts.errorToast(message);
             isErrorPaymentMethods(true);
@@ -312,7 +315,7 @@ class CheckoutController extends GetxController {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("ORDER PRICE METHODS RESPONSE STATUS $statusCode");
-          log(r.object["data"].toString());
+          log("ORDER PRICE METHODS RESPONSE ${r.object["data"]}");
           if (statusCode == 200) {
             if (r.object["data"] != null) {
               log(orderPriceModal.toString());
@@ -323,8 +326,6 @@ class CheckoutController extends GetxController {
                 );
               }
             }
-          } else {
-            AppToasts.errorToast(message);
           }
         },
       );
@@ -548,10 +549,10 @@ class CheckoutController extends GetxController {
               );
               if (results == true) {
                 log("${r.object}");
-                _onOrderSuccess.call();
+                _onGuestOrderSuccess.call();
               }
             } else if (statusCode == 200) {
-              _onOrderSuccess.call();
+              _onGuestOrderSuccess.call();
             } else {
               AppToasts.errorToast(message);
             }
@@ -561,6 +562,15 @@ class CheckoutController extends GetxController {
         log("$e $s");
       }
     }
+  }
+
+  void _onGuestOrderSuccess() async {
+    Get.offAndToNamed(GuestSuccessOrderView.route);
+    //  Get.find<MyCartController>().getCart();
+    //  await profileController.getProfileInfo();
+    AppToasts.successToast(
+      'Your order has been submitted successfully!',
+    );
   }
 
   void _onOrderSuccess() async {

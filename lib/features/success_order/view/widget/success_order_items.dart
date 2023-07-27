@@ -8,10 +8,10 @@ import 'package:mhg/widgets/net_image.dart';
 
 class SuccessOrderItems extends StatelessWidget {
   final SucessOrderController controller;
-  final ProfileController profileController;
+  final ProfileController? profileController;
   SuccessOrderItems({
     super.key,
-    required this.profileController,
+     this.profileController,
     required this.controller,
   });
 
@@ -78,9 +78,9 @@ class SuccessOrderItems extends StatelessWidget {
                           ),
                         ],
                       ), */
-
+                      profileController?.currnecy.value!=null?
                       Obx(() => Text(
-                            'Price: ${profileController.currnecy.value} ${controller.orderModel.orderDetails[index].price}',
+                            'Price: ${profileController?.currnecy.value} ${controller.orderModel.orderDetails[index].price}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -88,7 +88,18 @@ class SuccessOrderItems extends StatelessWidget {
                                   fontSize: 11,
                                   color: AppColors.mediumLabel,
                                 ),
-                          )),
+                          )):
+                      Text(
+                        'Price: AED ${controller.orderModel.orderDetails[index].price}',
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall
+                            ?.copyWith(
+                          fontSize: 11,
+                          color: AppColors.mediumLabel,
+                        ),
+                      )
+                      ,
                       const SizedBox(height: 4),
                       Text(
                         'Quantity: ${double.parse(controller.orderModel.orderDetails[index].quantity.toString()).toInt()}',
@@ -125,8 +136,9 @@ class SuccessOrderItems extends StatelessWidget {
                   ),
                 ) ,*/
                       // const SizedBox(height: 4),
+                      profileController?.currnecy.value!=null?
                       Obx(() => Text(
-                            'Total Price: ${profileController.currnecy.value} ${controller.orderModel.orderDetails[index].totalPrice}',
+                            'Total Price: ${profileController?.currnecy.value} ${controller.orderModel.orderDetails[index].totalPrice}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -134,7 +146,17 @@ class SuccessOrderItems extends StatelessWidget {
                                   fontSize: 14,
                                   color: AppColors.mediumLabel,
                                 ),
-                          )),
+                          )):
+                      Text(
+                        'Total Price: AED ${controller.orderModel.orderDetails[index].totalPrice}',
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall
+                            ?.copyWith(
+                          fontSize: 14,
+                          color: AppColors.mediumLabel,
+                        ),
+                      ),
                       // const SizedBox(height: 5),
                     ],
                   ),

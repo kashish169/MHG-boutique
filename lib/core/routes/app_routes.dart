@@ -44,6 +44,7 @@ import 'package:mhg/features/splash/view/splash_view.dart';
 import 'package:mhg/features/stroresmap/bindings/stores_map_binding.dart';
 import 'package:mhg/features/stroresmap/view/pages/stores_map_page.dart';
 import 'package:mhg/features/success_order/binding/success_order_binding.dart';
+import 'package:mhg/features/success_order/view/pages/guest_sucess_order.dart';
 import 'package:mhg/features/success_order/view/pages/success_order_view.dart';
 import '../../features/about_us/binding/about_us_bindings.dart';
 import '../../features/auth/otp/view/pages/otp.dart';
@@ -124,6 +125,11 @@ class AppRoutes {
     GetPage(
       name: '/success_orders',
       page: () => SuccessOrderView(),
+      binding: SuccessOrderBinding(),
+    ),
+    GetPage(
+      name: '/guest_success_orders',
+      page: () => GuestSuccessOrderView(),
       binding: SuccessOrderBinding(),
     ),
     GetPage(
