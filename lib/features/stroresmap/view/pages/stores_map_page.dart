@@ -18,7 +18,7 @@ class _StoresMapPageState extends State<StoresMapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(context, title: 'Find our stores'),
-      body: const DefaultTabController(
+      body:  DefaultTabController(
         length: 4,
         child: Scaffold(
           appBar: TabBar(
@@ -26,36 +26,41 @@ class _StoresMapPageState extends State<StoresMapPage> {
             labelColor: Colors.black,
             tabs: [
               Tab(
-                icon: Text(
-                  "ANFASIC",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 15),
+                icon: FittedBox(
+                  child: Text(
+                    "ANFASIC\nDOKHOON",
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 12),
+                  ),
                 ),
-                child: Text(
-                  "DOKHOON",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 15),
+
+              ),
+              Tab(
+                child: FittedBox(
+                  child: Text(
+                    "HIND\nAL OUD",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 12),
+                  ),
                 ),
               ),
               Tab(
-                child: Text(
-                  "HIND\nAL OUD",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 15),
+                child: FittedBox(
+                  child: Text(
+                    "KHALTAT",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 12),
+                  ),
                 ),
               ),
               Tab(
-                child: Text(
-                  "KHALTAT",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 15),
-                ),
-              ),
-              Tab(
-                child: Text(
-                  "HOB",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 15),
+                child: FittedBox(
+                  child: Text(
+                    "HOB",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 12),
+                  ),
                 ),
               ),
             ],
