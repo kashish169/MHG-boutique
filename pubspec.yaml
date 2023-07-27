@@ -69,8 +69,6 @@ dependencies:
   app_tracking_transparency: ^2.0.4
   badges: ^3.0.2
   flutter_typeahead: ^4.6.2
-  flutter_phone_direct_caller: ^2.1.1
-  
 
 dev_dependencies:
   flutter_test:
@@ -106,7 +104,6 @@ flutter:
     - .env
     - assets/images/
     - assets/icons/
-   
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
