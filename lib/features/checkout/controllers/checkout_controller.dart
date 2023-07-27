@@ -479,6 +479,7 @@ class CheckoutController extends GetxController {
     var formData = formKey.currentState;
     if (selectedCity == null) {
       AppToasts.errorToast('Please select an emirate');
+      return;
     }
     if (formData!.validate()) {
       try {
@@ -581,7 +582,9 @@ class CheckoutController extends GetxController {
   }
 
   void _onGuestOrderSuccess() async {
+    destroyCard();
     Get.offAndToNamed(GuestSuccessOrderView.route);
+
     //  Get.find<MyCartController>().getCart();
     //  await profileController.getProfileInfo();
     AppToasts.successToast(
@@ -595,6 +598,33 @@ class CheckoutController extends GetxController {
     await profileController.getProfileInfo();
     AppToasts.successToast(
       'Your order has been submitted successfully!',
+    );
+  }
+  Future<void> destroyCard() async {
+    isLoading(true);
+    isError(false);
+    Either<Failure, ApiResponse> results = await checkoutRepository.destroyCard();
+    isLoading(false);
+    results.fold(
+          (l) {
+        isError(true);
+        AppToasts.errorToast(l.message);
+
+      },
+          (r) {
+        var statusCode = r.object["code"];
+        var message = r.object["message"];
+        var stats = r.object['isSuccessful'];
+
+        if (stats == true) {
+          var json = r.object["data"];
+
+          log(r.object["data"].toString());
+        } else {
+          isError(true);
+          AppToasts.errorToast(message);
+        }
+      },
     );
   }
 

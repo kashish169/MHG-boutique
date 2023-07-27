@@ -10,4 +10,5 @@ abstract class CheckoutRepository {
   Future<Either<Failure, ApiResponse>> setDefaultPaymentMethod(id);
   Future<Either<Failure, ApiResponse>> orderPrice(Object query);
   Future<Either<Failure, ApiResponse>> createOrder(Object body);
+  Future<Either<Failure, ApiResponse>> destroyCard();
 }

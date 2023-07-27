@@ -47,6 +47,9 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
             value:  controller.selectedCity,
             onChanged: (value) {
                controller.setCity(value);
+               setState(() {
+
+               });
             },
             hint: Text(
               'Select Emirate',
