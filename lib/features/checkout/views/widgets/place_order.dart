@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/checkout/views/widgets/place_order_button.dart';
-import 'package:mhg/features/personal_infromation/model/personal_model.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import 'package:mhg/widgets/three_bounce_loading.dart';
+import '../../../../constants/app_toasts.dart';
+import 'guest_order_dialog.dart';
 
 class PlaceOrder extends StatefulWidget {
   const PlaceOrder({super.key});
@@ -253,21 +255,6 @@ class _PlaceOrderState extends State<PlaceOrder> {
             );
           }),
 
-          // Visibility(
-          //   visible: checkoutController.orderPriceModal.data?.tax == 0
-          //       ? false
-          //       : true,
-          //   child: FittedBox(
-          //     child: Text(
-          //       'Including ${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax} of taxes Earn',
-          //       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-          //             height: 1.4,
-          //             color: AppColors.dBlack,
-          //             fontSize: 8,
-          //           ),
-          //     ),
-          //   ),
-          // ),
           const SizedBox(height: 15),
           Obx(
             () => checkoutController.paymentMethodValue.value != 'Apple Pay'
@@ -282,14 +269,22 @@ class _PlaceOrderState extends State<PlaceOrder> {
                     onPress: checkoutController.isLoadingRedeem.isTrue
                         ? () {}
                         : () {
-                            checkoutController.createOrder();
+                            if (App.token.isNotEmpty) {
+                              checkoutController.createOrder();
+                            } else {
+                              _onGuestOrder.call();
+                            }
                           },
                   )
-                : ApllePayButton(
+                : ApplePayButton(
                     onTap: checkoutController.isLoadingRedeem.isTrue
                         ? () {}
                         : () {
-                            checkoutController.createOrder();
+                            if (App.token.isNotEmpty) {
+                              checkoutController.createOrder();
+                            } else {
+                              _onGuestOrder.call();
+                            }
                           },
                   ),
           ),
@@ -300,8 +295,25 @@ class _PlaceOrderState extends State<PlaceOrder> {
   }
 }
 
-class ApllePayButton extends StatelessWidget {
-  const ApllePayButton({super.key, required this.onTap});
+void _onGuestOrder() {
+  final checkoutController = Get.find<CheckoutController>();
+  if (checkoutController.paymentMethodValue.isEmpty) {
+    AppToasts.errorToast("Choose payment method");
+    return;
+  }
+  if (checkoutController.paymentMethodValue.value == "TAP") {
+    if (checkoutController.userSelectedCardModel.value == null) {
+      AppToasts.errorToast("Choose payment method");
+      return;
+    }
+  }
+  Get.dialog(
+    GuestOrderDialog(),
+  );
+}
+
+class ApplePayButton extends StatelessWidget {
+  const ApplePayButton({super.key, required this.onTap});
 
   final void Function() onTap;
 
@@ -315,7 +327,7 @@ class ApllePayButton extends StatelessWidget {
         height: 50,
         color: AppColors.white,
         isApplePay: true,
-        isSelcted: true,
+        isSelected: true,
       ),
     );
   }

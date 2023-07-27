@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
+import 'package:uuid/uuid.dart';
 
 class AppHelper {
   static validation(String value, int min, int max, String type) {
@@ -91,5 +92,15 @@ class AppHelper {
     App.lang = locale.languageCode;
     await StoragePref.setString(key: 'lang', value: locale.languageCode);
     await Get.updateLocale(locale);
+  }
+
+  static Future<String> generateUuid() async {
+    var uuid = const Uuid();
+    var uuidValue = uuid.v1();
+    await StoragePref.setString(
+      key: 'uuid',
+      value: uuidValue,
+    );
+    return uuidValue;
   }
 }

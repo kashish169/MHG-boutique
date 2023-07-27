@@ -10,9 +10,9 @@ class ConfirmationFooter extends StatelessWidget {
   const ConfirmationFooter(
       {super.key,
       required this.checkoutController,
-      required this.profileController});
+       this.profileController});
   final CheckoutController checkoutController;
-  final ProfileController profileController;
+  final ProfileController? profileController;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -50,8 +50,9 @@ class ConfirmationFooter extends StatelessWidget {
                                 ),
                           ),
                         ),
+                        profileController?.currnecy.value!=null?
                         Text(
-                          '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.subtotal}',
+                          '${profileController?.currnecy?.value} ${checkoutController.orderPriceModal.data?.subtotal}',
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall
@@ -60,6 +61,17 @@ class ConfirmationFooter extends StatelessWidget {
                                 color: AppColors.mediumLabel,
                                 fontSize: 14,
                               ),
+                        ):
+                        Text(
+                          'AED ${checkoutController.orderPriceModal.data?.subtotal}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                            height: 1.4,
+                            color: AppColors.mediumLabel,
+                            fontSize: 14,
+                          ),
                         ),
                       ],
                     ),
@@ -83,7 +95,7 @@ class ConfirmationFooter extends StatelessWidget {
                                       .orderPriceModal.data?.shippingCharge ==
                                   0
                               ? 'Free'
-                              : '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.shippingCharge}',
+                              : '${profileController?.currnecy.value??'AED'} ${checkoutController.orderPriceModal.data?.shippingCharge}',
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall
@@ -115,8 +127,9 @@ class ConfirmationFooter extends StatelessWidget {
                                   ),
                             ),
                           ),
+                          profileController?.currnecy.value!=null?
                           Text(
-                            '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.discount}',
+                            '${profileController?.currnecy.value} ${checkoutController.orderPriceModal.data?.discount}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -125,6 +138,17 @@ class ConfirmationFooter extends StatelessWidget {
                                   color: AppColors.dBlack,
                                   fontSize: 14,
                                 ),
+                          ):
+                          Text(
+                            'AED ${checkoutController.orderPriceModal.data?.discount}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                              height: 1.4,
+                              color: AppColors.dBlack,
+                              fontSize: 14,
+                            ),
                           ),
                         ],
                       ),
@@ -148,8 +172,9 @@ class ConfirmationFooter extends StatelessWidget {
                                   ),
                             ),
                           ),
+                          profileController?.currnecy.value!=null?
                           Text(
-                            "${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax}",
+                            "${profileController?.currnecy.value} ${checkoutController.orderPriceModal.data?.tax}",
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -158,6 +183,17 @@ class ConfirmationFooter extends StatelessWidget {
                                   fontSize: 14,
                                   color: AppColors.label,
                                 ),
+                          ):
+                          Text(
+                            "AED ${checkoutController.orderPriceModal.data?.tax}",
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                              height: 1.4,
+                              fontSize: 14,
+                              color: AppColors.label,
+                            ),
                           ),
                         ],
                       ),
@@ -177,8 +213,9 @@ class ConfirmationFooter extends StatelessWidget {
                                 ),
                           ),
                         ),
+                        profileController?.currnecy.value!=null?
                         Text(
-                          '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.grandTotal}',
+                          '${profileController?.currnecy.value} ${checkoutController.orderPriceModal.data?.grandTotal}',
                           style: Theme.of(context)
                               .textTheme
                               .displayMedium
@@ -187,6 +224,17 @@ class ConfirmationFooter extends StatelessWidget {
                                 color: AppColors.label,
                                 fontSize: 14,
                               ),
+                        ):
+                        Text(
+                          'AED ${checkoutController.orderPriceModal.data?.grandTotal}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(
+                            height: 1.4,
+                            color: AppColors.label,
+                            fontSize: 14,
+                          ),
                         ),
                       ],
                     ),

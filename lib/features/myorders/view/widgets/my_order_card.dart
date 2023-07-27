@@ -149,7 +149,7 @@ class MyOrderCard extends StatelessWidget {
                             color: AppColors.white,
                             height: 35,
                             reverseColor: true,
-                            isSelcted: true,
+                            isSelected: true,
                           )
                         : PrimaryButton(
                             title: "Return Order".tr,
@@ -168,7 +168,7 @@ class MyOrderCard extends StatelessWidget {
                             color: AppColors.white,
                             height: 35,
                             reverseColor: true,
-                            isSelcted: true,
+                            isSelected: true,
                           ),
                   ),
                 ],
@@ -187,13 +187,16 @@ class MyOrderCard extends StatelessWidget {
                                   fontSize: 14,
                                 ),
                       ),
-                      TextSpan(
-                        text: 'Reason: ${model.returnReason}',
-                        style:
-                            Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 14,
-                                ),
-                      )
+                      if (model.returnReason != null)
+                        TextSpan(
+                          text: 'Reason: ${model.returnReason}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: 14,
+                              ),
+                        )
                     ]),
                   ),
                 ),
@@ -212,13 +215,16 @@ class MyOrderCard extends StatelessWidget {
                                   fontSize: 14,
                                 ),
                       ),
-                      TextSpan(
-                        text: 'Reason: ${model.cancelReason}',
-                        style:
-                            Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  fontSize: 14,
-                                ),
-                      )
+                      if (model.cancelReason != null)
+                        TextSpan(
+                          text: 'Reason: ${model.cancelReason}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: 14,
+                              ),
+                        )
                     ]),
                   ),
                 ),
