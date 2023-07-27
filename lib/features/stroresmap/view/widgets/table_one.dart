@@ -96,7 +96,7 @@ class TableOne extends StatelessWidget {
                 ),
                 tableRow(
                   'MIRDIF CITY CENTRE',
-                  '42840150 -\n 0544412112',
+                  '42840150 /\n 0544412112',
                 ),
                 tableRow(
                   'DUBAI MALL FASHION AVENUE',
