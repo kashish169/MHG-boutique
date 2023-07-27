@@ -18,7 +18,7 @@ class _StoresMapPageState extends State<StoresMapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(context, title: 'Find our stores'),
-      body:  DefaultTabController(
+      body: DefaultTabController(
         length: 4,
         child: Scaffold(
           appBar: TabBar(
@@ -31,17 +31,22 @@ class _StoresMapPageState extends State<StoresMapPage> {
                     "ANFASIC\nDOKHOON",
                     textAlign: TextAlign.center,
                     maxLines: 2,
-                    style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 12),
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayMedium
+                        ?.copyWith(fontSize: 12),
                   ),
                 ),
-
               ),
               Tab(
                 child: FittedBox(
                   child: Text(
                     "HIND\nAL OUD",
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 12),
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayMedium
+                        ?.copyWith(fontSize: 12),
                   ),
                 ),
               ),
@@ -50,7 +55,10 @@ class _StoresMapPageState extends State<StoresMapPage> {
                   child: Text(
                     "KHALTAT",
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 12),
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayMedium
+                        ?.copyWith(fontSize: 12),
                   ),
                 ),
               ),
@@ -59,7 +67,10 @@ class _StoresMapPageState extends State<StoresMapPage> {
                   child: Text(
                     "HOB",
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 12),
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayMedium
+                        ?.copyWith(fontSize: 12),
                   ),
                 ),
               ),
