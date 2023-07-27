@@ -223,7 +223,6 @@ class ProfileController extends GetxController {
 
     String number = phone.replaceAll('+', '');
     log(number);
-
     var androidUrl =
         "whatsapp://send?phone=+$number";
     var iosUrl = "https://wa.me/$number";
