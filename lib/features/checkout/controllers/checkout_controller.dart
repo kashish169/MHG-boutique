@@ -137,16 +137,18 @@ class CheckoutController extends GetxController {
             paymentMethodsList = List<PaymentMethodsModel>.from(
                 json["payment_methods"]
                     .map((x) => PaymentMethodsModel.fromJson(x)));
-            GetPlatform.isIOS
-                ? paymentMethodsList.add(PaymentMethodsModel(
-                    id: 3,
-                    name: 'Apple Pay',
-                    image: '',
-                    slug: 'Apple Pay',
-                    status: 0,
-                    createdAt: DateTime.now(),
-                    updatedAt: DateTime.now()))
-                : null;
+            if (App.token.isNotEmpty) {
+              GetPlatform.isIOS
+                  ? paymentMethodsList.add(PaymentMethodsModel(
+                      id: 3,
+                      name: 'Apple Pay',
+                      image: '',
+                      slug: 'Apple Pay',
+                      status: 0,
+                      createdAt: DateTime.now(),
+                      updatedAt: DateTime.now()))
+                  : null;
+            }
           } else {
             AppToasts.errorToast(message);
             isErrorPaymentMethods(true);
