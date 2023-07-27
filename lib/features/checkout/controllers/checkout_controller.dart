@@ -582,7 +582,7 @@ class CheckoutController extends GetxController {
   }
 
   void _onGuestOrderSuccess() async {
-    destroyCard();
+    destroyCart();
     Get.offAndToNamed(GuestSuccessOrderView.route);
 
     //  Get.find<MyCartController>().getCart();
@@ -600,7 +600,7 @@ class CheckoutController extends GetxController {
       'Your order has been submitted successfully!',
     );
   }
-  Future<void> destroyCard() async {
+  Future<void> destroyCart() async {
     isLoading(true);
     isError(false);
     Either<Failure, ApiResponse> results = await checkoutRepository.destroyCard();
