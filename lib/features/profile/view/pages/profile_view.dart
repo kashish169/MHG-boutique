@@ -227,7 +227,7 @@ class ProfileView extends StatelessWidget {
                           Expanded(
                               child: InkWell(
                             onTap: () {
-                              controller.connectViaWhatsApp('+9710557396666');
+                              controller.connectViaWhatsApp(phone: '+9710557396666');
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
