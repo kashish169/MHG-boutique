@@ -63,5 +63,5 @@ class Api {
   static String logOut = "/api/v1/users/auth/logout";
   static String successOrderLink = "/api/v1/order/track-order";
   static String autoComplete = "/api/v1/product/auto-complete";
-  static String destroyCard = "/api/v1/users/orders";
+  static String destroyCard = "/api/v1/cart/destroy-cart";
 }
