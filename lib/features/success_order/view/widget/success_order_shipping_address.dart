@@ -31,7 +31,7 @@ class SuccessOrderShippingAddress extends StatelessWidget {
                   height: 5,
                 ),
                 Text(
-                  controller.orderModel.user.name,
+                  controller.orderModel.user?.name??controller.orderModel.shippingAddress.name,
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontSize: 14,
                         color: AppColors.mediumLabel,
@@ -41,7 +41,7 @@ class SuccessOrderShippingAddress extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 3),
                   child: Text(
-                    controller.orderModel.user.streetAddress ?? '',
+                    controller.orderModel.user?.streetAddress ?? controller.orderModel.shippingAddress.street,
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: 14,
                           color: AppColors.mediumLabel,
@@ -49,7 +49,7 @@ class SuccessOrderShippingAddress extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  controller.orderModel.user.state ?? '',
+                  controller.orderModel.user?.state ?? controller.orderModel.shippingAddress.state,
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontSize: 14,
                         color: AppColors.mediumLabel,
@@ -65,7 +65,7 @@ class SuccessOrderShippingAddress extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 3),
                   child: Text(
-                    controller.orderModel.user.countryName ?? '',
+                    controller.orderModel.user?.countryName ?? controller.orderModel.shippingAddress.country,
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: 14,
                           color: AppColors.mediumLabel,

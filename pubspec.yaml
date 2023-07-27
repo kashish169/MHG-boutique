@@ -62,7 +62,7 @@ dependencies:
   url_launcher: ^6.1.11
   webview_flutter: ^4.2.2
   radio_group_v2: ^2.1.2
-  google_maps_flutter: ^2.2.6
+  # google_maps_flutter: ^2.2.6
   flutter_animarker: ^3.2.0
   firebase_dynamic_links:
   share_plus: ^7.0.2

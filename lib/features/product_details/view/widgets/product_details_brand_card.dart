@@ -6,12 +6,12 @@ import 'package:mhg/core/languages/languages.dart';
 import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/product_details/view/widgets/product_details_counter_widget.dart';
 import 'package:mhg/widgets/primary_button.dart';
-import '../../../../app/app.dart';
-import '../../../auth/signin/view/pages/sign_in_page.dart';
-import '../../../mainwrapper/controller/main_wrapper_controller.dart';
+// import '../../../../app/app.dart';
+// import '../../../auth/signin/view/pages/sign_in_page.dart';
+// import '../../../mainwrapper/controller/main_wrapper_controller.dart';
 import '../../../profile/controller/profile_controller.dart';
 import '../../controller/product_details_controller.dart';
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 
 class ProductDetailsBrandCard extends StatelessWidget {
   const ProductDetailsBrandCard({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<ProductDetailsController>();
     final profileController = Get.find<ProfileController>();
-    final mainController = Get.find<MainWrapperController>();
+    // final mainController = Get.find<MainWrapperController>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -44,7 +44,6 @@ class ProductDetailsBrandCard extends StatelessWidget {
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     color: AppColors.lightLabel2,
                     fontSize: 12,
-
                     fontWeight: FontWeight.w500),
               ),
               const SizedBox(width: 4),
@@ -104,7 +103,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                       width: 5,
                     ),
                     Text(
-                      '${controller.model.pts} pts',
+                      'Earn ${controller.model.pts} Points',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: 13,
                           color: AppColors.mediumLabel,
@@ -133,20 +132,20 @@ class ProductDetailsBrandCard extends StatelessWidget {
                           title: 'Add to Bag'.tr,
                           isLoading: controller.isLoadingAdd.value,
                           onTap: () async {
-                            if (App.token.isEmpty) {
-                              Get.toNamed(
-                                SignInPage.routeName,
-                                arguments: {
-                                  'country': App.countryName,
-                                  'is_guest': true,
-                                  'country_code':
-                                      mainController.globalGuestCountryCode,
-                                  'flag': mainController.globalGuestCountryFlag,
-                                  'id': mainController.globalGuestCountryId,
-                                },
-                              );
-                              return;
-                            }
+                            // if (App.token.isEmpty) {
+                            //   Get.toNamed(
+                            //     SignInPage.routeName,
+                            //     arguments: {
+                            //       'country': App.countryName,
+                            //       'is_guest': true,
+                            //       'country_code':
+                            //           mainController.globalGuestCountryCode,
+                            //       'flag': mainController.globalGuestCountryFlag,
+                            //       'id': mainController.globalGuestCountryId,
+                            //     },
+                            //   );
+                            //   return;
+                            // }
                             var result = await controller.addProductToCart(
                               productId: controller.model.id,
                             );

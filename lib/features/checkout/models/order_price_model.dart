@@ -59,7 +59,7 @@ class Data {
     shippingCharge = json['shipping_charge'];
     discount = json['discount'];
     grandTotal = json['grand_total'];
-    hearts = Hearts.fromJson(json["hearts"]);
+    hearts = json["hearts"] == null ? null : Hearts.fromJson(json["hearts"]);
   }
 
   Map<String, dynamic> toJson() {
@@ -75,7 +75,7 @@ class Data {
 
 class Hearts {
   String tierName;
-  double hearts;
+  dynamic hearts;
 
   Hearts({required this.tierName, required this.hearts});
 

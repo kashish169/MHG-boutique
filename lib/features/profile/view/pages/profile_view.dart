@@ -138,7 +138,7 @@ class ProfileView extends StatelessWidget {
                       icon: AppAssets.feedback,
                       title: 'Send a feedback',
                     ),
-                    const DividerWidget(),
+                    const DividerWidget(), 
                     ProfileCard(
                       icon: AppAssets.store,
                       title: 'Find Our Stores',
@@ -227,7 +227,7 @@ class ProfileView extends StatelessWidget {
                           Expanded(
                               child: InkWell(
                             onTap: () {
-                              controller.connectViaWhatsApp('+9710557396666');
+                              controller.connectViaWhatsApp(phone: '+9710557396666');
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

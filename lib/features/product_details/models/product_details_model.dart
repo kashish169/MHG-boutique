@@ -73,7 +73,7 @@ class ProductDetailsModel {
 
   ProductDetailsModel({
     required this.variants,
-   // required this.variantId,
+    // required this.variantId,
     this.pts,
     required this.id,
     this.externalId,
@@ -142,8 +142,9 @@ class ProductDetailsModel {
 
   factory ProductDetailsModel.fromJson(Map<String, dynamic> json) =>
       ProductDetailsModel(
-     //..   variantId: json["variant_id"],
-        variants: List<Variant>.from(json["variants"].map((x) => Variant.fromJson(x))),
+        //..   variantId: json["variant_id"],
+        variants: List<Variant>.from(
+            json["variants"].map((x) => Variant.fromJson(x))),
         id: json["id"],
         pts: json["pts"],
         externalId: json["external_id"],
@@ -189,8 +190,8 @@ class ProductDetailsModel {
         voucher: json["Voucher"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        inCart: json["in_cart"]??0,
-        cartQty: json["cart_qty"]??0,
+        inCart: json["in_cart"] ?? 0,
+        cartQty: json["cart_qty"] ?? 0,
         inWishlist: json["in_wishlist"],
         primaryImageLink: json["primary_image_link"],
         image2Link: json["image2_link"],
@@ -324,13 +325,12 @@ class SizePivot {
       );
 }
 
-
 class Variant {
   int id;
   String externalId;
   String nameEn;
   String nameAr;
-  int price;
+  dynamic price;
   String sku;
   int grams;
   String weight;
@@ -367,24 +367,22 @@ class Variant {
   });
 
   factory Variant.fromJson(Map<String, dynamic> json) => Variant(
-    id: json["id"],
-    externalId: json["external_id"],
-    nameEn: json["name_en"],
-    nameAr: json["name_ar"],
-    price: json["price"],
-    sku: json["sku"],
-    grams: json["grams"],
-    weight: json["weight"],
-    weightUnit:json["weight_unit"],
-    quantity: json["quantity"],
-    shopifyInventoryItemId: json["shopify_inventory_item_id"],
-    productId: json["product_id"],
-    storeId: json["store_id"],
-    createdAt: DateTime.parse(json["created_at"]),
-    updatedAt: DateTime.parse(json["updated_at"]),
-    inCart: json["in_cart"],
-    cartQty: json["cart_qty"],
-  );
-
-
+        id: json["id"],
+        externalId: json["external_id"],
+        nameEn: json["name_en"],
+        nameAr: json["name_ar"],
+        price: json["price"],
+        sku: json["sku"],
+        grams: json["grams"],
+        weight: json["weight"],
+        weightUnit: json["weight_unit"],
+        quantity: json["quantity"],
+        shopifyInventoryItemId: json["shopify_inventory_item_id"],
+        productId: json["product_id"],
+        storeId: json["store_id"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+        inCart: json["in_cart"],
+        cartQty: json["cart_qty"],
+      );
 }

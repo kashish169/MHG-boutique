@@ -88,9 +88,21 @@ class ShippingAddress extends StatelessWidget {
                     //       ),
                     // ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 3),
+                      padding: const EdgeInsets.symmetric(vertical: 1),
                       child: Text(
                         controller.model.value!.country?.name ?? '',
+                        style:
+                            Theme.of(context).textTheme.displaySmall?.copyWith(
+                                  fontSize: 14,
+                                  color: AppColors.mediumLabel,
+                                ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 3),
+                      child: Text(
+                        controller.model.value!.number ??
+                            'Add your phone number',
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
                                   fontSize: 14,

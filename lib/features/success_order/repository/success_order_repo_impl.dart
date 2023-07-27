@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/core/api/api.dart';
 import 'package:mhg/core/httpservices/http_services_impl.dart';
 import 'package:mhg/core/httpservices/http_services_repository.dart';
@@ -24,6 +25,6 @@ class SuccessOrderRepoImpl implements SuccessOrderRepo {
   @override
   Future<Either<Failure, ApiResponse>> getOrders() async => httpService.get(
         url: Api.myOrders,
-        isAuthorized: true,
+        isAuthorized: App.token.isNotEmpty?true:false,
       );
 }

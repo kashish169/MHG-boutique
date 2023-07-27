@@ -95,7 +95,6 @@ class SuccessOrderView extends StatelessWidget {
                           const SizedBox(
                             height: 5,
                           ),
-
                           const SuccessOrderShippingAddress(),
                           const SizedBox(
                             height: 5,
@@ -118,10 +117,6 @@ class SuccessOrderView extends StatelessWidget {
                             checkoutController: checkoutController,
                             profileController: profileController,
                           ),
-                          // ConfirmationFooter(
-                          //   checkoutController: checkoutController,
-                          //   profileController: profileController,
-                          // ),
                           const SizedBox(
                             height: 10,
                           ),

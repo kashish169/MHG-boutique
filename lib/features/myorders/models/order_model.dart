@@ -36,7 +36,7 @@ class MyOrder {
   dynamic returnReason;
   String orderNumber;
   dynamic orderBill;
-  int userId;
+  int? userId;
   dynamic billingId;
   dynamic shippingId;
   ShippingModel billingAddress;
@@ -51,7 +51,7 @@ class MyOrder {
   int isFreeDelivery;
   int isOrderSuccessful;
   int isOrderCompleted;
-  String paymentMethod;
+  String? paymentMethod;
   int paymentStatus;
   int orderStatus;
   String txn;
@@ -60,7 +60,7 @@ class MyOrder {
   DateTime createdAt;
   DateTime updatedAt;
   List<OrderDetail> orderDetails;
-  User user;
+  User? user;
   dynamic coupon;
   dynamic store;
   TapPaymentMethod? tapPaymentMethod;
@@ -73,7 +73,7 @@ class MyOrder {
     this.returnRequested,
     this.cancelReason,
     this.returnReason,
-    required this.userId,
+     this.userId,
     this.billingId,
     this.shippingId,
     required this.billingAddress,
@@ -88,7 +88,7 @@ class MyOrder {
     required this.isFreeDelivery,
     required this.isOrderSuccessful,
     required this.isOrderCompleted,
-    required this.paymentMethod,
+     this.paymentMethod,
     required this.paymentStatus,
     required this.orderStatus,
     required this.txn,
@@ -97,7 +97,7 @@ class MyOrder {
     required this.createdAt,
     required this.updatedAt,
     required this.orderDetails,
-    required this.user,
+     this.user,
     this.coupon,
     this.store,
     this.tapPaymentMethod,
@@ -139,7 +139,7 @@ class MyOrder {
         updatedAt: DateTime.parse(json["updated_at"]),
         orderDetails: List<OrderDetail>.from(
             json["order_details"].map((x) => OrderDetail.fromJson(x))),
-        user: User.fromJson(json["user"]),
+        user: json["user"]!=null?User.fromJson(json["user"]):null,
         coupon: json["coupon"],
         store: json["store"],
       );
@@ -174,7 +174,7 @@ class MyOrder {
         "updated_at": updatedAt.toIso8601String(),
         "order_details":
             List<dynamic>.from(orderDetails.map((x) => x.toJson())),
-        "user": user.toJson(),
+        "user": user?.toJson(),
         "coupon": coupon,
         "store": store,
       };

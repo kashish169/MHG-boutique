@@ -15,6 +15,7 @@ import 'package:mhg/features/profile/models/send_hearts_model.dart';
 import 'package:mhg/features/profile/models/send_hearts_request_model.dart';
 import 'package:mhg/features/profile/repository/profile_repo_impl.dart';
 import 'package:mhg/features/profile/repository/profile_repository.dart';
+import 'package:mhg/widgets/show_snack_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../core/storage/storage_pref.dart';
 import 'package:mhg/widgets/loading_widget.dart';
@@ -216,15 +217,30 @@ class ProfileController extends GetxController {
       throw 'Could not launch $url';
     }
   }
+  void connectViaWhatsApp({
+    required String phone
+  }) async {
 
-  connectViaWhatsApp(String phone) async {
-    String url = "whatsapp://send?phone=$phone";
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
-    } else {
-      throw 'Could not launch $url';
+    String number = phone.replaceAll('+', '');
+
+    var androidUrl =
+        "whatsapp://send?phone=+$number";
+    var iosUrl = "https://wa.me/$number";
+    try {
+      if (Platform.isIOS) {
+        await launchUrl(Uri.parse(iosUrl));
+      } else {
+        await launchUrl(Uri.parse(androidUrl));
+      }
+    } on Exception {
+      showSnackBar('WhatsApp is not installed.');
     }
   }
+
+
+
+
+
 
   launchFacebookPage() async {
     String fbProtocolUrl = '';
