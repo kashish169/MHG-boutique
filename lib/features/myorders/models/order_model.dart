@@ -73,7 +73,7 @@ class MyOrder {
     this.returnRequested,
     this.cancelReason,
     this.returnReason,
-     this.userId,
+    this.userId,
     this.billingId,
     this.shippingId,
     required this.billingAddress,
@@ -88,7 +88,7 @@ class MyOrder {
     required this.isFreeDelivery,
     required this.isOrderSuccessful,
     required this.isOrderCompleted,
-     this.paymentMethod,
+    this.paymentMethod,
     required this.paymentStatus,
     required this.orderStatus,
     required this.txn,
@@ -97,14 +97,16 @@ class MyOrder {
     required this.createdAt,
     required this.updatedAt,
     required this.orderDetails,
-     this.user,
+    this.user,
     this.coupon,
     this.store,
     this.tapPaymentMethod,
   });
 
   factory MyOrder.fromJson(Map<String, dynamic> json) => MyOrder(
-    tapPaymentMethod: json["tap_payment_method"] == null ? null : TapPaymentMethod.fromJson(json["tap_payment_method"]),
+        tapPaymentMethod: json["tap_payment_method"] == null
+            ? null
+            : TapPaymentMethod.fromJson(json["tap_payment_method"]),
         cancelRequested: json["cancel_requested"],
         returnRequested: json["return_requested"],
         cancelReason: json["cancel_reason"],
@@ -139,13 +141,13 @@ class MyOrder {
         updatedAt: DateTime.parse(json["updated_at"]),
         orderDetails: List<OrderDetail>.from(
             json["order_details"].map((x) => OrderDetail.fromJson(x))),
-        user: json["user"]!=null?User.fromJson(json["user"]):null,
+        user: json["user"] != null ? User.fromJson(json["user"]) : null,
         coupon: json["coupon"],
         store: json["store"],
       );
 
   Map<String, dynamic> toJson() => {
-    "tap_payment_method": tapPaymentMethod?.toJson(),
+        "tap_payment_method": tapPaymentMethod?.toJson(),
         "id": id,
         "Order_Number": orderNumber,
         "order_bill": orderBill,
@@ -400,12 +402,6 @@ class User {
       };
 }
 
-
-
-
-
-
-
 class TapPaymentMethod {
   int id;
   int isDefault;
@@ -421,7 +417,7 @@ class TapPaymentMethod {
   String cardExpMonth;
   String cardExpYear;
   String cardCvc;
-  int userId;
+  dynamic userId;
 
   TapPaymentMethod({
     required this.id,
@@ -441,49 +437,40 @@ class TapPaymentMethod {
     required this.userId,
   });
 
-  factory TapPaymentMethod.fromJson(Map<String, dynamic> json) => TapPaymentMethod(
-    id: json["id"],
-    isDefault: json["is_default"],
-    token: json["token"],
-    customerId: json["customer_id"],
-    cardId: json["card_id"],
-    cardType: json["card_type"],
-    customerName: json["customer_name"],
-    customerEmail: json["customer_email"],
-    customerPhone: json["customer_phone"],
-    cardHolderName: json["card_holder_name"],
-    cardNumber: json["card_number"],
-    cardExpMonth: json["card_exp_month"],
-    cardExpYear: json["card_exp_year"],
-    cardCvc: json["card_cvc"],
-    userId: json["user_id"],
-  );
+  factory TapPaymentMethod.fromJson(Map<String, dynamic> json) =>
+      TapPaymentMethod(
+        id: json["id"],
+        isDefault: json["is_default"],
+        token: json["token"],
+        customerId: json["customer_id"],
+        cardId: json["card_id"],
+        cardType: json["card_type"],
+        customerName: json["customer_name"],
+        customerEmail: json["customer_email"],
+        customerPhone: json["customer_phone"],
+        cardHolderName: json["card_holder_name"],
+        cardNumber: json["card_number"],
+        cardExpMonth: json["card_exp_month"],
+        cardExpYear: json["card_exp_year"],
+        cardCvc: json["card_cvc"],
+        userId: json["user_id"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "is_default": isDefault,
-    "token": token,
-    "customer_id": customerId,
-    "card_id": cardId,
-    "card_type": cardType,
-    "customer_name":customerName,
-    "customer_email": customerEmail,
-    "customer_phone": customerPhone,
-    "card_holder_name": cardHolderName,
-    "card_number": cardNumber,
-    "card_exp_month": cardExpMonth,
-    "card_exp_year": cardExpYear,
-    "card_cvc": cardCvc,
-    "user_id": userId,
-  };
+        "id": id,
+        "is_default": isDefault,
+        "token": token,
+        "customer_id": customerId,
+        "card_id": cardId,
+        "card_type": cardType,
+        "customer_name": customerName,
+        "customer_email": customerEmail,
+        "customer_phone": customerPhone,
+        "card_holder_name": cardHolderName,
+        "card_number": cardNumber,
+        "card_exp_month": cardExpMonth,
+        "card_exp_year": cardExpYear,
+        "card_cvc": cardCvc,
+        "user_id": userId,
+      };
 }
-
-
-
-
-
-
-
-
-
-

@@ -54,4 +54,6 @@ class SucessOrderController extends GetxController {
       },
     );
   }
+
+
 }
