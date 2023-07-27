@@ -313,7 +313,7 @@ class CheckoutController extends GetxController {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("ORDER PRICE METHODS RESPONSE STATUS $statusCode");
-          log(r.object["data"].toString());
+          log("ORDER PRICE METHODS RESPONSE ${r.object["data"]}");
           if (statusCode == 200) {
             if (r.object["data"] != null) {
               log(orderPriceModal.toString());
@@ -563,10 +563,11 @@ class CheckoutController extends GetxController {
       }
     }
   }
+
   void _onGuestOrderSuccess() async {
     Get.offAndToNamed(GuestSuccessOrderView.route);
-  //  Get.find<MyCartController>().getCart();
-  //  await profileController.getProfileInfo();
+    //  Get.find<MyCartController>().getCart();
+    //  await profileController.getProfileInfo();
     AppToasts.successToast(
       'Your order has been submitted successfully!',
     );
