@@ -138,7 +138,7 @@ class ProfileView extends StatelessWidget {
                       icon: AppAssets.feedback,
                       title: 'Send a feedback',
                     ),
-                    const DividerWidget(),
+                    const DividerWidget(), 
                     ProfileCard(
                       icon: AppAssets.store,
                       title: 'Find Our Stores',
