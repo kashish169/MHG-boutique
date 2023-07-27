@@ -29,7 +29,7 @@ TableRow tableRow(
           onTap: () {
             if (text3.contains('/') == true) {
               Get.defaultDialog(
-                title: "Please Choose a Number to Dial with",
+                title: "Choose a Phone number to call",
                 backgroundColor: Colors.white,
                 titleStyle: const TextStyle(
                   fontSize: 13,
@@ -286,7 +286,7 @@ openDialPad(
   String contact,
 ) async {
   final numbreOrString = RegExp('[a-zA-Z]').hasMatch(contact);
-  print(contact .replaceAll(' ', ''));
+  print(contact.replaceAll(' ', ''));
   if (numbreOrString == false && contact.isEmpty == false) {
     final Uri uri = Uri(scheme: 'tel', path: contact);
     if (await canLaunchUrl(uri)) {
