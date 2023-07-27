@@ -19,17 +19,9 @@ class TableThree extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Table(
+           /*  Table(
               children: const [
                 TableRow(children: [
-                  Text(
-                    'NO',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.black,
-                    ),
-                  ),
                   Text(
                     'MALL',
                     textAlign: TextAlign.center,
@@ -48,92 +40,76 @@ class TableThree extends StatelessWidget {
                   ),
                 ]),
               ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  "UAE-SHOPS",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.black,
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  "DUBAI",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.black,
-                  ),
-                )
-              ],
-            ),
+            ), */
             const SizedBox(
               height: 20,
             ),
             Table(
               border: TableBorder.all(color: Colors.black),
+              children: const [
+                TableRow(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "UAE SHOPS",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "DUBAI",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            Table(
+              border: TableBorder.all(color: Colors.black),
               children: [
                 tableRow(
-                  '1',
                   'DUBAI MALL',
                   '521140528',
                 ),
                 tableRow(
-                  '2',
                   'GALLERY LAFAYETTE',
                   '42286389',
                 ),
                 tableRow(
-                  '3',
                   'MIRDIF CITY CENTRE',
                   '569982064',
                 ),
                 tableRow(
-                  '5',
                   'MALL OF THE EMIRATES Inside Jashnmal',
                   '',
                 ),
                 tableRow(
-                  '6',
                   'DFC',
                   '',
                 ),
                 tableRow(
-                  '7',
                   'Dubai Mall  FASHION AVENUE',
                   '',
                 ),
-                
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  "SHARJAH",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.black,
-                  ),
-                )
               ],
             ),
             const SizedBox(
@@ -141,29 +117,33 @@ class TableThree extends StatelessWidget {
             ),
             Table(
               border: TableBorder.all(color: Colors.black),
+              children: const [
+                TableRow(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "SHARJAH",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            Table(
+              border: TableBorder.all(color: Colors.black),
               children: [
                 tableRow(
-                  '3',
                   'ZAHIA CITY CENTER',
                   '65463601',
                 ),
-               
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  "RAS AL KAIMAH",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.black,
-                  ),
-                )
               ],
             ),
             const SizedBox(
@@ -171,9 +151,30 @@ class TableThree extends StatelessWidget {
             ),
             Table(
               border: TableBorder.all(color: Colors.black),
+              children: const [
+                TableRow(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "RAS AL KAIMAH",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            Table(
+              border: TableBorder.all(color: Colors.black),
               children: [
                 tableRow(
-                  '2',
                   'MANAR MALL',
                   '72281229',
                 ),
@@ -182,32 +183,36 @@ class TableThree extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Table(
+              border: TableBorder.all(color: Colors.black),
               children: const [
-                Text(
-                  "FUJAIRAH",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.black,
-                  ),
+                TableRow(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "FUJAIRAH",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 )
               ],
-            ),
-            const SizedBox(
-              height: 20,
             ),
             Table(
               border: TableBorder.all(color: Colors.black),
               children: [
                 tableRow(
-                  '1',
                   'FUJAIRAH CITY CENTRE',
                   '',
                 ),
-                  tableRow(
-                  '2',
+                tableRow(
                   'FUJAIRAH MALL',
                   '92231753',
                 ),
@@ -216,48 +221,48 @@ class TableThree extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Table(
+              border: TableBorder.all(color: Colors.black),
               children: const [
-                Text(
-                  "ABU DHABI",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.black,
-                  ),
+                TableRow(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "ABU DHABI",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 )
               ],
-            ),
-            const SizedBox(
-              height: 20,
             ),
             Table(
               border: TableBorder.all(color: Colors.black),
               children: [
                 tableRow(
-                  '1',
                   'MARINA MALL',
                   '569981268',
                 ),
                 tableRow(
-                  '2',
                   'DALMA MALL',
                   '',
                 ),
                 tableRow(
-                  '3',
                   'YAS MALL',
                   '569982083',
                 ),
                 tableRow(
-                  '5',
                   'BAWABAT Al Sharq MALL',
                   '25651968',
                 ),
-              
                 tableRow(
-                  '7',
                   'KHT Reem Mall',
                   '',
                 ),
@@ -266,58 +271,43 @@ class TableThree extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Table(
+              border: TableBorder.all(color: Colors.black),
               children: const [
-                Text(
-                  "AL-AIN",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.black,
-                  ),
+                TableRow(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "AL-AIN",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 )
               ],
-            ),
-            const SizedBox(
-              height: 20,
             ),
             Table(
               border: TableBorder.all(color: Colors.black),
               children: [
                 tableRow(
-                  '1',
                   'BAWADI MALL',
                   '37848355',
                 ),
                 tableRow(
-                  '2',
                   'AL-AIN MALL',
                   '37659750',
                 ),
                 tableRow(
-                  '3',
                   'AL JIMI MALL',
                   '',
                 ),
-               
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-       
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  "KSA-SHOPS",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.black,
-                  ),
-                )
               ],
             ),
             const SizedBox(
@@ -325,39 +315,41 @@ class TableThree extends StatelessWidget {
             ),
             Table(
               border: TableBorder.all(color: Colors.black),
+              children: const [
+                TableRow(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "KSA SHOPS",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            Table(
+              border: TableBorder.all(color: Colors.black),
               children: [
                 tableRow(
-                  '2',
                   'PANORAMA MALL',
                   'Al Mathar Ash Shamali / Riyad',
                 ),
                 tableRow(
-                  '3',
                   'YASMEEN MALL',
                   'Jeddah, KSA',
                 ),
                 tableRow(
-                  '4',
                   'Riyadh Park',
                   '',
                 ),
-               
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  "KUWAIT-SHOPS",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.black,
-                  ),
-                )
               ],
             ),
             const SizedBox(
@@ -365,34 +357,50 @@ class TableThree extends StatelessWidget {
             ),
             Table(
               border: TableBorder.all(color: Colors.black),
+              children: const [
+                TableRow(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "KUWAIT SHOPS",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            Table(
+              border: TableBorder.all(color: Colors.black),
               children: [
                 tableRow(
-                  '1',
                   'THE GATE MALL',
                   'Al Aquila, Kuwait',
                 ),
                 tableRow(
-                  '2',
                   'VVV Avenues Mall ( closed)',
                   '',
                 ),
                 tableRow(
-                  '3',
                   'Debenhams Avenues Mall',
                   '',
                 ),
                 tableRow(
-                  '4',
                   'KHT VVV ALKOUT Mall ( Closed )',
                   '',
                 ),
                 tableRow(
-                  '4',
                   '360 Mall Podium for 2 months',
                   '',
                 ),
-                 tableRow(
-                  '5',
+                tableRow(
                   'Harvey Nicholas Avenues Mall',
                   '',
                 ),
@@ -401,57 +409,43 @@ class TableThree extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Table(
+              border: TableBorder.all(color: Colors.black),
               children: const [
-                Text(
-                  "OMAN-SHOPS",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.black,
-                  ),
+                TableRow(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "OMAN SHOPS",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 )
               ],
-            ),
-            const SizedBox(
-              height: 20,
             ),
             Table(
               border: TableBorder.all(color: Colors.black),
               children: [
                 tableRow(
-                  '1',
                   'Muscat City Centre ',
                   '96824544948',
                 ),
                 tableRow(
-                  '2',
                   'Muscat Grand Mall',
                   '',
                 ),
                 tableRow(
-                  '3',
                   'Mall Of Oman',
                   '',
                 ),
-                
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  "BAHRAIN SHOP",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.black,
-                  ),
-                )
               ],
             ),
             const SizedBox(
@@ -459,29 +453,33 @@ class TableThree extends StatelessWidget {
             ),
             Table(
               border: TableBorder.all(color: Colors.black),
+              children: const [
+                TableRow(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "BAHRAIN SHOPS",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            Table(
+              border: TableBorder.all(color: Colors.black),
               children: [
                 tableRow(
-                  '1',
                   'Avenue Mall Vavavoom Bahrain ',
                   '',
                 ),
-              
-              ],
-            ),
-              const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  "QATAR",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.black,
-                  ),
-                )
               ],
             ),
             const SizedBox(
@@ -489,25 +487,44 @@ class TableThree extends StatelessWidget {
             ),
             Table(
               border: TableBorder.all(color: Colors.black),
+              children: const [
+                TableRow(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "QATAR SHOPS",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            Table(
+              border: TableBorder.all(color: Colors.black),
               children: [
                 tableRow(
-                  '1',
                   'Gulf Mall',
                   '',
                 ),
-                  tableRow(
-                  '2',
+                tableRow(
                   'VENDOME MALL',
                   '',
                 ),
-                  tableRow(
-                  '3',
+                tableRow(
                   'DOHA FESTIVAL CITY',
                   '',
                 ),
               ],
             ),
-              const SizedBox(
+            const SizedBox(
               height: 20,
             ),
           ],

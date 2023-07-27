@@ -19,17 +19,10 @@ class TableFour extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Table(
+          /*   Table(
               children: const [
                 TableRow(children: [
-                  Text(
-                    'NO',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.black,
-                    ),
-                  ),
+                 
                   Text(
                     'MALL',
                     textAlign: TextAlign.center,
@@ -56,32 +49,41 @@ class TableFour extends StatelessWidget {
                   ),
                 ]),
               ],
-            ),
+            ), */
             const SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+           Table(
+              
+               border: TableBorder.all(color: Colors.black),
               children: const [
-                Text(
-                  "ABU DHABI",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.black,
-                  ),
+                TableRow(
+                  
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "ABU DHABI",
+                          
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 )
               ],
-            ),
-            const SizedBox(
-              height: 20,
             ),
             Table(
               border: TableBorder.all(color: Colors.black),
               children: [
-                tableRowWithLocation('1', 'HOB - Yas Mall', '02-5651327',
+                tableRowWithLocation( 'HOB - Yas Mall', '02-5651327',
                     location: 'Abu Dhabi'),
-                tableRowWithLocation('2', 'HOB - Dalma Mall', '02-6394430',
+                tableRowWithLocation( 'HOB - Dalma Mall', '02-6394430',
                     location: 'Abu Dhabi'),
               ],
             ),
