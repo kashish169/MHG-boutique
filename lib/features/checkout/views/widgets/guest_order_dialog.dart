@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_dimensions.dart';
+import 'package:mhg/features/checkout/views/widgets/emirates_drop_down.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../../core/helper/app_helper.dart';
@@ -91,14 +92,17 @@ class GuestOrderDialog extends StatelessWidget {
                         ?.copyWith(fontSize: 15),
                   ),
                 ),
-                CustomFormField(
-                  hint: 'Enter your emirate',
-                  inputType: TextInputType.text,
-                  controller: controller.guestEmirate,
-                  obscure: false,
-                  validator: (val) {
-                    return AppHelper.validation(val!, 1, 500, '');
-                  },
+                // CustomFormField(
+                //   hint: 'Enter your emirate',
+                //   inputType: TextInputType.text,
+                //   controller: controller.guestEmirate,
+                //   obscure: false,
+                //   validator: (val) {
+                //     return AppHelper.validation(val!, 1, 500, '');
+                //   },
+                // ),
+                CountriesDropDownWidget(
+                  cities: controller.citiesList,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 7),
@@ -127,7 +131,7 @@ class GuestOrderDialog extends StatelessWidget {
                             height: 20,
                           ),
                           Text(
-                            '+973',
+                            '+971',
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
                           const SizedBox(

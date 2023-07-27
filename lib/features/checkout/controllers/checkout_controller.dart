@@ -41,14 +41,27 @@ class CheckoutController extends GetxController {
   AddPaymentMethodsModel addPaymentMethodsModel = AddPaymentMethodsModel();
   RemovePaymentMethodsModel removePaymentMethodsModel =
       RemovePaymentMethodsModel();
+
   // List<MyOrder> orderModel = [];
+  String? selectedCity;
+
+  List<String> citiesList = [
+    'Ajman',
+    'Abu Dhabi',
+    'Sharjah',
+    'Fujairah',
+    'Ras Al Khaimah',
+    'Dubai',
+    'Umm al Quwain'
+  ];
   OrderPriceModal orderPriceModal = OrderPriceModal();
   final TextEditingController codeController = TextEditingController();
   final ProfileController profileController = Get.find<ProfileController>();
   final TextEditingController guestName = TextEditingController();
   final TextEditingController guestEmail = TextEditingController();
   final TextEditingController guestNumber = TextEditingController();
-  final TextEditingController guestEmirate = TextEditingController();
+
+  // final TextEditingController guestEmirate = TextEditingController();
   final TextEditingController guestAddress = TextEditingController();
   RxBool isLoading = false.obs;
   RxBool isLoadingPaymentMethods = false.obs;
@@ -464,12 +477,15 @@ class CheckoutController extends GetxController {
 
   Future<void> guestCreateOrder() async {
     var formData = formKey.currentState;
+    if (selectedCity == null) {
+      AppToasts.errorToast('Please select an emirate');
+    }
     if (formData!.validate()) {
       try {
         var userName = guestName.text.trim();
         var email = guestEmail.text.trim();
         var street = guestAddress.text.trim();
-        var state = guestEmirate.text.trim();
+        var state = selectedCity;
         var countryName = 'United Arab Emirates';
         var shippingPhoneNumber = "+971${guestNumber.text.trim()}";
         var billingPhoneNumber = "+971${guestNumber.text.trim()}";
@@ -580,6 +596,12 @@ class CheckoutController extends GetxController {
     AppToasts.successToast(
       'Your order has been submitted successfully!',
     );
+  }
+
+  setCity(val) {
+    selectedCity = val;
+    log('$selectedCity');
+    update();
   }
 
   @override
