@@ -28,14 +28,20 @@ class _StoresMapPageState extends State<StoresMapPage> {
             tabs: [
               Tab(
                 height: 70,
+                icon:  Text(
+                  "ANFASIC",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 13),
+                ),
                 child: Text(
-                  "ANFASIC\nDOKHOON",
+                  "DOKHOON",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 13),
                 ),
               ),
               Tab(
                 height: 70,
+              
                 child: Text(
                   "HIND\nAL OUD",
                   textAlign: TextAlign.center,
