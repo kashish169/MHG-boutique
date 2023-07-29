@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/home/view/widgets/product_card.dart';
 import 'package:mhg/features/products_page/controller/product_controller.dart';
 import 'package:mhg/features/products_page/view/widgets/filter_widget.dart';
@@ -82,7 +81,7 @@ class ProductsPage extends StatelessWidget {
                                           crossAxisCount: 2,
                                           shrinkWrap: true,
                                           mainAxisSpacing: 10,
-                                          crossAxisSpacing: 0,
+                                          crossAxisSpacing: 5,
                                           itemCount: controller.products.length,
                                           builder: (ctx, index) {
                                             return ProductCard(
