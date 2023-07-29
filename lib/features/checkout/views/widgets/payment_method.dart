@@ -51,6 +51,7 @@ class PaymentMethod extends StatelessWidget {
                     checkoutController.paymentMethodValue.value =
                         checkoutController.paymentMethodsList[index].slug;
                     log(checkoutController.paymentMethodsList[index].slug);
+                    checkoutController.orderPrice();
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -75,6 +76,7 @@ class PaymentMethod extends StatelessWidget {
                                       .paymentMethodsList[index].slug;
                               log(checkoutController
                                   .paymentMethodsList[index].slug);
+                              checkoutController.orderPrice();
                             },
                           ),
                         ),

@@ -310,6 +310,12 @@ class CheckoutController extends GetxController {
       } else {
         query += "&redeem=0";
       }
+      log("Called for${paymentMethodValue.value}");
+      if(paymentMethodValue.value=='COD'){
+        query += "&cod=1";
+      }else{
+        query += "&cod=0";
+      }
       Either<Failure, ApiResponse> results =
           await checkoutRepository.orderPrice(query);
       isLoadingRedeem(false);
@@ -378,7 +384,7 @@ class CheckoutController extends GetxController {
           return;
         }
       }
-      print(paymentMethodValue.value);
+
       String objectData = orderModelToJson(
         OrderModel(
             billingName: userName,

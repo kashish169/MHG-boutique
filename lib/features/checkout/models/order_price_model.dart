@@ -41,6 +41,7 @@ class Data {
   dynamic subtotal;
   dynamic tax;
   dynamic shippingCharge;
+  dynamic cashOnDeliveryFees;
   dynamic discount;
   dynamic grandTotal;
   Hearts? hearts;
@@ -51,9 +52,11 @@ class Data {
       this.shippingCharge,
       this.discount,
       this.grandTotal,
-      this.hearts});
+      this.hearts,
+      this.cashOnDeliveryFees});
 
   Data.fromJson(Map<String, dynamic> json) {
+    cashOnDeliveryFees=json['cash_on_delivery_fees'];
     subtotal = json['subtotal'];
     tax = json['tax'];
     shippingCharge = json['shipping_charge'];
@@ -64,6 +67,7 @@ class Data {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['cash_on_delivery_fees']=cashOnDeliveryFees;
     data['subtotal'] = subtotal;
     data['tax'] = tax;
     data['shipping_charge'] = shippingCharge;

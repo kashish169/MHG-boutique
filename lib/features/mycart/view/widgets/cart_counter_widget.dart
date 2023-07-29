@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/models/product_model.dart';
@@ -28,6 +29,10 @@ class _CartCounterWidgetState extends State<CartCounterWidget> {
         buttonColor: AppColors.mediumLabel,
         count: widget.model.qty,
         onIncrease: (value) async {
+          if(value>widget.model.options.variantQuantity ){
+
+            return;
+          }
           widget.model.isLoadingQuantity = true;
           if (mounted) setState(() {});
           bool result = await controller.increaseCartItem(

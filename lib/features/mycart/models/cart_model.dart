@@ -52,6 +52,7 @@ class CartModel {
 
 class Options {
   int variantId;
+  int variantQuantity;
   dynamic brandName;
   dynamic size;
   dynamic color;
@@ -64,6 +65,7 @@ class Options {
 
   Options({
     required this.variantId,
+    required this.variantQuantity,
     this.brandName,
     this.size,
     this.color,
@@ -76,6 +78,7 @@ class Options {
   });
 
   factory Options.fromJson(Map<String, dynamic> json) => Options(
+    variantQuantity: json['variant_quantity'],
     variantId: json["variant_id"],
         brandName: json["brand_name"],
         size: json["size"],
