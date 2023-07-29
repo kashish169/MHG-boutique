@@ -85,11 +85,10 @@ class ProductsPage extends StatelessWidget {
                                           crossAxisSpacing: 0,
                                           itemCount: controller.products.length,
                                           builder: (ctx, index) {
-                                            return Center(
-                                                child: ProductCard(
+                                            return ProductCard(
                                               model: controller.products[index],
                                               isProductPage: true,
-                                            ));
+                                            );
                                           },
                                         ),
                                 ),
