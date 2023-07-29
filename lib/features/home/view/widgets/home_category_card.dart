@@ -40,31 +40,15 @@ class HomeCategoryCard extends StatelessWidget {
           color: AppColors.white,
           boxShadow: AppColors.shadow(0.1),
         ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                isAR() ? model.frName : model.enName,
-                style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      fontSize: 12,
-                    ),
-              ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 14),
+          child:  Text(
+            isAR() ? model.frName : model.enName,
+    textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.displaySmall?.copyWith(
+              fontSize: 12,
             ),
-            SizedBox(
-              height: 45,
-            )
-            // const SizedBox(width: 4),
-            // SizedBox(
-            //   height: 45,
-            //   width: 35,
-            //   child: Center(
-            //     child: Container(
-            //      // image: model.imageLink,
-            //       height: 15,
-            //     ),
-            //   ),
-            // ),
-          ],
+          ),
         ),
       ),
     );
