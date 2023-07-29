@@ -28,11 +28,14 @@ class NetImage extends StatelessWidget {
       if (image == null) {
         return ClipRRect(
           borderRadius: BorderRadius.circular(isProductCard == false ? 12 : 0),
-          child: Image.asset(
-            AppAssets.chachLoadImage,
-            fit: BoxFit.cover,
-            height: height,
-            width: width,
+          child: Center(
+            child: Image.asset(
+              AppAssets.chachLoadImage,
+
+             // fit: BoxFit.cover,
+              height: height??20,
+              width: width,
+            ),
           ),
         );
       } else {

@@ -35,7 +35,7 @@ class SuccessOrderItems extends StatelessWidget {
                   child: NetImage(
                     image: controller.orderModel.orderDetails[index].image,
                     width: 120,
-                    height: AppDimensions.productHeight(context) / 1.3,
+                    height:controller.orderModel.orderDetails[index].image!=null? AppDimensions.productHeight(context) / 1.3:20,
                   ),
                 ),
                 const SizedBox(width: 10),
