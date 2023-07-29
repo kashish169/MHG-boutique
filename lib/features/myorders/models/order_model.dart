@@ -187,7 +187,7 @@ class OrderDetail {
   int orderId;
   int productId;
   String productName;
-  String image;
+  String? image;
   dynamic size;
   dynamic color;
   String price;
@@ -202,7 +202,7 @@ class OrderDetail {
     required this.orderId,
     required this.productId,
     required this.productName,
-    required this.image,
+     this.image,
     this.size,
     this.color,
     required this.price,

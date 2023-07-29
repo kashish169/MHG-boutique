@@ -72,8 +72,8 @@ class ProductsPage extends StatelessWidget {
                                       : DynamicGridView(
                                           padding:
                                               const EdgeInsetsDirectional.only(
-                                            start: 15,
-                                            end: 15,
+                                            start: 20,
+                                            end: 20,
                                             top: 10,
                                             bottom: 15,
                                           ),
@@ -81,7 +81,7 @@ class ProductsPage extends StatelessWidget {
                                               controller.scrollController,
                                           crossAxisCount: 2,
                                           shrinkWrap: true,
-                                          mainAxisSpacing: 15,
+                                          mainAxisSpacing: 10,
                                           crossAxisSpacing: 0,
                                           itemCount: controller.products.length,
                                           builder: (ctx, index) {
