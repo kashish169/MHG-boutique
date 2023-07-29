@@ -107,8 +107,8 @@ class ProductDetailsBrandCard extends StatelessWidget {
                   ],
                 )
               : const SizedBox(),
-          controller.model.variants[controller.selectedVariantInd.value]
-                      .quantity !=
+          Obx(() => controller.model
+                      .variants[controller.selectedVariantInd.value].quantity !=
                   0
               ? StatefulBuilder(builder: (context, setState) {
                   return Obx(() => controller
@@ -166,7 +166,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                         color: AppColors.mediumLabel,
                         fontWeight: FontWeight.w500),
                   ),
-                ),
+                )),
         ],
       ),
     );
