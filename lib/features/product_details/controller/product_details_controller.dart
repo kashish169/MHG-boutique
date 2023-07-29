@@ -68,6 +68,7 @@ class ProductDetailsController extends GetxController {
           if (statusCode == 200) {
             log(r.object["data"].toString());
             var json = r.object["data"]["product"];
+            log("Detailssss $json");
             model = ProductDetailsModel.fromJson(json);
             productsReviews.value = model.productReviews;
             selectedVariantId = model.variants[0].id;
