@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/models/product_model.dart';
@@ -34,6 +37,11 @@ class _ProductDetailsCounterWidgetState
           buttonColor: AppColors.mediumLabel,
           count: widget.model.cartQty,
           onIncrease: (value) async {
+            log(widget.model.quantity.toString());
+            if(value>widget.model.quantity){
+             // AppToasts.errorToast("Reached max available quantity");
+              return;
+            }
             widget.model.isLoadingQuantity = true;
             if (mounted) setState(() {});
             bool result = await Get.find<MyCartController>().increaseCartItem(

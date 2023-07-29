@@ -121,6 +121,44 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         ],
                       ),
                       Visibility(
+                        visible: checkoutController
+                            .orderPriceModal.data?.cashOnDeliveryFees ==
+                            0||checkoutController
+                            .orderPriceModal.data?.cashOnDeliveryFees==null||
+                            checkoutController.paymentMethodValue.value!='COD'
+                            ? false
+                            : true,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'Cash on delivery fees',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall
+                                    ?.copyWith(
+                                  height: 1.4,
+                                  fontSize: 14,
+                                  color: AppColors.label,
+                                ),
+                              ),
+                            ),
+                            Text(
+
+                              '${profileController?.currnecy.value??'AED'} ${checkoutController.orderPriceModal.data?.cashOnDeliveryFees}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall
+                                  ?.copyWith(
+                                height: 1.4,
+                                color: AppColors.dBlack,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Visibility(
                         visible:
                             checkoutController.orderPriceModal.data?.discount ==
                                     0

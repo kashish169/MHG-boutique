@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/home/view/widgets/product_card.dart';
 import 'package:mhg/features/products_page/controller/product_controller.dart';
 import 'package:mhg/features/products_page/view/widgets/filter_widget.dart';
@@ -72,8 +71,8 @@ class ProductsPage extends StatelessWidget {
                                       : DynamicGridView(
                                           padding:
                                               const EdgeInsetsDirectional.only(
-                                            start: 15,
-                                            end: 15,
+                                            start: 20,
+                                            end: 20,
                                             top: 10,
                                             bottom: 15,
                                           ),
@@ -81,15 +80,14 @@ class ProductsPage extends StatelessWidget {
                                               controller.scrollController,
                                           crossAxisCount: 2,
                                           shrinkWrap: true,
-                                          mainAxisSpacing: 15,
-                                          crossAxisSpacing: 0,
+                                          mainAxisSpacing: 10,
+                                          crossAxisSpacing: 5,
                                           itemCount: controller.products.length,
                                           builder: (ctx, index) {
-                                            return Center(
-                                                child: ProductCard(
+                                            return ProductCard(
                                               model: controller.products[index],
                                               isProductPage: true,
-                                            ));
+                                            );
                                           },
                                         ),
                                 ),
