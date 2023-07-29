@@ -50,17 +50,20 @@ class HomeCategoryCard extends StatelessWidget {
                     ),
               ),
             ),
-            const SizedBox(width: 4),
             SizedBox(
               height: 45,
-              width: 35,
-              child: Center(
-                child: NetImage(
-                  image: model.imageLink,
-                  height: 15,
-                ),
-              ),
-            ),
+            )
+            // const SizedBox(width: 4),
+            // SizedBox(
+            //   height: 45,
+            //   width: 35,
+            //   child: Center(
+            //     child: Container(
+            //      // image: model.imageLink,
+            //       height: 15,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
