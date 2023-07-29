@@ -177,19 +177,16 @@ class ProductDetailsBrandCard extends StatelessWidget {
                               )),
                         ));
                 })
-              : const SizedBox(
-                  height: 5,
+              : Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Text(
+                    'Out of stock',
+                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                        fontSize: 17,
+                        color: AppColors.mediumLabel,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: Text(
-              'Out of stock',
-              style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                  fontSize: 17,
-                  color: AppColors.mediumLabel,
-                  fontWeight: FontWeight.w500),
-            ),
-          ),
         ],
       ),
     );
