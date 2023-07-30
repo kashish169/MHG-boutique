@@ -81,6 +81,28 @@ class PaymentMethod extends StatelessWidget {
                           ),
                         ),
                       ),
+                      checkoutController.paymentMethodsList[index].slug ==
+                              'Apple Pay'
+                          ? Image.asset(
+                              AppAssets.applepay,
+                              height: 45,
+                              width: 45,
+                            )
+                          : checkoutController.paymentMethodsList[index].slug ==
+                                  'COD'
+                              ? Image.asset(
+                                  AppAssets.starIcon,
+                                  height: 20,
+                                  width: 45,
+                                )
+                              : Image.asset(
+                                  AppAssets.payment,
+                                  height: 20,
+                                  width: 45,
+                                ),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Text(
                         checkoutController.paymentMethodsList[index].name,
                         style:

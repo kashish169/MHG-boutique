@@ -160,7 +160,14 @@ class CheckoutController extends GetxController {
                       status: 0,
                       createdAt: DateTime.now(),
                       updatedAt: DateTime.now()))
-                  : null;
+                  : paymentMethodsList.add(PaymentMethodsModel(
+                  id: 3,
+                  name: 'Apple Pay',
+                  image: '',
+                  slug: 'Apple Pay',
+                  status: 0,
+                  createdAt: DateTime.now(),
+                  updatedAt: DateTime.now()));
             }
           } else {
             AppToasts.errorToast(message);
