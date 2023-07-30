@@ -13,6 +13,7 @@ class AppAssets {
   static String arrowBack = "assets/icons/Path 1.png";
   static String home = "assets/icons/home.png";
   static String bag = "assets/icons/bag.png";
+  static String wallet = "assets/icons/wallet.png";
   static String profile = "assets/icons/profile.png";
   static String wishlist = "assets/icons/wishlist.png";
   static String blackHeart = "assets/icons/black heart.png";

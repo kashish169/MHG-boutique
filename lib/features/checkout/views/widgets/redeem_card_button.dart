@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/retry_button.dart';
@@ -49,6 +50,14 @@ class RedeemCardButton extends StatelessWidget {
                           isRedeem: checkoutController.hasRedeem.value,
                         );
                       }),
+                  Image.asset(
+                    AppAssets.starIcon,
+                    height: 20,
+                    width: 20,
+                  ),
+                  const SizedBox(
+                    width: 12,
+                  ),
                   Text(
                     'Redeem ${profileController.model.value!.hearts!} Pts',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
