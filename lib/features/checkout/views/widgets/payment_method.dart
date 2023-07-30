@@ -81,25 +81,12 @@ class PaymentMethod extends StatelessWidget {
                           ),
                         ),
                       ),
-                      checkoutController.paymentMethodsList[index].slug ==
-                              'Apple Pay'
-                          ? Image.asset(
-                              AppAssets.applepay,
-                              height: 45,
-                              width: 45,
-                            )
-                          : checkoutController.paymentMethodsList[index].slug ==
-                                  'COD'
-                              ? Image.asset(
-                                  AppAssets.starIcon,
-                                  height: 20,
-                                  width: 45,
-                                )
-                              : Image.asset(
-                                  AppAssets.payment,
-                                  height: 20,
-                                  width: 45,
-                                ),
+                      Image.asset(
+                        _getPaymentIcon(
+                            checkoutController.paymentMethodsList[index].slug),
+                        height: 25,
+                        width: 25,
+                      ),
                       const SizedBox(
                         width: 10,
                       ),
@@ -206,5 +193,15 @@ class PaymentMethod extends StatelessWidget {
         ],
       );
     });
+  }
+}
+
+String _getPaymentIcon(String slug) {
+  if (slug == "Apple Pay") {
+    return AppAssets.applepay;
+  } else if (slug == "COD") {
+    return AppAssets.starIcon;
+  } else {
+    return AppAssets.payment;
   }
 }
