@@ -25,6 +25,7 @@ class ProfileController extends GetxController {
   late Rxn<ProfileInfoModal> model = Rxn<ProfileInfoModal>();
   SendHeartsModel sendHeartsModel = SendHeartsModel();
   TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController feedback = TextEditingController();
   TextEditingController pointsController = TextEditingController();
   RxString countryCode = ''.obs;
 
@@ -37,6 +38,7 @@ class ProfileController extends GetxController {
   RxBool loadingUpdateCard = false.obs;
   RxString currnecy = "...".obs;
   final formKey = GlobalKey<FormState>();
+  final feedbackFormKey = GlobalKey<FormState>();
 
   Future<void> getProfileInfo() async {
     try {
@@ -237,7 +239,9 @@ class ProfileController extends GetxController {
     }
   }
 
+  sendFeedback(){
 
+  }
 
 
 
