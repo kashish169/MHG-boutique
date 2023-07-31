@@ -68,9 +68,11 @@ class CheckoutRepoImplement implements CheckoutRepository {
       body: body,
     );
   }
+
   @override
-  Future<Either<Failure, ApiResponse>> destroyCard() async => httpService.post(
-    url: Api.destroyCard,
-    isAuthorized: false,
-  );
+  Future<Either<Failure, ApiResponse>> destroyGuestCart() async =>
+      httpService.post(
+        url: Api.destroyCart,
+        isAuthorized: false,
+      );
 }
