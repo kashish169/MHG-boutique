@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage>
             children: const [
               HomeSlider(),
               HomeTopSellersWidget(),
-              HomeShopByCategoryWidget(),
+              //HomeShopByCategoryWidget(),
               HomeNewArrivelsWidget(),
               HomeMiddleSectionWidget(),
               HomeFooterSlider(),
