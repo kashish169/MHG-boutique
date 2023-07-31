@@ -8,6 +8,7 @@ import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/view/pages/qr_view.dart';
 import 'package:mhg/features/profile/view/pages/send_points.dart';
+import 'package:mhg/features/profile/view/widgets/feed_back_dialog.dart';
 import 'package:mhg/features/profile/view/widgets/reward_widget.dart';
 import 'package:mhg/features/rewards/pages/rewards_page.dart';
 import 'package:mhg/features/setting/view/pages/setting_view.dart';
@@ -137,6 +138,11 @@ class ProfileView extends StatelessWidget {
                     ProfileCard(
                       icon: AppAssets.feedback,
                       title: 'Send a feedback',
+                      onTap: (){
+                        showDialog(context: context, builder: (context){
+                          return const FeedBackDialog();
+                        });
+                      },
                     ),
                     const DividerWidget(), 
                     ProfileCard(
