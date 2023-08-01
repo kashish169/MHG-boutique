@@ -219,7 +219,8 @@ class ProfileController extends GetxController {
       barrierDismissible: false,
     );
     if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
+      await launch(url,
+        enableJavaScript: true,);
     } else {
       throw 'Could not launch $url';
     }
