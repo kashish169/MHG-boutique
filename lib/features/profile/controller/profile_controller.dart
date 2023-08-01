@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
@@ -220,12 +221,13 @@ class ProfileController extends GetxController {
     }
   }
   void connectViaWhatsApp({
+    String? message,
     required String phone
   }) async {
 
     String number = phone.replaceAll('+', '');
 
-    var androidUrl =
+    var androidUrl =message!=null?"whatsapp://send?text=+$message":
         "whatsapp://send?phone=+$number";
     var iosUrl = "https://wa.me/$number";
     try {
@@ -239,12 +241,45 @@ class ProfileController extends GetxController {
     }
   }
 
-  sendFeedback(){
+  sendFeedbackReq() async {
+    try {
+      // Map<String, dynamic> body = {
+      //   "item_id": cartItemId,
+      //   "qty": quantity,
+      //   "variant_id":variantId
+      // };
+      log(feedback.text);
+      var body = jsonEncode({
+        'message':feedback.text
+      });
+      Get.dialog(
+        const LoadingWidget(),
+        barrierDismissible: false,
+      );
+      Either<Failure, ApiResponse> results = await profileRepo.sendFeedBack(body);
+      Get.back();
+      results.fold((l) {
+        AppToasts.errorToast(l.message);
+        log("SEND FEEDBACK METHODS RESPONSE ERROR ${l.message}");
+      }, (r) async {
+        var statusCode = r.object["code"];
+        var message = r.object["message"];
+        log("SEND FEEDBACK METHODS RESPONSE STATUS $statusCode");
+        log("${r.object}");
+        if (statusCode == 200) {
+
+          AppToasts.successToast('Feedback has been sent Successfully!');
+          feedback.clear();
+          Get.back();
+        } else {
+          AppToasts.errorToast(message);
+        }
+      });
+    } catch (e, s) {
+      log("$e $s");
+    }
 
   }
-
-
-
 
   launchFacebookPage() async {
     String fbProtocolUrl = '';
@@ -275,6 +310,7 @@ class ProfileController extends GetxController {
     } else {
       currnecy.value = App.currency;
     }
+
     super.onInit();
   }
 }

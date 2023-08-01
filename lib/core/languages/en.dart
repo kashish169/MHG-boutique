@@ -45,5 +45,6 @@ Map<String, String> en_US = {
   'Persons)': 'Person)',
   "Share": "Share",
   "Brand:": "Brand:",
+  'Out of stock':'Out of stock',
   "Bag is empty!": "Bag is empty!", "TOTAL": "TOTAL"
 };

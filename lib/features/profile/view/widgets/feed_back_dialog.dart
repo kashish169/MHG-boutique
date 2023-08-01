@@ -58,9 +58,7 @@ class FeedBackDialog extends StatelessWidget {
 
                     if (controller.feedbackFormKey.currentState!.validate()) {
                       AppHelper.closeKeyboard();
-                     //
-                      //
-                      //  controller.signInWithOutOtp();
+                      controller.sendFeedbackReq();
                     }
                   },
                 ),
