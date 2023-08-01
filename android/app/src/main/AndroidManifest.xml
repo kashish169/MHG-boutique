@@ -4,6 +4,8 @@
         android:label="MHGBoutique"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyBkG4iGIJceLin8J0m0y2VNsbnKDYsrHvs"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
