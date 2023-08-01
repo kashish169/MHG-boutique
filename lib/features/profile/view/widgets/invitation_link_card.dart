@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
+import 'package:mhg/widgets/loading_widget.dart';
 
 class InvitationLinkCard extends StatelessWidget {
   const InvitationLinkCard({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class InvitationLinkCard extends StatelessWidget {
                   "Your Friends Will See",
                   style: Theme.of(context)
                       .textTheme
-                      ?.displaySmall
+                      .displaySmall
                       ?.copyWith(fontSize: 16, color: AppColors.white),
                 ),
               ),
@@ -45,7 +46,7 @@ class InvitationLinkCard extends StatelessWidget {
                 text: TextSpan(
                     style: Theme.of(context)
                         .textTheme
-                        ?.displaySmall
+                        .displaySmall
                         ?.copyWith(fontSize: 12),
                     children: [
                       TextSpan(
@@ -55,19 +56,21 @@ class InvitationLinkCard extends StatelessWidget {
                         text: 'MHGboutique ',
                         style: Theme.of(context)
                             .textTheme
-                            ?.displayMedium
+                            .displayMedium
                             ?.copyWith(fontSize: 14),
                       ),
                       const TextSpan(text: 'app.\n\n'),
                       TextSpan(
-                        recognizer: TapGestureRecognizer()..onTap = () {
-                          controller.launchMyUrl(controller.model.value?.invitationLink??"");
+                        recognizer: TapGestureRecognizer()..onTap = () async {
+
+                          await controller.launchMyUrl(controller.model.value?.invitationLink??"");
+
                         },
 
                         text: '${controller.model.value?.invitationLink}',
                         style: Theme.of(context)
                             .textTheme
-                            ?.displaySmall
+                            .displaySmall
                             ?.copyWith(color: AppColors.blue),
                       ),
                       const TextSpan(text: '  Happy Shopping!'),

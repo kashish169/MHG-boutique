@@ -31,7 +31,7 @@ class InviteFriendPage extends StatelessWidget {
                       text: TextSpan(
                           style: Theme.of(context)
                               .textTheme
-                              ?.displaySmall
+                              .displaySmall
                               ?.copyWith(fontSize: 15),
                           children: [
                             const TextSpan(text: 'invite your \n'),
@@ -39,7 +39,7 @@ class InviteFriendPage extends StatelessWidget {
                               text: 'Friends',
                               style: Theme.of(context)
                                   .textTheme
-                                  ?.displayMedium
+                                  .displayMedium
                                   ?.copyWith(fontSize: 18),
                             ),
                             const TextSpan(text: ' & Get Points'),

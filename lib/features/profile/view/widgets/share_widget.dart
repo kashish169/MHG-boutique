@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,16 +29,15 @@ class ShareCard extends StatelessWidget {
               decoration: BoxDecoration(
                   color: AppColors.secondaryBlack,
                   borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(10))),
+                      const BorderRadius.vertical(top: Radius.circular(10))),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     "Share via GHboutique",
-                    style: Theme
-                        .of(context)
+                    style: Theme.of(context)
                         .textTheme
-                        ?.displaySmall
+                        .displaySmall
                         ?.copyWith(fontSize: 16, color: AppColors.white),
                   ),
                   Icon(
@@ -60,10 +61,9 @@ class ShareCard extends StatelessWidget {
                 children: [
                   Text(
                     'or Share via other media',
-                    style: Theme
-                        .of(context)
+                    style: Theme.of(context)
                         .textTheme
-                        ?.displaySmall
+                        .displaySmall
                         ?.copyWith(color: AppColors.dGreen, fontSize: 12),
                   ),
                   const SizedBox(
@@ -81,28 +81,27 @@ class ShareCard extends StatelessWidget {
                           onTap: () {
                             controller.connectViaWhatsApp(
                               message: controller.model.value?.invitationLink,
-                                phone: '',
-                               );
+                              phone: '',
+                            );
                           },
                         ),
                         ShareItem(
                           name: 'Facebook',
                           icon: AppAssets.facebook2,
-                          onTap: (){
-                      //      controller.launchMyUrl("https://facebook.com/sharer/sharer.php?u=$urlShare&t=$text",);
+                          onTap: () async {
+                             controller.shareLinkToFacebook(controller.model.value?.invitationLink ??
+                                 '');
                           },
                         ),
                         ShareItem(
                           name: 'Gmail',
                           icon: AppAssets.gmail,
-                          onTap: (){
-                            // final Uri params = Uri(
-                            //   scheme: 'mailto',
-                            //   path: 'my.mail@example.com',
-                            //   query: ''
-                            // );
-                            // String  url = params.toString();
-                            // controller.launchMyUrl(url);
+                          onTap: () {
+                            controller.emailLaunch(
+                                email: '',
+                                message:
+                                    controller.model.value?.invitationLink ??
+                                        '');
                           },
                         ),
                         ShareItem(

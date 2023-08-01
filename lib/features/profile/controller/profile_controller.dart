@@ -214,11 +214,16 @@ class ProfileController extends GetxController {
   }
 
   launchMyUrl(String url) async {
+    Get.dialog(
+      const LoadingWidget(),
+      barrierDismissible: false,
+    );
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(Uri.parse(url));
     } else {
       throw 'Could not launch $url';
     }
+    Get.back();
   }
   void connectViaWhatsApp({
     String? message,
@@ -280,7 +285,14 @@ class ProfileController extends GetxController {
     }
 
   }
-
+  void shareLinkToFacebook(String url) async {
+    final uri = 'https://www.facebook.com/sharer/sharer.php?u=$url';
+    if (await canLaunch(uri)) {
+      await launch(uri);
+    } else {
+      throw 'Could not launch $uri';
+    }
+  }
   launchFacebookPage() async {
     String fbProtocolUrl = '';
     if (Platform.isIOS) {
@@ -300,6 +312,18 @@ class ProfileController extends GetxController {
       }
     } catch (e) {
       throw 'Could not launch ';
+    }
+  }
+  void emailLaunch({
+    required String email,
+    required String message,
+  }) async {
+    try {
+      // ignore: deprecated_member_use
+      await launch("mailto:$email?subject=$message",
+      );
+    } catch (e, s) {
+      log('$e $s');
     }
   }
 
