@@ -1,24 +1,70 @@
 import 'package:flutter/material.dart';
-import 'package:mhg/features/stroresmap/view/widgets/table_four.dart';
-import 'package:mhg/features/stroresmap/view/widgets/table_one.dart';
-import 'package:mhg/features/stroresmap/view/widgets/table_three.dart';
-import 'package:mhg/features/stroresmap/view/widgets/table_two.dart';
+import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 
-class StoresMapPage extends StatefulWidget {
-  static String routeName = '/map';
-  const StoresMapPage({super.key});
+import '../../controller/stores_map_controller.dart';
 
-  @override
-  State<StoresMapPage> createState() => _StoresMapPageState();
-}
-
-class _StoresMapPageState extends State<StoresMapPage> {
+class StoresMapPage extends StatelessWidget {
+  StoresMapPage({super.key});
+  final StoresMapController storesMapController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(context, title: 'Find our stores'),
-      body: DefaultTabController(
+      body: GetBuilder<StoresMapController>(
+        builder: (storesMapController) => Stack(
+          children: [
+            if (storesMapController.kGooglePlex != null)
+              SizedBox(
+                height: AppDimensions.screenHeight(context),
+                child: GoogleMap(
+                  onTap: (val) {
+                    storesMapController.disableMarkerFocus();
+                  },
+                  myLocationButtonEnabled: true,
+                  myLocationEnabled: true,
+                  mapType: MapType.normal,
+                  markers: storesMapController.markerList.toSet(),
+                  initialCameraPosition: storesMapController.kGooglePlex!,
+                  onMapCreated: (GoogleMapController controllerMap) {
+                    storesMapController.controller.complete(controllerMap);
+                  },
+                ),
+              ),
+            if (storesMapController.isMarkerTaped && GetPlatform.isIOS)
+              Positioned(
+                bottom: 18,
+                right: 80,
+                child: GestureDetector(
+                  onTap: () {
+                    storesMapController.getAvailableMap();
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(2),
+                      color: AppColors.white2,
+                    ),
+                    child: Icon(
+                      Icons.directions,
+                      color: AppColors.blue,
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/*
+ body: DefaultTabController(
         length: 4,
         child: Scaffold(
           appBar: TabBar(
@@ -86,6 +132,4 @@ class _StoresMapPageState extends State<StoresMapPage> {
           ),
         ),
       ),
-    );
-  }
-}
+      */

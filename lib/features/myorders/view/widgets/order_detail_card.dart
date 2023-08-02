@@ -51,26 +51,26 @@ class OrderDetailsCard extends StatelessWidget {
                       ),
                 ),
                 const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Order ID:${model.orderId}',
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 10,
-                            color: AppColors.lightLabel,
-                          ),
-                    ),
-                    Text(
-                      'Product ID:${model.productId}',
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 10,
-                            color: AppColors.lightLabel,
-                          ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 15),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Text(
+                //       'Order ID:${model.orderId}',
+                //       style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                //             fontSize: 10,
+                //             color: AppColors.lightLabel,
+                //           ),
+                //     ),
+                //     Text(
+                //       'Product ID:${model.productId}',
+                //       style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                //             fontSize: 10,
+                //             color: AppColors.lightLabel,
+                //           ),
+                //     ),
+                //   ],
+                // ),
+                // const SizedBox(height: 15),
                 Obx(() => Text(
                       'Price: ${profileController.currnecy.value} ${model.price}',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(

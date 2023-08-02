@@ -45,6 +45,10 @@
 	</array>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>MHGBoutique requires permission to deliver personalized ads to you.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>MHGBoutique want to access your location, to check nearest stores.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>MHGBoutique want to access your location, to check nearest stores.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>

@@ -30,6 +30,7 @@ Map<String, String> ar_AE = {
   'Notifications': 'الإشعارات',
   'Notifications will appear here!': 'ستظهر الإشعارات هنا!',
   //product details
+  'Out of stock':'غير متوفر',
   "Cancel": "إلغاء",
   'Write Your Review Here ...': 'اكتب رأيك هنا ...',
   "Send": "إرسال",

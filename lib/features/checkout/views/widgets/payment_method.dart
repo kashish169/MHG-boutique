@@ -81,6 +81,15 @@ class PaymentMethod extends StatelessWidget {
                           ),
                         ),
                       ),
+                      Image.asset(
+                        _getPaymentIcon(
+                            checkoutController.paymentMethodsList[index].slug),
+                        height: 25,
+                        width: 25,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Text(
                         checkoutController.paymentMethodsList[index].name,
                         style:
@@ -184,5 +193,15 @@ class PaymentMethod extends StatelessWidget {
         ],
       );
     });
+  }
+}
+
+String _getPaymentIcon(String slug) {
+  if (slug == "Apple Pay") {
+    return AppAssets.applepay;
+  } else if (slug == "COD") {
+    return AppAssets.cashOnDelivery;
+  } else {
+    return AppAssets.wallet;
   }
 }

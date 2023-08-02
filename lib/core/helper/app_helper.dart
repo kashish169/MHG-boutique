@@ -1,5 +1,6 @@
 import 'dart:developer';
-
+import 'package:mhg/constants/app_toasts.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -102,5 +103,13 @@ class AppHelper {
       value: uuidValue,
     );
     return uuidValue;
+  }
+
+  static Future<void> launchURL(String url, String method) async {
+    final Uri uri = Uri(scheme: method, path: url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      AppToasts.errorToast("cant lunch url");
+      throw "cant lunch url";
+    }
   }
 }

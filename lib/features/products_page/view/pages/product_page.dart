@@ -69,24 +69,19 @@ class ProductsPage extends StatelessWidget {
                                           ),
                                         )
                                       : DynamicGridView(
-                                          padding:
-                                              const EdgeInsetsDirectional.only(
-                                            start: 20,
-                                            end: 20,
-                                            top: 10,
-                                            bottom: 15,
+                                          padding: const EdgeInsetsDirectional
+                                              .symmetric(
+                                            horizontal: 20,
+                                            vertical: 25,
                                           ),
-                                          controller:
-                                              controller.scrollController,
                                           crossAxisCount: 2,
                                           shrinkWrap: true,
                                           mainAxisSpacing: 10,
-                                          crossAxisSpacing: 5,
+                                          crossAxisSpacing: 10,
                                           itemCount: controller.products.length,
                                           builder: (ctx, index) {
                                             return ProductCard(
                                               model: controller.products[index],
-                                              isProductPage: true,
                                             );
                                           },
                                         ),

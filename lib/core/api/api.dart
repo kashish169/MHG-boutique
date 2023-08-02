@@ -44,6 +44,7 @@ class Api {
   static String productDetails = "$productRoute/product-details";
   static String addReview = "$productRoute/add-review";
   static String sendHearts = "/api/v1/users/send-hearts";
+  static String sendFeedback = "/api/v1/users/send-feedback";
   static String storeCategories = "/api/v1/category/store";
   static String menus = "/api/v1/category/menus";
   static String filterProduct = "/api/v1/product/filter?store_id=1";
@@ -63,5 +64,5 @@ class Api {
   static String logOut = "/api/v1/users/auth/logout";
   static String successOrderLink = "/api/v1/order/track-order";
   static String autoComplete = "/api/v1/product/auto-complete";
-  static String destroyCard = "/api/v1/cart/destroy-cart";
+  static String destroyCart = "/api/v1/cart/destroy-cart";
 }

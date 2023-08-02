@@ -2,12 +2,12 @@ class AutoSearchProductModel {
   int id;
   String enProductName;
   String frProductName;
-  int inWishlist;
-  String primaryImageLink;
-  String image2Link;
-  String image3Link;
-  String image4Link;
-  String image5Link;
+  dynamic inWishlist;
+  dynamic primaryImageLink;
+  dynamic image2Link;
+  dynamic image3Link;
+  dynamic image4Link;
+  dynamic image5Link;
 
   AutoSearchProductModel({
     required this.id,

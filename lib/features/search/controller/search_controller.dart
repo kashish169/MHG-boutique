@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -168,6 +169,8 @@ class SearchingController extends GetxController {
         var statusCode = r.object["code"];
         if (statusCode == 200) {
           var json = r.object["data"];
+          log("autoCompleteSearch ${jsonEncode(json)}");
+
           autoCompleteProducts = List<AutoSearchProductModel>.from(
             json["products"].map((x) => AutoSearchProductModel.fromJson(x)),
           );

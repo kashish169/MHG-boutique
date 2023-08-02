@@ -30,6 +30,7 @@ import 'package:mhg/features/product_details/bindings/product_details_binding.da
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/features/products_page/binding/products_page_binding.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
+import 'package:mhg/features/profile/view/pages/invite_friends.dart';
 import 'package:mhg/features/profile/view/pages/profile_view.dart';
 import 'package:mhg/features/profile/view/pages/send_points.dart';
 import 'package:mhg/features/rewards/bindings/reward_bindings.dart';
@@ -197,5 +198,10 @@ class AppRoutes {
         name: '/reset_password',
         page: () => const ResetPasswordView(),
         binding: ForgetPasswordBinding()),
+    GetPage(
+        name: '/invite_friend',
+        page: () => const InviteFriendPage(),
+    )
+
   ];
 }
