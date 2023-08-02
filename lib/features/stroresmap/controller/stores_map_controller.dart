@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:map_launcher/map_launcher.dart';
 import '../../../constants/app_colors.dart';
 import '../model/stores_map_markers.dart';
 
@@ -12,7 +13,8 @@ class StoresMapController extends GetxController {
       Completer<GoogleMapController>();
   Position? position;
   CameraPosition? kGooglePlex;
-
+  LatLng? selectedMarkerPosition;
+  bool isMarkerTaped = false;
   CameraPosition kLake = const CameraPosition(
       bearing: 192.8334901395799,
       target: LatLng(37.43296265331129, -122.08832357078792),
@@ -23,7 +25,6 @@ class StoresMapController extends GetxController {
     position ??= await Geolocator.getLastKnownPosition();
     kGooglePlex = CameraPosition(
         target: LatLng(position!.latitude, position!.longitude), zoom: 14.32);
-
     update();
   }
 
@@ -61,6 +62,26 @@ class StoresMapController extends GetxController {
     if (permission == LocationPermission.whileInUse) {
       getCurrentLocation();
     }
+  }
+
+  tapOnMarker(LatLng markerPosition) async {
+    isMarkerTaped = true;
+    selectedMarkerPosition = markerPosition;
+    update();
+  }
+
+  disableMarkerFocus() {
+    isMarkerTaped = false;
+    update();
+  }
+
+  getAvailableMap() async {
+    final availableMaps = await MapLauncher.installedMaps;
+    await availableMaps.first.showMarker(
+      coords: Coords(
+          selectedMarkerPosition!.latitude, selectedMarkerPosition!.longitude),
+      title: "",
+    );
   }
 
   @override
