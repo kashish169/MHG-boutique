@@ -21,10 +21,6 @@ class StoresMapController extends GetxController {
   getCurrentLocation() async {
     position = await Geolocator.getCurrentPosition();
     position ??= await Geolocator.getLastKnownPosition();
-    markerList.add(Marker(
-        markerId: const MarkerId("User Marker"),
-        position: LatLng(position!.latitude, position!.longitude),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue)));
     kGooglePlex = CameraPosition(
         target: LatLng(position!.latitude, position!.longitude), zoom: 14.32);
 

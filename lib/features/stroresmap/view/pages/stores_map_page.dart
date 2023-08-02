@@ -20,6 +20,8 @@ class StoresMapPage extends StatelessWidget {
               SizedBox(
                 height: AppDimensions.screenHeight(context),
                 child: GoogleMap(
+                  myLocationButtonEnabled: true,
+                  myLocationEnabled: true,
                   mapType: MapType.normal,
                   markers: storesMapController.markerList.toSet(),
                   initialCameraPosition: storesMapController.kGooglePlex!,
