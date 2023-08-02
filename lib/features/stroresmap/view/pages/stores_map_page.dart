@@ -37,7 +37,7 @@ class StoresMapPage extends StatelessWidget {
             if (storesMapController.isMarkerTaped && GetPlatform.isIOS)
               Positioned(
                 bottom: 18,
-                right: 60,
+                right: 80,
                 child: GestureDetector(
                   onTap: () {
                     storesMapController.getAvailableMap();
