@@ -16,18 +16,18 @@ class StoresMapPage extends StatelessWidget {
       body: GetBuilder<StoresMapController>(
         builder: (storesMapController) => Stack(
           children: [
-            // if (storesMapController.kGooglePlex != null)
-            SizedBox(
-              height: AppDimensions.screenHeight(context),
-              child: GoogleMap(
-                mapType: MapType.normal,
-                markers: storesMapController.markerList.toSet(),
-                initialCameraPosition: storesMapController.kGooglePlex!,
-                onMapCreated: (GoogleMapController controllerMap) {
-                  storesMapController.controller.complete(controllerMap);
-                },
+            if (storesMapController.kGooglePlex != null)
+              SizedBox(
+                height: AppDimensions.screenHeight(context),
+                child: GoogleMap(
+                  mapType: MapType.normal,
+                  markers: storesMapController.markerList.toSet(),
+                  initialCameraPosition: storesMapController.kGooglePlex!,
+                  onMapCreated: (GoogleMapController controllerMap) {
+                    storesMapController.controller.complete(controllerMap);
+                  },
+                ),
               ),
-            ),
           ],
         ),
       ),
