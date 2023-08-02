@@ -30,7 +30,7 @@ class CategoriesPage extends StatelessWidget {
                   model: controller.categoriesModel.menus[index],
                 );
               }),
-          const HomeExploreOurBrandsWidget(),
+        //  const HomeExploreOurBrandsWidget(),
         ],
       ));
     });

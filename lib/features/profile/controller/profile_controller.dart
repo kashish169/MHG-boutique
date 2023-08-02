@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
@@ -25,6 +26,7 @@ class ProfileController extends GetxController {
   late Rxn<ProfileInfoModal> model = Rxn<ProfileInfoModal>();
   SendHeartsModel sendHeartsModel = SendHeartsModel();
   TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController feedback = TextEditingController();
   TextEditingController pointsController = TextEditingController();
   RxString countryCode = ''.obs;
 
@@ -37,6 +39,7 @@ class ProfileController extends GetxController {
   RxBool loadingUpdateCard = false.obs;
   RxString currnecy = "...".obs;
   final formKey = GlobalKey<FormState>();
+  final feedbackFormKey = GlobalKey<FormState>();
 
   Future<void> getProfileInfo() async {
     try {
@@ -211,19 +214,26 @@ class ProfileController extends GetxController {
   }
 
   launchMyUrl(String url) async {
+    Get.dialog(
+      const LoadingWidget(),
+      barrierDismissible: false,
+    );
     if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
+      await launch(url,
+        enableJavaScript: true,);
     } else {
       throw 'Could not launch $url';
     }
+    Get.back();
   }
   void connectViaWhatsApp({
+    String? message,
     required String phone
   }) async {
 
     String number = phone.replaceAll('+', '');
 
-    var androidUrl =
+    var androidUrl =message!=null?"whatsapp://send?text=+$message":
         "whatsapp://send?phone=+$number";
     var iosUrl = "https://wa.me/$number";
     try {
@@ -237,11 +247,53 @@ class ProfileController extends GetxController {
     }
   }
 
+  sendFeedbackReq() async {
+    try {
+      // Map<String, dynamic> body = {
+      //   "item_id": cartItemId,
+      //   "qty": quantity,
+      //   "variant_id":variantId
+      // };
+      log(feedback.text);
+      var body = jsonEncode({
+        'message':feedback.text
+      });
+      Get.dialog(
+        const LoadingWidget(),
+        barrierDismissible: false,
+      );
+      Either<Failure, ApiResponse> results = await profileRepo.sendFeedBack(body);
+      Get.back();
+      results.fold((l) {
+        AppToasts.errorToast(l.message);
+        log("SEND FEEDBACK METHODS RESPONSE ERROR ${l.message}");
+      }, (r) async {
+        var statusCode = r.object["code"];
+        var message = r.object["message"];
+        log("SEND FEEDBACK METHODS RESPONSE STATUS $statusCode");
+        log("${r.object}");
+        if (statusCode == 200) {
 
+          AppToasts.successToast('Feedback has been sent Successfully!');
+          feedback.clear();
+          Get.back();
+        } else {
+          AppToasts.errorToast(message);
+        }
+      });
+    } catch (e, s) {
+      log("$e $s");
+    }
 
-
-
-
+  }
+  void shareLinkToFacebook(String url) async {
+    final uri = 'https://www.facebook.com/sharer/sharer.php?u=$url';
+    if (await canLaunch(uri)) {
+      await launch(uri);
+    } else {
+      throw 'Could not launch $uri';
+    }
+  }
   launchFacebookPage() async {
     String fbProtocolUrl = '';
     if (Platform.isIOS) {
@@ -263,6 +315,18 @@ class ProfileController extends GetxController {
       throw 'Could not launch ';
     }
   }
+  void emailLaunch({
+    required String email,
+    required String message,
+  }) async {
+    try {
+      // ignore: deprecated_member_use
+      await launch("mailto:$email?subject=$message",
+      );
+    } catch (e, s) {
+      log('$e $s');
+    }
+  }
 
   @override
   void onInit() {
@@ -271,6 +335,7 @@ class ProfileController extends GetxController {
     } else {
       currnecy.value = App.currency;
     }
+
     super.onInit();
   }
 }

@@ -311,9 +311,9 @@ class CheckoutController extends GetxController {
         query += "&redeem=0";
       }
       log("Called for${paymentMethodValue.value}");
-      if(paymentMethodValue.value=='COD'){
+      if (paymentMethodValue.value == 'COD') {
         query += "&cod=1";
-      }else{
+      } else {
         query += "&cod=0";
       }
       Either<Failure, ApiResponse> results =
@@ -588,7 +588,7 @@ class CheckoutController extends GetxController {
   }
 
   void _onGuestOrderSuccess() async {
-    destroyCart();
+    destroyGuestCart();
     Get.offAndToNamed(GuestSuccessOrderView.route);
 
     //  Get.find<MyCartController>().getCart();
@@ -606,18 +606,19 @@ class CheckoutController extends GetxController {
       'Your order has been submitted successfully!',
     );
   }
-  Future<void> destroyCart() async {
+
+  Future<void> destroyGuestCart() async {
     isLoading(true);
     isError(false);
-    Either<Failure, ApiResponse> results = await checkoutRepository.destroyCard();
+    Either<Failure, ApiResponse> results =
+        await checkoutRepository.destroyGuestCart();
     isLoading(false);
     results.fold(
-          (l) {
+      (l) {
         isError(true);
         AppToasts.errorToast(l.message);
-
       },
-          (r) {
+      (r) {
         var statusCode = r.object["code"];
         var message = r.object["message"];
         var stats = r.object['isSuccessful'];

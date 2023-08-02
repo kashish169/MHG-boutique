@@ -13,6 +13,7 @@ class AppAssets {
   static String arrowBack = "assets/icons/Path 1.png";
   static String home = "assets/icons/home.png";
   static String bag = "assets/icons/bag.png";
+  static String wallet = "assets/icons/wallet.png";
   static String profile = "assets/icons/profile.png";
   static String wishlist = "assets/icons/wishlist.png";
   static String blackHeart = "assets/icons/black heart.png";
@@ -77,5 +78,14 @@ class AppAssets {
   static String sendPoints = "assets/icons/send-points.png";
   static String orderSuccess = "assets/icons/conf.png";
   static String chachLoadImage = "assets/icons/Favi Icon.png";
-  static String whatsApp="assets/icons/whatsApp.png";
+  static String whatsApp = "assets/icons/whatsApp.png";
+  static String cashOnDelivery = "assets/icons/cash-on-delivery.png";
+  static String girls = "assets/images/girls.png";
+
+  static String facebook2 = "assets/icons/facebook2.png";
+  static String whatsapp2 = "assets/icons/whatsapp2.png";
+  static String gmail = "assets/icons/gmail.png";
+  static String share = "assets/icons/share.png";
+  static String copy = "assets/icons/copy.png";
+
 }
