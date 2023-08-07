@@ -3,6 +3,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/stroresmap/controller/stores_map_controller.dart';
 
+import '../view/widgets/stores_bottom_sheet_call.dart';
+
 StoresMapController controller = Get.find();
 List<Marker> markerListData = [
   //Dubai
@@ -27,10 +29,13 @@ List<Marker> markerListData = [
       },
       markerId: const MarkerId('ARABIAN CENTER'),
       infoWindow: InfoWindow(
-          snippet: 'Tap her to call us 0564705559',
+          snippet: 'Tap her to call us 048400150 / 0564705559',
           title: 'ARABIAN CENTER',
           onTap: () {
-            AppHelper.launchURL("0564705559", 'tel');
+            showCallBottomSheet(
+              firstNumber: '048400150',
+              secondNumber: '0564705559',
+            );
           })),
   Marker(
       position: const LatLng(25.23094616153552, 55.31795592973938),
@@ -79,10 +84,13 @@ List<Marker> markerListData = [
       },
       markerId: const MarkerId('ETTIHAD MALL'),
       infoWindow: InfoWindow(
-          snippet: 'Tap her to call us 0503538507',
+          snippet: 'Tap her to call us 42362664 / 0503538507',
           title: 'ETTIHAD MALL',
           onTap: () {
-            AppHelper.launchURL("0503538507", 'tel');
+            showCallBottomSheet(
+              firstNumber: '42362664',
+              secondNumber: '0503538507',
+            );
           })),
   Marker(
       position: const LatLng(25.197272942537467, 55.279776846179224),
@@ -92,10 +100,13 @@ List<Marker> markerListData = [
       },
       markerId: const MarkerId('DUBAI MALL'),
       infoWindow: InfoWindow(
-          snippet: 'Tap her to call us 569982137',
+          snippet: 'Tap her to call us 42362664 / 0503538508',
           title: 'DUBAI MALL',
           onTap: () {
-            AppHelper.launchURL("569982137", 'tel');
+            showCallBottomSheet(
+              firstNumber: '42362664',
+              secondNumber: '0503538508',
+            );
           })),
   Marker(
       position: const LatLng(25.216406335628562, 55.40783781179989),
@@ -105,10 +116,13 @@ List<Marker> markerListData = [
       },
       markerId: const MarkerId('MIRDIF CITY CENTRE'),
       infoWindow: InfoWindow(
-          snippet: 'Tap her to call us 0544412112',
+          snippet: 'Tap her to call us 42840150 / 0544412112',
           title: 'MIRDIF CITY CENTRE',
           onTap: () {
-            AppHelper.launchURL("0544412112", 'tel');
+            showCallBottomSheet(
+              firstNumber: '42840150',
+              secondNumber: '0544412112',
+            );
           })),
   Marker(
       position: const LatLng(25.197272942537467, 55.279776846179224),
@@ -119,7 +133,7 @@ List<Marker> markerListData = [
       markerId: const MarkerId('DUBAI MALL FASHION AVENUE'),
       infoWindow: InfoWindow(
           snippet: 'Tap her to call us 42291385',
-          title: 'tDUBAI MALL FASHION AVENUE',
+          title: 'DUBAI MALL FASHION AVENUE',
           onTap: () {
             AppHelper.launchURL("42291385", 'tel');
           })),
@@ -240,10 +254,13 @@ List<Marker> markerListData = [
       },
       markerId: const MarkerId('BAWABAT AL SHARQ'),
       infoWindow: InfoWindow(
-          snippet: 'Tap her to call us 0505001503',
+          snippet: 'Tap her to call us 25821167 / 0505001503',
           title: 'BAWABAT AL SHARQ',
           onTap: () {
-            AppHelper.launchURL("0505001503", 'tel');
+            showCallBottomSheet(
+              firstNumber: '25821167',
+              secondNumber: '0505001503',
+            );
           })),
   Marker(
       position: const LatLng(24.52354772214621, 54.6711715117841),
