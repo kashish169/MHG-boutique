@@ -3,7 +3,8 @@ import '../constants/app_assets.dart';
 
 class DeleteIconButton extends StatelessWidget {
   final VoidCallback onTap;
-  const DeleteIconButton({super.key, required this.onTap});
+  final double? height;
+  const DeleteIconButton({super.key, required this.onTap, this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class DeleteIconButton extends StatelessWidget {
       onPressed: onTap,
       icon: Image.asset(
         AppAssets.closeFill,
-        height: 19,
+        height: height ?? 19,
       ),
     );
   }
