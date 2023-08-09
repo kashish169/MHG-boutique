@@ -334,6 +334,7 @@ class CheckoutController extends GetxController {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("ORDER PRICE METHODS RESPONSE STATUS $statusCode");
+          log(message);
           log("ORDER PRICE METHODS RESPONSE ${r.object["data"]}");
           if (statusCode == 200) {
             if (r.object["data"] != null) {
@@ -345,6 +346,8 @@ class CheckoutController extends GetxController {
                 );
               }
             }
+          } else {
+            AppToasts.errorToast(message);
           }
         },
       );
