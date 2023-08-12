@@ -345,7 +345,7 @@ void _onGuestOrder() {
   }
   if (checkoutController.paymentMethodValue.value == "TAP") {
     if (checkoutController.userSelectedCardModel.value == null) {
-      AppToasts.errorToast("Choose payment method");
+      AppToasts.errorToast("Choose payment card");
       return;
     }
   }

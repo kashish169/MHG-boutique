@@ -382,7 +382,7 @@ class CheckoutController extends GetxController {
       }
       if (paymentMethodValue.value == "TAP") {
         if (userSelectedCardModel.value == null) {
-          AppToasts.errorToast("Choose payment method");
+          AppToasts.errorToast("Choose payment card");
           return;
         }
       }
@@ -506,7 +506,7 @@ class CheckoutController extends GetxController {
         }
         if (paymentMethodValue.value == "TAP") {
           if (userSelectedCardModel.value == null) {
-            AppToasts.errorToast("Choose payment method");
+            AppToasts.errorToast("Choose payment card");
             return;
           }
         }
