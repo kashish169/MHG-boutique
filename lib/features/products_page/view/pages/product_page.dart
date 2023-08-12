@@ -75,6 +75,7 @@ class ProductsPage extends StatelessWidget {
                                             vertical: 25,
                                           ),
                                           crossAxisCount: 2,
+                                          controller: controller.scrollController,
                                           shrinkWrap: true,
                                           mainAxisSpacing: 10,
                                           crossAxisSpacing: 10,
