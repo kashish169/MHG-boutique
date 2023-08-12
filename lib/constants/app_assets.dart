@@ -80,6 +80,8 @@ class AppAssets {
   static String chachLoadImage = "assets/icons/Favi Icon.png";
   static String whatsApp = "assets/icons/whatsApp.png";
   static String cashOnDelivery = "assets/icons/cash-on-delivery.png";
+  static String cashOnDeliveryBlack = "assets/icons/cash-on-delivery (1).png";
+  static String creditCardBlack = "assets/icons/credit-card.png";
   static String girls = "assets/images/girls.png";
 
   static String facebook2 = "assets/icons/facebook2.png";
@@ -87,5 +89,4 @@ class AppAssets {
   static String gmail = "assets/icons/gmail.png";
   static String share = "assets/icons/share.png";
   static String copy = "assets/icons/copy.png";
-
 }

@@ -72,14 +72,13 @@ class MyCartController extends GetxController {
     required int cartItemId,
     required int quantity,
     required int variantId,
-
   }) async {
     bool result = false;
     try {
       Map<String, dynamic> body = {
         "item_id": cartItemId,
         "qty": quantity,
-        "variant_id":variantId
+        "variant_id": variantId
       };
       Either<Failure, ApiResponse> results =
           await myCartRepository.increaseCartItem(
@@ -118,15 +117,13 @@ class MyCartController extends GetxController {
     required int cartItemId,
     required int quantity,
     required int variantId,
-
   }) async {
     bool result = false;
     try {
       Map<String, dynamic> body = {
         "item_id": cartItemId,
         "qty": quantity,
-        "variant_id":variantId
-
+        "variant_id": variantId
       };
       Either<Failure, ApiResponse> results =
           await myCartRepository.decreaseCartItem(
@@ -159,10 +156,12 @@ class MyCartController extends GetxController {
     return result;
   }
 
-  Future<void> deleteCartItem(int cartItemId,int variantId) async {
+  Future<void> deleteCartItem(int cartItemId, int variantId) async {
     try {
-      Map<String, dynamic> body = {"item_id": cartItemId,
-        "variant_id":variantId};
+      Map<String, dynamic> body = {
+        "item_id": cartItemId,
+        "variant_id": variantId
+      };
       Either<Failure, ApiResponse> results =
           await myCartRepository.deleteCartItem(
         body: jsonEncode(body),
@@ -207,45 +206,42 @@ class MyCartController extends GetxController {
     }
     debugPrint("TOTAL CART PRICE : $totalPrice");
   }
+
   void getSubTotalPrice() {
     subTotal.value = 0;
     for (var element in cartItemsList) {
       if (element.subtotal != null) {
-
-          subTotal.value += element.subtotal.toDouble();
-
+        subTotal.value += element.subtotal.toDouble();
       }
     }
     debugPrint("TOTAL subTotal PRICE : $subTotal");
   }
+
   void getTax() {
     tax.value = 0;
     for (var element in cartItemsList) {
       if (element.tax != null) {
-
         tax.value += element.tax.toDouble();
-
       }
     }
     debugPrint("TOTAL subTotal PRICE : $subTotal");
   }
+
   void getDiscount() {
     discount.value = 0;
     for (var element in cartItemsList) {
       if (element.discount != null) {
-
         discount.value += element.discount.toDouble();
-
       }
     }
     debugPrint("TOTAL subTotal PRICE : $subTotal");
   }
+
   @override
   void onInit() {
-    if(App.token.isNotEmpty) {
+    if (App.token.isNotEmpty) {
       getCart();
     }
     super.onInit();
   }
-
 }

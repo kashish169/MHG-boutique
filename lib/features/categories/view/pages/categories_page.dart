@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/categories/controller/categories_controller.dart';
-import 'package:mhg/features/home/view/widgets/home_explore_our_brands_widget.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import '../widgets/category_list_tile.dart';
@@ -30,7 +29,7 @@ class CategoriesPage extends StatelessWidget {
                   model: controller.categoriesModel.menus[index],
                 );
               }),
-        //  const HomeExploreOurBrandsWidget(),
+          //  const HomeExploreOurBrandsWidget(),
         ],
       ));
     });

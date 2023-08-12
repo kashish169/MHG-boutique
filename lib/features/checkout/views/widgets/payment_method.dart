@@ -200,8 +200,8 @@ String _getPaymentIcon(String slug) {
   if (slug == "Apple Pay") {
     return AppAssets.applepay;
   } else if (slug == "COD") {
-    return AppAssets.cashOnDelivery;
+    return AppAssets.cashOnDeliveryBlack;
   } else {
-    return AppAssets.wallet;
+    return AppAssets.creditCardBlack;
   }
 }
