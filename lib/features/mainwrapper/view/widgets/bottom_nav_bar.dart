@@ -9,6 +9,7 @@ import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/app_dimensions.dart';
+import '../../../checkout/controllers/checkout_controller.dart';
 import '../../controller/main_wrapper_controller.dart';
 import 'bottom_nav_bar_items.dart';
 
@@ -73,6 +74,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
                 }
                 if (selectedIndex == 3) {
                   Get.find<MyCartController>().getCart();
+                  Get.find<CheckoutController>().orderPrice();
                 }
                 if (mounted) setState(() {});
               },
