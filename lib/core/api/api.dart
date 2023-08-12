@@ -10,6 +10,7 @@ class Api {
   static Map<String, String> authorizedheaders = {
     'Content-Type': 'application/json',
     'Authorization': "Bearer ${App.token}",
+    'Country-Id': "${App.countryId}",
   };
   static String countryLink = "/api/v1/countries/index";
   static String signUp = "/api/v1/users/auth/register";

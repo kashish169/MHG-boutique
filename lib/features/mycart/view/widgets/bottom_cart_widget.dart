@@ -44,7 +44,7 @@ class BottomCartWidget extends StatelessWidget {
               GetX<CheckoutController>(builder: (checkoutController) {
                 if (checkoutController.isLoadingRedeem.isTrue) {
                   return Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.symmetric(vertical: 38),
                     child: LoadingThreeBounce(
                       color: AppColors.primary,
                       size: 20,
