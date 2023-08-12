@@ -41,7 +41,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: navBarItems(
               index: controller.navBarIndex.value,
-              onTap: (index) {
+              onTap: (index) async {
                 if (App.token.isEmpty) {
                   if (index == 4) {
                     Get.toNamed(
@@ -73,7 +73,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
                   Get.find<ProfileController>().getProfileInfo();
                 }
                 if (selectedIndex == 3) {
-                  Get.find<MyCartController>().getCart();
+                  await Get.find<MyCartController>().getCart();
                   Get.find<CheckoutController>().orderPrice();
                 }
                 if (mounted) setState(() {});
