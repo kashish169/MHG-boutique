@@ -121,11 +121,14 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         ],
                       ),
                       Visibility(
-                        visible: checkoutController
-                            .orderPriceModal.data?.cashOnDeliveryFees ==
-                            0||checkoutController
-                            .orderPriceModal.data?.cashOnDeliveryFees==null||
-                            checkoutController.paymentMethodValue.value!='COD'
+                        visible: checkoutController.orderPriceModal.data
+                                        ?.cashOnDeliveryFees ==
+                                    0 ||
+                                checkoutController.orderPriceModal.data
+                                        ?.cashOnDeliveryFees ==
+                                    null ||
+                                checkoutController.paymentMethodValue.value !=
+                                    'COD'
                             ? false
                             : true,
                         child: Row(
@@ -137,23 +140,22 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                     .textTheme
                                     .displaySmall
                                     ?.copyWith(
-                                  height: 1.4,
-                                  fontSize: 14,
-                                  color: AppColors.label,
-                                ),
+                                      height: 1.4,
+                                      fontSize: 14,
+                                      color: AppColors.label,
+                                    ),
                               ),
                             ),
                             Text(
-
-                              '${profileController?.currnecy.value??'AED'} ${checkoutController.orderPriceModal.data?.cashOnDeliveryFees}',
+                              '${profileController?.currnecy.value ?? 'AED'} ${checkoutController.orderPriceModal.data?.cashOnDeliveryFees}',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall
                                   ?.copyWith(
-                                height: 1.4,
-                                color: AppColors.dBlack,
-                                fontSize: 14,
-                              ),
+                                    height: 1.4,
+                                    color: AppColors.dBlack,
+                                    fontSize: 14,
+                                  ),
                             ),
                           ],
                         ),
@@ -304,15 +306,17 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         ? AppColors.grey
                         : AppColors.secondary,
                     isLoading: checkoutController.isLoadingCreateOrder.value,
-                    onPress: checkoutController.isLoadingRedeem.isTrue
-                        ? () {}
-                        : () {
-                            if (App.token.isNotEmpty) {
-                              checkoutController.createOrder();
-                            } else {
-                              _onGuestOrder.call();
-                            }
-                          },
+                    onPress: checkoutController.paymentMethodValue.value == ''
+                        ? null
+                        : checkoutController.isLoadingRedeem.isTrue
+                            ? () {}
+                            : () {
+                                if (App.token.isNotEmpty) {
+                                  checkoutController.createOrder();
+                                } else {
+                                  _onGuestOrder.call();
+                                }
+                              },
                   )
                 : ApplePayButton(
                     onTap: checkoutController.isLoadingRedeem.isTrue

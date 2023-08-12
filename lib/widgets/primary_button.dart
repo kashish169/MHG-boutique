@@ -6,7 +6,7 @@ import '../constants/app_colors.dart';
 class PrimaryButton extends StatelessWidget {
   final String title;
   final bool isLoading;
-  final VoidCallback onTap;
+  final void Function()? onTap;
   final double? height;
   final double? width;
   final double? radius;
@@ -43,6 +43,7 @@ class PrimaryButton extends StatelessWidget {
       elevation: elevation,
       height: height,
       minWidth: width,
+      disabledColor: AppColors.grey,
       color: color ?? AppColors.secondary,
       shape: RoundedRectangleBorder(
         side: (isSelected == null || isSelected == false)

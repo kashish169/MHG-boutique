@@ -61,7 +61,7 @@ class CategoryListTile extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      model.enName,
+                      model.enName.toUpperCase(),
                       style: Theme.of(context)
                           .textTheme
                           .displaySmall
