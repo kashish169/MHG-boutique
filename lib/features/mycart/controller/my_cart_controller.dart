@@ -52,10 +52,10 @@ class MyCartController extends GetxController {
             var json = r.object["data"]["cart_items"];
             cartItemsList.value =
                 List<CartModel>.from(json.map((x) => CartModel.fromJson(x)));
-            getTotalCartPrice();
-            getDiscount();
-            getSubTotalPrice();
-            getDiscount();
+            // getTotalCartPrice();
+            // getDiscount();
+            // getSubTotalPrice();
+            // getDiscount();
           } else {
             AppToasts.errorToast(message);
             isError(true);
@@ -190,56 +190,56 @@ class MyCartController extends GetxController {
     }
   }
 
-  void getTotalCartPrice() {
-    totalPrice.value = 0;
-    for (var element in cartItemsList) {
-      if (element.options.discountPrice != null) {
-        if (double.parse(
-              element.options.discountParcent ?? '0',
-            ).round() ==
-            0) {
-          totalPrice.value += element.weight.toDouble() * element.qty;
-        } else {
-          totalPrice.value +=
-              double.parse(element.options.discountPrice ?? '') * element.qty;
-        }
-      }
-    }
-    debugPrint("TOTAL CART PRICE : $totalPrice");
-  }
-  void getSubTotalPrice() {
-    subTotal.value = 0;
-    for (var element in cartItemsList) {
-      if (element.subtotal != null) {
-
-          subTotal.value += element.subtotal.toDouble();
-
-      }
-    }
-    debugPrint("TOTAL subTotal PRICE : $subTotal");
-  }
-  void getTax() {
-    tax.value = 0;
-    for (var element in cartItemsList) {
-      if (element.tax != null) {
-
-        tax.value += element.tax.toDouble();
-
-      }
-    }
-    debugPrint("TOTAL subTotal PRICE : $subTotal");
-  }
-  void getDiscount() {
-    discount.value = 0;
-    for (var element in cartItemsList) {
-      if (element.discount != null) {
-
-        discount.value += element.discount.toDouble();
-
-      }
-    }
-    debugPrint("TOTAL subTotal PRICE : $subTotal");
-  }
+  // void getTotalCartPrice() {
+  //   totalPrice.value = 0;
+  //   for (var element in cartItemsList) {
+  //     if (element.options.discountPrice != null) {
+  //       if (double.parse(
+  //             element.options.discountParcent ?? '0',
+  //           ).round() ==
+  //           0) {
+  //         totalPrice.value += element.weight.toDouble() * element.qty;
+  //       } else {
+  //         totalPrice.value +=
+  //             double.parse(element.options.discountPrice ?? '') * element.qty;
+  //       }
+  //     }
+  //   }
+  //   debugPrint("TOTAL CART PRICE : $totalPrice");
+  // }
+  // void getSubTotalPrice() {
+  //   subTotal.value = 0;
+  //   for (var element in cartItemsList) {
+  //     if (element.subtotal != null) {
+  //
+  //         subTotal.value += element.subtotal.toDouble();
+  //
+  //     }
+  //   }
+  //   debugPrint("TOTAL subTotal PRICE : $subTotal");
+  // }
+  // void getTax() {
+  //   tax.value = 0;
+  //   for (var element in cartItemsList) {
+  //     if (element.tax != null) {
+  //
+  //       tax.value += element.tax.toDouble();
+  //
+  //     }
+  //   }
+  //   debugPrint("TOTAL subTotal PRICE : $subTotal");
+  // }
+  // void getDiscount() {
+  //   discount.value = 0;
+  //   for (var element in cartItemsList) {
+  //     if (element.discount != null) {
+  //
+  //       discount.value += element.discount.toDouble();
+  //
+  //     }
+  //   }
+  //   debugPrint("TOTAL subTotal PRICE : $subTotal");
+  // }
   @override
   void onInit() {
     if(App.token.isNotEmpty) {

@@ -39,7 +39,7 @@ class _DeleteCartButtonState extends State<DeleteCartButton> {
               controller.cartItemsList.removeWhere(
                 (element) => element.options.variantId== widget.model.options.variantId,
               );
-              controller.getTotalCartPrice();
+              // controller.getTotalCartPrice();
               Get.find<CheckoutController>().orderPrice();
             },
           );
