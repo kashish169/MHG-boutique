@@ -42,17 +42,17 @@ class MyOrder {
   ShippingModel billingAddress;
   ShippingModel shippingAddress;
   dynamic couponId;
-  String couponAmount;
-  String heartsDiscount;
+  String? couponAmount;
+  String? heartsDiscount;
   String deliveryCharge;
   String subTotal;
   String tax;
   String grandTotal;
-  int isFreeDelivery;
-  int isOrderSuccessful;
-  int isOrderCompleted;
+  int? isFreeDelivery;
+  int? isOrderSuccessful;
+  int? isOrderCompleted;
   String? paymentMethod;
-  int paymentStatus;
+  int? paymentStatus;
   int orderStatus;
   String txn;
   dynamic storeId;
@@ -202,7 +202,7 @@ class OrderDetail {
     required this.orderId,
     required this.productId,
     required this.productName,
-     this.image,
+    this.image,
     this.size,
     this.color,
     required this.price,

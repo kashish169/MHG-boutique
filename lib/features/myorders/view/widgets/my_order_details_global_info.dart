@@ -27,7 +27,7 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Visibility(
-                    visible: double.parse(model.heartsDiscount) != 0,
+                    visible: double.parse(model.heartsDiscount ?? '0') != 0,
                     child: FittedBox(
                       child: Text(
                         'Hearts Discount',
@@ -41,7 +41,7 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
                     ),
                   ),
                   Visibility(
-                    visible: double.parse(model.couponAmount) != 0,
+                    visible: double.parse(model.couponAmount ?? '0') != 0,
                     child: FittedBox(
                       child: Text(
                         'Coupon Amount',
@@ -116,7 +116,7 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Visibility(
-                    visible: double.parse(model.heartsDiscount) != 0,
+                    visible: double.parse(model.heartsDiscount ?? '0') != 0,
                     child: Text(
                       "${profileController.currnecy.value} ${model.heartsDiscount}",
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
@@ -127,7 +127,7 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
                     ),
                   ),
                   Visibility(
-                      visible: double.parse(model.couponAmount) != 0,
+                      visible: double.parse(model.couponAmount ?? '0') != 0,
                       child: Text(
                         "${profileController.currnecy.value} ${model.couponAmount}",
                         style:
@@ -163,12 +163,11 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
                     visible: double.parse(model.deliveryCharge) != 0,
                     child: Text(
                       "${profileController.currnecy.value} ${model.deliveryCharge}",
-                      style:
-                          Theme.of(context).textTheme.displaySmall?.copyWith(
-                                height: 1.4,
-                                color: AppColors.mediumLabel,
-                                fontSize: 15,
-                              ),
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            height: 1.4,
+                            color: AppColors.mediumLabel,
+                            fontSize: 15,
+                          ),
                     ),
                   ),
                   Visibility(
