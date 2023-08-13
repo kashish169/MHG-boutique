@@ -51,6 +51,7 @@ class ProductModel {
   DateTime updatedAt;
   int inCart;
   int cartQty;
+  int? isGiveAway;
   int inWishlist;
   String? primaryImageLink;
   String? image2Link;
@@ -75,6 +76,7 @@ class ProductModel {
     this.categoryId,
     this.storeId,
     this.brandId,
+    required this.isGiveAway,
     required this.enProductName,
     this.frProductName,
     required this.enProductSlug,
@@ -129,7 +131,8 @@ class ProductModel {
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
-    variants: List<Variant>.from(json["variants"].map((x) => Variant.fromJson(x))),
+        variants: List<Variant>.from(
+            json["variants"].map((x) => Variant.fromJson(x))),
         id: json["id"],
         averageRate: json["avarage_rate"] != null
             ? json["avarage_rate"].toString()
@@ -178,9 +181,10 @@ class ProductModel {
         voucher: json["Voucher"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        inCart: json["in_cart"]??0,
-        cartQty: json["cart_qty"]??0,
+        inCart: json["in_cart"] ?? 0,
+        cartQty: json["cart_qty"] ?? 0,
         inWishlist: json["in_wishlist"],
+        isGiveAway: json['is_giveaway_product'],
         primaryImageLink: json["primary_image_link"],
         image2Link: json["image2_link"],
         image3Link: json["image3_link"],

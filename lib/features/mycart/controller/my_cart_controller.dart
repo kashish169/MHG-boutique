@@ -10,6 +10,7 @@ import 'package:mhg/features/mycart/repository/my_cart_repo.dart';
 import 'package:mhg/features/mycart/repository/my_cart_repo_impl.dart';
 import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
+import '../../checkout/views/pages/checkout_page.dart';
 import '../models/cart_model.dart';
 
 class MyCartController extends GetxController {
@@ -27,7 +28,7 @@ class MyCartController extends GetxController {
   RxDouble discount = 0.0.obs;
   RxDouble tax = 0.0.obs;
   RxDouble subTotal = 0.0.obs;
-
+  RxBool isGiveAway = false.obs;
   Future<void> getCart() async {
     try {
       if (cartItemsList.isEmpty) isLoading(true);
@@ -52,6 +53,7 @@ class MyCartController extends GetxController {
             var json = r.object["data"]["cart_items"];
             cartItemsList.value =
                 List<CartModel>.from(json.map((x) => CartModel.fromJson(x)));
+            checkIfThereGiveAway();
             // getTotalCartPrice();
             // getDiscount();
             // getSubTotalPrice();
@@ -235,6 +237,38 @@ class MyCartController extends GetxController {
       }
     }
     debugPrint("TOTAL subTotal PRICE : $subTotal");
+  }
+
+  checkIfThereGiveAway() {
+    if (cartItemsList
+            .indexWhere((cartModel) => cartModel.options.isGiveAway == 1) !=
+        -1) {
+      isGiveAway.value = true;
+      log('There is Give away item hide cod (giveAway Value is)$isGiveAway');
+    } else {
+      isGiveAway.value = false;
+      log("There is no Give away item don't hide cod (giveAway Value is)$isGiveAway");
+    }
+  }
+
+  checkForGiveAwayItems() {
+    CheckoutController checkoutController = Get.find();
+    if (cartItemsList
+            .indexWhere((cartModel) => cartModel.options.isGiveAway == 1) !=
+        -1) {
+      checkoutController.isGiveAway = true;
+      log('There is Give away item hide cod');
+
+      Get.toNamed(
+        CheckoutPage.routeName,
+      );
+      checkoutController.getPaymentMethods();
+    } else {
+      checkoutController.isGiveAway = false;
+      log("There is no Give away item don't hide cod");
+      Get.toNamed(CheckoutPage.routeName);
+      checkoutController.getPaymentMethods();
+    }
   }
 
   @override
