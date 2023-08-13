@@ -67,6 +67,7 @@ class OptionsModel {
   String brand;
   String enName;
   String arName;
+  int isGiveAway;
 
   OptionsModel({
     required this.variantId,
@@ -83,22 +84,23 @@ class OptionsModel {
     required this.brand,
     required this.arName,
     required this.enName,
+    required this.isGiveAway,
   });
 
   factory OptionsModel.fromJson(Map<String, dynamic> json) => OptionsModel(
-        size: json['size'],
-        color: json['color'],
-        image: json['image'],
-        imageLink: json['image_link'],
-        discountPrice: json['discount_price'].toString(),
-        itemTag: json['item_tag'],
-        discountParcent: json['discount_parcent'].toString(),
-        voucher: json['voucher'],
-        inCart: json['in_cart'],
-        cartQuantity: json['cart_qty'],
-        brand: json['brand_name'],
-        enName: json['en_name'],
-        arName: json['ar_name'],
-        variantId: json["variant_id"],
-      );
+      size: json['size'],
+      color: json['color'],
+      image: json['image'],
+      imageLink: json['image_link'],
+      discountPrice: json['discount_price'].toString(),
+      itemTag: json['item_tag'],
+      discountParcent: json['discount_parcent'].toString(),
+      voucher: json['voucher'],
+      inCart: json['in_cart'],
+      cartQuantity: json['cart_qty'],
+      brand: json['brand_name'],
+      enName: json['en_name'],
+      arName: json['ar_name'],
+      variantId: json["variant_id"],
+      isGiveAway: json['is_giveaway_item']);
 }

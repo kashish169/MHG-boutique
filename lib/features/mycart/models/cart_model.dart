@@ -20,7 +20,6 @@ class CartModel {
     this.subtotal,
     this.discount,
     required this.rowId,
-
     required this.id,
     required this.qty,
     required this.name,
@@ -34,7 +33,6 @@ class CartModel {
   });
 
   factory CartModel.fromJson(Map<String, dynamic> json) => CartModel(
-
         tax: json["tax"],
         subtotal: json["subtotal"],
         discount: json["discount"],
@@ -62,6 +60,7 @@ class Options {
   String? itemTag;
   dynamic discountParcent;
   String? voucher;
+  int isGiveAway;
 
   Options({
     required this.variantId,
@@ -75,19 +74,20 @@ class Options {
     this.itemTag,
     this.discountParcent,
     this.voucher,
+    required this.isGiveAway,
   });
 
   factory Options.fromJson(Map<String, dynamic> json) => Options(
-    variantQuantity: json['variant_quantity'],
-    variantId: json["variant_id"],
-        brandName: json["brand_name"],
-        size: json["size"],
-        color: json["color"],
-        image: json["image"],
-        imageLink: json["image_link"],
-        discountPrice: json["discount_price"].toString(),
-        itemTag: json["item_tag"],
-        discountParcent: json["discount_parcent"].toString(),
-        voucher: json["voucher"],
-      );
+      variantQuantity: json['variant_quantity'],
+      variantId: json["variant_id"],
+      brandName: json["brand_name"],
+      size: json["size"],
+      color: json["color"],
+      image: json["image"],
+      imageLink: json["image_link"],
+      discountPrice: json["discount_price"].toString(),
+      itemTag: json["item_tag"],
+      discountParcent: json["discount_parcent"].toString(),
+      voucher: json["voucher"],
+      isGiveAway: json['is_giveaway_item']);
 }

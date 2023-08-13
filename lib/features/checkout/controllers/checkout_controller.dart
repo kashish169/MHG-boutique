@@ -84,6 +84,7 @@ class CheckoutController extends GetxController {
   late String responseOredrNumber;
   final userSelectedCardModel = Rxn<UserPaymentMethodsModel>();
   final formKey = GlobalKey<FormState>();
+  bool? isGiveAway;
 
   Future<void> getUserPaymentMethods() async {
     try {
@@ -150,6 +151,10 @@ class CheckoutController extends GetxController {
             paymentMethodsList = List<PaymentMethodsModel>.from(
                 json["payment_methods"]
                     .map((x) => PaymentMethodsModel.fromJson(x)));
+            if (isGiveAway == true) {
+              paymentMethodsList
+                  .removeWhere((element) => element.name == 'COD');
+            }
             if (App.token.isNotEmpty) {
               GetPlatform.isIOS
                   ? paymentMethodsList.add(PaymentMethodsModel(

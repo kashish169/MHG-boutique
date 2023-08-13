@@ -41,7 +41,10 @@ class BottomCartWidget extends StatelessWidget {
                 ),
               ),
               // const SizedBox(height: 5,),
-              GetX<CheckoutController>(builder: (checkoutController) {
+              // GetX<CheckoutController>(builder: (checkoutController) {
+
+              // }),
+              Obx(() {
                 if (checkoutController.isLoadingRedeem.isTrue) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 38),
@@ -92,7 +95,9 @@ class BottomCartWidget extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'Shipping (3-5 Business Days)',
+                                  controller.isGiveAway.value
+                                      ? 'Shipping (7-10 Business Days)'
+                                      : 'Shipping (3-5 Business Days)',
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -298,12 +303,12 @@ class BottomCartWidget extends StatelessWidget {
                     ),
                   ],
                 );
-              }),
+              })
             ],
           ),
         ),
         const SizedBox(height: 15),
-        const CheckOutButton(),
+        CheckOutButton(),
         const SizedBox(height: 15),
       ],
     );
