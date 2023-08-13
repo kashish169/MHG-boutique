@@ -92,14 +92,12 @@ class MyCartController extends GetxController {
           log("INCREASE CART RESPONSE ERROR ${l.message}");
           result = false;
         },
-        (r) {
+        (r) async {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("INCREASE CART RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
-            Get.find<CheckoutController>().orderPrice();
             result = true;
-
             log("CART ITEM QUANTITY INCREASED");
           } else {
             result = false;
@@ -137,14 +135,13 @@ class MyCartController extends GetxController {
           log("DECREASE CART RESPONSE ERROR ${l.message}");
           result = false;
         },
-        (r) {
+        (r) async {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("DECREASE CART RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
             log("CART ITEM QUANTITY DECREASED");
             result = true;
-            Get.find<CheckoutController>().orderPrice();
           } else {
             AppToasts.errorToast(message);
             result = false;

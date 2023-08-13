@@ -69,7 +69,7 @@ class _CartCounterWidgetState extends State<CartCounterWidget> {
           // controller.getDiscount();
 
           await Get.find<CheckoutController>().orderPrice();
-          await Get.find<MyCartController>().getCart();
+          // await Get.find<MyCartController>().getCart();
         },
         onDecrease: (value) async {
           widget.model.isLoadingQuantity = true;
@@ -109,7 +109,7 @@ class _CartCounterWidgetState extends State<CartCounterWidget> {
           // controller.getSubTotalPrice();
           // controller.getDiscount();
           await Get.find<CheckoutController>().orderPrice();
-          await Get.find<MyCartController>().getCart();
+          // await Get.find<MyCartController>().getCart();
         },
         loading: widget.model.isLoadingQuantity,
       ),
