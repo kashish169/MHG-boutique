@@ -1,5 +1,3 @@
-
-
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mhg/core/helper/app_helper.dart';
@@ -16,12 +14,14 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.21649080341404, 55.252997325293606));
-       showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'MERCATO CENTRE', "43491326");
       },
       markerId: const MarkerId('MERCATO CENTRE'),
       infoWindow: InfoWindow(
           snippet: 'Tap here to call us 43491326',
-          title: 'MERCATO CENTRE ',
+          title: 'MERCATO CENTRE',
           onTap: () {
             AppHelper.launchURL("43491326", 'tel');
           })),
@@ -30,7 +30,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.23469681252193, 55.43633680995242));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'ARABIAN CENTER', '048400150' , second_tel: '0564705559');
       },
       markerId: const MarkerId('ARABIAN CENTER'),
       infoWindow: InfoWindow(
@@ -47,7 +49,10 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.23094616153552, 55.31795592973938));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,'HIND AL OUD' , ]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+          'HIND AL OUD',
+        ], 'WAFI', "432443347");
       },
       markerId: const MarkerId('WAFI'),
       infoWindow: InfoWindow(
@@ -61,7 +66,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.11815554905989, 55.20059726762036));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'Mall of Emirates inside Jashanmal', "");
       },
       markerId: const MarkerId('Mall of Emirates inside Jashanmal'),
       infoWindow: InfoWindow(
@@ -76,7 +83,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.222087361486135, 55.35278356762305));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'DUBAI FESTIVAL CITY (KIOSK)', "569982468");
       },
       infoWindow: InfoWindow(
           snippet: 'Tap here to call us 569982468',
@@ -89,7 +98,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.23717980635305, 55.42137396947124));
-              showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'ETTIHAD MALL', "42362664" , second_tel: '0503538507');
       },
       markerId: const MarkerId('ETTIHAD MALL'),
       infoWindow: InfoWindow(
@@ -106,7 +117,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.197272942537467, 55.279776846179224));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,'HIND AL OUD' , 'KHALTAT']);
+        showStoresBottomSheet(['ANFASIC DOKHOON', 'HIND AL OUD', 'KHALTAT'],
+            'DUBAI MALL', "42362664" , second_tel: '0503538508');
       },
       markerId: const MarkerId('DUBAI MALL'),
       infoWindow: InfoWindow(
@@ -123,7 +135,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.216406335628562, 55.40783781179989));
-             showStoresBottomSheet(['ANFASIC DOKHOON' ,'HIND AL OUD' , 'KHALTAT']);
+        showStoresBottomSheet(['ANFASIC DOKHOON', 'HIND AL OUD', 'KHALTAT'],
+            'MIRDIF CITY CENTRE', '42840150' , second_tel: '0544412112');
       },
       markerId: const MarkerId('MIRDIF CITY CENTRE'),
       infoWindow: InfoWindow(
@@ -140,7 +153,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.197272942537467, 55.279776846179224));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,'HIND AL OUD' ]);
+        showStoresBottomSheet(['ANFASIC DOKHOON', 'HIND AL OUD'],
+            'DUBAI MALL FASHION AVENUE', '42291385');
       },
       markerId: const MarkerId('DUBAI MALL FASHION AVENUE'),
       infoWindow: InfoWindow(
@@ -155,7 +169,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.31799391829856, 55.45658600610649));
-              showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'ZAHIA CITY CENTER', '522313501');
       },
       markerId: const MarkerId('ZAHIA CITY CENTER'),
       infoWindow: InfoWindow(
@@ -169,7 +185,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.399523772950023, 55.47924056392983));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'AJMAN City Centre', '67318561');
       },
       markerId: const MarkerId('AJMAN City Centre'),
       infoWindow: InfoWindow(
@@ -184,7 +202,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.7836440415882, 55.96565531181346));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,'HIND AL OUD' , 'KHALTAT']);
+        showStoresBottomSheet(['ANFASIC DOKHOON', 'HIND AL OUD', 'KHALTAT'],
+            'MANAR MALL', '72283598');
       },
       markerId: const MarkerId('MANAR MALL'),
       infoWindow: InfoWindow(
@@ -199,7 +218,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.125401747610645, 56.30228080018028));
-            showStoresBottomSheet(['ANFASIC DOKHOON'  , 'KHALTAT']);
+        showStoresBottomSheet(['ANFASIC DOKHOON', 'KHALTAT'],
+            'FUJAIRAH CITY CENTRE', '569982093');
       },
       markerId: const MarkerId('FUJAIRAH CITY CENTRE'),
       infoWindow: InfoWindow(
@@ -215,7 +235,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(24.46994114314047, 54.37252005961975));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'AL-WAHDA MALL', '24439934');
       },
       markerId: const MarkerId('AL-WAHDA MALL'),
       infoWindow: InfoWindow(
@@ -229,7 +251,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(24.434226929256592, 54.41369764061761));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'MUSHRIF MALL', '26675278');
       },
       markerId: const MarkerId('MUSHRIF MALL'),
       infoWindow: InfoWindow(
@@ -243,7 +267,10 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(224.333162229763506, 54.52392569643805));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,'HIND AL OUD' , 'KHALTAT' , 'HOB']);
+        showStoresBottomSheet(
+            ['ANFASIC DOKHOON', 'HIND AL OUD', 'KHALTAT', 'HOB'],
+            'DALMA MALL',
+            '569982493');
       },
       markerId: const MarkerId('DALMA MALL'),
       infoWindow: InfoWindow(
@@ -257,7 +284,10 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(24.488878160325257, 54.6087541694542));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,'HIND AL OUD' , 'KHALTAT' , 'HOB']);
+        showStoresBottomSheet(
+            ['ANFASIC DOKHOON', 'HIND AL OUD', 'KHALTAT', 'HOB'],
+            'YAS MALL',
+            '569982101');
       },
       markerId: const MarkerId('YAS MALL'),
       infoWindow: InfoWindow(
@@ -271,7 +301,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(24.311714674867822, 54.622067111779394));
-            showStoresBottomSheet(['ANFASIC DOKHOON' , 'KHALTAT']);
+        showStoresBottomSheet(
+            ['ANFASIC DOKHOON', 'KHALTAT'], 'BAWABAT AL SHARQ', '25821167' , second_tel: '0505001503');
       },
       markerId: const MarkerId('BAWABAT AL SHARQ'),
       infoWindow: InfoWindow(
@@ -288,7 +319,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(24.52354772214621, 54.6711715117841));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'DEER FIELDS', '25510093');
       },
       markerId: const MarkerId('DEER FIELDS '),
       infoWindow: InfoWindow(
@@ -302,7 +335,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(24.501359954502632, 54.38975604061909));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'ANF Galleria Mall', '');
       },
       markerId: const MarkerId('ANF Galleria Mall'),
       infoWindow: InfoWindow(
@@ -318,7 +353,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(24.221757557756252, 55.78173894102669));
-            showStoresBottomSheet(['ANFASIC DOKHOON' , 'KHALTAT']);
+        showStoresBottomSheet(
+            ['ANFASIC DOKHOON', 'KHALTAT'], 'AL-AIN MALL', '');
       },
       markerId: const MarkerId('AL-AIN MALL'),
       infoWindow: InfoWindow(
@@ -332,7 +368,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(24.16020957978035, 55.807186682940504));
-            showStoresBottomSheet(['ANFASIC DOKHOON' , 'KHALTAT']);
+        showStoresBottomSheet(
+            ['ANFASIC DOKHOON', 'KHALTAT'], 'BAWADI MALL', '37659750');
       },
       markerId: const MarkerId('BAWADI MALL'),
       infoWindow: InfoWindow(
@@ -346,7 +383,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(24.38697815093264, 54.722653640616514));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'ANF MAKANI SHAMKHA', '');
       },
       markerId: const MarkerId('ANF MAKANI SHAMKHA'),
       infoWindow: InfoWindow(
@@ -360,7 +399,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(24.2433855569398, 55.72660154061333));
-            showStoresBottomSheet(['ANFASIC DOKHOON'  , 'KHALTAT']);
+        showStoresBottomSheet(
+            ['ANFASIC DOKHOON', 'KHALTAT'], 'Al JIMI Mall', '');
       },
       markerId: const MarkerId('Al JIMI Mall'),
       infoWindow: InfoWindow(
@@ -374,7 +414,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(24.109838550021905, 55.70222514061025));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'MAKANI ZAKHER', '37370194');
       },
       markerId: const MarkerId('MAKANI ZAKHER '),
       infoWindow: InfoWindow(
@@ -391,7 +433,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(24.692565338871113, 46.669618727129645));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'PANORAMA MALL', '966114826648');
       },
       infoWindow: InfoWindow(
           snippet: 'Tap here to call us 966114826648',
@@ -404,7 +448,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(24.781466307203143, 46.730161221354486));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'Grenada Mall', '');
       },
       markerId: const MarkerId('Grenada Mall'),
       infoWindow: InfoWindow(
@@ -418,7 +464,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(21.52747100190562, 39.17735228288589));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'HAIFA MALL', '966122845695');
       },
       markerId: const MarkerId('HAIFA MALL'),
       infoWindow: InfoWindow(
@@ -432,7 +480,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(26.305893995475664, 50.169335606284555));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'DAHRAN MALL', '966138682531');
       },
       markerId: const MarkerId('DAHRAN MALL'),
       infoWindow: InfoWindow(
@@ -446,7 +496,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(21.59338731135011, 39.228228225216164));
-            showStoresBottomSheet(['ANFASIC DOKHOON'  , 'KHALTAT']);
+        showStoresBottomSheet(
+            ['ANFASIC DOKHOON', 'KHALTAT'], 'YASMEEN MALL', '966126285512');
       },
       markerId: const MarkerId('YASMEEN MALL'),
       infoWindow: InfoWindow(
@@ -462,7 +513,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(17.02264045420035, 54.06594383863183));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'Gardens Mall - Salalah', '');
       },
       markerId: const MarkerId('Gardens Mall - Salalah'),
       infoWindow: InfoWindow(
@@ -476,7 +529,9 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(23.599758494051034, 58.24883282525738));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,]);
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+        ], 'City center Al Seeb / Muscat city center', '');
       },
       markerId: const MarkerId('City center Al Seeb / Muscat city center'),
       infoWindow: InfoWindow(
@@ -490,7 +545,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(23.590332214635772, 58.41091943399064));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,'HIND AL OUD' , 'KHALTAT']);
+        showStoresBottomSheet(
+            ['ANFASIC DOKHOON', 'HIND AL OUD', 'KHALTAT'], 'Avenues mall', '');
       },
       markerId: const MarkerId('Avenues mall'),
       infoWindow: InfoWindow(
@@ -504,7 +560,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(23.571217110900218, 58.405826310534856));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,'HIND AL OUD' , 'KHALTAT']);
+        showStoresBottomSheet(['ANFASIC DOKHOON', 'HIND AL OUD', 'KHALTAT'],
+            'Mall Of Oman', '966126285512');
       },
       markerId: const MarkerId('Mall Of Oman'),
       infoWindow: InfoWindow(
@@ -520,7 +577,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(29.175041475378784, 48.098465611900124));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,'HIND AL OUD' , 'KHALTAT']);
+        showStoresBottomSheet(['ANFASIC DOKHOON', 'HIND AL OUD', 'KHALTAT'],
+            'THE GATE', '96565737449');
       },
       markerId: const MarkerId('THE GATE'),
       infoWindow: InfoWindow(
@@ -534,7 +592,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(29.3031591729988, 47.937034893115246));
-            showStoresBottomSheet(['ANFASIC DOKHOON'  , 'KHALTAT']);
+        showStoresBottomSheet(
+            ['ANFASIC DOKHOON', 'KHALTAT'], 'VVV Avenues Mall', '96522283943');
       },
       markerId: const MarkerId('VVV Avenues Mall'),
       infoWindow: InfoWindow(
@@ -548,7 +607,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(29.30401166757168, 47.94280937802945));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ,'HIND AL OUD' , 'KHALTAT']);
+        showStoresBottomSheet(['ANFASIC DOKHOON', 'HIND AL OUD', 'KHALTAT'],
+            'Debenhams Avenues Mall', '96522283008');
       },
       markerId: const MarkerId('Debenhams Avenues Mall'),
       infoWindow: InfoWindow(
@@ -562,7 +622,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(29.30300531140275, 47.93576869656182));
-            showStoresBottomSheet(['ANFASIC DOKHOON' ]);
+        showStoresBottomSheet(
+            ['ANFASIC DOKHOON'], 'Harvey Nichols Avenues Mall', '96522283008');
       },
       markerId: const MarkerId('Harvey Nichols Avenues Mall'),
       infoWindow: InfoWindow(
@@ -577,7 +638,8 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.33604081367977, 51.46083140610953));
-             showStoresBottomSheet(['ANFASIC DOKHOON' ,'HIND AL OUD' , 'KHALTAT']);
+        showStoresBottomSheet(['ANFASIC DOKHOON', 'HIND AL OUD', 'KHALTAT'],
+            'ANF Gulf Mall', '97466783270');
       },
       markerId: const MarkerId('ANF Gulf Mall'),
       infoWindow: InfoWindow(
