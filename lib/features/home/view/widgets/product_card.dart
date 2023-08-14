@@ -9,7 +9,6 @@ import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/net_image.dart';
 import '../../../../core/languages/languages.dart';
 import '../../../../widgets/heart_widget.dart';
-import '../../../../widgets/rating_widget.dart';
 import '../../models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
@@ -40,7 +39,7 @@ class ProductCard extends StatelessWidget {
       onTap: () async {
         if (isDetails) {
           final controller = Get.find<ProductDetailsController>();
-          
+
           controller.productId = model!.id;
           controller.productName.value = model!.enProductName;
           controller.getProductDetails();
@@ -134,16 +133,48 @@ class ProductCard extends StatelessWidget {
                             child: Expanded(
                               child: FittedBox(
                                 fit: BoxFit.scaleDown,
-                                child: Text(
-                                  '${profileController.currnecy.value} ${isWishList == false ? model!.price : wishListModel!.price}',
-                                  textAlign: TextAlign.start,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall
-                                      ?.copyWith(
-                                        decoration: TextDecoration.lineThrough,
-                                      ),
-                                ),
+                                child: model != null
+                                    ? Text(
+                                        model!.isGiveAway == 1
+                                            ? "From "
+                                                '${profileController.currnecy.value} ${isWishList == true ? wishListModel!.price : model!.price}'
+                                            : '${profileController.currnecy.value} ${isWishList == true ? wishListModel!.price : model!.price}',
+                                        textAlign: TextAlign.start,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displaySmall
+                                            ?.copyWith(
+                                              decoration:
+                                                  TextDecoration.lineThrough,
+                                            ),
+                                      )
+                                    : wishListModel != null
+                                        ? Text(
+                                            (wishListModel!
+                                                        .options.isGiveAway ==
+                                                    1)
+                                                ? "From "
+                                                    '${profileController.currnecy.value} ${isWishList == true ? wishListModel!.options.discountPrice : model!.discountPrice}'
+                                                : '${profileController.currnecy.value} ${isWishList == true ? wishListModel!.options.discountPrice : model!.discountPrice}',
+                                            textAlign: TextAlign.start,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .displaySmall
+                                                ?.copyWith(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 13),
+                                          )
+                                        : Text(
+                                            '${profileController.currnecy.value} ${isWishList == true ? wishListModel!.price : model!.price}',
+                                            textAlign: TextAlign.start,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .displaySmall
+                                                ?.copyWith(
+                                                  decoration: TextDecoration
+                                                      .lineThrough,
+                                                ),
+                                          ),
                               ),
                             ),
                           ),
@@ -163,16 +194,48 @@ class ProductCard extends StatelessWidget {
                                   0
                               ? FittedBox(
                                   fit: BoxFit.scaleDown,
-                                  child: Text(
-                                    '${profileController.currnecy.value} ${isWishList == false ? model!.discountPrice : wishListModel!.options.discountPrice}',
-                                    textAlign: TextAlign.start,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displaySmall
-                                        ?.copyWith(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 13),
-                                  ),
+                                  child: model != null
+                                      ? Text(
+                                          (model!.isGiveAway == 1)
+                                              ? "From "
+                                                  '${profileController.currnecy.value} ${isWishList == true ? wishListModel!.options.discountPrice : model!.discountPrice}'
+                                              : '${profileController.currnecy.value} ${isWishList == true ? wishListModel!.options.discountPrice : model!.discountPrice}',
+                                          textAlign: TextAlign.start,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .displaySmall
+                                              ?.copyWith(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 13),
+                                        )
+                                      : wishListModel != null
+                                          ? Text(
+                                              (wishListModel!
+                                                          .options.isGiveAway ==
+                                                      1)
+                                                  ? "From "
+                                                      '${profileController.currnecy.value} ${isWishList == true ? wishListModel!.options.discountPrice : model!.discountPrice}'
+                                                  : '${profileController.currnecy.value} ${isWishList == true ? wishListModel!.options.discountPrice : model!.discountPrice}',
+                                              textAlign: TextAlign.start,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .displaySmall
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 13),
+                                            )
+                                          : Text(
+                                              '${profileController.currnecy.value} ${isWishList == true ? wishListModel!.options.discountPrice : model!.discountPrice}',
+                                              textAlign: TextAlign.start,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .displaySmall
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 13),
+                                            ),
                                 )
                               : Expanded(
                                   child: FittedBox(

@@ -26,8 +26,8 @@ class SuccessOrderModel {
   int isOrderSuccessful;
   int isOrderCompleted;
   String paymentMethod;
-  int paymentStatus;
-  int orderStatus;
+  int? paymentStatus;
+  int? orderStatus;
   dynamic txn;
   dynamic appId;
   dynamic cartToken;
@@ -38,8 +38,8 @@ class SuccessOrderModel {
   dynamic name;
   dynamic number;
   dynamic orderStatusUrl;
-  int cancelRequested;
-  int returnRequested;
+  int? cancelRequested;
+  int? returnRequested;
   dynamic cancelReason;
   dynamic returnReason;
   dynamic storeId;

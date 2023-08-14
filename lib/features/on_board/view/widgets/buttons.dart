@@ -56,11 +56,13 @@ class OnBoardButtons extends StatelessWidget {
                   : () {
                       Api.authorizedheaders = {
                         'Content-Type': 'application/json',
-                        'Cookie': App.sid
+                        'Cookie': App.sid,
+                        'Country-Id': "${App.countryId}",
                       };
                       Api.headers = {
                         'Content-Type': 'application/json',
-                        'Cookie': App.sid
+                        'Cookie': App.sid,
+                        'Country-Id': "${App.countryId}",
                       };
                       Get.offAllNamed(
                         MainWrapper.routeName,

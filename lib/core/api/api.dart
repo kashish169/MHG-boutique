@@ -10,59 +10,64 @@ class Api {
   static Map<String, String> authorizedheaders = {
     'Content-Type': 'application/json',
     'Authorization': "Bearer ${App.token}",
+    'Country-Id': "${App.countryId}",
   };
-  static String countryLink = "/api/v1/countries/index";
-  static String signUp = "/api/v1/users/auth/register";
+
+  // static String apiRoot = "/api/v1";//VERSION 1
+  static String apiRoot = "/api/v2"; //VERSION 2
+
+  static String countryLink = "$apiRoot/countries/index";
+  static String signUp = "$apiRoot/users/auth/register";
   static String forgetPassword =
-      "/api/v1/users/auth/reset-password-request-new";
-  static String resetPassword = "/api/v1/users/auth/reset-password";
-  static String otp = "/api/v1/users/auth/send-otp";
-  static String verifyOtp = "/api/v1/users/auth/verify-reset-password-otp";
-  static String loginEmail = "/api/v1/users/auth/login";
-  static String login = "/api/v1/users/auth/login-with-phone";
-  static String profile = "/api/v1/users/profile";
-  static String privacyPolicyLink = "/api/v1/privacy-policy";
-  static String termsAndConidtionsLink = "/api/v1/terms-conditions";
-  static String aboutUsLink = "/api/v1/about-us";
-  static String notifications = "/api/v1/users/notifications";
-  static String updateProfile = "/api/v1/users/update";
-  static String deleteAccount = "/api/v1/users/delete-account";
-  static String cartRoute = "/api/v1/cart";
+      "$apiRoot/users/auth/reset-password-request-new";
+  static String resetPassword = "$apiRoot/users/auth/reset-password";
+  static String otp = "$apiRoot/users/auth/send-otp";
+  static String verifyOtp = "$apiRoot/users/auth/verify-reset-password-otp";
+  static String loginEmail = "$apiRoot/users/auth/login";
+  static String login = "$apiRoot/users/auth/login-with-phone";
+  static String profile = "$apiRoot/users/profile";
+  static String privacyPolicyLink = "$apiRoot/privacy-policy";
+  static String termsAndConidtionsLink = "$apiRoot/terms-conditions";
+  static String aboutUsLink = "$apiRoot/about-us";
+  static String notifications = "$apiRoot/users/notifications";
+  static String updateProfile = "$apiRoot/users/update";
+  static String deleteAccount = "$apiRoot/users/delete-account";
+  static String cartRoute = "$apiRoot/cart";
   static String cartItems = "$cartRoute/items";
   static String deleteCartItem = "$cartRoute/remove-item";
   static String increaseCartItem = "$cartRoute/increase-item";
   static String decreaseCartItem = "$cartRoute/decrease-item";
   static String addCartItem = "$cartRoute/add-item";
-  static String addToWishList = "/api/v1/wishlist/add-item";
-  static String removeFromWishList = "/api/v1/wishlist/remove-item";
-  static String getWishListDataLink = "/api/v1/wishlist/items";
-  static String home = "/api/v1/home";
-  static String searchLink = "/api/v1/search";
-  static String filterProductLink = "/api/v1/product/filter";
-  static String userPaymentMethods = "/api/v1/payment/tap/payment-methods";
-  static String productRoute = "/api/v1/product";
+  static String addToWishList = "$apiRoot/wishlist/add-item";
+  static String removeFromWishList = "$apiRoot/wishlist/remove-item";
+  static String getWishListDataLink = "$apiRoot/wishlist/items";
+  static String home = "$apiRoot/home";
+  static String searchLink = "$apiRoot/search";
+  static String filterProductLink = "$apiRoot/product/filter";
+  static String userPaymentMethods = "$apiRoot/payment/tap/payment-methods";
+  static String productRoute = "$apiRoot/product";
   static String productDetails = "$productRoute/product-details";
   static String addReview = "$productRoute/add-review";
-  static String sendHearts = "/api/v1/users/send-hearts";
-  static String sendFeedback = "/api/v1/users/send-feedback";
-  static String storeCategories = "/api/v1/category/store";
-  static String menus = "/api/v1/category/menus";
-  static String filterProduct = "/api/v1/product/filter?store_id=1";
-  static String productTags = "/api/v1/product/product-tags";
-  static String productByCategory = "/api/v1/product/category?store_id=1";
-  static String getCountries = "/api/v1/countries/index";
-  static String addPaymentMethod = "/api/v1/payment/tap/new-method-link";
-  static String removePaymentMethod = "/api/v1/payment/tap/remove-method";
-  static String setDefaultPaymentMethod = '/api/v1/payment/tap/set-default';
-  static String orderPrice = '/api/v1/order/order-price';
-  static String categoriesByBrand = "/api/v1/category/brand";
-  static String createOrder = "/api/v1/order/create";
-  static String paymentMethods = "/api/v1/order/payment-methods";
-  static String myOrders = "/api/v1/users/orders";
-  static String cancelOrder = "/api/v1/order/cancel-order";
-  static String returnOrder = "/api/v1/order/return-order";
-  static String logOut = "/api/v1/users/auth/logout";
-  static String successOrderLink = "/api/v1/order/track-order";
-  static String autoComplete = "/api/v1/product/auto-complete";
-  static String destroyCart = "/api/v1/cart/destroy-cart";
+  static String sendHearts = "$apiRoot/users/send-hearts";
+  static String sendFeedback = "$apiRoot/users/send-feedback";
+  static String storeCategories = "$apiRoot/category/store";
+  static String menus = "$apiRoot/category/menus";
+  static String filterProduct = "$apiRoot/product/filter";
+  static String productTags = "$apiRoot/product/product-tags";
+  static String productByCategory = "$apiRoot/product/category?store_id=1";
+  static String getCountries = "$apiRoot/countries/index";
+  static String addPaymentMethod = "$apiRoot/payment/tap/new-method-link";
+  static String removePaymentMethod = "$apiRoot/payment/tap/remove-method";
+  static String setDefaultPaymentMethod = '$apiRoot/payment/tap/set-default';
+  static String orderPrice = '$apiRoot/order/order-price';
+  static String categoriesByBrand = "$apiRoot/category/brand";
+  static String createOrder = "$apiRoot/order/create";
+  static String paymentMethods = "$apiRoot/order/payment-methods";
+  static String myOrders = "$apiRoot/users/orders";
+  static String cancelOrder = "$apiRoot/order/cancel-order";
+  static String returnOrder = "$apiRoot/order/return-order";
+  static String logOut = "$apiRoot/users/auth/logout";
+  static String successOrderLink = "$apiRoot/order/track-order";
+  static String autoComplete = "$apiRoot/product/auto-complete";
+  static String destroyCart = "$apiRoot/cart/destroy-cart";
 }
