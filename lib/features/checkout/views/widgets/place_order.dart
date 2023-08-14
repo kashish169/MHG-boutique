@@ -6,6 +6,7 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/checkout/views/widgets/place_order_button.dart';
+import 'package:mhg/features/personal_infromation/model/personal_model.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import 'package:mhg/widgets/retry_button.dart';
@@ -92,7 +93,9 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         children: [
                           Expanded(
                             child: Text(
-                              'Shipping (3-5 Business Days)',
+                              checkoutController.isGiveAway == true
+                                  ? 'Shipping (7-10 Business Days)'
+                                  : 'Shipping (3-5 Business Days)',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall
@@ -121,11 +124,14 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         ],
                       ),
                       Visibility(
-                        visible: checkoutController
-                            .orderPriceModal.data?.cashOnDeliveryFees ==
-                            0||checkoutController
-                            .orderPriceModal.data?.cashOnDeliveryFees==null||
-                            checkoutController.paymentMethodValue.value!='COD'
+                        visible: checkoutController.orderPriceModal.data
+                                        ?.cashOnDeliveryFees ==
+                                    0 ||
+                                checkoutController.orderPriceModal.data
+                                        ?.cashOnDeliveryFees ==
+                                    null ||
+                                checkoutController.paymentMethodValue.value !=
+                                    'COD'
                             ? false
                             : true,
                         child: Row(
@@ -137,23 +143,22 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                     .textTheme
                                     .displaySmall
                                     ?.copyWith(
-                                  height: 1.4,
-                                  fontSize: 14,
-                                  color: AppColors.label,
-                                ),
+                                      height: 1.4,
+                                      fontSize: 14,
+                                      color: AppColors.label,
+                                    ),
                               ),
                             ),
                             Text(
-
-                              '${profileController?.currnecy.value??'AED'} ${checkoutController.orderPriceModal.data?.cashOnDeliveryFees}',
+                              '${profileController?.currnecy.value ?? 'AED'} ${checkoutController.orderPriceModal.data?.cashOnDeliveryFees}',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall
                                   ?.copyWith(
-                                height: 1.4,
-                                color: AppColors.dBlack,
-                                fontSize: 14,
-                              ),
+                                    height: 1.4,
+                                    color: AppColors.dBlack,
+                                    fontSize: 14,
+                                  ),
                             ),
                           ],
                         ),
@@ -304,15 +309,17 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         ? AppColors.grey
                         : AppColors.secondary,
                     isLoading: checkoutController.isLoadingCreateOrder.value,
-                    onPress: checkoutController.isLoadingRedeem.isTrue
-                        ? () {}
-                        : () {
-                            if (App.token.isNotEmpty) {
-                              checkoutController.createOrder();
-                            } else {
-                              _onGuestOrder.call();
-                            }
-                          },
+                    onPress: checkoutController.paymentMethodValue.value == ''
+                        ? null
+                        : checkoutController.isLoadingRedeem.isTrue
+                            ? () {}
+                            : () {
+                                if (App.token.isNotEmpty) {
+                                  checkoutController.createOrder();
+                                } else {
+                                  _onGuestOrder.call();
+                                }
+                              },
                   )
                 : ApplePayButton(
                     onTap: checkoutController.isLoadingRedeem.isTrue
@@ -341,7 +348,7 @@ void _onGuestOrder() {
   }
   if (checkoutController.paymentMethodValue.value == "TAP") {
     if (checkoutController.userSelectedCardModel.value == null) {
-      AppToasts.errorToast("Choose payment method");
+      AppToasts.errorToast("Choose payment card");
       return;
     }
   }

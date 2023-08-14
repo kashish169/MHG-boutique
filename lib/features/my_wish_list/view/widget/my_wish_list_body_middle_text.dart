@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../constants/app_colors.dart';
+import '../../../../core/languages/languages.dart';
 import '../../../profile/controller/profile_controller.dart';
+import '../../model/wish_list_model.dart';
 import 'my_wish_list_body_header.dart';
 
 class BodyMiddleText extends StatelessWidget {
-  const BodyMiddleText(
-      {super.key,
-      required this.brand,
-      required this.price,
-      required this.name});
-  final String brand;
-  final String price;
-  final String name;
+  const BodyMiddleText({super.key, required this.model});
+  final WishListModel model;
+
   @override
   Widget build(BuildContext context) {
     final profileController = Get.find<ProfileController>();
@@ -33,7 +29,7 @@ class BodyMiddleText extends StatelessWidget {
                     .copyWith(fontSize: 10, color: AppColors.lightGray4),
               ),
               TextSpan(
-                text: " $brand",
+                text: " ${model.options.brand}",
                 style: Theme.of(context)
                     .textTheme
                     .displaySmall!
@@ -44,9 +40,13 @@ class BodyMiddleText extends StatelessWidget {
           const SizedBox(
             height: 9,
           ),
-          TopBodyHeader(title: name),
+          TopBodyHeader(
+            title: isAR() ? model.options.arName : model.options.enName,
+          ),
           Obx(() => Text(
-                "${profileController.currnecy.value} $price",
+                model.options.isGiveAway == 1
+                    ? "From ${profileController.currnecy.value} ${model.price}"
+                    : "${profileController.currnecy.value} ${model.price}",
                 style: Theme.of(context)
                     .textTheme
                     .displayMedium!

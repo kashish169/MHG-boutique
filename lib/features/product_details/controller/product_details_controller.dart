@@ -167,7 +167,7 @@ class ProductDetailsController extends GetxController {
             );
             Get.find<MyCartController>().getCart();
             Get.find<CheckoutController>().orderPrice();
-            update();
+            //update();
           } else {
             result = false;
             isErrorAdd(true);

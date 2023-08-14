@@ -9,7 +9,7 @@ class OrderModel {
   String? billingState;
   String? billingZipcode;
   String? billingCountry;
-  String shippingName;
+  String? shippingName;
   String? shippingEmail;
   String? shippingStreetAddress;
   String? shippingState;

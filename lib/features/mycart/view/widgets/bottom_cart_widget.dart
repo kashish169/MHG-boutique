@@ -41,10 +41,13 @@ class BottomCartWidget extends StatelessWidget {
                 ),
               ),
               // const SizedBox(height: 5,),
-              GetX<CheckoutController>(builder: (checkoutController) {
+              // GetX<CheckoutController>(builder: (checkoutController) {
+
+              // }),
+              Obx(() {
                 if (checkoutController.isLoadingRedeem.isTrue) {
                   return Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.symmetric(vertical: 38),
                     child: LoadingThreeBounce(
                       color: AppColors.primary,
                       size: 20,
@@ -92,7 +95,9 @@ class BottomCartWidget extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'Shipping (3-5 Business Days)',
+                                  controller.isGiveAway.value
+                                      ? 'Shipping (7-10 Business Days)'
+                                      : 'Shipping (3-5 Business Days)',
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -121,11 +126,15 @@ class BottomCartWidget extends StatelessWidget {
                             ],
                           ),
                           Visibility(
-                            visible: checkoutController
-                                .orderPriceModal.data?.cashOnDeliveryFees ==
-                                0||checkoutController
-                                .orderPriceModal.data?.cashOnDeliveryFees==null||
-                            checkoutController.paymentMethodValue.value!='COD'
+                            visible: checkoutController.orderPriceModal.data
+                                            ?.cashOnDeliveryFees ==
+                                        0 ||
+                                    checkoutController.orderPriceModal.data
+                                            ?.cashOnDeliveryFees ==
+                                        null ||
+                                    checkoutController
+                                            .paymentMethodValue.value !=
+                                        'COD'
                                 ? false
                                 : true,
                             child: Row(
@@ -137,10 +146,10 @@ class BottomCartWidget extends StatelessWidget {
                                         .textTheme
                                         .displaySmall
                                         ?.copyWith(
-                                      height: 1.4,
-                                      fontSize: 14,
-                                      color: AppColors.label,
-                                    ),
+                                          height: 1.4,
+                                          fontSize: 14,
+                                          color: AppColors.label,
+                                        ),
                                   ),
                                 ),
                                 Text(
@@ -149,10 +158,10 @@ class BottomCartWidget extends StatelessWidget {
                                       .textTheme
                                       .displaySmall
                                       ?.copyWith(
-                                    height: 1.4,
-                                    color: AppColors.dBlack,
-                                    fontSize: 14,
-                                  ),
+                                        height: 1.4,
+                                        color: AppColors.dBlack,
+                                        fontSize: 14,
+                                      ),
                                 ),
                               ],
                             ),
@@ -202,7 +211,8 @@ class BottomCartWidget extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    'Tax VAT 5% (Included)',
+                                    // 'Tax VAT 5% (Included)',
+                                    "5% VAT Included",
                                     style: Theme.of(context)
                                         .textTheme
                                         .displaySmall
@@ -293,12 +303,12 @@ class BottomCartWidget extends StatelessWidget {
                     ),
                   ],
                 );
-              }),
+              })
             ],
           ),
         ),
         const SizedBox(height: 15),
-        const CheckOutButton(),
+        CheckOutButton(),
         const SizedBox(height: 15),
       ],
     );

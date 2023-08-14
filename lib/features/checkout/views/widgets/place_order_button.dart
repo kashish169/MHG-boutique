@@ -9,7 +9,7 @@ class PlaceOrderButton extends StatelessWidget {
   final String title;
   final double? width;
   final bool hasIcon;
-  final VoidCallback onPress;
+  final void Function()? onPress;
   final bool isLoading;
   final Color? color;
   PlaceOrderButton({

@@ -32,13 +32,12 @@ class _MyWishBodyState extends State<MyWishBody> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Get.toNamed(
           ProductDetailsPage.routeName,
           arguments: {
             "id": widget.model.id,
-            "name": widget.model.name
-            ,
+            "name": widget.model.name,
             "fromArrival": false
           },
         );
@@ -86,11 +85,7 @@ class _MyWishBodyState extends State<MyWishBody> {
 
                             // const SizedBox(height: 10),
                             BodyMiddleText(
-                              brand: widget.model.options.brand,
-                              price: widget.model.price.toString(),
-                              name: isAR()
-                                  ? widget.model.options.arName
-                                  : widget.model.options.enName,
+                              model: widget.model,
                             ),
                             BodyButtons(
                                 addToBag: widget.addToBag, model: widget.model),

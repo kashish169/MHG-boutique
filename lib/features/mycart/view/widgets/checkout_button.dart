@@ -1,16 +1,17 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/core/helper/app_helper.dart';
-import 'package:mhg/features/checkout/views/pages/checkout_page.dart';
 import 'package:mhg/widgets/primary_button.dart';
 
-class CheckOutButton extends StatelessWidget {
-  const CheckOutButton({super.key});
+import '../../controller/my_cart_controller.dart';
 
+class CheckOutButton extends StatelessWidget {
+  CheckOutButton({super.key});
+  final MyCartController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -24,7 +25,8 @@ class CheckOutButton extends StatelessWidget {
             title: 'Secure Checkout',
             onTap: () {
               AppHelper.closeKeyboard();
-              Get.toNamed(CheckoutPage.routeName);
+              // Get.toNamed(CheckoutPage.routeName);
+              controller.checkForGiveAwayItems();
             },
           ),
           Padding(
