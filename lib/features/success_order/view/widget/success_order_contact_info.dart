@@ -5,7 +5,7 @@ import 'package:mhg/features/success_order/controller/success_order_controller.d
 
 class SuccessOrderContactInformation extends StatelessWidget {
   SucessOrderController controller;
-   SuccessOrderContactInformation({
+  SuccessOrderContactInformation({
     super.key,
     required this.controller,
   });
@@ -13,44 +13,44 @@ class SuccessOrderContactInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.1),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Contact Information'.tr,
-              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.1),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Contact Information'.tr,
+            style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                fontSize: 14,
+                color: AppColors.label,
+                fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(
+            "Name: ${controller.orderModel?.user?.name ?? controller.orderModel.shippingAddress.name}",
+            style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   fontSize: 14,
-                  color: AppColors.label,
-                  fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Text(
-             "Name: ${controller.orderModel?.user?.name??controller.orderModel.shippingAddress.name}",
-              style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 14,
-                    color: AppColors.mediumLabel,
-                  ),
-            ),
-            Text(
-            "Email: ${controller.orderModel?.user?.email??controller.orderModel.shippingAddress.email}",
-              style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 14,
-                    color: AppColors.mediumLabel,
-                  ),
-            ),
-            Text(
-             "Phone Number: ${controller.orderModel?.user?.number??controller.orderModel.shippingAddress.phone}",
-              style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: 14,
-                    color: AppColors.mediumLabel,
-                  ),
-            ),
-          ],
-        ),
-      );
+                  color: AppColors.mediumLabel,
+                ),
+          ),
+          Text(
+            "Email: ${controller.orderModel?.user?.email ?? controller.orderModel.shippingAddress.email}",
+            style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                  fontSize: 14,
+                  color: AppColors.mediumLabel,
+                ),
+          ),
+          Text(
+            "Phone Number: ${controller.orderModel?.user?.number ?? controller.orderModel.shippingAddress.phone}",
+            style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                  fontSize: 14,
+                  color: AppColors.mediumLabel,
+                ),
+          ),
+        ],
+      ),
+    );
   }
 }
