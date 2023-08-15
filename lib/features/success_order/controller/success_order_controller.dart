@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/myorders/models/guest_order_model.dart';
+import '../../../app/app.dart';
 import '../../../constants/app_toasts.dart';
 import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
@@ -44,9 +46,9 @@ class SucessOrderController extends GetxController {
         log("MyOrders Status Code $statusCode");
         if (stats == true) {
           var json = r.object["data"];
+          log(r.object["data"].toString());
           var myOrdersModel = MyOrdersModel.fromJson(json);
           orderModel = myOrdersModel.orders.first;
-          log(r.object["data"].toString());
         } else {
           isError(true);
           AppToasts.errorToast(message);

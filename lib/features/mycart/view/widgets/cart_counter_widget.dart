@@ -10,7 +10,9 @@ import '../../controller/my_cart_controller.dart';
 
 class CartCounterWidget extends StatefulWidget {
   final CartModel model;
-  const CartCounterWidget({super.key, required this.model});
+  final bool isCheckout;
+  const CartCounterWidget(
+      {super.key, required this.model, required this.isCheckout});
 
   @override
   State<CartCounterWidget> createState() => _CartCounterWidgetState();
@@ -18,6 +20,8 @@ class CartCounterWidget extends StatefulWidget {
 
 class _CartCounterWidgetState extends State<CartCounterWidget> {
   final controller = Get.find<MyCartController>();
+  final checkoutController = Get.find<CheckoutController>();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,6 +32,9 @@ class _CartCounterWidgetState extends State<CartCounterWidget> {
         buttonColor: AppColors.mediumLabel,
         count: widget.model.qty,
         onIncrease: (value) async {
+          if (checkoutController.isLoadingRedeem.isTrue) {
+            return;
+          }
           if (value > widget.model.options.variantQuantity) {
             return;
           }
@@ -69,9 +76,14 @@ class _CartCounterWidgetState extends State<CartCounterWidget> {
           // controller.getDiscount();
 
           await Get.find<CheckoutController>().orderPrice();
-          // await Get.find<MyCartController>().getCart();
+          if (widget.isCheckout == true) {
+            await Get.find<MyCartController>().getCart();
+          }
         },
         onDecrease: (value) async {
+          if (checkoutController.isLoadingRedeem.isTrue) {
+            return;
+          }
           widget.model.isLoadingQuantity = true;
           if (mounted) setState(() {});
           bool result = await controller.decreaseCartItem(
@@ -109,7 +121,9 @@ class _CartCounterWidgetState extends State<CartCounterWidget> {
           // controller.getSubTotalPrice();
           // controller.getDiscount();
           await Get.find<CheckoutController>().orderPrice();
-          // await Get.find<MyCartController>().getCart();
+          if (widget.isCheckout == true) {
+            await Get.find<MyCartController>().getCart();
+          }
         },
         loading: widget.model.isLoadingQuantity,
       ),

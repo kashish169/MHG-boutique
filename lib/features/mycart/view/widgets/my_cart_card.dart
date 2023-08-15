@@ -119,6 +119,7 @@ class MyCartCard extends StatelessWidget {
                       alignment: Alignment.bottomRight,
                       child: CartCounterWidget(
                         model: model,
+                        isCheckout: isCheckOut,
                       ),
                     ),
                     const SizedBox(height: 10),
