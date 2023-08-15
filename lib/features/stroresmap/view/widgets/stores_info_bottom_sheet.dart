@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 
-showStoresBottomSheet(List<String>? places, name, tel , {second_tel}) => Get.bottomSheet(
+showStoresBottomSheet(List<String>? places, name, tel, {second_tel}) =>
+    Get.bottomSheet(
       Container(
         height: Get.height * 0.35,
         color: Colors.white,
@@ -14,7 +15,7 @@ showStoresBottomSheet(List<String>? places, name, tel , {second_tel}) => Get.bot
                 left: Get.width * 0.42,
                 top: 15,
                 child: SizedBox(
-                  height: Get.height * 0.02,
+                  height: Get.height * 0.022,
                   child: Text(
                     'STORES',
                     style: TextStyle(
@@ -71,84 +72,94 @@ showStoresBottomSheet(List<String>? places, name, tel , {second_tel}) => Get.bot
                   SizedBox(
                     height: Get.height * 0.03,
                   ),
-                  InkWell(
-                    onTap: () {
-                      if(tel != ''){
-   AppHelper.launchURL(tel, 'tel');
-                      }
-                   
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(
-                        left: 8,
-                        right: Get.width * 0.02,
-                      ),
-                      child: Table(
-                        border: null,
-                        children: [
-                          TableRow(
-                            children: [
-                              Text(
-                                name,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: AppColors.dGreen,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      left: 8,
+                      right: Get.width * 0.02,
+                    ),
+                    child: Table(
+                      border: null,
+                      children: [
+                        TableRow(
+                          children: [
+                            Text(
+                              name,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: AppColors.dGreen,
+                                fontWeight: FontWeight.bold,
                               ),
-                              Text(
-                                tel,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: AppColors.dGreen,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            ),
+                            Text(
+                              tel,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: AppColors.dGreen,
+                                fontWeight: FontWeight.bold,
                               ),
-                              SizedBox(
+                            ),
+                            InkWell(
+                              onTap: () {
+                                if (tel != '') {
+                                  AppHelper.launchURL(tel, 'tel');
+                                }
+                              },
+                              child: SizedBox(
                                 height: 50,
                                 child: Padding(
                                   padding: EdgeInsets.only(bottom: 25),
-                                  child: Icon(
-                                    Icons.call,
-                                    color: AppColors.dGreen,
+                                  child: tel == ''
+                                      ? SizedBox()
+                                      : Icon(
+                                          Icons.call,
+                                          color: AppColors.dGreen,
+                                        ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        second_tel != null
+                            ? TableRow(
+                                children: [
+                                  Text(
+                                    name,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: AppColors.dGreen,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                              ),
-                            
-                            ],
-                          ) , 
-                           second_tel != null ? TableRow(
-                            children: [
-                              Text(
-                                name,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: AppColors.dGreen,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                second_tel,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: AppColors.dGreen,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Icon(
-                                Icons.call,
-                                color: AppColors.dGreen,
-                              ),
-                            
-                            ],
-                          ) :const TableRow(children: [SizedBox() , SizedBox() , SizedBox()])
-                        ],
-                      ) 
-                      ,
+                                  Text(
+                                    second_tel,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: AppColors.dGreen,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      if (second_tel != '') {
+                                        AppHelper.launchURL(second_tel, 'tel');
+                                      }
+                                    },
+                                    child: second_tel == ''
+                                        ? SizedBox()
+                                        : Icon(
+                                            Icons.call,
+                                            color: AppColors.dGreen,
+                                          ),
+                                  ),
+                                ],
+                              )
+                            : const TableRow(
+                                children: [SizedBox(), SizedBox(), SizedBox()])
+                      ],
                     ),
                   )
                 ],
