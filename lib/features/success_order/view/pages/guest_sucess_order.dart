@@ -7,7 +7,6 @@ import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
 import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
-import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/success_order/view/widget/confirmation_footer.dart';
 import 'package:mhg/features/success_order/view/widget/success_order_contact_info.dart';
 import 'package:mhg/features/success_order/view/widget/success_order_items.dart';
