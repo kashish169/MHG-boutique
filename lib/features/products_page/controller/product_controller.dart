@@ -106,7 +106,7 @@ class ProductsController extends GetxController {
         isFetching.trigger(true);
       }
       isError(false);
-      var query = '&page=$page';
+      var query = '?page=$page';
       if (categoryId != null) {
         query += "&categories[]=$categoryId";
       }

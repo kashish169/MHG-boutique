@@ -417,7 +417,6 @@ class TapPaymentMethod {
   String cardExpMonth;
   String cardExpYear;
   String cardCvc;
-  dynamic userId;
 
   TapPaymentMethod({
     required this.id,
@@ -434,7 +433,6 @@ class TapPaymentMethod {
     required this.cardExpMonth,
     required this.cardExpYear,
     required this.cardCvc,
-    required this.userId,
   });
 
   factory TapPaymentMethod.fromJson(Map<String, dynamic> json) =>
@@ -453,7 +451,6 @@ class TapPaymentMethod {
         cardExpMonth: json["card_exp_month"],
         cardExpYear: json["card_exp_year"],
         cardCvc: json["card_cvc"],
-        userId: json["user_id"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -471,6 +468,5 @@ class TapPaymentMethod {
         "card_exp_month": cardExpMonth,
         "card_exp_year": cardExpYear,
         "card_cvc": cardCvc,
-        "user_id": userId,
       };
 }

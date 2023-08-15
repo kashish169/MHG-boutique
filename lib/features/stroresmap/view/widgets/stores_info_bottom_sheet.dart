@@ -73,7 +73,10 @@ showStoresBottomSheet(List<String>? places, name, tel , {second_tel}) => Get.bot
                   ),
                   InkWell(
                     onTap: () {
-                      AppHelper.launchURL(tel, 'tel');
+                      if(tel != ''){
+   AppHelper.launchURL(tel, 'tel');
+                      }
+                   
                     },
                     child: Container(
                       margin: EdgeInsets.only(

@@ -29,7 +29,7 @@ class GuestSuccessOrderView extends StatelessWidget {
 
   final MyCartController myCartController = Get.find<MyCartController>();
   final SucessOrderController sucessOrderController =
-  Get.put(SucessOrderController());
+      Get.put(SucessOrderController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,103 +41,101 @@ class GuestSuccessOrderView extends StatelessWidget {
           builder: (controller) => controller.isLoading.value
               ? const LoadingWidget()
               : controller.isError.value
-              ? RetryButton(
-            onTap: () {
-              controller.getMyOrders();
-            },
-          )
-              : SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                Center(
-                  child: Image.asset(
-                    AppAssets.orderSuccess,
-                    height: 60,
-                    width: 60,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Center(
-                  child: Text(
-                    '${"Your order is confirmed!".tr}\n ${controller.orderModel.orderNumber}',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context)
-                        .textTheme
-                        .displayMedium
-                        ?.copyWith(
-                        fontSize: 15,
-                        color: AppColors.secondary,
-                        fontWeight: FontWeight.normal),
-                  ),
-                ),
-                SuccessOrderItems(
-
-                  controller: controller,
-                ),
-                const Divider(),
-                const SizedBox(
-                  height: 5,
-                ),
-                SuccessOrderContactInformation(
-                  controller: sucessOrderController,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                const Divider(),
-                const SizedBox(
-                  height: 5,
-                ),
-                const SuccessOrderShippingAddress(),
-                const SizedBox(
-                  height: 5,
-                ),
-                const Divider(),
-                const SizedBox(
-                  height: 5,
-                ),
-                SuccessOrderPaymentMethod(
-                  controller: controller,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                const Divider(),
-                const SizedBox(
-                  height: 5,
-                ),
-                ConfirmationFooter(
-                  checkoutController: checkoutController,
-
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal:
-                      MediaQuery.of(context).size.width * 0.110),
-                  child: PrimaryButton(
-                      height: 50,
-                      width: AppDimensions.screenWidth(context),
-                      title: 'Continue shopping',
+                  ? RetryButton(
                       onTap: () {
-                        Get.offAllNamed(MainWrapper.routeName);
-                      }),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-              ],
-            ),
-          ),
+                        controller.getMyOrders();
+                      },
+                    )
+                  : SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Center(
+                            child: Image.asset(
+                              AppAssets.orderSuccess,
+                              height: 60,
+                              width: 60,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Center(
+                            child: Text(
+                              '${"Your order is confirmed!".tr}\n ${controller.orderModel.orderNumber}',
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displayMedium
+                                  ?.copyWith(
+                                      fontSize: 15,
+                                      color: AppColors.secondary,
+                                      fontWeight: FontWeight.normal),
+                            ),
+                          ),
+                          SuccessOrderItems(
+                            controller: controller,
+                          ),
+                          const Divider(),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          SuccessOrderContactInformation(
+                            controller: sucessOrderController,
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          const Divider(),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          const SuccessOrderShippingAddress(),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          const Divider(),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          SuccessOrderPaymentMethod(
+                            controller: controller,
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          const Divider(),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          ConfirmationFooter(
+                            checkoutController: checkoutController,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    MediaQuery.of(context).size.width * 0.110),
+                            child: PrimaryButton(
+                                height: 50,
+                                width: AppDimensions.screenWidth(context),
+                                title: 'Continue shopping',
+                                onTap: () {
+                                  Get.offAllNamed(MainWrapper.routeName);
+                                }),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      ),
+                    ),
         ),
       ),
     );
