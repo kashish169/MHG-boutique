@@ -48,7 +48,7 @@ class SuccessOrderItems extends StatelessWidget {
                     children: [
                       const SizedBox(height: 10),
                       Text(
-                        controller.orderModel.orderDetails[index].productName,
+                        controller.orderModel.orderDetails[index].productName!,
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
                                   fontSize: 14,
