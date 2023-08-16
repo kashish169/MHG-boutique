@@ -45,6 +45,7 @@ class ProductDetailsController extends GetxController {
 
   Future<void> getProductDetails({bool withoutLoading = false}) async {
     productImages.clear();
+
     try {
       if (!withoutLoading) {
         isLoading(true);
