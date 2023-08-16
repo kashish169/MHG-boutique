@@ -9,13 +9,11 @@ showStoresBottomSheet(List<String>? places, name, tel, {second_tel}) =>
         height: Get.height * 0.35,
         color: Colors.white,
         child: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Positioned(
-                left: Get.width * 0.42,
-                top: 15,
-                child: SizedBox(
-                  height: Get.height * 0.022,
+          child: Column(
+                children: [
+                  SizedBox(height: 10,),
+                  SizedBox(
+                  height: Get.height * 0.023,
                   child: Text(
                     'STORES',
                     style: TextStyle(
@@ -25,9 +23,6 @@ showStoresBottomSheet(List<String>? places, name, tel, {second_tel}) =>
                     ),
                   ),
                 ),
-              ),
-              Column(
-                children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -164,8 +159,6 @@ showStoresBottomSheet(List<String>? places, name, tel, {second_tel}) =>
                   )
                 ],
               ),
-            ],
-          ),
         ),
       ),
       //barrierColor: Colors.transparent,
