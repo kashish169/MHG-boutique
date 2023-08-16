@@ -7,6 +7,7 @@ import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
+import '../../../../app/app.dart';
 import 'place_order_button.dart';
 
 class PromoCode extends StatelessWidget {
@@ -98,9 +99,15 @@ class PromoCode extends StatelessWidget {
                               if (checkoutController.codeController.text
                                   .trim()
                                   .isNotEmpty) {
-                                if (controller.model.value!.countryId == null) {
-                                  AppToasts.errorToast(
-                                      'Please add your country in profile information');
+                                if (App.token.isNotEmpty) {
+                                  if (controller.model.value!.countryId ==
+                                      null) {
+                                    AppToasts.errorToast(
+                                        'Please add your country in profile information');
+                                  } else {
+                                    AppHelper.closeKeyboard();
+                                    checkoutController.orderPrice();
+                                  }
                                 } else {
                                   AppHelper.closeKeyboard();
                                   checkoutController.orderPrice();

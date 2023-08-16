@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-GuestsOrdersModel myOrdersModelFromJson(String str) =>
+GuestsOrdersModel gusetOrdersModelFromJson(String str) =>
     GuestsOrdersModel.fromJson(json.decode(str));
 
 class GuestsOrdersModel {

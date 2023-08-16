@@ -11,7 +11,7 @@ class ProductDetailsModel {
   dynamic pts;
   dynamic sku;
   dynamic categoryId;
-  int storeId;
+  dynamic storeId;
   int brandId;
   String enProductName;
   String frProductName;
@@ -59,7 +59,7 @@ class ProductDetailsModel {
   dynamic image3Link;
   dynamic image4Link;
   dynamic image5Link;
-  StoreModel store;
+  StoreModel? store;
   dynamic reviewsCount;
   dynamic avarageRate;
   List<ProductDetailsCategoryModel> categories;
@@ -79,7 +79,7 @@ class ProductDetailsModel {
     this.externalId,
     this.sku,
     this.categoryId,
-    required this.storeId,
+     this.storeId,
     required this.brandId,
     required this.enProductName,
     required this.frProductName,
@@ -127,7 +127,7 @@ class ProductDetailsModel {
     required this.image3Link,
     required this.image4Link,
     required this.image5Link,
-    required this.store,
+     this.store,
     required this.categories,
     required this.brand,
     required this.colors,
@@ -200,7 +200,7 @@ class ProductDetailsModel {
         image5Link: json["image5_link"],
         reviewsCount: json["reviews_count"],
         avarageRate: json["avarage_rate"],
-        store: StoreModel.fromJson(json["store"]),
+        store:json["store"]!=null? StoreModel.fromJson(json["store"]):null,
         categories: List<ProductDetailsCategoryModel>.from(json["categories"]
             .map((x) => ProductDetailsCategoryModel.fromJson(x))),
         brand: BrandModel.fromJson(json["brand"]),
