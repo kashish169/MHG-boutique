@@ -101,6 +101,7 @@ class ProfileController extends GetxController {
       isError(true);
     }
   }
+
   String greeting() {
     var hour = DateTime.now().hour;
     if (hour < 12) {
@@ -175,6 +176,7 @@ class ProfileController extends GetxController {
         if (statusCode == 200) {
           bool notifayMe = App.notifyMe ?? false;
           App.token = '';
+          App.sid = '';
           await StoragePref.clear();
           await StoragePref.setbool(
             key: 'notifyme',
@@ -219,22 +221,22 @@ class ProfileController extends GetxController {
       barrierDismissible: false,
     );
     if (await canLaunchUrl(Uri.parse(url))) {
-      await launch(url,
-        enableJavaScript: true,);
+      await launch(
+        url,
+        enableJavaScript: true,
+      );
     } else {
       throw 'Could not launch $url';
     }
     Get.back();
   }
-  void connectViaWhatsApp({
-    String? message,
-    required String phone
-  }) async {
 
+  void connectViaWhatsApp({String? message, required String phone}) async {
     String number = phone.replaceAll('+', '');
 
-    var androidUrl =message!=null?"whatsapp://send?text=+$message":
-        "whatsapp://send?phone=+$number";
+    var androidUrl = message != null
+        ? "whatsapp://send?text=+$message"
+        : "whatsapp://send?phone=+$number";
     var iosUrl = "https://wa.me/$number";
     try {
       if (Platform.isIOS) {
@@ -255,14 +257,13 @@ class ProfileController extends GetxController {
       //   "variant_id":variantId
       // };
       log(feedback.text);
-      var body = jsonEncode({
-        'message':feedback.text
-      });
+      var body = jsonEncode({'message': feedback.text});
       Get.dialog(
         const LoadingWidget(),
         barrierDismissible: false,
       );
-      Either<Failure, ApiResponse> results = await profileRepo.sendFeedBack(body);
+      Either<Failure, ApiResponse> results =
+          await profileRepo.sendFeedBack(body);
       Get.back();
       results.fold((l) {
         AppToasts.errorToast(l.message);
@@ -273,7 +274,6 @@ class ProfileController extends GetxController {
         log("SEND FEEDBACK METHODS RESPONSE STATUS $statusCode");
         log("${r.object}");
         if (statusCode == 200) {
-
           AppToasts.successToast('Feedback has been sent Successfully!');
           feedback.clear();
           Get.back();
@@ -284,8 +284,8 @@ class ProfileController extends GetxController {
     } catch (e, s) {
       log("$e $s");
     }
-
   }
+
   void shareLinkToFacebook(String url) async {
     final uri = 'https://www.facebook.com/sharer/sharer.php?u=$url';
     if (await canLaunch(uri)) {
@@ -294,6 +294,7 @@ class ProfileController extends GetxController {
       throw 'Could not launch $uri';
     }
   }
+
   launchFacebookPage() async {
     String fbProtocolUrl = '';
     if (Platform.isIOS) {
@@ -315,13 +316,15 @@ class ProfileController extends GetxController {
       throw 'Could not launch ';
     }
   }
+
   void emailLaunch({
     required String email,
     required String message,
   }) async {
     try {
       // ignore: deprecated_member_use
-      await launch("mailto:$email?subject=$message",
+      await launch(
+        "mailto:$email?subject=$message",
       );
     } catch (e, s) {
       log('$e $s');

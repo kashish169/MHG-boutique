@@ -28,7 +28,6 @@ class App {
     countryId = await StoragePref.getInt("countryid");
     // currency = await StoragePref.getString("currency");
     lang = await StoragePref.getString("lang");
-    sid = await StoragePref.getString("sid");
     if (lang.isEmpty) {
       lang = "en_US";
     }

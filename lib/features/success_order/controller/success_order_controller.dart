@@ -44,9 +44,9 @@ class SucessOrderController extends GetxController {
         log("MyOrders Status Code $statusCode");
         if (stats == true) {
           var json = r.object["data"];
+          log(r.object["data"].toString());
           var myOrdersModel = MyOrdersModel.fromJson(json);
           orderModel = myOrdersModel.orders.first;
-          log(r.object["data"].toString());
         } else {
           isError(true);
           AppToasts.errorToast(message);

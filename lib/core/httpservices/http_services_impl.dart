@@ -34,10 +34,6 @@ class HttpServiceImplementation implements HttpService {
           log("HEADERS ${response.headers["set-cookie"]}");
           String sid = response.headers["set-cookie"] ?? "";
           String result = sid.substring(0, sid.indexOf(';'));
-          await StoragePref.setString(
-            key: 'sid',
-            value: result,
-          );
           App.sid = result;
         }
         return Right(ApiResponse(response.statusCode, parsedResponse));
