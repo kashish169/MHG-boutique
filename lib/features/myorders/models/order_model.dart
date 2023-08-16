@@ -54,7 +54,7 @@ class MyOrder {
   String? paymentMethod;
   int? paymentStatus;
   int orderStatus;
-  String txn;
+  String? txn;
   dynamic storeId;
   dynamic deliveryAt;
   DateTime createdAt;
@@ -186,16 +186,16 @@ class OrderDetail {
   int id;
   int orderId;
   int productId;
-  String productName;
+  String? productName;
   String? image;
   dynamic size;
   dynamic color;
-  String price;
-  String quantity;
-  String totalPrice;
+  String? price;
+  String? quantity;
+  String? totalPrice;
   DateTime createdAt;
   DateTime updatedAt;
-  String imageLink;
+  String? imageLink;
 
   OrderDetail({
     required this.id,

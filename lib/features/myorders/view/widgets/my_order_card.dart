@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/checkout/views/widgets/place_order_button.dart';
 import 'package:mhg/features/myorders/controller/my_orders_controller.dart';

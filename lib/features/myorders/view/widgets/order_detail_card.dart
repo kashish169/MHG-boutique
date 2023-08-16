@@ -44,7 +44,7 @@ class OrderDetailsCard extends StatelessWidget {
               children: [
                 const SizedBox(height: 10),
                 Text(
-                  model.productName,
+                  model.productName ?? '',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontSize: 14,
                         color: AppColors.mediumLabel,
@@ -80,7 +80,7 @@ class OrderDetailsCard extends StatelessWidget {
                     )),
                 const SizedBox(height: 4),
                 Text(
-                  'Quantity: ${double.parse(model.quantity).toInt()}',
+                  'Quantity: ${double.parse(model.quantity!).toInt()}',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontSize: 12,
                         color: AppColors.mediumLabel,
