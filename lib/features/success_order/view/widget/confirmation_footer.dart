@@ -77,7 +77,9 @@ class ConfirmationFooter extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            'Shipping (3-5 Business Days)',
+                            checkoutController.isGiveAway!
+                                ? 'Shipping (10-12 Business Days)'
+                                : 'Shipping (3-5 Business Days)',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
