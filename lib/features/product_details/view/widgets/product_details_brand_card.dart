@@ -62,7 +62,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsetsDirectional.only(end: 10),
                       child: Text(
-                        '${profileController.currnecy.value} ${controller.model.price}',
+                        '${profileController.currnecy.value} ${controller.model.variants[controller.selectedVariantInd.value].price}',
                         style: Theme.of(context)
                             .textTheme
                             .displayMedium
@@ -75,7 +75,14 @@ class ProductDetailsBrandCard extends StatelessWidget {
                     ),
                   ),
                   Obx(() => Text(
-                        '${profileController.currnecy.value} ${controller.model.variants[controller.selectedVariantInd.value].price}',
+                        controller
+                                    .model
+                                    .variants[
+                                        controller.selectedVariantInd.value]
+                                    .discountPrice !=
+                                null
+                            ? '${profileController.currnecy.value} ${controller.model.variants[controller.selectedVariantInd.value].discountPrice}'
+                            : '${profileController.currnecy.value} ${controller.model.variants[controller.selectedVariantInd.value].price}',
                         style: Theme.of(context)
                             .textTheme
                             .displayMedium
@@ -109,7 +116,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
               : const SizedBox(),
           Obx(
             () => controller.model.variants[controller.selectedVariantInd.value]
-                        .quantity !=
+                        .quantity >
                     0
                 ? StatefulBuilder(builder: (context, setState) {
                     return Obx(() => controller
