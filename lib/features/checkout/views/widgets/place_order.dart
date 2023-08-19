@@ -94,7 +94,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           Expanded(
                             child: Text(
                               checkoutController.isGiveAway == true
-                                  ? 'Shipping (7-10 Business Days)'
+                                  ? 'Shipping (10-12 Business Days)'
                                   : 'Shipping (3-5 Business Days)',
                               style: Theme.of(context)
                                   .textTheme

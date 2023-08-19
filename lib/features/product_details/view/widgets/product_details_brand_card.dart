@@ -168,7 +168,7 @@ class ProductDetailsBrandCard extends StatelessWidget {
                       width: double.infinity,
                       color: AppColors.secondary,
                       child: Text(
-                        'Out of stock'.tr,
+                        'Sold Out'.tr,
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall
