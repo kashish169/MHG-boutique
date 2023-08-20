@@ -308,8 +308,7 @@ class CheckoutController extends GetxController {
         isErrorPromo(false);
       }
 
-      var countryId = profileController
-          .model.value?.countryId; //will be used later in query
+      var countryId = App.countryId; //will be used later in query
       var promoCode = codeController.text.trim();
       var query =
           '?country=$countryId'; //to be changed later when we add countries
@@ -322,6 +321,7 @@ class CheckoutController extends GetxController {
         query += "&redeem=0";
       }
       log("Called for${paymentMethodValue.value}");
+      log("Country =======================${countryId}");
       if (paymentMethodValue.value == 'COD') {
         query += "&cod=1";
       } else {

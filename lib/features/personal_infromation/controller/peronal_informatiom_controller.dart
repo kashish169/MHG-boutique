@@ -67,11 +67,11 @@ class PersonalInformationController extends GetxController {
     profileInfo = Get.arguments["profile"];
     print(profileInfo.state);
     // selectedCity = profileInfo.state == '' ? null : profileInfo.state;
-    if (citiesList.contains(profileInfo.state)) {
-      selectedCity = profileInfo.state;
-    } else {
-      selectedCity = null;
-    }
+    // if (citiesList.contains(profileInfo.state)) {
+    //   selectedCity = profileInfo.state;
+    // } else {
+    //   selectedCity = null;
+    // }
     name.text = profileInfo.name;
     email.text = profileInfo.email;
 
@@ -80,7 +80,7 @@ class PersonalInformationController extends GetxController {
     } else {
       phone.text == 'Add your Number';
     }
-    state.text = profileInfo.state!;
+    state.text = profileInfo.state! ?? '';
     address.text = profileInfo.street ?? '';
     zipCode.text = profileInfo.zipCode ?? '';
     // countriesList.add(CountryDataModel(
@@ -89,6 +89,11 @@ class PersonalInformationController extends GetxController {
     //   flagLink:
     //       "https://api.mhgboutique.com/uploaded_files/country/64a413436c91b1688474435.png",
     // ));
+    print('Country Initialize Value ${profileInfo.country!.name}');
+    selectedCountry = profileInfo.country!.name;
+    print('Selected Country Initialize Value $selectedCountry');
+    getAllCountries();
+    print('Selected Country Initialize Value ${profileInfo.countryName}');
     super.onInit();
   }
 
@@ -128,7 +133,7 @@ class PersonalInformationController extends GetxController {
           number: countryCode + phone.text,
           notifyMe: App.notifyMe == true ? 1 : 0,
           isOptional: email.text == profileInfo.email ? true : false,
-          state: selectedCity ?? '',
+          state: state.text ?? '',
           zipCode: '00000',
           countryId: countryId.value,
         ),
