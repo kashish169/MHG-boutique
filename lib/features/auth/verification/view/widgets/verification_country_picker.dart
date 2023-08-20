@@ -14,44 +14,47 @@ class VerificationCountryPickerWidget extends StatelessWidget {
         padding: EdgeInsets.zero,
         minWidth: 0,
         onPressed: () {
-          // showCountries(
-          //   context,
-          //   (p0) {
-          //     controller.selectCountry(p0);
-          //   },
-          // );
+          showCountries(
+            context,
+            (p0) {
+              controller.selectCountry(p0);
+            },
+          );
         },
         child: SizedBox(
           width: 110,
           child: Row(
             children: [
               const SizedBox(width: 8),
-              Image.asset(
-                controller.countryFlag.value,
-                height: 20,
-              ),
-              // controller.firstCountryFlag.isNotEmpty
-              //     ? Image.network(
-              //   controller.firstCountryFlag.value,
+              // Image.asset(
+              //   controller.countryFlag.value,
               //   height: 20,
-              // ):
-              // controller.countryFlag.contains('uae')
-              //     ? Image.asset(
-              //         controller.countryFlag.value,
-              //         height: 20,
-              //       )
-              //     : Text(
-              //         controller.countryFlag.value,
-              //         style: Theme.of(context).textTheme.headline2,
-              //       ),
+              // ),
+              controller.firstCountryFlag.isNotEmpty
+                  ? Image.network(
+                      controller.firstCountryFlag.value,
+                      height: 20,
+                    )
+                  : controller.countryFlag.contains('uae')
+                      ? Image.asset(
+                          controller.countryFlag.value,
+                          height: 20,
+                        )
+                      : Text(
+                          controller.countryFlag.value,
+                          style: Theme.of(context).textTheme.headline2,
+                        ),
+              const SizedBox(width: 8),
               Text(
                 controller.countryCode.value,
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-              // const Icon(
-              //   Icons.arrow_drop_down_outlined,
-              // ),
-              const SizedBox(width: 2,),
+              const Icon(
+                Icons.arrow_drop_down_outlined,
+              ),
+              const SizedBox(
+                width: 2,
+              ),
               const SizedBox(
                 height: 30,
                 child: VerticalDivider(

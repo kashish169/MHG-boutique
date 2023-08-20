@@ -35,7 +35,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
           const SizedBox(height: 15),
           FittedBox(
             child: Text(
-              'Orders above AED 500 are eligible for free shipping',
+              'Orders above ${App.currency} 500 are eligible for free shipping',
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 8,
                     color: AppColors.label,

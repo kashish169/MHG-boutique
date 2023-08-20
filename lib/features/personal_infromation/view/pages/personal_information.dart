@@ -93,28 +93,28 @@ class PersonalInformation extends StatelessWidget {
                                       // isEnableToEdit:
                                       //     controller.enableEditOnAddress,
                                     ),
-                                    // InformationForm(
-                                    //   header: 'City',
-                                    //   hint: 'Add your city',
-                                    //   validator: (val) {
-                                    //     if (val!.isEmpty) {
-                                    //       return null;
-                                    //     }
-                                    //     return AppHelper.validation(
-                                    //         val, 1, 500, '');
-                                    //   },
-                                    //   // onTap: () {
-                                    //   //   controller.enableState();
-                                    //   // },
-                                    //   textController: controller.state,
-                                    //   // isEnableToEdit:
-                                    //   //     controller.enableEditOnState,
-                                    // ),
-                                    CountriesDropDownWidget(
-                                      isCountry: false,
-                                      countries: controller.countriesList,
-                                      cities: controller.citiesList,
+                                    InformationForm(
+                                      header: 'City',
+                                      hint: 'Add your city',
+                                      validator: (val) {
+                                        if (val!.isEmpty) {
+                                          return null;
+                                        }
+                                        return AppHelper.validation(
+                                            val, 1, 500, '');
+                                      },
+                                      // onTap: () {
+                                      //   controller.enableState();
+                                      // },
+                                      textController: controller.state,
+                                      // isEnableToEdit:
+                                      //     controller.enableEditOnState,
                                     ),
+                                    // CountriesDropDownWidget(
+                                    //   isCountry: false,
+                                    //   countries: controller.countriesList,
+                                    //   cities: controller.citiesList,
+                                    // ),
                                     // InformationForm(
                                     //   header: 'Zip Code',
                                     //   hint: 'Add your zip code',

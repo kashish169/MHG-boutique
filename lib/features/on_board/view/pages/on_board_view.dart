@@ -134,53 +134,66 @@ class _OnBoardViewState extends State<OnBoardView> {
                                     color: AppColors.white,
                                   ),
                             ))
-                        : Row(
-                            children: [
-                              Expanded(
-                                  flex: 7,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Expanded(
-                                        flex: 2,
-                                        child: Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                horizontal: 13),
-                                            height: 37,
-                                            width: 37,
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                              child: NetImage(
-                                                image: controller
-                                                    .selectedCountryFlage,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            )),
-                                      ),
-                                      Expanded(
-                                        flex: 9,
-                                        child: Text(
-                                          controller.selectedCountry,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .displaySmall!
-                                              .copyWith(
-                                                  color: AppColors.white
-                                                      .withOpacity(0.7)),
-                                          textAlign: TextAlign.center,
+                        : GestureDetector(
+                            onTap: () {
+                              controller.openselcetCountry();
+                            },
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    flex: 7,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        const SizedBox(
+                                          width: 10,
                                         ),
-                                      ),
-                                      const Expanded(
-                                        flex: 2,
-                                        child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10),
-                                            child: SizedBox()),
-                                      ),
-                                    ],
-                                  )),
-                            ],
+                                        Icon(
+                                          Icons.keyboard_arrow_up_outlined,
+                                          color: AppColors.white,
+                                        ),
+                                        Expanded(
+                                          flex: 3,
+                                          child: Container(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 13),
+                                              height: 37,
+                                              width: 37,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                                child: NetImage(
+                                                  image: controller
+                                                      .selectedCountryFlage,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              )),
+                                        ),
+                                        Expanded(
+                                          flex: 13,
+                                          child: Text(
+                                            controller.selectedCountry,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .displaySmall!
+                                                .copyWith(
+                                                    color: AppColors.white
+                                                        .withOpacity(0.7)),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                        const Expanded(
+                                          flex: 2,
+                                          child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 10),
+                                              child: SizedBox()),
+                                        ),
+                                      ],
+                                    )),
+                              ],
+                            ),
                           ),
                 const SizedBox(
                   height: 15,

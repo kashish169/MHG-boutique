@@ -72,8 +72,6 @@ class PersonalInformationController extends GetxController {
     } else {
       selectedCity = null;
     }
-    getAllCountries();
-
     name.text = profileInfo.name;
     email.text = profileInfo.email;
 
@@ -85,18 +83,19 @@ class PersonalInformationController extends GetxController {
     state.text = profileInfo.state!;
     address.text = profileInfo.street ?? '';
     zipCode.text = profileInfo.zipCode ?? '';
-    countriesList.add(CountryDataModel(
-      id: 1,
-      name: "United Arab Emirates",
-      flagLink:
-          "https://api.mhgboutique.com/uploaded_files/country/64a413436c91b1688474435.png",
-    ));
+    // countriesList.add(CountryDataModel(
+    //   id: 1,
+    //   name: "United Arab Emirates",
+    //   flagLink:
+    //       "https://api.mhgboutique.com/uploaded_files/country/64a413436c91b1688474435.png",
+    // ));
     super.onInit();
   }
 
   setCountry(val) {
     isEdit.trigger(true);
     selectedCountry = val;
+    log(selectedCountry);
     countryId(countriesModel.data!.firstWhere(
       (element) {
         return element.name == val;
@@ -134,7 +133,9 @@ class PersonalInformationController extends GetxController {
           countryId: countryId.value,
         ),
       );
-      print("selcetd city $selectedCity");
+      print("selcetd city================ $selectedCity");
+      print("selcetd city================ $selectedCountry");
+      print("selcetd city================ ${countryId.value}");
       Either<Failure, ApiResponse> results = await personalRepo.updateData(
         body: body,
       );
@@ -272,6 +273,11 @@ class PersonalInformationController extends GetxController {
               log("COUNTRIES ${r.object["data"]}");
               countriesModel = CountriesModel.fromJson(r.object);
               log(countriesModel.toString());
+              List responseList = r.object["data"];
+              countriesList = responseList
+                  .map((e) => CountryDataModel.fromJson(e))
+                  .toList();
+              log("countries list length ${countriesList.length}");
               // setCountry(
               //   profileController.model.value?.country?.name,
               // );

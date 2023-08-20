@@ -141,7 +141,7 @@ class OnboardController extends GetxController {
     App.countryId = selectedCountryId;
     App.currency = currency;
     App.countryName = selectedCountry;
-    log("__$selectedCountry ID IS :${App.countryId}");
+    log("__$selectedCountry ID IS :${App.countryId}  Currency Is : ${App.currency}");
     update();
   }
 

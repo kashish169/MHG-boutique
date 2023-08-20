@@ -156,7 +156,7 @@ class CheckoutController extends GetxController {
                   .removeWhere((element) => element.name == 'COD');
             }
             if (App.token.isNotEmpty) {
-              GetPlatform.isIOS
+              (GetPlatform.isIOS && App.countryId != 4)
                   ? paymentMethodsList.add(PaymentMethodsModel(
                       id: 3,
                       name: 'Apple Pay',
@@ -166,6 +166,11 @@ class CheckoutController extends GetxController {
                       createdAt: DateTime.now(),
                       updatedAt: DateTime.now()))
                   : null;
+            }
+            if (App.countryId == 4) {
+              log("=========== Delete Credit Card its oman Country");
+              paymentMethodsList
+                  .removeWhere((element) => element.name == 'Credit Card');
             }
           } else {
             AppToasts.errorToast(message);
@@ -306,7 +311,8 @@ class CheckoutController extends GetxController {
       var countryId = profileController
           .model.value?.countryId; //will be used later in query
       var promoCode = codeController.text.trim();
-      var query = '?country=1'; //to be changed later when we add countries
+      var query =
+          '?country=$countryId'; //to be changed later when we add countries
       if (promoCode.isNotEmpty) {
         query += "&coupon=$promoCode";
       }

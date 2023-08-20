@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
+import 'package:mhg/features/auth/signin/view/widget/show_country_picker.dart';
 // import 'package:mhg/features/auth/signin/view/widget/show_country_picker.dart';
 
 class CountryButtonPick extends StatelessWidget {
@@ -14,38 +15,36 @@ class CountryButtonPick extends StatelessWidget {
         padding: EdgeInsets.zero,
         minWidth: 0,
         onPressed: () {
-          //
-          // showCountries(
-          //   context,
-          //       (p0) {
-          //     controller.selectCountry(p0);
-          //   },
-          // );
+          showCountries(
+            context,
+            (p0) {
+              controller.selectCountry(p0);
+            },
+          );
         },
         child: SizedBox(
           width: 110,
           child: Row(
             children: [
               const SizedBox(width: 8),
-              Image.asset(
-                controller.countryFlag.value,
-                height: 20,
-              ),
-              // controller.firstCountryFlag.isNotEmpty
-              //     ? Image.network(
-              //   controller.firstCountryFlag.value,
-              //   height: 20,
-              // )
-              //     :
-              // controller.countryFlag.value.contains('uae')?
               // Image.asset(
               //   controller.countryFlag.value,
               //   height: 20,
-              // ):
-              // Text(
-              //   controller.countryFlag.value,
-              //
               // ),
+              controller.firstCountryFlag.isNotEmpty
+                  ? Image.network(
+                      controller.firstCountryFlag.value,
+                      height: 20,
+                    )
+                  : controller.countryFlag.value.contains('uae')
+                      ? Image.asset(
+                          controller.countryFlag.value,
+                          height: 20,
+                        )
+                      : Text(
+                          controller.countryFlag.value,
+                        ),
+              const SizedBox(width: 8),
               Text(
                 controller.countryCode.value,
                 style: Theme.of(context).textTheme.displaySmall,
@@ -53,9 +52,9 @@ class CountryButtonPick extends StatelessWidget {
               const SizedBox(
                 width: 2,
               ),
-              // const Icon(
-              //   Icons.arrow_drop_down_outlined,
-              // ),
+              const Icon(
+                Icons.arrow_drop_down_outlined,
+              ),
               const SizedBox(
                 height: 30,
                 child: VerticalDivider(

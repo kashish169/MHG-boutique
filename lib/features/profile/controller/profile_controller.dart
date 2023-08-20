@@ -65,9 +65,11 @@ class ProfileController extends GetxController {
             log('neee${model.value!.nextTierPts}');
             separatePhoneAndDialCode(model.value!.number ?? '');
             App.countryId = model.value?.country?.id;
-            // App.currency = "${model.value?.country?.currency.currency}";
-            model.value?.country?.name = App.countryName;
-            currnecy.value = App.currency;
+            currnecy.value = "${model.value?.country?.currency.currency}";
+            App.currency = "${model.value?.country?.currency.currency}";
+            App.countryName = '${model.value?.country?.name}';
+            // model.value?.country?.name = App.countryName;
+            // currnecy.value = App.currency;
             await StoragePref.setInt(
               key: 'countryid',
               value: App.countryId ?? 1,

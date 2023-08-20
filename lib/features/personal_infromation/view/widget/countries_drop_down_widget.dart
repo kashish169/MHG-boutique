@@ -44,7 +44,7 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
           child: DropdownButton2<String>(
             isExpanded: true,
             value: widget.isCountry
-                ? "United Arab Emirates"
+                ? controller.selectedCountry
                 : controller.selectedCity,
             onChanged: (value) {
               widget.isCountry
@@ -137,9 +137,7 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
                       horizontal: 10,
                       vertical: 8,
                     ),
-                    hintText: widget.isCountry
-                        ? 'Search'
-                        : 'Search',
+                    hintText: widget.isCountry ? 'Search' : 'Search',
                     hintStyle:
                         Theme.of(context).textTheme.displaySmall!.copyWith(
                               fontSize: 14,

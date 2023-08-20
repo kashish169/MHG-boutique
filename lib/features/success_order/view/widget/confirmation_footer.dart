@@ -4,6 +4,7 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 
+import '../../../../app/app.dart';
 import '../../../../constants/app_assets.dart';
 
 class ConfirmationFooter extends StatelessWidget {
@@ -18,7 +19,7 @@ class ConfirmationFooter extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           FittedBox(
             child: Text(
-              'Orders above AED 500 are eligible for free shipping',
+              'Orders above ${App.currency} 500 are eligible for free shipping',
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 8,
                     color: AppColors.label,
