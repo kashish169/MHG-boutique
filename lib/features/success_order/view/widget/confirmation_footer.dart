@@ -10,8 +10,10 @@ import '../../../../constants/app_assets.dart';
 class ConfirmationFooter extends StatelessWidget {
   const ConfirmationFooter(
       {super.key, required this.checkoutController, this.profileController});
+
   final CheckoutController checkoutController;
   final ProfileController? profileController;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -62,7 +64,7 @@ class ConfirmationFooter extends StatelessWidget {
                                     ),
                               )
                             : Text(
-                                'AED ${checkoutController.orderPriceModal.data?.subtotal}',
+                                '${App.currency} ${checkoutController.orderPriceModal.data?.subtotal}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall
@@ -96,7 +98,7 @@ class ConfirmationFooter extends StatelessWidget {
                                       .orderPriceModal.data?.shippingCharge ==
                                   0
                               ? 'Free'
-                              : '${profileController?.currnecy.value ?? 'AED'} ${checkoutController.orderPriceModal.data?.shippingCharge}',
+                              : '${profileController?.currnecy.value ?? App.currency} ${checkoutController.orderPriceModal.data?.shippingCharge}',
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall
@@ -135,7 +137,7 @@ class ConfirmationFooter extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '${profileController?.currnecy.value ?? 'AED'} ${checkoutController.orderPriceModal.data?.cashOnDeliveryFees}',
+                            '${profileController?.currnecy.value ?? App.currency} ${checkoutController.orderPriceModal.data?.cashOnDeliveryFees}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -181,7 +183,7 @@ class ConfirmationFooter extends StatelessWidget {
                                       ),
                                 )
                               : Text(
-                                  'AED ${checkoutController.orderPriceModal.data?.discount}',
+                                  '${App.currency} ${checkoutController.orderPriceModal.data?.discount}',
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -226,7 +228,7 @@ class ConfirmationFooter extends StatelessWidget {
                                       ),
                                 )
                               : Text(
-                                  "AED ${checkoutController.orderPriceModal.data?.tax}",
+                                  "${App.currency} ${checkoutController.orderPriceModal.data?.tax}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -267,7 +269,7 @@ class ConfirmationFooter extends StatelessWidget {
                                     ),
                               )
                             : Text(
-                                'AED ${checkoutController.orderPriceModal.data?.grandTotal}',
+                                '${App.currency} ${checkoutController.orderPriceModal.data?.grandTotal}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .displayMedium
@@ -283,7 +285,10 @@ class ConfirmationFooter extends StatelessWidget {
                         visible: checkoutController
                                         .orderPriceModal.data?.hearts?.hearts ==
                                     0 ||
-                                checkoutController.hasRedeem.isTrue
+                                checkoutController.hasRedeem.isTrue ||
+                                checkoutController
+                                        .orderPriceModal.data?.hearts?.hearts ==
+                                    null
                             ? false
                             : true,
                         child: Row(

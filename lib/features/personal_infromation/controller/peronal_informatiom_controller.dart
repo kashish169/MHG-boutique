@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/core/models/countries.dart';
 import 'package:mhg/core/models/countries_model.dart';
+import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/models/profle_info_model.dart';
 import 'package:mhg/widgets/loading_widget.dart';
@@ -154,6 +155,7 @@ class PersonalInformationController extends GetxController {
         bool success = r.object['isSuccessful'];
         var message = r.object['message'];
         if (success == true) {
+          Get.find<HomeController>().homeModel=null;
           await profileController.getProfileInfo();
           AppToasts.successToast("Updated Successfully");
           Get.back();

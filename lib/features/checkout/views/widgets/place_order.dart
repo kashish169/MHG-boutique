@@ -264,7 +264,10 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           visible: checkoutController.orderPriceModal.data
                                           ?.hearts?.hearts ==
                                       0 ||
-                                  checkoutController.hasRedeem.isTrue
+                                  checkoutController.hasRedeem.isTrue ||
+                                  checkoutController.orderPriceModal.data
+                                          ?.hearts?.hearts ==
+                                      null
                               ? false
                               : true,
                           child: Row(

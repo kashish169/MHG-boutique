@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/views/widgets/emirates_drop_down.dart';
 import 'package:mhg/widgets/primary_button.dart';
+import '../../../../app/app.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../../core/helper/app_helper.dart';
 import '../../../../widgets/custom_form_field.dart';
@@ -13,6 +16,7 @@ class GuestOrderDialog extends StatelessWidget {
   final CheckoutController controller = Get.find();
   @override
   Widget build(BuildContext context) {
+    log(App.flagLink);
     return Dialog(
       insetPadding: const EdgeInsets.symmetric(horizontal: 16),
       child: Padding(
@@ -126,12 +130,14 @@ class GuestOrderDialog extends StatelessWidget {
                       child: Row(
                         children: [
                           const SizedBox(width: 8),
+                          App.flagLink.isEmpty?
                           Image.asset(
                             AppAssets.flag,
                             height: 20,
-                          ),
+                          ):Image.network(App.flagLink,
+                          height: 20,),
                           Text(
-                            '+971',
+                            App.countryCode,
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
                           const SizedBox(

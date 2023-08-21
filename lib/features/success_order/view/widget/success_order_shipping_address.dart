@@ -65,7 +65,7 @@ class SuccessOrderShippingAddress extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 3),
                   child: Text(
-                    controller.orderModel.user?.countryName ?? controller.orderModel.shippingAddress.country,
+                     controller.orderModel.shippingAddress.country,
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: 14,
                           color: AppColors.mediumLabel,

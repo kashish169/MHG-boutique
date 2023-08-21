@@ -506,9 +506,9 @@ class CheckoutController extends GetxController {
         var email = guestEmail.text.trim();
         var street = guestAddress.text.trim();
         var state = selectedCity;
-        var countryName = 'United Arab Emirates';
-        var shippingPhoneNumber = "+971${guestNumber.text.trim()}";
-        var billingPhoneNumber = "+971${guestNumber.text.trim()}";
+        var countryName = App.countryName;
+        var shippingPhoneNumber = "${App.countryCode}${guestNumber.text.trim()}";
+        var billingPhoneNumber = "${App.countryCode}${guestNumber.text.trim()}";
         var promoCode = codeController.text.trim();
 
         if (paymentMethodValue.isEmpty) {

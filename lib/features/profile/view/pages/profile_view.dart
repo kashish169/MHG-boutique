@@ -46,7 +46,7 @@ class ProfileView extends StatelessWidget {
                 child: Column(
                   children: [
                     ProfileHeader(
-                      name: controller.model.value!.name,
+                      name: controller.model.value?.name??'',
                       email: controller.model.value!.email,
                       image: controller.model.value!.image,
                       level: controller.model.value!.currentTier ?? '-',

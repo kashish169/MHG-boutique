@@ -274,29 +274,32 @@ class BottomCartWidget extends StatelessWidget {
                           //       ? false
                           //       : true,
                           // child:
-                          Row(
-                            children: [
-                              Image.asset(
-                                AppAssets.starIcon,
-                                height: 10,
-                              ),
-                              const SizedBox(
-                                width: 2,
-                              ),
-                              FittedBox(
-                                child: Text(
-                                  'Earn ${checkoutController.orderPriceModal.data?.hearts?.hearts} Points',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall
-                                      ?.copyWith(
-                                        height: 1.4,
-                                        color: AppColors.dBlack,
-                                        fontSize: 12,
-                                      ),
+                          Visibility(
+                            visible:checkoutController.orderPriceModal.data?.hearts?.hearts!=null,
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  AppAssets.starIcon,
+                                  height: 10,
                                 ),
-                              )
-                            ],
+                                const SizedBox(
+                                  width: 2,
+                                ),
+                                FittedBox(
+                                  child: Text(
+                                    'Earn ${checkoutController.orderPriceModal.data?.hearts?.hearts} Points',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall
+                                        ?.copyWith(
+                                          height: 1.4,
+                                          color: AppColors.dBlack,
+                                          fontSize: 12,
+                                        ),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                           // ),
                         ],

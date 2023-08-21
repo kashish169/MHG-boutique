@@ -15,6 +15,9 @@ class App {
   static int? countryId;
   static String currency = 'AED';
   static String countryName = 'United Arab Emirates';
+  static String countryCode = '+971';
+  static String flagLink = '';
+
   static String lang = '';
   static String sid = '';
 
@@ -26,7 +29,9 @@ class App {
     token = await StoragePref.getString("token");
     notifyMe = await StoragePref.getbool("notifyme");
     countryId = await StoragePref.getInt("countryid");
-    // currency = await StoragePref.getString("currency");
+    currency = await StoragePref.getString("currency");
+    countryName= await StoragePref.getString("countryName");
+    countryCode=await StoragePref.getString("countryCode");
     lang = await StoragePref.getString("lang");
     if (lang.isEmpty) {
       lang = "en_US";
