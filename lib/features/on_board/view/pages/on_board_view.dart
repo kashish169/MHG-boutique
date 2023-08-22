@@ -145,13 +145,6 @@ class _OnBoardViewState extends State<OnBoardView> {
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Icon(
-                                          Icons.keyboard_arrow_up_outlined,
-                                          color: AppColors.white,
-                                        ),
                                         Expanded(
                                           flex: 3,
                                           child: Container(
@@ -189,6 +182,13 @@ class _OnBoardViewState extends State<OnBoardView> {
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: 10),
                                               child: SizedBox()),
+                                        ),
+                                        Icon(
+                                          Icons.keyboard_arrow_up_outlined,
+                                          color: AppColors.white,
+                                        ),
+                                        const SizedBox(
+                                          width: 20,
                                         ),
                                       ],
                                     )),

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
 import 'package:mhg/features/auth/signin/view/widget/show_country_picker.dart';
+
+import '../../controllers/checkout_controller.dart';
 // import 'package:mhg/features/auth/signin/view/widget/show_country_picker.dart';
 
-class CountryButtonPick extends StatelessWidget {
-  const CountryButtonPick({super.key});
+class GuestCountryButtonPick extends StatelessWidget {
+  const GuestCountryButtonPick({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SignInController>(
+    return GetBuilder<CheckoutController>(
       builder: (controller) => MaterialButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         padding: EdgeInsets.zero,
@@ -31,22 +32,22 @@ class CountryButtonPick extends StatelessWidget {
               //   controller.countryFlag.value,
               //   height: 20,
               // ),
-              controller.firstCountryFlag.isNotEmpty
+              controller.guestFirstCountryFlag.isNotEmpty
                   ? Image.network(
-                      controller.firstCountryFlag.value,
+                      controller.guestFirstCountryFlag.value,
                       height: 20,
                     )
-                  : controller.countryFlag.value.contains('uae')
+                  : controller.guestCountryFlag.value.contains('uae')
                       ? Image.asset(
-                          controller.countryFlag.value,
+                          controller.guestCountryFlag.value,
                           height: 20,
                         )
                       : Text(
-                          controller.countryFlag.value,
+                          controller.guestCountryFlag.value,
                         ),
               const SizedBox(width: 8),
               Text(
-                controller.countryCode.value,
+                controller.guestCountryCode.value,
                 style: Theme.of(context).textTheme.displaySmall,
               ),
               const SizedBox(
