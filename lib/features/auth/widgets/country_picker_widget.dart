@@ -28,7 +28,7 @@ class CountryPickerWidget extends StatelessWidget {
           );
         },
         child: SizedBox(
-          width: 110,
+          width: 120,
           child: Row(
             children: [
               const SizedBox(width: 8),

@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/product_details/controller/product_details_controller.dart';
 
+import '../../../../app/app.dart';
+
 class VariantsWidget extends StatelessWidget {
   const VariantsWidget({Key? key}) : super(key: key);
 
@@ -62,7 +64,7 @@ class VariantsWidget extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                            'AED ${controller.model.variants[index].price}',
+                            '${App.currency} ${controller.model.variants[index].price}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall

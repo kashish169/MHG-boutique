@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:country_picker/country_picker.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,6 +23,7 @@ import 'package:mhg/features/success_order/view/pages/guest_sucess_order.dart';
 import 'package:mhg/features/success_order/view/pages/success_order_view.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import '../../../constants/app_assets.dart';
+import '../models/countries_cities_static_data.dart';
 
 /*
   TEST CARDS 
@@ -45,15 +47,11 @@ class CheckoutController extends GetxController {
   // List<MyOrder> orderModel = [];
   String? selectedCity;
 
-  List<String> citiesList = [
-    'Ajman',
-    'Abu Dhabi',
-    'Sharjah',
-    'Fujairah',
-    'Ras Al Khaimah',
-    'Dubai',
-    'Umm al Quwain'
-  ];
+  List<String> citiesList = uaeCitiesList;
+  List<String> omanCitiesList = omanCities;
+  List<String> kuwaitCitiesList = kuwaitCities;
+  List<String> saudiArabiaCitiesList = saudiArabiaCities;
+  List<String> qatarCitiesList = qatarCities;
   OrderPriceModal orderPriceModal = OrderPriceModal();
   final TextEditingController codeController = TextEditingController();
   final ProfileController profileController = Get.find<ProfileController>();
@@ -85,6 +83,9 @@ class CheckoutController extends GetxController {
   final userSelectedCardModel = Rxn<UserPaymentMethodsModel>();
   final formKey = GlobalKey<FormState>();
   bool? isGiveAway;
+  RxString guestCountryCode = '+971'.obs;
+  RxString guestCountryFlag = AppAssets.flag.obs;
+  RxString guestFirstCountryFlag = ''.obs;
 
   Future<void> getUserPaymentMethods() async {
     try {
@@ -156,7 +157,7 @@ class CheckoutController extends GetxController {
                   .removeWhere((element) => element.name == 'COD');
             }
             if (App.token.isNotEmpty) {
-              (GetPlatform.isIOS && App.countryId != 4)
+              (GetPlatform.isIOS && App.countryId == 1)
                   ? paymentMethodsList.add(PaymentMethodsModel(
                       id: 3,
                       name: 'Apple Pay',
@@ -167,8 +168,8 @@ class CheckoutController extends GetxController {
                       updatedAt: DateTime.now()))
                   : null;
             }
-            if (App.countryId == 4) {
-              log("=========== Delete Credit Card its oman Country");
+            if (App.countryId != 1) {
+              log("=========== Delete Credit Card its not uae Country");
               paymentMethodsList
                   .removeWhere((element) => element.name == 'Credit Card');
             }
@@ -321,7 +322,7 @@ class CheckoutController extends GetxController {
         query += "&redeem=0";
       }
       log("Called for${paymentMethodValue.value}");
-      log("Country =======================${countryId}");
+      log("Country =======================$countryId");
       if (paymentMethodValue.value == 'COD') {
         query += "&cod=1";
       } else {
@@ -508,8 +509,8 @@ class CheckoutController extends GetxController {
         var street = guestAddress.text.trim();
         var state = selectedCity;
         var countryName = App.countryName;
-        var shippingPhoneNumber = "${App.countryCode}${guestNumber.text.trim()}";
-        var billingPhoneNumber = "${App.countryCode}${guestNumber.text.trim()}";
+        var shippingPhoneNumber = "$guestCountryCode${guestNumber.text.trim()}";
+        var billingPhoneNumber = "$guestCountryCode${guestNumber.text.trim()}";
         var promoCode = codeController.text.trim();
 
         if (paymentMethodValue.isEmpty) {
@@ -652,6 +653,15 @@ class CheckoutController extends GetxController {
   setCity(val) {
     selectedCity = val;
     log('$selectedCity');
+    update();
+  }
+
+  selectCountry(Country country) {
+    guestCountryFlag.value = country.flagEmoji;
+    guestCountryCode.value = "+${country.phoneCode}";
+    guestFirstCountryFlag.value = '';
+    log("+${country.phoneCode}");
+    log(guestCountryFlag.value);
     update();
   }
 

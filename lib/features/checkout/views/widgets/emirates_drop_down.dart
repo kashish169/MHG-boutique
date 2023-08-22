@@ -1,29 +1,21 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/core/models/countries_model.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
+import '../../../../app/app.dart';
 import '../../../../constants/app_colors.dart';
-import '../../../../widgets/net_image.dart';
 
-
-class CountriesDropDownWidget extends StatefulWidget {
-  const CountriesDropDownWidget(
-      {super.key,
-
-
-        required this.cities});
-
+class CountriesDropDown extends StatefulWidget {
+  const CountriesDropDown({super.key, required this.cities});
 
   final List<String> cities;
   @override
-  State<CountriesDropDownWidget> createState() =>
-      _CountriesDropDownWidgetState();
+  State<CountriesDropDown> createState() => _CountriesDropDownState();
 }
 
-class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
+class _CountriesDropDownState extends State<CountriesDropDown> {
   final TextEditingController _searchController = TextEditingController();
-  final controller =Get.find<CheckoutController>();
+  final controller = Get.find<CheckoutController>();
 
   @override
   Widget build(BuildContext context) {
@@ -44,42 +36,40 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
         DropdownButtonHideUnderline(
           child: DropdownButton2<String>(
             isExpanded: true,
-            value:  controller.selectedCity,
+            value: controller.selectedCity,
             onChanged: (value) {
-               controller.setCity(value);
-               setState(() {
-
-               });
+              controller.setCity(value);
+              setState(() {});
             },
             hint: Text(
-              'Select Emirate',
+              App.countryId == 1 ? 'Select Emirate' : "Select City",
               style: TextStyle(
                 fontSize: 14,
                 color: Theme.of(context).hintColor,
               ),
             ),
-            items:  widget.cities
+            items: widget.cities
                 .map(
                   (e) => DropdownMenuItem<String>(
-                value: e,
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: ' $e',
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall!
-                            .copyWith(
-                          fontSize: 14,
-                          color: AppColors.black3,
-                        ),
+                    value: e,
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: ' $e',
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall!
+                                .copyWith(
+                                  fontSize: 14,
+                                  color: AppColors.black3,
+                                ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            )
+                )
                 .toList(),
             dropdownSearchData: DropdownSearchData(
               searchController: _searchController,
@@ -96,9 +86,9 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
                   expands: true,
                   maxLines: null,
                   style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                    fontSize: 14,
-                    color: AppColors.black3,
-                  ),
+                        fontSize: 14,
+                        color: AppColors.black3,
+                      ),
                   controller: _searchController,
                   decoration: InputDecoration(
                     isDense: true,
@@ -108,10 +98,10 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
                     ),
                     hintText: 'Search',
                     hintStyle:
-                    Theme.of(context).textTheme.displaySmall!.copyWith(
-                      fontSize: 14,
-                      color: AppColors.lightGray2,
-                    ),
+                        Theme.of(context).textTheme.displaySmall!.copyWith(
+                              fontSize: 14,
+                              color: AppColors.lightGray2,
+                            ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -120,8 +110,8 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
               ),
               searchMatchFn: (item, searchValue) {
                 return (item.value.toString().contains(
-                  searchValue,
-                ));
+                      searchValue,
+                    ));
               },
             ),
             onMenuStateChange: (isOpen) {

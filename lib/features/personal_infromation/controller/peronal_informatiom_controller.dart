@@ -15,6 +15,7 @@ import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
 import '../../../core/storage/storage_pref.dart';
 import '../../../widgets/show_snack_bar.dart';
+import '../../checkout/models/countries_cities_static_data.dart';
 import '../model/personal_model.dart';
 import '../repository/personal_info_repo.dart';
 import '../repository/personal_info_repo_imp.dart';
@@ -53,15 +54,12 @@ class PersonalInformationController extends GetxController {
   RxBool isEdit = false.obs;
   String? selectedCity;
   List<CountryDataModel> countriesList = [];
-  List<String> citiesList = [
-    'Ajman',
-    'Abu Dhabi',
-    'Sharjah',
-    'Fujairah',
-    'Ras Al Khaimah',
-    'Dubai',
-    'Umm al Quwain'
-  ];
+
+  List<String> citiesList = uaeCitiesList;
+  List<String> omanCitiesList = omanCities;
+  List<String> kuwaitCitiesList = kuwaitCities;
+  List<String> saudiArabiaCitiesList = saudiArabiaCities;
+  List<String> qatarCitiesList = qatarCities;
 
   @override
   void onInit() {
@@ -155,7 +153,7 @@ class PersonalInformationController extends GetxController {
         bool success = r.object['isSuccessful'];
         var message = r.object['message'];
         if (success == true) {
-          Get.find<HomeController>().homeModel=null;
+          Get.find<HomeController>().homeModel = null;
           await profileController.getProfileInfo();
           AppToasts.successToast("Updated Successfully");
           Get.back();

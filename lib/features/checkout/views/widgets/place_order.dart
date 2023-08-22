@@ -6,7 +6,6 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/checkout/views/widgets/place_order_button.dart';
-import 'package:mhg/features/personal_infromation/model/personal_model.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import 'package:mhg/widgets/retry_button.dart';
