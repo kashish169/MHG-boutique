@@ -306,6 +306,8 @@ class PersonalInformationController extends GetxController {
       );
     } catch (e, s) {
       log("$e $s");
+
+
     }
   }
 }
