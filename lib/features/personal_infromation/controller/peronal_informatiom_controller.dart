@@ -110,6 +110,7 @@ class PersonalInformationController extends GetxController {
     countryId(countriesModel.data!.firstWhere(
       (element) {
         return element.name == val;
+
       },
     ).id);
     state.text='';
