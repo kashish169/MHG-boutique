@@ -29,13 +29,16 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 20),
         Text(
-          widget.isCountry ? "Country" : controller.countryId.value==1?'Emirate':'City',
+          widget.isCountry
+              ? "Country"
+              : controller.countryId.value == 1
+                  ? 'Emirate'
+                  : 'City',
           style: Theme.of(context)
               .textTheme
               .displaySmall!
@@ -56,7 +59,11 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
                   : controller.setCity(value);
             },
             hint: Text(
-              widget.isCountry ? 'Select Country' :controller.countryId.value==1? 'Select Emirate':'Select City',
+              widget.isCountry
+                  ? 'Select Country'
+                  : controller.countryId.value == 1
+                      ? 'Select Emirate'
+                      : 'Select City',
               style: TextStyle(
                 fontSize: 14,
                 color: Theme.of(context).hintColor,
@@ -64,58 +71,58 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
             ),
             items: widget.isCountry
                 ? widget.countries
-                .map(
-                  (item) => DropdownMenuItem<String>(
-                value: item.name,
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      WidgetSpan(
-                        child: NetImage(
-                          image: item.flagLink!,
-                          height: 20,
-                          width: 20,
+                    .map(
+                      (item) => DropdownMenuItem<String>(
+                        value: item.name,
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              WidgetSpan(
+                                child: NetImage(
+                                  image: item.flagLink!,
+                                  height: 20,
+                                  width: 20,
+                                ),
+                              ),
+                              TextSpan(
+                                text: ' ${item.name!}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall!
+                                    .copyWith(
+                                      fontSize: 14,
+                                      color: AppColors.black3,
+                                    ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      TextSpan(
-                        text: ' ${item.name!}',
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall!
-                            .copyWith(
-                          fontSize: 14,
-                          color: AppColors.black3,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            )
-                .toList()
+                    )
+                    .toList()
                 : widget.cities
-                .map(
-                  (e) => DropdownMenuItem<String>(
-                value: e,
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: ' $e',
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall!
-                            .copyWith(
-                          fontSize: 14,
-                          color: AppColors.black3,
+                    .map(
+                      (e) => DropdownMenuItem<String>(
+                        value: e,
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: ' $e',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall!
+                                    .copyWith(
+                                      fontSize: 14,
+                                      color: AppColors.black3,
+                                    ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-            )
-                .toList(),
+                    )
+                    .toList(),
             dropdownSearchData: DropdownSearchData(
               searchController: _searchController,
               searchInnerWidgetHeight: 50,
@@ -131,9 +138,9 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
                   expands: true,
                   maxLines: null,
                   style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                    fontSize: 14,
-                    color: AppColors.black3,
-                  ),
+                        fontSize: 14,
+                        color: AppColors.black3,
+                      ),
                   controller: _searchController,
                   decoration: InputDecoration(
                     isDense: true,
@@ -143,10 +150,10 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
                     ),
                     hintText: widget.isCountry ? 'Search' : 'Search',
                     hintStyle:
-                    Theme.of(context).textTheme.displaySmall!.copyWith(
-                      fontSize: 14,
-                      color: AppColors.lightGray2,
-                    ),
+                        Theme.of(context).textTheme.displaySmall!.copyWith(
+                              fontSize: 14,
+                              color: AppColors.lightGray2,
+                            ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -155,8 +162,8 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
               ),
               searchMatchFn: (item, searchValue) {
                 return (item.value.toString().contains(
-                  searchValue,
-                ));
+                      searchValue,
+                    ));
               },
             ),
             onMenuStateChange: (isOpen) {

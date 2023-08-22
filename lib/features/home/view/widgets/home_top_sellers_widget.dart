@@ -11,54 +11,57 @@ class HomeTopSellersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsetsDirectional.only(start: 20),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  'Top Sellers'.tr,
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16,
-                      ),
-                ),
-              ),
-              ViewAllButton(onTap: () {
-                Get.to(() => AllProductsPage(
-                      products: controller.topSellersList,
-                    ));
-              }),
-            ],
-          ),
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          physics: const BouncingScrollPhysics(),
-          child: Padding(
-            padding: const EdgeInsetsDirectional.symmetric(
-              horizontal: 20,
-              vertical: 10,
-            ),
+    return Visibility(
+      visible: controller.topSellersList.isNotEmpty,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsetsDirectional.only(start: 20),
             child: Row(
               children: [
-                for (int index = 0;
-                    index < controller.topSellersList.length;
-                    index++)
-                  Obx(() => Padding(
-                        padding: const EdgeInsetsDirectional.only(end: 8),
-                        child: ProductCard(
-                          model: controller.topSellersList[index],
+                Expanded(
+                  child: Text(
+                    'Top Sellers'.tr,
+                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 16,
                         ),
-                      )),
+                  ),
+                ),
+                ViewAllButton(onTap: () {
+                  Get.to(() => AllProductsPage(
+                        products: controller.topSellersList,
+                      ));
+                }),
               ],
             ),
           ),
-        ),
-      ],
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+              child: Row(
+                children: [
+                  for (int index = 0;
+                      index < controller.topSellersList.length;
+                      index++)
+                    Obx(() => Padding(
+                          padding: const EdgeInsetsDirectional.only(end: 8),
+                          child: ProductCard(
+                            model: controller.topSellersList[index],
+                          ),
+                        )),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
