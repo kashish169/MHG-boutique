@@ -85,6 +85,7 @@ class PersonalInformationController extends GetxController {
       phone.text == 'Add your Number';
     }
     state.text = profileInfo.state! ?? '';
+    selectedCity= profileInfo.state! ?? '';
     address.text = profileInfo.street ?? '';
     zipCode.text = profileInfo.zipCode ?? '';
     // countriesList.add(CountryDataModel(
@@ -111,6 +112,8 @@ class PersonalInformationController extends GetxController {
         return element.name == val;
       },
     ).id);
+    state.text='';
+    selectedCity=null;
     isLoadingCities.trigger(false);
     update();
   }
