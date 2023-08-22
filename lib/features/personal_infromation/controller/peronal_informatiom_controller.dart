@@ -30,6 +30,7 @@ class PersonalInformationController extends GetxController {
   final formKey = GlobalKey<FormState>();
   CountriesModel countriesModel = CountriesModel();
   String selectedCountry = '';
+  RxBool isLoadingCities=false.obs;
   late ProfileInfoModal profileInfo;
   bool enableEditOnName = true;
   bool enableEditOnEmail = true;
@@ -51,6 +52,7 @@ class PersonalInformationController extends GetxController {
   RxString countryCode = '+971'.obs;
   RxString countryFlag = AppAssets.flag.obs;
   RxInt countryId = 1.obs;
+
   RxBool isEdit = false.obs;
   String? selectedCity;
   List<CountryDataModel> countriesList = [];
@@ -63,6 +65,9 @@ class PersonalInformationController extends GetxController {
 
   @override
   void onInit() {
+    if(App.countryId!=null){
+      countryId.value=App.countryId!;
+    }
     profileInfo = Get.arguments["profile"];
     print(profileInfo.state);
     // selectedCity = profileInfo.state == '' ? null : profileInfo.state;
@@ -97,6 +102,7 @@ class PersonalInformationController extends GetxController {
   }
 
   setCountry(val) {
+    isLoadingCities.trigger(true);
     isEdit.trigger(true);
     selectedCountry = val;
     log(selectedCountry);
@@ -105,7 +111,7 @@ class PersonalInformationController extends GetxController {
         return element.name == val;
       },
     ).id);
-
+    isLoadingCities.trigger(false);
     update();
   }
 
