@@ -423,6 +423,7 @@ class CheckoutController extends GetxController {
             paymentPlatForm:
                 paymentMethodValue.value == 'Apple Pay' ? 'apple' : ''),
       );
+      log("ORDER MODEL");
       log(objectData);
       Get.dialog(
         const LoadingWidget(),
