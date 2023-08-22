@@ -52,7 +52,9 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
             isExpanded: true,
             value: widget.isCountry
                 ? controller.selectedCountry
-                : controller.selectedCity,
+                : controller.selectedCity!.isEmpty
+                    ? null
+                    : controller.selectedCity,
             onChanged: (value) {
               widget.isCountry
                   ? controller.setCountry(value)

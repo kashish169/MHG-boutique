@@ -30,7 +30,7 @@ class PersonalInformationController extends GetxController {
   final formKey = GlobalKey<FormState>();
   CountriesModel countriesModel = CountriesModel();
   String selectedCountry = '';
-  RxBool isLoadingCities=false.obs;
+  RxBool isLoadingCities = false.obs;
   late ProfileInfoModal profileInfo;
   bool enableEditOnName = true;
   bool enableEditOnEmail = true;
@@ -65,8 +65,8 @@ class PersonalInformationController extends GetxController {
 
   @override
   void onInit() {
-    if(App.countryId!=null){
-      countryId.value=App.countryId!;
+    if (App.countryId != null) {
+      countryId.value = App.countryId!;
     }
     profileInfo = Get.arguments["profile"];
     print(profileInfo.state);
@@ -84,8 +84,8 @@ class PersonalInformationController extends GetxController {
     } else {
       phone.text == 'Add your Number';
     }
-    state.text = profileInfo.state! ?? '';
-    selectedCity= profileInfo.state! ?? '';
+    state.text = profileInfo.state ?? '';
+    selectedCity = profileInfo.state ?? '';
     address.text = profileInfo.street ?? '';
     zipCode.text = profileInfo.zipCode ?? '';
     // countriesList.add(CountryDataModel(
@@ -99,6 +99,7 @@ class PersonalInformationController extends GetxController {
     print('Selected Country Initialize Value $selectedCountry');
     getAllCountries();
     print('Selected Country Initialize Value ${profileInfo.countryName}');
+
     super.onInit();
   }
 
@@ -110,18 +111,17 @@ class PersonalInformationController extends GetxController {
     countryId(countriesModel.data!.firstWhere(
       (element) {
         return element.name == val;
-
       },
     ).id);
-    state.text='';
-    selectedCity=null;
+    state.text = '';
+    selectedCity = '';
     isLoadingCities.trigger(false);
     update();
   }
 
   setCity(val) {
     selectedCity = val;
-    state.text=val;
+    state.text = val;
     log('$selectedCity');
     update();
   }
@@ -306,8 +306,6 @@ class PersonalInformationController extends GetxController {
       );
     } catch (e, s) {
       log("$e $s");
-
-
     }
   }
 }

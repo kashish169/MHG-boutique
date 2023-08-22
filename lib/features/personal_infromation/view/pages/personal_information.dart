@@ -113,20 +113,38 @@ class PersonalInformation extends StatelessWidget {
                                     //   // isEnableToEdit:
                                     //   //     controller.enableEditOnState,
                                     // ),
-                                    CountriesDropDownWidget(
-                                      isCountry: false,
-                                      countries: controller.countriesList,
-                                      cities: App.countryId == 1
-                                          ? controller.citiesList
-                                          : App.countryId == 2
-                                              ? controller.kuwaitCitiesList
-                                              : App.countryId == 3
-                                                  ? controller.qatarCitiesList
-                                                  : App.countryId == 4
+                                    Obx(
+                                      () => controller.isLoadingCities.isTrue
+                                          ? const Center(
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            )
+                                          : CountriesDropDownWidget(
+                                              isCountry: false,
+                                              countries:
+                                                  controller.countriesList,
+                                              cities: controller
+                                                          .countryId.value ==
+                                                      1
+                                                  ? controller.citiesList
+                                                  : controller.countryId
+                                                              .value ==
+                                                          2
                                                       ? controller
-                                                          .omanCitiesList
-                                                      : controller
-                                                          .saudiArabiaCitiesList,
+                                                          .kuwaitCitiesList
+                                                      : controller.countryId
+                                                                  .value ==
+                                                              3
+                                                          ? controller
+                                                              .qatarCitiesList
+                                                          : controller.countryId
+                                                                      .value ==
+                                                                  4
+                                                              ? controller
+                                                                  .omanCitiesList
+                                                              : controller
+                                                                  .saudiArabiaCitiesList,
+                                            ),
                                     ),
                                     CountriesDropDownWidget(
                                       isCountry: true,
