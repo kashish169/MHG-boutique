@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/core/models/countries_model.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/net_image.dart';
@@ -31,7 +32,7 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
       children: [
         const SizedBox(height: 20),
         Text(
-          widget.isCountry ? "Country" : 'Emirate',
+          widget.isCountry ? "Country" : App.countryId==1?'Emirate':'City',
           style: Theme.of(context)
               .textTheme
               .displaySmall!
@@ -52,7 +53,7 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
                   : controller.setCity(value);
             },
             hint: Text(
-              widget.isCountry ? 'Select Country' : 'Select Emirate',
+              widget.isCountry ? 'Select Country' :App.countryId==1? 'Select Emirate':'Select City',
               style: TextStyle(
                 fontSize: 14,
                 color: Theme.of(context).hintColor,

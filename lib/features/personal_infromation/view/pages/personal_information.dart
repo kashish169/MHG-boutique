@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/personal_infromation/controller/peronal_informatiom_controller.dart';
 import 'package:mhg/features/personal_infromation/view/widget/inforamation_form.dart';
@@ -13,7 +14,9 @@ import '../widget/personal_info_button.dart';
 
 class PersonalInformation extends StatelessWidget {
   static String routeName = "/personal_information";
+
   PersonalInformation({super.key});
+
   final PersonalInformationController controller = Get.find();
 
   @override
@@ -93,22 +96,42 @@ class PersonalInformation extends StatelessWidget {
                                       // isEnableToEdit:
                                       //     controller.enableEditOnAddress,
                                     ),
-                                    InformationForm(
-                                      header: 'City',
-                                      hint: 'Add your city',
-                                      validator: (val) {
-                                        if (val!.isEmpty) {
-                                          return null;
-                                        }
-                                        return AppHelper.validation(
-                                            val, 1, 500, '');
-                                      },
-                                      // onTap: () {
-                                      //   controller.enableState();
-                                      // },
-                                      textController: controller.state,
-                                      // isEnableToEdit:
-                                      //     controller.enableEditOnState,
+                                    // InformationForm(
+                                    //   header: 'City',
+                                    //   hint: 'Add your city',
+                                    //   validator: (val) {
+                                    //     if (val!.isEmpty) {
+                                    //       return null;
+                                    //     }
+                                    //     return AppHelper.validation(
+                                    //         val, 1, 500, '');
+                                    //   },
+                                    //   // onTap: () {
+                                    //   //   controller.enableState();
+                                    //   // },
+                                    //   textController: controller.state,
+                                    //   // isEnableToEdit:
+                                    //   //     controller.enableEditOnState,
+                                    // ),
+                                    CountriesDropDownWidget(
+                                      isCountry: false,
+                                      countries: controller.countriesList,
+                                      cities: App.countryId == 1
+                                          ? controller.citiesList
+                                          : App.countryId == 2
+                                              ? controller.kuwaitCitiesList
+                                              : App.countryId == 3
+                                                  ? controller.qatarCitiesList
+                                                  : App.countryId == 4
+                                                      ? controller
+                                                          .omanCitiesList
+                                                      : controller
+                                                          .saudiArabiaCitiesList,
+                                    ),
+                                    CountriesDropDownWidget(
+                                      isCountry: true,
+                                      countries: controller.countriesList,
+                                      cities: controller.citiesList,
                                     ),
                                     // CountriesDropDownWidget(
                                     //   isCountry: false,
@@ -124,11 +147,7 @@ class PersonalInformation extends StatelessWidget {
                                     //   textController: controller.zipCode,
                                     //   // isEnableToEdit: true,
                                     // ),
-                                    CountriesDropDownWidget(
-                                      isCountry: true,
-                                      countries: controller.countriesList,
-                                      cities: controller.citiesList,
-                                    ),
+
                                   ],
                                 ),
                               ),

@@ -111,6 +111,7 @@ class PersonalInformationController extends GetxController {
 
   setCity(val) {
     selectedCity = val;
+    state.text=val;
     log('$selectedCity');
     update();
   }
