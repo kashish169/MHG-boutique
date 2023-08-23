@@ -1,18 +1,22 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/views/widgets/emirates_drop_down.dart';
 import 'package:mhg/widgets/primary_button.dart';
-import '../../../../constants/app_assets.dart';
+import '../../../../app/app.dart';
 import '../../../../core/helper/app_helper.dart';
 import '../../../../widgets/custom_form_field.dart';
 import '../../controllers/checkout_controller.dart';
+import 'guest_country_picker.dart';
 
 class GuestOrderDialog extends StatelessWidget {
   GuestOrderDialog({super.key});
   final CheckoutController controller = Get.find();
   @override
   Widget build(BuildContext context) {
+    log(App.flagLink);
     return Dialog(
       insetPadding: const EdgeInsets.symmetric(horizontal: 16),
       child: Padding(
@@ -85,7 +89,7 @@ class GuestOrderDialog extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 7),
                   child: Text(
-                    'Emirate :',
+                    App.countryId == 1 ? 'Emirate :' : 'City :',
                     style: Theme.of(context)
                         .textTheme
                         .displayMedium
@@ -101,8 +105,8 @@ class GuestOrderDialog extends StatelessWidget {
                 //     return AppHelper.validation(val!, 1, 500, '');
                 //   },
                 // ),
-                CountriesDropDownWidget(
-                  cities: controller.citiesList,
+                CountriesDropDown(
+                  cities: controller.selectCity(),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 7),
@@ -116,39 +120,7 @@ class GuestOrderDialog extends StatelessWidget {
                 ),
                 CustomFormField(
                   hint: 'Enter your phone number',
-                  prefixWidget: MaterialButton(
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    padding: EdgeInsets.zero,
-                    minWidth: 0,
-                    onPressed: () {},
-                    child: SizedBox(
-                      width: 110,
-                      child: Row(
-                        children: [
-                          const SizedBox(width: 8),
-                          Image.asset(
-                            AppAssets.flag,
-                            height: 20,
-                          ),
-                          Text(
-                            '+971',
-                            style: Theme.of(context).textTheme.displaySmall,
-                          ),
-                          const SizedBox(
-                            width: 2,
-                          ),
-                          const SizedBox(
-                            height: 30,
-                            child: VerticalDivider(
-                              width: 1,
-                              thickness: 1,
-                              color: Color(0XFFBCBCBC),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  prefixWidget: GuestCountryButtonPick(),
                   inputType: TextInputType.number,
                   obscure: false,
                   controller: controller.guestNumber,
@@ -175,4 +147,6 @@ class GuestOrderDialog extends StatelessWidget {
       ),
     );
   }
+
+
 }

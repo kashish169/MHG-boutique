@@ -79,7 +79,7 @@ class ProductDetailsModel {
     this.externalId,
     this.sku,
     this.categoryId,
-     this.storeId,
+    this.storeId,
     required this.brandId,
     required this.enProductName,
     required this.frProductName,
@@ -127,7 +127,7 @@ class ProductDetailsModel {
     required this.image3Link,
     required this.image4Link,
     required this.image5Link,
-     this.store,
+    this.store,
     required this.categories,
     required this.brand,
     required this.colors,
@@ -200,7 +200,8 @@ class ProductDetailsModel {
         image5Link: json["image5_link"],
         reviewsCount: json["reviews_count"],
         avarageRate: json["avarage_rate"],
-        store:json["store"]!=null? StoreModel.fromJson(json["store"]):null,
+        store:
+            json["store"] != null ? StoreModel.fromJson(json["store"]) : null,
         categories: List<ProductDetailsCategoryModel>.from(json["categories"]
             .map((x) => ProductDetailsCategoryModel.fromJson(x))),
         brand: BrandModel.fromJson(json["brand"]),
@@ -331,6 +332,7 @@ class Variant {
   String nameEn;
   String nameAr;
   dynamic price;
+  dynamic discountPrice;
   String sku;
   int grams;
   String weight;
@@ -347,6 +349,7 @@ class Variant {
 
   Variant({
     required this.id,
+    required this.discountPrice,
     required this.externalId,
     required this.nameEn,
     required this.nameAr,
@@ -367,6 +370,7 @@ class Variant {
   });
 
   factory Variant.fromJson(Map<String, dynamic> json) => Variant(
+        discountPrice: json['discount_price'],
         id: json["id"],
         externalId: json["external_id"],
         nameEn: json["name_en"],

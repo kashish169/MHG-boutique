@@ -15,53 +15,59 @@ class HomeSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: AppDimensions.screenWidth(context) * 1.2,
-          width: AppDimensions.screenWidth(context),
-          child: Swiper(
-            itemBuilder: (BuildContext context, int index) {
-              return InkWell(
-                onTap: () {
-                  if (controller.slidersList[index].productId != null) {
-                    Get.toNamed(
-                      ProductDetailsPage.routeName,
-                      arguments: {
-                        "id": controller.slidersList[index].productId,
-                        "name": '',
-                        "fromArrival": false,
-                      },
-                    );
-                  } else if (controller.slidersList[index].productId == null &&
-                      controller.slidersList[index].categoryId != null) {
-                    Get.toNamed(
-                      ProductsPage.routeName,
-                      arguments: {
-                        "categoryId": controller.slidersList[index].categoryId,
-                      },
-                    );
-                  } else if (controller.slidersList[index].productId == null &&
-                      controller.slidersList[index].categoryId == null) {
-                    Get.find<MainWrapperController>().launchUrl(
-                      controller.slidersList[index].link!,
-                    );
-                  }
-                },
-                child: NetImage(
-                  image: controller.slidersList[index].backgroundImageLink,
-                  height: AppDimensions.screenWidth(context) * 1.2,
-                  width: AppDimensions.screenWidth(context),
-                ),
-              );
-            },
-            loop: false,
-            itemCount: controller.slidersList.length,
-            outer: true,
+    return Visibility(
+      visible: controller.slidersList.isNotEmpty,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: AppDimensions.screenWidth(context) * 1.2,
+            width: AppDimensions.screenWidth(context),
+            child: Swiper(
+              itemBuilder: (BuildContext context, int index) {
+                return InkWell(
+                  onTap: () {
+                    if (controller.slidersList[index].productId != null) {
+                      Get.toNamed(
+                        ProductDetailsPage.routeName,
+                        arguments: {
+                          "id": controller.slidersList[index].productId,
+                          "name": '',
+                          "fromArrival": false,
+                        },
+                      );
+                    } else if (controller.slidersList[index].productId ==
+                            null &&
+                        controller.slidersList[index].categoryId != null) {
+                      Get.toNamed(
+                        ProductsPage.routeName,
+                        arguments: {
+                          "categoryId":
+                              controller.slidersList[index].categoryId,
+                        },
+                      );
+                    } else if (controller.slidersList[index].productId ==
+                            null &&
+                        controller.slidersList[index].categoryId == null) {
+                      Get.find<MainWrapperController>().launchUrl(
+                        controller.slidersList[index].link!,
+                      );
+                    }
+                  },
+                  child: NetImage(
+                    image: controller.slidersList[index].backgroundImageLink,
+                    height: AppDimensions.screenWidth(context) * 1.2,
+                    width: AppDimensions.screenWidth(context),
+                  ),
+                );
+              },
+              loop: false,
+              itemCount: controller.slidersList.length,
+              outer: true,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

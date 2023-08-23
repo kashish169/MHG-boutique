@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
+import 'package:mhg/core/api/api.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
 
@@ -101,6 +102,8 @@ class OnboardController extends GetxController {
             if (countryList.isNotEmpty) {
               selectedCountryFlage = countryList.first.flagLink;
               App.countryName = countryList.first.name;
+              App.flagLink=countryList.first.flagLink;
+              App.countryCode=countryList.first.prefix;
               App.countryId = countryList.first.id;
               App.currency = countryList.first.currency.currency;
               await StoragePref.setInt(
@@ -111,6 +114,21 @@ class OnboardController extends GetxController {
                 key: 'currency',
                 value: App.currency,
               );
+              await StoragePref.setString(
+                key: 'countryName',
+                value: App.countryName,
+              );
+              await StoragePref.setString(
+                key: 'countryCode',
+                value: App.countryCode,
+              );
+              if(App.token.isNotEmpty){
+                Api.authorizedheaders = {
+                  'Content-Type': 'application/json',
+                  'Authorization': "Bearer ${App.token}",
+                  'Country-Id': "${App.countryId}",
+                };
+              }
             }
           } else {
             isError = true;
@@ -133,7 +151,7 @@ class OnboardController extends GetxController {
     required String countryFlage,
     required int id,
     required String currency,
-  }) {
+  }) async {
     selectedCountry = country;
     selectedCountryFlage = countryFlage;
     selectedCountryId = id;
@@ -141,7 +159,33 @@ class OnboardController extends GetxController {
     App.countryId = selectedCountryId;
     App.currency = currency;
     App.countryName = selectedCountry;
-    log("__$selectedCountry ID IS :${App.countryId}");
+    App.countryCode=prefix;
+    App.flagLink=countryFlage;
+    log("__$selectedCountry ID IS :${App.countryId}  Currency Is : ${App.currency}");
+    await StoragePref.setInt(
+      key: 'countryid',
+      value: App.countryId ?? 1,
+    );
+    await StoragePref.setString(
+      key: 'currency',
+      value: App.currency,
+    );
+    await StoragePref.setString(
+      key: 'countryName',
+      value: App.countryName,
+    );
+    await StoragePref.setString(
+      key: 'countryCode',
+      value: App.countryCode,
+    );
+    if(App.token.isNotEmpty){
+      Api.authorizedheaders = {
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer ${App.token}",
+        'Country-Id': "${App.countryId}",
+      };
+    }
+
     update();
   }
 

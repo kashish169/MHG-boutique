@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/personal_infromation/controller/peronal_informatiom_controller.dart';
 import 'package:mhg/features/personal_infromation/view/widget/inforamation_form.dart';
@@ -13,7 +14,9 @@ import '../widget/personal_info_button.dart';
 
 class PersonalInformation extends StatelessWidget {
   static String routeName = "/personal_information";
+
   PersonalInformation({super.key});
+
   final PersonalInformationController controller = Get.find();
 
   @override
@@ -110,11 +113,49 @@ class PersonalInformation extends StatelessWidget {
                                     //   // isEnableToEdit:
                                     //   //     controller.enableEditOnState,
                                     // ),
+                                    Obx(
+                                      () => controller.isLoadingCities.isTrue
+                                          ? const Center(
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            )
+                                          : CountriesDropDownWidget(
+                                              isCountry: false,
+                                              countries:
+                                                  controller.countriesList,
+                                              cities: controller
+                                                          .countryId.value ==
+                                                      1
+                                                  ? controller.citiesList
+                                                  : controller.countryId
+                                                              .value ==
+                                                          2
+                                                      ? controller
+                                                          .kuwaitCitiesList
+                                                      : controller.countryId
+                                                                  .value ==
+                                                              3
+                                                          ? controller
+                                                              .qatarCitiesList
+                                                          : controller.countryId
+                                                                      .value ==
+                                                                  4
+                                                              ? controller
+                                                                  .omanCitiesList
+                                                              : controller
+                                                                  .saudiArabiaCitiesList,
+                                            ),
+                                    ),
                                     CountriesDropDownWidget(
-                                      isCountry: false,
+                                      isCountry: true,
                                       countries: controller.countriesList,
                                       cities: controller.citiesList,
                                     ),
+                                    // CountriesDropDownWidget(
+                                    //   isCountry: false,
+                                    //   countries: controller.countriesList,
+                                    //   cities: controller.citiesList,
+                                    // ),
                                     // InformationForm(
                                     //   header: 'Zip Code',
                                     //   hint: 'Add your zip code',
@@ -124,11 +165,6 @@ class PersonalInformation extends StatelessWidget {
                                     //   textController: controller.zipCode,
                                     //   // isEnableToEdit: true,
                                     // ),
-                                    CountriesDropDownWidget(
-                                      isCountry: true,
-                                      countries: controller.countriesList,
-                                      cities: controller.citiesList,
-                                    ),
                                   ],
                                 ),
                               ),

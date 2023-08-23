@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/core/models/countries.dart';
 import 'package:mhg/core/models/countries_model.dart';
+import 'package:mhg/features/home/controller/home_controller.dart';
+import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/models/profle_info_model.dart';
 import 'package:mhg/widgets/loading_widget.dart';
@@ -14,6 +16,7 @@ import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
 import '../../../core/storage/storage_pref.dart';
 import '../../../widgets/show_snack_bar.dart';
+import '../../checkout/models/countries_cities_static_data.dart';
 import '../model/personal_model.dart';
 import '../repository/personal_info_repo.dart';
 import '../repository/personal_info_repo_imp.dart';
@@ -28,6 +31,7 @@ class PersonalInformationController extends GetxController {
   final formKey = GlobalKey<FormState>();
   CountriesModel countriesModel = CountriesModel();
   String selectedCountry = '';
+  RxBool isLoadingCities = false.obs;
   late ProfileInfoModal profileInfo;
   bool enableEditOnName = true;
   bool enableEditOnEmail = true;
@@ -49,31 +53,30 @@ class PersonalInformationController extends GetxController {
   RxString countryCode = '+971'.obs;
   RxString countryFlag = AppAssets.flag.obs;
   RxInt countryId = 1.obs;
+
   RxBool isEdit = false.obs;
   String? selectedCity;
   List<CountryDataModel> countriesList = [];
-  List<String> citiesList = [
-    'Ajman',
-    'Abu Dhabi',
-    'Sharjah',
-    'Fujairah',
-    'Ras Al Khaimah',
-    'Dubai',
-    'Umm al Quwain'
-  ];
+
+  List<String> citiesList = uaeCitiesList;
+  List<String> omanCitiesList = omanCities;
+  List<String> kuwaitCitiesList = kuwaitCities;
+  List<String> saudiArabiaCitiesList = saudiArabiaCities;
+  List<String> qatarCitiesList = qatarCities;
 
   @override
   void onInit() {
+    if (App.countryId != null) {
+      countryId.value = App.countryId!;
+    }
     profileInfo = Get.arguments["profile"];
     print(profileInfo.state);
     // selectedCity = profileInfo.state == '' ? null : profileInfo.state;
-    if (citiesList.contains(profileInfo.state)) {
-      selectedCity = profileInfo.state;
-    } else {
-      selectedCity = null;
-    }
-    getAllCountries();
-
+    // if (citiesList.contains(profileInfo.state)) {
+    //   selectedCity = profileInfo.state;
+    // } else {
+    //   selectedCity = null;
+    // }
     name.text = profileInfo.name;
     email.text = profileInfo.email;
 
@@ -82,32 +85,47 @@ class PersonalInformationController extends GetxController {
     } else {
       phone.text == 'Add your Number';
     }
-    state.text = profileInfo.state!;
+    state.text = profileInfo.state ?? '';
+    selectedCity = profileInfo.state ?? '';
     address.text = profileInfo.street ?? '';
     zipCode.text = profileInfo.zipCode ?? '';
-    countriesList.add(CountryDataModel(
-      id: 1,
-      name: "United Arab Emirates",
-      flagLink:
-          "https://api.mhgboutique.com/uploaded_files/country/64a413436c91b1688474435.png",
-    ));
+    // countriesList.add(CountryDataModel(
+    //   id: 1,
+    //   name: "United Arab Emirates",
+    //   flagLink:
+    //       "https://api.mhgboutique.com/uploaded_files/country/64a413436c91b1688474435.png",
+    // ));
+    print('Country Initialize Value ${profileInfo.country!.name}');
+    selectedCountry = profileInfo.country!.name;
+    print('Selected Country Initialize Value $selectedCountry');
+    getAllCountries();
+    print('Selected Country Initialize Value ${profileInfo.countryName}');
+
     super.onInit();
   }
 
   setCountry(val) {
+    if(val==selectedCountry){
+      return;
+    }
+    isLoadingCities.trigger(true);
     isEdit.trigger(true);
     selectedCountry = val;
+    log(selectedCountry);
     countryId(countriesModel.data!.firstWhere(
       (element) {
         return element.name == val;
       },
     ).id);
-
+    state.text = '';
+    selectedCity = '';
+    isLoadingCities.trigger(false);
     update();
   }
 
   setCity(val) {
     selectedCity = val;
+    state.text = val;
     log('$selectedCity');
     update();
   }
@@ -116,6 +134,14 @@ class PersonalInformationController extends GetxController {
     var formState = formKey.currentState;
 
     if (formState!.validate()) {
+      if(state.text.isEmpty){
+        if(countryId.value==1){
+          AppToasts.errorToast('Please select an emirate');
+        }else{
+          AppToasts.errorToast('Please select a city');
+        }
+        return;
+      }
       Get.dialog(
         const LoadingWidget(),
         barrierDismissible: false,
@@ -129,12 +155,14 @@ class PersonalInformationController extends GetxController {
           number: countryCode + phone.text,
           notifyMe: App.notifyMe == true ? 1 : 0,
           isOptional: email.text == profileInfo.email ? true : false,
-          state: selectedCity ?? '',
+          state: state.text ?? '',
           zipCode: '00000',
           countryId: countryId.value,
         ),
       );
-      print("selcetd city $selectedCity");
+      print("selcetd city================ $selectedCity");
+      print("selcetd city================ $selectedCountry");
+      print("selcetd city================ ${countryId.value}");
       Either<Failure, ApiResponse> results = await personalRepo.updateData(
         body: body,
       );
@@ -148,6 +176,8 @@ class PersonalInformationController extends GetxController {
         bool success = r.object['isSuccessful'];
         var message = r.object['message'];
         if (success == true) {
+          Get.find<HomeController>().homeModel = null;
+          Get.find<WishListController>().getWishList();
           await profileController.getProfileInfo();
           AppToasts.successToast("Updated Successfully");
           Get.back();
@@ -272,6 +302,11 @@ class PersonalInformationController extends GetxController {
               log("COUNTRIES ${r.object["data"]}");
               countriesModel = CountriesModel.fromJson(r.object);
               log(countriesModel.toString());
+              List responseList = r.object["data"];
+              countriesList = responseList
+                  .map((e) => CountryDataModel.fromJson(e))
+                  .toList();
+              log("countries list length ${countriesList.length}");
               // setCountry(
               //   profileController.model.value?.country?.name,
               // );

@@ -4,13 +4,16 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 
+import '../../../../app/app.dart';
 import '../../../../constants/app_assets.dart';
 
 class ConfirmationFooter extends StatelessWidget {
   const ConfirmationFooter(
       {super.key, required this.checkoutController, this.profileController});
+
   final CheckoutController checkoutController;
   final ProfileController? profileController;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,7 +21,7 @@ class ConfirmationFooter extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           FittedBox(
             child: Text(
-              'Orders above AED 500 are eligible for free shipping',
+              'Orders above ${App.currency} 500 are eligible for free shipping',
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 8,
                     color: AppColors.label,
@@ -61,7 +64,7 @@ class ConfirmationFooter extends StatelessWidget {
                                     ),
                               )
                             : Text(
-                                'AED ${checkoutController.orderPriceModal.data?.subtotal}',
+                                '${App.currency} ${checkoutController.orderPriceModal.data?.subtotal}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall
@@ -77,7 +80,9 @@ class ConfirmationFooter extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            'Shipping (3-5 Business Days)',
+                            checkoutController.isGiveAway!
+                                ? 'Shipping (10-12 Business Days)'
+                                : 'Shipping (3-5 Business Days)',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -93,7 +98,7 @@ class ConfirmationFooter extends StatelessWidget {
                                       .orderPriceModal.data?.shippingCharge ==
                                   0
                               ? 'Free'
-                              : '${profileController?.currnecy.value ?? 'AED'} ${checkoutController.orderPriceModal.data?.shippingCharge}',
+                              : '${profileController?.currnecy.value ?? App.currency} ${checkoutController.orderPriceModal.data?.shippingCharge}',
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall
@@ -132,7 +137,7 @@ class ConfirmationFooter extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '${profileController?.currnecy.value ?? 'AED'} ${checkoutController.orderPriceModal.data?.cashOnDeliveryFees}',
+                            '${profileController?.currnecy.value ?? App.currency} ${checkoutController.orderPriceModal.data?.cashOnDeliveryFees}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -178,7 +183,7 @@ class ConfirmationFooter extends StatelessWidget {
                                       ),
                                 )
                               : Text(
-                                  'AED ${checkoutController.orderPriceModal.data?.discount}',
+                                  '${App.currency} ${checkoutController.orderPriceModal.data?.discount}',
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -223,7 +228,7 @@ class ConfirmationFooter extends StatelessWidget {
                                       ),
                                 )
                               : Text(
-                                  "AED ${checkoutController.orderPriceModal.data?.tax}",
+                                  "${App.currency} ${checkoutController.orderPriceModal.data?.tax}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -264,7 +269,7 @@ class ConfirmationFooter extends StatelessWidget {
                                     ),
                               )
                             : Text(
-                                'AED ${checkoutController.orderPriceModal.data?.grandTotal}',
+                                '${App.currency} ${checkoutController.orderPriceModal.data?.grandTotal}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .displayMedium
@@ -280,7 +285,10 @@ class ConfirmationFooter extends StatelessWidget {
                         visible: checkoutController
                                         .orderPriceModal.data?.hearts?.hearts ==
                                     0 ||
-                                checkoutController.hasRedeem.isTrue
+                                checkoutController.hasRedeem.isTrue ||
+                                checkoutController
+                                        .orderPriceModal.data?.hearts?.hearts ==
+                                    null
                             ? false
                             : true,
                         child: Row(
