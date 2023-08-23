@@ -6,6 +6,7 @@ import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/core/models/countries.dart';
 import 'package:mhg/core/models/countries_model.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
+import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/models/profle_info_model.dart';
 import 'package:mhg/widgets/loading_widget.dart';
@@ -104,6 +105,9 @@ class PersonalInformationController extends GetxController {
   }
 
   setCountry(val) {
+    if(val==selectedCountry){
+      return;
+    }
     isLoadingCities.trigger(true);
     isEdit.trigger(true);
     selectedCountry = val;
@@ -130,6 +134,14 @@ class PersonalInformationController extends GetxController {
     var formState = formKey.currentState;
 
     if (formState!.validate()) {
+      if(state.text.isEmpty){
+        if(countryId.value==1){
+          AppToasts.errorToast('Please select an emirate');
+        }else{
+          AppToasts.errorToast('Please select a city');
+        }
+        return;
+      }
       Get.dialog(
         const LoadingWidget(),
         barrierDismissible: false,
@@ -165,6 +177,7 @@ class PersonalInformationController extends GetxController {
         var message = r.object['message'];
         if (success == true) {
           Get.find<HomeController>().homeModel = null;
+          Get.find<WishListController>().getWishList();
           await profileController.getProfileInfo();
           AppToasts.successToast("Updated Successfully");
           Get.back();
