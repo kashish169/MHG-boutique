@@ -6,7 +6,6 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/checkout/views/widgets/place_order_button.dart';
-import 'package:mhg/features/personal_infromation/model/personal_model.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import 'package:mhg/widgets/retry_button.dart';
@@ -35,7 +34,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
           const SizedBox(height: 15),
           FittedBox(
             child: Text(
-              'Orders above AED 500 are eligible for free shipping',
+              'Orders above ${App.currency} 500 are eligible for free shipping',
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 8,
                     color: AppColors.label,
@@ -94,7 +93,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           Expanded(
                             child: Text(
                               checkoutController.isGiveAway == true
-                                  ? 'Shipping (7-10 Business Days)'
+                                  ? 'Shipping (10-12 Business Days)'
                                   : 'Shipping (3-5 Business Days)',
                               style: Theme.of(context)
                                   .textTheme
@@ -264,7 +263,10 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           visible: checkoutController.orderPriceModal.data
                                           ?.hearts?.hearts ==
                                       0 ||
-                                  checkoutController.hasRedeem.isTrue
+                                  checkoutController.hasRedeem.isTrue ||
+                                  checkoutController.orderPriceModal.data
+                                          ?.hearts?.hearts ==
+                                      null
                               ? false
                               : true,
                           child: Row(

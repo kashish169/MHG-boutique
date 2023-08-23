@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_toasts.dart';
+import 'package:mhg/core/api/api.dart';
 import 'package:mhg/core/models/api_response.dart';
 import 'package:mhg/core/models/countries.dart';
 import 'package:mhg/core/models/failure.dart';
@@ -65,9 +66,11 @@ class ProfileController extends GetxController {
             log('neee${model.value!.nextTierPts}');
             separatePhoneAndDialCode(model.value!.number ?? '');
             App.countryId = model.value?.country?.id;
-            // App.currency = "${model.value?.country?.currency.currency}";
-            model.value?.country?.name = App.countryName;
-            currnecy.value = App.currency;
+            currnecy.value = "${model.value?.country?.currency.currency}";
+            App.currency = "${model.value?.country?.currency.currency}";
+            App.countryName = '${model.value?.country?.name}';
+            // model.value?.country?.name = App.countryName;
+            // currnecy.value = App.currency;
             await StoragePref.setInt(
               key: 'countryid',
               value: App.countryId ?? 1,
@@ -76,6 +79,21 @@ class ProfileController extends GetxController {
               key: 'currency',
               value: App.currency,
             );
+            await StoragePref.setString(
+              key: 'countryName',
+              value: App.countryName ,
+            );
+            await StoragePref.setString(
+              key: 'countryCode',
+              value: App.countryCode,
+            );
+             if(App.token.isNotEmpty){
+               Api.authorizedheaders = {
+                 'Content-Type': 'application/json',
+                 'Authorization': "Bearer ${App.token}",
+                 'Country-Id': "${App.countryId}",
+               };
+             }
             log("currency is : ${App.currency}");
             log("countryId is : ${App.countryId}");
             firstCall(false);

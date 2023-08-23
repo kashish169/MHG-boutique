@@ -1,0 +1,77 @@
+List<String> uaeCitiesList = [
+  'Ajman',
+  'Abu Dhabi',
+  'Sharjah',
+  'Fujairah',
+  'Ras Al Khaimah',
+  'Dubai',
+  'Umm al Quwain'
+];
+List<String> omanCities = [
+  "Adam",
+  "As Sib",
+  "Al Ashkharah",
+  "Al Buraimi",
+  "Al Hamra",
+  "Al Jazer",
+  "Al Madina A'Zarqa",
+  "Al Suwaiq"
+];
+List<String> kuwaitCities = [
+  "Ali al Salem",
+  "Safat Kuwait",
+  "Jahrah",
+  "Salmiya",
+  "Mina al Ahmadi",
+  "Al Wafrah",
+  "Kuwait City"
+];
+List<String> saudiArabiaCities = [
+  "Riyadh",
+  "Makkah",
+  "Jeddah",
+  "Tabuk",
+  "Najran",
+  "Taif",
+  "Yanbu"
+];
+List<String> qatarCities = [
+  "Doha",
+  "Abu az Zuluf",
+  "Abu Thaylah",
+  "Ad Dawhah al Jadidah",
+  "Al `Arish",
+  "Al Bida` ash Sharqiyah",
+  "Al Ghanim",
+  "Al Ghuwariyah",
+  "Al Hilal al Gharbiyah",
+  "Al Hilal ash Sharqiyah",
+  "Al Hitmi",
+  "Al Jasrah",
+  "Al Jumaliyah",
+  "Al Ka`biyah",
+  "Al Khalifat",
+  "Al Khor",
+  "Al Khawr",
+  "Al Khuwayr",
+  "Al Mafjar",
+  "Al Qa`abiyah",
+  "Al Wakrah",
+  "Al `Adhbah",
+  "An Najmah",
+  "Ar Rakiyat",
+  "Al Rayyan",
+  "Ar Ru'ays",
+  "As Salatah",
+  "As Salatah al Jadidah",
+  "As Sani`",
+  "As Sawq",
+  "Ath Thaqab",
+  "Blaré",
+  "Dukhan",
+  "Ras Laffan Industrial City",
+  "Umm Bab",
+  "Umm Sa'id",
+  "Umm Salal Ali",
+  "Umm Salal Mohammed",
+];

@@ -20,47 +20,46 @@ class CountryPickerWidget extends StatelessWidget {
         padding: EdgeInsets.zero,
         minWidth: 0,
         onPressed: () {
-          // showCountries(
-          //   context,
-          //       (p0) {
-          //     controller.selectCountry(p0);
-          //   },
-          // );
+          showCountries(
+            context,
+            (p0) {
+              controller.selectCountry(p0);
+            },
+          );
         },
         child: SizedBox(
-          width: 110,
+          width: 120,
           child: Row(
             children: [
               const SizedBox(width: 8),
-              Image.asset(
-                controller.countryFlag,
-                height: 20,
-              ),
-              // controller.firstCountryFlag.isNotEmpty
-              //     ? Image.network(
-              //   controller.firstCountryFlag.value,
-              //   height: 20,
-              // )
-              //     :
-              // controller.countryFlag.contains('uae')?
               // Image.asset(
               //   controller.countryFlag,
               //   height: 20,
-              // ):
-              // Text(
-              //   controller.countryFlag,
-              //
               // ),
+              controller.firstCountryFlag.isNotEmpty
+                  ? Image.network(
+                      controller.firstCountryFlag.value,
+                      height: 20,
+                    )
+                  : controller.countryFlag.contains('uae')
+                      ? Image.asset(
+                          controller.countryFlag,
+                          height: 20,
+                        )
+                      : Text(
+                          controller.countryFlag,
+                        ),
+              const SizedBox(width: 8),
               Text(
                 controller.countryCode,
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 2,
               ),
-              // const Icon(
-              //   Icons.arrow_drop_down_outlined,
-              // ),
+              const Icon(
+                Icons.arrow_drop_down_outlined,
+              ),
               const SizedBox(
                 height: 30,
                 child: VerticalDivider(

@@ -41,11 +41,15 @@ class AppHelper {
       return "Password must be at least 6 characters long";
     }
   }
+ static bool isNumeric(String s) {
+    if(s == null) {
+      return false;
+    }
+    return double.parse(s) != null;
+  }
 
   static String? validatePhone(String value) {
-    bool validate =
-        RegExp(r'^(?:\+971|00971|0)?(?:50|51|52|55|56|2|3|4|6|7|9)\d{7}$')
-            .hasMatch(value);
+    bool validate =isNumeric(value)&&value.length>=8;
     if (validate == false) {
       return 'Please enter a valid phone number';
     } else {

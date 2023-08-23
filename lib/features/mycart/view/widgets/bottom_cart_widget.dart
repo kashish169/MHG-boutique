@@ -5,6 +5,7 @@ import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import 'package:mhg/widgets/three_bounce_loading.dart';
+import '../../../../app/app.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../checkout/views/widgets/promo_code.dart';
 import '../../../profile/controller/profile_controller.dart';
@@ -33,7 +34,7 @@ class BottomCartWidget extends StatelessWidget {
             children: [
               FittedBox(
                 child: Text(
-                  'Orders above AED 500 are eligible for free shipping',
+                  'Orders above ${App.currency} 500 are eligible for free shipping',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontSize: 8,
                         color: AppColors.label,
@@ -96,7 +97,7 @@ class BottomCartWidget extends StatelessWidget {
                               Expanded(
                                 child: Text(
                                   controller.isGiveAway.value
-                                      ? 'Shipping (7-10 Business Days)'
+                                      ? 'Shipping (10-12 Business Days)'
                                       : 'Shipping (3-5 Business Days)',
                                   style: Theme.of(context)
                                       .textTheme
@@ -273,29 +274,32 @@ class BottomCartWidget extends StatelessWidget {
                           //       ? false
                           //       : true,
                           // child:
-                          Row(
-                            children: [
-                              Image.asset(
-                                AppAssets.starIcon,
-                                height: 10,
-                              ),
-                              const SizedBox(
-                                width: 2,
-                              ),
-                              FittedBox(
-                                child: Text(
-                                  'Earn ${checkoutController.orderPriceModal.data?.hearts?.hearts} Points',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall
-                                      ?.copyWith(
-                                        height: 1.4,
-                                        color: AppColors.dBlack,
-                                        fontSize: 12,
-                                      ),
+                          Visibility(
+                            visible:checkoutController.orderPriceModal.data?.hearts?.hearts!=null,
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  AppAssets.starIcon,
+                                  height: 10,
                                 ),
-                              )
-                            ],
+                                const SizedBox(
+                                  width: 2,
+                                ),
+                                FittedBox(
+                                  child: Text(
+                                    'Earn ${checkoutController.orderPriceModal.data?.hearts?.hearts} Points',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall
+                                        ?.copyWith(
+                                          height: 1.4,
+                                          color: AppColors.dBlack,
+                                          fontSize: 12,
+                                        ),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                           // ),
                         ],

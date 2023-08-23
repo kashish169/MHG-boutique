@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
@@ -94,7 +95,7 @@ class SuccessOrderItems extends StatelessWidget {
                                     ),
                               ))
                           : Text(
-                              'Price: AED ${controller.orderModel.orderDetails[index].price}',
+                              'Price: ${App.currency} ${controller.orderModel.orderDetails[index].price}',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall
@@ -151,7 +152,7 @@ class SuccessOrderItems extends StatelessWidget {
                                     ),
                               ))
                           : Text(
-                              'Total Price: AED ${controller.orderModel.orderDetails[index].totalPrice}',
+                              'Total Price: ${App.currency} ${controller.orderModel.orderDetails[index].totalPrice}',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall

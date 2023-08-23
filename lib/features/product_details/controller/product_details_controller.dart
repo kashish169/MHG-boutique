@@ -79,6 +79,7 @@ class ProductDetailsController extends GetxController {
                 selectedVariantInd.value = i;
               }
             }
+            log(model.variants[0].id.toString());
             productName.value = model.enProductName;
             if (model.image2 != null) {
               productImages.add(

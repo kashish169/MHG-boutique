@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/core/models/countries_model.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/net_image.dart';
@@ -31,7 +34,11 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
       children: [
         const SizedBox(height: 20),
         Text(
-          widget.isCountry ? "Country" : 'Emirate',
+          widget.isCountry
+              ? "Country"
+              : controller.countryId.value == 1
+                  ? 'Emirate'
+                  : 'City',
           style: Theme.of(context)
               .textTheme
               .displaySmall!
@@ -44,15 +51,21 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
           child: DropdownButton2<String>(
             isExpanded: true,
             value: widget.isCountry
-                ? "United Arab Emirates"
-                : controller.selectedCity,
+                ? controller.selectedCountry
+                : controller.selectedCity!.isEmpty
+                    ? null
+                    : controller.selectedCity,
             onChanged: (value) {
               widget.isCountry
                   ? controller.setCountry(value)
                   : controller.setCity(value);
             },
             hint: Text(
-              widget.isCountry ? 'Select Country' : 'Select Emirate',
+              widget.isCountry
+                  ? 'Select Country'
+                  : controller.countryId.value == 1
+                      ? 'Select Emirate'
+                      : 'Select City',
               style: TextStyle(
                 fontSize: 14,
                 color: Theme.of(context).hintColor,
@@ -137,9 +150,7 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
                       horizontal: 10,
                       vertical: 8,
                     ),
-                    hintText: widget.isCountry
-                        ? 'Search'
-                        : 'Search',
+                    hintText: widget.isCountry ? 'Search' : 'Search',
                     hintStyle:
                         Theme.of(context).textTheme.displaySmall!.copyWith(
                               fontSize: 14,
