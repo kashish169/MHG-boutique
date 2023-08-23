@@ -106,15 +106,7 @@ class GuestOrderDialog extends StatelessWidget {
                 //   },
                 // ),
                 CountriesDropDown(
-                  cities: App.countryId == 1
-                      ? controller.citiesList
-                      : App.countryId == 2
-                          ? controller.kuwaitCitiesList
-                          : App.countryId == 3
-                              ? controller.qatarCitiesList
-                              : App.countryId == 4
-                                  ? controller.omanCitiesList
-                                  : controller.saudiArabiaCitiesList,
+                  cities: controller.selectCity(),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 7),
@@ -155,4 +147,6 @@ class GuestOrderDialog extends StatelessWidget {
       ),
     );
   }
+
+
 }

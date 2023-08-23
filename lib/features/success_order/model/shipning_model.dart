@@ -18,12 +18,12 @@ class ShippingModel {
   });
 
   factory ShippingModel.fromJson(Map<String, dynamic> json) => ShippingModel(
-        name: json['name'],
-        email: json['email'],
-        street: json['street'],
-        state: json['state'],
-        zipcode: json['zipcode'],
-        country: json['country'],
+        name: json['name']??'',
+        email: json['email']??'',
+        street: json['street']??'',
+        state: json['state']??'',
+        zipcode: json['zipcode']??'',
+        country: json['country']??'',
     phone:json['phone_number'],
       );
 }

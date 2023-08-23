@@ -160,6 +160,7 @@ class OnboardController extends GetxController {
     App.currency = currency;
     App.countryName = selectedCountry;
     App.countryCode=prefix;
+    App.flagLink=countryFlage;
     log("__$selectedCountry ID IS :${App.countryId}  Currency Is : ${App.currency}");
     await StoragePref.setInt(
       key: 'countryid',

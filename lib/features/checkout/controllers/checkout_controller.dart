@@ -665,10 +665,23 @@ class CheckoutController extends GetxController {
     update();
   }
 
+  List<String> selectCity() {
+    return App.countryId == 1
+        ? citiesList
+        : App.countryId == 2
+            ? kuwaitCitiesList
+            : App.countryId == 3
+                ? qatarCitiesList
+                : App.countryId == 4
+                    ? omanCitiesList
+                    : saudiArabiaCitiesList;
+  }
+
   @override
   void onInit() {
     // if (App.token.isNotEmpty) {
     orderPrice();
+    guestCountryCode.value = App.countryCode;
     // }
     super.onInit();
   }

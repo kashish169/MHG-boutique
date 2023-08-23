@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/app/app.dart';
 import 'package:mhg/features/auth/signin/view/widget/show_country_picker.dart';
 
 import '../../controllers/checkout_controller.dart';
@@ -37,14 +38,19 @@ class GuestCountryButtonPick extends StatelessWidget {
                       controller.guestFirstCountryFlag.value,
                       height: 20,
                     )
-                  : controller.guestCountryFlag.value.contains('uae')
-                      ? Image.asset(
-                          controller.guestCountryFlag.value,
+                  : App.flagLink != ''
+                      ? Image.network(
+                          App.flagLink,
                           height: 20,
                         )
-                      : Text(
-                          controller.guestCountryFlag.value,
-                        ),
+                      : controller.guestCountryFlag.value.contains('uae')
+                          ? Image.asset(
+                              controller.guestCountryFlag.value,
+                              height: 20,
+                            )
+                          : Text(
+                              controller.guestCountryFlag.value,
+                            ),
               const SizedBox(width: 8),
               Text(
                 controller.guestCountryCode.value,
