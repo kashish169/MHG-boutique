@@ -11,4 +11,5 @@ abstract class CheckoutRepository {
   Future<Either<Failure, ApiResponse>> orderPrice(Object query);
   Future<Either<Failure, ApiResponse>> createOrder(Object body);
   Future<Either<Failure, ApiResponse>> destroyGuestCart();
+  Future<Either<Failure, ApiResponse>> getApplePayConfiguration();
 }
