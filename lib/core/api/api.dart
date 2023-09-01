@@ -70,4 +70,5 @@ class Api {
   static String successOrderLink = "$apiRoot/order/track-order";
   static String autoComplete = "$apiRoot/product/auto-complete";
   static String destroyCart = "$apiRoot/cart/destroy-cart";
+  static String applePay = "$apiRoot/payment/tap/apple-pay";
 }

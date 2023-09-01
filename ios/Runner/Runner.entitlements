@@ -8,5 +8,9 @@
 	<array>
 		<string>applinks:mhg.page.link</string>
 	</array>
+	<key>com.apple.developer.in-app-payments</key>
+	<array>
+		<string>merchant.starttech.mhgboutique</string>
+	</array>
 </dict>
 </plist>

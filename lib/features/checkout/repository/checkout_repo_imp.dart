@@ -75,4 +75,11 @@ class CheckoutRepoImplement implements CheckoutRepository {
         url: Api.destroyCart,
         isAuthorized: false,
       );
+
+  @override
+  Future<Either<Failure, ApiResponse>> getApplePayConfiguration() async =>
+      httpService.post(
+        url: Api.applePay,
+        isAuthorized: true,
+      );
 }

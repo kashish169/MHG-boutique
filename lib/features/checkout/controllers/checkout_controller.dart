@@ -86,6 +86,9 @@ class CheckoutController extends GetxController {
   RxString guestCountryCode = '+971'.obs;
   RxString guestCountryFlag = AppAssets.flag.obs;
   RxString guestFirstCountryFlag = ''.obs;
+  RxBool loadingAppleConfiguration = false.obs;
+  RxBool errorAppleConfiguration = false.obs;
+  Map appleConfiguration = {};
 
   Future<void> getUserPaymentMethods() async {
     try {
@@ -677,11 +680,43 @@ class CheckoutController extends GetxController {
                     : saudiArabiaCitiesList;
   }
 
+  Future<void> getApplePayConfiguration() async {
+    try {
+      loadingAppleConfiguration(true);
+      errorAppleConfiguration(false);
+      Either<Failure, ApiResponse> results =
+          await checkoutRepository.getApplePayConfiguration();
+      loadingAppleConfiguration(false);
+      results.fold(
+        (l) {
+          errorAppleConfiguration(true);
+          AppToasts.errorToast(l.message);
+          log("ApplePayConfiguration RESPONSE ERROR ${l.message}");
+        },
+        (r) {
+          var statusCode = r.object["code"];
+          var message = r.object["message"];
+          log("ApplePayConfiguration RESPONSE STATUS $statusCode");
+          if (statusCode == 200) {
+            appleConfiguration = r.object["data"];
+          } else {
+            errorAppleConfiguration(true);
+            AppToasts.errorToast(message);
+          }
+        },
+      );
+    } catch (e, s) {
+      errorAppleConfiguration(true);
+      log("$e $s");
+    }
+  }
+
   @override
   void onInit() {
     // if (App.token.isNotEmpty) {
     orderPrice();
     guestCountryCode.value = App.countryCode;
+    getApplePayConfiguration();
     // }
     super.onInit();
   }
