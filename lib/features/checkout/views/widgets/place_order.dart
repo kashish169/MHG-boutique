@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/app/app.dart';
@@ -5,6 +7,7 @@ import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
+import 'package:mhg/features/checkout/views/widgets/apple_pay_widget.dart';
 import 'package:mhg/features/checkout/views/widgets/place_order_button.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/primary_button.dart';
@@ -323,7 +326,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                 }
                               },
                   )
-                : ApplePayButton(
+                : ApplePayWebViewButton(
                     onTap: checkoutController.isLoadingRedeem.isTrue
                         ? () {}
                         : () {
@@ -335,6 +338,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           },
                   ),
           ),
+          if (Platform.isIOS) ApplePayWidget(),
           SizedBox(height: AppDimensions.viewBottomPadding(context) + 15),
         ],
       ),
@@ -359,8 +363,8 @@ void _onGuestOrder() {
   );
 }
 
-class ApplePayButton extends StatelessWidget {
-  const ApplePayButton({super.key, required this.onTap});
+class ApplePayWebViewButton extends StatelessWidget {
+  const ApplePayWebViewButton({super.key, required this.onTap});
 
   final void Function() onTap;
 
