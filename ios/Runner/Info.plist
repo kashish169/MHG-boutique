@@ -35,20 +35,20 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>https</string>
 		<string>whatsapp</string>
 		<string>tel</string>
 	</array>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>MHGBoutique requires permission to deliver personalized ads to you.</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>MHGBoutique want to access your location, to check nearest stores.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>MHGBoutique want to access your location, to check nearest stores.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>MHGBoutique requires permission to deliver personalized ads to you.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>

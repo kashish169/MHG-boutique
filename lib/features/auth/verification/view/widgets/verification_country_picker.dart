@@ -14,12 +14,13 @@ class VerificationCountryPickerWidget extends StatelessWidget {
         padding: EdgeInsets.zero,
         minWidth: 0,
         onPressed: () {
-          showCountries(
-            context,
-            (p0) {
-              controller.selectCountry(p0);
-            },
-          );
+          ///todo
+          // showCountries(
+          //   context,
+          //   (p0) {
+          //     controller.selectCountry(p0);
+          //   },
+          // );
         },
         child: SizedBox(
           width: 120,
@@ -49,9 +50,10 @@ class VerificationCountryPickerWidget extends StatelessWidget {
                 controller.countryCode.value,
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-              const Icon(
-                Icons.arrow_drop_down_outlined,
-              ),
+              ///todo
+              // const Icon(
+              //   Icons.arrow_drop_down_outlined,
+              // ),
               const SizedBox(
                 width: 2,
               ),

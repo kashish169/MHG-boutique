@@ -48,8 +48,11 @@ class SendPointsPage extends StatelessWidget {
                 prefixWidget: Padding(
                   padding: const EdgeInsets.only(bottom: 3.0),
                   child: CountryCodePicker(
+                    ///todo
+                    enabled: false,
                     onChanged: (value) {
-                      controller.countryCode(value.dialCode);
+                      ///todo
+                      // controller.countryCode(value.dialCode);
                     },
                     searchStyle:
                         Theme.of(context).textTheme.displaySmall!.copyWith(

@@ -37,7 +37,7 @@ class ProductDetailsController extends GetxController {
   }
 
   TextEditingController reviewNote = TextEditingController();
-  double ratingValue = 1;
+  double ratingValue = 3;
   late ProductDetailsModel model;
 
   List<String> productImages = [];

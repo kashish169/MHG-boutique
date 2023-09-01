@@ -27,7 +27,7 @@ class OnBoardButtons extends StatelessWidget {
                   height: 50,
                   radius: 0,
                   color: AppColors.dGreen,
-                  onTap: controller.isLoading
+                  onTap: controller.isLoading || controller.isError
                       ? () {}
                       : () {
                           Get.offAllNamed(
@@ -51,7 +51,7 @@ class OnBoardButtons extends StatelessWidget {
               height: 50,
               radius: 0,
               color: AppColors.dGreen,
-              onTap: controller.isLoading
+              onTap: controller.isLoading || controller.isError
                   ? () {}
                   : () {
                       Api.authorizedheaders = {
