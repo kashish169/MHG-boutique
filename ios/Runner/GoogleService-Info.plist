@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>137515787512-ueopa7a604j15amgrqailf9jngt0svlc.apps.googleusercontent.com</string>
+	<string>137515787512-65ing6qp33hpasge83bigg744aqjfnc0.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.137515787512-ueopa7a604j15amgrqailf9jngt0svlc</string>
+	<string>com.googleusercontent.apps.137515787512-65ing6qp33hpasge83bigg744aqjfnc0</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>137515787512-j0oeal85kupspn7s0bq36d51mhr7sd4g.apps.googleusercontent.com</string>
+	<string>137515787512-5lj9jtsl7u7gsblrnd0om4dvach7vire.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCud1TsvjtT9CrQBY9HKEMn2KjUHDR7eB4</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.starttech.mhg</string>
+	<string>com.starttech.mhgboutique</string>
 	<key>PROJECT_ID</key>
 	<string>mhgroup-a80c4</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:137515787512:ios:1f02e1b22def3472c7c70d</string>
+	<string>1:137515787512:ios:abc24aadc4d25922c7c70d</string>
 </dict>
 </plist>

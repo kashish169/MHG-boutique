@@ -306,6 +306,8 @@ class PersonalInformationController extends GetxController {
               countriesList = responseList
                   .map((e) => CountryDataModel.fromJson(e))
                   .toList();
+              ///todo
+              countriesList=[countriesList.first];
               log("countries list length ${countriesList.length}");
               // setCountry(
               //   profileController.model.value?.country?.name,

@@ -41,7 +41,7 @@ class AppHelper {
       return "Password must be at least 6 characters long";
     }
   }
- static bool isNumeric(String s) {
+  static bool isNumeric(String s) {
     if(s == null) {
       return false;
     }
@@ -70,15 +70,20 @@ class AppHelper {
   }
 
   static String difference(DateTime dateTime) {
-    if (DateTime.now().difference(dateTime).inHours != 0) {
-      return '${DateTime.now().difference(dateTime).inHours} hours ago';
-    } else {
-      if (DateTime.now().difference(dateTime).inMinutes != 0) {
-        return '${DateTime.now().difference(dateTime).inMinutes} minutes ago';
+    if (DateTime.now().difference(dateTime).inDays != 0){
+      return '${DateTime.now().difference(dateTime).inDays} days ago';
+    }else{
+      if (DateTime.now().difference(dateTime).inHours != 0) {
+        return '${DateTime.now().difference(dateTime).inHours} hours ago';
       } else {
-        return '${DateTime.now().difference(dateTime).inSeconds} seconds ago';
+        if (DateTime.now().difference(dateTime).inMinutes != 0) {
+          return '${DateTime.now().difference(dateTime).inMinutes} minutes ago';
+        } else {
+          return '${DateTime.now().difference(dateTime).inSeconds} seconds ago';
+        }
       }
     }
+
   }
 
   static Locale setLocale() {

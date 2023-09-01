@@ -1,4 +1,4 @@
-package com.starttech.mhg
+package com.starttech.mhgboutique
 
 import io.flutter.embedding.android.FlutterActivity
 
