@@ -7,6 +7,7 @@ import 'package:mhg/widgets/retry_button.dart';
 import 'package:pay/pay.dart';
 
 import '../../../../widgets/three_bounce_loading.dart';
+import '../../models/apple_pay_result_model.dart';
 
 class ApplePayWidget extends StatelessWidget {
   const ApplePayWidget({super.key});
@@ -44,7 +45,12 @@ class ApplePayWidget extends StatelessWidget {
           type: ApplePayButtonType.plain,
           margin: const EdgeInsets.only(top: 15.0),
           onPaymentResult: (result) {
-            log("APPLE PAY $obs");
+            log("APPLE PAY $result");
+            var model = ApplePayResultModel.fromJson(result);
+            controller.createOrder(
+              isApplePay: true,
+              applePayResultModel: model,
+            );
           },
           onError: (error) {
             log("APPLE PAY ERROR $error");
