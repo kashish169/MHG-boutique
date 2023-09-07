@@ -8,6 +8,7 @@ import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/core/models/api_response.dart';
 import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/features/checkout/models/add_payment_methods_model.dart';
+import 'package:mhg/features/checkout/models/apple_pay_result_model.dart';
 import 'package:mhg/features/checkout/models/order_model.dart';
 import 'package:mhg/features/checkout/models/order_price_model.dart';
 import 'package:mhg/features/checkout/models/payment_method_modal.dart';
@@ -159,18 +160,18 @@ class CheckoutController extends GetxController {
               paymentMethodsList
                   .removeWhere((element) => element.name == 'COD');
             }
-            if (App.token.isNotEmpty) {
-              (GetPlatform.isIOS && App.countryId == 1)
-                  ? paymentMethodsList.add(PaymentMethodsModel(
-                      id: 3,
-                      name: 'Apple Pay',
-                      image: '',
-                      slug: 'Apple Pay',
-                      status: 0,
-                      createdAt: DateTime.now(),
-                      updatedAt: DateTime.now()))
-                  : null;
-            }
+            // if (App.token.isNotEmpty) {
+            //   (GetPlatform.isIOS && App.countryId == 1)
+            //       ? paymentMethodsList.add(PaymentMethodsModel(
+            //           id: 3,
+            //           name: 'Apple Pay',
+            //           image: '',
+            //           slug: 'Apple Pay',
+            //           status: 0,
+            //           createdAt: DateTime.now(),
+            //           updatedAt: DateTime.now()))
+            //       : null;
+            // }
             if (App.countryId != 1) {
               log("=========== Delete Credit Card its not uae Country");
               paymentMethodsList
@@ -370,7 +371,10 @@ class CheckoutController extends GetxController {
     }
   }
 
-  Future<void> createOrder() async {
+  Future<void> createOrder({
+    bool? isApplePay,
+    ApplePayResultModel? applePayResultModel,
+  }) async {
     try {
       var userName = profileController.model.value!.name;
       var email = profileController.model.value!.email;
@@ -404,28 +408,32 @@ class CheckoutController extends GetxController {
 
       String objectData = orderModelToJson(
         OrderModel(
-            billingName: userName,
-            billingEmail: email,
-            billingStreetAddress: street,
-            billingState: state,
-            billingZipcode: '00000',
-            billingCountry: countryName,
-            shippingName: userName,
-            shippingEmail: email,
-            shippingStreetAddress: street,
-            shippingState: state,
-            shippingZipcode: '00000',
-            billingPhoneNumber: billingPhoneNumber,
-            shippingPhoneNumber: shippingPhoneNumber,
-            shippingCountry: countryName,
-            redeem: hasRedeem.isTrue ? 1 : 0,
-            coupon: promoCode,
-            paymentMethod: paymentMethodValue.value == 'Apple Pay'
-                ? 'TAP'
-                : paymentMethodValue.value,
-            onlinePaymentMethodId: userSelectedCardModel.value?.id,
-            paymentPlatForm:
-                paymentMethodValue.value == 'Apple Pay' ? 'apple' : ''),
+          billingName: userName,
+          billingEmail: email,
+          billingStreetAddress: street,
+          billingState: state,
+          billingZipcode: '00000',
+          billingCountry: countryName,
+          shippingName: userName,
+          shippingEmail: email,
+          shippingStreetAddress: street,
+          shippingState: state,
+          shippingZipcode: '00000',
+          billingPhoneNumber: billingPhoneNumber,
+          shippingPhoneNumber: shippingPhoneNumber,
+          shippingCountry: countryName,
+          redeem: hasRedeem.isTrue ? 1 : 0,
+          coupon: promoCode,
+          paymentMethod: isApplePay == true ? 'TAP' : paymentMethodValue.value,
+          onlinePaymentMethodId: userSelectedCardModel.value?.id,
+          paymentPlatForm: isApplePay == true ? 'apple' : '',
+          appleToken: applePayResultModel?.token.data ?? '',
+          ephemeralPublicKey:
+              applePayResultModel?.token.header.ephemeralPublicKey ?? '',
+          signature: applePayResultModel?.token.signature ?? '',
+          publicKeyHash: applePayResultModel?.token.header.publicKeyHash ?? '',
+          transactionId: applePayResultModel?.token.header.transactionId ?? '',
+        ),
       );
       log("ORDER MODEL");
       log(objectData);

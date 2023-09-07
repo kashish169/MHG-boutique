@@ -22,6 +22,12 @@ class OrderModel {
   String? paymentPlatForm;
   String? shippingPhoneNumber;
   String? billingPhoneNumber;
+  String? appleToken;
+  String? ephemeralPublicKey;
+  String? publicKeyHash;
+  String? transactionId;
+  String? signature;
+
   OrderModel({
     required this.billingName,
     required this.billingEmail,
@@ -42,6 +48,11 @@ class OrderModel {
     required this.shippingPhoneNumber,
     required this.billingPhoneNumber,
     this.paymentPlatForm,
+    this.appleToken,
+    this.ephemeralPublicKey,
+    this.publicKeyHash,
+    this.transactionId,
+    this.signature,
   });
 
   Map<String, dynamic> toJson() {
@@ -63,6 +74,18 @@ class OrderModel {
       'shipping_phone_number': shippingPhoneNumber,
       'billing_phone_number': billingPhoneNumber,
     };
+    if (paymentPlatForm == 'apple') {
+      body.putIfAbsent(
+        "payment_platform_data",
+        () => {
+          "token": appleToken,
+          "ephemeral_public_key": ephemeralPublicKey,
+          "public_key_hash": publicKeyHash,
+          "transaction_id": transactionId,
+          "signature": signature,
+        },
+      );
+    }
     if (paymentMethod == "TAP" && paymentPlatForm != 'apple') {
       body.putIfAbsent(
         "online_payment_method_id",

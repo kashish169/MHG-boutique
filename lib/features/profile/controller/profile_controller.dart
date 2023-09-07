@@ -65,35 +65,36 @@ class ProfileController extends GetxController {
             model.value = ProfileInfoModal.fromJson(r.object["data"]);
             log('neee${model.value!.nextTierPts}');
             separatePhoneAndDialCode(model.value!.number ?? '');
-            App.countryId = model.value?.country?.id;
-            currnecy.value = "${model.value?.country?.currency.currency}";
-            App.currency = "${model.value?.country?.currency.currency}";
-            App.countryName = '${model.value?.country?.name}';
+            currnecy.value = "AED";
+            // App.countryId = model.value?.country?.id;
+            // currnecy.value = "${model.value?.country?.currency.currency}";
+            // App.currency = "${model.value?.country?.currency.currency}";
+            // App.countryName = '${model.value?.country?.name}';
             // model.value?.country?.name = App.countryName;
             // currnecy.value = App.currency;
-            await StoragePref.setInt(
-              key: 'countryid',
-              value: App.countryId ?? 1,
-            );
-            await StoragePref.setString(
-              key: 'currency',
-              value: App.currency,
-            );
-            await StoragePref.setString(
-              key: 'countryName',
-              value: App.countryName ,
-            );
-            await StoragePref.setString(
-              key: 'countryCode',
-              value: App.countryCode,
-            );
-             if(App.token.isNotEmpty){
-               Api.authorizedheaders = {
-                 'Content-Type': 'application/json',
-                 'Authorization': "Bearer ${App.token}",
-                 'Country-Id': "${App.countryId}",
-               };
-             }
+            // await StoragePref.setInt(
+            //   key: 'countryid',
+            //   value: App.countryId ?? 1,
+            // );
+            // await StoragePref.setString(
+            //   key: 'currency',
+            //   value: App.currency,
+            // );
+            // await StoragePref.setString(
+            //   key: 'countryName',
+            //   value: App.countryName,
+            // );
+            // await StoragePref.setString(
+            //   key: 'countryCode',
+            //   value: App.countryCode,
+            // );
+            if (App.token.isNotEmpty) {
+              Api.authorizedheaders = {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer ${App.token}",
+                'Country-Id': "${App.countryId}",
+              };
+            }
             log("currency is : ${App.currency}");
             log("countryId is : ${App.countryId}");
             firstCall(false);
