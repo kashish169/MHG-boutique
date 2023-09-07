@@ -105,7 +105,7 @@ class PersonalInformationController extends GetxController {
   }
 
   setCountry(val) {
-    if(val==selectedCountry){
+    if (val == selectedCountry) {
       return;
     }
     isLoadingCities.trigger(true);
@@ -134,10 +134,10 @@ class PersonalInformationController extends GetxController {
     var formState = formKey.currentState;
 
     if (formState!.validate()) {
-      if(state.text.isEmpty){
-        if(countryId.value==1){
+      if (state.text.isEmpty) {
+        if (countryId.value == 1) {
           AppToasts.errorToast('Please select an emirate');
-        }else{
+        } else {
           AppToasts.errorToast('Please select a city');
         }
         return;
@@ -301,13 +301,14 @@ class PersonalInformationController extends GetxController {
             if (r.object["data"] != null) {
               log("COUNTRIES ${r.object["data"]}");
               countriesModel = CountriesModel.fromJson(r.object);
-              log(countriesModel.toString());
+              log("countries ${countriesModel.data}");
               List responseList = r.object["data"];
               countriesList = responseList
                   .map((e) => CountryDataModel.fromJson(e))
                   .toList();
+
               ///todo
-              countriesList=[countriesList.first];
+              countriesList = [countriesList.first];
               log("countries list length ${countriesList.length}");
               // setCountry(
               //   profileController.model.value?.country?.name,

@@ -305,40 +305,53 @@ class _PlaceOrderState extends State<PlaceOrder> {
 
           const SizedBox(height: 15),
           Obx(
-            () => checkoutController.paymentMethodValue.value != 'Apple Pay'
-                ? PlaceOrderButton(
-                    title: 'Place Order',
-                    width: 300,
-                    hasIcon: true,
-                    color: checkoutController.isLoadingRedeem.isTrue
-                        ? AppColors.grey
-                        : AppColors.secondary,
-                    isLoading: checkoutController.isLoadingCreateOrder.value,
-                    onPress: checkoutController.paymentMethodValue.value == ''
-                        ? null
-                        : checkoutController.isLoadingRedeem.isTrue
-                            ? () {}
-                            : () {
-                                if (App.token.isNotEmpty) {
-                                  checkoutController.createOrder();
-                                } else {
-                                  _onGuestOrder.call();
-                                }
-                              },
-                  )
-                : ApplePayWebViewButton(
-                    onTap: checkoutController.isLoadingRedeem.isTrue
-                        ? () {}
-                        : () {
-                            if (App.token.isNotEmpty) {
-                              checkoutController.createOrder();
-                            } else {
-                              _onGuestOrder.call();
-                            }
-                          },
-                  ),
+            () => PlaceOrderButton(
+              title: 'Place Order',
+              width: 300,
+              hasIcon: true,
+              color: checkoutController.isLoadingRedeem.isTrue
+                  ? AppColors.grey
+                  : AppColors.secondary,
+              isLoading: checkoutController.isLoadingCreateOrder.value,
+              onPress: checkoutController.paymentMethodValue.value == ''
+                  ? null
+                  : checkoutController.isLoadingRedeem.isTrue
+                      ? () {}
+                      : () {
+                          if (App.token.isNotEmpty) {
+                            checkoutController.createOrder();
+                          } else {
+                            _onGuestOrder.call();
+                          }
+                        },
+            ),
+            // ApplePayWebViewButton(
+            //   onTap: checkoutController.isLoadingRedeem.isTrue
+            //       ? () {}
+            //       : () {
+            //           if (App.token.isNotEmpty) {
+            //             checkoutController.createOrder();
+            //           } else {
+            //             _onGuestOrder.call();
+            //           }
+            //         },
+            // ),
           ),
-          if (Platform.isIOS) ApplePayWidget(),
+          if (Platform.isIOS)
+            Obx(() {
+              if (checkoutController.isLoadingRedeem.isTrue) {
+                return Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: LoadingThreeBounce(
+                    color: AppColors.primary,
+                    size: 20,
+                  ),
+                );
+              } else if (checkoutController.isErrorRedeem.isTrue) {
+                return const SizedBox();
+              }
+              return const ApplePayWidget();
+            }),
           SizedBox(height: AppDimensions.viewBottomPadding(context) + 15),
         ],
       ),
