@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/constants/app_toasts.dart';
 
 import '../../../../../core/helper/app_helper.dart';
 import '../../../../../widgets/primary_button.dart';
+import '../../../../forgot_password/view/pages/forget_view.dart';
 import '../../../otp/view/pages/otp.dart';
 import '../../../sign_up/view/pages/sign_up_view.dart';
 import '../../controller/sign_in_controller.dart';
@@ -18,7 +20,33 @@ class BottomSignIn extends StatelessWidget {
     return GetX<SignInController>(builder: (controller) {
       return Column(
         children: [
-
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(children: [
+              Checkbox(
+                onChanged: (val) {
+                  controller.isAcceptTermsAndCondition.value =
+                      !controller.isAcceptTermsAndCondition.value;
+                },
+                value: controller.isAcceptTermsAndCondition.value,
+                activeColor: AppColors.primary,
+                checkColor: AppColors.white,
+              ),
+              Text("I agree to the",
+                  style: Theme.of(context).textTheme.displaySmall),
+              TextButton(
+                child: Text(
+                  "Terms & Conditions",
+                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                      fontSize: 14, decoration: TextDecoration.underline),
+                ),
+                onPressed: () {
+                  AppHelper.launchURL(
+                      'www.mhgboutique.com/pages/orders-returns', 'https');
+                },
+              ),
+            ]),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 25,
@@ -30,10 +58,14 @@ class BottomSignIn extends StatelessWidget {
               height: 50,
               width: double.infinity,
               onTap: () {
-                controller.isOTP.trigger(false);
-                if (controller.formKey.currentState!.validate()) {
-                  AppHelper.closeKeyboard();
-                  controller.signInWithOutOtp();
+                if (controller.isAcceptTermsAndCondition.value == true) {
+                  controller.isOTP.trigger(false);
+                  if (controller.formKey.currentState!.validate()) {
+                    AppHelper.closeKeyboard();
+                    controller.signInWithOutOtp();
+                  }
+                } else {
+                  AppToasts.errorToast('Please agree Terms and Condition');
                 }
               },
             ),
@@ -49,18 +81,23 @@ class BottomSignIn extends StatelessWidget {
                     width: double.infinity,
                     color: AppColors.secondary,
                     onTap: () {
-                      controller.isOTP.trigger(true);
-                      if (controller.formKey.currentState!.validate()) {
-                        AppHelper.closeKeyboard();
-                        String phoneNumber = controller.phone.text.trim();
-                        Get.toNamed(
-                          OtpPage.routeName,
-                          arguments: {
-                            "type": "signin",
-                            "countryCode": controller.countryCode.value,
-                            "phone": phoneNumber,
-                          },
-                        );
+                      if (controller.isAcceptTermsAndCondition.value == true) {
+                        controller.isOTP.trigger(true);
+                        if (controller.formKey.currentState!.validate()) {
+                          AppHelper.closeKeyboard();
+                          String phoneNumber = controller.phone.text.trim();
+                          Get.toNamed(
+                            OtpPage.routeName,
+                            arguments: {
+                              "type": "signin",
+                              "countryCode": controller.countryCode.value,
+                              "phone": phoneNumber,
+                            },
+                          );
+                        }
+                      } else {
+                        AppToasts.errorToast(
+                            'Please agree Terms and Condition');
                       }
                     },
                   ),
@@ -98,6 +135,33 @@ class BottomSignIn extends StatelessWidget {
               ),
             ],
           ),
+          controller.logWithEmail.isTrue
+              ? GestureDetector(
+                  onTap: () {
+                    Get.toNamed(ForgetPasswordView.routeName,
+                        arguments: [controller.email.text, 'email']);
+                  },
+                  child: Text(
+                    "Forgot Password?".tr,
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          color: AppColors.secondary,
+                          decoration: TextDecoration.underline,
+                        ),
+                  ),
+                )
+              : GestureDetector(
+                  onTap: () {
+                    Get.toNamed(ForgetPasswordView.routeName,
+                        arguments: [controller.phone.text, 'phone']);
+                  },
+                  child: Text(
+                    "Forgot Password?".tr,
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          color: AppColors.secondary,
+                          decoration: TextDecoration.underline,
+                        ),
+                  ),
+                ),
         ],
       );
     });

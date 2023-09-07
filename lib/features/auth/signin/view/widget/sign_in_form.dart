@@ -93,50 +93,6 @@ class SignInForm extends StatelessWidget {
               },
             ),
           ),
-          controller.logWithEmail.isTrue
-              ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Align(
-                    alignment: AlignmentDirectional.topEnd,
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.toNamed(ForgetPasswordView.routeName,
-                            arguments: [controller.email.text, 'email']);
-                      },
-                      child: Text(
-                        "Forgot Password?".tr,
-                        style:
-                            Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  color: AppColors.secondary,
-                                  decoration: TextDecoration.underline,
-                                ),
-                      ),
-                    ),
-                  ),
-                )
-              : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Align(
-                    alignment: AlignmentDirectional.topEnd,
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.toNamed(ForgetPasswordView.routeName,
-                            arguments: [controller.phone.text, 'phone']);
-                      },
-                      child: Text(
-                        "Forgot Password?".tr,
-                        style:
-                            Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  color: AppColors.secondary,
-                                  decoration: TextDecoration.underline,
-                                ),
-                      ),
-                    ),
-                  ),
-                ),
-          const SizedBox(
-            height: 20,
-          ),
         ],
       );
     });
