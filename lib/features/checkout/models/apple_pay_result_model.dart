@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class ApplePayResultModel {
   Token token;
   // BillingContact billingContact;
@@ -13,7 +15,7 @@ class ApplePayResultModel {
 
   factory ApplePayResultModel.fromJson(Map<String, dynamic> json) =>
       ApplePayResultModel(
-        token: Token.fromJson(json["token"]),
+        token: Token.fromJson(jsonDecode(json["token"])),
         // billingContact: BillingContact.fromJson(json["billingContact"]),
         // transactionIdentifier: json["transactionIdentifier"],
         // paymentMethod: PaymentMethod.fromJson(json["paymentMethod"]),
