@@ -47,17 +47,19 @@ class PersonalInformationController extends GetxController {
   final TextEditingController address = TextEditingController();
   final TextEditingController state = TextEditingController();
   final TextEditingController zipCode = TextEditingController();
+  final TextEditingController dateTextEditingController =
+      TextEditingController();
   bool isLoading = false;
   bool deleteLoading = false;
   bool iserror = false;
   RxString countryCode = '+971'.obs;
   RxString countryFlag = AppAssets.flag.obs;
   RxInt countryId = 1.obs;
-
+  DateTime date = DateTime.now();
   RxBool isEdit = false.obs;
   String? selectedCity;
   List<CountryDataModel> countriesList = [];
-
+  String? selectedGender;
   List<String> citiesList = uaeCitiesList;
   List<String> omanCitiesList = omanCities;
   List<String> kuwaitCitiesList = kuwaitCities;
@@ -71,6 +73,8 @@ class PersonalInformationController extends GetxController {
     }
     profileInfo = Get.arguments["profile"];
     print(profileInfo.state);
+    log("==================${profileInfo.gender}");
+    log("==================${profileInfo.dob}");
     // selectedCity = profileInfo.state == '' ? null : profileInfo.state;
     // if (citiesList.contains(profileInfo.state)) {
     //   selectedCity = profileInfo.state;
@@ -89,6 +93,8 @@ class PersonalInformationController extends GetxController {
     selectedCity = profileInfo.state ?? '';
     address.text = profileInfo.street ?? '';
     zipCode.text = profileInfo.zipCode ?? '';
+    dateTextEditingController.text = profileInfo.dob ?? '';
+    selectedGender = profileInfo.gender;
     // countriesList.add(CountryDataModel(
     //   id: 1,
     //   name: "United Arab Emirates",
@@ -102,6 +108,20 @@ class PersonalInformationController extends GetxController {
     print('Selected Country Initialize Value ${profileInfo.countryName}');
 
     super.onInit();
+  }
+
+  chooseDate(Future<DateTime?> datePicker) async {
+    DateTime? newDate = await datePicker;
+    if (newDate != null) {
+      date = newDate;
+      dateTextEditingController.text = "${date.year}-${date.month}-${date.day}";
+      update();
+    } else {}
+  }
+
+  chooseGender(String gender) {
+    selectedGender = gender;
+    update();
   }
 
   setCountry(val) {
@@ -156,13 +176,15 @@ class PersonalInformationController extends GetxController {
           notifyMe: App.notifyMe == true ? 1 : 0,
           isOptional: email.text == profileInfo.email ? true : false,
           state: state.text ?? '',
+          dob: dateTextEditingController.text,
+          gender: selectedGender,
           zipCode: '00000',
           countryId: countryId.value,
         ),
       );
-      print("selcetd city================ $selectedCity");
-      print("selcetd city================ $selectedCountry");
-      print("selcetd city================ ${countryId.value}");
+      log("Gender================ $selectedGender");
+      log("Dop================ ${dateTextEditingController.text}");
+
       Either<Failure, ApiResponse> results = await personalRepo.updateData(
         body: body,
       );

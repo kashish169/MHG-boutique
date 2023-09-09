@@ -73,5 +73,9 @@ Map<String, String> ar_AE = {
       'تم ارسال الى رقمك الهاتف ادخل الرمز المكون من ست ارقام هنا',
   "Share": "شارك",
   "Brand:": "الماركة :",
-  "Bag is empty!": "الحقيبة فارغة!", "TOTAL": "المجموع"
+  "Bag is empty!": "الحقيبة فارغة!", "TOTAL": "المجموع",
+  'Enter your date of birth': 'ادخل تاريخ ميلادك',
+  'Gender': 'الجنس',
+  'Date of Birth': 'تاريخ الميلاد',
+  'Select your gender': 'اختر جنسك'
 };

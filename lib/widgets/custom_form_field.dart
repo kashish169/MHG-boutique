@@ -100,13 +100,13 @@ class CustomFormField extends StatelessWidget {
                               topLeft: Radius.circular(5.0),
                               bottomLeft: Radius.circular(5.0))
                           : const BorderRadius.all(Radius.circular(10.0)),
-                      borderSide:  BorderSide(color: AppColors.lightGray3),
+                      borderSide: BorderSide(color: AppColors.lightGray3),
                     )
                   : UnderlineInputBorder(
                       borderSide:
                           BorderSide(color: AppColors.lightGray3, width: 1)),
           enabledBorder: readOnly == null
-              ?  OutlineInputBorder(
+              ? OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   borderSide: BorderSide(color: AppColors.lightGray3),
                 )
@@ -122,7 +122,7 @@ class CustomFormField extends StatelessWidget {
           disabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
             color: AppColors.lightGray3,
-            width: 1,
+            width: isFileWhite == null ? 1 : 0,
           )),
           focusedBorder: readOnly == null
               ? OutlineInputBorder(
@@ -136,8 +136,9 @@ class CustomFormField extends StatelessWidget {
                       borderSide: BorderSide(color: AppColors.label, width: 2),
                     )
                   : UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: AppColors.lightGray3, width: 1)),
+                      borderSide: BorderSide(
+                          color: AppColors.lightGray3,
+                          width: isFileWhite == null ? 1 : 0)),
           prefixIcon: prefixWidget,
           suffixIcon: suffixIcon,
         ));

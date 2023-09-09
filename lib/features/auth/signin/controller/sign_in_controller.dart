@@ -41,6 +41,7 @@ class SignInController extends GetxController {
 
   RxBool logWithEmail = false.obs;
   RxBool logWithNumber = true.obs;
+  RxBool isAcceptTermsAndCondition = false.obs;
 
   RxDouble emailLogwidth = (double.infinity * 0.3).obs;
   RxDouble numberLogwidth = (double.infinity * 0.35).obs;
