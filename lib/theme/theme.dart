@@ -44,7 +44,7 @@ class AppTheme {
         fontFamily: AppFonts.Century_Gothic,
       ),
     ),
-    datePickerTheme:
-        DatePickerThemeData(yearStyle: TextStyle(color: AppColors.label)),
+    // datePickerTheme:
+    //     DatePickerThemeData(yearStyle: TextStyle(color: AppColors.label)),
   );
 }

@@ -147,11 +147,11 @@ class PersonalInformation extends StatelessWidget {
                                                                   .saudiArabiaCitiesList,
                                             ),
                                     ),
-                                    CountriesDropDownWidget(
-                                      isCountry: true,
-                                      countries: controller.countriesList,
-                                      cities: controller.citiesList,
-                                    ),
+                                    // CountriesDropDownWidget(
+                                    //   isCountry: true,
+                                    //   countries: controller.countriesList,
+                                    //   cities: controller.citiesList,
+                                    // ),
                                     // CountriesDropDownWidget(
                                     //   isCountry: false,
                                     //   countries: controller.countriesList,
