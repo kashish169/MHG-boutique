@@ -45,7 +45,7 @@ class ApplePayWidget extends StatelessWidget {
           type: ApplePayButtonType.plain,
           margin: const EdgeInsets.only(top: 15.0),
           onPaymentResult: (result) {
-            log("APPLE PAY $result");
+            // log("APPLE PAY $result");
             var model = ApplePayResultModel.fromJson(result);
             controller.createOrder(
               isApplePay: true,

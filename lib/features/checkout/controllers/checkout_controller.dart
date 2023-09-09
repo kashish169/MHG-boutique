@@ -395,17 +395,19 @@ class CheckoutController extends GetxController {
         AppToasts.errorToast("Please complete your personal information");
         return;
       }
-      if (paymentMethodValue.isEmpty) {
+      if (paymentMethodValue.isEmpty && (isApplePay == null || !isApplePay)) {
         AppToasts.errorToast("Choose payment method");
         return;
       }
-      if (paymentMethodValue.value == "TAP") {
+      if(isApplePay != null && isApplePay) {
+        paymentMethodValue.value = "TAP";
+      }
+      if (paymentMethodValue.value == "TAP" && (isApplePay == null || !isApplePay)) {
         if (userSelectedCardModel.value == null) {
           AppToasts.errorToast("Choose payment card");
           return;
         }
       }
-
       String objectData = orderModelToJson(
         OrderModel(
           billingName: userName,
