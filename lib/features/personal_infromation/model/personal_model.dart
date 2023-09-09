@@ -11,12 +11,13 @@ class UpdateInfoModel {
   String? email;
   String number;
   String? gender;
-  // final String dob;
+  String? dob;
   int? notifyMe;
   String? image;
   String address;
   bool isOptional;
   String? state;
+
   int? countryId;
   String? zipCode;
   UpdateInfoModel({
@@ -31,6 +32,7 @@ class UpdateInfoModel {
     this.state,
     this.countryId,
     this.zipCode,
+    this.dob,
   });
 
   Map<String, dynamic> toJson() => isOptional
@@ -38,7 +40,7 @@ class UpdateInfoModel {
           "name": name,
           "phone_number": number,
           'gender': gender,
-          // 'dob': dob,
+          'dob': dob,
           'notify_me': notifyMe,
           'street_address': address,
           'state': state,
@@ -50,7 +52,7 @@ class UpdateInfoModel {
           "phone_number": number,
           "email": email,
           'gender': gender,
-          // 'dob': dob,
+          'dob': dob,
           'notify_me': notifyMe,
           'street_address': address,
           'state': state,

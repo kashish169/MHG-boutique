@@ -11,6 +11,7 @@ import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 import '../widget/countries_drop_down_widget.dart';
 import '../widget/delete_account_dialog.dart';
 import '../widget/personal_info_button.dart';
+import '../widget/personal_info_date_and_gender_form.dart';
 
 class PersonalInformation extends StatelessWidget {
   static String routeName = "/personal_information";
@@ -165,6 +166,7 @@ class PersonalInformation extends StatelessWidget {
                                     //   textController: controller.zipCode,
                                     //   // isEnableToEdit: true,
                                     // ),
+                                    PersonalInfoDateAndGenderForm(),
                                   ],
                                 ),
                               ),

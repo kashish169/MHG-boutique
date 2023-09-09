@@ -46,5 +46,9 @@ Map<String, String> en_US = {
   "Share": "Share",
   "Brand:": "Brand:",
   'Sold Out': 'Sold Out',
-  "Bag is empty!": "Bag is empty!", "TOTAL": "TOTAL"
+  "Bag is empty!": "Bag is empty!", "TOTAL": "TOTAL",
+  'Enter your date of birth': 'Enter your date of birth',
+  'Gender': 'Gender',
+  'Date of Birth': 'Date of Birth',
+  'Select your gender': 'Select your gender',
 };
