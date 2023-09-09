@@ -37,6 +37,8 @@ class HomeController extends GetxController {
   RxString middleSectionMainImage = ''.obs;
   RxString middleSectionMainTitle = ''.obs;
   int? middleSectionMainBrandId;
+  int? middleSectionMainCategoryId;
+  int? middleSectionMainProductId;
 
   updateList(List<ProductModel> model, bool fromArrival) {
     for (int i = 0; i < model.length; i++) {
@@ -65,6 +67,7 @@ class HomeController extends GetxController {
           log("HOME RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
             var json = r.object["data"];
+            log(json.toString());
 
             var data = HomeModel.fromJson(json);
             homeModel = data;
@@ -82,6 +85,8 @@ class HomeController extends GetxController {
               middleSectionMainImage.value = middleSectionList.first.imageLink;
               middleSectionMainTitle.value = middleSectionList.first.enTitle;
               middleSectionMainBrandId = middleSectionList.first.brandId;
+              middleSectionMainCategoryId = middleSectionList.first.categoryId;
+              middleSectionMainProductId = middleSectionList.first.productId;
               middleSectionList.removeAt(0);
             }
           } else {

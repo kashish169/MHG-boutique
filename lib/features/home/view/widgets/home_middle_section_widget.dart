@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
+import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/widgets/dynamic_grid_view.dart';
 import 'package:mhg/widgets/net_image.dart';
 import '../../../products_page/view/pages/product_page.dart';
@@ -20,12 +23,37 @@ class HomeMiddleSectionWidget extends StatelessWidget {
           const SizedBox(height: 20),
           InkWell(
             onTap: () {
-              Get.toNamed(
-                ProductsPage.routeName,
-                arguments: {
-                  'brandId': controller.middleSectionMainBrandId,
-                },
-              );
+              if (controller.middleSectionMainBrandId != null) {
+                log("BY_BRAND_ID");
+                Get.toNamed(
+                  ProductsPage.routeName,
+                  arguments: {
+                    'brandId': controller.middleSectionMainBrandId,
+                  },
+                );
+                return;
+              }
+              if (controller.middleSectionMainProductId != null) {
+                log("BY_PRODUCT_ID");
+                Get.toNamed(
+                  ProductDetailsPage.routeName,
+                  arguments: {
+                    "id": controller.middleSectionMainProductId,
+                    "fromArrival": false,
+                    "name": controller.middleSectionMainTitle
+                  },
+                );
+                return;
+              }
+              if (controller.middleSectionMainCategoryId != null) {
+                log("BY_CATEGORY");
+                Get.toNamed(
+                  ProductsPage.routeName,
+                  arguments: {
+                    "categoryId": controller.middleSectionMainCategoryId,
+                  },
+                );
+              }
             },
             child: Stack(
               alignment: AlignmentDirectional.bottomCenter,
@@ -62,12 +90,41 @@ class HomeMiddleSectionWidget extends StatelessWidget {
             builder: (ctx, index) {
               return InkWell(
                 onTap: () {
-                  Get.toNamed(
-                    ProductsPage.routeName,
-                    arguments: {
-                      'brandId': controller.middleSectionList[index].brandId,
-                    },
-                  );
+                  log("brand id:${controller.middleSectionList[index].brandId}");
+
+                  if (controller.middleSectionList[index].brandId != null) {
+                    log("BY_BRAND_ID");
+                    Get.toNamed(
+                      ProductsPage.routeName,
+                      arguments: {
+                        'brandId': controller.middleSectionList[index].brandId,
+                      },
+                    );
+                    return;
+                  }
+                  if (controller.middleSectionList[index].productId!= null) {
+                    log("BY_PRODUCT_ID");
+                    Get.toNamed(
+                      ProductDetailsPage.routeName,
+                      arguments: {
+                        "id": controller.middleSectionList[index].productId,
+                        "fromArrival": false,
+                        "name":controller.middleSectionList[index].enTitle
+                      },
+                    );
+                    return;
+                  }
+                  if (controller.middleSectionList[index].categoryId != null) {
+                    log("BY_CATEGORY");
+                    Get.toNamed(
+                      ProductsPage.routeName,
+                      arguments: {
+                        "categoryId": controller.middleSectionList[index].categoryId,
+                      },
+                    );
+                  }
+
+
                 },
                 child: Stack(
                   alignment: AlignmentDirectional.bottomCenter,
