@@ -37,16 +37,18 @@ class _SignInPageState extends State<SignInPage> {
     return Scaffold(
       //resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: false,
-      appBar: controller.isGuest.isFalse
-          ? AppBar(
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-            )
-          : AppBar(
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              leading: const ArrowBack(),
-            ),
+      appBar:
+          //  controller.isGuest.isFalse
+          //     ? AppBar(
+          //         elevation: 0,
+          //         backgroundColor: Colors.transparent,
+          //       )
+          //     :
+          AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: const ArrowBack(),
+      ),
       body: GetX<SignInController>(
         builder: (controller) {
           return SingleChildScrollView(
