@@ -7,6 +7,7 @@ import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
 import 'package:mhg/widgets/net_image.dart';
+import '../../../../constants/app_colors.dart';
 import '../../../mainwrapper/controller/main_wrapper_controller.dart';
 
 class HomeSlider extends StatelessWidget {
@@ -24,6 +25,16 @@ class HomeSlider extends StatelessWidget {
             height: AppDimensions.screenWidth(context) * 1.2,
             width: AppDimensions.screenWidth(context),
             child: Swiper(
+              autoplay: true,
+              duration: 3,
+              pagination: SwiperPagination(
+                  margin: const EdgeInsets.only(top: 5),
+                  builder: DotSwiperPaginationBuilder(
+                    color: AppColors.lightGray3,
+                    activeColor: AppColors.secondary,
+                    size: 10.0,
+                    activeSize: 9.0,
+                  )),
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () {

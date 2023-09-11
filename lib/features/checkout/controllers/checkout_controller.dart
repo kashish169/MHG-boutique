@@ -399,10 +399,11 @@ class CheckoutController extends GetxController {
         AppToasts.errorToast("Choose payment method");
         return;
       }
-      if(isApplePay != null && isApplePay) {
+      if (isApplePay != null && isApplePay) {
         paymentMethodValue.value = "TAP";
       }
-      if (paymentMethodValue.value == "TAP" && (isApplePay == null || !isApplePay)) {
+      if (paymentMethodValue.value == "TAP" &&
+          (isApplePay == null || !isApplePay)) {
         if (userSelectedCardModel.value == null) {
           AppToasts.errorToast("Choose payment card");
           return;
@@ -700,7 +701,7 @@ class CheckoutController extends GetxController {
       results.fold(
         (l) {
           errorAppleConfiguration(true);
-          AppToasts.errorToast(l.message);
+          // AppToasts.errorToast(l.message);
           log("ApplePayConfiguration RESPONSE ERROR ${l.message}");
         },
         (r) {
@@ -711,7 +712,7 @@ class CheckoutController extends GetxController {
             appleConfiguration = r.object["data"];
           } else {
             errorAppleConfiguration(true);
-            AppToasts.errorToast(message);
+            // AppToasts.errorToast(message);
           }
         },
       );

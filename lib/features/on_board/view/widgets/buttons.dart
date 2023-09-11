@@ -30,7 +30,7 @@ class OnBoardButtons extends StatelessWidget {
                   onTap: controller.isLoading || controller.isError
                       ? () {}
                       : () {
-                          Get.offAllNamed(
+                          Get.toNamed(
                             SignInPage.routeName,
                             arguments: {
                               'country': controller.selectedCountry,
