@@ -10,7 +10,7 @@ class RewardsController extends GetxController {
   List<TiersModel> tiersList = [];
   @override
   void onInit() {
-    print(controller.model.value?.currentTier);
+    // print(controller.model.value?.currentTier);
     currentTier = controller.model.value?.currentTier ?? 'empty';
     tiersList = [
       TiersModel(

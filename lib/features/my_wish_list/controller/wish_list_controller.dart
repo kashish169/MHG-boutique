@@ -103,7 +103,7 @@ class WishListController extends GetxController {
 
   Future<void> getWishList({bool withoutLoading = false}) async {
     try {
-      if(withoutLoading==true){
+      if (withoutLoading == true) {
         isLoading(true);
       }
 
@@ -124,11 +124,10 @@ class WishListController extends GetxController {
           var stats = r.object['isSuccessful'];
           log("Wish List Status Code $statusCode");
           if (stats == true) {
-
             List json = r.object["data"]['wishlist_items'];
             wishListItems.value =
                 json.map((e) => WishListModel.fromJson(e)).toList();
-            print(wishListItems.length);
+            log("${wishListItems.length}");
           } else {
             AppToasts.errorToast(message);
           }
@@ -136,7 +135,7 @@ class WishListController extends GetxController {
       );
     } catch (e, s) {
       isError(true);
-      print("catch error" "$e,$s");
+      log("catch error" "$e,$s");
     }
   }
 

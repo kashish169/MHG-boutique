@@ -230,7 +230,7 @@ class ProfileController extends GetxController {
       );
 
       countryCode.value = dialCode;
-      print({dialCode, newPhoneNumber});
+      log("{$dialCode, $newPhoneNumber}");
     }
   }
 
