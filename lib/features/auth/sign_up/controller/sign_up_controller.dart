@@ -78,6 +78,7 @@ class SignUpController extends GetxController {
         Api.authorizedheaders = {
           'Content-Type': 'application/json',
           'Authorization': "Bearer $token",
+          'Country-Id': "${App.countryId}",
         };
         await StoragePref.setString(
           key: "token",

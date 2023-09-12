@@ -12,7 +12,6 @@ import '../../../mainwrapper/controller/main_wrapper_controller.dart';
 
 class HomeSlider extends StatelessWidget {
   const HomeSlider({super.key});
-
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
@@ -26,7 +25,7 @@ class HomeSlider extends StatelessWidget {
             width: AppDimensions.screenWidth(context),
             child: Swiper(
               autoplay: true,
-              duration: 3,
+              autoplayDelay: 10000,
               pagination: SwiperPagination(
                   margin: const EdgeInsets.only(top: 5),
                   builder: DotSwiperPaginationBuilder(
