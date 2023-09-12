@@ -2,7 +2,6 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_dimensions.dart';
-import 'package:mhg/core/languages/languages.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
@@ -12,7 +11,6 @@ import '../../../mainwrapper/controller/main_wrapper_controller.dart';
 
 class HomeSlider extends StatelessWidget {
   const HomeSlider({super.key});
-
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
@@ -26,7 +24,9 @@ class HomeSlider extends StatelessWidget {
             width: AppDimensions.screenWidth(context),
             child: Swiper(
               autoplay: true,
-              duration: 3,
+              autoplayDelay: 10000,
+              duration: 1000,
+              curve: Curves.fastLinearToSlowEaseIn,
               pagination: SwiperPagination(
                   margin: const EdgeInsets.only(top: 5),
                   builder: DotSwiperPaginationBuilder(

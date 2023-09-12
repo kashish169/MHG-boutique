@@ -72,9 +72,9 @@ class PersonalInformationController extends GetxController {
       countryId.value = App.countryId!;
     }
     profileInfo = Get.arguments["profile"];
-    print(profileInfo.state);
     log("==================${profileInfo.gender}");
     log("==================${profileInfo.dob}");
+    log("==================${profileInfo.state}");
     // selectedCity = profileInfo.state == '' ? null : profileInfo.state;
     // if (citiesList.contains(profileInfo.state)) {
     //   selectedCity = profileInfo.state;
@@ -101,11 +101,6 @@ class PersonalInformationController extends GetxController {
     //   flagLink:
     //       "https://api.mhgboutique.com/uploaded_files/country/64a413436c91b1688474435.png",
     // ));
-    print('Country Initialize Value ${profileInfo.country!.name}');
-    selectedCountry = profileInfo.country!.name;
-    print('Selected Country Initialize Value $selectedCountry');
-    getAllCountries();
-    print('Selected Country Initialize Value ${profileInfo.countryName}');
 
     super.onInit();
   }
@@ -273,7 +268,7 @@ class PersonalInformationController extends GetxController {
       );
       phone.text = newPhoneNumber;
       countryCode.value = dialCode;
-      print({dialCode, newPhoneNumber});
+      log('{$dialCode, $newPhoneNumber}');
     }
   }
 

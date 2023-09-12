@@ -120,8 +120,9 @@ class SignInController extends GetxController {
           Api.authorizedheaders = {
             'Content-Type': 'application/json',
             'Authorization': "Bearer $token",
+            'Country-Id': "${App.countryId}",
           };
-          print(token);
+          log(token);
           await StoragePref.setString(
             key: "token",
             value: token,
@@ -167,6 +168,7 @@ class SignInController extends GetxController {
           Api.authorizedheaders = {
             'Content-Type': 'application/json',
             'Authorization': "Bearer $token",
+            'Country-Id': "${App.countryId}",
           };
           await StoragePref.setString(
             key: "token",
