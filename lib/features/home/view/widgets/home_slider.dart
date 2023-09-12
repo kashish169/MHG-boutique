@@ -26,6 +26,8 @@ class HomeSlider extends StatelessWidget {
             child: Swiper(
               autoplay: true,
               autoplayDelay: 10000,
+              duration: 1000,
+              curve: Curves.fastEaseInToSlowEaseOut,
               pagination: SwiperPagination(
                   margin: const EdgeInsets.only(top: 5),
                   builder: DotSwiperPaginationBuilder(
