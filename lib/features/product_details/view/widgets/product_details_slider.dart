@@ -19,8 +19,8 @@ class ProductDetailsSlider extends StatelessWidget {
     final controller = Get.find<ProductDetailsController>();
     return Stack(
       children: [
-        SizedBox(
-          height: 430,
+        AspectRatio(
+          aspectRatio: 4 / 5,
           child: Swiper(
             itemBuilder: (BuildContext context, int index) {
               return NetImage(
