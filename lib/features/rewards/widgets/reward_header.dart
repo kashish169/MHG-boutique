@@ -118,7 +118,8 @@ class RewardHeader extends StatelessWidget {
                               width: 5,
                             ),
                             Text(
-                              '${controller.model.value!.hearts}/${controller.model.value!.nextTierPts}',
+                              // '${controller.model.value!.hearts}/${controller.model.value!.nextTierPts}',
+                              '${controller.model.value!.hearts} Pts',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall
@@ -142,16 +143,16 @@ class RewardHeader extends StatelessWidget {
                   if (controller.model.value?.nextTier != null)
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: controller.model.value!.nextTierPts != "0.00"
-                          ? Text(
-                              '${controller.model.value!.nextTierPtsLeft} Until ${controller.model.value!.nextTier}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall
-                                  ?.copyWith(
-                                      fontSize: 10, color: AppColors.white),
-                            )
-                          : const SizedBox(),
+                      // child: controller.model.value!.nextTierPts != "0.00"
+                      //     ? Text(
+                      //         '${controller.model.value!.nextTierPtsLeft} Until ${controller.model.value!.nextTier}',
+                      //         style: Theme.of(context)
+                      //             .textTheme
+                      //             .displaySmall
+                      //             ?.copyWith(
+                      //                 fontSize: 10, color: AppColors.white),
+                      //       )
+                      //     : const SizedBox(),
                     )
                 ],
               ),

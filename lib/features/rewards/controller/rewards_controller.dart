@@ -17,7 +17,7 @@ class RewardsController extends GetxController {
         id: 1,
         name: 'Mojab',
         description:
-            'Unlock To Start Earning More Credits For Each Time You Buy From Our Brands',
+            'Earn 2.5% loyalty points on your purchase amount',
         image: AppAssets.mojab,
         isLocked: (currentTier == 'Mojab' ||
                 currentTier == 'Moghram' ||
@@ -30,7 +30,7 @@ class RewardsController extends GetxController {
       TiersModel(
         id: 2,
         name: 'Moghram',
-        description: 'Unlock To Have Special Offers And Extra Gifts',
+        description: 'Earn 5% loyalty points on your purchase amount',
         image: AppAssets.moghram,
         isLocked:
             (currentTier == 'Moghram' || currentTier == 'Molah') ? false : true,
@@ -41,7 +41,7 @@ class RewardsController extends GetxController {
         id: 3,
         name: 'Molah',
         description:
-            'Unlock To Be The Vip User, With Tons Of Gifts And Offers More Than 40% Sales',
+            'Earn 10% loyalty points on your purchase amount',
         image: AppAssets.molah,
         isLocked: currentTier == 'Molah' ? false : true,
         color: currentTier == 'Molah' ? AppColors.molah : AppColors.moghram,

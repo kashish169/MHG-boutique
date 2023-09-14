@@ -90,6 +90,7 @@ class CheckoutController extends GetxController {
   RxBool loadingAppleConfiguration = false.obs;
   RxBool errorAppleConfiguration = false.obs;
   Map appleConfiguration = {};
+  RxBool isApplePay = false.obs;
 
   Future<void> getUserPaymentMethods() async {
     try {
@@ -160,18 +161,18 @@ class CheckoutController extends GetxController {
               paymentMethodsList
                   .removeWhere((element) => element.name == 'COD');
             }
-            // if (App.token.isNotEmpty) {
-            //   (GetPlatform.isIOS && App.countryId == 1)
-            //       ? paymentMethodsList.add(PaymentMethodsModel(
-            //           id: 3,
-            //           name: 'Apple Pay',
-            //           image: '',
-            //           slug: 'Apple Pay',
-            //           status: 0,
-            //           createdAt: DateTime.now(),
-            //           updatedAt: DateTime.now()))
-            //       : null;
-            // }
+            if (App.token.isNotEmpty) {
+              (GetPlatform.isIOS && App.countryId == 1)
+                  ? paymentMethodsList.add(PaymentMethodsModel(
+                      id: 3,
+                      name: 'Apple Pay',
+                      image: '',
+                      slug: 'Apple Pay',
+                      status: 0,
+                      createdAt: DateTime.now(),
+                      updatedAt: DateTime.now()))
+                  : null;
+            }
             if (App.countryId != 1) {
               log("=========== Delete Credit Card its not uae Country");
               paymentMethodsList

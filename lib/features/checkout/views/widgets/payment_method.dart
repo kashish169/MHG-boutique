@@ -52,6 +52,14 @@ class PaymentMethod extends StatelessWidget {
                         checkoutController.paymentMethodsList[index].slug;
                     log(checkoutController.paymentMethodsList[index].slug);
                     checkoutController.orderPrice();
+                    log(checkoutController.paymentMethodValue.value);
+                    if (checkoutController.paymentMethodValue.value ==
+                        'Apple Pay') {
+                      checkoutController.isApplePay(true);
+                    } else {
+                      checkoutController.isApplePay(false);
+                    }
+                    print(checkoutController.isApplePay);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -77,6 +85,13 @@ class PaymentMethod extends StatelessWidget {
                               log(checkoutController
                                   .paymentMethodsList[index].slug);
                               checkoutController.orderPrice();
+                              if (checkoutController.paymentMethodValue.value ==
+                                  'Apple Pay') {
+                                checkoutController.isApplePay(true);
+                              } else {
+                                checkoutController.isApplePay(false);
+                              }
+                              print(checkoutController.isApplePay);
                             },
                           ),
                         ),
