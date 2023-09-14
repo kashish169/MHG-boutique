@@ -29,6 +29,8 @@ class _PlaceOrderState extends State<PlaceOrder> {
 
   @override
   Widget build(BuildContext context) {
+    String payment = checkoutController.paymentMethodValue.value;
+    print(payment);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
@@ -305,37 +307,29 @@ class _PlaceOrderState extends State<PlaceOrder> {
 
           const SizedBox(height: 15),
           Obx(
-            () => PlaceOrderButton(
-              title: 'Place Order',
-              width: 300,
-              hasIcon: true,
-              color: checkoutController.isLoadingRedeem.isTrue
-                  ? AppColors.grey
-                  : AppColors.secondary,
-              isLoading: checkoutController.isLoadingCreateOrder.value,
-              onPress: checkoutController.paymentMethodValue.value == ''
-                  ? null
-                  : checkoutController.isLoadingRedeem.isTrue
-                      ? () {}
-                      : () {
-                          if (App.token.isNotEmpty) {
-                            checkoutController.createOrder();
-                          } else {
-                            _onGuestOrder.call();
-                          }
-                        },
+            () => Visibility(
+              visible: !checkoutController.isApplePay.value,
+              child: PlaceOrderButton(
+                title: 'Place Order',
+                width: 300,
+                hasIcon: true,
+                color: checkoutController.isLoadingRedeem.isTrue
+                    ? AppColors.grey
+                    : AppColors.secondary,
+                isLoading: checkoutController.isLoadingCreateOrder.value,
+                onPress: checkoutController.paymentMethodValue.value == ''
+                    ? null
+                    : checkoutController.isLoadingRedeem.isTrue
+                        ? () {}
+                        : () {
+                            if (App.token.isNotEmpty) {
+                              checkoutController.createOrder();
+                            } else {
+                              _onGuestOrder.call();
+                            }
+                          },
+              ),
             ),
-            // ApplePayWebViewButton(
-            //   onTap: checkoutController.isLoadingRedeem.isTrue
-            //       ? () {}
-            //       : () {
-            //           if (App.token.isNotEmpty) {
-            //             checkoutController.createOrder();
-            //           } else {
-            //             _onGuestOrder.call();
-            //           }
-            //         },
-            // ),
           ),
           if (Platform.isIOS)
             Obx(() {
@@ -350,7 +344,10 @@ class _PlaceOrderState extends State<PlaceOrder> {
               } else if (checkoutController.isErrorRedeem.isTrue) {
                 return const SizedBox();
               }
-              return const ApplePayWidget();
+              return Visibility(
+                visible: checkoutController.isApplePay.value,
+                child: const ApplePayWidget(),
+              );
             }),
           SizedBox(height: AppDimensions.viewBottomPadding(context) + 15),
         ],
