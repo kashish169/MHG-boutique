@@ -25,7 +25,7 @@ class SplashController extends GetxController {
   void onInit() {
     initialRoute();
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle.light,
+      SystemUiOverlayStyle.dark,
     );
     super.onInit();
   }
