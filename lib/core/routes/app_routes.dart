@@ -1,5 +1,7 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:mhg/features/about_us/view/pages/about_us_page.dart';
+import 'package:mhg/features/allproducts/binding/all_products_binding.dart';
+import 'package:mhg/features/allproducts/view/pages/all_products_page.dart';
 import 'package:mhg/features/auth/sign_up/binding/sign_up_binding.dart';
 import 'package:mhg/features/auth/sign_up/view/pages/sign_up_view.dart';
 import 'package:mhg/features/auth/verification/binding/verification_binding.dart';
@@ -201,6 +203,11 @@ class AppRoutes {
     GetPage(
         name: '/invite_friend',
         page: () => const InviteFriendPage(),
+    ),
+    GetPage(
+      name: '/all_products',
+      page: () => const AllProductsPage(),
+      binding:AllProductsBindings()
     )
 
   ];

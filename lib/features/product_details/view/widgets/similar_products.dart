@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 // import 'package:mhg/constants/app_dimensions.dart';
-// import 'package:mhg/features/home/controller/home_controller.dart';
+
 // import 'package:mhg/features/home/view/widgets/home_top_sellers_widget.dart';
 // import 'package:mhg/widgets/loading_widget.dart';
 // import 'package:mhg/widgets/retry_button.dart';

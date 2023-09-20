@@ -30,9 +30,7 @@ class HomeNewArrivelsWidget extends StatelessWidget {
                   ),
                 ),
                 ViewAllButton(onTap: () {
-                  Get.to(() => AllProductsPage(
-                        products: controller.newArrivalsList,
-                      ));
+                  Get.toNamed(AllProductsPage.routeName,arguments: 'fromArrival');
                 }),
               ],
             ),

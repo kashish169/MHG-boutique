@@ -71,4 +71,7 @@ class Api {
   static String autoComplete = "$apiRoot/product/auto-complete";
   static String destroyCart = "$apiRoot/cart/destroy-cart";
   static String applePay = "$apiRoot/payment/tap/apple-pay";
+
+  static String allProducts = "$apiRoot/product/filter";
+
 }
