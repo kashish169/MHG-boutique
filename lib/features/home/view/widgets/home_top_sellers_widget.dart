@@ -30,9 +30,7 @@ class HomeTopSellersWidget extends StatelessWidget {
                   ),
                 ),
                 ViewAllButton(onTap: () {
-                  Get.to(() => AllProductsPage(
-                        products: controller.topSellersList,
-                      ));
+                  Get.toNamed(AllProductsPage.routeName,arguments: 'topSeller');
                 }),
               ],
             ),

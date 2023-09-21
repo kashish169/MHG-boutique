@@ -26,6 +26,7 @@ class ApplePayWidget extends StatelessWidget {
             controller.getApplePayConfiguration();
           });
         }
+
         return ApplePayButton(
           height: 40,
           width: 300,
