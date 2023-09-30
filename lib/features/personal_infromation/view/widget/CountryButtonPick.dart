@@ -23,14 +23,14 @@ class CountryButtonPicker extends StatelessWidget {
       minWidth: 0,
       onPressed: () {
         ///todo
-        // showCountries(
-        //   context,
-        //   (p0) {
-        //     controller.countryCode.value = "+${p0.phoneCode}";
-        //     controller.countryFlag.value = p0.flagEmoji;
-        //     controller.enableEditOnNumber.value = false;
-        //   },
-        // );
+        showCountries(
+          context,
+          (p0) {
+            controller.countryCode.value = "+${p0.phoneCode}";
+            controller.countryFlag.value = p0.flagEmoji;
+            controller.enableEditOnNumber.value = false;
+          },
+        );
       },
       child: Row(
         children: [
@@ -41,9 +41,9 @@ class CountryButtonPicker extends StatelessWidget {
             ),
           ),
           ///todo
-          // const Icon(
-          //   Icons.arrow_drop_down_outlined,
-          // ),
+          const Icon(
+            Icons.arrow_drop_down_outlined,
+          ),
           SizedBox(width: 5,),
           isFromShippingAddress == false
               ? SizedBox(
