@@ -175,7 +175,7 @@ class CheckoutController extends GetxController {
                       updatedAt: DateTime.now()))
                   : null;
             }
-            if (App.countryId != 1) {
+            if (App.countryId != 1 &&App.countryId != 2) {
               log("=========== Delete Credit Card its not uae Country");
               paymentMethodsList
                   .removeWhere((element) => element.name == 'Credit Card');
