@@ -114,11 +114,11 @@ class PersonalInformation extends StatelessWidget {
                                     //   // isEnableToEdit:
                                     //   //     controller.enableEditOnState,
                                     // ),
-                                    CountriesDropDownWidget(
-                                      isCountry: true,
-                                      countries: controller.countriesList,
-                                      cities: controller.citiesList,
-                                    ),
+                                    // CountriesDropDownWidget(
+                                    //   isCountry: true,
+                                    //   countries: controller.countriesList,
+                                    //   cities: controller.citiesList,
+                                    // ),
                                     Obx(
                                       () => controller.isLoadingCities.isTrue
                                           ? const Center(
