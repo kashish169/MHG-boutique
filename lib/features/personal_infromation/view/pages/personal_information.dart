@@ -81,8 +81,7 @@ class PersonalInformation extends StatelessWidget {
                                       // },
                                       validator: (val) {
                                         return AppHelper.validatePhone(
-                                          val!,
-                                        );
+                                            val!, controller.countryCode.value);
                                       },
                                       textController: controller.phone,
                                       inInputNumber: true,

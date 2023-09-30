@@ -8,7 +8,9 @@ import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 
+import '../../../../app/app.dart';
 import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
+import '../widgets/guest_add_payment_card_info_dialog.dart';
 
 class PaymentMethodsPage extends StatefulWidget {
   static String routeName = '/payment_methods';
@@ -77,15 +79,21 @@ class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
                               padding: const EdgeInsets.only(top: 10),
                               child: Center(
                                 child: PlaceOrderButton(
-                                  color: AppColors.secondary,
-                                  title: 'Add Card',
-                                  width: 300,
-                                  hasIcon: false,
-                                  onPress: () =>
-                                      checkoutController.addPaymentMethod(
-                                    isProfile: widget.isProfile,
-                                  ),
-                                ),
+                                    color: AppColors.secondary,
+                                    title: 'Add Card',
+                                    width: 300,
+                                    hasIcon: false,
+                                    onPress: () {
+                                      if (App.token.isEmpty) {
+                                        Get.dialog(
+                                          GuestPaymentCardInfoDialog(),
+                                        );
+                                      } else {
+                                        checkoutController.addPaymentMethod(
+                                          isProfile: widget.isProfile,
+                                        );
+                                      }
+                                    }),
                               ),
                             )
                           : const LoadingWidget(),

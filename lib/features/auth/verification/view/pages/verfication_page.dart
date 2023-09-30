@@ -68,9 +68,8 @@ class VerificationPage extends StatelessWidget {
                           obscure: false,
                           controller: controller.phone,
                           validator: (val) {
-                         return AppHelper.validatePhone(
-                              val!,
-                            ); 
+                            return AppHelper.validatePhone(
+                                val!, controller.countryCode.value);
                           },
                         ),
                       ),

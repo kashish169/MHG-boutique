@@ -30,7 +30,8 @@ class SignInForm extends StatelessWidget {
                   ),
                   child: CustomFormField(
                     validator: (value) {
-                      return AppHelper.validatePhone(value!);
+                      return AppHelper.validatePhone(
+                          value!, controller.countryCode.value);
                     },
                     controller: controller.phone,
                     suffixIcon: IconButton(

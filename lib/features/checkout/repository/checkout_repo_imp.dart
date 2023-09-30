@@ -28,9 +28,10 @@ class CheckoutRepoImplement implements CheckoutRepository {
       );
 
   @override
-  Future<Either<Failure, ApiResponse>> addPaymentMethod() async =>
+  Future<Either<Failure, ApiResponse>> addPaymentMethod(
+          String? query, isGuest) async =>
       httpService.get(
-        url: Api.addPaymentMethod,
+        url: isGuest ? "${Api.addPaymentMethod}?$query" : Api.addPaymentMethod,
         isAuthorized: true,
       );
 

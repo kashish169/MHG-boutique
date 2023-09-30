@@ -5,7 +5,8 @@ import 'package:mhg/core/models/failure.dart';
 abstract class CheckoutRepository {
   Future<Either<Failure, ApiResponse>> getUserPaymentMethods();
   Future<Either<Failure, ApiResponse>> getPaymentMethods();
-  Future<Either<Failure, ApiResponse>> addPaymentMethod();
+  Future<Either<Failure, ApiResponse>> addPaymentMethod(
+      String? query, bool isGuest);
   Future<Either<Failure, ApiResponse>> deletePaymentMethod(id);
   Future<Either<Failure, ApiResponse>> setDefaultPaymentMethod(id);
   Future<Either<Failure, ApiResponse>> orderPrice(Object query);
