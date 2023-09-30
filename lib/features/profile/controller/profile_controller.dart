@@ -64,6 +64,7 @@ class ProfileController extends GetxController {
           if (statusCode == 200) {
             model.value = ProfileInfoModal.fromJson(r.object["data"]);
             log('neee${model.value!.nextTierPts}');
+            log(r.object["data"].toString());
             separatePhoneAndDialCode(model.value!.number ?? '');
             currnecy.value = "AED";
             App.countryId = model.value?.country?.id;

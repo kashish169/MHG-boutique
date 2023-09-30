@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/widgets/retry_button.dart';
- import 'package:pay/pay.dart';
+import 'package:pay/pay.dart';
 
 import '../../../../widgets/three_bounce_loading.dart';
 import '../../models/apple_pay_result_model.dart';
@@ -27,7 +27,7 @@ class ApplePayWidget extends StatelessWidget {
           });
         }
 
-        return  ApplePayButton(
+        return ApplePayButton(
           height: 40,
           width: 300,
           paymentConfiguration: PaymentConfiguration.fromJsonString(

@@ -181,13 +181,17 @@ class OnboardController extends GetxController {
       key: 'countryCode',
       value: App.countryCode,
     );
-    if(App.token.isNotEmpty){
+    // if(App.token.isNotEmpty){
       Api.authorizedheaders = {
         'Content-Type': 'application/json',
         'Authorization': "Bearer ${App.token}",
         'Country-Id': "${App.countryId}",
       };
-    }
+    Api.headers = {
+      'Content-Type': 'application/json',
+      'Country-Id': "${App.countryId}",
+    };
+  //  }
 
     update();
   }
