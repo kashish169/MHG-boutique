@@ -136,7 +136,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                 obscure: false,
                                 controller: controller.phone,
                                 validator: (val) {
-                                 return AppHelper.validatePhone(val!);
+                                  return AppHelper.validatePhone(
+                                      val!, controller.countryCode);
                                 },
                               ),
                             ),

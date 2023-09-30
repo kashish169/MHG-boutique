@@ -41,20 +41,49 @@ class AppHelper {
       return "Password must be at least 6 characters long";
     }
   }
+
   static bool isNumeric(String s) {
-    if(s == null) {
+    if (s == null) {
       return false;
     }
-    return double.parse(s) != null;
+    return double.tryParse(s) != null;
   }
 
-  static String? validatePhone(String value) {
-    bool validate =isNumeric(value)&&value.length>=8;
-    if (validate == false) {
+  static String? validatePhone(String value, String countryCode) {
+    bool? validate;
+    if (!GetUtils.isPhoneNumber(value)) {
       return 'Please enter a valid phone number';
     } else {
-      return null;
+      switch (countryCode) {
+        case '+971': //UAE
+          if (value[0] == '5' && value.length == 9) {
+            validate = true;
+          } else {
+            validate = false;
+          }
+          break;
+        case '+965': //Kuwait
+          if (value.length == 8) {
+            validate = true;
+          } else {
+            validate = false;
+          }
+          break;
+      }
+      log('$validate');
+      if (validate == false) {
+        return 'Please enter a valid phone number';
+      } else {
+        return null;
+      }
     }
+
+    // bool validate = isNumeric(value) && value.length >= 8;
+    // if (validate == false) {
+    //   return 'Please enter a valid phone number';
+    // } else {
+    //   return null;
+    // }
   }
 
   static void closeKeyboard() {
@@ -70,9 +99,9 @@ class AppHelper {
   }
 
   static String difference(DateTime dateTime) {
-    if (DateTime.now().difference(dateTime).inDays != 0){
+    if (DateTime.now().difference(dateTime).inDays != 0) {
       return '${DateTime.now().difference(dateTime).inDays} days ago';
-    }else{
+    } else {
       if (DateTime.now().difference(dateTime).inHours != 0) {
         return '${DateTime.now().difference(dateTime).inHours} hours ago';
       } else {
@@ -83,7 +112,6 @@ class AppHelper {
         }
       }
     }
-
   }
 
   static Locale setLocale() {

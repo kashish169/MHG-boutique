@@ -24,6 +24,7 @@ import 'package:mhg/features/success_order/view/pages/guest_sucess_order.dart';
 import 'package:mhg/features/success_order/view/pages/success_order_view.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import '../../../constants/app_assets.dart';
+import '../../../core/api/api.dart';
 import '../models/countries_cities_static_data.dart';
 
 /*
@@ -83,6 +84,7 @@ class CheckoutController extends GetxController {
   late String responseOredrNumber;
   final userSelectedCardModel = Rxn<UserPaymentMethodsModel>();
   final formKey = GlobalKey<FormState>();
+  final paymentCardFormKey = GlobalKey<FormState>();
   bool? isGiveAway;
   RxString guestCountryCode = '+971'.obs;
   RxString guestCountryFlag = AppAssets.flag.obs;
@@ -197,13 +199,16 @@ class CheckoutController extends GetxController {
   }
 
   Future<void> addPaymentMethod({bool isProfile = false}) async {
+    String query =
+        'name=${guestName.text}&email=${guestEmail.text}&phone_number=${guestCountryCode.value + guestNumber.text}';
+    log("guest query is ${Api.addPaymentMethod}?$query");
     try {
       Get.dialog(
         const LoadingWidget(),
         barrierDismissible: false,
       );
-      Either<Failure, ApiResponse> results =
-          await checkoutRepository.addPaymentMethod();
+      Either<Failure, ApiResponse> results = await checkoutRepository
+          .addPaymentMethod(query, App.token.isEmpty ? true : false);
       Get.back();
       results.fold(
         (l) {
@@ -211,6 +216,7 @@ class CheckoutController extends GetxController {
           log("Add PAYMENT METHODS RESPONSE ERROR ${l.message}");
         },
         (r) {
+          if (App.token.isEmpty) Get.back();
           var statusCode = r.object["code"];
           var message = r.object["message"];
           log("Add PAYMENT METHODS RESPONSE STATUS $statusCode");
