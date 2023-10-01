@@ -64,6 +64,7 @@ class ForgetPasswordView extends StatelessWidget {
                             } else {
                               return AppHelper.validatePhone(
                                 val!,
+                                controller.countryCode.value,
                               );
                             }
                           },

@@ -100,7 +100,8 @@ class OnboardController extends GetxController {
             List json = r.object['data'];
             countryList = json.map((e) => CountryModel.fromJson(e)).toList();
             ///todo
-            countryList=[countryList.first];
+            log(countryList.toString());
+            countryList=[countryList.first,countryList[1]];
             if (countryList.isNotEmpty) {
               selectedCountryFlage = countryList.first.flagLink;
               App.countryName = countryList.first.name;
@@ -180,13 +181,17 @@ class OnboardController extends GetxController {
       key: 'countryCode',
       value: App.countryCode,
     );
-    if(App.token.isNotEmpty){
+    // if(App.token.isNotEmpty){
       Api.authorizedheaders = {
         'Content-Type': 'application/json',
         'Authorization': "Bearer ${App.token}",
         'Country-Id': "${App.countryId}",
       };
-    }
+    Api.headers = {
+      'Content-Type': 'application/json',
+      'Country-Id': "${App.countryId}",
+    };
+  //  }
 
     update();
   }

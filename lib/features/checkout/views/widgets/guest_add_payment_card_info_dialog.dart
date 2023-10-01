@@ -1,9 +1,7 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_dimensions.dart';
-import 'package:mhg/features/checkout/views/widgets/emirates_drop_down.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import '../../../../app/app.dart';
 import '../../../../core/helper/app_helper.dart';
@@ -11,8 +9,8 @@ import '../../../../widgets/custom_form_field.dart';
 import '../../controllers/checkout_controller.dart';
 import 'guest_country_picker.dart';
 
-class GuestOrderDialog extends StatelessWidget {
-  GuestOrderDialog({super.key});
+class GuestPaymentCardInfoDialog extends StatelessWidget {
+  GuestPaymentCardInfoDialog({super.key});
   final CheckoutController controller = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -24,7 +22,7 @@ class GuestOrderDialog extends StatelessWidget {
           15,
         ),
         child: Form(
-          key: controller.formKey,
+          key: controller.paymentCardFormKey,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,47 +68,6 @@ class GuestOrderDialog extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 7),
                   child: Text(
-                    'Address :',
-                    style: Theme.of(context)
-                        .textTheme
-                        .displayMedium
-                        ?.copyWith(fontSize: 15),
-                  ),
-                ),
-                CustomFormField(
-                  hint: 'Enter your address',
-                  inputType: TextInputType.text,
-                  controller: controller.guestAddress,
-                  obscure: false,
-                  validator: (val) {
-                    return AppHelper.validation(val!, 1, 500, '');
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 7),
-                  child: Text(
-                    App.countryId == 1 ? 'Emirate :' : 'City :',
-                    style: Theme.of(context)
-                        .textTheme
-                        .displayMedium
-                        ?.copyWith(fontSize: 15),
-                  ),
-                ),
-                // CustomFormField(
-                //   hint: 'Enter your emirate',
-                //   inputType: TextInputType.text,
-                //   controller: controller.guestEmirate,
-                //   obscure: false,
-                //   validator: (val) {
-                //     return AppHelper.validation(val!, 1, 500, '');
-                //   },
-                // ),
-                CountriesDropDown(
-                  cities: controller.selectCity(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 7),
-                  child: Text(
                     'Phone number :',
                     style: Theme.of(context)
                         .textTheme
@@ -134,11 +91,16 @@ class GuestOrderDialog extends StatelessWidget {
                 ),
                 Center(
                     child: PrimaryButton(
-                  title: 'Place Order',
+                  title: 'Continue',
                   height: 50,
                   width: AppDimensions.screenWidth(context),
                   onTap: () {
-                    controller.guestCreateOrder();
+                    var formState = controller.paymentCardFormKey.currentState;
+                    if (formState!.validate()) {
+                      controller.addPaymentMethod(
+                        isProfile: false,
+                      );
+                    }
                   },
                 )),
               ],

@@ -61,6 +61,7 @@ class PersonalInformation extends StatelessWidget {
                                     ),
                                     InformationForm(
                                       header: 'Email',
+                                      isInInputEmail: true,
                                       hint: controller.profileInfo.email,
                                       validator: (val) {
                                         return AppHelper.validation(
@@ -80,8 +81,7 @@ class PersonalInformation extends StatelessWidget {
                                       // },
                                       validator: (val) {
                                         return AppHelper.validatePhone(
-                                          val!,
-                                        );
+                                            val!, controller.countryCode.value);
                                       },
                                       textController: controller.phone,
                                       inInputNumber: true,
@@ -113,6 +113,11 @@ class PersonalInformation extends StatelessWidget {
                                     //   textController: controller.state,
                                     //   // isEnableToEdit:
                                     //   //     controller.enableEditOnState,
+                                    // ),
+                                    // CountriesDropDownWidget(
+                                    //   isCountry: true,
+                                    //   countries: controller.countriesList,
+                                    //   cities: controller.citiesList,
                                     // ),
                                     Obx(
                                       () => controller.isLoadingCities.isTrue
@@ -147,11 +152,7 @@ class PersonalInformation extends StatelessWidget {
                                                                   .saudiArabiaCitiesList,
                                             ),
                                     ),
-                                    // CountriesDropDownWidget(
-                                    //   isCountry: true,
-                                    //   countries: controller.countriesList,
-                                    //   cities: controller.citiesList,
-                                    // ),
+
                                     // CountriesDropDownWidget(
                                     //   isCountry: false,
                                     //   countries: controller.countriesList,

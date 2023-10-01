@@ -101,6 +101,7 @@ class SignInController extends GetxController {
       phone: phone,
       fcmToken: App.fcmToken,
     ));
+
     Either<Failure, ApiResponse> results = await signInRepo.signIn(
       body: body,
     );
@@ -111,12 +112,36 @@ class SignInController extends GetxController {
       },
       (r) async {
         log("${r.object}");
+        log("here............");
+        log(Api.authorizedheaders.toString());
         int statusCode = r.object["code"];
         var message = r.object['message'];
         if (statusCode == 200) {
           loginModel = LoginModel.fromJson(r.object['data']);
           var token = loginModel.token;
           App.token = token;
+          App.countryId = loginModel.countryId;
+
+          App.currency = "${loginModel.country?.currency.currency}";
+          App.countryName = '${loginModel.country?.name}';
+          App.countryCode = '${loginModel.country?.prefix}';
+          await StoragePref.setInt(
+            key: 'countryid',
+            value: App.countryId ?? 1,
+          );
+          await StoragePref.setString(
+            key: 'currency',
+            value: App.currency,
+          );
+          await StoragePref.setString(
+            key: 'countryName',
+            value: App.countryName,
+          );
+          await StoragePref.setString(
+            key: 'countryCode',
+            value: App.countryCode,
+          );
+
           Api.authorizedheaders = {
             'Content-Type': 'application/json',
             'Authorization': "Bearer $token",
@@ -165,6 +190,28 @@ class SignInController extends GetxController {
           loginModel = LoginModel.fromJson(r.object['data']);
           var token = loginModel.token;
           App.token = token;
+          App.countryId = loginModel.countryId;
+          log("COUNRTRY ID IS:${loginModel.countryId}");
+          App.currency = "${loginModel.country?.currency.currency}";
+          App.countryName = '${loginModel.country?.name}';
+          App.countryCode = '${loginModel.country?.prefix}';
+          await StoragePref.setInt(
+            key: 'countryid',
+            value: App.countryId ?? 1,
+          );
+          log("COUNRTRY ID IS:${App.countryId}");
+          await StoragePref.setString(
+            key: 'currency',
+            value: App.currency,
+          );
+          await StoragePref.setString(
+            key: 'countryName',
+            value: App.countryName,
+          );
+          await StoragePref.setString(
+            key: 'countryCode',
+            value: App.countryCode,
+          );
           Api.authorizedheaders = {
             'Content-Type': 'application/json',
             'Authorization': "Bearer $token",

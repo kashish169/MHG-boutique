@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 showCountries(BuildContext context, void Function(Country) onSelect) {
   return showCountryPicker(
     context: context,
+    ///todo
+    countryFilter: <String>['AE', 'KW'],
     countryListTheme: CountryListThemeData(
       flagSize: 25,
       backgroundColor: Colors.white,

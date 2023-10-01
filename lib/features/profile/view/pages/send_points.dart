@@ -40,9 +40,8 @@ class SendPointsPage extends StatelessWidget {
               child: CustomFormField(
                 hint: 'Your phone number',
                 inputType: TextInputType.number,
-                validator: (val) => AppHelper.validatePhone(
-                  val!,
-                ),
+                validator: (val) =>
+                    AppHelper.validatePhone(val!, controller.countryCode.value),
                 controller: controller.phoneNumberController,
                 obscure: false,
                 prefixWidget: Padding(
@@ -50,9 +49,10 @@ class SendPointsPage extends StatelessWidget {
                   child: CountryCodePicker(
                     ///todo
                     enabled: false,
+                    countryFilter: const <String>['AE', 'KW'],
                     onChanged: (value) {
                       ///todo
-                      // controller.countryCode(value.dialCode);
+                      controller.countryCode(value.dialCode);
                     },
                     searchStyle:
                         Theme.of(context).textTheme.displaySmall!.copyWith(

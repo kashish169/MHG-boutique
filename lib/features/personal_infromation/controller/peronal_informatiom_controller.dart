@@ -95,12 +95,16 @@ class PersonalInformationController extends GetxController {
     zipCode.text = profileInfo.zipCode ?? '';
     dateTextEditingController.text = profileInfo.dob ?? '';
     selectedGender = profileInfo.gender;
+    selectedCountry=profileInfo.country?.name??'';
+    log("here");
+    log(profileInfo.toString());
     // countriesList.add(CountryDataModel(
     //   id: 1,
     //   name: "United Arab Emirates",
     //   flagLink:
     //       "https://api.mhgboutique.com/uploaded_files/country/64a413436c91b1688474435.png",
     // ));
+    getAllCountries();
 
     super.onInit();
   }
@@ -193,6 +197,7 @@ class PersonalInformationController extends GetxController {
         bool success = r.object['isSuccessful'];
         var message = r.object['message'];
         if (success == true) {
+
           Get.find<HomeController>().homeModel = null;
           Get.find<WishListController>().getWishList();
           await profileController.getProfileInfo();
@@ -318,6 +323,7 @@ class PersonalInformationController extends GetxController {
             if (r.object["data"] != null) {
               log("COUNTRIES ${r.object["data"]}");
               countriesModel = CountriesModel.fromJson(r.object);
+
               log("countries ${countriesModel.data}");
               List responseList = r.object["data"];
               countriesList = responseList
@@ -325,7 +331,7 @@ class PersonalInformationController extends GetxController {
                   .toList();
 
               ///todo
-              countriesList = [countriesList.first];
+              countriesList = [countriesList.first,countriesList[1]];
               log("countries list length ${countriesList.length}");
               // setCountry(
               //   profileController.model.value?.country?.name,

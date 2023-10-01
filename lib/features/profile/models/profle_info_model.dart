@@ -129,4 +129,5 @@ class ProfileInfoModal {
                 json['country'],
               ),
       );
+
 }

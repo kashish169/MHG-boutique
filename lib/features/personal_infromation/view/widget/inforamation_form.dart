@@ -15,6 +15,7 @@ class InformationForm extends StatelessWidget {
       // this.onTap,
       // this.isEnableToEdit = true,
       this.inInputNumber,
+      this.isInInputEmail = false,
       required this.textController,
       this.validator});
   final String header;
@@ -22,6 +23,7 @@ class InformationForm extends StatelessWidget {
   // final Function()? onTap;
   // final bool? isEnableToEdit;
   final bool? inInputNumber;
+  final bool? isInInputEmail;
   final String? Function(String?)? validator;
   final TextEditingController textController;
 
@@ -57,11 +59,13 @@ class InformationForm extends StatelessWidget {
                         controller: textController,
                         hint: hint,
                         validator: validator,
-                        inputType: inInputNumber == null
-                            ? TextInputType.name
-                            : TextInputType.number,
+                        inputType: inInputNumber != null
+                            ? TextInputType.number
+                            : isInInputEmail != null
+                                ? TextInputType.emailAddress
+                                : TextInputType.name,
                         readOnly: false,
-                       
+
                         // suffixIcon: IconButton(
                         //   onPressed: onTap,
                         //   icon: SizedBox(
@@ -94,7 +98,7 @@ class InformationForm extends StatelessWidget {
                   // readOnly: isEnableToEdit,
                   readOnly: false,
                   hint: hint,
-                  
+
                   // suffixIcon: IconButton(
                   //   onPressed: onTap,
                   //   icon: SizedBox(
