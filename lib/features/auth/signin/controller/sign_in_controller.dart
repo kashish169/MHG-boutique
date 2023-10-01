@@ -113,7 +113,7 @@ class SignInController extends GetxController {
       (r) async {
         log("${r.object}");
         log("here............");
-        log( Api.authorizedheaders.toString());
+        log(Api.authorizedheaders.toString());
         int statusCode = r.object["code"];
         var message = r.object['message'];
         if (statusCode == 200) {
