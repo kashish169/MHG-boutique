@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
+import 'package:mhg/features/on_board/model/country_model.dart';
 import '../../../../app/app.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_toasts.dart';
@@ -74,7 +75,35 @@ class SignUpController extends GetxController {
       if (success == true) {
         var data = r.object['data'];
         var token = data['token'];
+        CountryModel country= CountryModel.fromJson(data["country"]);
+        log("/.///////");
+        log(country.prefix);
+
+
+
+
         App.token = token;
+        App.countryId = country.id;
+
+        App.currency = "${country?.currency.currency}";
+        App.countryName = '${country?.name}';
+        App.countryCode='${country?.prefix}';
+        await StoragePref.setInt(
+          key: 'countryid',
+          value: App.countryId ?? 1,
+        );
+        await StoragePref.setString(
+          key: 'currency',
+          value: App.currency,
+        );
+        await StoragePref.setString(
+          key: 'countryName',
+          value: App.countryName,
+        );
+        await StoragePref.setString(
+          key: 'countryCode',
+          value: App.countryCode,
+        );
         Api.authorizedheaders = {
           'Content-Type': 'application/json',
           'Authorization': "Bearer $token",
