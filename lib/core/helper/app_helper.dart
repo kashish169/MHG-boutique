@@ -51,9 +51,7 @@ class AppHelper {
 
   static String? validatePhone(String value, String countryCode) {
     bool? validate;
-    if (!GetUtils.isPhoneNumber(value)) {
-      return 'Please enter a valid phone number';
-    } else {
+
       switch (countryCode) {
         case '+971': //UAE
           if (value[0] == '5' && value.length == 9) {
@@ -76,7 +74,7 @@ class AppHelper {
       } else {
         return null;
       }
-    }
+
 
     // bool validate = isNumeric(value) && value.length >= 8;
     // if (validate == false) {

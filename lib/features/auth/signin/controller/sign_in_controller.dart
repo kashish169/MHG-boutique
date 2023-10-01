@@ -120,7 +120,30 @@ class SignInController extends GetxController {
           loginModel = LoginModel.fromJson(r.object['data']);
           var token = loginModel.token;
           App.token = token;
-          Api.authorizedheaders = {
+          App.countryId = loginModel.countryId;
+
+          App.currency = "${loginModel.country?.currency.currency}";
+          App.countryName = '${loginModel.country?.name}';
+            App.countryCode='${loginModel.country?.prefix}';
+          await StoragePref.setInt(
+            key: 'countryid',
+            value: App.countryId ?? 1,
+          );
+          await StoragePref.setString(
+            key: 'currency',
+            value: App.currency,
+          );
+          await StoragePref.setString(
+            key: 'countryName',
+            value: App.countryName,
+          );
+          await StoragePref.setString(
+            key: 'countryCode',
+            value: App.countryCode,
+          );
+
+
+ Api.authorizedheaders = {
             'Content-Type': 'application/json',
             'Authorization': "Bearer $token",
             'Country-Id': "${App.countryId}",
@@ -168,6 +191,28 @@ class SignInController extends GetxController {
           loginModel = LoginModel.fromJson(r.object['data']);
           var token = loginModel.token;
           App.token = token;
+          App.countryId = loginModel.countryId;
+          log("COUNRTRY ID IS:${loginModel.countryId}");
+          App.currency = "${loginModel.country?.currency.currency}";
+          App.countryName = '${loginModel.country?.name}';
+          App.countryCode='${loginModel.country?.prefix}';
+          await StoragePref.setInt(
+            key: 'countryid',
+            value: App.countryId ?? 1,
+          );
+          log("COUNRTRY ID IS:${App.countryId}");
+          await StoragePref.setString(
+            key: 'currency',
+            value: App.currency,
+          );
+          await StoragePref.setString(
+            key: 'countryName',
+            value: App.countryName,
+          );
+          await StoragePref.setString(
+            key: 'countryCode',
+            value: App.countryCode,
+          );
           Api.authorizedheaders = {
             'Content-Type': 'application/json',
             'Authorization': "Bearer $token",
