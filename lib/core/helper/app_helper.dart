@@ -51,30 +51,35 @@ class AppHelper {
 
   static String? validatePhone(String value, String countryCode) {
     bool? validate;
+    // if (!GetUtils.isPhoneNumber(value)) {
+    //   log("its not a number");
+    //   return 'Please enter a valid phone number';
+    // } else {
+    // log("its a number");
 
-      switch (countryCode) {
-        case '+971': //UAE
-          if (value[0] == '5' && value.length == 9) {
-            validate = true;
-          } else {
-            validate = false;
-          }
-          break;
-        case '+965': //Kuwait
-          if (value.length == 8) {
-            validate = true;
-          } else {
-            validate = false;
-          }
-          break;
-      }
-      log('$validate');
-      if (validate == false) {
-        return 'Please enter a valid phone number';
-      } else {
-        return null;
-      }
-
+    switch (countryCode) {
+      case '+971': //UAE
+        if (value[0] == '5' && value.length == 9) {
+          validate = true;
+        } else {
+          validate = false;
+        }
+        break;
+      case '+965': //Kuwait
+        if (value.length != 8) {
+          validate = false;
+        } else {
+          validate = true;
+        }
+        break;
+    }
+    log('$validate');
+    if (validate == false) {
+      return 'Please enter a valid phone number';
+    } else {
+      return null;
+    }
+    // }
 
     // bool validate = isNumeric(value) && value.length >= 8;
     // if (validate == false) {
