@@ -331,7 +331,7 @@ class PersonalInformationController extends GetxController {
                   .toList();
 
               ///todo
-              countriesList = [countriesList.first,countriesList[1]];
+              countriesList = [countriesList.first,countriesList[1],countriesList[3]];
               log("countries list length ${countriesList.length}");
               // setCountry(
               //   profileController.model.value?.country?.name,

@@ -66,10 +66,18 @@ class AppHelper {
         }
         break;
       case '+965': //Kuwait
-        if (value.length != 8) {
-          validate = false;
-        } else {
+        if (value.length == 8) {
           validate = true;
+        } else {
+          validate = false;
+        }
+        break;
+
+      case '+968': //oman
+        if (value.length == 8) {
+          validate = true;
+        } else {
+          validate = false;
         }
         break;
     }
@@ -79,7 +87,6 @@ class AppHelper {
     } else {
       return null;
     }
-    // }
 
     // bool validate = isNumeric(value) && value.length >= 8;
     // if (validate == false) {
