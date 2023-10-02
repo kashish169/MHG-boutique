@@ -124,7 +124,7 @@ class SignInController extends GetxController {
 
           App.currency = "${loginModel.country?.currency.currency}";
           App.countryName = '${loginModel.country?.name}';
-            App.countryCode='${loginModel.country?.prefix}';
+          App.countryCode = '${loginModel.country?.prefix}';
           await StoragePref.setInt(
             key: 'countryid',
             value: App.countryId ?? 1,
@@ -142,8 +142,7 @@ class SignInController extends GetxController {
             value: App.countryCode,
           );
 
-
- Api.authorizedheaders = {
+          Api.authorizedheaders = {
             'Content-Type': 'application/json',
             'Authorization': "Bearer $token",
             'Country-Id': "${App.countryId}",
@@ -195,7 +194,7 @@ class SignInController extends GetxController {
           log("COUNRTRY ID IS:${loginModel.countryId}");
           App.currency = "${loginModel.country?.currency.currency}";
           App.countryName = '${loginModel.country?.name}';
-          App.countryCode='${loginModel.country?.prefix}';
+          App.countryCode = '${loginModel.country?.prefix}';
           await StoragePref.setInt(
             key: 'countryid',
             value: App.countryId ?? 1,

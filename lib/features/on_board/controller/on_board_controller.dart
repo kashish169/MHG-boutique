@@ -101,7 +101,7 @@ class OnboardController extends GetxController {
             countryList = json.map((e) => CountryModel.fromJson(e)).toList();
             ///todo
             log(countryList.toString());
-            countryList=[countryList.first,countryList[1]];
+            countryList=[countryList.first,countryList[1],countryList[3]];
             if (countryList.isNotEmpty) {
               selectedCountryFlage = countryList.first.flagLink;
               App.countryName = countryList.first.name;
