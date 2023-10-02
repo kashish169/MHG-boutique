@@ -4,10 +4,11 @@
 
 import 'dart:convert';
 
+import 'package:mhg/features/on_board/model/country_model.dart';
+
 LoginModel loginModelFromJson(String str) =>
     LoginModel.fromJson(json.decode(str));
 
-String loginModelToJson(LoginModel data) => json.encode(data.toJson());
 
 class LoginModel {
   int? id;
@@ -39,6 +40,7 @@ class LoginModel {
   String token;
   String? qrCodeLink;
   String? imageLink;
+  CountryModel country;
 
   LoginModel({
     this.id,
@@ -70,6 +72,7 @@ class LoginModel {
     required this.token,
     this.qrCodeLink,
     this.imageLink,
+    required this.country,
   });
 
   factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
@@ -102,37 +105,8 @@ class LoginModel {
         token: json["token"],
         qrCodeLink: json["qr_code_link"],
         imageLink: json["image_link"],
+        country: CountryModel.fromJson(json["country"]),
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "external_id": externalId,
-        "qr_code": qrCode,
-        "name": name,
-        "email": email,
-        "account_type": accountType,
-        "google_id": googleId,
-        "facebook_id": facebookId,
-        "image": image,
-        "Number": number,
-        "Gender": gender,
-        "DOB": dob,
-        "street_address": streetAddress,
-        "About": about,
-        "is_admin": isAdmin,
-        "status": status,
-        "country_id": countryId,
-        "amount_spent": amountSpent,
-        "hearts": hearts,
-        "tier_id": tierId,
-        "store_id": storeId,
-        "country_loyalty_tier_id": countryLoyaltyTierId,
-        "email_verified_at": emailVerifiedAt,
-        "notify_me": notifyMe,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
-        "token": token,
-        "qr_code_link": qrCodeLink,
-        "image_link": imageLink,
-      };
+
 }
