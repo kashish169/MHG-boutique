@@ -67,6 +67,14 @@ class AppHelper {
             validate = false;
           }
           break;
+
+        case '+968': //oman
+          if (value.length == 8) {
+            validate = true;
+          } else {
+            validate = false;
+          }
+          break;
       }
       log('$validate');
       if (validate == false) {
