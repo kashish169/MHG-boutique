@@ -40,11 +40,14 @@ class CountryButtonPicker extends StatelessWidget {
               style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
+
           ///todo
           // const Icon(
           //   Icons.arrow_drop_down_outlined,
           // ),
-          SizedBox(width: 5,),
+          SizedBox(
+            width: 5,
+          ),
           isFromShippingAddress == false
               ? SizedBox(
                   height: 30,

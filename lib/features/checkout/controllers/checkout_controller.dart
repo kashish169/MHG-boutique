@@ -164,7 +164,8 @@ class CheckoutController extends GetxController {
                   .removeWhere((element) => element.name == 'COD');
             }
             if (App.token.isNotEmpty) {
-              (GetPlatform.isIOS && App.countryId == 1)
+              (GetPlatform.isIOS && App.countryId == 1 ||
+                      GetPlatform.isIOS && App.countryId == 2)
                   ? paymentMethodsList.add(PaymentMethodsModel(
                       id: 3,
                       name: 'Apple Pay',
@@ -175,8 +176,8 @@ class CheckoutController extends GetxController {
                       updatedAt: DateTime.now()))
                   : null;
             }
-            if (App.countryId != 1 &&App.countryId != 2) {
-              log("=========== Delete Credit Card its not uae Country");
+            if (App.countryId != 1 && App.countryId != 2) {
+              log("=========== Delete Credit Card its not uae or kwaite Country");
               paymentMethodsList
                   .removeWhere((element) => element.name == 'Credit Card');
             }
@@ -535,7 +536,6 @@ class CheckoutController extends GetxController {
         var shippingPhoneNumber = "$guestCountryCode${guestNumber.text.trim()}";
         var billingPhoneNumber = "$guestCountryCode${guestNumber.text.trim()}";
         var promoCode = codeController.text.trim();
-
         if (paymentMethodValue.isEmpty) {
           AppToasts.errorToast("Choose payment method");
           return;
@@ -546,6 +546,7 @@ class CheckoutController extends GetxController {
             return;
           }
         }
+        log("county name is : ${App.countryName}");
         log(paymentMethodValue.value);
         String objectData = orderModelToJson(
           OrderModel(

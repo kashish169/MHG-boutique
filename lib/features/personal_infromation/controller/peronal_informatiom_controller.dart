@@ -52,7 +52,7 @@ class PersonalInformationController extends GetxController {
   bool isLoading = false;
   bool deleteLoading = false;
   bool iserror = false;
-  RxString countryCode = '+971'.obs;
+  RxString countryCode = App.countryCode.obs;
   RxString countryFlag = AppAssets.flag.obs;
   RxInt countryId = 1.obs;
   DateTime date = DateTime.now();
@@ -331,7 +331,7 @@ class PersonalInformationController extends GetxController {
                   .toList();
 
               ///todo
-              countriesList = [countriesList.first,countriesList[1]];
+              countriesList = [countriesList.first,countriesList[1],countriesList[3]];
               log("countries list length ${countriesList.length}");
               // setCountry(
               //   profileController.model.value?.country?.name,

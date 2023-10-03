@@ -29,10 +29,29 @@ class PersonalInfoDateAndGenderForm extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   controller.chooseDate(showDatePicker(
-                      context: context,
-                      initialDate: controller.date,
-                      firstDate: DateTime(1900),
-                      lastDate: DateTime.now()));
+                    context: context,
+                    initialDate: controller.date,
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime.now(),
+                    builder: (context, child) {
+                      return Theme(
+                        data: ThemeData.light().copyWith(
+                            colorScheme: ColorScheme.light(
+                              primary:
+                                  AppColors.primary, // header background color
+                            ),
+                            textButtonTheme: TextButtonThemeData(
+                              style: TextButton.styleFrom(
+                                foregroundColor:
+                                    AppColors.primary, // button text color
+                              ),
+                            ),
+                            inputDecorationTheme: const InputDecorationTheme(
+                                labelStyle: TextStyle(color: Colors.black))),
+                        child: child!,
+                      );
+                    },
+                  ));
                 },
                 child: CustomFormField(
                     suffixIcon: Icon(
