@@ -61,9 +61,7 @@ class InformationForm extends StatelessWidget {
                         validator: validator,
                         inputType: inInputNumber != null
                             ? TextInputType.number
-                            : isInInputEmail != null
-                                ? TextInputType.emailAddress
-                                : TextInputType.name,
+                            : TextInputType.name,
                         readOnly: false,
 
                         // suffixIcon: IconButton(
@@ -92,9 +90,11 @@ class InformationForm extends StatelessWidget {
               : CustomFormField(
                   controller: textController,
                   validator: validator,
-                  inputType: inInputNumber == null
-                      ? TextInputType.name
-                      : TextInputType.number,
+                  inputType: inInputNumber != null
+                      ? TextInputType.number
+                      : isInInputEmail != null
+                          ? TextInputType.emailAddress
+                          : TextInputType.name,
                   // readOnly: isEnableToEdit,
                   readOnly: false,
                   hint: hint,
