@@ -7,11 +7,15 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/widgets/primary_button.dart';
 
+import '../../../../app/app.dart';
+import '../../../checkout/controllers/checkout_controller.dart';
 import '../../controller/my_cart_controller.dart';
+import 'guest_select_city_dialog.dart';
 
 class CheckOutButton extends StatelessWidget {
   CheckOutButton({super.key});
   final MyCartController controller = Get.find();
+  final checkoutController = Get.find<CheckoutController>();
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -26,7 +30,19 @@ class CheckOutButton extends StatelessWidget {
             onTap: () {
               AppHelper.closeKeyboard();
               // Get.toNamed(CheckoutPage.routeName);
-              controller.checkForGiveAwayItems();
+              if (App.token.isNotEmpty) {
+                controller.checkForGiveAwayItems();
+              } else {
+                guestSelectCityDialog(
+                  context: context,
+                  onTap: () {
+                    if (checkoutController.selectedCity != null) {
+                      Get.back();
+                      controller.checkForGiveAwayItems();
+                    }
+                  },
+                );
+              }
             },
           ),
           Padding(

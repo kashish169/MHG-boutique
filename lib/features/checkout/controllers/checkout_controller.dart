@@ -323,8 +323,17 @@ class CheckoutController extends GetxController {
 
       var countryId = App.countryId; //will be used later in query
       var promoCode = codeController.text.trim();
+
       var query =
           '?country=$countryId'; //to be changed later when we add countries
+      if (profileController.model.value?.state != null) {
+        query = '$query&city=${profileController.model.value?.state}';
+      }
+      if (App.token.isEmpty) {
+        if (selectedCity != null) {
+          query = '$query&city=$selectedCity';
+        }
+      }
       if (promoCode.isNotEmpty) {
         query += "&coupon=$promoCode";
       }
@@ -675,6 +684,7 @@ class CheckoutController extends GetxController {
   setCity(val) {
     selectedCity = val;
     log('$selectedCity');
+    orderPrice();
     update();
   }
 

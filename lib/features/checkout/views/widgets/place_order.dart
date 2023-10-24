@@ -97,9 +97,11 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         children: [
                           Expanded(
                             child: Text(
-                              checkoutController.isGiveAway == true
-                                  ? 'Shipping (10-12 Business Days)'
-                                  : 'Shipping (3-5 Business Days)',
+                              // checkoutController.isGiveAway == true
+                              //     ? 'Shipping (10-12 Business Days)'
+                              //     : 'Shipping (3-5 Business Days)',
+                              checkoutController
+                                  .orderPriceModal.data!.shippingMessage!,
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall

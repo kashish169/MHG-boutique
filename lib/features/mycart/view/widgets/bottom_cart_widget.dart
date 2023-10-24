@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
+import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/widgets/retry_button.dart';
@@ -93,12 +94,15 @@ class BottomCartWidget extends StatelessWidget {
                             ],
                           ),
                           Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
                                 child: Text(
-                                  controller.isGiveAway.value
-                                      ? 'Shipping (10-12 Business Days)'
-                                      : 'Shipping (3-5 Business Days)',
+                                  // controller.isGiveAway.value
+                                  //     ? 'Shipping (10-12 Business Days)'
+                                  //     : 'Shipping (3-5 Business Days)',
+                                  checkoutController
+                                      .orderPriceModal.data!.shippingMessage!,
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -275,7 +279,9 @@ class BottomCartWidget extends StatelessWidget {
                           //       : true,
                           // child:
                           Visibility(
-                            visible:checkoutController.orderPriceModal.data?.hearts?.hearts!=null,
+                            visible: checkoutController
+                                    .orderPriceModal.data?.hearts?.hearts !=
+                                null,
                             child: Row(
                               children: [
                                 Image.asset(
