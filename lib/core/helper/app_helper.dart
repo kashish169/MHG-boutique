@@ -80,8 +80,8 @@ class AppHelper {
           validate = false;
         }
         break;
-      case '+966': //oman
-        if (value.length == 8 || value.length == 7) {
+      case '+966': //saudi arabia
+        if (value.length == 9) {
           validate = true;
         } else {
           validate = false;
