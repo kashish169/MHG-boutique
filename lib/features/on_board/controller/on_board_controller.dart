@@ -99,14 +99,20 @@ class OnboardController extends GetxController {
           if (stats == true) {
             List json = r.object['data'];
             countryList = json.map((e) => CountryModel.fromJson(e)).toList();
+
             ///todo
             log(countryList.toString());
-            countryList=[countryList.first,countryList[1],countryList[3]];
+            countryList = [
+              countryList.first,
+              countryList[1],
+              countryList[3],
+              countryList[5]
+            ];
             if (countryList.isNotEmpty) {
               selectedCountryFlage = countryList.first.flagLink;
               App.countryName = countryList.first.name;
-              App.flagLink=countryList.first.flagLink;
-              App.countryCode=countryList.first.prefix;
+              App.flagLink = countryList.first.flagLink;
+              App.countryCode = countryList.first.prefix;
               App.countryId = countryList.first.id;
               App.currency = countryList.first.currency.currency;
               await StoragePref.setInt(
@@ -125,7 +131,7 @@ class OnboardController extends GetxController {
                 key: 'countryCode',
                 value: App.countryCode,
               );
-              if(App.token.isNotEmpty){
+              if (App.token.isNotEmpty) {
                 Api.authorizedheaders = {
                   'Content-Type': 'application/json',
                   'Authorization': "Bearer ${App.token}",
@@ -162,8 +168,8 @@ class OnboardController extends GetxController {
     App.countryId = selectedCountryId;
     App.currency = currency;
     App.countryName = selectedCountry;
-    App.countryCode=prefix;
-    App.flagLink=countryFlage;
+    App.countryCode = prefix;
+    App.flagLink = countryFlage;
     log("__$selectedCountry ID IS :${App.countryId}  Currency Is : ${App.currency}");
     await StoragePref.setInt(
       key: 'countryid',
@@ -182,16 +188,16 @@ class OnboardController extends GetxController {
       value: App.countryCode,
     );
     // if(App.token.isNotEmpty){
-      Api.authorizedheaders = {
-        'Content-Type': 'application/json',
-        'Authorization': "Bearer ${App.token}",
-        'Country-Id': "${App.countryId}",
-      };
+    Api.authorizedheaders = {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer ${App.token}",
+      'Country-Id': "${App.countryId}",
+    };
     Api.headers = {
       'Content-Type': 'application/json',
       'Country-Id': "${App.countryId}",
     };
-  //  }
+    //  }
 
     update();
   }

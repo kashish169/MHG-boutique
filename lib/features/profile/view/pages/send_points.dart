@@ -48,8 +48,8 @@ class SendPointsPage extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 3.0),
                   child: CountryCodePicker(
                     ///todo
-                    enabled: false,
-                    countryFilter: const <String>['AE', 'KW'],
+                    enabled: true,
+                    countryFilter: const <String>['AE', 'KW', 'OM', 'SA'],
                     onChanged: (value) {
                       ///todo
                       controller.countryCode(value.dialCode);

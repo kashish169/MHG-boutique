@@ -29,20 +29,20 @@ class CheckOutButton extends StatelessWidget {
             title: 'Secure Checkout',
             onTap: () {
               AppHelper.closeKeyboard();
-              // Get.toNamed(CheckoutPage.routeName);
-              if (App.token.isNotEmpty) {
-                controller.checkForGiveAwayItems();
-              } else {
-                guestSelectCityDialog(
-                  context: context,
-                  onTap: () {
-                    if (checkoutController.selectedCity != null) {
-                      Get.back();
-                      controller.checkForGiveAwayItems();
-                    }
-                  },
-                );
-              }
+              //this comment will change later to show cities in guest mode for shipping message
+              // if (App.token.isNotEmpty) {
+              controller.checkForGiveAwayItems();
+              // } else {
+              // guestSelectCityDialog(
+              //   context: context,
+              //   onTap: () {
+              //     if (checkoutController.selectedCity != null) {
+              //       Get.back();
+              //       controller.checkForGiveAwayItems();
+              //     }
+              //   },
+              // );
+              // }
             },
           ),
           Padding(

@@ -98,11 +98,11 @@ class BottomCartWidget extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  // controller.isGiveAway.value
-                                  //     ? 'Shipping (10-12 Business Days)'
-                                  //     : 'Shipping (3-5 Business Days)',
-                                  checkoutController
-                                      .orderPriceModal.data!.shippingMessage!,
+                                  controller.isGiveAway.value
+                                      ? 'Shipping (10-12 Business Days)'
+                                      : 'Shipping (3-5 Business Days)',
+                                  // checkoutController
+                                  //     .orderPriceModal.data!.shippingMessage!,
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
