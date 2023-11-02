@@ -81,7 +81,7 @@ class AppHelper {
         }
         break;
       case '+966': //saudi arabia
-        if (value.length == 9) {
+        if (value.length == 9 && (value[0] == '4' || value[0] == '5')) {
           validate = true;
         } else {
           validate = false;
