@@ -100,6 +100,8 @@ class _PlaceOrderState extends State<PlaceOrder> {
                               checkoutController.isGiveAway == true
                                   ? 'Shipping (10-12 Business Days)'
                                   : 'Shipping (3-5 Business Days)',
+                              // checkoutController
+                              //     .orderPriceModal.data!.shippingMessage!,
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall

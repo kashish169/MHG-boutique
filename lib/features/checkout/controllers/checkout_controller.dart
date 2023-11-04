@@ -165,7 +165,8 @@ class CheckoutController extends GetxController {
             }
             if (App.token.isNotEmpty) {
               (GetPlatform.isIOS && App.countryId == 1 ||
-                      GetPlatform.isIOS && App.countryId == 2)
+                      GetPlatform.isIOS && App.countryId == 2 ||
+                      GetPlatform.isIOS && App.countryId == 6)
                   ? paymentMethodsList.add(PaymentMethodsModel(
                       id: 3,
                       name: 'Apple Pay',
@@ -176,8 +177,11 @@ class CheckoutController extends GetxController {
                       updatedAt: DateTime.now()))
                   : null;
             }
-            if (App.countryId != 1 && App.countryId != 2) {
-              log("=========== Delete Credit Card its not uae or kwaite Country");
+            //payment card not available now for oman
+            if (App.countryId != 1 &&
+                App.countryId != 2 &&
+                App.countryId != 6) {
+              log("=========== Delete Credit Card its not uae or kuwait Country");
               paymentMethodsList
                   .removeWhere((element) => element.name == 'Credit Card');
             }
@@ -323,8 +327,17 @@ class CheckoutController extends GetxController {
 
       var countryId = App.countryId; //will be used later in query
       var promoCode = codeController.text.trim();
+
       var query =
           '?country=$countryId'; //to be changed later when we add countries
+      if (profileController.model.value?.state != null) {
+        query = '$query&city=${profileController.model.value?.state}';
+      }
+      if (App.token.isEmpty) {
+        if (selectedCity != null) {
+          query = '$query&city=$selectedCity';
+        }
+      }
       if (promoCode.isNotEmpty) {
         query += "&coupon=$promoCode";
       }
@@ -677,6 +690,7 @@ class CheckoutController extends GetxController {
   setCity(val) {
     selectedCity = val;
     log('$selectedCity');
+    orderPrice();
     update();
   }
 

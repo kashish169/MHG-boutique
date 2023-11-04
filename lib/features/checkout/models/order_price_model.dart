@@ -6,13 +6,14 @@ class OrderPriceModal {
   String? detailedError;
   Data? data;
 
-  OrderPriceModal(
-      {this.isSuccessful,
-      this.hasContent,
-      this.code,
-      this.message,
-      this.detailedError,
-      this.data});
+  OrderPriceModal({
+    this.isSuccessful,
+    this.hasContent,
+    this.code,
+    this.message,
+    this.detailedError,
+    this.data,
+  });
 
   OrderPriceModal.fromJson(Map<String, dynamic> json) {
     isSuccessful = json['isSuccessful'];
@@ -45,7 +46,7 @@ class Data {
   dynamic discount;
   dynamic grandTotal;
   Hearts? hearts;
-
+  // String? shippingMessage;
   Data(
       {this.subtotal,
       this.tax,
@@ -53,21 +54,23 @@ class Data {
       this.discount,
       this.grandTotal,
       this.hearts,
+      // this.shippingMessage,
       this.cashOnDeliveryFees});
 
   Data.fromJson(Map<String, dynamic> json) {
-    cashOnDeliveryFees=json['cash_on_delivery_fees'];
+    cashOnDeliveryFees = json['cash_on_delivery_fees'];
     subtotal = json['subtotal'];
     tax = json['tax'];
     shippingCharge = json['shipping_charge'];
     discount = json['discount'];
     grandTotal = json['grand_total'];
+    // shippingMessage = json['shipping_message'];
     hearts = json["hearts"] == null ? null : Hearts.fromJson(json["hearts"]);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['cash_on_delivery_fees']=cashOnDeliveryFees;
+    data['cash_on_delivery_fees'] = cashOnDeliveryFees;
     data['subtotal'] = subtotal;
     data['tax'] = tax;
     data['shipping_charge'] = shippingCharge;

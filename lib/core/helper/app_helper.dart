@@ -80,6 +80,13 @@ class AppHelper {
           validate = false;
         }
         break;
+      case '+966': //saudi arabia
+        if (value.length == 9) {
+          validate = true;
+        } else {
+          validate = false;
+        }
+        break;
     }
     log('$validate');
     if (validate == false) {
