@@ -56,7 +56,7 @@ class ProfileHeader extends StatelessWidget {
             ),
             Visibility(
               visible:
-                  controller.model.value!.currentTier != null ? true : false,
+                  controller.model.value?.currentTier != null ? true : false,
               child: CircleAvatar(
                 radius: 20,
                 backgroundColor: AppColors.white,
@@ -70,7 +70,7 @@ class ProfileHeader extends StatelessWidget {
             ),
             Visibility(
               visible:
-                  controller.model.value!.currentTier != null ? true : false,
+                  controller.model.value?.currentTier != null ? true : false,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

@@ -41,6 +41,7 @@ class ProfileController extends GetxController {
   RxString currnecy = "...".obs;
   final formKey = GlobalKey<FormState>();
   final feedbackFormKey = GlobalKey<FormState>();
+  String appLink = "https://api.mhgboutique.com/download-app";
 
   Future<void> getProfileInfo() async {
     try {
@@ -66,7 +67,6 @@ class ProfileController extends GetxController {
             log('neee${model.value!.nextTierPts}');
             log(r.object["data"].toString());
             separatePhoneAndDialCode(model.value!.number ?? '');
-            currnecy.value = "AED";
             App.countryId = model.value?.country?.id;
             currnecy.value = "${model.value?.country?.currency.currency}";
             App.currency = "${model.value?.country?.currency.currency}";
@@ -134,9 +134,9 @@ class ProfileController extends GetxController {
   }
 
   String getLevelIcon() {
-    if (model.value!.currentTier == "Mojab") {
+    if (model.value?.currentTier == "Mojab") {
       return AppAssets.mojab;
-    } else if (model.value!.currentTier == "Moghram") {
+    } else if (model.value?.currentTier == "Moghram") {
       return AppAssets.moghram;
     } else {
       return AppAssets.molah;
@@ -236,19 +236,12 @@ class ProfileController extends GetxController {
   }
 
   launchMyUrl(String url) async {
-    Get.dialog(
-      const LoadingWidget(),
-      barrierDismissible: false,
-    );
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launch(
-        url,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
+    if (!await launchUrl(
+      Uri.parse(url),
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $url');
     }
-    Get.back();
   }
 
   void connectViaWhatsApp({String? message, required String phone}) async {
@@ -263,6 +256,26 @@ class ProfileController extends GetxController {
         await launchUrl(Uri.parse(iosUrl));
       } else {
         await launchUrl(Uri.parse(androidUrl));
+      }
+    } on Exception {
+      showSnackBar('WhatsApp is not installed.');
+    }
+  }
+
+  Future<void> sendMessageToWhatsApp() async {
+    var androidUrl = "whatsapp://send?text=$appLink";
+    var iosUrl = "https://wa.me?text=$appLink";
+    try {
+      if (Platform.isIOS) {
+        await launchUrl(
+          Uri.parse(iosUrl),
+          mode: LaunchMode.externalApplication,
+        );
+      } else {
+        await launchUrl(
+          Uri.parse(androidUrl),
+          mode: LaunchMode.externalApplication,
+        );
       }
     } on Exception {
       showSnackBar('WhatsApp is not installed.');

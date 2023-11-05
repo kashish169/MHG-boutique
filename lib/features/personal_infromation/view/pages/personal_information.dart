@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/app/app.dart';
@@ -179,7 +181,11 @@ class PersonalInformation extends StatelessWidget {
                           PersonalInfoButton(
                               text: "Save",
                               onTap: () {
-                                controller.updateInformation();
+
+                                if(controller.formKey.currentState!.validate()){
+                                  log("v");
+                                  controller.updateInformation();
+                                }
                               },
                               isDelete: false),
                           PersonalInfoButton(

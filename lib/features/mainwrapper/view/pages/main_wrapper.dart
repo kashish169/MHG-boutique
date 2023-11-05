@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/my_wish_list/view/pages/my_wish_list.dart';
+import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/view/pages/profile_view.dart';
+import '../../../../widgets/retry_button.dart';
 import '../../../categories/view/pages/categories_page.dart';
 import '../../../home/view/pages/home_page.dart';
 import '../../../mycart/view/pages/my_cart_page.dart';
@@ -43,18 +46,37 @@ class _MainWrapperState extends State<MainWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      appBar: mainAppBar(
-        context: context,
-        scaffoldKey: scaffoldKey,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: const BottomNavBarWidget(),
-      body: Obx(() => IndexedStack(
-            index: mainController.navBarIndex.value,
-            children: _children,
-          )),
-    );
+    return GetX<ProfileController>(builder: (controller) {
+      if (controller.isLoading.isTrue) {
+        return Container(
+          color: AppColors.white,
+          child: const Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      } else if (controller.isError.isTrue) {
+        return Container(
+          color: AppColors.white,
+          child: RetryButton(
+            onTap: () {
+              controller.getProfileInfo();
+            },
+          ),
+        );
+      }
+      return Scaffold(
+        key: scaffoldKey,
+        appBar: mainAppBar(
+          context: context,
+          scaffoldKey: scaffoldKey,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: const BottomNavBarWidget(),
+        body: Obx(() => IndexedStack(
+              index: mainController.navBarIndex.value,
+              children: _children,
+            )),
+      );
+    });
   }
 }

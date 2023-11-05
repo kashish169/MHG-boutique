@@ -1,9 +1,5 @@
-import 'dart:developer';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_toasts.dart';
@@ -79,47 +75,33 @@ class ShareCard extends StatelessWidget {
                           name: 'whatsApp',
                           icon: AppAssets.whatsapp2,
                           onTap: () {
-                            // controller.connectViaWhatsApp(
-                            //   message: controller.model.value?.invitationLink,
-                            //   phone: '',
-                            // );
-                          },
-                        ),
-                        ShareItem(
-                          name: 'Facebook',
-                          icon: AppAssets.facebook2,
-                          onTap: () async {
-                            //  controller.shareLinkToFacebook(controller.model.value?.invitationLink ??
-                            //      '');
+                            controller.sendMessageToWhatsApp();
                           },
                         ),
                         ShareItem(
                           name: 'Gmail',
                           icon: AppAssets.gmail,
                           onTap: () {
-                            // controller.emailLaunch(
-                            //     email: '',
-                            //     message:
-                            //         controller.model.value?.invitationLink ??
-                            //             '');
+                            controller.emailLaunch(
+                              email: '',
+                              message: controller.appLink,
+                            );
                           },
                         ),
                         ShareItem(
                           name: 'Copy link',
                           icon: AppAssets.copy,
                           onTap: () async {
-                            // await Clipboard.setData(ClipboardData(
-                            //     text: controller.model.value?.invitationLink ??
-                            //         ""));
-                            // AppToasts.successToast('Copied');
+                            await Clipboard.setData(
+                                ClipboardData(text: controller.appLink));
+                            AppToasts.successToast('Copied');
                           },
                         ),
                         ShareItem(
                           name: 'More',
                           icon: AppAssets.share,
                           onTap: () {
-                            // Share.share(
-                            //     controller.model.value?.invitationLink ?? "");
+                            Share.share(controller.appLink);
                           },
                         ),
                       ],

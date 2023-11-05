@@ -72,7 +72,7 @@ class ProfileInfoModal {
   dynamic createdAt;
   dynamic updatedAt;
   String qrLink;
-  String invitationLink;
+  String? invitationLink;
   String imageLink;
   int orderCount;
   String? currentTier;
@@ -87,7 +87,7 @@ class ProfileInfoModal {
   factory ProfileInfoModal.fromJson(Map<String, dynamic> json) =>
       ProfileInfoModal(
         id: json["id"],
-        invitationLink: json["invitation_link"],
+        invitationLink: json["invitation_link"] ?? '',
         externalId: json["external_id"],
         qrCode: json["qr_code"],
         name: json["name"],
@@ -129,5 +129,4 @@ class ProfileInfoModal {
                 json['country'],
               ),
       );
-
 }
