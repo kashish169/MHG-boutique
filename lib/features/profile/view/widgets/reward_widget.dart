@@ -66,7 +66,8 @@ class ProfileRewardBox extends StatelessWidget {
                                 controller.loadingUpdateCard.isTrue
                                     ? const LoadingThreeBounce()
                                     : Text(
-                                        '${controller.model.value?.hearts}/${controller.model.value?.nextTierPts}',
+                                        // '${controller.model.value!.hearts}/${controller.model.value!.nextTierPts}',
+                                        '${controller.model.value!.hearts} Pts',
                                         style: Theme.of(context)
                                             .textTheme
                                             .displaySmall
@@ -90,28 +91,28 @@ class ProfileRewardBox extends StatelessWidget {
                             ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: controller.model.value?.nextTierPts != "0.00"
-                            ? Builder(builder: (context) {
-                                return controller.loadingUpdateCard.isTrue
-                                    ? const LoadingThreeBounce()
-                                    : Visibility(
-                                        visible:
-                                            controller.model.value?.nextTier ==
-                                                    null
-                                                ? false
-                                                : true,
-                                        child: Text(
-                                          '${controller.model.value?.nextTierPtsLeft} Until ${controller.model.value?.nextTier}',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .displaySmall
-                                              ?.copyWith(
-                                                  fontSize: 10,
-                                                  color: AppColors.white),
-                                        ),
-                                      );
-                              })
-                            : const SizedBox(),
+                        // child: controller.model.value!.nextTierPts != "0.00"
+                        //     ? Builder(builder: (context) {
+                        //         return controller.loadingUpdateCard.isTrue
+                        //             ? const LoadingThreeBounce()
+                        //             : Visibility(
+                        //                 visible:
+                        //                     controller.model.value!.nextTier ==
+                        //                             null
+                        //                         ? false
+                        //                         : true,
+                        //                 child: Text(
+                        //                   '${controller.model.value!.nextTierPtsLeft} Until ${controller.model.value!.nextTier}',
+                        //                   style: Theme.of(context)
+                        //                       .textTheme
+                        //                       .displaySmall
+                        //                       ?.copyWith(
+                        //                           fontSize: 10,
+                        //                           color: AppColors.white),
+                        //                 ),
+                        //               );
+                        //       })
+                        //     : const SizedBox(),
                       )
                     ],
                   ),

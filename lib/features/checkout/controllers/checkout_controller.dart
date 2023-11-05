@@ -411,8 +411,10 @@ class CheckoutController extends GetxController {
           zipCode!.isEmpty ||
           countryName == null ||
           countryName.isEmpty ||
-          shippingPhoneNumber!.isEmpty ||
-          billingPhoneNumber!.isEmpty) {
+          shippingPhoneNumber == null ||
+          shippingPhoneNumber.isEmpty ||
+          billingPhoneNumber == null ||
+          billingPhoneNumber.isEmpty) {
         AppToasts.errorToast("Please complete your personal information");
         return;
       }

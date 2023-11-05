@@ -85,6 +85,13 @@ class PaymentMethod extends StatelessWidget {
                               log(checkoutController
                                   .paymentMethodsList[index].slug);
                               checkoutController.orderPrice();
+                              if (checkoutController.paymentMethodValue.value ==
+                                  'Apple Pay') {
+                                checkoutController.isApplePay(true);
+                              } else {
+                                checkoutController.isApplePay(false);
+                              }
+                              print(checkoutController.isApplePay);
                             },
                           ),
                         ),

@@ -19,7 +19,7 @@ class _QRPageState extends State<QRPage> {
   Widget build(BuildContext context) {
     final controller = Get.find<ProfileController>();
     return Scaffold(
-      appBar: customAppBar(context, title: "Scan Your Qr"),
+      appBar: customAppBar(context, title: "Scan Your QR"),
       bottomNavigationBar: const BottomNavBarWidget(),
       body: Column(
         children: [
