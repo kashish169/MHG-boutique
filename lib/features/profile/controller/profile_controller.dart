@@ -41,6 +41,7 @@ class ProfileController extends GetxController {
   RxString currnecy = "...".obs;
   final formKey = GlobalKey<FormState>();
   final feedbackFormKey = GlobalKey<FormState>();
+  String appLink = "https://api.mhgboutique.com/download-app";
 
   Future<void> getProfileInfo() async {
     try {
@@ -66,7 +67,6 @@ class ProfileController extends GetxController {
             log('neee${model.value!.nextTierPts}');
             log(r.object["data"].toString());
             separatePhoneAndDialCode(model.value!.number ?? '');
-            currnecy.value = "AED";
             App.countryId = model.value?.country?.id;
             currnecy.value = "${model.value?.country?.currency.currency}";
             App.currency = "${model.value?.country?.currency.currency}";
@@ -256,6 +256,26 @@ class ProfileController extends GetxController {
         await launchUrl(Uri.parse(iosUrl));
       } else {
         await launchUrl(Uri.parse(androidUrl));
+      }
+    } on Exception {
+      showSnackBar('WhatsApp is not installed.');
+    }
+  }
+
+  Future<void> sendMessageToWhatsApp() async {
+    var androidUrl = "whatsapp://send?text=$appLink";
+    var iosUrl = "https://wa.me?text=$appLink";
+    try {
+      if (Platform.isIOS) {
+        await launchUrl(
+          Uri.parse(iosUrl),
+          mode: LaunchMode.externalApplication,
+        );
+      } else {
+        await launchUrl(
+          Uri.parse(androidUrl),
+          mode: LaunchMode.externalApplication,
+        );
       }
     } on Exception {
       showSnackBar('WhatsApp is not installed.');
