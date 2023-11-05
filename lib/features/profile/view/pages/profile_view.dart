@@ -14,6 +14,7 @@ import 'package:mhg/features/profile/view/widgets/reward_widget.dart';
 import 'package:mhg/features/rewards/pages/rewards_page.dart';
 import 'package:mhg/features/setting/view/pages/setting_view.dart';
 import 'package:mhg/widgets/retry_button.dart';
+import '../../../../core/helper/app_helper.dart';
 import '../../../../widgets/divider_widget.dart';
 import '../../../checkout/views/pages/payment_methods_page.dart';
 import '../widgets/profile_card.dart';
@@ -46,7 +47,7 @@ class ProfileView extends StatelessWidget {
                 child: Column(
                   children: [
                     ProfileHeader(
-                      name: controller.model.value?.name??'',
+                      name: controller.model.value?.name ?? '',
                       email: controller.model.value!.email,
                       image: controller.model.value!.image,
                       level: controller.model.value!.currentTier ?? '-',
@@ -126,9 +127,9 @@ class ProfileView extends StatelessWidget {
                       icon: AppAssets.invite,
                       height: 32,
                       title: 'Invite your friends',
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(InviteFriendPage.routeName);
-                      //  controller.launchMyUrl(controller.model.value!.invitationLink);
+                        //  controller.launchMyUrl(controller.model.value!.invitationLink);
                       },
                     ),
                     const DividerWidget(),
@@ -143,13 +144,15 @@ class ProfileView extends StatelessWidget {
                     ProfileCard(
                       icon: AppAssets.feedback,
                       title: 'Send a feedback',
-                      onTap: (){
-                        showDialog(context: context, builder: (context){
-                          return const FeedBackDialog();
-                        });
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const FeedBackDialog();
+                            });
                       },
                     ),
-                    const DividerWidget(), 
+                    const DividerWidget(),
                     ProfileCard(
                       icon: AppAssets.store,
                       title: 'Find Our Stores',
@@ -180,7 +183,8 @@ class ProfileView extends StatelessWidget {
                           Expanded(
                               child: InkWell(
                             onTap: () {
-                              controller.launchMyUrl('mailto:care@hilal.cc');
+                              // controller.launchMyUrl('mailto:care@hilal.cc');
+                              AppHelper.launchURL('care@hilal.cc', 'mailto');
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -238,7 +242,8 @@ class ProfileView extends StatelessWidget {
                           Expanded(
                               child: InkWell(
                             onTap: () {
-                              controller.connectViaWhatsApp(phone: '+9710557396666');
+                              controller.connectViaWhatsApp(
+                                  phone: '+9710557396666');
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

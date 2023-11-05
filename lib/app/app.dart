@@ -28,10 +28,10 @@ class App {
     await dotenv.load(fileName: ".env");
     token = await StoragePref.getString("token");
     notifyMe = await StoragePref.getbool("notifyme");
-    // countryId = await StoragePref.getInt("countryid");
-    // currency = await StoragePref.getString("currency");
-    // countryName = await StoragePref.getString("countryName");
-    // countryCode = await StoragePref.getString("countryCode");
+    countryId = await StoragePref.getInt("countryid");
+    currency = await StoragePref.getString("currency");
+    countryName = await StoragePref.getString("countryName");
+    countryCode = await StoragePref.getString("countryCode");
     lang = await StoragePref.getString("lang");
     if (lang.isEmpty) {
       lang = "en_US";
