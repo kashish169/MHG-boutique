@@ -134,9 +134,9 @@ class ProfileController extends GetxController {
   }
 
   String getLevelIcon() {
-    if (model.value!.currentTier == "Mojab") {
+    if (model.value?.currentTier == "Mojab") {
       return AppAssets.mojab;
-    } else if (model.value!.currentTier == "Moghram") {
+    } else if (model.value?.currentTier == "Moghram") {
       return AppAssets.moghram;
     } else {
       return AppAssets.molah;
@@ -236,19 +236,12 @@ class ProfileController extends GetxController {
   }
 
   launchMyUrl(String url) async {
-    Get.dialog(
-      const LoadingWidget(),
-      barrierDismissible: false,
-    );
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launch(
-        url,
-        enableJavaScript: true,
-      );
-    } else {
-      throw 'Could not launch $url';
+    if (!await launchUrl(
+      Uri.parse(url),
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $url');
     }
-    Get.back();
   }
 
   void connectViaWhatsApp({String? message, required String phone}) async {

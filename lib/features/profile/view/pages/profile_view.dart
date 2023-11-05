@@ -46,10 +46,10 @@ class ProfileView extends StatelessWidget {
                 child: Column(
                   children: [
                     ProfileHeader(
-                      name: controller.model.value?.name??'',
-                      email: controller.model.value!.email,
-                      image: controller.model.value!.image,
-                      level: controller.model.value!.currentTier ?? '-',
+                      name: controller.model.value?.name ?? '',
+                      email: controller.model.value?.email ?? '',
+                      image: controller.model.value?.image,
+                      level: controller.model.value?.currentTier ?? '-',
                     ),
                     const ProfileRewardBox(),
                     const DividerWidget(),
@@ -126,9 +126,9 @@ class ProfileView extends StatelessWidget {
                       icon: AppAssets.invite,
                       height: 32,
                       title: 'Invite your friends',
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(InviteFriendPage.routeName);
-                      //  controller.launchMyUrl(controller.model.value!.invitationLink);
+                        //  controller.launchMyUrl(controller.model.value!.invitationLink);
                       },
                     ),
                     const DividerWidget(),
@@ -143,13 +143,15 @@ class ProfileView extends StatelessWidget {
                     ProfileCard(
                       icon: AppAssets.feedback,
                       title: 'Send a feedback',
-                      onTap: (){
-                        showDialog(context: context, builder: (context){
-                          return const FeedBackDialog();
-                        });
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const FeedBackDialog();
+                            });
                       },
                     ),
-                    const DividerWidget(), 
+                    const DividerWidget(),
                     ProfileCard(
                       icon: AppAssets.store,
                       title: 'Find Our Stores',
@@ -238,7 +240,8 @@ class ProfileView extends StatelessWidget {
                           Expanded(
                               child: InkWell(
                             onTap: () {
-                              controller.connectViaWhatsApp(phone: '+9710557396666');
+                              controller.connectViaWhatsApp(
+                                  phone: '+9710557396666');
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

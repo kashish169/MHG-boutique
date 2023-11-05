@@ -48,7 +48,7 @@ AppBar mainAppBar({
                   );
                 }
                 return Text(
-                  "${controller.greeting()}, ${controller.model.value!.name}",
+                  "${controller.greeting()}, ${controller.model.value?.name ?? ""}",
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
                         color: AppColors.white,
                         fontSize: 16,

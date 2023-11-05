@@ -45,8 +45,8 @@ class ProfileRewardBox extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      controller.model.value!.nextTierPts != "0.00" ||
-                              controller.model.value!.nextTier == null
+                      controller.model.value?.nextTierPts != "0.00" ||
+                              controller.model.value?.nextTier == null
                           ? Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +66,7 @@ class ProfileRewardBox extends StatelessWidget {
                                 controller.loadingUpdateCard.isTrue
                                     ? const LoadingThreeBounce()
                                     : Text(
-                                        '${controller.model.value!.hearts}/${controller.model.value!.nextTierPts}',
+                                        '${controller.model.value?.hearts}/${controller.model.value?.nextTierPts}',
                                         style: Theme.of(context)
                                             .textTheme
                                             .displaySmall
@@ -90,18 +90,18 @@ class ProfileRewardBox extends StatelessWidget {
                             ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: controller.model.value!.nextTierPts != "0.00"
+                        child: controller.model.value?.nextTierPts != "0.00"
                             ? Builder(builder: (context) {
                                 return controller.loadingUpdateCard.isTrue
                                     ? const LoadingThreeBounce()
                                     : Visibility(
                                         visible:
-                                            controller.model.value!.nextTier ==
+                                            controller.model.value?.nextTier ==
                                                     null
                                                 ? false
                                                 : true,
                                         child: Text(
-                                          '${controller.model.value!.nextTierPtsLeft} Until ${controller.model.value!.nextTier}',
+                                          '${controller.model.value?.nextTierPtsLeft} Until ${controller.model.value?.nextTier}',
                                           style: Theme.of(context)
                                               .textTheme
                                               .displaySmall
@@ -119,8 +119,8 @@ class ProfileRewardBox extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-                  child: controller.model.value!.nextTierPts != "0.00" ||
-                          controller.model.value!.nextTier == null
+                  child: controller.model.value?.nextTierPts != "0.00" ||
+                          controller.model.value?.nextTier == null
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,7 +140,7 @@ class ProfileRewardBox extends StatelessWidget {
                             controller.loadingUpdateCard.isTrue
                                 ? const LoadingThreeBounce()
                                 : Text(
-                                    '${controller.model.value!.orderCount} Orders = ${controller.model.value!.hearts} Pts',
+                                    '${controller.model.value?.orderCount} Orders = ${controller.model.value?.hearts} Pts',
                                     style: Theme.of(context)
                                         .textTheme
                                         .displaySmall
@@ -161,12 +161,12 @@ class ProfileRewardBox extends StatelessWidget {
 
 double indicatorPercent() {
   final controller = Get.find<ProfileController>();
-  if (controller.model.value!.nextTierPts == 0) {
+  if (controller.model.value?.nextTierPts == 0) {
     return 1.0;
   } else {
-    return double.parse(controller.model.value!.hearts ?? '0') /
+    return double.parse(controller.model.value?.hearts ?? '0') /
         double.parse(
-          controller.model.value!.nextTierPts.toString(),
+          "${controller.model.value?.nextTierPts ?? 0}",
         );
   }
 }

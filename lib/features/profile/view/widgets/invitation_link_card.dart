@@ -35,7 +35,7 @@ class InvitationLinkCard extends StatelessWidget {
               ),
             ),
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
               decoration: BoxDecoration(
                 color: AppColors.white,
                 borderRadius: const BorderRadius.vertical(
@@ -61,12 +61,13 @@ class InvitationLinkCard extends StatelessWidget {
                       ),
                       const TextSpan(text: 'app.\n\n'),
                       TextSpan(
-                        recognizer: TapGestureRecognizer()..onTap = () async {
-
-                          await controller.launchMyUrl(controller.model.value?.invitationLink??"");
-
-                        },
-
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () async {
+                            print(controller.model.value?.invitationLink);
+                            controller.launchMyUrl(
+                              controller.model.value?.invitationLink ?? "",
+                            );
+                          },
                         text: '${controller.model.value?.invitationLink}',
                         style: Theme.of(context)
                             .textTheme

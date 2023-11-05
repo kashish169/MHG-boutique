@@ -55,5 +55,10 @@
     <action android:name="android.intent.action.VIEW" />
     <data android:scheme="tel" />
   </intent>
+      <!-- to opens https URLs -->
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="https" />
+    </intent>
 </queries>
 </manifest>
