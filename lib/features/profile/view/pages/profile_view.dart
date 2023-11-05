@@ -14,6 +14,7 @@ import 'package:mhg/features/profile/view/widgets/reward_widget.dart';
 import 'package:mhg/features/rewards/pages/rewards_page.dart';
 import 'package:mhg/features/setting/view/pages/setting_view.dart';
 import 'package:mhg/widgets/retry_button.dart';
+import '../../../../core/helper/app_helper.dart';
 import '../../../../widgets/divider_widget.dart';
 import '../../../checkout/views/pages/payment_methods_page.dart';
 import '../widgets/profile_card.dart';
@@ -182,7 +183,8 @@ class ProfileView extends StatelessWidget {
                           Expanded(
                               child: InkWell(
                             onTap: () {
-                              controller.launchMyUrl('mailto:care@hilal.cc');
+                              // controller.launchMyUrl('mailto:care@hilal.cc');
+                              AppHelper.launchURL('care@hilal.cc', 'mailto');
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
