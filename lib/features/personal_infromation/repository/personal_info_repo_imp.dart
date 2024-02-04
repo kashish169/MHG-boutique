@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:mhg/core/api/api.dart';
@@ -17,12 +19,13 @@ class PersonalInfoRepoImpl implements PersonalInfoRepo {
   @override
   Future<Either<Failure, ApiResponse>> updateData({
     required Object body,
-  }) async =>
-      await httpService.post(
-        url: Api.updateProfile,
-        body: body,
-        isAuthorized: true,
-      );
+  }) async {
+    return await httpService.post(
+      url: Api.updateProfile,
+      body: body,
+      isAuthorized: true,
+    );
+  }
 
   @override
   Future<Either<Failure, ApiResponse>> deleteData() async =>

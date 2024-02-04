@@ -2,7 +2,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../app/app.dart';
 
 class Api {
-  static String baseUrl = dotenv.env["ROOT_API"] ?? "";
+  static String baseUrl = 'https://mhg.start-tech.ae';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Country-Id': "${App.countryId}",
@@ -73,5 +73,4 @@ class Api {
   static String applePay = "$apiRoot/payment/tap/apple-pay";
 
   static String allProducts = "$apiRoot/product/filter";
-
 }

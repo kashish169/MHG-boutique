@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -29,8 +30,6 @@ class _PlaceOrderState extends State<PlaceOrder> {
 
   @override
   Widget build(BuildContext context) {
-    String payment = checkoutController.paymentMethodValue.value;
-    print(payment);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
@@ -59,6 +58,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
             } else if (checkoutController.isErrorRedeem.isTrue) {
               return RetryButton(onTap: () => checkoutController.orderPrice());
             }
+
             return Row(
               children: [
                 Expanded(
@@ -81,27 +81,26 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             ),
                           ),
                           Text(
-                            '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.subtotal}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  height: 1.4,
-                                  color: AppColors.mediumLabel,
-                                  fontSize: 14,
-                                ),
-                          ),
+                              '${profileController.currnecy.value} ${checkoutController.orderPriceModal.value.data?.subtotal}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall
+                                  ?.copyWith(
+                                    height: 1.4,
+                                    color: AppColors.mediumLabel,
+                                    fontSize: 14,
+                                  )),
                         ],
                       ),
                       Row(
                         children: [
                           Expanded(
                             child: Text(
-                              checkoutController.isGiveAway == true
-                                  ? 'Shipping (10-12 Business Days)'
-                                  : 'Shipping (3-5 Business Days)',
-                              // checkoutController
-                              //     .orderPriceModal.data!.shippingMessage!,
+                              // checkoutController.isGiveAway == true
+                              //     ? 'Shipping (10-12 Business Days)'
+                              //     : 'Shipping (3-5 Business Days)',
+                              checkoutController
+                                  .orderPriceModal.value.data!.shippingMessage!,
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall
@@ -113,11 +112,11 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             ),
                           ),
                           Text(
-                            checkoutController
-                                        .orderPriceModal.data?.shippingCharge ==
+                            checkoutController.orderPriceModal.value.data
+                                        ?.shippingCharge ==
                                     0
                                 ? 'Free'
-                                : '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.shippingCharge}',
+                                : '${profileController.currnecy.value} ${checkoutController.orderPriceModal.value.data?.shippingCharge}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -130,10 +129,10 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         ],
                       ),
                       Visibility(
-                        visible: checkoutController.orderPriceModal.data
+                        visible: checkoutController.orderPriceModal.value.data
                                         ?.cashOnDeliveryFees ==
                                     0 ||
-                                checkoutController.orderPriceModal.data
+                                checkoutController.orderPriceModal.value.data
                                         ?.cashOnDeliveryFees ==
                                     null ||
                                 checkoutController.paymentMethodValue.value !=
@@ -156,7 +155,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                               ),
                             ),
                             Text(
-                              '${profileController?.currnecy.value ?? 'AED'} ${checkoutController.orderPriceModal.data?.cashOnDeliveryFees}',
+                              '${profileController?.currnecy.value ?? 'AED'} ${checkoutController.orderPriceModal.value.data?.cashOnDeliveryFees}',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall
@@ -170,11 +169,11 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         ),
                       ),
                       Visibility(
-                        visible:
-                            checkoutController.orderPriceModal.data?.discount ==
-                                    0
-                                ? false
-                                : true,
+                        visible: checkoutController
+                                    .orderPriceModal.value.data?.discount ==
+                                0
+                            ? false
+                            : true,
                         child: Row(
                           children: [
                             Expanded(
@@ -191,7 +190,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                               ),
                             ),
                             Text(
-                              '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.discount}',
+                              '${profileController.currnecy.value} ${checkoutController.orderPriceModal.value.data?.discount}',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall
@@ -205,10 +204,11 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         ),
                       ),
                       Visibility(
-                        visible:
-                            checkoutController.orderPriceModal.data?.tax == 0
-                                ? false
-                                : true,
+                        visible: checkoutController
+                                    .orderPriceModal.value.data?.tax ==
+                                0
+                            ? false
+                            : true,
                         child: Row(
                           children: [
                             Expanded(
@@ -225,7 +225,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                               ),
                             ),
                             Text(
-                              '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax}',
+                              '${profileController.currnecy.value} ${checkoutController.orderPriceModal.value.data?.tax}',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall
@@ -254,7 +254,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             ),
                           ),
                           Text(
-                            '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.grandTotal}',
+                            '${profileController.currnecy.value} ${checkoutController.orderPriceModal.value.data?.grandTotal}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displayMedium
@@ -267,11 +267,11 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         ],
                       ),
                       Visibility(
-                          visible: checkoutController.orderPriceModal.data
+                          visible: checkoutController.orderPriceModal.value.data
                                           ?.hearts?.hearts ==
                                       0 ||
                                   checkoutController.hasRedeem.isTrue ||
-                                  checkoutController.orderPriceModal.data
+                                  checkoutController.orderPriceModal.value.data
                                           ?.hearts?.hearts ==
                                       null
                               ? false
@@ -287,7 +287,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                               ),
                               FittedBox(
                                 child: Text(
-                                  'Earn ${checkoutController.orderPriceModal.data?.hearts?.hearts} Points',
+                                  'Earn ${checkoutController.orderPriceModal.value.data?.hearts?.hearts} Points',
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall

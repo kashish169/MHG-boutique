@@ -19,7 +19,7 @@ class HttpServiceImplementation implements HttpService {
   }) async {
     try {
       log("${Api.authorizedheaders}");
-      log("url is:$url");
+      log("url is:$url\n${Api.headers}");
       final response = await http
           .get(
             Uri.parse(url.contains('chat') ? url : (Api.baseUrl + url)),

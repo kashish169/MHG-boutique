@@ -38,7 +38,7 @@ class ApplePayWidget extends StatelessWidget {
           paymentItems: [
             PaymentItem(
               label: 'MHGBoutique',
-              amount: "${controller.orderPriceModal.data?.grandTotal}",
+              amount: "${controller.orderPriceModal.value.data?.grandTotal}",
               status: PaymentItemStatus.final_price,
             )
           ],

@@ -54,7 +54,7 @@ class CheckoutController extends GetxController {
   List<String> kuwaitCitiesList = kuwaitCities;
   List<String> saudiArabiaCitiesList = saudiArabiaCities;
   List<String> qatarCitiesList = qatarCities;
-  OrderPriceModal orderPriceModal = OrderPriceModal();
+  var orderPriceModal = OrderPriceModal().obs;
   final TextEditingController codeController = TextEditingController();
   final ProfileController profileController = Get.find<ProfileController>();
   final TextEditingController guestName = TextEditingController();
@@ -333,7 +333,7 @@ class CheckoutController extends GetxController {
       if (profileController.model.value?.state != null) {
         query = '$query&city=${profileController.model.value?.state}';
       }
-      if (App.token.isEmpty) {
+      if (App.token.isNotEmpty) {
         if (selectedCity != null) {
           query = '$query&city=$selectedCity';
         }
@@ -353,6 +353,7 @@ class CheckoutController extends GetxController {
       } else {
         query += "&cod=0";
       }
+      log('QUERY: $query');
       Either<Failure, ApiResponse> results =
           await checkoutRepository.orderPrice(query);
       isLoadingRedeem(false);
@@ -375,7 +376,7 @@ class CheckoutController extends GetxController {
           if (statusCode == 200) {
             if (r.object["data"] != null) {
               log(orderPriceModal.toString());
-              orderPriceModal = OrderPriceModal.fromJson(r.object);
+              orderPriceModal.value = OrderPriceModal.fromJson(r.object);
               if (isRedeem == true) {
                 AppToasts.successToast(
                   "Points have been redeemed successfully",

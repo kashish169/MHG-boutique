@@ -53,7 +53,7 @@ class ConfirmationFooter extends StatelessWidget {
                         ),
                         profileController?.currnecy.value != null
                             ? Text(
-                                '${profileController?.currnecy?.value} ${checkoutController.orderPriceModal.data?.subtotal}',
+                                '${profileController?.currnecy?.value} ${checkoutController.orderPriceModal.value.data?.subtotal}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall
@@ -64,7 +64,7 @@ class ConfirmationFooter extends StatelessWidget {
                                     ),
                               )
                             : Text(
-                                '${App.currency} ${checkoutController.orderPriceModal.data?.subtotal}',
+                                '${App.currency} ${checkoutController.orderPriceModal.value.data?.subtotal}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall
@@ -94,11 +94,11 @@ class ConfirmationFooter extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          checkoutController
-                                      .orderPriceModal.data?.shippingCharge ==
+                          checkoutController.orderPriceModal.value.data
+                                      ?.shippingCharge ==
                                   0
                               ? 'Free'
-                              : '${profileController?.currnecy.value ?? App.currency} ${checkoutController.orderPriceModal.data?.shippingCharge}',
+                              : '${profileController?.currnecy.value ?? App.currency} ${checkoutController.orderPriceModal.value.data?.shippingCharge}',
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall
@@ -111,10 +111,10 @@ class ConfirmationFooter extends StatelessWidget {
                       ],
                     ),
                     Visibility(
-                      visible: checkoutController
-                                      .orderPriceModal.data?.cashOnDeliveryFees ==
+                      visible: checkoutController.orderPriceModal.value.data
+                                      ?.cashOnDeliveryFees ==
                                   0 ||
-                              checkoutController.orderPriceModal.data
+                              checkoutController.orderPriceModal.value.data
                                       ?.cashOnDeliveryFees ==
                                   null ||
                               checkoutController.paymentMethodValue.value !=
@@ -137,7 +137,7 @@ class ConfirmationFooter extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '${profileController?.currnecy.value ?? App.currency} ${checkoutController.orderPriceModal.data?.cashOnDeliveryFees}',
+                            '${profileController?.currnecy.value ?? App.currency} ${checkoutController.orderPriceModal.value.data?.cashOnDeliveryFees}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -151,10 +151,11 @@ class ConfirmationFooter extends StatelessWidget {
                       ),
                     ),
                     Visibility(
-                      visible:
-                          checkoutController.orderPriceModal.data?.discount == 0
-                              ? false
-                              : true,
+                      visible: checkoutController
+                                  .orderPriceModal.value.data?.discount ==
+                              0
+                          ? false
+                          : true,
                       child: Row(
                         children: [
                           Expanded(
@@ -172,7 +173,7 @@ class ConfirmationFooter extends StatelessWidget {
                           ),
                           profileController?.currnecy.value != null
                               ? Text(
-                                  '${profileController?.currnecy.value} ${checkoutController.orderPriceModal.data?.discount}',
+                                  '${profileController?.currnecy.value} ${checkoutController.orderPriceModal.value.data?.discount}',
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -183,7 +184,7 @@ class ConfirmationFooter extends StatelessWidget {
                                       ),
                                 )
                               : Text(
-                                  '${App.currency} ${checkoutController.orderPriceModal.data?.discount}',
+                                  '${App.currency} ${checkoutController.orderPriceModal.value.data?.discount}',
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -197,9 +198,11 @@ class ConfirmationFooter extends StatelessWidget {
                       ),
                     ),
                     Visibility(
-                      visible: checkoutController.orderPriceModal.data?.tax == 0
-                          ? false
-                          : true,
+                      visible:
+                          checkoutController.orderPriceModal.value.data?.tax ==
+                                  0
+                              ? false
+                              : true,
                       child: Row(
                         children: [
                           Expanded(
@@ -217,7 +220,7 @@ class ConfirmationFooter extends StatelessWidget {
                           ),
                           profileController?.currnecy.value != null
                               ? Text(
-                                  "${profileController?.currnecy.value} ${checkoutController.orderPriceModal.data?.tax}",
+                                  "${profileController?.currnecy.value} ${checkoutController.orderPriceModal.value.data?.tax}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -228,7 +231,7 @@ class ConfirmationFooter extends StatelessWidget {
                                       ),
                                 )
                               : Text(
-                                  "${App.currency} ${checkoutController.orderPriceModal.data?.tax}",
+                                  "${App.currency} ${checkoutController.orderPriceModal.value.data?.tax}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -258,7 +261,7 @@ class ConfirmationFooter extends StatelessWidget {
                         ),
                         profileController?.currnecy.value != null
                             ? Text(
-                                '${profileController?.currnecy.value} ${checkoutController.orderPriceModal.data?.grandTotal}',
+                                '${profileController?.currnecy.value} ${checkoutController.orderPriceModal.value.data?.grandTotal}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .displayMedium
@@ -269,7 +272,7 @@ class ConfirmationFooter extends StatelessWidget {
                                     ),
                               )
                             : Text(
-                                '${App.currency} ${checkoutController.orderPriceModal.data?.grandTotal}',
+                                '${App.currency} ${checkoutController.orderPriceModal.value.data?.grandTotal}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .displayMedium
@@ -282,12 +285,12 @@ class ConfirmationFooter extends StatelessWidget {
                       ],
                     ),
                     Visibility(
-                        visible: checkoutController
-                                        .orderPriceModal.data?.hearts?.hearts ==
+                        visible: checkoutController.orderPriceModal.value.data
+                                        ?.hearts?.hearts ==
                                     0 ||
                                 checkoutController.hasRedeem.isTrue ||
-                                checkoutController
-                                        .orderPriceModal.data?.hearts?.hearts ==
+                                checkoutController.orderPriceModal.value.data
+                                        ?.hearts?.hearts ==
                                     null
                             ? false
                             : true,
@@ -302,7 +305,7 @@ class ConfirmationFooter extends StatelessWidget {
                             ),
                             FittedBox(
                               child: Text(
-                                'Earn ${checkoutController.orderPriceModal.data?.hearts?.hearts} Points',
+                                'Earn ${checkoutController.orderPriceModal.value.data?.hearts?.hearts} Points',
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall

@@ -35,6 +35,7 @@ class CheckoutItems extends StatelessWidget {
             } else if (controller.isError.isTrue) {
               return RetryButton(onTap: () => controller.getCart());
             }
+
             return controller.cartItemsList.isEmpty
                 ? Center(
                     child: Text(
