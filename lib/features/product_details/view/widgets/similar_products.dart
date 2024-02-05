@@ -10,7 +10,9 @@ import '../../../home/view/widgets/product_card.dart';
 import '../../controller/product_details_controller.dart';
 
 class SimilarProductsWidget extends StatelessWidget {
-  const SimilarProductsWidget({Key? key}) : super(key: key);
+  const SimilarProductsWidget({Key? key, required this.title})
+      : super(key: key);
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class SimilarProductsWidget extends StatelessWidget {
             vertical: 5,
           ),
           child: Text(
-            'You might also like'.tr,
+            title.tr,
             style: Theme.of(context)
                 .textTheme
                 .displaySmall
@@ -46,7 +48,7 @@ class SimilarProductsWidget extends StatelessWidget {
                     index < controller.model.relatedProducts.length;
                     index++)
                   Padding(
-                    padding:const EdgeInsetsDirectional.only(end: 8),
+                    padding: const EdgeInsetsDirectional.only(end: 8),
                     child: ProductCard(
                       model: controller.model.relatedProducts[index],
                       isDetails: true,

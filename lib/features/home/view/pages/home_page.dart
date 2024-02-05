@@ -4,6 +4,7 @@ import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/view/widgets/home_slider.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
+import '../../../profile/view/widgets/reward_widget.dart';
 import '../widgets/home_explore_our_brands_widget.dart';
 import '../widgets/home_footer_slider.dart';
 import '../widgets/home_middle_section_widget.dart';
@@ -31,9 +32,10 @@ class _HomePageState extends State<HomePage>
       }
       return RefreshIndicator(
         onRefresh: () async => await controller.getHome(),
-        child: SingleChildScrollView(
+        child: const SingleChildScrollView(
           child: Column(
-            children: const [
+            children: [
+              ProfileRewardBox(),
               HomeSlider(),
               HomeTopSellersWidget(),
               //HomeShopByCategoryWidget(),
