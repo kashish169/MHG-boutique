@@ -57,8 +57,7 @@ class _BodyButtonsState extends State<BodyButtons> {
                         ProductDetailsPage.routeName,
                         arguments: {
                           "id": widget.model.id,
-                          "name": widget.model.name
-                              ,
+                          "name": widget.model.name,
                           "fromArrival": false
                         },
                       );

@@ -25,7 +25,6 @@ class SuccessOrderRepoImpl implements SuccessOrderRepo {
   @override
   Future<Either<Failure, ApiResponse>> getOrders() async => httpService.get(
         url: Api.myOrders,
-        isAuthorized: App.token.isNotEmpty?true:false,
+        isAuthorized: App.token.isNotEmpty ? true : false,
       );
-
 }

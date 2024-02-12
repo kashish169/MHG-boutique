@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 class CartModel {
   String rowId;
   int id;
@@ -61,10 +64,14 @@ class Options {
   dynamic discountParcent;
   String? voucher;
   int isGiveAway;
+  double? minGwpCartAmount;
+  bool isGwp;
 
   Options({
     required this.variantId,
     required this.variantQuantity,
+    this.minGwpCartAmount,
+    required this.isGwp,
     this.brandName,
     this.size,
     this.color,
@@ -79,6 +86,10 @@ class Options {
 
   factory Options.fromJson(Map<String, dynamic> json) => Options(
       variantQuantity: json['variant_quantity'],
+      isGwp: json["is_gwp"],
+      minGwpCartAmount: json["min_gwp_cart_amount"] == null
+          ? 0
+          : double.parse(json["min_gwp_cart_amount"]),
       variantId: json["variant_id"],
       brandName: json["brand_name"],
       size: json["size"],

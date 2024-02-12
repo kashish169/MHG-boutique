@@ -42,12 +42,12 @@ class HomeCategoryCard extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 14),
-          child:  Text(
+          child: Text(
             isAR() ? model.frName : model.enName,
-    textAlign: TextAlign.center,
+            textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
-              fontSize: 12,
-            ),
+                  fontSize: 12,
+                ),
           ),
         ),
       ),

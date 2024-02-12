@@ -18,7 +18,7 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
     final checkoutController = Get.find<CheckoutController>();
     return Padding(
       padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.1),
+          horizontal: MediaQuery.of(context).size.width * 0.1),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -37,16 +37,16 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
           ),
           Row(
             children: [
-              controller.orderModel.paymentMethod=='COD'?
-              Text(
-                'Cash On Delivery',
-                style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                  fontSize: 12,
-                  color: AppColors.mediumLabel,
-                  fontWeight: FontWeight.bold,
-                ),
-              ):
-              SizedBox()
+              controller.orderModel.paymentMethod == 'COD'
+                  ? Text(
+                      'Cash On Delivery',
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            fontSize: 12,
+                            color: AppColors.mediumLabel,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    )
+                  : SizedBox()
               /* Text(
                       'ending ${controller.getCodedNumber(model.cardNumber)}',
                       maxLines: null,

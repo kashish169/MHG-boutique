@@ -14,6 +14,8 @@ class AddPaymentMethodWebViewPage extends StatefulWidget {
   final bool is3dAUth;
   final bool? isAddCard;
   final bool? isProfile;
+  final double? titleFontSize;
+  final List<Widget> actions;
 
   const AddPaymentMethodWebViewPage({
     super.key,
@@ -22,6 +24,8 @@ class AddPaymentMethodWebViewPage extends StatefulWidget {
     this.is3dAUth = false,
     this.isAddCard = false,
     this.isProfile = false,
+    this.titleFontSize,
+    this.actions = const [],
   });
 
   @override
@@ -77,10 +81,10 @@ class _AddPaymentMethodWebViewPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
-        context,
-        title: widget.title ?? 'Add Payment Method',
-      ),
+      appBar: customAppBar(context,
+          fontSize: widget.titleFontSize,
+          title: widget.title ?? 'Add Payment Method',
+          actions: widget.actions),
       body: SafeArea(
         child: Stack(
           alignment: AlignmentDirectional.center,

@@ -32,7 +32,7 @@ List<Marker> markerListData = [
             .tapOnMarker(const LatLng(25.23469681252193, 55.43633680995242));
         showStoresBottomSheet([
           'ANFASIC DOKHOON',
-        ], 'ARABIAN CENTER', '048400150' , second_tel: '0564705559');
+        ], 'ARABIAN CENTER', '048400150', second_tel: '0564705559');
       },
       markerId: const MarkerId('ARABIAN CENTER'),
       infoWindow: InfoWindow(
@@ -100,7 +100,7 @@ List<Marker> markerListData = [
             .tapOnMarker(const LatLng(25.23717980635305, 55.42137396947124));
         showStoresBottomSheet([
           'ANFASIC DOKHOON',
-        ], 'ETTIHAD MALL', "42362664" , second_tel: '0503538507');
+        ], 'ETTIHAD MALL', "42362664", second_tel: '0503538507');
       },
       markerId: const MarkerId('ETTIHAD MALL'),
       infoWindow: InfoWindow(
@@ -117,8 +117,11 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.197272942537467, 55.279776846179224));
-        showStoresBottomSheet(['ANFASIC DOKHOON', 'HIND AL OUD', 'KHALTAT'],
-            'DUBAI MALL', "42362664" , second_tel: '0503538508');
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+          'HIND AL OUD',
+          'KHALTAT'
+        ], 'DUBAI MALL', "42362664", second_tel: '0503538508');
       },
       markerId: const MarkerId('DUBAI MALL'),
       infoWindow: InfoWindow(
@@ -135,8 +138,11 @@ List<Marker> markerListData = [
       onTap: () {
         controller
             .tapOnMarker(const LatLng(25.216406335628562, 55.40783781179989));
-        showStoresBottomSheet(['ANFASIC DOKHOON', 'HIND AL OUD', 'KHALTAT'],
-            'MIRDIF CITY CENTRE', '42840150' , second_tel: '0544412112');
+        showStoresBottomSheet([
+          'ANFASIC DOKHOON',
+          'HIND AL OUD',
+          'KHALTAT'
+        ], 'MIRDIF CITY CENTRE', '42840150', second_tel: '0544412112');
       },
       markerId: const MarkerId('MIRDIF CITY CENTRE'),
       infoWindow: InfoWindow(
@@ -302,7 +308,8 @@ List<Marker> markerListData = [
         controller
             .tapOnMarker(const LatLng(24.311714674867822, 54.622067111779394));
         showStoresBottomSheet(
-            ['ANFASIC DOKHOON', 'KHALTAT'], 'BAWABAT AL SHARQ', '25821167' , second_tel: '0505001503');
+            ['ANFASIC DOKHOON', 'KHALTAT'], 'BAWABAT AL SHARQ', '25821167',
+            second_tel: '0505001503');
       },
       markerId: const MarkerId('BAWABAT AL SHARQ'),
       infoWindow: InfoWindow(

@@ -24,8 +24,10 @@ class OtpBottomPart extends StatelessWidget {
               child: Text(
                 "Resend code",
                 style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                  color: controller.times==0?AppColors.red:AppColors.darkGrey2.withOpacity(.5),
-                ),
+                      color: controller.times == 0
+                          ? AppColors.red
+                          : AppColors.darkGrey2.withOpacity(.5),
+                    ),
               )))
         ],
       ),

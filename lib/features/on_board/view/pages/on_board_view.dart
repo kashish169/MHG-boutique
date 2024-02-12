@@ -137,7 +137,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                         : GestureDetector(
                             onTap: () {
                               ///todo
-                             controller.openselcetCountry();
+                              controller.openselcetCountry();
                             },
                             child: Row(
                               children: [
@@ -184,6 +184,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                                                   horizontal: 10),
                                               child: SizedBox()),
                                         ),
+
                                         ///todo
                                         Icon(
                                           Icons.keyboard_arrow_up_outlined,

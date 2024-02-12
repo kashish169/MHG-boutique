@@ -39,11 +39,9 @@ class _WishListCounterrWidgetState extends State<WishListCounterrWidget> {
           widget.model.isAddToBag = true;
           if (mounted) setState(() {});
           bool result = await Get.find<MyCartController>().increaseCartItem(
-            cartItemId: widget.model.id,
-            quantity: 1,
-            variantId: widget.model.options.variantId
-
-          );
+              cartItemId: widget.model.id,
+              quantity: 1,
+              variantId: widget.model.options.variantId);
           if (result == true) {
             Get.find<CheckoutController>().orderPrice();
             widget.model.options.cartQuantity = value;
@@ -76,11 +74,9 @@ class _WishListCounterrWidgetState extends State<WishListCounterrWidget> {
           widget.model.isAddToBag = true;
           if (mounted) setState(() {});
           bool result = await Get.find<MyCartController>().decreaseCartItem(
-            cartItemId: widget.model.id,
-            quantity: 1,
-              variantId: widget.model.options.variantId
-
-          );
+              cartItemId: widget.model.id,
+              quantity: 1,
+              variantId: widget.model.options.variantId);
           if (result == true) {
             Get.find<CheckoutController>().orderPrice();
             widget.model.options.cartQuantity = value;

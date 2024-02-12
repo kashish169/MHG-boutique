@@ -490,12 +490,25 @@ class CheckoutController extends GetxController {
               );
               return;
             }
+            log('TAMARA: ${paymentMethodValue.value}');
             var results = await Get.to(
               () => AddPaymentMethodWebViewPage(
                 title: paymentMethodValue.value == 'Apple Pay'
                     ? 'Apple Pay'
-                    : "3DS Authentication",
+                    : paymentMethodValue.value == 'TAMARA'
+                        ? 'Pay installments by Tamara'
+                        : "3DS Authentication",
                 url: url,
+                titleFontSize: paymentMethodValue.value == 'TAMARA' ? 13 : null,
+                actions: paymentMethodValue.value == 'TAMARA'
+                    ? [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5, right: 15),
+                          child: Image(
+                              image: AssetImage(AppAssets.tamara), width: 40),
+                        )
+                      ]
+                    : [],
                 is3dAUth: true,
               ),
             );

@@ -201,14 +201,12 @@ class AppRoutes {
         page: () => const ResetPasswordView(),
         binding: ForgetPasswordBinding()),
     GetPage(
-        name: '/invite_friend',
-        page: () => const InviteFriendPage(),
+      name: '/invite_friend',
+      page: () => const InviteFriendPage(),
     ),
     GetPage(
-      name: '/all_products',
-      page: () => const AllProductsPage(),
-      binding:AllProductsBindings()
-    )
-
+        name: '/all_products',
+        page: () => const AllProductsPage(),
+        binding: AllProductsBindings())
   ];
 }

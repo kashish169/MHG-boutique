@@ -95,7 +95,7 @@ class PersonalInformationController extends GetxController {
     zipCode.text = profileInfo.zipCode ?? '';
     dateTextEditingController.text = profileInfo.dob ?? '';
     selectedGender = profileInfo.gender;
-    selectedCountry=profileInfo.country?.name??'';
+    selectedCountry = profileInfo.country?.name ?? '';
     log("here");
     log(profileInfo.toString());
     // countriesList.add(CountryDataModel(
@@ -197,7 +197,6 @@ class PersonalInformationController extends GetxController {
         bool success = r.object['isSuccessful'];
         var message = r.object['message'];
         if (success == true) {
-
           Get.find<HomeController>().homeModel = null;
           Get.find<WishListController>().getWishList();
           await profileController.getProfileInfo();
@@ -331,7 +330,11 @@ class PersonalInformationController extends GetxController {
                   .toList();
 
               ///todo
-              countriesList = [countriesList.first,countriesList[1],countriesList[3]];
+              countriesList = [
+                countriesList.first,
+                countriesList[1],
+                countriesList[3]
+              ];
               log("countries list length ${countriesList.length}");
               // setCountry(
               //   profileController.model.value?.country?.name,

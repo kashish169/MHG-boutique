@@ -9,6 +9,7 @@ import '../widgets/home_explore_our_brands_widget.dart';
 import '../widgets/home_footer_slider.dart';
 import '../widgets/home_middle_section_widget.dart';
 import '../widgets/home_new_arrivels_widget.dart';
+import '../widgets/home_reward_box.dart';
 import '../widgets/home_shop_by_category_widget.dart';
 import '../widgets/home_top_sellers_widget.dart';
 
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage>
         child: const SingleChildScrollView(
           child: Column(
             children: [
-              ProfileRewardBox(),
+              HomeRewardBox(),
               HomeSlider(),
               HomeTopSellersWidget(),
               //HomeShopByCategoryWidget(),

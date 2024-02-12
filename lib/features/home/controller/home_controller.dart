@@ -73,7 +73,7 @@ class HomeController extends GetxController {
             homeModel = data;
 
             slidersList.value = data.sliders;
-       
+
             topSellersList.value = data.topSellers;
             newArrivalsList.value = data.newArrivals;
             brandsList.value = data.brands;

@@ -89,8 +89,8 @@ class ProfileRewardBox extends StatelessWidget {
                                 ),
                               ),
                             ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10),
                         // child: controller.model.value!.nextTierPts != "0.00"
                         //     ? Builder(builder: (context) {
                         //         return controller.loadingUpdateCard.isTrue
@@ -104,7 +104,7 @@ class ProfileRewardBox extends StatelessWidget {
                         //                 child: Text(
                         //                   '${controller.model.value!.nextTierPtsLeft} Until ${controller.model.value!.nextTier}',
                         //                   style: Theme.of(context)
-                        //                       .textTheme
+                        //                       .tex tTheme
                         //                       .displaySmall
                         //                       ?.copyWith(
                         //                           fontSize: 10,

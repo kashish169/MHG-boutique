@@ -8,8 +8,9 @@ class OtpController extends GetxController {
   VerificationController verificationController =
       Get.put(VerificationController());
   ForgetController? forgetController;
-  OtpController(){log(Get.arguments.toString());
-    if(Get.arguments["type"]=="reset") {
+  OtpController() {
+    log(Get.arguments.toString());
+    if (Get.arguments["type"] == "reset") {
       forgetController = Get.find<ForgetController>();
     }
   }
@@ -37,18 +38,14 @@ class OtpController extends GetxController {
   }
 
   void resendCode() {
-
     if (times.value == 0) {
       startTimer(30);
 
-
-
-      if(verificationController.type=='reset'){
+      if (verificationController.type == 'reset') {
         forgetController?.forgetPassword();
-      }else{
+      } else {
         verificationController.sendOtpCode();
       }
-
     }
   }
 

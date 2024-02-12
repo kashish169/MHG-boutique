@@ -29,6 +29,7 @@ class MyCartController extends GetxController {
   RxDouble tax = 0.0.obs;
   RxDouble subTotal = 0.0.obs;
   RxBool isGiveAway = false.obs;
+
   Future<void> getCart() async {
     try {
       if (cartItemsList.isEmpty) isLoading(true);
@@ -39,18 +40,14 @@ class MyCartController extends GetxController {
         (l) {
           isError(true);
           AppToasts.errorToast(l.message);
-          log("CART RESPONSE ERROR ${l.message}");
         },
         (r) {
           var statusCode = r.object["code"];
           var message = r.object["message"];
-          log("CART RESPONSE STATUS $statusCode");
-          log(r.object["data"].toString());
           if (statusCode == 200) {
-            log("////////////");
-            log(r.object["data"].toString());
-            log("////////////");
             var json = r.object["data"]["cart_items"];
+
+            log('CART CART CART CART: ${r.object["data"]["cart_items"]}');
             cartItemsList.value =
                 List<CartModel>.from(json.map((x) => CartModel.fromJson(x)));
             checkIfThereGiveAway();
@@ -95,10 +92,12 @@ class MyCartController extends GetxController {
         (r) async {
           var statusCode = r.object["code"];
           var message = r.object["message"];
-          log("INCREASE CART RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
             result = true;
-            log("CART ITEM QUANTITY INCREASED");
+            var json = r.object["data"]["cart_items"];
+            cartItemsList.value =
+                List<CartModel>.from(json.map((x) => CartModel.fromJson(x)));
+            log("CART ITEM QUANTITY INCREASEDdddd ${jsonEncode(r.object)}");
           } else {
             result = false;
 
@@ -138,6 +137,9 @@ class MyCartController extends GetxController {
         (r) async {
           var statusCode = r.object["code"];
           var message = r.object["message"];
+          var json = r.object["data"]["cart_items"];
+          cartItemsList.value =
+              List<CartModel>.from(json.map((x) => CartModel.fromJson(x)));
           log("DECREASE CART RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
             log("CART ITEM QUANTITY DECREASED");
@@ -173,6 +175,9 @@ class MyCartController extends GetxController {
         (r) {
           var statusCode = r.object["code"];
           var message = r.object["message"];
+          var json = r.object["data"]["cart_items"];
+          cartItemsList.value =
+              List<CartModel>.from(json.map((x) => CartModel.fromJson(x)));
           log("DELETE CART RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
             AppToasts.successToast(

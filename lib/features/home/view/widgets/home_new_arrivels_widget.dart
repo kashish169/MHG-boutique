@@ -30,7 +30,8 @@ class HomeNewArrivelsWidget extends StatelessWidget {
                   ),
                 ),
                 ViewAllButton(onTap: () {
-                  Get.toNamed(AllProductsPage.routeName,arguments: 'fromArrival');
+                  Get.toNamed(AllProductsPage.routeName,
+                      arguments: 'fromArrival');
                 }),
               ],
             ),

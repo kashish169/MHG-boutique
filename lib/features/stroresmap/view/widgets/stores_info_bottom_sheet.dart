@@ -10,155 +10,157 @@ showStoresBottomSheet(List<String>? places, name, tel, {second_tel}) =>
         color: Colors.white,
         child: SingleChildScrollView(
           child: Column(
-                children: [
-                  SizedBox(height: 10,),
-                  SizedBox(
-                  height: Get.height * 0.023,
-                  child: Text(
-                    'STORES',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: AppColors.dGreen,
-                      fontWeight: FontWeight.bold,
-                    ),
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                height: Get.height * 0.023,
+                child: Text(
+                  'STORES',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: AppColors.dGreen,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: List.generate(
-                      places?.length ?? 0,
-                      (index) => Padding(
-                        padding: index == 0
-                            ? EdgeInsets.only(
-                                top: Get.height * 0.065,
-                                bottom: 8,
-                              )
-                            : EdgeInsets.all(8),
-                        child: Center(
-                          child: SizedBox(
-                            height: Get.height * 0.02,
-                            child: Text(
-                              places?[index] ?? 'NO STORES AVAILABLE',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: AppColors.dGreen,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: List.generate(
+                  places?.length ?? 0,
+                  (index) => Padding(
+                    padding: index == 0
+                        ? EdgeInsets.only(
+                            top: Get.height * 0.065,
+                            bottom: 8,
+                          )
+                        : EdgeInsets.all(8),
+                    child: Center(
+                      child: SizedBox(
+                        height: Get.height * 0.02,
+                        child: Text(
+                          places?[index] ?? 'NO STORES AVAILABLE',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: AppColors.dGreen,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: Get.height * 0.03,
-                  ),
-                  Text(
-                    'CALL US',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: AppColors.dGreen,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(
-                    height: Get.height * 0.03,
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: 8,
-                      right: Get.width * 0.02,
-                    ),
-                    child: Table(
-                      border: null,
+                ),
+              ),
+              SizedBox(
+                height: Get.height * 0.03,
+              ),
+              Text(
+                'CALL US',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                  color: AppColors.dGreen,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: Get.height * 0.03,
+              ),
+              Container(
+                margin: EdgeInsets.only(
+                  left: 8,
+                  right: Get.width * 0.02,
+                ),
+                child: Table(
+                  border: null,
+                  children: [
+                    TableRow(
                       children: [
-                        TableRow(
-                          children: [
-                            Text(
-                              name,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: AppColors.dGreen,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              tel,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: AppColors.dGreen,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                if (tel != '') {
-                                  AppHelper.launchURL(tel, 'tel');
-                                }
-                              },
-                              child: SizedBox(
-                                height: 50,
-                                child: Padding(
-                                  padding: EdgeInsets.only(bottom: 25),
-                                  child: tel == ''
-                                      ? SizedBox()
-                                      : Icon(
-                                          Icons.call,
-                                          color: AppColors.dGreen,
-                                        ),
-                                ),
-                              ),
-                            ),
-                          ],
+                        Text(
+                          name,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: AppColors.dGreen,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        second_tel != null
-                            ? TableRow(
-                                children: [
-                                  Text(
-                                    name,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 16,
+                        Text(
+                          tel,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: AppColors.dGreen,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            if (tel != '') {
+                              AppHelper.launchURL(tel, 'tel');
+                            }
+                          },
+                          child: SizedBox(
+                            height: 50,
+                            child: Padding(
+                              padding: EdgeInsets.only(bottom: 25),
+                              child: tel == ''
+                                  ? SizedBox()
+                                  : Icon(
+                                      Icons.call,
                                       color: AppColors.dGreen,
-                                      fontWeight: FontWeight.bold,
                                     ),
-                                  ),
-                                  Text(
-                                    second_tel,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: AppColors.dGreen,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      if (second_tel != '') {
-                                        AppHelper.launchURL(second_tel, 'tel');
-                                      }
-                                    },
-                                    child: second_tel == ''
-                                        ? SizedBox()
-                                        : Icon(
-                                            Icons.call,
-                                            color: AppColors.dGreen,
-                                          ),
-                                  ),
-                                ],
-                              )
-                            : const TableRow(
-                                children: [SizedBox(), SizedBox(), SizedBox()])
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                  )
-                ],
-              ),
+                    second_tel != null
+                        ? TableRow(
+                            children: [
+                              Text(
+                                name,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: AppColors.dGreen,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                second_tel,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: AppColors.dGreen,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  if (second_tel != '') {
+                                    AppHelper.launchURL(second_tel, 'tel');
+                                  }
+                                },
+                                child: second_tel == ''
+                                    ? SizedBox()
+                                    : Icon(
+                                        Icons.call,
+                                        color: AppColors.dGreen,
+                                      ),
+                              ),
+                            ],
+                          )
+                        : const TableRow(
+                            children: [SizedBox(), SizedBox(), SizedBox()])
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
       //barrierColor: Colors.transparent,

@@ -84,7 +84,7 @@ class AppAssets {
   static String cashOnDeliveryBlack = "assets/icons/cash-on-delivery (1).png";
   static String creditCardBlack = "assets/icons/credit-card.png";
   static String girls = "assets/images/girls.png";
-
+  static String tamara = 'assets/images/tamara_logo.png';
   static String facebook2 = "assets/icons/facebook2.png";
   static String whatsapp2 = "assets/icons/whatsapp2.png";
   static String gmail = "assets/icons/gmail.png";

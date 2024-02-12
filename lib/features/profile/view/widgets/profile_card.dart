@@ -27,7 +27,7 @@ class ProfileCard extends StatelessWidget {
             leading: Image.asset(
               icon,
               height: 25,
-           width: 25,
+              width: 25,
               fit: BoxFit.fill,
               color: AppColors.dBlack,
             ),

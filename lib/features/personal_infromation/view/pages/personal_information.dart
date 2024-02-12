@@ -181,8 +181,8 @@ class PersonalInformation extends StatelessWidget {
                           PersonalInfoButton(
                               text: "Save",
                               onTap: () {
-
-                                if(controller.formKey.currentState!.validate()){
+                                if (controller.formKey.currentState!
+                                    .validate()) {
                                   log("v");
                                   controller.updateInformation();
                                 }

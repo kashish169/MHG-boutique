@@ -102,14 +102,14 @@ class HomeMiddleSectionWidget extends StatelessWidget {
                     );
                     return;
                   }
-                  if (controller.middleSectionList[index].productId!= null) {
+                  if (controller.middleSectionList[index].productId != null) {
                     log("BY_PRODUCT_ID");
                     Get.toNamed(
                       ProductDetailsPage.routeName,
                       arguments: {
                         "id": controller.middleSectionList[index].productId,
                         "fromArrival": false,
-                        "name":controller.middleSectionList[index].enTitle
+                        "name": controller.middleSectionList[index].enTitle
                       },
                     );
                     return;
@@ -119,12 +119,11 @@ class HomeMiddleSectionWidget extends StatelessWidget {
                     Get.toNamed(
                       ProductsPage.routeName,
                       arguments: {
-                        "categoryId": controller.middleSectionList[index].categoryId,
+                        "categoryId":
+                            controller.middleSectionList[index].categoryId,
                       },
                     );
                   }
-
-
                 },
                 child: Stack(
                   alignment: AlignmentDirectional.bottomCenter,
