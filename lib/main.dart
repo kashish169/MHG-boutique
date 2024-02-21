@@ -8,6 +8,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/auth/sign_up/repository/sign_up_repository.dart';
 import 'package:mhg/features/splash/view/splash_view.dart';
+import 'package:mhg/features/swipe/view/pages/swipe_page.dart';
 import 'package:mhg/theme/theme.dart';
 import 'app/app.dart';
 import 'constants/app_toasts.dart';

@@ -69,7 +69,7 @@ class ProductDetailsController extends GetxController {
           if (statusCode == 200) {
             log(r.object["data"].toString());
             var json = r.object["data"]["product"];
-            log("Detailssss $json");
+            // log("Detailssss $json");
             model = ProductDetailsModel.fromJson(json);
             productsReviews.value = model.productReviews;
             selectedVariantId = model.variants[0].id;
@@ -111,6 +111,55 @@ class ProductDetailsController extends GetxController {
       log("$e $s");
       isError(true);
     }
+  }
+
+  Future<void> ofsSubscribe(int product, int variant) async {
+    Map<String, dynamic> body = {"product": product, "variant": variant};
+    Either<Failure, ApiResponse> results =
+        await productDetailsRepository.ofsSubscribe(
+      body: jsonEncode(body),
+    );
+
+    results.fold(
+      (l) {
+        AppToasts.errorToast(l.message);
+        isErrorAdd(true);
+      },
+      (r) {
+        var statusCode = r.object["code"];
+        var message = r.object["message"];
+        if (statusCode == 200) {
+        } else {
+          isErrorAdd(true);
+          AppToasts.errorToast(message);
+        }
+      },
+    );
+  }
+
+  Future<void> ofsUnSubscribe(int product, int variant) async {
+    Map<String, dynamic> body = {"product": product, "variant": variant};
+    Either<Failure, ApiResponse> results =
+        await productDetailsRepository.ofsUnSubscribe(
+      body: jsonEncode(body),
+    );
+
+    results.fold(
+      (l) {
+        AppToasts.errorToast(l.message);
+        isErrorAdd(true);
+      },
+      (r) {
+        var statusCode = r.object["code"];
+        var message = r.object["message"];
+        log("SUBSCRIBE RESPONSE STATUS $statusCode");
+        if (statusCode == 200) {
+        } else {
+          isErrorAdd(true);
+          AppToasts.errorToast(message);
+        }
+      },
+    );
   }
 
   Future<bool> addProductToCart({
@@ -263,7 +312,6 @@ class ProductDetailsController extends GetxController {
     productId = data["id"];
     fromArrival = data["fromArrival"];
     productName.value = data["name"];
-    log("PRODUCT ID IS : $productId");
     getProductDetails();
     super.onInit();
   }

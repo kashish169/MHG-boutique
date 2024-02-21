@@ -8,6 +8,7 @@ import 'package:mhg/features/product_details/view/widgets/product_details_counte
 import 'package:mhg/widgets/primary_button.dart';
 import '../../../profile/controller/profile_controller.dart';
 import '../../controller/product_details_controller.dart';
+import 'product_check_box_ofs.dart';
 
 class ProductDetailsBrandCard extends StatelessWidget {
   const ProductDetailsBrandCard({Key? key}) : super(key: key);
@@ -165,25 +166,12 @@ class ProductDetailsBrandCard extends StatelessWidget {
                                 )),
                           ));
                   })
-                : Padding(
-                    padding: const EdgeInsets.only(
+                : const Padding(
+                    padding: EdgeInsets.only(
                       top: 15,
                       bottom: 5,
                     ),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      width: double.infinity,
-                      color: AppColors.secondary,
-                      child: Text(
-                        'Sold Out'.tr,
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall
-                            ?.copyWith(fontSize: 14, color: AppColors.white),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
+                    child: ProductCheckBoxOfs()),
           )
         ],
       ),

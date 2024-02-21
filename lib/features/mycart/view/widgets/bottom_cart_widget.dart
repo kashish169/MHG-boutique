@@ -239,6 +239,7 @@ class BottomCartWidget extends StatelessWidget {
                               ],
                             ),
                           ),
+
                           Row(
                             children: [
                               Expanded(

@@ -468,17 +468,20 @@ class CheckoutController extends GetxController {
         const LoadingWidget(),
         barrierDismissible: false,
       );
+
       Either<Failure, ApiResponse> results =
           await checkoutRepository.createOrder(objectData);
       Get.back();
       results.fold(
         (l) {
           AppToasts.errorToast(l.message);
+
           log("CREATE ORDER METHODS RESPONSE ERROR ${l.message}");
         },
         (r) async {
           var statusCode = r.object["code"];
           var message = r.object["message"];
+          log('OBJECT OBJECT: ${App.token}');
           log("CREATE ORDER METHODS RESPONSE STATUS $statusCode");
           log("${r.object}");
           if (statusCode == 201) {
@@ -499,16 +502,31 @@ class CheckoutController extends GetxController {
                         ? 'Pay installments by Tamara'
                         : "3DS Authentication",
                 url: url,
-                titleFontSize: paymentMethodValue.value == 'TAMARA' ? 13 : null,
+                titleFontSize: paymentMethodValue.value == 'TAMARA' ||
+                        paymentMethodValue.value == 'Tabby'
+                    ? 13
+                    : null,
                 actions: paymentMethodValue.value == 'TAMARA'
                     ? [
                         Padding(
                           padding: const EdgeInsets.only(left: 5, right: 15),
                           child: Image(
-                              image: AssetImage(AppAssets.tamara), width: 40),
+                              image: AssetImage(AssetsPaymentsLogos.tamaraLogo),
+                              width: 40),
                         )
                       ]
-                    : [],
+                    : paymentMethodValue.value == 'Tabby'
+                        ? [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 5, right: 15),
+                              child: Image(
+                                  image:
+                                      AssetImage(AssetsPaymentsLogos.tabbyLogo),
+                                  width: 40),
+                            )
+                          ]
+                        : [],
                 is3dAUth: true,
               ),
             );

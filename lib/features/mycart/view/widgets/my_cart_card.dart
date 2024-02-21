@@ -172,7 +172,7 @@ class GwpWidget extends StatelessWidget {
             child: Wrap(
               children: [
                 Text(
-                  'You git this item as a gift because your order price exceeds 900.',
+                  'You git this item as a gift because your order price exceeds $price.',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         height: 1.4,
                         fontSize: 9.5,

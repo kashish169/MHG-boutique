@@ -339,6 +339,7 @@ class Variant {
   String weightUnit;
   int quantity;
   dynamic shopifyInventoryItemId;
+  bool stockNotificationSubscribed;
   int productId;
   int storeId;
   DateTime createdAt;
@@ -366,11 +367,13 @@ class Variant {
     required this.updatedAt,
     required this.inCart,
     required this.cartQty,
+    required this.stockNotificationSubscribed,
     this.isLoadingQuantity = false,
   });
 
   factory Variant.fromJson(Map<String, dynamic> json) => Variant(
         discountPrice: json['discount_price'],
+        stockNotificationSubscribed: json['stock_notification_subscribed'],
         id: json["id"],
         externalId: json["external_id"],
         nameEn: json["name_en"],

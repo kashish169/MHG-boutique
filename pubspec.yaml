@@ -59,7 +59,7 @@ dependencies:
   flutter_html: ^3.0.0-beta.2
   dropdown_button2: ^2.1.4
   flutter_rating_bar: ^4.0.1
-  url_launcher: ^6.1.11
+  url_launcher: ^6.2.4
   webview_flutter: ^4.2.1
   radio_group_v2: ^2.1.2
   google_maps_flutter: ^2.2.6
@@ -73,6 +73,7 @@ dependencies:
   map_launcher: ^2.5.0+1
   geolocator: ^9.0.2
   pay: ^1.1.2
+  swipe_cards: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:
@@ -108,6 +109,7 @@ flutter:
     - .env
     - assets/images/
     - assets/icons/
+    - assets/payments_logos/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
