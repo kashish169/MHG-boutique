@@ -138,7 +138,9 @@ class ProductDetailsBrandCard extends StatelessWidget {
                                   color: AppColors.secondary,
                                   fontSize: 14,
                                   height: 42,
-                                  title: 'Add to Bag'.tr,
+                                  title: controller.model.isPreOrder == 1
+                                      ? 'Pre Order'.tr
+                                      : 'Add to Bag'.tr,
                                   isLoading: controller.isLoadingAdd.value,
                                   onTap: () async {
                                     var result =

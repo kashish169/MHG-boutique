@@ -59,6 +59,7 @@ class ProductModel {
   String? image4Link;
   String? image5Link;
   BrandModel? brand;
+  int? isPreOrder;
   dynamic shopifyProductType;
   dynamic shopifyVendor;
   dynamic weight;
@@ -70,6 +71,7 @@ class ProductModel {
     required this.brand,
     this.averageRate,
     this.pts,
+    this.isPreOrder,
     required this.id,
     this.externalId,
     this.sku,
@@ -133,6 +135,7 @@ class ProductModel {
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         variants: List<Variant>.from(
             json["variants"].map((x) => Variant.fromJson(x))),
+        isPreOrder: json['is_pre_order '],
         id: json["id"],
         averageRate: json["avarage_rate"] != null
             ? json["avarage_rate"].toString()

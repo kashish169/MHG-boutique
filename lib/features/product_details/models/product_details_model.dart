@@ -36,6 +36,7 @@ class ProductDetailsModel {
   dynamic licenseName;
   dynamic licenseKey;
   dynamic affiliateLink;
+  int? isPreOrder;
   int type;
   int featuredProduct;
   int bestSelling;
@@ -77,6 +78,7 @@ class ProductDetailsModel {
     this.pts,
     required this.id,
     this.externalId,
+    this.isPreOrder,
     this.sku,
     this.categoryId,
     this.storeId,
@@ -148,6 +150,7 @@ class ProductDetailsModel {
         id: json["id"],
         pts: json["pts"],
         externalId: json["external_id"],
+        isPreOrder: json['is_pre_order'],
         sku: json["sku"],
         categoryId: json["Category_Id"],
         storeId: json["store_id"],
