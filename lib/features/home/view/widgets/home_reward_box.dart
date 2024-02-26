@@ -65,6 +65,7 @@ class HomeRewardBox extends StatelessWidget {
           },
           child: Container(
             color: AppColors.primary,
+            padding: EdgeInsets.all(4),
             width: double.infinity,
             height: 40,
             child: Center(
@@ -74,7 +75,7 @@ class HomeRewardBox extends StatelessWidget {
                       ? 'Total Pts: ${controller.model.value!.hearts}'
                       : 'Unlock rewards with your first order! Start earning today.',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      fontSize: 16,
+                      fontSize: 12,
                       color: Colors.white,
                       fontWeight: FontWeight.bold)),
             ),

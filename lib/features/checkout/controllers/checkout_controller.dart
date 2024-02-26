@@ -500,10 +500,12 @@ class CheckoutController extends GetxController {
                     ? 'Apple Pay'
                     : paymentMethodValue.value == 'TAMARA'
                         ? 'Pay installments by Tamara'
-                        : "3DS Authentication",
+                        : paymentMethodValue.value == 'TABBY'
+                            ? 'Pay installments by Tabby'
+                            : "3DS Authentication",
                 url: url,
                 titleFontSize: paymentMethodValue.value == 'TAMARA' ||
-                        paymentMethodValue.value == 'Tabby'
+                        paymentMethodValue.value == 'TABBY'
                     ? 13
                     : null,
                 actions: paymentMethodValue.value == 'TAMARA'
@@ -515,7 +517,7 @@ class CheckoutController extends GetxController {
                               width: 40),
                         )
                       ]
-                    : paymentMethodValue.value == 'Tabby'
+                    : paymentMethodValue.value == 'TABBY'
                         ? [
                             Padding(
                               padding:
