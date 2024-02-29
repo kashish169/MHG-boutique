@@ -145,8 +145,9 @@ class MyCartCard extends StatelessWidget {
             ),
           ],
         ),
-        if (model.options.isGwp)
-          GwpWidget(price: model.options.minGwpCartAmount!),
+        if (model.options.isGwp != null)
+          if (model.options.isGwp!)
+            GwpWidget(price: model.options.minGwpCartAmount!),
       ],
     );
   }

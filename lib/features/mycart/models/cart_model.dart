@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-
 class CartModel {
   String rowId;
   int id;
@@ -65,13 +62,13 @@ class Options {
   String? voucher;
   int isGiveAway;
   double? minGwpCartAmount;
-  bool isGwp;
+  bool? isGwp;
 
   Options({
     required this.variantId,
     required this.variantQuantity,
     this.minGwpCartAmount,
-    required this.isGwp,
+    this.isGwp,
     this.brandName,
     this.size,
     this.color,
