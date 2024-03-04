@@ -17,6 +17,7 @@ import 'package:mhg/widgets/retry_button.dart';
 import '../../../../core/helper/app_helper.dart';
 import '../../../../widgets/divider_widget.dart';
 import '../../../checkout/views/pages/payment_methods_page.dart';
+import '../../../swipe/view/pages/swipe_page.dart';
 import '../widgets/profile_card.dart';
 import '../widgets/profile_follow_us_widget.dart';
 import '../widgets/profile_header.dart';
@@ -158,6 +159,13 @@ class ProfileView extends StatelessWidget {
                       title: 'Find Our Stores',
                       onTap: () {
                         Get.toNamed('/map');
+                      },
+                    ),
+                    ProfileCard(
+                      icon: AppAssets.scan,
+                      title: 'Gamifications',
+                      onTap: () {
+                        Get.toNamed(SwipePage.routeName);
                       },
                     ),
                     // const DividerWidget(),
