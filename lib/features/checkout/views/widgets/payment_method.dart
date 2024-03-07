@@ -59,7 +59,6 @@ class PaymentMethod extends StatelessWidget {
                     } else {
                       checkoutController.isApplePay(false);
                     }
-                    print(checkoutController.isApplePay);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -91,17 +90,30 @@ class PaymentMethod extends StatelessWidget {
                               } else {
                                 checkoutController.isApplePay(false);
                               }
-                              print(checkoutController.isApplePay);
                             },
                           ),
                         ),
                       ),
-                      Image.asset(
-                        _getPaymentIcon(
-                            checkoutController.paymentMethodsList[index].slug),
-                        height: 25,
-                        width: 25,
-                      ),
+                      checkoutController.paymentMethodsList[index].slug ==
+                              'TABBY'
+                          ? Container(
+                              padding: const EdgeInsets.only(left: 2, right: 2),
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Image.asset(
+                                _getPaymentIcon(checkoutController
+                                    .paymentMethodsList[index].slug),
+                                height: 25,
+                                width: 25,
+                              ),
+                            )
+                          : Image.asset(
+                              _getPaymentIcon(checkoutController
+                                  .paymentMethodsList[index].slug),
+                              height: 25,
+                              width: 25,
+                            ),
                       const SizedBox(
                         width: 10,
                       ),
@@ -216,6 +228,10 @@ String _getPaymentIcon(String slug) {
     return AppAssets.applepay;
   } else if (slug == "COD") {
     return AppAssets.cashOnDeliveryBlack;
+  } else if (slug == "TAMARA") {
+    return AssetsPaymentsLogos.tamaraLogo;
+  } else if (slug == "TABBY") {
+    return AssetsPaymentsLogos.tabbyLogo;
   } else {
     return AppAssets.creditCardBlack;
   }
