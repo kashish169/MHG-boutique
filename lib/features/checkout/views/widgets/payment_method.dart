@@ -94,26 +94,12 @@ class PaymentMethod extends StatelessWidget {
                           ),
                         ),
                       ),
-                      checkoutController.paymentMethodsList[index].slug ==
-                              'TABBY'
-                          ? Container(
-                              padding: const EdgeInsets.only(left: 2, right: 2),
-                              decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: Image.asset(
-                                _getPaymentIcon(checkoutController
-                                    .paymentMethodsList[index].slug),
-                                height: 25,
-                                width: 25,
-                              ),
-                            )
-                          : Image.asset(
-                              _getPaymentIcon(checkoutController
-                                  .paymentMethodsList[index].slug),
-                              height: 25,
-                              width: 25,
-                            ),
+                      Image.asset(
+                        _getPaymentIcon(
+                            checkoutController.paymentMethodsList[index].slug),
+                        height: 25,
+                        width: 25,
+                      ),
                       const SizedBox(
                         width: 10,
                       ),

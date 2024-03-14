@@ -71,6 +71,7 @@ class ProductDetailsModel {
   List<ProductModel> relatedProducts;
   List<ProductReviewModel> productReviews;
   bool isLoadingQuantity;
+  String? preOrderShippingMessage;
 
   ProductDetailsModel({
     required this.variants,
@@ -90,6 +91,7 @@ class ProductDetailsModel {
     required this.enAbout,
     required this.frAbout,
     this.itemTag,
+    this.preOrderShippingMessage,
     required this.price,
     required this.discount,
     required this.discountPrice,
@@ -155,6 +157,7 @@ class ProductDetailsModel {
         categoryId: json["Category_Id"],
         storeId: json["store_id"],
         brandId: json["Brand_Id"],
+        preOrderShippingMessage: json["pre_order_shipping_message"],
         enProductName: json["en_Product_Name"],
         frProductName: json["fr_Product_Name"],
         enProductSlug: json["en_Product_Slug"],

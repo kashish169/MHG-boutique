@@ -74,6 +74,7 @@ dependencies:
   geolocator: ^9.0.2
   pay: ^1.1.2
   swipe_cards: ^2.0.0+1
+  permission_handler: ^11.0.1
 
 dev_dependencies:
   flutter_test:

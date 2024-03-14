@@ -72,7 +72,7 @@ class HomeRewardBox extends StatelessWidget {
               child: Text(
                   controller.model.value?.nextTierPts != "0.00" ||
                           controller.model.value?.nextTier == null
-                      ? 'Total Pts: ${controller.model.value!.hearts}'
+                      ? 'Total Pts: ${controller.model.value?.hearts}'
                       : 'Unlock rewards with your first order! Start earning today.',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                       fontSize: 12,
