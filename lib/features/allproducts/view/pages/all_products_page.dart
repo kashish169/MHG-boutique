@@ -11,15 +11,13 @@ import '../../../home/models/product_model.dart';
 class AllProductsPage extends StatelessWidget {
   static String routeName = '/all_products';
 
-
   const AllProductsPage({
     super.key,
-
   });
 
   @override
   Widget build(BuildContext context) {
-    final controller=Get.find<AllProductsController>();
+    final controller = Get.find<AllProductsController>();
     return Scaffold(
         appBar: customAppBar(context, title: 'All Products'),
         body: GetX<AllProductsController>(builder: (controller) {

@@ -80,6 +80,8 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
                       ),
                     ),
                   ),
+                  // if (model.deliveryStatusText != null)
+
                   Visibility(
                     visible: double.parse(model.deliveryCharge) != 0,
                     child: FittedBox(
@@ -94,6 +96,7 @@ class MyOrderDetailsGlobalInfo extends StatelessWidget {
                       ),
                     ),
                   ),
+
                   Visibility(
                     visible: double.parse(model.grandTotal) != 0,
                     child: Text(

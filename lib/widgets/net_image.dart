@@ -32,8 +32,8 @@ class NetImage extends StatelessWidget {
             child: Image.asset(
               AppAssets.chachLoadImage,
 
-             // fit: BoxFit.cover,
-              height: height??20,
+              // fit: BoxFit.cover,
+              height: height ?? 20,
               width: width,
             ),
           ),

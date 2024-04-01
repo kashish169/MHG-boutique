@@ -20,7 +20,7 @@ class CreateOrderModal {
     code = json['code'];
     message = json['message'];
     detailedError = json['detailed_error'];
-    data = json['data'] != null ?  Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -131,12 +131,11 @@ class Data {
     if (json['order_details'] != null) {
       orderDetails = <OrderDetails>[];
       json['order_details'].forEach((v) {
-        orderDetails!.add( OrderDetails.fromJson(v));
+        orderDetails!.add(OrderDetails.fromJson(v));
       });
     }
-    user = json['user'] != null ?  User.fromJson(json['user']) : null;
-    coupon =
-        json['coupon'] != null ?  Coupon.fromJson(json['coupon']) : null;
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
+    coupon = json['coupon'] != null ? Coupon.fromJson(json['coupon']) : null;
     store = json['store'];
   }
 
@@ -169,8 +168,7 @@ class Data {
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     if (orderDetails != null) {
-      data['order_details'] =
-          orderDetails!.map((v) => v.toJson()).toList();
+      data['order_details'] = orderDetails!.map((v) => v.toJson()).toList();
     }
     if (user != null) {
       data['user'] = user!.toJson();

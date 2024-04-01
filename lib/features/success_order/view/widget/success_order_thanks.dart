@@ -36,7 +36,7 @@ class SuccessOrderThanks extends StatelessWidget {
               height: 5,
             ),
             Text(
-              'Thank You, ${controller.orderModel.user?.name??""}',
+              'Thank You, ${controller.orderModel.user?.name ?? ""}',
               style: Theme.of(context)
                   .textTheme
                   .displayMedium!

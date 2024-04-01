@@ -79,9 +79,9 @@ class SignUpController extends GetxController {
         log(country.prefix);
         App.token = token;
         App.countryId = country.id;
-        App.currency = "${country?.currency.currency}";
-        App.countryName = '${country?.name}';
-        App.countryCode = '${country?.prefix}';
+        App.currency = country.currency.currency;
+        App.countryName = country.name;
+        App.countryCode = country.prefix;
         await StoragePref.setInt(
           key: 'countryid',
           value: App.countryId ?? 1,

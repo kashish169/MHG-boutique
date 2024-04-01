@@ -84,10 +84,16 @@ class AppAssets {
   static String cashOnDeliveryBlack = "assets/icons/cash-on-delivery (1).png";
   static String creditCardBlack = "assets/icons/credit-card.png";
   static String girls = "assets/images/girls.png";
-
   static String facebook2 = "assets/icons/facebook2.png";
   static String whatsapp2 = "assets/icons/whatsapp2.png";
   static String gmail = "assets/icons/gmail.png";
   static String share = "assets/icons/share.png";
   static String copy = "assets/icons/copy.png";
+  static String deniedIcon = 'assets/icons/denied_icon.png';
+  static String loveIcon = 'assets/icons/love_icon.png';
+}
+
+class AssetsPaymentsLogos {
+  static String tamaraLogo = 'assets/payments_logos/tamara_logo.png';
+  static String tabbyLogo = 'assets/payments_logos/tabby-logo.png';
 }

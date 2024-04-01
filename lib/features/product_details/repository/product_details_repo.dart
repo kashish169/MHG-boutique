@@ -43,4 +43,22 @@ class ProductDetailsRepoImplement implements ProductDetailsRepository {
         isAuthorized: true,
         body: body,
       );
+
+  @override
+  Future<Either<Failure, ApiResponse>> ofsSubscribe(
+          {required Object body}) async =>
+      httpService.post(
+        url: Api.productOfsSubscribe,
+        isAuthorized: true,
+        body: body,
+      );
+
+  @override
+  Future<Either<Failure, ApiResponse>> ofsUnSubscribe(
+          {required Object body}) async =>
+      httpService.post(
+        url: Api.productOfsUnSubscribe,
+        isAuthorized: true,
+        body: body,
+      );
 }

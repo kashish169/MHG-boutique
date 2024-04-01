@@ -54,7 +54,7 @@ class CheckoutController extends GetxController {
   List<String> kuwaitCitiesList = kuwaitCities;
   List<String> saudiArabiaCitiesList = saudiArabiaCities;
   List<String> qatarCitiesList = qatarCities;
-  OrderPriceModal orderPriceModal = OrderPriceModal();
+  var orderPriceModal = OrderPriceModal().obs;
   final TextEditingController codeController = TextEditingController();
   final ProfileController profileController = Get.find<ProfileController>();
   final TextEditingController guestName = TextEditingController();
@@ -333,7 +333,7 @@ class CheckoutController extends GetxController {
       if (profileController.model.value?.state != null) {
         query = '$query&city=${profileController.model.value?.state}';
       }
-      if (App.token.isEmpty) {
+      if (App.token.isNotEmpty) {
         if (selectedCity != null) {
           query = '$query&city=$selectedCity';
         }
@@ -353,6 +353,7 @@ class CheckoutController extends GetxController {
       } else {
         query += "&cod=0";
       }
+      log('QUERY: $query');
       Either<Failure, ApiResponse> results =
           await checkoutRepository.orderPrice(query);
       isLoadingRedeem(false);
@@ -375,7 +376,7 @@ class CheckoutController extends GetxController {
           if (statusCode == 200) {
             if (r.object["data"] != null) {
               log(orderPriceModal.toString());
-              orderPriceModal = OrderPriceModal.fromJson(r.object);
+              orderPriceModal.value = OrderPriceModal.fromJson(r.object);
               if (isRedeem == true) {
                 AppToasts.successToast(
                   "Points have been redeemed successfully",
@@ -467,17 +468,20 @@ class CheckoutController extends GetxController {
         const LoadingWidget(),
         barrierDismissible: false,
       );
+
       Either<Failure, ApiResponse> results =
           await checkoutRepository.createOrder(objectData);
       Get.back();
       results.fold(
         (l) {
           AppToasts.errorToast(l.message);
+
           log("CREATE ORDER METHODS RESPONSE ERROR ${l.message}");
         },
         (r) async {
           var statusCode = r.object["code"];
           var message = r.object["message"];
+          log('OBJECT OBJECT: ${App.token}');
           log("CREATE ORDER METHODS RESPONSE STATUS $statusCode");
           log("${r.object}");
           if (statusCode == 201) {
@@ -489,12 +493,42 @@ class CheckoutController extends GetxController {
               );
               return;
             }
+            log('TAMARA: ${paymentMethodValue.value}');
             var results = await Get.to(
               () => AddPaymentMethodWebViewPage(
                 title: paymentMethodValue.value == 'Apple Pay'
                     ? 'Apple Pay'
-                    : "3DS Authentication",
+                    : paymentMethodValue.value == 'TAMARA'
+                        ? 'Pay installments by Tamara'
+                        : paymentMethodValue.value == 'TABBY'
+                            ? 'Pay installments by Tabby'
+                            : "3DS Authentication",
                 url: url,
+                titleFontSize: paymentMethodValue.value == 'TAMARA' ||
+                        paymentMethodValue.value == 'TABBY'
+                    ? 13
+                    : null,
+                actions: paymentMethodValue.value == 'TAMARA'
+                    ? [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5, right: 15),
+                          child: Image(
+                              image: AssetImage(AssetsPaymentsLogos.tamaraLogo),
+                              width: 40),
+                        )
+                      ]
+                    : paymentMethodValue.value == 'TABBY'
+                        ? [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 5, right: 15),
+                              child: Image(
+                                  image:
+                                      AssetImage(AssetsPaymentsLogos.tabbyLogo),
+                                  width: 40),
+                            )
+                          ]
+                        : [],
                 is3dAUth: true,
               ),
             );

@@ -81,7 +81,7 @@ class BottomCartWidget extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.subtotal}',
+                                '${profileController.currnecy.value} ${checkoutController.orderPriceModal.value.data?.subtotal}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall
@@ -98,11 +98,8 @@ class BottomCartWidget extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  controller.isGiveAway.value
-                                      ? 'Shipping (10-12 Business Days)'
-                                      : 'Shipping (3-5 Business Days)',
-                                  // checkoutController
-                                  //     .orderPriceModal.data!.shippingMessage!,
+                                  checkoutController.orderPriceModal.value.data!
+                                      .shippingMessage!,
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -114,11 +111,11 @@ class BottomCartWidget extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                checkoutController.orderPriceModal.data
+                                checkoutController.orderPriceModal.value.data
                                             ?.shippingCharge ==
                                         0
                                     ? 'Free'
-                                    : '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.shippingCharge}',
+                                    : '${profileController.currnecy.value} ${checkoutController.orderPriceModal.value.data?.shippingCharge}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall
@@ -131,11 +128,11 @@ class BottomCartWidget extends StatelessWidget {
                             ],
                           ),
                           Visibility(
-                            visible: checkoutController.orderPriceModal.data
-                                            ?.cashOnDeliveryFees ==
+                            visible: checkoutController.orderPriceModal.value
+                                            .data?.cashOnDeliveryFees ==
                                         0 ||
-                                    checkoutController.orderPriceModal.data
-                                            ?.cashOnDeliveryFees ==
+                                    checkoutController.orderPriceModal.value
+                                            .data?.cashOnDeliveryFees ==
                                         null ||
                                     checkoutController
                                             .paymentMethodValue.value !=
@@ -158,7 +155,7 @@ class BottomCartWidget extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.cashOnDeliveryFees}',
+                                  '${profileController.currnecy.value} ${checkoutController.orderPriceModal.value.data?.cashOnDeliveryFees}',
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -173,7 +170,7 @@ class BottomCartWidget extends StatelessWidget {
                           ),
                           Visibility(
                             visible: checkoutController
-                                        .orderPriceModal.data?.discount ==
+                                        .orderPriceModal.value.data?.discount ==
                                     0
                                 ? false
                                 : true,
@@ -193,7 +190,7 @@ class BottomCartWidget extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.discount}',
+                                  '${profileController.currnecy.value} ${checkoutController.orderPriceModal.value.data?.discount}',
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -207,11 +204,11 @@ class BottomCartWidget extends StatelessWidget {
                             ),
                           ),
                           Visibility(
-                            visible:
-                                checkoutController.orderPriceModal.data?.tax ==
-                                        0
-                                    ? false
-                                    : true,
+                            visible: checkoutController
+                                        .orderPriceModal.value.data?.tax ==
+                                    0
+                                ? false
+                                : true,
                             child: Row(
                               children: [
                                 Expanded(
@@ -229,7 +226,7 @@ class BottomCartWidget extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.tax}",
+                                  "${profileController.currnecy.value} ${checkoutController.orderPriceModal.value.data?.tax}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -242,6 +239,7 @@ class BottomCartWidget extends StatelessWidget {
                               ],
                             ),
                           ),
+
                           Row(
                             children: [
                               Expanded(
@@ -258,7 +256,7 @@ class BottomCartWidget extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '${profileController.currnecy.value} ${checkoutController.orderPriceModal.data?.grandTotal}',
+                                '${profileController.currnecy.value} ${checkoutController.orderPriceModal.value.data?.grandTotal}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .displayMedium
@@ -279,8 +277,8 @@ class BottomCartWidget extends StatelessWidget {
                           //       : true,
                           // child:
                           Visibility(
-                            visible: checkoutController
-                                    .orderPriceModal.data?.hearts?.hearts !=
+                            visible: checkoutController.orderPriceModal.value
+                                    .data?.hearts?.hearts !=
                                 null,
                             child: Row(
                               children: [
@@ -293,7 +291,7 @@ class BottomCartWidget extends StatelessWidget {
                                 ),
                                 FittedBox(
                                   child: Text(
-                                    'Earn ${checkoutController.orderPriceModal.data?.hearts?.hearts} Points',
+                                    'Earn ${checkoutController.orderPriceModal.value.data?.hearts?.hearts} Points',
                                     style: Theme.of(context)
                                         .textTheme
                                         .displaySmall

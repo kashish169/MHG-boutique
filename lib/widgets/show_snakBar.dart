@@ -10,6 +10,7 @@ SnackbarController showSnackBar(String message) {
     colorText: Colors.white,
   );
 }
+
 SnackbarController successSnackBar(String message) {
   return Get.snackbar(
     'Success',

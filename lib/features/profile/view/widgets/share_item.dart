@@ -28,7 +28,7 @@ class ShareItem extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .displaySmall
-                ?.copyWith(fontSize: 11,color: AppColors.dGreen),
+                ?.copyWith(fontSize: 11, color: AppColors.dGreen),
           )
         ],
       ),

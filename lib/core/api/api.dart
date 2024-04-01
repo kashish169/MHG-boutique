@@ -1,8 +1,7 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../app/app.dart';
 
 class Api {
-  static String baseUrl = dotenv.env["ROOT_API"] ?? "";
+  static String baseUrl = 'https://mhg.start-tech.ae';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Country-Id': "${App.countryId}",
@@ -71,7 +70,12 @@ class Api {
   static String autoComplete = "$apiRoot/product/auto-complete";
   static String destroyCart = "$apiRoot/cart/destroy-cart";
   static String applePay = "$apiRoot/payment/tap/apple-pay";
+  static String getSwipeProducts = "$apiRoot/product/insights";
+  static String getSwipePrefProducts = "$apiRoot/product/add-preference";
+  static String productOfsSubscribe =
+      "$apiRoot/product/subscribe-stock-notification";
+  static String productOfsUnSubscribe =
+      "$apiRoot/product/unsubscribe-stock-notification";
 
   static String allProducts = "$apiRoot/product/filter";
-
 }

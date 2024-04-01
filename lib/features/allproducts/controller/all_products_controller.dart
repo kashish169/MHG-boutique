@@ -38,7 +38,6 @@ class AllProductsController extends GetxController {
   RxList<ProductModel> products = <ProductModel>[].obs;
   ScrollController scrollController = ScrollController();
 
-
   resetPaginate() {
     page = 1;
     last = 1000;
@@ -62,8 +61,6 @@ class AllProductsController extends GetxController {
       }
     });
   }
-
-
 
   Future<void> getProducts(String? search) async {
     log("Search:$search");
@@ -101,10 +98,9 @@ class AllProductsController extends GetxController {
       // }
       // log("query $query");
       Either<Failure, ApiResponse> results =
-      await allProductsRepository.getAllProducts(
+          await allProductsRepository.getAllProducts(
         query: query,
       );
-
 
       if (page == 1) {
         isLoadingList(false);
@@ -112,14 +108,14 @@ class AllProductsController extends GetxController {
         isFetching.trigger(false);
       }
       results.fold(
-            (l) {
+        (l) {
           isError(true);
           if (page > 1) {
             page--;
           }
           AppToasts.errorToast(l.message);
         },
-            (r) {
+        (r) {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           if (statusCode == 200) {
@@ -144,7 +140,7 @@ class AllProductsController extends GetxController {
 
   @override
   void onInit() {
-     arg=Get.arguments;
+    arg = Get.arguments;
     getProducts(null);
     paginate();
     super.onInit();

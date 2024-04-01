@@ -56,6 +56,8 @@ import '../../features/categories/view/pages/sub_categories_page.dart';
 import '../../features/my_wish_list/view/pages/my_wish_list.dart';
 import '../../features/personal_infromation/binding/peronal_informatiom_binding.dart';
 import '../../features/search/binding/search_binding.dart';
+import '../../features/swipe/binding/swipe_binding.dart';
+import '../../features/swipe/view/pages/swipe_page.dart';
 
 class AppRoutes {
   static List<GetPage> getRoutes = [
@@ -201,14 +203,17 @@ class AppRoutes {
         page: () => const ResetPasswordView(),
         binding: ForgetPasswordBinding()),
     GetPage(
-        name: '/invite_friend',
-        page: () => const InviteFriendPage(),
+      name: '/invite_friend',
+      page: () => const InviteFriendPage(),
     ),
     GetPage(
-      name: '/all_products',
-      page: () => const AllProductsPage(),
-      binding:AllProductsBindings()
-    )
-
+      name: SwipePage.routeName,
+      page: () => const SwipePage(),
+      binding: SwipBinding(),
+    ),
+    GetPage(
+        name: '/all_products',
+        page: () => const AllProductsPage(),
+        binding: AllProductsBindings())
   ];
 }

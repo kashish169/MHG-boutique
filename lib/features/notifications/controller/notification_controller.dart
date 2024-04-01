@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
@@ -20,54 +19,46 @@ class NotificationController extends GetxController {
   }
 
   RxList<NotificationModel> notificationsList = <NotificationModel>[].obs;
-  ScrollController scrollController=ScrollController();
+  ScrollController scrollController = ScrollController();
   RxBool isFetching = false.obs;
   RxBool isEmpty = false.obs;
   int page = 1;
-  int last=1000;
+  int last = 1000;
   @override
   void onInit() {
-
     paginate();
     super.onInit();
   }
 
-
-
-
   Future<void> paginate() async {
     log("pagination .................................");
     scrollController.addListener(() {
-      if (scrollController.offset==scrollController.position.maxScrollExtent &&
+      if (scrollController.offset ==
+              scrollController.position.maxScrollExtent &&
           !isFetching.value &&
           isEmpty.value == false) {
         page++;
-        if(notificationsList.length<last) {
+        if (notificationsList.length < last) {
           log(notificationsList.length.toString());
           log(last.toString());
           getNotifications();
         }
-
-
       }
     });
   }
 
   resetPaginate() {
-
     page = 1;
-    last=1000;
+    last = 1000;
     isFetching.trigger(false);
     isEmpty.trigger(false);
     notificationsList.clear();
   }
 
-
   Future<void> getNotifications() async {
-
-    if(page==1){
+    if (page == 1) {
       isLoading(true);
-    }else{
+    } else {
       isFetching.trigger(true);
     }
 
@@ -76,32 +67,32 @@ class NotificationController extends GetxController {
     var query = "?page=$page";
     log(query);
     Either<Failure, ApiResponse> results =
-    await notificationRepo.getNotifications(
+        await notificationRepo.getNotifications(
       query,
     );
-    if(page==1){
+    if (page == 1) {
       isLoading(false);
-    }else{
+    } else {
       isFetching.trigger(false);
     }
     results.fold(
-          (l) {
-            if(page>1) {
-              page--;
-            }
+      (l) {
+        if (page > 1) {
+          page--;
+        }
         log('$l');
       },
-          (r) {
+      (r) {
         if (r.statusCode == 200) {
           var json = r.object;
           log('notificationData${r.object}');
-          last=r.object['data']['total'];
-          notificationsList+= List<NotificationModel>.from(
+          last = r.object['data']['total'];
+          notificationsList += List<NotificationModel>.from(
               json["data"]["data"].map((x) => NotificationModel.fromJson(x)));
           update();
-        }else{
+        } else {
           log(r.object.toString());
-          if(page>1) {
+          if (page > 1) {
             page--;
           }
         }

@@ -40,6 +40,8 @@ class MyOrder {
   dynamic billingId;
   dynamic shippingId;
   ShippingModel billingAddress;
+  String? deliveryStatusText;
+  String? trackingDeliveryUrl;
   ShippingModel shippingAddress;
   dynamic couponId;
   String? couponAmount;
@@ -76,6 +78,8 @@ class MyOrder {
     this.userId,
     this.billingId,
     this.shippingId,
+    this.deliveryStatusText,
+    this.trackingDeliveryUrl,
     required this.billingAddress,
     required this.shippingAddress,
     this.couponId,
@@ -107,6 +111,8 @@ class MyOrder {
         tapPaymentMethod: json["tap_payment_method"] == null
             ? null
             : TapPaymentMethod.fromJson(json["tap_payment_method"]),
+        deliveryStatusText: json['delivery_status_text'],
+        trackingDeliveryUrl: json['tracking_delivery_url'],
         cancelRequested: json["cancel_requested"],
         returnRequested: json["return_requested"],
         cancelReason: json["cancel_reason"],

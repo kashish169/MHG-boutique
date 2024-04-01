@@ -19,7 +19,7 @@ class TableFour extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-          /*   Table(
+            /*   Table(
               children: const [
                 TableRow(children: [
                  
@@ -53,19 +53,16 @@ class TableFour extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-           Table(
-              
-               border: TableBorder.all(color: Colors.black),
+            Table(
+              border: TableBorder.all(color: Colors.black),
               children: const [
                 TableRow(
-                  
                   children: [
                     SizedBox(
                       height: 50,
                       child: Center(
                         child: Text(
                           "ABU DHABI",
-                          
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 13,
@@ -81,9 +78,9 @@ class TableFour extends StatelessWidget {
             Table(
               border: TableBorder.all(color: Colors.black),
               children: [
-                tableRowWithLocation( 'HOB - Yas Mall', '02-5651327',
+                tableRowWithLocation('HOB - Yas Mall', '02-5651327',
                     location: 'Abu Dhabi'),
-                tableRowWithLocation( 'HOB - Dalma Mall', '02-6394430',
+                tableRowWithLocation('HOB - Dalma Mall', '02-6394430',
                     location: 'Abu Dhabi'),
               ],
             ),

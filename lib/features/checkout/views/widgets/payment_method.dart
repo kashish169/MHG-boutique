@@ -59,7 +59,6 @@ class PaymentMethod extends StatelessWidget {
                     } else {
                       checkoutController.isApplePay(false);
                     }
-                    print(checkoutController.isApplePay);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -91,7 +90,6 @@ class PaymentMethod extends StatelessWidget {
                               } else {
                                 checkoutController.isApplePay(false);
                               }
-                              print(checkoutController.isApplePay);
                             },
                           ),
                         ),
@@ -216,6 +214,10 @@ String _getPaymentIcon(String slug) {
     return AppAssets.applepay;
   } else if (slug == "COD") {
     return AppAssets.cashOnDeliveryBlack;
+  } else if (slug == "TAMARA") {
+    return AssetsPaymentsLogos.tamaraLogo;
+  } else if (slug == "TABBY") {
+    return AssetsPaymentsLogos.tabbyLogo;
   } else {
     return AppAssets.creditCardBlack;
   }

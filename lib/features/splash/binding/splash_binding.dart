@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:mhg/features/splash/controller/splash_controller.dart';
 
-
 class SplashBinding extends Bindings {
   @override
   void dependencies() {

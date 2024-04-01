@@ -19,13 +19,13 @@ class HttpServiceImplementation implements HttpService {
   }) async {
     try {
       log("${Api.authorizedheaders}");
-      log("url is:$url");
+      log("url is:$url\n${Api.headers}");
       final response = await http
           .get(
             Uri.parse(url.contains('chat') ? url : (Api.baseUrl + url)),
             headers: isAuthorized == true ? Api.authorizedheaders : Api.headers,
           )
-          .timeout(const Duration(seconds: 30));
+          .timeout(const Duration(seconds: 40));
       log("${response.statusCode}");
       final parsedResponse = jsonDecode(response.body);
       http.Response? responseData = handleResponse(response);
@@ -38,6 +38,7 @@ class HttpServiceImplementation implements HttpService {
         }
         return Right(ApiResponse(response.statusCode, parsedResponse));
       } else {
+        log('ERROR ERROR ERROR ERROR ERROR: ${response.statusCode}');
         return Left(BadRequestError('${response.statusCode}'));
       }
     } on TimeoutException catch (e) {

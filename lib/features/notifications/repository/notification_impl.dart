@@ -18,7 +18,7 @@ class NotificationImpl implements NotificationRepo {
   @override
   Future<Either<Failure, ApiResponse>> getNotifications(String query) async =>
       await httpService.get(
-        url: Api.notifications+query,
+        url: Api.notifications + query,
         isAuthorized: true,
       );
 }

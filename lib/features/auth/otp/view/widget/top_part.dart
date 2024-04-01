@@ -9,7 +9,7 @@ class OtpTopPart extends StatelessWidget {
   const OtpTopPart({super.key});
   @override
   Widget build(BuildContext context) {
-    final controller=Get.find<VerificationController>();
+    final controller = Get.find<VerificationController>();
     return Expanded(
       child: SingleChildScrollView(
         child: Column(
@@ -18,9 +18,7 @@ class OtpTopPart extends StatelessWidget {
               height: 20,
             ),
             Text(
-              controller.type=='reset'?
-                  "Verification":
-              "Login".tr,
+              controller.type == 'reset' ? "Verification" : "Login".tr,
               style: Theme.of(context)
                   .textTheme
                   .displayLarge!
@@ -30,9 +28,11 @@ class OtpTopPart extends StatelessWidget {
               height: 20,
             ),
             Text(
-              controller.email.text.isNotEmpty?
-              "OTP has been sent to your email\nEnter your 6 digit code here".tr:
-                "OTP has been sent to your mobile\nEnter your 6 digit code here".tr,
+                controller.email.text.isNotEmpty
+                    ? "OTP has been sent to your email\nEnter your 6 digit code here"
+                        .tr
+                    : "OTP has been sent to your mobile\nEnter your 6 digit code here"
+                        .tr,
                 style: Theme.of(context).textTheme.displaySmall!.copyWith(
                       fontSize: 15,
                       color: AppColors.label,

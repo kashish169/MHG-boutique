@@ -16,8 +16,10 @@ class AllProductsRepoImplement implements AllProductsRepository {
   }
 
   @override
-  Future<Either<Failure, ApiResponse>> getAllProducts({required String query}) async => httpService.get(
-        url: Api.allProducts+query,
+  Future<Either<Failure, ApiResponse>> getAllProducts(
+          {required String query}) async =>
+      httpService.get(
+        url: Api.allProducts + query,
         isAuthorized: App.token.isEmpty ? false : true,
       );
 }

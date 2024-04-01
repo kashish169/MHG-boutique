@@ -6,31 +6,36 @@ import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
 import 'package:mhg/widgets/primary_button.dart';
+
 class FeedBackDialog extends StatelessWidget {
   const FeedBackDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller =Get.find<ProfileController>();
+    final controller = Get.find<ProfileController>();
     return Dialog(
       insetPadding: const EdgeInsets.symmetric(horizontal: 20),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
       child: Form(
-        key:controller.feedbackFormKey ,
+        key: controller.feedbackFormKey,
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-
-                Text("Message",style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 15),),
+                Text(
+                  "Message",
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayMedium
+                      ?.copyWith(fontSize: 15),
+                ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: CustomFormField(
                     hint: 'Message',
                     multiLine: true,
@@ -47,23 +52,21 @@ class FeedBackDialog extends StatelessWidget {
                     },
                   ),
                 ),
-                const SizedBox(height: 5,),
+                const SizedBox(
+                  height: 5,
+                ),
                 PrimaryButton(
                   color: AppColors.secondary,
                   title: 'Send'.tr,
                   width: double.infinity,
                   height: 50,
-
                   onTap: () {
-
                     if (controller.feedbackFormKey.currentState!.validate()) {
                       AppHelper.closeKeyboard();
                       controller.sendFeedbackReq();
                     }
                   },
                 ),
-
-
               ],
             ),
           ),

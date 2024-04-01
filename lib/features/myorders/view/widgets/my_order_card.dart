@@ -6,6 +6,7 @@ import 'package:mhg/features/checkout/views/widgets/place_order_button.dart';
 import 'package:mhg/features/myorders/controller/my_orders_controller.dart';
 import 'package:mhg/features/myorders/models/order_model.dart';
 import 'package:mhg/features/myorders/view/pages/my_order_detail.dart';
+import 'package:mhg/features/myorders/view/widgets/my_prder_track.dart';
 import 'package:mhg/widgets/custom_form_field.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import '../../../profile/controller/profile_controller.dart';
@@ -228,6 +229,7 @@ class MyOrderCard extends StatelessWidget {
                   ),
                 ),
               ),
+              MyOrderTrack(model: model),
             ],
           )),
     );

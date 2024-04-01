@@ -36,6 +36,7 @@ class ProductDetailsModel {
   dynamic licenseName;
   dynamic licenseKey;
   dynamic affiliateLink;
+  int? isPreOrder;
   int type;
   int featuredProduct;
   int bestSelling;
@@ -70,6 +71,7 @@ class ProductDetailsModel {
   List<ProductModel> relatedProducts;
   List<ProductReviewModel> productReviews;
   bool isLoadingQuantity;
+  String? preOrderShippingMessage;
 
   ProductDetailsModel({
     required this.variants,
@@ -77,6 +79,7 @@ class ProductDetailsModel {
     this.pts,
     required this.id,
     this.externalId,
+    this.isPreOrder,
     this.sku,
     this.categoryId,
     this.storeId,
@@ -88,6 +91,7 @@ class ProductDetailsModel {
     required this.enAbout,
     required this.frAbout,
     this.itemTag,
+    this.preOrderShippingMessage,
     required this.price,
     required this.discount,
     required this.discountPrice,
@@ -148,10 +152,12 @@ class ProductDetailsModel {
         id: json["id"],
         pts: json["pts"],
         externalId: json["external_id"],
+        isPreOrder: json['is_pre_order'],
         sku: json["sku"],
         categoryId: json["Category_Id"],
         storeId: json["store_id"],
         brandId: json["Brand_Id"],
+        preOrderShippingMessage: json["pre_order_shipping_message"],
         enProductName: json["en_Product_Name"],
         frProductName: json["fr_Product_Name"],
         enProductSlug: json["en_Product_Slug"],
@@ -339,6 +345,7 @@ class Variant {
   String weightUnit;
   int quantity;
   dynamic shopifyInventoryItemId;
+  bool stockNotificationSubscribed;
   int productId;
   int storeId;
   DateTime createdAt;
@@ -366,11 +373,13 @@ class Variant {
     required this.updatedAt,
     required this.inCart,
     required this.cartQty,
+    required this.stockNotificationSubscribed,
     this.isLoadingQuantity = false,
   });
 
   factory Variant.fromJson(Map<String, dynamic> json) => Variant(
         discountPrice: json['discount_price'],
+        stockNotificationSubscribed: json['stock_notification_subscribed'],
         id: json["id"],
         externalId: json["external_id"],
         nameEn: json["name_en"],

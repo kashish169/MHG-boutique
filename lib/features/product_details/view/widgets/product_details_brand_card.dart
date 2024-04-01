@@ -8,6 +8,7 @@ import 'package:mhg/features/product_details/view/widgets/product_details_counte
 import 'package:mhg/widgets/primary_button.dart';
 import '../../../profile/controller/profile_controller.dart';
 import '../../controller/product_details_controller.dart';
+import 'product_check_box_ofs.dart';
 
 class ProductDetailsBrandCard extends StatelessWidget {
   const ProductDetailsBrandCard({Key? key}) : super(key: key);
@@ -133,57 +134,63 @@ class ProductDetailsBrandCard extends StatelessWidget {
                               top: 15,
                               bottom: 5,
                             ),
-                            child: Obx(() => PrimaryButton(
-                                  color: AppColors.secondary,
-                                  fontSize: 14,
-                                  height: 42,
-                                  title: 'Add to Bag'.tr,
-                                  isLoading: controller.isLoadingAdd.value,
-                                  onTap: () async {
-                                    var result =
-                                        await controller.addProductToCart(
-                                      productId: controller.model.id,
-                                    );
-                                    if (result) {
-                                      controller
-                                          .model
-                                          .variants[controller
-                                              .selectedVariantInd.value]
-                                          .inCart = 1;
-                                      controller
-                                          .model
-                                          .variants[controller
-                                              .selectedVariantInd.value]
-                                          .cartQty = 1;
-                                      Get.find<WishListController>()
-                                          .getWishList(withoutLoading: true);
-                                      setState(() {});
-                                    }
-                                  },
-                                  width: double.infinity,
-                                  elevation: 0,
+                            child: Obx(() => Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    PrimaryButton(
+                                      color: AppColors.secondary,
+                                      fontSize: 14,
+                                      height: 42,
+                                      title: controller.model.isPreOrder == 1
+                                          ? 'Pre Order'.tr
+                                          : 'Add to Bag'.tr,
+                                      isLoading: controller.isLoadingAdd.value,
+                                      onTap: () async {
+                                        var result =
+                                            await controller.addProductToCart(
+                                          productId: controller.model.id,
+                                        );
+                                        if (result) {
+                                          controller
+                                              .model
+                                              .variants[controller
+                                                  .selectedVariantInd.value]
+                                              .inCart = 1;
+                                          controller
+                                              .model
+                                              .variants[controller
+                                                  .selectedVariantInd.value]
+                                              .cartQty = 1;
+                                          Get.find<WishListController>()
+                                              .getWishList(
+                                                  withoutLoading: true);
+                                          setState(() {});
+                                        }
+                                      },
+                                      width: double.infinity,
+                                      elevation: 0,
+                                    ),
+                                    if (controller
+                                            .model.preOrderShippingMessage !=
+                                        null)
+                                      Text(
+                                        'Estimated shipping: ${controller.model.preOrderShippingMessage}',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displaySmall!
+                                            .copyWith(
+                                                fontWeight: FontWeight.bold),
+                                      )
+                                  ],
                                 )),
                           ));
                   })
-                : Padding(
-                    padding: const EdgeInsets.only(
+                : const Padding(
+                    padding: EdgeInsets.only(
                       top: 15,
                       bottom: 5,
                     ),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      width: double.infinity,
-                      color: AppColors.secondary,
-                      child: Text(
-                        'Sold Out'.tr,
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall
-                            ?.copyWith(fontSize: 14, color: AppColors.white),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
+                    child: ProductCheckBoxOfs()),
           )
         ],
       ),

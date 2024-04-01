@@ -11,6 +11,13 @@ abstract class ProductDetailsRepository {
     required Object body,
   });
 
+  Future<Either<Failure, ApiResponse>> ofsSubscribe({
+    required Object body,
+  });
+  Future<Either<Failure, ApiResponse>> ofsUnSubscribe({
+    required Object body,
+  });
+
   Future<Either<Failure, ApiResponse>> addReview({
     required Object body,
   });

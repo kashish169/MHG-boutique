@@ -19,7 +19,7 @@ class ProductAddReviewDialog extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(children: [
               RatingWidget(
-                initialRating:3 ,
+                initialRating: 3,
                 boxSize: AppDimensions.screenWidth(context) * 0.7,
                 starSize: AppDimensions.screenWidth(context) * 0.1,
                 isEnableToRate: true,

@@ -38,18 +38,16 @@ class _ProductDetailsCounterWidgetState
           count: widget.model.cartQty,
           onIncrease: (value) async {
             log(widget.model.quantity.toString());
-            if(value>widget.model.quantity){
-             // AppToasts.errorToast("Reached max available quantity");
+            if (value > widget.model.quantity) {
+              // AppToasts.errorToast("Reached max available quantity");
               return;
             }
             widget.model.isLoadingQuantity = true;
             if (mounted) setState(() {});
             bool result = await Get.find<MyCartController>().increaseCartItem(
-              cartItemId: controller.model.id,
-              quantity: 1,
-                variantId: controller.selectedVariantId
-
-            );
+                cartItemId: controller.model.id,
+                quantity: 1,
+                variantId: controller.selectedVariantId);
             if (result == true) {
               Get.find<CheckoutController>().orderPrice();
               widget.model.cartQty = value;
@@ -82,10 +80,9 @@ class _ProductDetailsCounterWidgetState
             widget.model.isLoadingQuantity = true;
             if (mounted) setState(() {});
             bool result = await Get.find<MyCartController>().decreaseCartItem(
-              cartItemId: controller.model.id,
-              quantity: 1,
-                variantId: controller.selectedVariantId
-            );
+                cartItemId: controller.model.id,
+                quantity: 1,
+                variantId: controller.selectedVariantId);
             if (result == true) {
               Get.find<CheckoutController>().orderPrice();
               widget.model.cartQty = value;
