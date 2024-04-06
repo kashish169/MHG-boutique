@@ -163,20 +163,18 @@ class CheckoutController extends GetxController {
               paymentMethodsList
                   .removeWhere((element) => element.name == 'COD');
             }
-            if (App.token.isNotEmpty) {
-              (GetPlatform.isIOS && App.countryId == 1 ||
-                      GetPlatform.isIOS && App.countryId == 2 ||
-                      GetPlatform.isIOS && App.countryId == 6)
-                  ? paymentMethodsList.add(PaymentMethodsModel(
-                      id: 3,
-                      name: 'Apple Pay',
-                      image: '',
-                      slug: 'Apple Pay',
-                      status: 0,
-                      createdAt: DateTime.now(),
-                      updatedAt: DateTime.now()))
-                  : null;
-            }
+            (GetPlatform.isIOS && App.countryId == 1 ||
+                    GetPlatform.isIOS && App.countryId == 2 ||
+                    GetPlatform.isIOS && App.countryId == 6)
+                ? paymentMethodsList.add(PaymentMethodsModel(
+                    id: 3,
+                    name: 'Apple Pay',
+                    image: '',
+                    slug: 'Apple Pay',
+                    status: 0,
+                    createdAt: DateTime.now(),
+                    updatedAt: DateTime.now()))
+                : null;
             //payment card not available now for oman
             if (App.countryId != 1 &&
                 App.countryId != 2 &&
