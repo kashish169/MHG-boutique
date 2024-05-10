@@ -93,6 +93,7 @@ class CheckoutController extends GetxController {
   RxBool errorAppleConfiguration = false.obs;
   Map appleConfiguration = {};
   RxBool isApplePay = false.obs;
+  RxBool isGooglePay = false.obs;
 
   Future<void> getUserPaymentMethods() async {
     try {
@@ -171,6 +172,19 @@ class CheckoutController extends GetxController {
                     name: 'Apple Pay',
                     image: '',
                     slug: 'Apple Pay',
+                    status: 0,
+                    createdAt: DateTime.now(),
+                    updatedAt: DateTime.now()))
+                : null;
+
+            (GetPlatform.isAndroid && App.countryId == 1 ||
+                    GetPlatform.isAndroid && App.countryId == 2 ||
+                    GetPlatform.isAndroid && App.countryId == 6)
+                ? paymentMethodsList.add(PaymentMethodsModel(
+                    id: 4,
+                    name: 'Google Pay',
+                    image: '',
+                    slug: 'Google Pay',
                     status: 0,
                     createdAt: DateTime.now(),
                     updatedAt: DateTime.now()))
@@ -783,7 +797,9 @@ class CheckoutController extends GetxController {
     // if (App.token.isNotEmpty) {
     orderPrice();
     guestCountryCode.value = App.countryCode;
-    getApplePayConfiguration();
+    if (GetPlatform.isIOS) {
+      getApplePayConfiguration();
+    }
     // }
     super.onInit();
   }

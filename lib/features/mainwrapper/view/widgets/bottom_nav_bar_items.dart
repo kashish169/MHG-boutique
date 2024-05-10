@@ -89,28 +89,28 @@ Widget _icon({
                     color: color,
                   ),
             const SizedBox(height: 4),
-            FittedBox(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                child: Text(
-                  label,
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: color,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: AppFonts.Century_Gothic,
-                  ),
-                ),
-              ),
-            ),
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              height: 2,
-              width: 100,
-              color: controller.navBarIndex.value != index
-                  ? Colors.transparent
-                  : AppColors.secondary,
-            ),
+            // FittedBox(
+            //   child: Padding(
+            //     padding: const EdgeInsets.symmetric(vertical: 4),
+            //     child: Text(
+            //       label,
+            //       style: TextStyle(
+            //         fontSize: 10,
+            //         color: color,
+            //         fontWeight: FontWeight.w400,
+            //         fontFamily: AppFonts.Century_Gothic,
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            // AnimatedContainer(
+            //   duration: const Duration(milliseconds: 250),
+            //   height: 2,
+            //   width: 100,
+            //   color: controller.navBarIndex.value != index
+            //       ? Colors.transparent
+            //       : AppColors.secondary,
+            // ),
           ],
         ),
       ),

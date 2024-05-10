@@ -310,7 +310,8 @@ class _PlaceOrderState extends State<PlaceOrder> {
           const SizedBox(height: 15),
           Obx(
             () => Visibility(
-              visible: !checkoutController.isApplePay.value,
+              visible: !checkoutController.isApplePay.value &&
+                  !checkoutController.isGooglePay.value,
               child: PlaceOrderButton(
                 title: 'Place Order',
                 width: 300,
@@ -333,7 +334,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
               ),
             ),
           ),
-          if (Platform.isIOS)
+          if (Platform.isIOS || Platform.isAndroid)
             Obx(() {
               if (checkoutController.isLoadingRedeem.isTrue) {
                 return Padding(
@@ -347,8 +348,9 @@ class _PlaceOrderState extends State<PlaceOrder> {
                 return const SizedBox();
               }
               return Visibility(
-                visible: checkoutController.isApplePay.value,
-                child: const ApplePayWidget(),
+                visible: checkoutController.isApplePay.value ||
+                    checkoutController.isGooglePay.value,
+                child: ApplePayWidget(isIOS: Platform.isIOS),
               );
             }),
           SizedBox(height: AppDimensions.viewBottomPadding(context) + 15),

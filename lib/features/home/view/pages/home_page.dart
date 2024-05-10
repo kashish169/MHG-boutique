@@ -1,16 +1,17 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/view/widgets/home_slider.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
-import '../../../profile/view/widgets/reward_widget.dart';
-import '../widgets/home_explore_our_brands_widget.dart';
+import '../../../profile/controller/profile_controller.dart';
+
 import '../widgets/home_footer_slider.dart';
 import '../widgets/home_middle_section_widget.dart';
 import '../widgets/home_new_arrivels_widget.dart';
-import '../widgets/home_reward_box.dart';
-import '../widgets/home_shop_by_category_widget.dart';
+
 import '../widgets/home_top_sellers_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,6 +23,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
+  final profileController = Get.find<ProfileController>();
+  ScrollController scrollController = ScrollController();
+
+  @override
+  void initState() {
+    scrollController.addListener(() {
+      if (scrollController.position.atEdge) {
+        bool isTop = scrollController.position.pixels == 0;
+        if (isTop) {
+          profileController.changeRewardBannerIsScrlling(false);
+        }
+      } else {
+        profileController.changeRewardBannerIsScrlling(true);
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -33,10 +52,10 @@ class _HomePageState extends State<HomePage>
       }
       return RefreshIndicator(
         onRefresh: () async => await controller.getHome(),
-        child: const SingleChildScrollView(
-          child: Column(
+        child: SingleChildScrollView(
+          controller: scrollController,
+          child: const Column(
             children: [
-              HomeRewardBox(),
               HomeSlider(),
               HomeTopSellersWidget(),
               //HomeShopByCategoryWidget(),

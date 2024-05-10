@@ -22,10 +22,11 @@ class HomeTopSellersWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'Top Sellers'.tr,
+                    'BEST SELLERS'.tr,
                     style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.grey,
+                          fontSize: 12,
                         ),
                   ),
                 ),
@@ -52,6 +53,7 @@ class HomeTopSellersWidget extends StatelessWidget {
                     Obx(() => Padding(
                           padding: const EdgeInsetsDirectional.only(end: 8),
                           child: ProductCard(
+                            isHomePage: true,
                             model: controller.topSellersList[index],
                           ),
                         )),

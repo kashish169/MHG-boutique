@@ -1,7 +1,7 @@
 import '../../app/app.dart';
 
 class Api {
-  static String baseUrl = 'https://mhg.start-tech.ae';
+  static String baseUrl = 'https://api.mhgboutique.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Country-Id': "${App.countryId}",
@@ -51,6 +51,7 @@ class Api {
   static String sendFeedback = "$apiRoot/users/send-feedback";
   static String storeCategories = "$apiRoot/category/store";
   static String menus = "$apiRoot/category/menus";
+  static String getBrands = "$apiRoot/brands";
   static String filterProduct = "$apiRoot/product/filter";
   static String productTags = "$apiRoot/product/product-tags";
   static String productByCategory = "$apiRoot/product/category?store_id=1";
