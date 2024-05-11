@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage>
               HomeCategoriesListWidget(),
               HomeTopSellersWidget(),
               //HomeShopByCategoryWidget(),
-              HomeNewArrivelsWidget(),
+              // HomeNewArrivelsWidget(),
               HomeMiddleSectionWidget(),
               HomeFooterSlider(),
               // HomeExploreOurBrandsWidget(),

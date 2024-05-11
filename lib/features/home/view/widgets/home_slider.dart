@@ -10,8 +10,31 @@ import '../../../../constants/app_colors.dart';
 import '../../../../widgets/net_image.dart';
 import '../../../mainwrapper/controller/main_wrapper_controller.dart';
 
-class HomeSlider extends StatelessWidget {
+class HomeSlider extends StatefulWidget {
   const HomeSlider({super.key});
+
+  @override
+  State<HomeSlider> createState() => _HomeSliderState();
+}
+
+class _HomeSliderState extends State<HomeSlider> {
+  bool isSkip = true;
+  SwiperController swiperController = SwiperController();
+
+  @override
+  void initState() {
+    swiperController.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    swiperController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
@@ -24,7 +47,8 @@ class HomeSlider extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 2 / 2.6,
             width: AppDimensions.screenWidth(context),
             child: Swiper(
-              autoplay: true,
+              autoplay: isSkip,
+              controller: swiperController,
               autoplayDelay: 10000,
               duration: 1000,
               curve: Curves.fastLinearToSlowEaseIn,
@@ -69,6 +93,23 @@ class HomeSlider extends StatelessWidget {
                   child: controller.slidersList[index].videoLinkk != null
                       ? HomeVideoTestWidget(
                           videoLink: controller.slidersList[index].videoLinkk!,
+                          endVideoFun: () {
+                            Future.delayed(const Duration(milliseconds: 200),
+                                () {
+                              setState(() {
+                                swiperController.next(animation: true);
+                                isSkip = true;
+                              });
+                            });
+                          },
+                          startFun: () {
+                            Future.delayed(const Duration(milliseconds: 200),
+                                () {
+                              setState(() {
+                                isSkip = false;
+                              });
+                            });
+                          },
                           height: MediaQuery.of(context).size.height * 2 / 2.6)
                       : NetImage(
                           image:

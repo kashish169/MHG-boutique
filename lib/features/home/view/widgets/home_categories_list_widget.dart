@@ -1,14 +1,16 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../../../constants/app_colors.dart';
+import '../../../../constants/app_fonts.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
 import '../../../categories/controller/categories_controller.dart';
-import '../../../profile/controller/profile_controller.dart';
+import '../../../categories/view/pages/sub_categories_page.dart';
+import '../../../product_details/view/pages/product_details_page.dart';
+import '../../../products_page/view/pages/product_page.dart';
 
 class HomeCategoriesListWidget extends StatefulWidget {
   const HomeCategoriesListWidget({super.key});
@@ -38,45 +40,71 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
             itemCount: controller.categoriesModel.menus.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return Stack(
-                alignment: Alignment.center,
-                children: [
-                  Container(
-                    width: 140,
-                    decoration:
-                        controller.categoriesModel.menus[index].imageLink !=
-                                null
-                            ? BoxDecoration(
-                                image: DecorationImage(
-                                    image: NetworkImage(controller
-                                        .categoriesModel
-                                        .menus[index]
-                                        .imageLink!)))
-                            : null,
-                    margin: const EdgeInsets.only(right: 8),
-                  ),
-                  Expanded(
-                    child: Container(
+              final model = controller.categoriesModel.menus[index];
+              return InkWell(
+                onTap: () {
+                  if (model.categoryId == null &&
+                      model.allActiveSubMenus.isEmpty) {
+                    if (model.productId != null) {
+                      Get.toNamed(
+                        ProductDetailsPage.routeName,
+                        arguments: {
+                          "id": model.productId,
+                          "fromArrival": false,
+                          "name": model.enName
+                        },
+                      );
+                    }
+                    return;
+                  }
+                  if (model.allActiveSubMenus.isEmpty) {
+                    log(model.categoryId.toString());
+                    Get.toNamed(
+                      ProductsPage.routeName,
+                      arguments: {
+                        "categoryId": model.categoryId,
+                      },
+                    );
+                  } else {
+                    Navigator.pushNamed(context, SubCategoriesPage.routeName,
+                        arguments: [model.allActiveSubMenus, model.enName]);
+                  }
+                },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
                       width: 140,
-                      height: 140,
-                      color: Colors.black.withOpacity(0.4),
-                      child: Center(
-                        child: Text(
-                          controller.categoriesModel.menus[index].enName,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayMedium
-                              ?.copyWith(
-                                color: AppColors.white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15,
-                              ),
+                      decoration:
+                          controller.categoriesModel.menus[index].imageLink !=
+                                  null
+                              ? BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(controller
+                                          .categoriesModel
+                                          .menus[index]
+                                          .imageLink!)))
+                              : null,
+                      margin: const EdgeInsets.only(right: 8),
+                    ),
+                    Expanded(
+                      child: Container(
+                        width: 140,
+                        height: 140,
+                        color: Colors.black.withOpacity(0.4),
+                        child: Center(
+                          child: Text(
+                              controller.categoriesModel.menus[index].enName,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: AppColors.white,
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: AppFonts.gothicb)),
                         ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               );
             },
           ),
