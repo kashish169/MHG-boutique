@@ -65,6 +65,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
                 }
                 if (selectedIndex == 1) {
                   Get.find<CategoriesController>().getCategories();
+                  Get.find<CategoriesController>().getBrands();
                 }
                 if (selectedIndex == 2) {
                   Get.find<WishListController>().getWishList();

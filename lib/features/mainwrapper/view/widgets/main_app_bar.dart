@@ -9,6 +9,52 @@ import '../../../../constants/app_colors.dart';
 import '../../../auth/signin/view/pages/sign_in_page.dart';
 import '../../controller/main_wrapper_controller.dart';
 
+class MainAppBar extends StatelessWidget {
+  const MainAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+            onPressed: () {
+              Get.toNamed('/search');
+            },
+            icon: Image.asset(
+              AppAssets.search,
+              height: 28,
+              color: Colors.black,
+            ),
+          ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Image.asset(
+                  AppAssets.heart,
+                  height: 28,
+                  color: Colors.black,
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Image.asset(
+                  AppAssets.menu,
+                  height: 28,
+                  color: Colors.black,
+                ),
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
 AppBar mainAppBar({
   required BuildContext context,
   required GlobalKey<ScaffoldState> scaffoldKey,
@@ -16,45 +62,22 @@ AppBar mainAppBar({
   final controller = Get.find<MainWrapperController>();
   return AppBar(
     centerTitle: false,
-    backgroundColor: AppColors.appBarColor,
+    backgroundColor: Colors.white,
     systemOverlayStyle: SystemUiOverlayStyle.light,
     automaticallyImplyLeading: false,
     title: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: App.token.isEmpty
-            ? Text(
-                controller.greeting(),
-                style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      color: AppColors.white,
-                      fontSize: 16,
-                    ),
-              )
-            : GetX<ProfileController>(builder: (controller) {
-                if (controller.isLoading.isTrue) {
-                  return Text(
-                    '${controller.greeting()},....',
-                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                          color: AppColors.white,
-                          fontSize: 16,
-                        ),
-                  );
-                } else if (controller.isError.isTrue) {
-                  Text(
-                    "${controller.greeting()}, ....",
-                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                          color: AppColors.white,
-                          fontSize: 16,
-                        ),
-                  );
-                }
-                return Text(
-                  "${controller.greeting()}, ${controller.model.value?.name ?? ""}",
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        color: AppColors.white,
-                        fontSize: 16,
-                      ),
-                );
-              })),
+      padding: const EdgeInsets.all(10.0),
+      child: IconButton(
+        onPressed: () {
+          Get.toNamed('/search');
+        },
+        icon: Image.asset(
+          AppAssets.search,
+          height: 24,
+          color: Colors.black,
+        ),
+      ),
+    ),
     actions: [
       IconButton(
         onPressed: () {

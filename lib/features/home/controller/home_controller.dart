@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
-import 'package:mhg/app/app.dart';
 import 'package:mhg/features/categories/models/categories_model.dart';
 import 'package:mhg/features/home/models/brand_model.dart';
 import 'package:mhg/features/home/models/home_model.dart';
@@ -12,7 +11,6 @@ import 'package:mhg/features/home/repository/home_repo_impl.dart';
 import '../../../constants/app_toasts.dart';
 import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
-import '../models/category_model.dart';
 import '../models/recent_search_model.dart';
 import '../models/slider_model.dart';
 
@@ -73,7 +71,7 @@ class HomeController extends GetxController {
             homeModel = data;
 
             slidersList.value = data.sliders;
-
+            log("HOME TOP SELLERS ${data.topSellers}");
             topSellersList.value = data.topSellers;
             newArrivalsList.value = data.newArrivals;
             brandsList.value = data.brands;

@@ -21,6 +21,8 @@ class AppAssets {
   static String brands = "assets/icons/brands.png";
   static String notification = "assets/icons/notification.png";
   static String search = "assets/icons/search.png";
+  static String menu = "assets/icons/menu.png";
+  static String heart = "assets/icons/fav.png";
   static String kuwaitFalge = "assets/icons/jordan.png";
   static String sudiFlage = "assets/icons/sudi.png";
   static String quatrFlage = "assets/icons/quatr.png";
@@ -93,7 +95,12 @@ class AppAssets {
   static String loveIcon = 'assets/icons/love_icon.png';
 }
 
+class AssetsVideos {
+  static String testVideo = 'assets/videos/test_video.mp4';
+}
+
 class AssetsPaymentsLogos {
   static String tamaraLogo = 'assets/payments_logos/tamara_logo.png';
   static String tabbyLogo = 'assets/payments_logos/tabby-logo.png';
+  static String googlePayLogo = 'assets/payments_logos/google_pay_logo.png';
 }

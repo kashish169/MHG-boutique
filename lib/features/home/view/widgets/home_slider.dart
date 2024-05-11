@@ -5,8 +5,8 @@ import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
-import 'package:mhg/widgets/net_image.dart';
 import '../../../../constants/app_colors.dart';
+import '../../../../widgets/net_image.dart';
 import '../../../mainwrapper/controller/main_wrapper_controller.dart';
 
 class HomeSlider extends StatelessWidget {
@@ -20,7 +20,7 @@ class HomeSlider extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: AppDimensions.screenWidth(context) * 1.2,
+            height: MediaQuery.of(context).size.height * 2 / 2.6,
             width: AppDimensions.screenWidth(context),
             child: Swiper(
               autoplay: true,
@@ -67,7 +67,7 @@ class HomeSlider extends StatelessWidget {
                   },
                   child: NetImage(
                     image: controller.slidersList[index].backgroundImageLink,
-                    height: AppDimensions.screenWidth(context) * 1.2,
+                    height: MediaQuery.of(context).size.height * 2 / 2.6,
                     width: AppDimensions.screenWidth(context),
                   ),
                 );

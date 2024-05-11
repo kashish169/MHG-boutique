@@ -130,9 +130,6 @@ class ProductsController extends GetxController {
           await productsRepository.getCategoryProduct(
         query: query,
       );
-      print(selectedScent);
-      print(query);
-      print(selectedSortBy.value);
 
       if (page == 1) {
         isLoadingList(false);

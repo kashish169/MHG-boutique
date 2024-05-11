@@ -20,4 +20,10 @@ class CategoriesRepoImplement implements CategoriesRepository {
         url: Api.menus,
         isAuthorized: App.token.isEmpty ? false : true,
       );
+
+  @override
+  Future<Either<Failure, ApiResponse>> getBrands() async => httpService.get(
+        url: Api.getBrands,
+        isAuthorized: App.token.isEmpty ? false : true,
+      );
 }

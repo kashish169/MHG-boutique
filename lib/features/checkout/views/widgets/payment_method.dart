@@ -59,6 +59,12 @@ class PaymentMethod extends StatelessWidget {
                     } else {
                       checkoutController.isApplePay(false);
                     }
+                    if (checkoutController.paymentMethodValue.value ==
+                        'Google Pay') {
+                      checkoutController.isGooglePay(true);
+                    } else {
+                      checkoutController.isGooglePay(false);
+                    }
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -89,6 +95,12 @@ class PaymentMethod extends StatelessWidget {
                                 checkoutController.isApplePay(true);
                               } else {
                                 checkoutController.isApplePay(false);
+                              }
+                              if (checkoutController.paymentMethodValue.value ==
+                                  'Google Pay') {
+                                checkoutController.isGooglePay(true);
+                              } else {
+                                checkoutController.isGooglePay(false);
                               }
                             },
                           ),
@@ -218,6 +230,8 @@ String _getPaymentIcon(String slug) {
     return AssetsPaymentsLogos.tamaraLogo;
   } else if (slug == "TABBY") {
     return AssetsPaymentsLogos.tabbyLogo;
+  } else if (slug == "Google Pay") {
+    return AssetsPaymentsLogos.googlePayLogo;
   } else {
     return AppAssets.creditCardBlack;
   }

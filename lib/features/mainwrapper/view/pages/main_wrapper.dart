@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/my_wish_list/view/pages/my_wish_list.dart';
@@ -7,6 +9,7 @@ import 'package:mhg/features/profile/view/pages/profile_view.dart';
 import '../../../../widgets/retry_button.dart';
 import '../../../categories/view/pages/categories_page.dart';
 import '../../../home/view/pages/home_page.dart';
+import '../../../home/view/widgets/home_reward_box.dart';
 import '../../../mycart/view/pages/my_cart_page.dart';
 import '../../controller/main_wrapper_controller.dart';
 import '../widgets/bottom_nav_bar.dart';
@@ -47,6 +50,9 @@ class _MainWrapperState extends State<MainWrapper> {
   @override
   Widget build(BuildContext context) {
     return GetX<ProfileController>(builder: (controller) {
+      if (mainController.navBarIndex.value != 0) {
+        controller.changeRewardBannerIsScrlling(false);
+      }
       if (controller.isLoading.isTrue) {
         return Container(
           color: AppColors.white,
@@ -66,15 +72,25 @@ class _MainWrapperState extends State<MainWrapper> {
       }
       return Scaffold(
         key: scaffoldKey,
-        appBar: mainAppBar(
-          context: context,
-          scaffoldKey: scaffoldKey,
-        ),
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(0),
+            child: AppBar(
+              backgroundColor: Colors.black,
+            )),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: const BottomNavBarWidget(),
-        body: Obx(() => IndexedStack(
-              index: mainController.navBarIndex.value,
-              children: _children,
+        body: Obx(() => Stack(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                      top: mainController.navBarIndex.value == 0 ? 0 : 100),
+                  child: IndexedStack(
+                    index: mainController.navBarIndex.value,
+                    children: _children,
+                  ),
+                ),
+                const HomeRewardBox(),
+              ],
             )),
       );
     });

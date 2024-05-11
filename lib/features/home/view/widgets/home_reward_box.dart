@@ -1,10 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:percent_indicator/percent_indicator.dart';
-
+import 'dart:ui' as ui;
 import '../../../../constants/app_colors.dart';
+import '../../../mainwrapper/view/widgets/main_app_bar.dart';
 import '../../../profile/controller/profile_controller.dart';
 import '../../../rewards/pages/rewards_page.dart';
 
@@ -15,69 +13,89 @@ class HomeRewardBox extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<ProfileController>();
 
-    return Obx(() => InkWell(
-          onTap: () async {
-            Get.toNamed(RewardsPage.routeName);
-            // if (controller.model.value?.nextTierPts != "0.00" ||
-            //     controller.model.value?.nextTier == null) {
-            //   showDialog(
-            //       context: context,
-            //       builder: (context) {
-            //         return BackdropFilter(
-            //             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            //             child: AlertDialog(
-            //               backgroundColor: Colors.white,
-            //               shape: RoundedRectangleBorder(
-            //                   borderRadius: BorderRadius.circular(20)),
-            //               title: Text(
-            //                 'Rewards Progress',
-            //                 style: Theme.of(context)
-            //                     .textTheme
-            //                     .displaySmall
-            //                     ?.copyWith(
-            //                         fontSize: 18,
-            //                         color: AppColors.primary,
-            //                         fontWeight: FontWeight.bold),
-            //               ),
-            //               content: Column(
-            //                 mainAxisSize: MainAxisSize.min,
-            //                 children: [
-            //                   LinearPercentIndicator(
-            //                     padding: EdgeInsets.zero,
-            //                     lineHeight: 12.0,
-            //                     percent: indicatorPercent(),
-            //                     barRadius: const Radius.circular(10),
-            //                     progressColor: const Color(0XFF6E8674),
-            //                     backgroundColor: Colors.grey[300],
-            //                   ),
-            //                   TitleValueWidget(
-            //                       title: 'Orders',
-            //                       value:
-            //                           '${controller.model.value?.orderCount}'),
-            //                   TitleValueWidget(
-            //                       title: 'Pts',
-            //                       value: '${controller.model.value!.hearts}'),
-            //                 ],
-            //               ),
-            //             ));
-            //       });
-            // }
-          },
-          child: Container(
-            color: AppColors.primary,
-            padding: EdgeInsets.all(4),
-            width: double.infinity,
-            height: 40,
-            child: Center(
-              child: Text(
-                  controller.model.value?.nextTierPts != "0.00" ||
-                          controller.model.value?.nextTier == null
-                      ? 'Total Pts: ${controller.model.value?.hearts}'
-                      : 'Unlock rewards with your first order! Start earning today.',
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      fontSize: 12,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold)),
+    return Obx(() => ClipRect(
+          child: BackdropFilter(
+            filter: ui.ImageFilter.blur(
+              sigmaX: controller.rewardBannerIsScrlling.value ? 10 : 0,
+              sigmaY: controller.rewardBannerIsScrlling.value ? 10 : 0,
+            ),
+            child: Container(
+              color: Colors.white
+                  .withOpacity(controller.rewardBannerIsScrlling.value ? 1 : 0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const MainAppBar(),
+                  if (!controller.rewardBannerIsScrlling.value)
+                    Divider(color: Colors.black.withOpacity(0.2), thickness: 1),
+                  if (!controller.rewardBannerIsScrlling.value)
+                    InkWell(
+                        onTap: () async {
+                          Get.toNamed(RewardsPage.routeName);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 25, right: 25, bottom: 8, top: 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              GetX<ProfileController>(builder: (controller) {
+                                if (controller.isLoading.isTrue) {
+                                  return Text(
+                                    '${controller.greeting()},....',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displayMedium
+                                        ?.copyWith(
+                                          color: AppColors.black3,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                        ),
+                                  );
+                                } else if (controller.isError.isTrue) {
+                                  Text(
+                                    "${controller.greeting()}, ....",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displayMedium
+                                        ?.copyWith(
+                                          color: AppColors.black3,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                        ),
+                                  );
+                                }
+                                return Text(
+                                  "${controller.greeting()}, ${controller.model.value?.name ?? ""}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displayMedium
+                                      ?.copyWith(
+                                        color: AppColors.black3,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                      ),
+                                );
+                              }),
+                              Text(
+                                  controller.model.value?.nextTierPts !=
+                                              "0.00" ||
+                                          controller.model.value?.nextTier ==
+                                              null
+                                      ? '${controller.model.value?.hearts ?? 0} Pts'
+                                      : 'Unlock rewards with your first order! Start earning today.',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall
+                                      ?.copyWith(
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold))
+                            ],
+                          ),
+                        ))
+                ],
+              ),
             ),
           ),
         ));

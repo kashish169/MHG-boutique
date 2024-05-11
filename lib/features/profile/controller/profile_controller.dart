@@ -35,6 +35,7 @@ class ProfileController extends GetxController {
     profileRepo = Get.find<ProfileRepoImpl>();
   }
   RxBool isLoading = false.obs;
+  RxBool rewardBannerIsScrlling = false.obs;
   RxBool isError = false.obs;
   RxBool firstCall = true.obs;
   RxBool loadingUpdateCard = false.obs;
@@ -42,6 +43,10 @@ class ProfileController extends GetxController {
   final formKey = GlobalKey<FormState>();
   final feedbackFormKey = GlobalKey<FormState>();
   String appLink = "https://api.mhgboutique.com/download-app";
+
+  changeRewardBannerIsScrlling(bool isScroll) {
+    rewardBannerIsScrlling.value = isScroll;
+  }
 
   Future<void> getProfileInfo() async {
     try {
