@@ -71,7 +71,7 @@ class HomeController extends GetxController {
             homeModel = data;
 
             slidersList.value = data.sliders;
-            log("HOME TOP SELLERS ${data.topSellers}");
+            log("HOME TOP SELLERS ${slidersList.map((e) => e.videoLinkk)}");
             topSellersList.value = data.topSellers;
             newArrivalsList.value = data.newArrivals;
             brandsList.value = data.brands;

@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/notifications/view/pages/notifications_page.dart';
-import 'package:mhg/features/profile/controller/profile_controller.dart';
 import '../../../../app/app.dart';
 import '../../../../constants/app_assets.dart';
-import '../../../../constants/app_colors.dart';
 import '../../../auth/signin/view/pages/sign_in_page.dart';
 import '../../controller/main_wrapper_controller.dart';
 
 class MainAppBar extends StatelessWidget {
-  const MainAppBar({super.key});
+  const MainAppBar({super.key, required this.color});
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,7 @@ class MainAppBar extends StatelessWidget {
             icon: Image.asset(
               AppAssets.search,
               height: 28,
-              color: Colors.black,
+              color: color,
             ),
           ),
           Row(
@@ -36,7 +35,7 @@ class MainAppBar extends StatelessWidget {
                 icon: Image.asset(
                   AppAssets.heart,
                   height: 28,
-                  color: Colors.black,
+                  color: color,
                 ),
               ),
               IconButton(
@@ -44,7 +43,7 @@ class MainAppBar extends StatelessWidget {
                 icon: Image.asset(
                   AppAssets.menu,
                   height: 28,
-                  color: Colors.black,
+                  color: color,
                 ),
               )
             ],

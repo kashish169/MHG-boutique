@@ -13,7 +13,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   void didChangeDependencies() {
     precacheImage(
-      AssetImage(AppAssets.splash),
+      AssetImage(AppAssets.newSplash),
       context,
     );
     super.didChangeDependencies();
@@ -22,7 +22,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      AppAssets.splash,
+      AppAssets.newSplash,
       height: double.infinity,
       width: double.infinity,
       fit: BoxFit.cover,

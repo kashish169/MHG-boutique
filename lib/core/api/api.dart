@@ -1,7 +1,7 @@
 import '../../app/app.dart';
 
 class Api {
-  static String baseUrl = 'https://api.mhgboutique.com';
+  static String baseUrl = 'https://mhg.start-tech.ae';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Country-Id': "${App.countryId}",

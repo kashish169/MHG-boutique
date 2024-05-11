@@ -2,6 +2,8 @@
 //
 //     final notificationModel = notificationModelFromJson(jsonString);
 
+import 'dart:developer';
+
 class CategoriesModel {
   List<Menu> menus;
 
@@ -54,24 +56,26 @@ class Menu {
     required this.allActiveSubMenus,
   });
 
-  factory Menu.fromJson(Map<String, dynamic> json) => Menu(
-        id: json["id"],
-        image: json["image"],
-        enName: json["en_name"],
-        frName: json["fr_name"],
-        productId: json["product_id"],
-        slug: json["slug"],
-        isStatic: json["is_static"],
-        url: json["url"],
-        status: json["status"],
-        categoryId: json["category_id"],
-        parentId: json["parent_id"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-        imageLink: json["image_link"],
-        allActiveSubMenus: List<Menu>.from(
-            json["all_active_sub_menus"].map((x) => Menu.fromJson(x))),
-      );
+  factory Menu.fromJson(Map<String, dynamic> json) {
+    return Menu(
+      id: json["id"],
+      image: json["image"],
+      enName: json["en_name"],
+      frName: json["fr_name"],
+      productId: json["product_id"],
+      slug: json["slug"],
+      isStatic: json["is_static"],
+      url: json["url"],
+      status: json["status"],
+      categoryId: json["category_id"],
+      parentId: json["parent_id"],
+      createdAt: DateTime.parse(json["created_at"]),
+      updatedAt: DateTime.parse(json["updated_at"]),
+      imageLink: json["image_link"],
+      allActiveSubMenus: List<Menu>.from(
+          json["all_active_sub_menus"].map((x) => Menu.fromJson(x))),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "id": id,

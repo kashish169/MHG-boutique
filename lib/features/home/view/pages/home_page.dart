@@ -8,6 +8,7 @@ import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
 import '../../../profile/controller/profile_controller.dart';
 
+import '../widgets/home_categories_list_widget.dart';
 import '../widgets/home_footer_slider.dart';
 import '../widgets/home_middle_section_widget.dart';
 import '../widgets/home_new_arrivels_widget.dart';
@@ -57,6 +58,7 @@ class _HomePageState extends State<HomePage>
           child: const Column(
             children: [
               HomeSlider(),
+              HomeCategoriesListWidget(),
               HomeTopSellersWidget(),
               //HomeShopByCategoryWidget(),
               HomeNewArrivelsWidget(),
