@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/my_wish_list/view/pages/my_wish_list.dart';
@@ -13,7 +11,6 @@ import '../../../home/view/widgets/home_reward_box.dart';
 import '../../../mycart/view/pages/my_cart_page.dart';
 import '../../controller/main_wrapper_controller.dart';
 import '../widgets/bottom_nav_bar.dart';
-import '../widgets/main_app_bar.dart';
 
 class MainWrapper extends StatefulWidget {
   static String routeName = '/main_wrapper';
@@ -41,8 +38,8 @@ class _MainWrapperState extends State<MainWrapper> {
 
   final List<Widget> _children = [
     const HomePage(),
-    const CategoriesPage(),
     MyWishList(),
+    const CategoriesPage(),
     const MyCartPage(),
     const ProfileView()
   ];

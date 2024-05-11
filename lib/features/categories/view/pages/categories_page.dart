@@ -19,7 +19,7 @@ class CategoriesPage extends StatefulWidget {
 }
 
 class _CategoriesPageState extends State<CategoriesPage> {
-  int indexChosen = 0;
+  int indexChosen = 1;
   final profileController = Get.find<ProfileController>();
 
   @override
