@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../constants/app_colors.dart';
+import 'package:mhg/constants/app_assets.dart';
 
 class LoadingWidget extends StatelessWidget {
   const LoadingWidget({super.key, this.isWhite});
@@ -10,8 +9,10 @@ class LoadingWidget extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async => false,
       child: Center(
-          child: CircularProgressIndicator(
-        color: isWhite == null ? AppColors.label : AppColors.white,
+          child: Image.asset(
+        AppAssets.loading,
+        width: 25,
+        height: 25,
       )),
     );
   }

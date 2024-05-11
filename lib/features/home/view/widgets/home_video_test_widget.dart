@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../../widgets/loading_widget.dart';
+
 class HomeVideoTestWidget extends StatefulWidget {
   const HomeVideoTestWidget(
       {super.key,
@@ -56,7 +58,7 @@ class _HomeVideoTestWidgetState extends State<HomeVideoTestWidget> {
       color: Colors.white,
       height: widget.height,
       child: isLoading
-          ? const Icon(Icons.video_call_rounded, color: Colors.black, size: 90)
+          ? const LoadingWidget()
           : AspectRatio(
               aspectRatio: _controller.value.aspectRatio,
               child: VideoPlayer(_controller),
