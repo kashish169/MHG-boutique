@@ -41,69 +41,77 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               final model = controller.categoriesModel.menus[index];
-              return InkWell(
-                onTap: () {
-                  if (model.categoryId == null &&
-                      model.allActiveSubMenus.isEmpty) {
-                    if (model.productId != null) {
+              return Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: InkWell(
+                  onTap: () {
+                    if (model.categoryId == null &&
+                        model.allActiveSubMenus.isEmpty) {
+                      if (model.productId != null) {
+                        Get.toNamed(
+                          ProductDetailsPage.routeName,
+                          arguments: {
+                            "id": model.productId,
+                            "fromArrival": false,
+                            "name": model.enName
+                          },
+                        );
+                      }
+                      return;
+                    }
+                    if (model.allActiveSubMenus.isEmpty) {
+                      log(model.categoryId.toString());
                       Get.toNamed(
-                        ProductDetailsPage.routeName,
+                        ProductsPage.routeName,
                         arguments: {
-                          "id": model.productId,
-                          "fromArrival": false,
-                          "name": model.enName
+                          "categoryId": model.categoryId,
                         },
                       );
+                    } else {
+                      Navigator.pushNamed(context, SubCategoriesPage.routeName,
+                          arguments: [model.allActiveSubMenus, model.enName]);
                     }
-                    return;
-                  }
-                  if (model.allActiveSubMenus.isEmpty) {
-                    log(model.categoryId.toString());
-                    Get.toNamed(
-                      ProductsPage.routeName,
-                      arguments: {
-                        "categoryId": model.categoryId,
-                      },
-                    );
-                  } else {
-                    Navigator.pushNamed(context, SubCategoriesPage.routeName,
-                        arguments: [model.allActiveSubMenus, model.enName]);
-                  }
-                },
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Container(
-                      width: 140,
-                      decoration:
-                          controller.categoriesModel.menus[index].imageLink !=
-                                  null
-                              ? BoxDecoration(
-                                  image: DecorationImage(
-                                      image: NetworkImage(controller
-                                          .categoriesModel
-                                          .menus[index]
-                                          .imageLink!)))
-                              : null,
-                      margin: const EdgeInsets.only(right: 8),
-                    ),
-                    Expanded(
-                      child: Container(
-                        width: 140,
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SizedBox(
+                        width: 120,
                         height: 140,
-                        color: Colors.black.withOpacity(0.4),
+                        child:
+                            controller.categoriesModel.menus[index].imageLink !=
+                                    null
+                                ? ColorFiltered(
+                                    colorFilter: ColorFilter.mode(
+                                        Colors.black.withOpacity(0.35),
+                                        BlendMode.darken),
+                                    child: Image(
+                                      image: NetworkImage(
+                                        controller.categoriesModel.menus[index]
+                                            .imageLink!,
+                                      ),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
+                                : const Text(''),
+                      ),
+                      Container(
+                        width: 120,
+                        height: 140,
+                        color: Colors.black.withOpacity(0),
                         child: Center(
                           child: Text(
                               controller.categoriesModel.menus[index].enName,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: AppColors.white,
-                                  fontWeight: FontWeight.w800,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w900,
                                   fontFamily: AppFonts.gothic)),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               );
             },

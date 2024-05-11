@@ -12,18 +12,20 @@ import 'brands_page.dart';
 
 class CategoriesPage extends StatefulWidget {
   static String routeName = '/categories';
-  const CategoriesPage({Key? key}) : super(key: key);
+  const CategoriesPage({Key? key, required this.indexChosen}) : super(key: key);
+  final int indexChosen;
 
   @override
   State<CategoriesPage> createState() => _CategoriesPageState();
 }
 
 class _CategoriesPageState extends State<CategoriesPage> {
-  int indexChosen = 1;
+  int indexChosen = 0;
   final profileController = Get.find<ProfileController>();
 
   @override
   Widget build(BuildContext context) {
+    indexChosen = widget.indexChosen;
     return GetX<CategoriesController>(builder: (controller) {
       if (controller.isLoading.isTrue) {
         return const LoadingWidget();
