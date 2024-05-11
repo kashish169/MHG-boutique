@@ -3,6 +3,7 @@ class AppAssets {
   static String newSplash = "assets/images/splash_screen.jpg";
   static String logo = "assets/images/logo.png";
   static String fav = "assets/images/fav.png";
+  static String loading = "assets/icons/loading.png";
   static String logoWhite = "assets/images/Logo-white.png";
   static String wishlistProduct = "assets/icons/wishlist_product.png";
   // static String splash = "assets/images/splash.jpg";

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/allproducts/view/pages/all_products_page.dart';
 import 'package:mhg/features/home/view/widgets/product_card.dart';
+import 'package:mhg/widgets/loading_widget.dart';
 import '../../../../widgets/view_all_button.dart';
 import '../../controller/home_controller.dart';
 
@@ -37,32 +38,35 @@ class HomeTopSellersWidget extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
-              child: Padding(
-                padding: const EdgeInsetsDirectional.symmetric(
-                  horizontal: 20,
-                  vertical: 10,
+          controller.isLoading.value
+              ? const LoadingWidget()
+              : SizedBox(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.symmetric(
+                        horizontal: 20,
+                        vertical: 10,
+                      ),
+                      child: Row(
+                        children: [
+                          for (int index = 0;
+                              index < controller.topSellersList.length;
+                              index++)
+                            Obx(() => Padding(
+                                  padding:
+                                      const EdgeInsetsDirectional.only(end: 8),
+                                  child: ProductCard(
+                                    isHomePage: true,
+                                    model: controller.topSellersList[index],
+                                  ),
+                                )),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-                child: Row(
-                  children: [
-                    for (int index = 0;
-                        index < controller.topSellersList.length;
-                        index++)
-                      Obx(() => Padding(
-                            padding: const EdgeInsetsDirectional.only(end: 8),
-                            child: ProductCard(
-                              isHomePage: true,
-                              model: controller.topSellersList[index],
-                            ),
-                          )),
-                  ],
-                ),
-              ),
-            ),
-          ),
         ],
       ),
     );

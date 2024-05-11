@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/my_wish_list/view/pages/my_wish_list.dart';
 import 'package:mhg/features/notifications/view/pages/notifications_page.dart';
 import '../../../../app/app.dart';
 import '../../../../constants/app_assets.dart';
@@ -31,7 +32,13 @@ class MainAppBar extends StatelessWidget {
           Row(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MyWishList(),
+                      ));
+                },
                 icon: Image.asset(
                   AppAssets.heart,
                   height: 28,

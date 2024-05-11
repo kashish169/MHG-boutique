@@ -38,8 +38,12 @@ class _MainWrapperState extends State<MainWrapper> {
 
   final List<Widget> _children = [
     const HomePage(),
-    MyWishList(),
-    const CategoriesPage(),
+    const CategoriesPage(
+      indexChosen: 0,
+    ),
+    const CategoriesPage(
+      indexChosen: 1,
+    ),
     const MyCartPage(),
     const ProfileView()
   ];

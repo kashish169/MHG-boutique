@@ -149,7 +149,7 @@ class AppRoutes {
     ),
     GetPage(
       name: '/categories',
-      page: () => const CategoriesPage(),
+      page: () => const CategoriesPage(indexChosen: 0),
     ),
     GetPage(
       name: '/products_page',
