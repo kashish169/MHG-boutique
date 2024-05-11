@@ -37,27 +37,29 @@ class HomeTopSellersWidget extends StatelessWidget {
               ],
             ),
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            physics: const BouncingScrollPhysics(),
-            child: Padding(
-              padding: const EdgeInsetsDirectional.symmetric(
-                horizontal: 20,
-                vertical: 10,
-              ),
-              child: Row(
-                children: [
-                  for (int index = 0;
-                      index < controller.topSellersList.length;
-                      index++)
-                    Obx(() => Padding(
-                          padding: const EdgeInsetsDirectional.only(end: 8),
-                          child: ProductCard(
-                            isHomePage: true,
-                            model: controller.topSellersList[index],
-                          ),
-                        )),
-                ],
+          SizedBox(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
+                child: Row(
+                  children: [
+                    for (int index = 0;
+                        index < controller.topSellersList.length;
+                        index++)
+                      Obx(() => Padding(
+                            padding: const EdgeInsetsDirectional.only(end: 8),
+                            child: ProductCard(
+                              isHomePage: true,
+                              model: controller.topSellersList[index],
+                            ),
+                          )),
+                  ],
+                ),
               ),
             ),
           ),

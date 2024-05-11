@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/home/view/widgets/home_reward_box.dart';
 import 'package:mhg/features/home/view/widgets/home_video_test_widget.dart';
@@ -27,8 +28,9 @@ class ProductsPage extends StatefulWidget {
 class _ProductsPageState extends State<ProductsPage> {
   ScrollController scrollController = ScrollController();
   Color greeding = Colors.black;
-  Color topStatusColor = Colors.white;
+  Color topStatusColor = Colors.black;
   Color? backGroundColor;
+
   @override
   void initState() {
     scrollController.addListener(() {
@@ -36,7 +38,7 @@ class _ProductsPageState extends State<ProductsPage> {
         bool isTop = scrollController.position.pixels == 0;
         if (isTop) {
           greeding = Colors.black;
-          topStatusColor = Colors.white;
+          topStatusColor = Colors.black;
           backGroundColor = null;
         }
       } else {
@@ -53,6 +55,7 @@ class _ProductsPageState extends State<ProductsPage> {
   Widget build(BuildContext context) {
     final routeArgs =
         ModalRoute.of(context)?.settings.arguments as Map<dynamic, dynamic>?;
+
     log('VIDEO VIDEO: ${routeArgs?['video_link']}');
     return Scaffold(
       appBar: PreferredSize(
@@ -77,15 +80,16 @@ class _ProductsPageState extends State<ProductsPage> {
                                 MediaQuery.of(context).size.height * 1 / 2.2,
                           )
                         : Opacity(
-                            opacity: 0.68,
+                            opacity: 1,
                             child: Container(
                               height:
                                   MediaQuery.of(context).size.height * 1 / 2.2,
                               decoration: BoxDecoration(
+                                  // color: Colors.black38,
                                   image: DecorationImage(
                                       image: NetworkImage(
                                           routeArgs?['image_link']!),
-                                      fit: BoxFit.cover)),
+                                      fit: BoxFit.contain)),
                             ),
                           ),
                   if (routeArgs?['video_link'] != null ||
@@ -100,90 +104,96 @@ class _ProductsPageState extends State<ProductsPage> {
                 ],
               ),
               // const ProductsCategoriesListView(),
-              GetX<ProductsController>(builder: (controller) {
-                if (controller.isLoading.isTrue ||
-                    controller.isLoadingCategories.isTrue) {
-                  return const LoadingWidget();
-                } else if (controller.isError.isTrue) {
-                  return RetryButton(onTap: () {
-                    controller.getProductsTags();
-                    controller.getProducts('');
-                    controller.paginate();
-                  });
-                }
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(right: 20, left: 20, top: 28),
-                      child: Text(
-                        controller.categoryName ?? '',
-                        style:
-                            Theme.of(context).textTheme.displayMedium?.copyWith(
-                                  color: AppColors.black3,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                ),
-                      ),
-                    ),
-                    // const FiltersWidget(),
-                    controller.isLoadingList.isTrue
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : controller.isLoading.isTrue
-                            ? const Center(child: CircularProgressIndicator())
-                            : RefreshIndicator(
-                                onRefresh: () async {
-                                  controller.searchWord = '';
-                                  controller.selectedScent.value = '';
-                                  controller.resetPaginate();
-                                  await controller.getProducts(
-                                    controller.searchWord,
-                                  );
-                                },
-                                child: controller.products.isEmpty &&
-                                        controller.isLoading.isFalse &&
-                                        controller.isFetching.isFalse &&
-                                        controller.isLoadingCategories.isTrue
-                                    ? Center(
-                                        child: Text(
-                                          'No Results!',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .displaySmall,
-                                        ),
-                                      )
-                                    : DynamicGridView(
-                                        padding: const EdgeInsetsDirectional
-                                            .symmetric(
-                                          horizontal: 20,
-                                          vertical: 25,
-                                        ),
-                                        crossAxisCount: 2,
-                                        controller: controller.scrollController,
-                                        shrinkWrap: true,
-                                        mainAxisSpacing: 10,
-                                        crossAxisSpacing: 10,
-                                        itemCount: controller.products.length,
-                                        builder: (ctx, index) {
-                                          return ProductCard(
-                                            model: controller.products[index],
-                                          );
-                                        },
-                                      ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: GetX<ProductsController>(builder: (controller) {
+                  if (controller.isLoading.isTrue ||
+                      controller.isLoadingCategories.isTrue) {
+                    return const LoadingWidget();
+                  } else if (controller.isError.isTrue) {
+                    return RetryButton(onTap: () {
+                      controller.getProductsTags();
+                      controller.getProducts('');
+                      controller.paginate();
+                    });
+                  }
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 20, left: 20, top: 28),
+                        child: Text(
+                          controller.categoryName ?? '',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(
+                                color: AppColors.black3,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
                               ),
-                    Obx(() => controller.isFetching.isTrue
-                        ? const SizedBox(
-                            child: Center(
+                        ),
+                      ),
+                      // const FiltersWidget(),
+                      controller.isLoadingList.isTrue
+                          ? const Center(
                               child: CircularProgressIndicator(),
-                            ),
-                          )
-                        : const SizedBox())
-                  ],
-                );
-              }),
+                            )
+                          : controller.isLoading.isTrue
+                              ? const Center(child: CircularProgressIndicator())
+                              : RefreshIndicator(
+                                  onRefresh: () async {
+                                    controller.searchWord = '';
+                                    controller.selectedScent.value = '';
+                                    controller.resetPaginate();
+                                    await controller.getProducts(
+                                      controller.searchWord,
+                                    );
+                                  },
+                                  child: controller.products.isEmpty &&
+                                          controller.isLoading.isFalse &&
+                                          controller.isFetching.isFalse &&
+                                          controller.isLoadingCategories.isTrue
+                                      ? Center(
+                                          child: Text(
+                                            'No Results!',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .displaySmall,
+                                          ),
+                                        )
+                                      : DynamicGridView(
+                                          padding: const EdgeInsetsDirectional
+                                              .symmetric(
+                                            horizontal: 20,
+                                            vertical: 25,
+                                          ),
+                                          crossAxisCount: 2,
+                                          controller:
+                                              controller.scrollController,
+                                          shrinkWrap: true,
+                                          mainAxisSpacing: 10,
+                                          crossAxisSpacing: 10,
+                                          itemCount: controller.products.length,
+                                          builder: (ctx, index) {
+                                            return ProductCard(
+                                              model: controller.products[index],
+                                            );
+                                          },
+                                        ),
+                                ),
+                      Obx(() => controller.isFetching.isTrue
+                          ? const SizedBox(
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            )
+                          : const SizedBox())
+                    ],
+                  );
+                }),
+              ),
             ],
           ),
           HomeRewardBox(

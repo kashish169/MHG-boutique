@@ -135,6 +135,15 @@ flutter:
           weight: 400
         - asset: assets/fonts/GOTHICB0.TTF
           weight: 600
+    - family: GOTHIC
+      fonts:
+        - asset: assets/fonts/GOTHIC.TTF
+          weight: 600
+    - family: GOTHICB
+      fonts:
+        - asset: assets/fonts/GOTHICB.TTF
+          weight: 400
+        
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

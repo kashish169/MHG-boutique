@@ -80,6 +80,7 @@ class CategoriesController extends GetxController {
   @override
   void onInit() {
     getCategories();
+    getBrands();
     super.onInit();
   }
 }
