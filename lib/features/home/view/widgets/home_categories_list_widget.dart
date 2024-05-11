@@ -98,8 +98,8 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: AppColors.white,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: AppFonts.gothicb)),
+                                  fontWeight: FontWeight.w800,
+                                  fontFamily: AppFonts.gothic)),
                         ),
                       ),
                     )

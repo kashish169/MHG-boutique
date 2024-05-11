@@ -137,7 +137,7 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
             padding: const EdgeInsets.all(4.0),
             child: Image.asset(
               (widget.inWishlist == 1)
-                  ? AppAssets.wishlist
+                  ? AppAssets.wishlistProduct
                   : (widget.inWishlist == 0 && widget.isProductDetails == true)
                       ? AppAssets.blackHeart
                       : AppAssets.favourtie,
