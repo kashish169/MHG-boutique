@@ -53,10 +53,10 @@ class _HomeVideoTestWidgetState extends State<HomeVideoTestWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
+      color: Colors.white,
       height: widget.height,
       child: isLoading
-          ? const Icon(Icons.video_call_rounded, color: Colors.white, size: 90)
+          ? const Icon(Icons.video_call_rounded, color: Colors.black, size: 90)
           : AspectRatio(
               aspectRatio: _controller.value.aspectRatio,
               child: VideoPlayer(_controller),
