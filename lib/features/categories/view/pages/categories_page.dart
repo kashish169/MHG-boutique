@@ -24,8 +24,13 @@ class _CategoriesPageState extends State<CategoriesPage> {
   final profileController = Get.find<ProfileController>();
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     indexChosen = widget.indexChosen;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return GetX<CategoriesController>(builder: (controller) {
       if (controller.isLoading.isTrue) {
         return const LoadingWidget();
