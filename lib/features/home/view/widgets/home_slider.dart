@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
+import 'package:mhg/features/home/view/widgets/home_video_test_widget.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
 import '../../../../constants/app_colors.dart';
@@ -65,11 +66,16 @@ class HomeSlider extends StatelessWidget {
                       );
                     }
                   },
-                  child: NetImage(
-                    image: controller.slidersList[index].backgroundImageLink,
-                    height: MediaQuery.of(context).size.height * 2 / 2.6,
-                    width: AppDimensions.screenWidth(context),
-                  ),
+                  child: controller.slidersList[index].videoLinkk != null
+                      ? HomeVideoTestWidget(
+                          videoLink: controller.slidersList[index].videoLinkk!,
+                          height: MediaQuery.of(context).size.height * 2 / 2.6)
+                      : NetImage(
+                          image:
+                              controller.slidersList[index].backgroundImageLink,
+                          height: MediaQuery.of(context).size.height * 2 / 2.6,
+                          width: AppDimensions.screenWidth(context),
+                        ),
                 );
               },
               loop: false,

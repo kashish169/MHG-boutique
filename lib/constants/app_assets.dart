@@ -1,5 +1,6 @@
 class AppAssets {
   static String splash = "assets/images/splash-screen.gif";
+  static String newSplash = "assets/images/splash_screen.jpg";
   static String logo = "assets/images/logo.png";
   static String fav = "assets/images/fav.png";
   static String logoWhite = "assets/images/Logo-white.png";

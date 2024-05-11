@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 class BrandCategoryModel {
   final int? id;
   final String? enBrandName;
@@ -5,6 +7,7 @@ class BrandCategoryModel {
   final String? enBrandSlug;
   final String? frBrandSlug;
   final String? brandImage;
+  final String? videoLink;
   final String? status;
   final int? storeId;
   final DateTime? createdAt;
@@ -18,6 +21,7 @@ class BrandCategoryModel {
     this.enBrandSlug,
     this.frBrandSlug,
     this.brandImage,
+    this.videoLink,
     this.status,
     this.storeId,
     this.createdAt,
@@ -25,24 +29,26 @@ class BrandCategoryModel {
     this.imageLink,
   });
 
-  factory BrandCategoryModel.fromJson(Map<String, dynamic> json) =>
-      BrandCategoryModel(
-        id: json['id'] as int?,
-        enBrandName: json['en_BrandName'] as String?,
-        frBrandName: json['fr_BrandName'] as String?,
-        enBrandSlug: json['en_BrandSlug'] as String?,
-        frBrandSlug: json['fr_BrandSlug'] as String?,
-        brandImage: json['BrandImage'] as String?,
-        status: json['Status'] as String?,
-        storeId: json['store_id'] as int?,
-        createdAt: json['created_at'] == null
-            ? null
-            : DateTime.parse(json['created_at'] as String),
-        updatedAt: json['updated_at'] == null
-            ? null
-            : DateTime.parse(json['updated_at'] as String),
-        imageLink: json['image_link'] as String?,
-      );
+  factory BrandCategoryModel.fromJson(Map<String, dynamic> json) {
+    return BrandCategoryModel(
+      id: json['id'] as int?,
+      enBrandName: json['en_BrandName'] as String?,
+      frBrandName: json['fr_BrandName'] as String?,
+      enBrandSlug: json['en_BrandSlug'] as String?,
+      frBrandSlug: json['fr_BrandSlug'] as String?,
+      brandImage: json['BrandImage'] as String?,
+      videoLink: json['video_link'] as String?,
+      status: json['Status'] as String?,
+      storeId: json['store_id'] as int?,
+      createdAt: json['created_at'] == null
+          ? null
+          : DateTime.parse(json['created_at'] as String),
+      updatedAt: json['updated_at'] == null
+          ? null
+          : DateTime.parse(json['updated_at'] as String),
+      imageLink: json['image_link'] as String?,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         'id': id,

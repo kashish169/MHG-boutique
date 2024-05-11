@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,27 +27,29 @@ class _BrandsPageState extends State<BrandsPage> {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               children: List.generate(
-                  widget.brands.length > 3 ? 3 : widget.brands.length,
-                  (index) => InkWell(
-                        onTap: () {
-                          Get.toNamed(
-                            ProductsPage.routeName,
-                            arguments: {
-                              "brandId": widget.brands[index].id,
-                            },
-                          );
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.only(
-                              left: 20, right: 20, bottom: 15),
-                          height: 120,
-                          width: double.infinity,
-                          child: Image(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  widget.brands[index].imageLink!)),
-                        ),
-                      )),
+                  widget.brands.length > 3 ? 3 : widget.brands.length, (index) {
+                return InkWell(
+                  onTap: () {
+                    Get.toNamed(
+                      ProductsPage.routeName,
+                      arguments: {
+                        "brandId": widget.brands[index].id,
+                        "video_link": widget.brands[index].videoLink,
+                        "image_link": widget.brands[index].imageLink,
+                      },
+                    );
+                  },
+                  child: Container(
+                    margin:
+                        const EdgeInsets.only(left: 20, right: 20, bottom: 15),
+                    height: 120,
+                    width: double.infinity,
+                    child: Image(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(widget.brands[index].imageLink!)),
+                  ),
+                );
+              }),
             ),
             if (widget.brands.length > 3)
               Padding(

@@ -72,7 +72,6 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     );
                   })
               : BrandsPage(brands: controller.brands),
-          //  const HomeExploreOurBrandsWidget(),
         ],
       ));
     });
