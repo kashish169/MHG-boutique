@@ -77,7 +77,7 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
                     children: [
                       SizedBox(
                         width: 120,
-                        height: 140,
+                        height: 120,
                         child:
                             controller.categoriesModel.menus[index].imageLink !=
                                     null
@@ -97,7 +97,7 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
                       ),
                       Container(
                         width: 120,
-                        height: 140,
+                        height: 120,
                         color: Colors.black.withOpacity(0),
                         child: Center(
                           child: Text(
@@ -105,7 +105,7 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: AppColors.white,
-                                  fontSize: 12,
+                                  fontSize: 11.4,
                                   fontWeight: FontWeight.w900,
                                   fontFamily: AppFonts.gothic)),
                         ),
