@@ -12,7 +12,7 @@ import '../models/brand_model.dart';
 
 class CategoriesController extends GetxController {
   late CategoriesRepository categoriesRepository;
-  late CategoriesModel categoriesModel;
+  CategoriesModel categoriesModel = CategoriesModel(menus: []);
   List<BrandCategoryModel> brands = [];
   RxBool isLoading = false.obs;
   RxBool isError = false.obs;

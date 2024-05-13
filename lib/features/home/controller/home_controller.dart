@@ -4,13 +4,13 @@ import 'package:get/get.dart';
 import 'package:mhg/features/categories/models/categories_model.dart';
 import 'package:mhg/features/home/models/brand_model.dart';
 import 'package:mhg/features/home/models/home_model.dart';
-import 'package:mhg/features/home/models/middle_section_model.dart';
 import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/home/repository/home_repo.dart';
 import 'package:mhg/features/home/repository/home_repo_impl.dart';
 import '../../../constants/app_toasts.dart';
 import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
+import '../models/new_middle_section_model/new_middle_section_model.dart';
 import '../models/recent_search_model.dart';
 import '../models/slider_model.dart';
 
@@ -29,9 +29,11 @@ class HomeController extends GetxController {
   RxList<ProductModel> newArrivalsList = <ProductModel>[].obs;
   RxList<BrandModel> brandsList = <BrandModel>[].obs;
   RxList<Menu> categories = <Menu>[].obs;
-  RxList<MiddleSectionModel> middleSectionList = <MiddleSectionModel>[].obs;
+  RxList<NewMiddleSectionModel> middleSectionList =
+      <NewMiddleSectionModel>[].obs;
   RxList<SliderModel> footerSlider = <SliderModel>[].obs;
   RxList<RecentSearchModel> recentSearchList = <RecentSearchModel>[].obs;
+  RxString middleSectionMainVideo = ''.obs;
   RxString middleSectionMainImage = ''.obs;
   RxString middleSectionMainTitle = ''.obs;
   int? middleSectionMainBrandId;
@@ -62,7 +64,7 @@ class HomeController extends GetxController {
         (r) {
           var statusCode = r.object["code"];
           var message = r.object["message"];
-          log("HOME RESPONSE STATUS $statusCode");
+
           if (statusCode == 200) {
             var json = r.object["data"];
             log(json.toString());
@@ -71,7 +73,6 @@ class HomeController extends GetxController {
             homeModel = data;
 
             slidersList.value = data.sliders;
-            log("HOME TOP SELLERS ${slidersList.map((e) => e.videoLinkk)}");
             topSellersList.value = data.topSellers;
             newArrivalsList.value = data.newArrivals;
             brandsList.value = data.brands;
@@ -80,8 +81,12 @@ class HomeController extends GetxController {
             recentSearchList.value = data.recentSearch;
             middleSectionList.value = data.middleSections;
             if (middleSectionList.isNotEmpty) {
-              middleSectionMainImage.value = middleSectionList.first.imageLink;
-              middleSectionMainTitle.value = middleSectionList.first.enTitle;
+              middleSectionMainVideo.value =
+                  middleSectionList.first.brand?.videoLink ?? '';
+              middleSectionMainImage.value =
+                  middleSectionList.first.imageLink ?? '';
+              middleSectionMainTitle.value =
+                  middleSectionList.first.enTitle ?? '';
               middleSectionMainBrandId = middleSectionList.first.brandId;
               middleSectionMainCategoryId = middleSectionList.first.categoryId;
               middleSectionMainProductId = middleSectionList.first.productId;

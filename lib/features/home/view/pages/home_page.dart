@@ -2,17 +2,14 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/features/home/controller/home_controller.dart';
-import 'package:mhg/features/home/view/widgets/home_slider.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
 import '../../../profile/controller/profile_controller.dart';
-
+import '../../controller/home_controller.dart';
 import '../widgets/home_categories_list_widget.dart';
 import '../widgets/home_footer_slider.dart';
 import '../widgets/home_middle_section_widget.dart';
-import '../widgets/home_new_arrivels_widget.dart';
-
+import '../widgets/home_slider.dart';
 import '../widgets/home_top_sellers_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,6 +26,7 @@ class _HomePageState extends State<HomePage>
 
   @override
   void initState() {
+    log('CURRENT ROUTE : ${Get.currentRoute}');
     scrollController.addListener(() {
       if (scrollController.position.atEdge) {
         bool isTop = scrollController.position.pixels == 0;
@@ -40,6 +38,13 @@ class _HomePageState extends State<HomePage>
       }
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    profileController.dispose();
+    super.dispose();
   }
 
   @override

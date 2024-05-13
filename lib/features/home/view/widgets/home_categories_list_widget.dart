@@ -33,7 +33,7 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
         });
       }
       return Padding(
-        padding: const EdgeInsets.only(top: 40, bottom: 10),
+        padding: const EdgeInsets.only(top: 18, bottom: 10),
         child: SizedBox(
           height: 140,
           child: ListView.builder(
