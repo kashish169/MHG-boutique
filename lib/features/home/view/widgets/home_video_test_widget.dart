@@ -38,7 +38,6 @@ class _HomeVideoTestWidgetState extends State<HomeVideoTestWidget> {
             isLoading = false;
             _controller!.play();
             _controller!.setVolume(0);
-            _controller!.dispose();
           }))
       ..addListener(() {
         if (_controller!.value.position == _controller!.value.duration) {

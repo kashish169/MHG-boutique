@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage>
         onRefresh: () async => await controller.getHome(),
         child: SingleChildScrollView(
           controller: scrollController,
-          child: const Column(
+          child:  Column(
             children: [
               HomeSlider(),
               HomeCategoriesListWidget(),
