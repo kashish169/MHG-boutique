@@ -15,6 +15,7 @@ import '../../../../constants/app_colors.dart';
 import '../../../../widgets/dynamic_grid_view.dart';
 import '../../../categories/view/widgets/category_filter_button.dart';
 import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
+import '../../../profile/controller/profile_controller.dart';
 
 class ProductsPage extends StatefulWidget {
   static String routeName = '/products_page';
@@ -26,6 +27,7 @@ class ProductsPage extends StatefulWidget {
 }
 
 class _ProductsPageState extends State<ProductsPage> {
+  final profileController = Get.find<ProfileController>();
   ScrollController scrollController = ScrollController();
   Color greeding = Colors.black;
   Color topStatusColor = Colors.black;
@@ -33,6 +35,9 @@ class _ProductsPageState extends State<ProductsPage> {
 
   @override
   void initState() {
+    Future.delayed(const Duration(milliseconds: 200), () {
+      profileController.changeRewardBannerIsScrlling(false);
+    });
     scrollController.addListener(() {
       if (scrollController.position.atEdge) {
         bool isTop = scrollController.position.pixels == 0;
@@ -105,7 +110,7 @@ class _ProductsPageState extends State<ProductsPage> {
               ),
               // const ProductsCategoriesListView(),
               Padding(
-                padding: const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 60),
                 child: GetX<ProductsController>(builder: (controller) {
                   if (controller.isLoading.isTrue ||
                       controller.isLoadingCategories.isTrue) {
