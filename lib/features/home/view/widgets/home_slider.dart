@@ -55,8 +55,12 @@ class _HomeSliderState extends State<HomeSlider> {
               pagination: SwiperPagination(
                   margin: const EdgeInsets.only(top: 5),
                   builder: DotSwiperPaginationBuilder(
-                    color: AppColors.lightGray3,
-                    activeColor: AppColors.secondary,
+                    color: controller.slidersList.length <= 1
+                        ? Colors.transparent
+                        : AppColors.lightGray3,
+                    activeColor: controller.slidersList.length <= 1
+                        ? Colors.transparent
+                        : AppColors.secondary,
                     size: 10.0,
                     activeSize: 9.0,
                   )),
@@ -93,15 +97,17 @@ class _HomeSliderState extends State<HomeSlider> {
                   child: controller.slidersList[index].videoLinkk != null
                       ? HomeVideoTestWidget(
                           videoLink: controller.slidersList[index].videoLinkk!,
-                          endVideoFun: () {
-                            Future.delayed(const Duration(milliseconds: 200),
-                                () {
-                              setState(() {
-                                swiperController.next(animation: true);
-                                isSkip = true;
-                              });
-                            });
-                          },
+                          endVideoFun: controller.slidersList.length > 1
+                              ? () {
+                                  Future.delayed(
+                                      const Duration(milliseconds: 200), () {
+                                    setState(() {
+                                      swiperController.next(animation: true);
+                                      isSkip = true;
+                                    });
+                                  });
+                                }
+                              : null,
                           startFun: () {
                             Future.delayed(const Duration(milliseconds: 200),
                                 () {
