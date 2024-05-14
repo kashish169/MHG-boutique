@@ -150,6 +150,7 @@ class ProductsController extends GetxController {
           if (statusCode == 200) {
             var json = r.object["data"];
             last = r.object['data']["products"]['total'];
+            log('PRODUCTS PRODUCTS PRODUCTS PRODUCTS: ${r.object["data"]["products"]['data']}');
             products += List<ProductModel>.from(
                 json["products"]['data'].map((x) => ProductModel.fromJson(x)));
           } else {

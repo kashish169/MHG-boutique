@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_fonts.dart';
 import 'package:mhg/features/home/view/widgets/home_reward_box.dart';
 import 'package:mhg/features/home/view/widgets/home_video_test_widget.dart';
 import 'package:mhg/features/home/view/widgets/product_card.dart';
@@ -61,7 +62,6 @@ class _ProductsPageState extends State<ProductsPage> {
     final routeArgs =
         ModalRoute.of(context)?.settings.arguments as Map<dynamic, dynamic>?;
 
-    log('VIDEO VIDEO: ${routeArgs?['video_link']}');
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(0),
@@ -127,18 +127,17 @@ class _ProductsPageState extends State<ProductsPage> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsets.only(right: 20, left: 20, top: 28),
+                            const EdgeInsets.only(right: 20, left: 20, top: 50),
                         child: Text(
-                          controller.categoryName ?? '',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayMedium
-                              ?.copyWith(
-                                color: AppColors.black3,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12,
-                              ),
-                        ),
+                            '${controller.products.firstOrNull?.brand?.enBrandName ?? ''}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .displayMedium
+                                ?.copyWith(
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.grey,
+                                  fontSize: 14,
+                                )),
                       ),
                       // const FiltersWidget(),
                       controller.isLoadingList.isTrue
