@@ -129,7 +129,9 @@ class _ProductsPageState extends State<ProductsPage> {
                         padding:
                             const EdgeInsets.only(right: 20, left: 20, top: 50),
                         child: Text(
-                            '${controller.products.firstOrNull?.brand?.enBrandName ?? ''}',
+                            controller.products.isEmpty
+                                ? ''
+                                : '${controller.products.first.brand?.enBrandName ?? ''}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displayMedium
