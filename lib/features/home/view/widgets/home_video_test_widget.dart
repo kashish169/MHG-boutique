@@ -20,7 +20,7 @@ class HomeVideoTestWidget extends StatefulWidget {
 }
 
 class _HomeVideoTestWidgetState extends State<HomeVideoTestWidget> {
-  late VideoPlayerController _controller;
+  VideoPlayerController? _controller;
   bool isLoading = true;
 
   @override
@@ -30,17 +30,22 @@ class _HomeVideoTestWidgetState extends State<HomeVideoTestWidget> {
       widget.startFun!();
     }
 
-    _controller = VideoPlayerController.networkUrl(
-      Uri.parse(widget.videoLink),
-    )
+    _controller = VideoPlayerController.networkUrl(Uri.parse(widget.videoLink),
+        videoPlayerOptions: VideoPlayerOptions(
+          mixWithOthers: true,
+        ))
       ..initialize().then((value) => setState(() {
             isLoading = false;
-            _controller.play();
+            _controller!.play();
+            _controller!.setVolume(0);
           }))
       ..addListener(() {
-        if (_controller.value.isCompleted) {
+        if (_controller!.value.position == _controller!.value.duration) {
           if (widget.endVideoFun != null) {
             widget.endVideoFun!();
+          } else {
+            _controller!.seekTo(Duration.zero);
+            _controller!.play();
           }
         }
       });
@@ -48,7 +53,11 @@ class _HomeVideoTestWidgetState extends State<HomeVideoTestWidget> {
 
   @override
   void dispose() {
-    _controller.dispose();
+    setState(() {
+      _controller?.dispose();
+      _controller = null;
+    });
+
     super.dispose();
   }
 
@@ -60,8 +69,8 @@ class _HomeVideoTestWidgetState extends State<HomeVideoTestWidget> {
       child: isLoading
           ? const LoadingWidget()
           : AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              child: VideoPlayer(_controller),
+              aspectRatio: _controller!.value.aspectRatio,
+              child: VideoPlayer(_controller!),
             ),
     );
   }

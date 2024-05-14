@@ -6,6 +6,7 @@ import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/home/models/recent_search_model.dart';
 import 'package:mhg/features/home/models/slider_model.dart';
 import 'brand_model.dart';
+import 'new_middle_section_model/new_middle_section_model.dart';
 
 class HomeModel {
   List<SliderModel> sliders;
@@ -14,7 +15,7 @@ class HomeModel {
   List<ProductModel> topSellers;
   List<ProductModel> newArrivals;
   List<Menu> categories;
-  List<MiddleSectionModel> middleSections;
+  List<NewMiddleSectionModel> middleSections;
   List<SliderModel> footerSliders;
   List<RecentSearchModel> recentSearch;
 
@@ -44,8 +45,8 @@ class HomeModel {
           json["new_arrivals"].map((x) => ProductModel.fromJson(x))),
       categories:
           List<Menu>.from(json["categories"].map((x) => Menu.fromJson(x))),
-      middleSections: List<MiddleSectionModel>.from(
-          json["middle_sections"].map((x) => MiddleSectionModel.fromJson(x))),
+      middleSections: List<NewMiddleSectionModel>.from(json["middle_sections"]
+          .map((x) => NewMiddleSectionModel.fromJson(x))),
       footerSliders: List<SliderModel>.from(
           json["footer_sliders"].map((x) => SliderModel.fromJson(x))),
       recentSearch: List<RecentSearchModel>.from(
