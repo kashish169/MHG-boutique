@@ -20,7 +20,7 @@ class CategoryListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (model.enName == 'ICONIC BRANDS') {}
+    log('CATEGORY CATEGORY "${model.toJson()}');
     return InkWell(
       onTap: () {
         if (model.categoryId == null && model.allActiveSubMenus.isEmpty) {

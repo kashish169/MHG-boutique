@@ -90,8 +90,8 @@ class ProductCard extends StatelessWidget {
                             horizontal: 5),
                         child: Text(
                           isWishList == false
-                              ? model!.brand?.enBrandName ?? ''
-                              : wishListModel!.options.brand,
+                              ? model!.enProductName
+                              : wishListModel!.name,
                           maxLines: 2,
                           textAlign: TextAlign.start,
                           overflow: TextOverflow.ellipsis,
