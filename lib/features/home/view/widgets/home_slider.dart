@@ -61,8 +61,8 @@ class _HomeSliderState extends State<HomeSlider> {
                     activeColor: controller.slidersList.length <= 1
                         ? Colors.transparent
                         : AppColors.secondary,
-                    size: 10.0,
-                    activeSize: 9.0,
+                    size: controller.slidersList.length <= 1 ? 0 : 10.0,
+                    activeSize: controller.slidersList.length <= 1 ? 0 : 9.0,
                   )),
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(

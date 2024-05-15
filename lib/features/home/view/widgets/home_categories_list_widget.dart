@@ -35,16 +35,16 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
       return Visibility(
         visible: controller.categoriesModel.menus.isNotEmpty,
         child: Padding(
-          padding: const EdgeInsets.only(top: 18),
+          padding: const EdgeInsets.only(top: 0, left: 5),
           child: SizedBox(
-            height: 140,
+            height: 120,
             child: ListView.builder(
               itemCount: controller.categoriesModel.menus.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 final model = controller.categoriesModel.menus[index];
                 return Padding(
-                  padding: const EdgeInsets.only(right: 10),
+                  padding: const EdgeInsets.only(right: 5),
                   child: InkWell(
                     onTap: () {
                       if (model.categoryId == null &&
@@ -79,7 +79,7 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
                       alignment: Alignment.center,
                       children: [
                         SizedBox(
-                          width: 120,
+                          width: 100,
                           height: 120,
                           child: controller
                                       .categoriesModel.menus[index].imageLink !=
@@ -99,7 +99,7 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
                               : const Text(''),
                         ),
                         Container(
-                          width: 120,
+                          width: 100,
                           height: 120,
                           color: Colors.black.withOpacity(0),
                           child: Center(
