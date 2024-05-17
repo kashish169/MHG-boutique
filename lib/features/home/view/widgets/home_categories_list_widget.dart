@@ -34,8 +34,8 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
       }
       return Visibility(
         visible: controller.categoriesModel.menus.isNotEmpty,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 0, left: 5),
+        child: Container(
+          padding: const EdgeInsets.only(top: 5, left: 5),
           child: SizedBox(
             height: 120,
             child: ListView.builder(

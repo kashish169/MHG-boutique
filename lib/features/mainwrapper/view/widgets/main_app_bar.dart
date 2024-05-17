@@ -6,6 +6,7 @@ import 'package:mhg/features/notifications/view/pages/notifications_page.dart';
 import '../../../../app/app.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../auth/signin/view/pages/sign_in_page.dart';
+import '../../../products_page/view/pages/product_page.dart';
 import '../../controller/main_wrapper_controller.dart';
 
 class MainAppBar extends StatelessWidget {
@@ -33,11 +34,9 @@ class MainAppBar extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () async {
-                  await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MyWishList(),
-                      ));
+                  if (Get.currentRoute != MyWishList.roue) {
+                    Get.toNamed(MyWishList.roue);
+                  }
                 },
                 icon: Image.asset(
                   AppAssets.heart,

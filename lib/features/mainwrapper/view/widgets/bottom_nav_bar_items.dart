@@ -65,54 +65,51 @@ Widget _icon({
   return Expanded(
     child: InkWell(
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            enableBadge == true &&
-                    Get.find<MyCartController>().cartItemsList.isNotEmpty
-                ? badge.Badge(
-                    badgeContent: Text(
-                        "${Get.find<MyCartController>().cartItemsList.length}"),
-                    child: Image.asset(
-                      icon,
-                      height: iconSize ?? 25,
-                      width: iconSize ?? 25,
-                      color: color,
-                    ),
-                  )
-                : Image.asset(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          enableBadge == true &&
+                  Get.find<MyCartController>().cartItemsList.isNotEmpty
+              ? badge.Badge(
+                  badgeContent: Text(
+                      "${Get.find<MyCartController>().cartItemsList.length}"),
+                  child: Image.asset(
                     icon,
                     height: iconSize ?? 25,
                     width: iconSize ?? 25,
                     color: color,
                   ),
-            const SizedBox(height: 4),
-            // FittedBox(
-            //   child: Padding(
-            //     padding: const EdgeInsets.symmetric(vertical: 4),
-            //     child: Text(
-            //       label,
-            //       style: TextStyle(
-            //         fontSize: 10,
-            //         color: color,
-            //         fontWeight: FontWeight.w400,
-            //         fontFamily: AppFonts.Century_Gothic,
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            // AnimatedContainer(
-            //   duration: const Duration(milliseconds: 250),
-            //   height: 2,
-            //   width: 100,
-            //   color: controller.navBarIndex.value != index
-            //       ? Colors.transparent
-            //       : AppColors.secondary,
-            // ),
-          ],
-        ),
+                )
+              : Image.asset(
+                  icon,
+                  height: iconSize ?? 25,
+                  width: iconSize ?? 25,
+                  color: color,
+                ),
+          const SizedBox(height: 4),
+          // FittedBox(
+          //   child: Padding(
+          //     padding: const EdgeInsets.symmetric(vertical: 4),
+          //     child: Text(
+          //       label,
+          //       style: TextStyle(
+          //         fontSize: 10,
+          //         color: color,
+          //         fontWeight: FontWeight.w400,
+          //         fontFamily: AppFonts.Century_Gothic,
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          // AnimatedContainer(
+          //   duration: const Duration(milliseconds: 250),
+          //   height: 2,
+          //   width: 100,
+          //   color: controller.navBarIndex.value != index
+          //       ? Colors.transparent
+          //       : AppColors.secondary,
+          // ),
+        ],
       ),
     ),
   );

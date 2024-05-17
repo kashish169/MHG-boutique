@@ -27,15 +27,9 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
     final controller = Get.find<MainWrapperController>();
 
     return Container(
-      padding: EdgeInsets.only(
-        bottom: AppDimensions.viewBottomPadding(context),
-      ),
+      padding: const EdgeInsets.only(top: 10, bottom: 4),
       decoration: BoxDecoration(
         color: AppColors.primary,
-        borderRadius: const BorderRadius.vertical(
-            // top: Radius.circular(12),
-            ),
-        boxShadow: AppColors.shadow(0.5),
       ),
       child: Obx(() => Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

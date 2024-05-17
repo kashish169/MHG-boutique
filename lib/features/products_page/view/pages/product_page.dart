@@ -1,15 +1,9 @@
-import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:mhg/constants/app_fonts.dart';
 import 'package:mhg/features/home/view/widgets/home_reward_box.dart';
 import 'package:mhg/features/home/view/widgets/home_video_test_widget.dart';
 import 'package:mhg/features/home/view/widgets/product_card.dart';
 import 'package:mhg/features/products_page/controller/product_controller.dart';
-import 'package:mhg/features/products_page/view/widgets/products_items_list_view.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import '../../../../constants/app_colors.dart';

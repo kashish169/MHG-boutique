@@ -43,9 +43,10 @@ class _HomeSliderState extends State<HomeSlider> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
+          Container(
+            color: Colors.amber,
             height: MediaQuery.of(context).size.height * 2 / 2.6,
-            width: AppDimensions.screenWidth(context),
+            width: double.infinity,
             child: Swiper(
               autoplay: isSkip,
               controller: swiperController,
@@ -55,12 +56,8 @@ class _HomeSliderState extends State<HomeSlider> {
               pagination: SwiperPagination(
                   margin: const EdgeInsets.only(top: 5),
                   builder: DotSwiperPaginationBuilder(
-                    color: controller.slidersList.length <= 1
-                        ? Colors.transparent
-                        : AppColors.lightGray3,
-                    activeColor: controller.slidersList.length <= 1
-                        ? Colors.transparent
-                        : AppColors.secondary,
+                    color: AppColors.lightGray3,
+                    activeColor: AppColors.secondary,
                     size: controller.slidersList.length <= 1 ? 0 : 10.0,
                     activeSize: controller.slidersList.length <= 1 ? 0 : 9.0,
                   )),
@@ -121,13 +118,12 @@ class _HomeSliderState extends State<HomeSlider> {
                           image:
                               controller.slidersList[index].backgroundImageLink,
                           height: MediaQuery.of(context).size.height * 2 / 2.6,
-                          width: AppDimensions.screenWidth(context),
-                        ),
+                          width: double.infinity),
                 );
               },
               loop: false,
               itemCount: controller.slidersList.length,
-              outer: true,
+              outer: false,
             ),
           ),
         ],
