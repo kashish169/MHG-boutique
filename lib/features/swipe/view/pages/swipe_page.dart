@@ -28,7 +28,7 @@ class _SwipePageState extends State<SwipePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: customAppBar(context, title: 'Swipe Products'),
+        appBar: customAppBar(context, title: 'Gamifications'.tr),
         body: Obx(() {
           if (controller.isLoading.value) {
             return const Center(

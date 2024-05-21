@@ -15,7 +15,7 @@ class RewardsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<ProfileController>();
     return Scaffold(
-      appBar: customAppBar(context, title: "Rewards"),
+      appBar: customAppBar(context, title: "Rewards".tr),
       bottomNavigationBar: const BottomNavBarWidget(),
       body: SingleChildScrollView(
         child: Column(
@@ -25,7 +25,7 @@ class RewardsPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
-                'Good Morning ${controller.model.value!.name}',
+                '${'Good Morning'.tr} ${controller.model.value!.name}',
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
                       fontSize: 18,
                     ),

@@ -32,10 +32,7 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<SignInController>();
-
     return Scaffold(
-      //resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: false,
       appBar: AppBar(
         elevation: 0,

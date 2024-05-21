@@ -36,7 +36,7 @@ class ProfileRewardBox extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Rewards Progress',
+                        'Rewards Progress'.tr,
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall
@@ -81,7 +81,8 @@ class ProfileRewardBox extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.only(right: 30),
                                 child: Text(
-                                  'Unlock rewards with your first order! Start earning today.',
+                                  'Unlock rewards with your first order! Start earning today.'
+                                      .tr,
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -128,7 +129,7 @@ class ProfileRewardBox extends StatelessWidget {
                           children: [
                             Expanded(
                                 child: Text(
-                              'Your Orders And Points',
+                              'Your Orders And Points'.tr,
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall

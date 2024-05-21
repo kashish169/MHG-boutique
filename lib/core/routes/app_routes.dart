@@ -114,7 +114,7 @@ class AppRoutes {
       binding: SettingBinding(),
     ),
     GetPage(
-      name: '/personal_information',
+      name: PersonalInformation.routeName,
       page: () => PersonalInformation(),
       binding: PersonalInformationBinding(),
     ),

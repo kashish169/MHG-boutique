@@ -17,7 +17,7 @@ class ProfileFollowUsWidget extends StatelessWidget {
           height: 15,
         ),
         Text(
-          'Follow us on',
+          'Follow us on'.tr,
           style: Theme.of(context)
               .textTheme
               .displaySmall

@@ -16,7 +16,7 @@ class AboutUsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: const BottomNavBarWidget(),
-      appBar: customAppBar(context, title: 'About us'),
+      appBar: customAppBar(context, title: 'About us'.tr),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         child: Column(

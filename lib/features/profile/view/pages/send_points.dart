@@ -29,7 +29,7 @@ class SendPointsPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Text(
-                "Send Points",
+                "Send Points".tr,
                 style: Theme.of(context).textTheme.displayMedium,
               ),
             ),
@@ -38,7 +38,7 @@ class SendPointsPage extends StatelessWidget {
                 horizontal: 12,
               ),
               child: CustomFormField(
-                hint: 'Your phone number',
+                hint: 'Your phone number'.tr,
                 inputType: TextInputType.number,
                 validator: (val) =>
                     AppHelper.validatePhone(val!, controller.countryCode.value),
@@ -80,7 +80,7 @@ class SendPointsPage extends StatelessWidget {
                 horizontal: 12,
               ),
               child: CustomFormField(
-                hint: 'Your Points',
+                hint: 'Your Points'.tr,
                 inputType: const TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
@@ -95,7 +95,7 @@ class SendPointsPage extends StatelessWidget {
             const SizedBox(height: 10),
             PlaceOrderButton(
               color: AppColors.secondary,
-              title: 'Send',
+              title: 'Send'.tr,
               width: 250,
               hasIcon: false,
               onPress: () {

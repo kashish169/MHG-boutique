@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/core/languages/languages.dart';
 import 'package:mhg/features/home/view/widgets/home_reward_box.dart';
 import 'package:mhg/features/home/view/widgets/home_video_test_widget.dart';
 import 'package:mhg/features/home/view/widgets/product_card.dart';
@@ -125,7 +126,7 @@ class _ProductsPageState extends State<ProductsPage> {
                         child: Text(
                             controller.products.isEmpty
                                 ? ''
-                                : '${controller.products.first.brand?.enBrandName ?? ''}',
+                                : '${isAR() ? controller.products.first.brand?.frBrandName ?? '' : controller.products.first.brand?.enBrandName ?? ''}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displayMedium

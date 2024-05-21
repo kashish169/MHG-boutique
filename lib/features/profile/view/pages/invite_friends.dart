@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/profile/view/widgets/invitation_link_card.dart';
@@ -14,7 +15,7 @@ class InviteFriendPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white2,
-      appBar: customAppBar(context, title: "Invite your friends"),
+      appBar: customAppBar(context, title: "Invite your friends".tr),
       body: Column(
         children: [
           Container(
@@ -34,15 +35,15 @@ class InviteFriendPage extends StatelessWidget {
                               .displaySmall
                               ?.copyWith(fontSize: 15),
                           children: [
-                            const TextSpan(text: 'invite your \n'),
+                            TextSpan(text: 'invite your \n'.tr),
                             TextSpan(
-                              text: 'Friends',
+                              text: 'Friends'.tr,
                               style: Theme.of(context)
                                   .textTheme
                                   .displayMedium
                                   ?.copyWith(fontSize: 18),
                             ),
-                            const TextSpan(text: ' & Get Points'),
+                            TextSpan(text: ' & Get Points'.tr),
                           ]),
                     ),
                   ),

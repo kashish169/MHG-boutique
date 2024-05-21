@@ -33,7 +33,7 @@ class _MyOrdersPageState extends State<MyOrdersPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(context, title: 'My Orders'),
+      appBar: customAppBar(context, title: 'My Orders'.tr),
       bottomNavigationBar: const BottomNavBarWidget(),
       body: DefaultTabController(
           length: 3,
@@ -51,7 +51,7 @@ class _MyOrdersPageState extends State<MyOrdersPage>
                 tabs: [
                   Tab(
                     icon: TabBarCard(
-                      title: 'Orders',
+                      title: 'Orders'.tr,
                       color: selectedIndex == 0
                           ? AppColors.primary
                           : AppColors.lightGray,
@@ -59,7 +59,7 @@ class _MyOrdersPageState extends State<MyOrdersPage>
                   ),
                   Tab(
                     icon: TabBarCard(
-                      title: 'Returns',
+                      title: 'Returns'.tr,
                       color: selectedIndex == 1
                           ? AppColors.primary
                           : AppColors.lightGray,
@@ -67,7 +67,7 @@ class _MyOrdersPageState extends State<MyOrdersPage>
                   ),
                   Tab(
                     icon: TabBarCard(
-                      title: 'Cancelled',
+                      title: 'Cancelled'.tr,
                       color: selectedIndex == 2
                           ? AppColors.primary
                           : AppColors.lightGray,
@@ -94,15 +94,15 @@ class _MyOrdersPageState extends State<MyOrdersPage>
                     children: [
                       MyOrdersListWidget(
                         model: controller.orders,
-                        name: "Orders",
+                        name: "Orders".tr,
                       ),
                       MyOrdersListWidget(
                         model: controller.returns,
-                        name: 'Returns Orders',
+                        name: 'Returns Orders'.tr,
                       ),
                       MyOrdersListWidget(
                         model: controller.cancelled,
-                        name: 'Cancelled Orders',
+                        name: 'Cancelled Orders'.tr,
                       ),
                     ],
                   );

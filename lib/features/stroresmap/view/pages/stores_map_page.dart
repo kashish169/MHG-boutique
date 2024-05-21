@@ -13,7 +13,7 @@ class StoresMapPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(context, title: 'Find our stores'),
+      appBar: customAppBar(context, title: 'Find Our Stores'.tr),
       body: GetBuilder<StoresMapController>(
         builder: (storesMapController) => Stack(
           children: [

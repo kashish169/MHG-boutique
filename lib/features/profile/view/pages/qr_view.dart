@@ -19,7 +19,7 @@ class _QRPageState extends State<QRPage> {
   Widget build(BuildContext context) {
     final controller = Get.find<ProfileController>();
     return Scaffold(
-      appBar: customAppBar(context, title: "Scan Your QR"),
+      appBar: customAppBar(context, title: "Scan Your QR".tr),
       bottomNavigationBar: const BottomNavBarWidget(),
       body: Column(
         children: [
@@ -42,7 +42,7 @@ class _QRPageState extends State<QRPage> {
                       Expanded(
                         child: FittedBox(
                           child: Text(
-                            'Hello,${controller.model.value!.name}',
+                            '${'Hello'.tr},${controller.model.value!.name}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -57,7 +57,7 @@ class _QRPageState extends State<QRPage> {
                       Expanded(
                         child: FittedBox(
                           child: Text(
-                            'Your Total Points \n ${controller.model.value!.hearts} Pts ',
+                            '${'Your Total Points'.tr} \n ${controller.model.value!.hearts} Pts ',
                             textAlign: TextAlign.center,
                             style: Theme.of(context)
                                 .textTheme
@@ -93,7 +93,7 @@ class _QRPageState extends State<QRPage> {
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Text(
-                          'Scan To Earn',
+                          'Scan To Earn'.tr,
                           style: Theme.of(context)
                               .textTheme
                               .displayMedium
@@ -131,7 +131,7 @@ class _QRPageState extends State<QRPage> {
                   children: [
                     const SizedBox(height: 20),
                     Text(
-                      'Scan to collect Points',
+                      'Scan to collect Points'.tr,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                             fontSize: 18,
                           ),
@@ -146,7 +146,7 @@ class _QRPageState extends State<QRPage> {
                           ),
                           padding: const EdgeInsets.all(8),
                           child: Text(
-                            'Collect 50 Pts per 10 ${controller.currnecy.value}',
+                            '${'Collect 50 Pts per 10'.tr} ${controller.currnecy.value}',
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
                         )),

@@ -48,7 +48,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CategoryFilterButton(
-                text: 'SHOB BY BRAND',
+                text: "Shop By Brand",
                 onPressed: () {
                   setState(() {
                     indexChosen = 0;
@@ -58,7 +58,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
               ),
               const Padding(padding: EdgeInsets.only(right: 5)),
               CategoryFilterButton(
-                text: 'SHOB BY CATEGORY',
+                text: "Shop By Category",
                 onPressed: () {
                   setState(() {
                     indexChosen = 1;

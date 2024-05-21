@@ -6,7 +6,7 @@ showCountries(BuildContext context, void Function(Country) onSelect) {
     context: context,
 
     ///todo
-    countryFilter: <String>['AE', 'KW', 'OM', 'SA'],
+    countryFilter: <String>['AE', 'KW', 'OM', 'SA', 'EG'],
     countryListTheme: CountryListThemeData(
       flagSize: 25,
       backgroundColor: Colors.white,

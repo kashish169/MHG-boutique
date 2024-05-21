@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/core/languages/languages.dart';
 import 'package:mhg/features/home/view/widgets/home_video_test_widget.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/widgets/net_image.dart';
@@ -75,8 +76,13 @@ class HomeMiddleSectionWidget extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.all(20),
                             child: Text(
-                              controller.middleSectionMainTitle.value
-                                  .toUpperCase(),
+                              isAR()
+                                  ? controller.middleSectionList[index].arTitle
+                                          ?.toUpperCase() ??
+                                      ''
+                                  : controller.middleSectionList[index].enTitle
+                                          ?.toUpperCase() ??
+                                      '',
                               maxLines: 2,
                               textAlign: TextAlign.center,
                               style: Theme.of(context)

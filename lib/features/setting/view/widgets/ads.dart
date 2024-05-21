@@ -43,14 +43,14 @@ class AllowAds extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Personal Ads',
+                        'Personal Ads'.tr,
                         style: Theme.of(context).textTheme.displaySmall,
                       ),
                       const SizedBox(
                         height: 5,
                       ),
                       Text(
-                        'See the Ads you want and personalized \nto you',
+                        'See the Ads you want and personalized \nto you'.tr,
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall

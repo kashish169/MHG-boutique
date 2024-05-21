@@ -6,7 +6,7 @@ import '../../../mainwrapper/view/widgets/main_app_bar.dart';
 import '../../../profile/controller/profile_controller.dart';
 import '../../../rewards/pages/rewards_page.dart';
 
-class HomeRewardBox extends StatelessWidget {
+class HomeRewardBox extends StatefulWidget {
   const HomeRewardBox({
     super.key,
     this.greeding = Colors.black,
@@ -18,6 +18,11 @@ class HomeRewardBox extends StatelessWidget {
   final Color? backGroundColor;
 
   @override
+  State<HomeRewardBox> createState() => _HomeRewardBoxState();
+}
+
+class _HomeRewardBoxState extends State<HomeRewardBox> {
+  @override
   Widget build(BuildContext context) {
     final controller = Get.find<ProfileController>();
 
@@ -28,14 +33,14 @@ class HomeRewardBox extends StatelessWidget {
               sigmaY: controller.rewardBannerIsScrlling.value ? 10 : 0,
             ),
             child: Container(
-              color: backGroundColor ??
+              color: widget.backGroundColor ??
                   Colors.white.withOpacity(
                       controller.rewardBannerIsScrlling.value ? 1 : 0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   MainAppBar(
-                    color: topStatusColor,
+                    color: widget.topStatusColor,
                   ),
                   if (!controller.rewardBannerIsScrlling.value)
                     Divider(color: Colors.black.withOpacity(0.2), thickness: 1),
@@ -58,7 +63,7 @@ class HomeRewardBox extends StatelessWidget {
                                         .textTheme
                                         .displayMedium
                                         ?.copyWith(
-                                          color: greeding,
+                                          color: widget.greeding,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,
                                         ),
@@ -70,7 +75,7 @@ class HomeRewardBox extends StatelessWidget {
                                         .textTheme
                                         .displayMedium
                                         ?.copyWith(
-                                          color: greeding,
+                                          color: widget.greeding,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,
                                         ),
@@ -82,7 +87,7 @@ class HomeRewardBox extends StatelessWidget {
                                       .textTheme
                                       .displayMedium
                                       ?.copyWith(
-                                        color: greeding,
+                                        color: widget.greeding,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 14,
                                       ),
@@ -100,7 +105,7 @@ class HomeRewardBox extends StatelessWidget {
                                       .displaySmall
                                       ?.copyWith(
                                           fontSize: 14,
-                                          color: greeding,
+                                          color: widget.greeding,
                                           fontWeight: FontWeight.bold))
                             ],
                           ),

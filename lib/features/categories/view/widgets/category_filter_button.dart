@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../constants/app_colors.dart';
 
@@ -22,7 +23,7 @@ class CategoryFilterButton extends StatelessWidget {
         color: isChecked ? AppColors.green : AppColors.dGreen,
         padding: const EdgeInsets.only(top: 15, bottom: 15),
         child: Text(
-          text,
+          text.tr,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.displaySmall?.copyWith(
                 color: AppColors.white,

@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/core/languages/languages.dart';
 import 'package:mhg/features/categories/models/categories_model.dart';
 import 'package:mhg/features/categories/view/pages/sub_categories_page.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
@@ -30,7 +31,7 @@ class CategoryListTile extends StatelessWidget {
               arguments: {
                 "id": model.productId,
                 "fromArrival": false,
-                "name": model.enName
+                "name": isAR() ? model.frName : model.enName
               },
             );
           }
@@ -62,7 +63,9 @@ class CategoryListTile extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      model.enName.toUpperCase(),
+                      isAR()
+                          ? model.frName.toUpperCase()
+                          : model.enName.toUpperCase(),
                       style: Theme.of(context)
                           .textTheme
                           .displaySmall

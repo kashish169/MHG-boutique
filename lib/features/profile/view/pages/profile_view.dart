@@ -17,6 +17,7 @@ import 'package:mhg/widgets/retry_button.dart';
 import '../../../../core/helper/app_helper.dart';
 import '../../../../widgets/divider_widget.dart';
 import '../../../checkout/views/pages/payment_methods_page.dart';
+import '../../../personal_infromation/view/pages/personal_information.dart';
 import '../../../swipe/view/pages/swipe_page.dart';
 import '../widgets/profile_card.dart';
 import '../widgets/profile_follow_us_widget.dart';
@@ -57,18 +58,19 @@ class ProfileView extends StatelessWidget {
                     const DividerWidget(),
                     ProfileCard(
                       onTap: () async {
-                        await Get.toNamed('/personal_information', arguments: {
-                          "profile": controller.model.value,
-                        });
+                        await Get.toNamed(PersonalInformation.routeName,
+                            arguments: {
+                              "profile": controller.model.value,
+                            });
                         controller.getProfileInfo();
                       },
                       icon: AppAssets.person1,
-                      title: 'Personal information',
+                      title: 'Personal information'.tr,
                     ),
                     const DividerWidget(),
                     ProfileCard(
                       icon: AppAssets.order,
-                      title: 'My Orders',
+                      title: 'My Orders'.tr,
                       onTap: () async {
                         await Get.toNamed(MyOrdersPage.routeName);
                         controller.getProfileInfo();
@@ -77,7 +79,7 @@ class ProfileView extends StatelessWidget {
                     const DividerWidget(),
                     ProfileCard(
                       icon: AppAssets.setting,
-                      title: 'Settings',
+                      title: 'Settings'.tr,
                       onTap: () async {
                         await Get.toNamed(SettingPage.routeName);
                       },
@@ -85,7 +87,7 @@ class ProfileView extends StatelessWidget {
                     const DividerWidget(),
                     ProfileCard(
                       icon: AppAssets.reward,
-                      title: 'Rewards',
+                      title: 'Rewards'.tr,
                       onTap: () async {
                         await Get.toNamed(RewardsPage.routeName);
                         controller.getProfileInfo();
@@ -94,7 +96,7 @@ class ProfileView extends StatelessWidget {
                     const DividerWidget(),
                     ProfileCard(
                       icon: AppAssets.sendPoints,
-                      title: 'Send Points',
+                      title: 'Send Points'.tr,
                       onTap: () async {
                         await Get.dialog(const SendPointsPage());
                         controller.phoneNumberController.clear();
@@ -104,7 +106,7 @@ class ProfileView extends StatelessWidget {
                     const DividerWidget(),
                     ProfileCard(
                         icon: AppAssets.scan,
-                        title: 'Scan QR to collect Rewards',
+                        title: 'Scan QR to collect Rewards'.tr,
                         onTap: () async {
                           await Get.to(
                             () => const QRPage(),
@@ -114,7 +116,7 @@ class ProfileView extends StatelessWidget {
                     const DividerWidget(),
                     ProfileCard(
                       icon: AppAssets.payment,
-                      title: 'Payment information',
+                      title: 'Payment information'.tr,
                       onTap: () {
                         Get.to(
                           () => const PaymentMethodsPage(
@@ -127,7 +129,7 @@ class ProfileView extends StatelessWidget {
                     ProfileCard(
                       icon: AppAssets.invite,
                       height: 32,
-                      title: 'Invite your friends',
+                      title: 'Invite your friends'.tr,
                       onTap: () {
                         Get.toNamed(InviteFriendPage.routeName);
                         //  controller.launchMyUrl(controller.model.value!.invitationLink);
@@ -136,7 +138,7 @@ class ProfileView extends StatelessWidget {
                     const DividerWidget(),
                     ProfileCard(
                       icon: AppAssets.about,
-                      title: 'About MHGboutique',
+                      title: 'About MHGboutique'.tr,
                       onTap: () {
                         Get.toNamed(AboutUsPage.routeName);
                       },
@@ -144,7 +146,7 @@ class ProfileView extends StatelessWidget {
                     const DividerWidget(),
                     ProfileCard(
                       icon: AppAssets.feedback,
-                      title: 'Send a feedback',
+                      title: 'Send a feedback'.tr,
                       onTap: () {
                         showDialog(
                             context: context,
@@ -156,14 +158,14 @@ class ProfileView extends StatelessWidget {
                     const DividerWidget(),
                     ProfileCard(
                       icon: AppAssets.store,
-                      title: 'Find Our Stores',
+                      title: 'Find Our Stores'.tr,
                       onTap: () {
                         Get.toNamed('/map');
                       },
                     ),
                     ProfileCard(
                       icon: AppAssets.scan,
-                      title: 'Gamifications',
+                      title: 'Gamifications'.tr,
                       onTap: () {
                         Get.toNamed(SwipePage.routeName);
                       },
@@ -175,7 +177,7 @@ class ProfileView extends StatelessWidget {
                     const DividerWidget(),
                     ProfileCard(
                       icon: AppAssets.logout,
-                      title: 'Log out',
+                      title: 'Log out'.tr,
                       onTap: () {
                         controller.logOut();
                       },
@@ -205,7 +207,7 @@ class ProfileView extends StatelessWidget {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                Text('Email',
+                                Text('Email'.tr,
                                     style: Theme.of(context)
                                         .textTheme
                                         .displaySmall)
@@ -234,7 +236,7 @@ class ProfileView extends StatelessWidget {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                Text('Call us',
+                                Text('Call us'.tr,
                                     style: Theme.of(context)
                                         .textTheme
                                         .displaySmall)

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
-import 'package:mhg/features/my_wish_list/view/pages/my_wish_list.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/view/pages/profile_view.dart';
 import '../../../../widgets/retry_button.dart';
@@ -72,15 +71,17 @@ class _MainWrapperState extends State<MainWrapper> {
         );
       }
       return Scaffold(
-        key: scaffoldKey,
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(0),
-            child: AppBar(
-              backgroundColor: Colors.black,
-            )),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: const BottomNavBarWidget(),
-        body: Obx(() => Stack(
+          key: scaffoldKey,
+          appBar: PreferredSize(
+              preferredSize: const Size.fromHeight(0),
+              child: AppBar(
+                backgroundColor: Colors.black,
+              )),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          bottomNavigationBar: const BottomNavBarWidget(),
+          body: GetX<ProfileController>(
+            builder: (controller) => Stack(
               children: [
                 Padding(
                   padding: EdgeInsets.only(
@@ -92,8 +93,8 @@ class _MainWrapperState extends State<MainWrapper> {
                 ),
                 const HomeRewardBox(),
               ],
-            )),
-      );
+            ),
+          ));
     });
   }
 }

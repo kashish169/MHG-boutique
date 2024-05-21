@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
@@ -28,7 +27,7 @@ class FeedBackDialog extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "Message",
+                  "Message".tr,
                   style: Theme.of(context)
                       .textTheme
                       .displayMedium
@@ -37,7 +36,7 @@ class FeedBackDialog extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: CustomFormField(
-                    hint: 'Message',
+                    hint: 'Message'.tr,
                     multiLine: true,
                     controller: controller.feedback,
                     inputType: TextInputType.text,

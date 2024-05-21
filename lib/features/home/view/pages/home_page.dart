@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
@@ -26,16 +25,22 @@ class _HomePageState extends State<HomePage>
 
   @override
   void initState() {
-    log('CURRENT ROUTE : ${Get.currentRoute}');
     scrollController.addListener(() {
-      if (scrollController.position.atEdge) {
-        bool isTop = scrollController.position.pixels == 0;
-        if (isTop) {
-          profileController.changeRewardBannerIsScrlling(false);
-        }
-      } else {
+      if (scrollController.position.userScrollDirection ==
+          ScrollDirection.forward) {
+        profileController.changeRewardBannerIsScrlling(false);
+      } else if (scrollController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
         profileController.changeRewardBannerIsScrlling(true);
       }
+      // if (scrollController.position.atEdge) {
+      //   bool isTop = scrollController.position.pixels == 0;
+      //   if (isTop) {
+      //     profileController.changeRewardBannerIsScrlling(false);
+      //   }
+      // } else {
+      //   profileController.changeRewardBannerIsScrlling(true);
+      // }
     });
     super.initState();
   }

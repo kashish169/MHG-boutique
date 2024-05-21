@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/app_fonts.dart';
+import '../../../../core/languages/languages.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
 import '../../../categories/controller/categories_controller.dart';
@@ -104,7 +105,11 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
                           color: Colors.black.withOpacity(0),
                           child: Center(
                             child: Text(
-                                controller.categoriesModel.menus[index].enName,
+                                isAR()
+                                    ? controller
+                                        .categoriesModel.menus[index].frName
+                                    : controller
+                                        .categoriesModel.menus[index].enName,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: AppColors.white,

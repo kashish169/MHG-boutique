@@ -31,7 +31,7 @@ class _OnBoardViewState extends State<OnBoardView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.dGreen,
+        backgroundColor: AppColors.splash,
         body: GetBuilder<OnboardController>(
           builder: (controller) =>
               //  Stack(
@@ -58,6 +58,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                       Image.asset(
                         AppAssets.logo,
                         width: 250,
+                        color: Colors.black,
                       )
                     ],
                   ),

@@ -1,8 +1,4 @@
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/internacionalization.dart';
 import 'ar.dart';
 import 'en.dart';
 

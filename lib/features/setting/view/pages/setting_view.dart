@@ -6,8 +6,6 @@ import 'package:mhg/features/setting/view/pages/privacy_policy.dart';
 import 'package:mhg/features/setting/view/pages/terms_and_conditions_page.dart';
 import 'package:mhg/features/setting/view/widgets/ads.dart';
 import 'package:mhg/features/setting/view/widgets/allow_notification.dart';
-import 'package:mhg/features/setting/view/widgets/country_widget.dart';
-import 'package:mhg/features/setting/view/widgets/language_widget.dart';
 import 'package:mhg/widgets/custom_app_bar.dart';
 import '../../../../widgets/divider_widget.dart';
 import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
@@ -19,7 +17,7 @@ class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(context, title: "Settings"),
+      appBar: customAppBar(context, title: "Settings".tr),
       bottomNavigationBar: const BottomNavBarWidget(),
       body: Column(
         children: [
@@ -43,14 +41,14 @@ class SettingPage extends StatelessWidget {
           const DividerWidget(),
           ProfileCard(
               icon: AppAssets.info,
-              title: 'Privacy Policy',
+              title: 'Privacy Policy'.tr,
               onTap: () {
                 Get.toNamed(PrivacyPolicyPage.routeName);
               }),
           const DividerWidget(),
           ProfileCard(
               icon: AppAssets.terms,
-              title: 'Terms & Conditions',
+              title: 'Terms & Conditions'.tr,
               onTap: () {
                 Get.toNamed(TermsAndConidtionsPage.routeName);
               }),

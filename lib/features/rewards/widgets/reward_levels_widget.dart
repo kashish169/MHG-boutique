@@ -16,7 +16,7 @@ class RewardLevelsWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
-              'Levels',
+              'Levels'.tr,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 16,
                   ),
