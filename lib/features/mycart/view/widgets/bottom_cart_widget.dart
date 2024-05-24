@@ -35,7 +35,7 @@ class BottomCartWidget extends StatelessWidget {
             children: [
               FittedBox(
                 child: Text(
-                  'Orders above ${App.currency} 500 are eligible for free shipping',
+                  '${'Orders above'.tr} ${App.currency} ${'500 are eligible for free shipping'.tr}',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontSize: 8,
                         color: AppColors.label,
@@ -69,7 +69,7 @@ class BottomCartWidget extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'Subtotal',
+                                  'subtotal'.tr,
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall
@@ -114,7 +114,7 @@ class BottomCartWidget extends StatelessWidget {
                                 checkoutController.orderPriceModal.value.data
                                             ?.shippingCharge ==
                                         0
-                                    ? 'Free'
+                                    ? 'Free'.tr
                                     : '${profileController.currnecy.value} ${checkoutController.orderPriceModal.value.data?.shippingCharge}',
                                 style: Theme.of(context)
                                     .textTheme
@@ -143,7 +143,7 @@ class BottomCartWidget extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    'Cash on delivery fees',
+                                    'Cash on delivery fees'.tr,
                                     style: Theme.of(context)
                                         .textTheme
                                         .displaySmall
@@ -178,7 +178,7 @@ class BottomCartWidget extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    'Discount',
+                                    'Discount'.tr,
                                     style: Theme.of(context)
                                         .textTheme
                                         .displaySmall
@@ -214,7 +214,7 @@ class BottomCartWidget extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     // 'Tax VAT 5% (Included)',
-                                    "5% VAT Included",
+                                    "5% VAT Included".tr,
                                     style: Theme.of(context)
                                         .textTheme
                                         .displaySmall
@@ -244,7 +244,7 @@ class BottomCartWidget extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'Total',
+                                  'total'.tr,
                                   style: Theme.of(context)
                                       .textTheme
                                       .displayMedium
@@ -291,7 +291,7 @@ class BottomCartWidget extends StatelessWidget {
                                 ),
                                 FittedBox(
                                   child: Text(
-                                    'Earn ${checkoutController.orderPriceModal.value.data?.hearts?.hearts} Points',
+                                    '${'Earn'.tr} ${checkoutController.orderPriceModal.value.data?.hearts?.hearts} ${'Points'.tr}',
                                     style: Theme.of(context)
                                         .textTheme
                                         .displaySmall

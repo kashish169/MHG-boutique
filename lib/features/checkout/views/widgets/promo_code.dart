@@ -38,7 +38,7 @@ class PromoCode extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Add Voucher Code',
+                        'Add Voucher Code'.tr,
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
                                   fontSize: 13,
@@ -46,7 +46,7 @@ class PromoCode extends StatelessWidget {
                                 ),
                       ),
                       Text(
-                        'If apply no points will added',
+                        'If apply no points will added'.tr,
                         style: Theme.of(context)
                             .textTheme
                             .displayMedium
@@ -76,7 +76,7 @@ class PromoCode extends StatelessWidget {
                         child: CustomFormField(
                           obscure: false,
                           readOnly: checkoutController.isLoadingPromo.value,
-                          hint: 'Enter Code Here',
+                          hint: 'Enter Code Here'.tr,
                           controller: checkoutController.codeController,
                           oneSideBorder: true,
                           isPromo: true,
@@ -87,7 +87,7 @@ class PromoCode extends StatelessWidget {
                   const SizedBox(width: 20),
                   PlaceOrderButton(
                       color: AppColors.secondary,
-                      title: 'Apply',
+                      title: 'Apply'.tr,
                       width: MediaQuery.of(context).size.width * 0.3,
                       hasIcon: false,
                       isLoading: checkoutController.isLoadingPromo.value,

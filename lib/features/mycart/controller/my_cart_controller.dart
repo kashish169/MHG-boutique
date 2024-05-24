@@ -47,7 +47,7 @@ class MyCartController extends GetxController {
           if (statusCode == 200) {
             var json = r.object["data"]["cart_items"];
             log('CART CART CART CART: ${r.object["data"]["cart_items"]}');
-            log('CART CART CART CART: ${r.object["data"]["cart_items"]}');
+
             cartItemsList.value =
                 List<CartModel>.from(json.map((x) => CartModel.fromJson(x)));
             checkIfThereGiveAway();

@@ -28,10 +28,10 @@ class _HomePageState extends State<HomePage>
     scrollController.addListener(() {
       if (scrollController.position.userScrollDirection ==
           ScrollDirection.forward) {
-        profileController.changeRewardBannerIsScrlling(false);
+        profileController.hideRewardBanner(false);
       } else if (scrollController.position.userScrollDirection ==
           ScrollDirection.reverse) {
-        profileController.changeRewardBannerIsScrlling(true);
+        profileController.hideRewardBanner(true);
       }
       // if (scrollController.position.atEdge) {
       //   bool isTop = scrollController.position.pixels == 0;

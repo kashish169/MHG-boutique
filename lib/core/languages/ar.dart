@@ -11,6 +11,7 @@ Map<String, String> ar_AE = {
   "OCCASIONS": "المناسبات",
   'About us': 'عننا',
   'Message': 'الرسالة',
+  'DISCOVER MORE': 'إكتشف أكثر',
 
   //auth
   'Full Name': 'الاسم الكامل',
@@ -164,5 +165,35 @@ Map<String, String> ar_AE = {
   'or Share via other media': 'أو المشاركة عبر وسائل الإعلام الأخرى',
 
   //swipe
-  'Swipe Product': 'Swipe Product'
+  'Swipe Product': 'Swipe Product',
+
+  //languages
+  'Languages': 'اللغات',
+  'Change language': 'تغيير اللغة',
+
+  //product detail
+  'box ofs':
+      'المنتج غير متوفر حالياً في المخزون. يمكنك النقر على المربع أدناه لكي نرسل لك إشعارات عندما يتوفر المنتج.',
+  'notify': 'أعلمني عندما يتوفر هذا المنتج',
+  'Frequently Bought Together': 'غالباً ما يتم شراؤها معاً',
+
+  //checkout
+  'Earn': 'تحصل علي',
+  'Points': 'نقاط',
+  'Brand': 'ماركة',
+  'Add Voucher Code': 'إضافة رمز الخصم',
+  'If apply no points will added': 'في حالة التقديم لن تتم إضافة أي نقاط',
+  'Enter Code Here': 'ادخل الرمز هنا',
+  'Apply': 'تقديم',
+
+  'subtotal': 'المجموع الفرعي',
+  'Discount': 'خصم',
+  'Free': 'مجانا',
+  '5% VAT Included': 'شامل ضريبة القيمة المضافة 5%',
+  'Orders above': 'الطلبات فوق',
+  '500 are eligible for free shipping': '500 مؤهلة للشحن المجاني',
+  'Cash on delivery fees': 'رسوم الدفع نقدا عند التسليم',
+  'Tax VAT 5% (Included)': 'ضريبة القيمة المضافة 5% (متضمنة)',
+  'total': 'المبلغ الاجمالي',
+  'Secure Checkout': 'الطلب الامن'
 };

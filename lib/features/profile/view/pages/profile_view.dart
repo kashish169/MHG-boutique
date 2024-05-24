@@ -4,6 +4,7 @@ import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/about_us/view/pages/about_us_page.dart';
+import 'package:mhg/features/languages/view/pages/languages_page.dart';
 import 'package:mhg/features/myorders/view/pages/my_orders_page.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import 'package:mhg/features/profile/view/pages/invite_friends.dart';
@@ -163,11 +164,20 @@ class ProfileView extends StatelessWidget {
                         Get.toNamed('/map');
                       },
                     ),
+                    const DividerWidget(),
                     ProfileCard(
                       icon: AppAssets.scan,
                       title: 'Gamifications'.tr,
                       onTap: () {
                         Get.toNamed(SwipePage.routeName);
+                      },
+                    ),
+                    const DividerWidget(),
+                    ProfileCard(
+                      icon: AppAssets.scan,
+                      title: 'Languages'.tr,
+                      onTap: () {
+                        Get.toNamed(LanguagePage.routeName);
                       },
                     ),
                     // const DividerWidget(),

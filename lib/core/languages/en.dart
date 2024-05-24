@@ -12,6 +12,7 @@ Map<String, String> en_US = {
   "OCCASIONS": "OCCASIONS",
   'About us': 'About us',
   'Message': 'Message',
+  'DISCOVER MORE': 'DISCOVER MORE',
 
   //auth
   'Full Name': 'Full Name',
@@ -137,5 +138,35 @@ Map<String, String> en_US = {
   'or Share via other media': 'or Share via other media',
 
   //swipe
-  'Swipe Product': 'Swipe Product'
+  'Swipe Product': 'Swipe Product',
+
+  //languages
+  'Languages': 'Languages',
+  'Change language': 'Change language',
+
+  //product detail
+  'box ofs':
+      'This product is currently not available in stock. You can click on the check box below so that we will send you notifications when the product is available.',
+  'notify': 'Notify me when this product is available',
+  'Frequently Bought Together': 'Frequently Bought Together',
+
+  //checkout
+  'Earn': 'Earn',
+  'Points': 'Points',
+  'Brand': 'Brand',
+  'Add Voucher Code': 'Add Voucher Code',
+  'If apply no points will added': 'If apply no points will added',
+  'Enter Code Here': 'Enter Code Here',
+  'Apply': 'Apply',
+
+  'subtotal': 'Subtotal',
+  'Discount': 'Discount',
+  'Free': 'Free',
+  '5% VAT Included': '5% VAT Included',
+  'Orders above': 'Orders above',
+  '500 are eligible for free shipping': '500 are eligible for free shipping',
+  'Cash on delivery fees': 'Cash on delivery fees',
+  'Tax VAT 5% (Included)': 'Tax VAT 5% (Included)',
+  'total': 'Total',
+  'Secure Checkout': 'Secure Checkout',
 };

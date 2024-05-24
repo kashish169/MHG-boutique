@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/core/languages/languages.dart';
 import 'package:mhg/widgets/net_image.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../profile/controller/profile_controller.dart';
@@ -50,7 +51,9 @@ class MyCartCard extends StatelessWidget {
                       children: [
                         const SizedBox(height: 32),
                         Text(
-                          model.name,
+                          isAR()
+                              ? model.options.arName ?? ''
+                              : model.options.enName ?? '',
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall
@@ -63,7 +66,7 @@ class MyCartCard extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              'Brand:',
+                              '${'Brand'.tr}:',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall

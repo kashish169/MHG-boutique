@@ -36,6 +36,7 @@ class ProfileController extends GetxController {
   }
   RxBool isLoading = false.obs;
   RxBool rewardBannerIsScrlling = false.obs;
+  RxBool isHideRewardBanner = false.obs;
   RxBool isError = false.obs;
   RxBool firstCall = true.obs;
   RxBool loadingUpdateCard = false.obs;
@@ -46,6 +47,10 @@ class ProfileController extends GetxController {
 
   changeRewardBannerIsScrlling(bool isScroll) {
     rewardBannerIsScrlling.value = isScroll;
+  }
+
+  hideRewardBanner(bool isHide) {
+    isHideRewardBanner.value = isHide;
   }
 
   Future<void> getProfileInfo() async {

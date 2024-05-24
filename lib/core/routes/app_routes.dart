@@ -53,6 +53,8 @@ import '../../features/about_us/binding/about_us_bindings.dart';
 import '../../features/auth/otp/view/pages/otp.dart';
 import '../../features/categories/view/pages/categories_page.dart';
 import '../../features/categories/view/pages/sub_categories_page.dart';
+import '../../features/languages/binding/languages_bindings.dart';
+import '../../features/languages/view/pages/languages_page.dart';
 import '../../features/my_wish_list/view/pages/my_wish_list.dart';
 import '../../features/personal_infromation/binding/peronal_informatiom_binding.dart';
 import '../../features/search/binding/search_binding.dart';
@@ -141,6 +143,11 @@ class AppRoutes {
       name: '/product_details',
       page: () => const ProductDetailsPage(),
       binding: ProductDetailsBinding(),
+    ),
+    GetPage(
+      name: LanguagePage.routeName,
+      page: () => const LanguagePage(),
+      binding: LanguagesBindings(),
     ),
     GetPage(
       name: '/my_wish_list',

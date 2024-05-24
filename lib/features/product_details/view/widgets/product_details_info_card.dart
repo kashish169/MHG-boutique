@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
+import 'package:mhg/core/languages/languages.dart';
 import 'package:mhg/widgets/divider_widget.dart';
 
 import '../../controller/product_details_controller.dart';
@@ -39,7 +40,9 @@ class ProductDetailsInfoCard extends StatelessWidget {
           const DividerWidget(),
           const SizedBox(height: 10),
           Html(
-            data: controller.model.enDescription,
+            data: isAR()
+                ? controller.model.frDescription
+                : controller.model.enDescription,
             style: {
               "body": Style(
                   color: Colors.black,

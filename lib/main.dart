@@ -43,7 +43,7 @@ class MHG extends StatelessWidget {
       theme: AppTheme.themeData,
       getPages: AppRoutes.getRoutes,
       translations: Language(),
-      locale: const Locale('en', 'US'),
+      locale: Get.locale,
       initialRoute: SplashView.routeName,
     );
   }

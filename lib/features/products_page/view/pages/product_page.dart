@@ -98,7 +98,7 @@ class _ProductsPageState extends State<ProductsPage> {
                         padding: const EdgeInsets.only(top: 40),
                         child: CategoryFilterButton(
                           isChecked: false,
-                          text: 'DISCOVER MORE',
+                          text: 'DISCOVER MORE'.tr,
                           onPressed: () {},
                         )),
                 ],

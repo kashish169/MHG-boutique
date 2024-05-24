@@ -74,7 +74,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                               .textTheme
                               .displayMedium
                               ?.copyWith(
-                                  color: AppColors.white.withOpacity(0.7),
+                                  color: AppColors.black3,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500),
                         ),
@@ -88,7 +88,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                               .textTheme
                               .displayMedium
                               ?.copyWith(
-                                  color: AppColors.white.withOpacity(0.7),
+                                  color: AppColors.black3,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500),
                         ),
@@ -102,7 +102,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                               .textTheme
                               .displayMedium
                               ?.copyWith(
-                                  color: AppColors.white.withOpacity(0.7),
+                                  color: AppColors.black3,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500),
                         ),
@@ -113,7 +113,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: Divider(
                     thickness: 2,
-                    color: AppColors.white.withOpacity(.5),
+                    color: AppColors.black3,
                   ),
                 ),
                 controller.isLoading
@@ -132,7 +132,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                                   .textTheme
                                   .displaySmall
                                   ?.copyWith(
-                                    color: AppColors.white,
+                                    color: AppColors.black3,
                                   ),
                             ))
                         : GestureDetector(
@@ -153,8 +153,8 @@ class _OnBoardViewState extends State<OnBoardView> {
                                               margin:
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 13),
-                                              height: 37,
-                                              width: 37,
+                                              height: 30,
+                                              width: 30,
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(25),
@@ -173,8 +173,8 @@ class _OnBoardViewState extends State<OnBoardView> {
                                                 .textTheme
                                                 .displaySmall!
                                                 .copyWith(
-                                                    color: AppColors.white
-                                                        .withOpacity(0.7)),
+                                                  color: AppColors.black3,
+                                                ),
                                             textAlign: TextAlign.center,
                                           ),
                                         ),
@@ -189,7 +189,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                                         ///todo
                                         Icon(
                                           Icons.keyboard_arrow_up_outlined,
-                                          color: AppColors.white,
+                                          color: AppColors.black3,
                                         ),
                                         const SizedBox(
                                           width: 20,

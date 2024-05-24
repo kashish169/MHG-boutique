@@ -51,6 +51,8 @@ class CartModel {
 class Options {
   int variantId;
   int variantQuantity;
+  String? enName;
+  String? arName;
   dynamic brandName;
   dynamic size;
   dynamic color;
@@ -69,7 +71,9 @@ class Options {
     required this.variantQuantity,
     this.minGwpCartAmount,
     this.isGwp,
+    this.enName,
     this.brandName,
+    this.arName,
     this.size,
     this.color,
     this.image,
@@ -89,6 +93,8 @@ class Options {
           : double.parse(json["min_gwp_cart_amount"]),
       variantId: json["variant_id"],
       brandName: json["brand_name"],
+      enName: json['en_name'] as String?,
+      arName: json['ar_name'] as String?,
       size: json["size"],
       color: json["color"],
       image: json["image"],

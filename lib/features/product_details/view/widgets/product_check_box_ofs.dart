@@ -30,7 +30,7 @@ class _ProductCheckBoxOfsState extends State<ProductCheckBoxOfs> {
       children: [
         const Padding(padding: EdgeInsets.only(top: 10)),
         Text(
-          'This product is currently not available in stock. You can click on the check box below so that we will send you notifications when the product is available.',
+          'box ofs'.tr,
           style: Theme.of(context).textTheme.displaySmall?.copyWith(
               fontSize: 12,
               color: AppColors.mediumLabel,
@@ -93,7 +93,7 @@ class _ProductCheckBoxOfsState extends State<ProductCheckBoxOfs> {
               ),
               const Padding(padding: EdgeInsets.only(right: 9)),
               Text(
-                'Notify me when this product is available',
+                'notify'.tr,
                 style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 11,
                     color: AppColors.mediumLabel,
