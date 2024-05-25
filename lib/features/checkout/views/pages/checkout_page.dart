@@ -22,7 +22,7 @@ class CheckoutPage extends StatelessWidget {
     final profileController = Get.find<ProfileController>();
     return Scaffold(
       bottomNavigationBar: const BottomNavBarWidget(),
-      appBar: customAppBar(context, title: 'Secure Checkout'),
+      appBar: customAppBar(context, title: 'Secure Checkout'.tr),
       body: GetX<CheckoutController>(initState: (state) async {
         await state.controller?.getUserPaymentMethods();
         if (state.controller!.paymentMethodsList.isEmpty) {

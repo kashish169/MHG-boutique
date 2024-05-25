@@ -18,7 +18,7 @@ class MyOrderTrack extends StatelessWidget {
           const SizedBox(width: 10),
           Expanded(
             child: Text(
-              model.deliveryStatusText!,
+              model.deliveryStatusText ?? '',
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     height: 1.4,
                     color: AppColors.dBlack,

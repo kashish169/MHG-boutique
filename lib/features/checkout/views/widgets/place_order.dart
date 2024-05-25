@@ -38,7 +38,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
           const SizedBox(height: 15),
           FittedBox(
             child: Text(
-              'Orders above ${App.currency} 500 are eligible for free shipping',
+              '${'Orders above'.tr} ${App.currency} ${'500 are eligible for free shipping'.tr}',
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 8,
                     color: AppColors.label,
@@ -287,7 +287,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                               ),
                               FittedBox(
                                 child: Text(
-                                  'Earn ${checkoutController.orderPriceModal.value.data?.hearts?.hearts} Points',
+                                  '${'Earn'.tr} ${checkoutController.orderPriceModal.value.data?.hearts?.hearts} ${'Points'.tr}',
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall

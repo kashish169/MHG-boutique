@@ -16,7 +16,7 @@ class RewardsController extends GetxController {
       TiersModel(
         id: 1,
         name: 'Mojab',
-        description: 'Earn 2.5% loyalty points on your purchase amount',
+        description: 'Earn 2.5% loyalty points on your purchase amount'.tr,
         image: AppAssets.mojab,
         isLocked: (currentTier == 'Mojab' ||
                 currentTier == 'Moghram' ||
@@ -29,7 +29,7 @@ class RewardsController extends GetxController {
       TiersModel(
         id: 2,
         name: 'Moghram',
-        description: 'Earn 5% loyalty points on your purchase amount',
+        description: 'Earn 5% loyalty points on your purchase amount'.tr,
         image: AppAssets.moghram,
         isLocked:
             (currentTier == 'Moghram' || currentTier == 'Molah') ? false : true,
@@ -39,7 +39,7 @@ class RewardsController extends GetxController {
       TiersModel(
         id: 3,
         name: 'Molah',
-        description: 'Earn 10% loyalty points on your purchase amount',
+        description: 'Earn 10% loyalty points on your purchase amount'.tr,
         image: AppAssets.molah,
         isLocked: currentTier == 'Molah' ? false : true,
         color: currentTier == 'Molah' ? AppColors.molah : AppColors.moghram,
