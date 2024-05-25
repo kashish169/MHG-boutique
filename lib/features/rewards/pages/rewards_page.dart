@@ -25,7 +25,7 @@ class RewardsPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
-                '${'Good Morning'.tr} ${controller.model.value!.name}',
+                '${controller.greeting()} ${controller.model.value!.name}',
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
                       fontSize: 18,
                     ),

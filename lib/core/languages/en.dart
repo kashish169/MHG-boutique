@@ -87,6 +87,14 @@ Map<String, String> en_US = {
   'Call us': 'Call us',
   'Follow us on': 'Follow us on',
   'Current Level': 'Current Level',
+  'Share via MHGboutique': 'Share via MHGboutique',
+
+  'Earn 2.5% loyalty points on your purchase amount':
+      'Earn 2.5% loyalty points on your purchase amount',
+  'Earn 5% loyalty points on your purchase amount':
+      'Earn 5% loyalty points on your purchase amount',
+  'Earn 10% loyalty points on your purchase amount':
+      'Earn 10% loyalty points on your purchase amount',
 
   //my orders
   'Orders': 'Orders',
@@ -169,4 +177,13 @@ Map<String, String> en_US = {
   'Tax VAT 5% (Included)': 'Tax VAT 5% (Included)',
   'total': 'Total',
   'Secure Checkout': 'Secure Checkout',
+
+  'Shipping Address': 'Shipping Address',
+  'Add your Emirate': 'Add your Emirate',
+  'Add your phone number': 'Add your phone number',
+
+  'Payment Method': 'Payment Method',
+  'Items': 'Items',
+  'Add Payment Method': 'Add Payment Method',
+  'Payment Methods': 'Payment Methods'
 };

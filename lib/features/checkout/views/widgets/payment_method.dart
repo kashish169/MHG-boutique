@@ -31,7 +31,7 @@ class PaymentMethod extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              'Payment Method',
+              'Payment Method'.tr,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontSize: 15,
                     color: AppColors.label,
@@ -148,7 +148,7 @@ class PaymentMethod extends StatelessWidget {
                         child: checkoutController
                                 .userPaymentMethodsCardsList.isEmpty
                             ? Text(
-                                'Add Payment Method',
+                                'Add Payment Method'.tr,
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall

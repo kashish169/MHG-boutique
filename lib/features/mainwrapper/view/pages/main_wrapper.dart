@@ -52,6 +52,7 @@ class _MainWrapperState extends State<MainWrapper> {
     return GetX<ProfileController>(builder: (controller) {
       if (mainController.navBarIndex.value != 0) {
         controller.changeRewardBannerIsScrlling(false);
+        controller.hideRewardBanner(false);
       }
       if (controller.isLoading.isTrue) {
         return Container(

@@ -40,7 +40,7 @@ class ShippingAddress extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 4.0),
                       child: Text(
-                        'Shipping Address',
+                        'Shipping Address'.tr,
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
                                   fontSize: 15,
@@ -60,7 +60,7 @@ class ShippingAddress extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 3),
                       child: Text(
                         controller.model.value!.street!.isEmpty
-                            ? 'Add your address'
+                            ? 'Add your address'.tr
                             : controller.model.value!.street!,
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
@@ -71,7 +71,7 @@ class ShippingAddress extends StatelessWidget {
                     ),
                     Text(
                       controller.model.value!.state!.isEmpty
-                          ? 'Add your Emirate'
+                          ? 'Add your Emirate'.tr
                           : controller.model.value!.state!,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                             fontSize: 14,
@@ -102,7 +102,7 @@ class ShippingAddress extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 3),
                       child: Text(
                         controller.model.value!.number ??
-                            'Add your phone number',
+                            'Add your phone number'.tr,
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
                                   fontSize: 14,

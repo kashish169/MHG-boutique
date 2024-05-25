@@ -83,7 +83,7 @@ class _AddPaymentMethodWebViewPageState
     return Scaffold(
       appBar: customAppBar(context,
           fontSize: widget.titleFontSize,
-          title: widget.title ?? 'Add Payment Method',
+          title: widget.title ?? 'Add Payment Method'.tr,
           actions: widget.actions),
       body: SafeArea(
         child: Stack(

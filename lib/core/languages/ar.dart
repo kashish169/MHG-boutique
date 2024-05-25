@@ -75,7 +75,7 @@ Map<String, String> ar_AE = {
   'Phone number': 'رقم الهاتف',
   "By continuing sign up you agree to the":
       'باستكمالك تسجيل الدخول انت توافق على',
-  "Terms & conditions": 'المعايير و الشروط',
+  "Terms & conditions": 'الشروط و الاحكام',
   "Already have an account?": 'لديك حساب مسبقا',
   'Sign in': 'سجل دخولك',
   "Verify Phone Number": 'تأكيد رقم الهاتف',
@@ -93,7 +93,7 @@ Map<String, String> ar_AE = {
   'Select your gender': 'اختر جنسك',
 
   //greedings
-  'Good Morning': 'صباج الخير',
+  'Good Morning': 'صباح الخير',
   'Good Afternoon': 'مساء الخير',
   'Good Evening': 'مساء الخير',
 
@@ -114,6 +114,14 @@ Map<String, String> ar_AE = {
   'Call us': 'اتصل بنا',
   'Follow us on': 'تابعنا علي',
   'Current Level': 'مستواك الحالي',
+  'Share via MHGboutique': 'شارك عبر MHGboutique',
+
+  'Earn 2.5% loyalty points on your purchase amount':
+      'احصل على 2.5% من نقاط الولاء على قيمة مشترياتك',
+  'Earn 5% loyalty points on your purchase amount':
+      'احصل على 5% من نقاط الولاء على قيمة مشترياتك',
+  'Earn 10% loyalty points on your purchase amount':
+      'احصل على 10% من نقاط الولاء على قيمة مشترياتك',
 
   //my orders
   'Orders': 'الطلبات',
@@ -195,5 +203,14 @@ Map<String, String> ar_AE = {
   'Cash on delivery fees': 'رسوم الدفع نقدا عند التسليم',
   'Tax VAT 5% (Included)': 'ضريبة القيمة المضافة 5% (متضمنة)',
   'total': 'المبلغ الاجمالي',
-  'Secure Checkout': 'الطلب الامن'
+  'Secure Checkout': 'الطلب الامن',
+
+  'Shipping Address': 'عنوان الشحن',
+  'Add your Emirate': 'أضف الإمارة',
+  'Add your phone number': 'أضف رقم هاتفك',
+
+  'Payment Method': 'طريقة الدفع او السداد',
+  'Items': 'المنتجات',
+  'Add Payment Method': 'إضافة طريقة دفع',
+  'Payment Methods': 'طرق الدفع'
 };

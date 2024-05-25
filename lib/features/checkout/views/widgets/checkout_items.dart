@@ -21,7 +21,7 @@ class CheckoutItems extends StatelessWidget {
             bottom: 10,
           ),
           child: Text(
-            'Items',
+            'Items'.tr,
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   fontSize: 16,
                   color: AppColors.label,
@@ -39,7 +39,7 @@ class CheckoutItems extends StatelessWidget {
             return controller.cartItemsList.isEmpty
                 ? Center(
                     child: Text(
-                      'Bag is empty!',
+                      'Bag is empty!'.tr,
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
                   )

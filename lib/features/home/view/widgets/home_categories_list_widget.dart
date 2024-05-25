@@ -38,7 +38,7 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
         child: Container(
           padding: const EdgeInsets.only(top: 5, left: 5),
           child: SizedBox(
-            height: 120,
+            height: 100,
             child: ListView.builder(
               itemCount: controller.categoriesModel.menus.length,
               scrollDirection: Axis.horizontal,
@@ -81,7 +81,7 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
                       children: [
                         SizedBox(
                           width: 100,
-                          height: 120,
+                          height: 100,
                           child: controller
                                       .categoriesModel.menus[index].imageLink !=
                                   null

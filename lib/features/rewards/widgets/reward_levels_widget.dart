@@ -6,6 +6,7 @@ import 'level_card.dart';
 class RewardLevelsWidget extends StatelessWidget {
   RewardLevelsWidget({super.key});
   final RewardsController rewardsController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
