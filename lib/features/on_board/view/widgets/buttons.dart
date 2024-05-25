@@ -26,7 +26,7 @@ class OnBoardButtons extends StatelessWidget {
                   title: 'Login'.tr,
                   height: 50,
                   radius: 0,
-                  color: AppColors.dGreen,
+                  color: AppColors.splash,
                   onTap: controller.isLoading || controller.isError
                       ? () {}
                       : () {
@@ -50,7 +50,7 @@ class OnBoardButtons extends StatelessWidget {
               title: 'Guest'.tr,
               height: 50,
               radius: 0,
-              color: AppColors.dGreen,
+              color: AppColors.splash,
               onTap: controller.isLoading || controller.isError
                   ? () {}
                   : () {

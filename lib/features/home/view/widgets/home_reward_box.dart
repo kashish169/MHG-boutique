@@ -6,7 +6,7 @@ import '../../../mainwrapper/view/widgets/main_app_bar.dart';
 import '../../../profile/controller/profile_controller.dart';
 import '../../../rewards/pages/rewards_page.dart';
 
-class HomeRewardBox extends StatelessWidget {
+class HomeRewardBox extends StatefulWidget {
   const HomeRewardBox({
     super.key,
     this.greeding = Colors.black,
@@ -18,94 +18,103 @@ class HomeRewardBox extends StatelessWidget {
   final Color? backGroundColor;
 
   @override
+  State<HomeRewardBox> createState() => _HomeRewardBoxState();
+}
+
+class _HomeRewardBoxState extends State<HomeRewardBox> {
+  @override
   Widget build(BuildContext context) {
     final controller = Get.find<ProfileController>();
 
-    return Obx(() => ClipRect(
-          child: BackdropFilter(
-            filter: ui.ImageFilter.blur(
-              sigmaX: controller.rewardBannerIsScrlling.value ? 10 : 0,
-              sigmaY: controller.rewardBannerIsScrlling.value ? 10 : 0,
-            ),
-            child: Container(
-              color: backGroundColor ??
-                  Colors.white.withOpacity(
-                      controller.rewardBannerIsScrlling.value ? 1 : 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  MainAppBar(
-                    color: topStatusColor,
-                  ),
-                  if (!controller.rewardBannerIsScrlling.value)
-                    Divider(color: Colors.black.withOpacity(0.2), thickness: 1),
-                  if (!controller.rewardBannerIsScrlling.value)
-                    InkWell(
-                        onTap: () async {
-                          Get.toNamed(RewardsPage.routeName);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 25, right: 25, bottom: 8, top: 8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              GetX<ProfileController>(builder: (controller) {
-                                if (controller.isLoading.isTrue) {
+    return Obx(() => Opacity(
+          opacity: controller.isHideRewardBanner.value ? 0 : 1,
+          child: ClipRect(
+            child: BackdropFilter(
+              filter: ui.ImageFilter.blur(
+                sigmaX: controller.rewardBannerIsScrlling.value ? 10 : 0,
+                sigmaY: controller.rewardBannerIsScrlling.value ? 10 : 0,
+              ),
+              child: Container(
+                color: widget.backGroundColor ??
+                    Colors.white.withOpacity(
+                        controller.rewardBannerIsScrlling.value ? 1 : 0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    MainAppBar(
+                      color: widget.topStatusColor,
+                    ),
+                    if (!controller.rewardBannerIsScrlling.value)
+                      Divider(
+                          color: Colors.black.withOpacity(0.2), thickness: 1),
+                    if (!controller.rewardBannerIsScrlling.value)
+                      InkWell(
+                          onTap: () async {
+                            Get.toNamed(RewardsPage.routeName);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 25, right: 25, bottom: 8, top: 8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GetX<ProfileController>(builder: (controller) {
+                                  if (controller.isLoading.isTrue) {
+                                    return Text(
+                                      '${controller.greeting()},....',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displayMedium
+                                          ?.copyWith(
+                                            color: widget.greeding,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                          ),
+                                    );
+                                  } else if (controller.isError.isTrue) {
+                                    Text(
+                                      "${controller.greeting()}, ....",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displayMedium
+                                          ?.copyWith(
+                                            color: widget.greeding,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                          ),
+                                    );
+                                  }
                                   return Text(
-                                    '${controller.greeting()},....',
+                                    "${controller.greeting()}, ${controller.model.value?.name ?? ""}",
                                     style: Theme.of(context)
                                         .textTheme
                                         .displayMedium
                                         ?.copyWith(
-                                          color: greeding,
+                                          color: widget.greeding,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,
                                         ),
                                   );
-                                } else if (controller.isError.isTrue) {
-                                  Text(
-                                    "${controller.greeting()}, ....",
+                                }),
+                                Text(
+                                    controller.model.value?.nextTierPts !=
+                                                "0.00" ||
+                                            controller.model.value?.nextTier ==
+                                                null
+                                        ? '${controller.model.value?.hearts ?? 0} Pts'
+                                        : 'Unlock rewards with your first order! Start earning today.',
                                     style: Theme.of(context)
                                         .textTheme
-                                        .displayMedium
+                                        .displaySmall
                                         ?.copyWith(
-                                          color: greeding,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
-                                        ),
-                                  );
-                                }
-                                return Text(
-                                  "${controller.greeting()}, ${controller.model.value?.name ?? ""}",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displayMedium
-                                      ?.copyWith(
-                                        color: greeding,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14,
-                                      ),
-                                );
-                              }),
-                              Text(
-                                  controller.model.value?.nextTierPts !=
-                                              "0.00" ||
-                                          controller.model.value?.nextTier ==
-                                              null
-                                      ? '${controller.model.value?.hearts ?? 0} Pts'
-                                      : 'Unlock rewards with your first order! Start earning today.',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall
-                                      ?.copyWith(
-                                          fontSize: 14,
-                                          color: greeding,
-                                          fontWeight: FontWeight.bold))
-                            ],
-                          ),
-                        ))
-                ],
+                                            fontSize: 14,
+                                            color: widget.greeding,
+                                            fontWeight: FontWeight.bold))
+                              ],
+                            ),
+                          ))
+                  ],
+                ),
               ),
             ),
           ),

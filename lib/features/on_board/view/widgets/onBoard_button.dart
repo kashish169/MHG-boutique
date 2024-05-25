@@ -42,9 +42,9 @@ class OnBoardButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
         side: BorderSide(
             color: isSelcted == null
-                ? AppColors.white.withOpacity(0.7)
+                ? AppColors.black3
                 : isSelcted == false
-                    ? AppColors.white.withOpacity(0.7)
+                    ? AppColors.black3
                     : AppColors.label),
         borderRadius: BorderRadius.circular(radius ?? 13),
       ),
@@ -56,11 +56,10 @@ class OnBoardButton extends StatelessWidget {
           : Text(
               title,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontSize: fontSize,
-                    color: reverseColor == true
-                        ? AppColors.primary
-                        : AppColors.white.withOpacity(0.7),
-                  ),
+                  fontSize: fontSize,
+                  color: reverseColor == true
+                      ? AppColors.primary
+                      : AppColors.black3),
               textAlign: TextAlign.center,
             ),
     );

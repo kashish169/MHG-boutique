@@ -35,14 +35,14 @@ class ScanQrCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Scan Your QR',
+                        'Scan Your QR'.tr,
                         style:
                             Theme.of(context).textTheme.displayMedium?.copyWith(
                                   color: AppColors.white,
                                 ),
                       ),
                       Text(
-                        'To Get Points & Rewards',
+                        'To Get Points & Rewards'.tr,
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
                                   color: AppColors.white,

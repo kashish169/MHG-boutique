@@ -1,15 +1,10 @@
-import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:mhg/constants/app_fonts.dart';
+import 'package:mhg/core/languages/languages.dart';
 import 'package:mhg/features/home/view/widgets/home_reward_box.dart';
 import 'package:mhg/features/home/view/widgets/home_video_test_widget.dart';
 import 'package:mhg/features/home/view/widgets/product_card.dart';
 import 'package:mhg/features/products_page/controller/product_controller.dart';
-import 'package:mhg/features/products_page/view/widgets/products_items_list_view.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import '../../../../constants/app_colors.dart';
@@ -103,7 +98,7 @@ class _ProductsPageState extends State<ProductsPage> {
                         padding: const EdgeInsets.only(top: 40),
                         child: CategoryFilterButton(
                           isChecked: false,
-                          text: 'DISCOVER MORE',
+                          text: 'DISCOVER MORE'.tr,
                           onPressed: () {},
                         )),
                 ],
@@ -131,7 +126,7 @@ class _ProductsPageState extends State<ProductsPage> {
                         child: Text(
                             controller.products.isEmpty
                                 ? ''
-                                : '${controller.products.first.brand?.enBrandName ?? ''}',
+                                : '${isAR() ? controller.products.first.brand?.frBrandName ?? '' : controller.products.first.brand?.enBrandName ?? ''}',
                             style: Theme.of(context)
                                 .textTheme
                                 .displayMedium

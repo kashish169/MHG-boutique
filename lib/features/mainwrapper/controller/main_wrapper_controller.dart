@@ -26,6 +26,10 @@ class MainWrapperController extends GetxController {
   String? globalGuestCountryFlag;
   int? globalGuestCountryId;
 
+  void changeNavi(int index) {
+    navBarIndex.value = index;
+  }
+
   Future<void> launchUrl(String url) async {
     try {
       // ignore: deprecated_member_use

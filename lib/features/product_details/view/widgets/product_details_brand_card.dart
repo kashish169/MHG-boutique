@@ -44,7 +44,9 @@ class ProductDetailsBrandCard extends StatelessWidget {
               ),
               const SizedBox(width: 4),
               Text(
-                controller.model.brand.enBrandName,
+                isAR()
+                    ? controller.model.brand.frBrandName
+                    : controller.model.brand.enBrandName,
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     fontSize: 12,
                     color: AppColors.mediumLabel,

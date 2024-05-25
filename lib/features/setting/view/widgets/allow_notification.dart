@@ -42,14 +42,14 @@ class AllowNotification extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Allow Notifications',
+                        'Allow Notifications'.tr,
                         style: Theme.of(context).textTheme.displaySmall,
                       ),
                       const SizedBox(
                         height: 5,
                       ),
                       Text(
-                        'Stay up to date on latest offers and more',
+                        'Stay up to date on latest offers and more'.tr,
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall

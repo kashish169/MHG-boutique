@@ -69,7 +69,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         children: [
                           Expanded(
                             child: Text(
-                              'Subtotal',
+                              'subtotal'.tr,
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall
@@ -115,7 +115,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             checkoutController.orderPriceModal.value.data
                                         ?.shippingCharge ==
                                     0
-                                ? 'Free'
+                                ? 'Free'.tr
                                 : '${profileController.currnecy.value} ${checkoutController.orderPriceModal.value.data?.shippingCharge}',
                             style: Theme.of(context)
                                 .textTheme
@@ -143,7 +143,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           children: [
                             Expanded(
                               child: Text(
-                                'Cash on delivery fees',
+                                'Cash on delivery fees'.tr,
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall
@@ -178,7 +178,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           children: [
                             Expanded(
                               child: Text(
-                                'Discount',
+                                'Discount'.tr,
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall
@@ -213,7 +213,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           children: [
                             Expanded(
                               child: Text(
-                                'Tax VAT 5% (Included)',
+                                'Tax VAT 5% (Included)'.tr,
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall
@@ -242,7 +242,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         children: [
                           Expanded(
                             child: Text(
-                              'Total',
+                              'total'.tr,
                               style: Theme.of(context)
                                   .textTheme
                                   .displayMedium

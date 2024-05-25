@@ -1,10 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
-import 'package:mhg/widgets/loading_widget.dart';
 
 class InvitationLinkCard extends StatelessWidget {
   const InvitationLinkCard({Key? key}) : super(key: key);
@@ -26,7 +24,7 @@ class InvitationLinkCard extends StatelessWidget {
                       const BorderRadius.vertical(top: Radius.circular(10))),
               child: Center(
                 child: Text(
-                  "Your Friends Will See",
+                  "Your Friends Will See".tr,
                   style: Theme.of(context)
                       .textTheme
                       .displaySmall

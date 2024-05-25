@@ -62,7 +62,9 @@ class CheckoutRepoImplement implements CheckoutRepository {
   }
 
   @override
-  Future<Either<Failure, ApiResponse>> createOrder(Object body) async {
+  Future<Either<Failure, ApiResponse>> createOrder(
+    Object body,
+  ) async {
     return httpService.post(
       url: Api.createOrder,
       isAuthorized: true,

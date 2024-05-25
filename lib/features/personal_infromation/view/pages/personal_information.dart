@@ -25,7 +25,7 @@ class PersonalInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(context, title: "Personal Information"),
+      appBar: customAppBar(context, title: 'Personal information'.tr),
       bottomNavigationBar: const BottomNavBarWidget(),
       body: GetBuilder<PersonalInformationController>(
           builder: (controller) => controller.isLoading
@@ -47,7 +47,7 @@ class PersonalInformation extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     InformationForm(
-                                      header: 'Full Name',
+                                      header: 'Full Name'.tr,
                                       hint: controller.profileInfo.name,
 
                                       validator: (val) {
@@ -62,7 +62,7 @@ class PersonalInformation extends StatelessWidget {
                                       //     controller.enableEditOnName,
                                     ),
                                     InformationForm(
-                                      header: 'Email',
+                                      header: 'Email'.tr,
                                       isInInputEmail: true,
                                       hint: controller.profileInfo.email,
                                       validator: (val) {
@@ -76,8 +76,8 @@ class PersonalInformation extends StatelessWidget {
                                       // isEnableToEdit: true,
                                     ),
                                     InformationForm(
-                                      header: 'Phone number',
-                                      hint: "Add your Number",
+                                      header: 'Phone Number'.tr,
+                                      hint: "Add your Number".tr,
                                       // onTap: () {
                                       //   controller.enableNumber();
                                       // },
@@ -91,8 +91,8 @@ class PersonalInformation extends StatelessWidget {
                                     ),
                                     InformationForm(
                                       textController: controller.address,
-                                      header: 'Address',
-                                      hint: 'Add your address',
+                                      header: 'Address'.tr,
+                                      hint: 'Add your address'.tr,
                                       // onTap: () {
                                       //   controller.enableAddress();
                                       // },
@@ -179,7 +179,7 @@ class PersonalInformation extends StatelessWidget {
                             height: 20,
                           ),
                           PersonalInfoButton(
-                              text: "Save",
+                              text: "Save".tr,
                               onTap: () {
                                 if (controller.formKey.currentState!
                                     .validate()) {
@@ -189,7 +189,7 @@ class PersonalInformation extends StatelessWidget {
                               },
                               isDelete: false),
                           PersonalInfoButton(
-                              text: "Delete Account",
+                              text: "Delete Account".tr,
                               onTap: () {
                                 deleteAccountDialog(
                                   context: context,

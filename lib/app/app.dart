@@ -4,7 +4,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
+
 import 'package:get_storage/get_storage.dart';
+import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
 import 'package:mhg/core/services/notification_service.dart';
 
@@ -17,7 +21,6 @@ class App {
   static String countryName = 'United Arab Emirates';
   static String countryCode = '+971';
   static String flagLink = '';
-
   static String lang = '';
   static String sid = '';
 
@@ -34,11 +37,13 @@ class App {
     countryCode = await StoragePref.getString("countryCode");
     lang = await StoragePref.getString("lang");
     if (lang.isEmpty) {
-      lang = "en_US";
+      lang = "en";
     }
     if (currency.isEmpty) {
       currency = "AED";
     }
+
+    await AppHelper.updateLanguage(Locale(lang, lang == 'ar' ? 'AE' : 'US'));
     NotificationService.init();
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.dark,

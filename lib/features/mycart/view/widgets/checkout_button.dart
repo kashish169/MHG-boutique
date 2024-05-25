@@ -26,7 +26,7 @@ class CheckOutButton extends StatelessWidget {
             color: AppColors.secondary,
             height: 44,
             width: 300,
-            title: 'Secure Checkout',
+            title: 'Secure Checkout'.tr,
             onTap: () {
               AppHelper.closeKeyboard();
               //this comment will change later to show cities in guest mode for shipping message

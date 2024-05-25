@@ -10,11 +10,24 @@ Map<String, String> en_US = {
   "EXPERIENCE LUXURY WITH OUR": "EXPERIENCE LUXURY WITH OUR",
   "EXQUISITE PERFUMES FOR ALL": "EXQUISITE PERFUMES FOR ALL",
   "OCCASIONS": "OCCASIONS",
+  'About us': 'About us',
+  'Message': 'Message',
+  'DISCOVER MORE': 'DISCOVER MORE',
+
+  //auth
+  'Full Name': 'Full Name',
+  "Email": 'Email',
+  'Phone Number': 'Phone Number',
+  "Address": 'Address',
+  "Add your address": 'Add your address',
+  'Save': 'Save',
+  'Delete Account': 'Delete Account',
 
   //home
   'Explore Our Brands': 'Explore Our Brands',
   'New Arrivals': 'New Arrivals',
-  "Shop By Category": "Shop By Category",
+  "Shop By Category": "SHOP BY CATEGORY",
+  "Shop By Brand": "SHOP BY BRAND",
   "What's New": "What's New",
   'Top Sellers': 'Top Sellers',
   'Add to Bag': 'Add to Bag',
@@ -51,4 +64,109 @@ Map<String, String> en_US = {
   'Gender': 'Gender',
   'Date of Birth': 'Date of Birth',
   'Select your gender': 'Select your gender',
+
+  //greedings
+  'Good Morning': 'Good Morning',
+  'Good Afternoon': 'Good Afternoon',
+  'Good Evening': 'Good Evening',
+
+  //profile
+  'Personal information': 'Personal information',
+  'My Orders': 'My Orders',
+  'Settings': 'Settings',
+  'Rewards': 'Rewards',
+  'Send Points': 'Send Points',
+  'Scan QR to collect Rewards': 'Scan QR to collect Rewards',
+  'Payment information': 'Payment information',
+  'Invite your friends': 'Invite your friends',
+  'About MHGboutique': 'About MHGboutique',
+  'Send a feedback': 'Send a feedback',
+  'Find Our Stores': 'Find Our Stores',
+  'Gamifications': 'Gamifications',
+  'Log out': 'Log out',
+  'Call us': 'Call us',
+  'Follow us on': 'Follow us on',
+  'Current Level': 'Current Level',
+
+  //my orders
+  'Orders': 'Orders',
+  'Returns': 'Returns',
+  'Cancelled': 'Cancelled',
+  'Returns Orders': 'Returns Orders',
+  'Cancelled Orders': 'Cancelled Orders',
+  'will appear here': 'will appear here',
+
+  //settings
+  'Privacy Policy': 'Privacy Policy',
+  'Terms & Conditions': 'Terms & Conditions',
+  'Allow Notifications': 'Allow Notifications',
+  'Stay up to date on latest offers and more':
+      'Stay up to date on latest offers and more',
+  'Personal Ads': 'Personal Ads',
+  'See the Ads you want and personalized \nto you':
+      'See the Ads you want and personalized \nto you',
+
+  //rewards
+  'Rewards Progress': 'Rewards Progress',
+  'Unlock rewards with your first order! Start earning today.':
+      'Unlock rewards with your first order! Start earning today.',
+  'Your Orders And Points': 'Your Orders And Points',
+  'Scan Your QR': 'Scan Your QR',
+  'To Get Points & Rewards': 'To Get Points & Rewards',
+  'Levels': 'Levels',
+
+  //send points
+  'Your phone number': 'Your phone number',
+  'Your Points': 'Your Points',
+
+  //scan qr
+  'Hello': 'Hello',
+  'Your Total Points': 'Your Total Points',
+  'Scan To Earn': 'Scan To Earn',
+  'Scan to collect Points': 'Scan to collect Points',
+  'Collect 50 Pts per 10': 'Collect 50 Pts per 10',
+
+  //payment methodes
+  'Add Card': 'Add Card',
+
+  //invite friends
+  'invite your \n': 'invite your \n',
+  'Friends': 'Friends',
+  ' & Get Points': ' & Get Points',
+  'Your Friends Will See': 'Your Friends Will See',
+  'Share via GHboutique': 'Share via GHboutique',
+  'or Share via other media': 'or Share via other media',
+
+  //swipe
+  'Swipe Product': 'Swipe Product',
+
+  //languages
+  'Languages': 'Languages',
+  'Change language': 'Change language',
+
+  //product detail
+  'box ofs':
+      'This product is currently not available in stock. You can click on the check box below so that we will send you notifications when the product is available.',
+  'notify': 'Notify me when this product is available',
+  'Frequently Bought Together': 'Frequently Bought Together',
+
+  //checkout
+  'Earn': 'Earn',
+  'Points': 'Points',
+  'Brand': 'Brand',
+  'Add Voucher Code': 'Add Voucher Code',
+  'If apply no points will added': 'If apply no points will added',
+  'Enter Code Here': 'Enter Code Here',
+  'Apply': 'Apply',
+
+  'subtotal': 'Subtotal',
+  'Discount': 'Discount',
+  'Free': 'Free',
+  '5% VAT Included': '5% VAT Included',
+  'Orders above': 'Orders above',
+  '500 are eligible for free shipping': '500 are eligible for free shipping',
+  'Cash on delivery fees': 'Cash on delivery fees',
+  'Tax VAT 5% (Included)': 'Tax VAT 5% (Included)',
+  'total': 'Total',
+  'Secure Checkout': 'Secure Checkout',
 };

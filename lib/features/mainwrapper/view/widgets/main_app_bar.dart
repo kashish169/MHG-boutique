@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -7,10 +9,18 @@ import '../../../../app/app.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../auth/signin/view/pages/sign_in_page.dart';
 import '../../controller/main_wrapper_controller.dart';
+import '../pages/main_wrapper.dart';
 
-class MainAppBar extends StatelessWidget {
+class MainAppBar extends StatefulWidget {
   const MainAppBar({super.key, required this.color});
   final Color color;
+
+  @override
+  State<MainAppBar> createState() => _MainAppBarState();
+}
+
+class _MainAppBarState extends State<MainAppBar> {
+  final controller = Get.find<MainWrapperController>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,31 +36,46 @@ class MainAppBar extends StatelessWidget {
             icon: Image.asset(
               AppAssets.search,
               height: 28,
-              color: color,
+              color: widget.color,
             ),
           ),
           Row(
             children: [
               IconButton(
                 onPressed: () async {
-                  await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MyWishList(),
-                      ));
+                  if (Get.currentRoute != MyWishList.roue) {
+                    Get.toNamed(MyWishList.roue);
+                  }
                 },
                 icon: Image.asset(
                   AppAssets.heart,
                   height: 28,
-                  color: color,
+                  color: widget.color,
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                  // log('message: ${controller.navBarIndex}');
+                  if (Get.currentRoute == MainWrapper.routeName) {}
+                  if (App.token.isEmpty) {
+                    await Get.toNamed(SignInPage.routeName, arguments: {
+                      'country': App.countryName,
+                      'is_guest': true,
+                      'country_code': controller.globalGuestCountryCode,
+                      'flag': controller.globalGuestCountryFlag,
+                      'id': controller.globalGuestCountryId,
+                    });
+                  } else {
+                    controller.changeNavi(4);
+                    while (Get.currentRoute != MainWrapper.routeName) {
+                      Get.back();
+                    }
+                  }
+                },
                 icon: Image.asset(
                   AppAssets.menu,
                   height: 28,
-                  color: color,
+                  color: widget.color,
                 ),
               )
             ],

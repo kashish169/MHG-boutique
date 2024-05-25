@@ -34,6 +34,7 @@ class AppColors {
   static Color green = const Color(0xFF6E8674);
   static Color dGreen = const Color(0xFF1B291E);
   static Color white = Colors.white;
+  static Color splash = const Color(0xFF688372);
   static List<BoxShadow> shadow(double opacity) => [
         BoxShadow(
           color: AppColors.primary.withOpacity(opacity),

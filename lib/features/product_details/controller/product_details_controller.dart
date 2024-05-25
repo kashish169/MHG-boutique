@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/core/helper/app_helper.dart';
+import 'package:mhg/core/languages/languages.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/models/product_model.dart';
@@ -80,7 +81,8 @@ class ProductDetailsController extends GetxController {
               }
             }
             log(model.variants[0].id.toString());
-            productName.value = model.enProductName;
+            productName.value =
+                isAR() ? model.frProductName : model.enProductName;
             if (model.image2 != null) {
               productImages.add(
                 model.image2Link,

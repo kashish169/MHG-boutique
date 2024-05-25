@@ -39,10 +39,8 @@ class _BrandsPageState extends State<BrandsPage> {
                       },
                     );
                   },
-                  child: Container(
-                    margin:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 15),
-                    height: 120,
+                  child: SizedBox(
+                    height: 160,
                     width: double.infinity,
                     child: Image(
                         fit: BoxFit.cover,

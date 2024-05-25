@@ -30,7 +30,7 @@ class ShareCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Share via GHboutique",
+                    "Share via GHboutique".tr,
                     style: Theme.of(context)
                         .textTheme
                         .displaySmall
@@ -56,7 +56,7 @@ class ShareCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'or Share via other media',
+                    'or Share via other media'.tr,
                     style: Theme.of(context)
                         .textTheme
                         .displaySmall

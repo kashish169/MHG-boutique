@@ -366,8 +366,14 @@ class CheckoutController extends GetxController {
         query += "&cod=0";
       }
       log('QUERY: $query');
+      Map<String, String> oldheaders = Map.from(Api.authorizedheaders);
+      Map<String, String> newheaders = Map.from(oldheaders);
+      newheaders['lang'] = Get.locale!.languageCode;
+      Api.authorizedheaders = newheaders;
+      log('LOOOOOOOOOOOOG: ${Api.authorizedheaders}');
       Either<Failure, ApiResponse> results =
           await checkoutRepository.orderPrice(query);
+      Api.authorizedheaders = oldheaders;
       isLoadingRedeem(false);
       isLoadingPromo(false);
       results.fold(
@@ -480,9 +486,13 @@ class CheckoutController extends GetxController {
         const LoadingWidget(),
         barrierDismissible: false,
       );
-
+      Map<String, String> oldheaders = Map.from(Api.authorizedheaders);
+      Map<String, String> newheaders = Map.from(oldheaders);
+      newheaders['lane'] = Get.locale!.languageCode;
+      Api.authorizedheaders = newheaders;
       Either<Failure, ApiResponse> results =
           await checkoutRepository.createOrder(objectData);
+      Api.authorizedheaders = oldheaders;
       Get.back();
       results.fold(
         (l) {

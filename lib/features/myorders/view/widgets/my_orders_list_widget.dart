@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mhg/features/myorders/models/order_model.dart';
 import '../../../../constants/app_colors.dart';
 import 'my_order_card.dart';
@@ -14,7 +15,7 @@ class MyOrdersListWidget extends StatelessWidget {
     return model.isEmpty
         ? Center(
             child: Text(
-              '$name will appear here',
+              '$name ${'will appear here'.tr}',
               style: Theme.of(context).textTheme.displaySmall,
             ),
           )

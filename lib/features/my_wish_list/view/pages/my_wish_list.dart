@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
@@ -8,10 +7,12 @@ import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import '../../../home/view/widgets/home_reward_box.dart';
 import '../../../home/view/widgets/home_top_sellers_widget.dart';
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 import '../widget/my_wish_list_body.dart';
 
 class MyWishList extends StatefulWidget {
-  MyWishList({super.key});
+  const MyWishList({super.key});
+  static const roue = '/my_wish_list';
 
   @override
   State<MyWishList> createState() => _MyWishListState();
@@ -23,6 +24,7 @@ class _MyWishListState extends State<MyWishList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        bottomNavigationBar: const BottomNavBarWidget(),
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(0),
             child: AppBar(

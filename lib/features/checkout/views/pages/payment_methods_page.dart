@@ -37,7 +37,7 @@ class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
       bottomNavigationBar: const BottomNavBarWidget(),
       appBar: customAppBar(
         context,
-        title: 'Payment Methods',
+        title: 'Payment Methods'.tr,
       ),
       body: Obx(
         () => (checkoutController.isLoading.value == false)
@@ -80,7 +80,7 @@ class _PaymentMethodsPageState extends State<PaymentMethodsPage> {
                               child: Center(
                                 child: PlaceOrderButton(
                                     color: AppColors.secondary,
-                                    title: 'Add Card',
+                                    title: 'Add Card'.tr,
                                     width: 300,
                                     hasIcon: false,
                                     onPress: () {

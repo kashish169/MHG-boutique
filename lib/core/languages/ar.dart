@@ -9,11 +9,24 @@ Map<String, String> ar_AE = {
   "EXPERIENCE LUXURY WITH OUR": "اختبر الرفاهية مع",
   "EXQUISITE PERFUMES FOR ALL": "عطور رائعة لجميع",
   "OCCASIONS": "المناسبات",
+  'About us': 'عننا',
+  'Message': 'الرسالة',
+  'DISCOVER MORE': 'إكتشف أكثر',
+
+  //auth
+  'Full Name': 'الاسم الكامل',
+  "Email": 'الايميل',
+  'Phone Number': 'رقم الهاتف',
+  "Address": 'العنوان',
+  "Add your address": 'اضف عنوانك',
+  'Save': 'حفظ',
+  'Delete Account': 'ازالة الحساب',
 
   //home
   'Explore Our Brands': 'اكتشف علاماتنا التجارية',
   'New Arrivals': 'القادمون الجدد ',
-  "Shop By Category": "تسوق حسب الاقسام",
+  "Shop By Category": "تسوق حسب الفئة",
+  "Shop By Brand": "تسوق حسب العلامة التجارية",
   "What's New": "ما هو الجديد",
   'Top Sellers': 'أفضل البائعين',
   'Add to Bag': 'أضف الى الحقيبة',
@@ -77,5 +90,110 @@ Map<String, String> ar_AE = {
   'Enter your date of birth': 'ادخل تاريخ ميلادك',
   'Gender': 'الجنس',
   'Date of Birth': 'تاريخ الميلاد',
-  'Select your gender': 'اختر جنسك'
+  'Select your gender': 'اختر جنسك',
+
+  //greedings
+  'Good Morning': 'صباج الخير',
+  'Good Afternoon': 'مساء الخير',
+  'Good Evening': 'مساء الخير',
+
+  //profile
+  'Personal information': 'معلومات شخصية',
+  'My Orders': 'طلباتي',
+  'Settings': 'إعدادات',
+  'Rewards': 'المكافآت',
+  'Send Points': 'إرسال النقاط',
+  'Scan QR to collect Rewards': 'مسح QR لجمع المكافآت',
+  'Payment information': 'معلومات الدفع',
+  'Invite your friends': 'دعوة اصدقائك',
+  'About MHGboutique': 'عن MHGboutique',
+  'Send a feedback': 'إرسال ردود الفعل',
+  'Find Our Stores': 'ابحث عن متاجرنا',
+  'Gamifications': 'الألعاب',
+  'Log out': 'تسجيل الخروج',
+  'Call us': 'اتصل بنا',
+  'Follow us on': 'تابعنا علي',
+  'Current Level': 'مستواك الحالي',
+
+  //my orders
+  'Orders': 'الطلبات',
+  'Returns': 'عائدات',
+  'Cancelled': 'ألغيت',
+  'Returns Orders': 'الطلبات العائدة',
+  'Cancelled Orders': 'الطلبات الملغية',
+  'will appear here': 'ستظهر هنا',
+
+  //settings
+  'Privacy Policy': 'سياسة الخصوصية',
+  'Terms & Conditions': 'البنود و الظروف',
+  'Allow Notifications': 'السماح بالاشعارات',
+  'Stay up to date on latest offers and more':
+      'ابق على اطلاع بأحدث العروض والمزيد',
+  'Personal Ads': 'الإعلانات الشخصية',
+  'See the Ads you want and personalized \nto you':
+      'شاهد الإعلانات التي تريدها وخصصها \nلك',
+
+  //rewards
+  'Rewards Progress': 'مقدار تقدم  مكافآت',
+  'Unlock rewards with your first order! Start earning today.':
+      'احصل على المكافآت مع طلبك الأول! ابدأ بالكسب اليوم.',
+  'Your Orders And Points': 'طلباتك ونقاطك',
+  'Scan Your QR': 'مسح QR الخاص بك',
+  'To Get Points & Rewards': 'للحصول على النقاط والمكافآت',
+  'Levels': 'المستويات',
+
+  //send points
+  'Your phone number': 'هاتفك الخاص',
+  'Your Points': 'نقاطك',
+
+  //scan qr
+  'Hello': 'اهلا',
+  'Your Total Points': 'اجمالي نقاطك',
+  'Scan To Earn': 'امسح لتكسب',
+  'Scan to collect Points': 'المسح لجمع النقاط',
+  'Collect 50 Pts per 10': 'اجمع 50 نقطة لكل 10',
+
+  //payment methodes
+  'Add Card': 'اضف بطاقة',
+
+  //invite friends
+  'invite your \n': 'دعوة \n',
+  'Friends': 'أصدقاء',
+  ' & Get Points': ' & الحصول على النقاط',
+  'Your Friends Will See': 'سوف يرى أصدقاؤك',
+  'Share via GHboutique': 'شارك عبر GHboutique',
+  'or Share via other media': 'أو المشاركة عبر وسائل الإعلام الأخرى',
+
+  //swipe
+  'Swipe Product': 'Swipe Product',
+
+  //languages
+  'Languages': 'اللغات',
+  'Change language': 'تغيير اللغة',
+
+  //product detail
+  'box ofs':
+      'المنتج غير متوفر حالياً في المخزون. يمكنك النقر على المربع أدناه لكي نرسل لك إشعارات عندما يتوفر المنتج.',
+  'notify': 'أعلمني عندما يتوفر هذا المنتج',
+  'Frequently Bought Together': 'غالباً ما يتم شراؤها معاً',
+
+  //checkout
+  'Earn': 'تحصل علي',
+  'Points': 'نقاط',
+  'Brand': 'ماركة',
+  'Add Voucher Code': 'إضافة رمز الخصم',
+  'If apply no points will added': 'في حالة التقديم لن تتم إضافة أي نقاط',
+  'Enter Code Here': 'ادخل الرمز هنا',
+  'Apply': 'تقديم',
+
+  'subtotal': 'المجموع الفرعي',
+  'Discount': 'خصم',
+  'Free': 'مجانا',
+  '5% VAT Included': 'شامل ضريبة القيمة المضافة 5%',
+  'Orders above': 'الطلبات فوق',
+  '500 are eligible for free shipping': '500 مؤهلة للشحن المجاني',
+  'Cash on delivery fees': 'رسوم الدفع نقدا عند التسليم',
+  'Tax VAT 5% (Included)': 'ضريبة القيمة المضافة 5% (متضمنة)',
+  'total': 'المبلغ الاجمالي',
+  'Secure Checkout': 'الطلب الامن'
 };

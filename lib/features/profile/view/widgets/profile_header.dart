@@ -75,7 +75,7 @@ class ProfileHeader extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Current Level',
+                    'Current Level'.tr,
                     style: Theme.of(context)
                         .textTheme
                         .displayMedium

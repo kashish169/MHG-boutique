@@ -90,7 +90,6 @@ class HomeController extends GetxController {
               middleSectionMainBrandId = middleSectionList.first.brandId;
               middleSectionMainCategoryId = middleSectionList.first.categoryId;
               middleSectionMainProductId = middleSectionList.first.productId;
-              middleSectionList.removeAt(0);
             }
           } else {
             AppToasts.errorToast(message);
