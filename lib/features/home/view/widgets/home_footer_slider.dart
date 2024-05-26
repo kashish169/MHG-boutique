@@ -1,4 +1,3 @@
-import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_dimensions.dart';
@@ -59,29 +58,6 @@ class HomeFooterSlider extends StatelessWidget {
               return const SizedBox(height: 10);
             },
             itemCount: controller.footerSlider.length),
-        // SizedBox(
-        //   height: AppDimensions.screenWidth(context) * 0.34,
-        //   width: double.infinity,
-        //   child: Swiper(
-        //     itemBuilder: (BuildContext context, int index) {
-        //       return InkWell(
-        //         onTap: () {
-        //           Get.find<MainWrapperController>().launchUrl(
-        //             controller.footerSlider[index].link,
-        //           );
-        //         },
-        //         child: NetImage(
-        //           image: controller.footerSlider[index].backgroundImageLink,
-        //           height: AppDimensions.screenWidth(context) * 0.34,
-        //           width: AppDimensions.screenWidth(context),
-        //         ),
-        //       );
-        //     },
-        //     loop: false,
-        //     itemCount: controller.footerSlider.length,
-        //     outer: false,
-        //   ),
-        // ),
       ),
     );
   }

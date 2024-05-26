@@ -1,7 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/view/widgets/home_video_test_widget.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
@@ -24,7 +23,9 @@ class _HomeSliderState extends State<HomeSlider> {
   @override
   void initState() {
     swiperController.addListener(() {
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     });
     super.initState();
   }
