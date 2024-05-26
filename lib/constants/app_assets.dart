@@ -96,6 +96,7 @@ class AppAssets {
   static String copy = "assets/icons/copy.png";
   static String deniedIcon = 'assets/icons/denied_icon.png';
   static String loveIcon = 'assets/icons/love_icon.png';
+  static String languageIcon = 'assets/icons/language.png';
 }
 
 class AssetsVideos {
