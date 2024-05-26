@@ -40,7 +40,7 @@ List<Widget> navBarItems({
         index: 3,
         color: index == 3 ? AppColors.secondary : AppColors.white,
         onTap: () => onTap(3),
-        iconSize: 22,
+        iconSize: 26,
       ),
       _icon(
         icon: AppAssets.profile,
@@ -48,7 +48,7 @@ List<Widget> navBarItems({
         index: 4,
         color: index == 4 ? AppColors.secondary : AppColors.white,
         onTap: () => onTap(4),
-        iconSize: 20,
+        iconSize: 26,
       ),
     ];
 
@@ -82,8 +82,8 @@ Widget _icon({
                 )
               : Image.asset(
                   icon,
-                  height: iconSize ?? 25,
-                  width: iconSize ?? 25,
+                  height: iconSize ?? 29,
+                  width: iconSize ?? 29,
                   color: color,
                 ),
           const SizedBox(height: 4),

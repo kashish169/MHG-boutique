@@ -174,7 +174,7 @@ class ProfileView extends StatelessWidget {
                     ),
                     const DividerWidget(),
                     ProfileCard(
-                      icon: AppAssets.scan,
+                      icon: AppAssets.languageIcon,
                       title: 'Languages'.tr,
                       onTap: () {
                         Get.toNamed(LanguagePage.routeName);
