@@ -99,6 +99,10 @@ class AppAssets {
   static String languageIcon = 'assets/icons/language.png';
 }
 
+class AssetsJson {
+  static String googlePay = 'assets/json/google_pay_example.json';
+}
+
 class AssetsVideos {
   static String testVideo = 'assets/videos/test_video.mp4';
 }

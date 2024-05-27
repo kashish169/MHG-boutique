@@ -27,33 +27,38 @@ class OrderModel {
   String? publicKeyHash;
   String? transactionId;
   String? signature;
+  List? signatures;
+  String? signedMessage;
+  String? signedKey;
 
-  OrderModel({
-    required this.billingName,
-    required this.billingEmail,
-    required this.billingStreetAddress,
-    required this.billingState,
-    required this.billingZipcode,
-    required this.billingCountry,
-    required this.shippingName,
-    required this.shippingEmail,
-    required this.shippingStreetAddress,
-    required this.shippingState,
-    required this.shippingZipcode,
-    required this.shippingCountry,
-    required this.coupon,
-    required this.redeem,
-    required this.paymentMethod,
-    required this.onlinePaymentMethodId,
-    required this.shippingPhoneNumber,
-    required this.billingPhoneNumber,
-    this.paymentPlatForm,
-    this.appleToken,
-    this.ephemeralPublicKey,
-    this.publicKeyHash,
-    this.transactionId,
-    this.signature,
-  });
+  OrderModel(
+      {required this.billingName,
+      required this.billingEmail,
+      required this.billingStreetAddress,
+      required this.billingState,
+      required this.billingZipcode,
+      required this.billingCountry,
+      required this.shippingName,
+      required this.shippingEmail,
+      required this.shippingStreetAddress,
+      required this.shippingState,
+      required this.shippingZipcode,
+      required this.shippingCountry,
+      required this.coupon,
+      required this.redeem,
+      required this.paymentMethod,
+      required this.onlinePaymentMethodId,
+      required this.shippingPhoneNumber,
+      required this.billingPhoneNumber,
+      this.paymentPlatForm,
+      this.appleToken,
+      this.ephemeralPublicKey,
+      this.publicKeyHash,
+      this.transactionId,
+      this.signature,
+      this.signedMessage,
+      this.signatures,
+      this.signedKey});
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> body = {
@@ -86,7 +91,20 @@ class OrderModel {
         },
       );
     }
-    if (paymentMethod == "TAP" && paymentPlatForm != 'apple') {
+    if (paymentPlatForm == 'google') {
+      body.putIfAbsent(
+        "payment_platform_data",
+        () => {
+          "signed_message": signedMessage,
+          "signatures": signatures,
+          "signed_key": signedKey,
+          "signature": signature,
+        },
+      );
+    }
+    if (paymentMethod == "TAP" &&
+        paymentPlatForm != 'apple' &&
+        paymentPlatForm != 'google') {
       body.putIfAbsent(
         "online_payment_method_id",
         () => onlinePaymentMethodId,

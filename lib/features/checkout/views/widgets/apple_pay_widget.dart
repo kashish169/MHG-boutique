@@ -2,17 +2,24 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
+import 'package:mhg/features/checkout/models/token_model/google_pay_result_model.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import 'package:pay/pay.dart';
 
 import '../../../../widgets/three_bounce_loading.dart';
 import '../../models/apple_pay_result_model.dart';
 
-class ApplePayWidget extends StatelessWidget {
+class ApplePayWidget extends StatefulWidget {
   const ApplePayWidget({super.key, required this.isIOS});
   final bool isIOS;
 
+  @override
+  State<ApplePayWidget> createState() => _ApplePayWidgetState();
+}
+
+class _ApplePayWidgetState extends State<ApplePayWidget> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -24,13 +31,15 @@ class ApplePayWidget extends StatelessWidget {
         }
         if (controller.errorAppleConfiguration.isTrue) {
           return RetryButton(onTap: () {
-            if (isIOS) {
+            if (widget.isIOS) {
               controller.getApplePayConfiguration();
+            } else {
+              controller.geGooglePayConfiguration();
             }
           });
         }
 
-        return isIOS
+        return widget.isIOS
             ? ApplePayButton(
                 height: 40,
                 width: 300,
@@ -66,49 +75,11 @@ class ApplePayWidget extends StatelessWidget {
                 ),
               )
             : GooglePayButton(
-                width: 300,
-                paymentConfiguration: PaymentConfiguration.fromJsonString('''
-                {
-  "provider": "google_pay",
-  "data": {
-    "environment": "TEST",
-    "apiVersion": 2,
-    "apiVersionMinor": 0,
-    "allowedPaymentMethods": [
-      {
-        "type": "CARD",
-        "tokenizationSpecification": {
-          "type": "PAYMENT_GATEWAY",
-          "parameters": {
-            "gateway": "example",
-            "gatewayMerchantId": "gatewayMerchantId"
-          }
-        },
-        "parameters": {
-          "allowedCardNetworks": ["VISA", "MASTERCARD"],
-          "allowedAuthMethods": ["PAN_ONLY", "CRYPTOGRAM_3DS"],
-          "billingAddressRequired": true,
-          "billingAddressParameters": {
-            "format": "FULL",
-            "phoneNumberRequired": true
-          }
-        }
-      }
-    ],
-    "merchantInfo": {
-      "merchantId": "01234567890123456789",
-      "merchantName": "Example Merchant Name"
-    },
-    "transactionInfo": {
-      "countryCode": "US",
-      "currencyCode": "USD"
-    }
-  }
-}'''
-                    // jsonEncode(
-                    //   controller.appleConfiguration,
-                    // ),
-                    ),
+                paymentConfiguration: PaymentConfiguration.fromJsonString(
+                  jsonEncode(
+                    controller.googleConfiguration,
+                  ),
+                ),
                 paymentItems: [
                   PaymentItem(
                     label: 'MHGBoutique',
@@ -117,13 +88,16 @@ class ApplePayWidget extends StatelessWidget {
                     status: PaymentItemStatus.final_price,
                   )
                 ],
+                type: GooglePayButtonType.buy,
                 margin: const EdgeInsets.only(top: 15.0),
                 onPaymentResult: (result) {
-                  // log("APPLE PAY $result");
-                  var model = ApplePayResultModel.fromJson(result);
+                  final model = GooglePayResultModel.fromJson(jsonDecode(
+                      result['paymentMethodData']['tokenizationData']
+                          ['token']));
+
                   controller.createOrder(
-                    isApplePay: true,
-                    applePayResultModel: model,
+                    isGooglePay: true,
+                    googlePayResultModel: model,
                   );
                 },
                 onError: (error) {

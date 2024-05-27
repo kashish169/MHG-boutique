@@ -26,6 +26,7 @@ import 'package:mhg/widgets/loading_widget.dart';
 import '../../../constants/app_assets.dart';
 import '../../../core/api/api.dart';
 import '../models/countries_cities_static_data.dart';
+import '../models/token_model/google_pay_result_model.dart';
 
 /*
   TEST CARDS 
@@ -90,8 +91,11 @@ class CheckoutController extends GetxController {
   RxString guestCountryFlag = AppAssets.flag.obs;
   RxString guestFirstCountryFlag = ''.obs;
   RxBool loadingAppleConfiguration = false.obs;
+  RxBool loadingGoogleConfiguration = false.obs;
   RxBool errorAppleConfiguration = false.obs;
+  RxBool errorGoogleConfiguration = false.obs;
   Map appleConfiguration = {};
+  Map googleConfiguration = {};
   RxBool isApplePay = false.obs;
   RxBool isGooglePay = false.obs;
 
@@ -411,10 +415,13 @@ class CheckoutController extends GetxController {
     }
   }
 
-  Future<void> createOrder({
-    bool? isApplePay,
-    ApplePayResultModel? applePayResultModel,
-  }) async {
+  Future<void> createOrder(
+      {bool? isApplePay,
+      bool? isGooglePay,
+      ApplePayResultModel? applePayResultModel,
+      GooglePayResultModel? googlePayResultModel
+      // GooglePayResultModel? googlePayResultModel,
+      }) async {
     try {
       var userName = profileController.model.value!.name;
       var email = profileController.model.value!.email;
@@ -469,27 +476,54 @@ class CheckoutController extends GetxController {
           shippingCountry: countryName,
           redeem: hasRedeem.isTrue ? 1 : 0,
           coupon: promoCode,
-          paymentMethod: isApplePay == true ? 'TAP' : paymentMethodValue.value,
+          paymentMethod: isApplePay == true || isGooglePay == true
+              ? 'TAP'
+              : paymentMethodValue.value,
           onlinePaymentMethodId: userSelectedCardModel.value?.id,
-          paymentPlatForm: isApplePay == true ? 'apple' : '',
-          appleToken: applePayResultModel?.token.data ?? '',
-          ephemeralPublicKey:
-              applePayResultModel?.token.header.ephemeralPublicKey ?? '',
-          signature: applePayResultModel?.token.signature ?? '',
-          publicKeyHash: applePayResultModel?.token.header.publicKeyHash ?? '',
-          transactionId: applePayResultModel?.token.header.transactionId ?? '',
+          paymentPlatForm: isApplePay == true
+              ? 'apple'
+              : isGooglePay == true
+                  ? 'google'
+                  : '',
+          appleToken:
+              isApplePay == true ? applePayResultModel?.token.data ?? '' : null,
+          ephemeralPublicKey: isApplePay == true
+              ? applePayResultModel?.token.header.ephemeralPublicKey ?? ''
+              : null,
+          signature: isApplePay == true
+              ? applePayResultModel?.token.signature
+              : isGooglePay == true
+                  ? googlePayResultModel?.signature ?? ''
+                  : null,
+          publicKeyHash: isApplePay == true
+              ? applePayResultModel?.token.header.publicKeyHash ?? ''
+              : null,
+          transactionId: isApplePay == true
+              ? applePayResultModel?.token.header.transactionId ?? ''
+              : null,
+          signatures: isGooglePay == true
+              ? googlePayResultModel?.intermediateSigningKey?.signatures ?? []
+              : null,
+          signedMessage: isGooglePay == true
+              ? googlePayResultModel?.signedMessage ?? ''
+              : null,
+          signedKey: isGooglePay == true
+              ? googlePayResultModel?.intermediateSigningKey?.signedKey ?? ''
+              : null,
         ),
       );
       log("ORDER MODEL");
-      log(objectData);
+
       Get.dialog(
         const LoadingWidget(),
         barrierDismissible: false,
       );
       Map<String, String> oldheaders = Map.from(Api.authorizedheaders);
       Map<String, String> newheaders = Map.from(oldheaders);
-      newheaders['lane'] = Get.locale!.languageCode;
+      newheaders['lang'] = Get.locale!.languageCode;
       Api.authorizedheaders = newheaders;
+      log('Authorizedheaders Authorizedheaders: ${Api.authorizedheaders}');
+      log('OBJECT OBJECT: $objectData');
       Either<Failure, ApiResponse> results =
           await checkoutRepository.createOrder(objectData);
       Api.authorizedheaders = oldheaders;
@@ -771,6 +805,36 @@ class CheckoutController extends GetxController {
                     : saudiArabiaCitiesList;
   }
 
+  Future<void> geGooglePayConfiguration() async {
+    try {
+      loadingGoogleConfiguration(true);
+      errorGoogleConfiguration(false);
+      Either<Failure, ApiResponse> results =
+          await checkoutRepository.getGoogleConfiguration();
+      errorGoogleConfiguration(false);
+      results.fold(
+        (l) {
+          errorGoogleConfiguration(true);
+        },
+        (r) {
+          var statusCode = r.object["code"];
+          if (statusCode == 200) {
+            googleConfiguration = r.object["data"];
+            if (!googleConfiguration.containsKey('provider')) {
+              googleConfiguration['provider'] = 'google_pay';
+            }
+          } else {
+            errorGoogleConfiguration(true);
+            // AppToasts.errorToast(message);
+          }
+        },
+      );
+    } catch (e, s) {
+      errorGoogleConfiguration(true);
+      log("$e $s");
+    }
+  }
+
   Future<void> getApplePayConfiguration() async {
     try {
       loadingAppleConfiguration(true);
@@ -809,6 +873,8 @@ class CheckoutController extends GetxController {
     guestCountryCode.value = App.countryCode;
     if (GetPlatform.isIOS) {
       getApplePayConfiguration();
+    } else {
+      geGooglePayConfiguration();
     }
     // }
     super.onInit();
