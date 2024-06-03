@@ -100,16 +100,19 @@ class _HomeRewardBoxState extends State<HomeRewardBox> {
                                     controller.model.value?.nextTierPts !=
                                                 "0.00" ||
                                             controller.model.value?.nextTier ==
-                                                null
+                                                null ||
+                                            controller
+                                                    .model.value?.accountType !=
+                                                'Normal'
                                         ? '${controller.model.value?.hearts ?? 0} Pts'
                                         : 'Unlock rewards with your first order! Start earning today.',
                                     style: Theme.of(context)
                                         .textTheme
                                         .displaySmall
                                         ?.copyWith(
-                                            fontSize: 14,
+                                            fontSize: 12,
                                             color: widget.greeding,
-                                            fontWeight: FontWeight.bold))
+                                            fontWeight: FontWeight.w400))
                               ],
                             ),
                           ))

@@ -5,7 +5,6 @@ import 'package:mhg/core/languages/languages.dart';
 import 'package:mhg/features/categories/models/categories_model.dart';
 import 'package:mhg/features/categories/view/pages/sub_categories_page.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
-import 'package:mhg/widgets/net_image.dart';
 
 class HomeCategoryCard extends StatelessWidget {
   final Menu model;

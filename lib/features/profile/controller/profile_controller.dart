@@ -53,6 +53,10 @@ class ProfileController extends GetxController {
     isHideRewardBanner.value = isHide;
   }
 
+  void updateProfileInfo(ProfileInfoModal profileInfoModal) {
+    model.value = profileInfoModal;
+  }
+
   Future<void> getProfileInfo() async {
     try {
       if (model.value == null) {
@@ -66,6 +70,7 @@ class ProfileController extends GetxController {
       loadingUpdateCard(false);
       results.fold(
         (l) {
+          log('PROFILE PROFILE ERROR ERROR: $l');
           getProfileInfo();
           isError(true);
         },
@@ -73,9 +78,9 @@ class ProfileController extends GetxController {
           int statusCode = r.object['code'];
           var message = r.object['message'];
           if (statusCode == 200) {
+            log('PROFILE PROFILE SUCESS SUCESS: ${r.object["data"]}');
             model.value = ProfileInfoModal.fromJson(r.object["data"]);
-            log('neee${model.value!.nextTierPts}');
-            log(r.object["data"].toString());
+
             separatePhoneAndDialCode(model.value!.number ?? '');
             App.countryId = model.value?.country?.id;
             currnecy.value = "${model.value?.country?.currency.currency}";
@@ -106,8 +111,7 @@ class ProfileController extends GetxController {
                 'Country-Id': "${App.countryId}",
               };
             }
-            log("currency is : ${App.currency}");
-            log("countryId is : ${App.countryId}");
+
             firstCall(false);
           } else if (statusCode == 400) {
             AppToasts.errorToast(message);
@@ -126,8 +130,7 @@ class ProfileController extends GetxController {
           }
         },
       );
-    } catch (e, s) {
-      log("$e $s");
+    } catch (e) {
       isError(true);
     }
   }
@@ -167,12 +170,9 @@ class ProfileController extends GetxController {
       Get.back();
       results.fold((l) {
         AppToasts.errorToast(l.message);
-        log("SEND HEARTS METHODS RESPONSE ERROR ${l.message}");
       }, (r) async {
         var statusCode = r.object["code"];
         var message = r.object["message"];
-        log("SEND HEARTS METHODS RESPONSE STATUS $statusCode");
-        log("${r.object}");
         if (statusCode == 200) {
           sendHeartsModel = SendHeartsModel.fromJson(r.object);
           AppToasts.successToast('Points has been sent Successfully!');
@@ -182,9 +182,7 @@ class ProfileController extends GetxController {
           AppToasts.errorToast(message);
         }
       });
-    } catch (e, s) {
-      log("$e $s");
-    }
+    } catch (e) {}
   }
 
   Future<void> logOut() async {
@@ -197,12 +195,9 @@ class ProfileController extends GetxController {
       Get.back();
       results.fold((l) {
         AppToasts.errorToast(l.message);
-        log("LOGOUT RESPONSE ERROR ${l.message}");
       }, (r) async {
         var statusCode = r.object["code"];
         var message = r.object["message"];
-        log("LOGOUT RESPONSE STATUS $statusCode");
-        log("${r.object}");
         if (statusCode == 200) {
           bool notifayMe = App.notifyMe ?? false;
           App.token = '';
@@ -217,9 +212,7 @@ class ProfileController extends GetxController {
           AppToasts.errorToast(message);
         }
       });
-    } catch (e, s) {
-      log("$e $s");
-    }
+    } catch (e) {}
   }
 
   separatePhoneAndDialCode(String phoneWithDialCode) {
@@ -241,7 +234,6 @@ class ProfileController extends GetxController {
       );
 
       countryCode.value = dialCode;
-      log("{$dialCode, $newPhoneNumber}");
     }
   }
 
@@ -299,7 +291,6 @@ class ProfileController extends GetxController {
       //   "qty": quantity,
       //   "variant_id":variantId
       // };
-      log(feedback.text);
       var body = jsonEncode({'message': feedback.text});
       Get.dialog(
         const LoadingWidget(),
@@ -310,12 +301,9 @@ class ProfileController extends GetxController {
       Get.back();
       results.fold((l) {
         AppToasts.errorToast(l.message);
-        log("SEND FEEDBACK METHODS RESPONSE ERROR ${l.message}");
       }, (r) async {
         var statusCode = r.object["code"];
         var message = r.object["message"];
-        log("SEND FEEDBACK METHODS RESPONSE STATUS $statusCode");
-        log("${r.object}");
         if (statusCode == 200) {
           AppToasts.successToast('Feedback has been sent Successfully!');
           feedback.clear();
@@ -324,9 +312,7 @@ class ProfileController extends GetxController {
           AppToasts.errorToast(message);
         }
       });
-    } catch (e, s) {
-      log("$e $s");
-    }
+    } catch (e) {}
   }
 
   void shareLinkToFacebook(String url) async {
@@ -369,9 +355,7 @@ class ProfileController extends GetxController {
       await launch(
         "mailto:$email?subject=$message",
       );
-    } catch (e, s) {
-      log('$e $s');
-    }
+    } catch (e) {}
   }
 
   @override

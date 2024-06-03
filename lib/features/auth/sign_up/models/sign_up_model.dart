@@ -1,38 +1,50 @@
 import 'dart:convert';
 
-String signUpModelToJson(SignUpModel data) => json.encode(data.toJson());
+String signUpModelToJson(SignUpModel data, {bool isSocial = false}) =>
+    json.encode(isSocial ? data.toJsonSocial() : data.toJson());
 
 class SignUpModel {
   SignUpModel({
-    required this.email,
-    required this.verificationCode,
-    required this.userName,
-    required this.password,
-    required this.phoneNumber,
-    required this.accountType,
+    this.email,
+    this.verificationCode,
+    this.userName,
+    this.password,
+    this.phoneNumber,
+    this.accountType,
     this.fcmToken,
     this.gender,
     this.dob,
     this.token,
     this.notifyMe,
-    required this.countryName,
-    required this.countryId,
+    this.countryName,
+    this.countryId,
   });
 
-  String userName;
-  String email;
-  String phoneNumber;
-  String password;
+  String? userName;
+  String? email;
+  String? phoneNumber;
+  String? password;
   String? fcmToken;
-  String accountType;
+  String? accountType;
   String? gender;
   String? dob;
   int? notifyMe;
   String? token;
-  String countryName;
-  String verificationCode;
-  int countryId;
+  String? countryName;
+  String? verificationCode;
+  int? countryId;
 
+  Map<String, dynamic> toJsonSocial() => {
+        "name": userName,
+        "email": email,
+        'account_type': accountType,
+        'token': token,
+        'country_name': countryName,
+        'country_id': countryId,
+        'dob': dob,
+        'notify_me': notifyMe,
+        "fcm_token": fcmToken ?? '',
+      };
   Map<String, dynamic> toJson() => {
         "name": userName,
         "verification_code": verificationCode,

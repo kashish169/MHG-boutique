@@ -1,5 +1,3 @@
-import 'package:get/get.dart';
-
 import '../../app/app.dart';
 
 class Api {
@@ -26,6 +24,7 @@ class Api {
   static String verifyOtp = "$apiRoot/users/auth/verify-reset-password-otp";
   static String loginEmail = "$apiRoot/users/auth/login";
   static String login = "$apiRoot/users/auth/login-with-phone";
+  static String socialSignIn = "$apiRoot/users/auth/social-signin";
   static String profile = "$apiRoot/users/profile";
   static String privacyPolicyLink = "$apiRoot/privacy-policy";
   static String termsAndConidtionsLink = "$apiRoot/terms-conditions";

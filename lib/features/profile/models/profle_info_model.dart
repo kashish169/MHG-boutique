@@ -51,8 +51,8 @@ class ProfileInfoModal {
   String name;
   String email;
   String accountType;
-  int? googleId;
-  int? faceBookId;
+  String? googleId;
+  String? faceBookId;
   String? image;
   String? number;
   String? gender;
