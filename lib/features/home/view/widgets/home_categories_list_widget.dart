@@ -1,8 +1,6 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/app_fonts.dart';
 import '../../../../core/languages/languages.dart';
@@ -47,7 +45,7 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
                 return Padding(
                   padding: const EdgeInsets.only(right: 5),
                   child: InkWell(
-                    onTap: () {
+                    onTap: () async {
                       if (model.categoryId == null &&
                           model.allActiveSubMenus.isEmpty) {
                         if (model.productId != null) {

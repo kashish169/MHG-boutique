@@ -85,4 +85,11 @@ class CheckoutRepoImplement implements CheckoutRepository {
         url: Api.applePay,
         isAuthorized: true,
       );
+
+  @override
+  Future<Either<Failure, ApiResponse>> getGoogleConfiguration() =>
+      httpService.post(
+        url: Api.googlePay,
+        isAuthorized: true,
+      );
 }

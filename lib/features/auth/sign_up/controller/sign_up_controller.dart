@@ -42,46 +42,62 @@ class SignUpController extends GetxController {
   String accountType = 'normal';
 
   Future<void> signUp(
-      {required String verificationCode, required String phone}) async {
-    log(phone);
-    log(countryCode);
+      {String? verificationCode,
+      String? phone,
+      String? token,
+      String? accountType,
+      String? name,
+      String? email}) async {
     Get.dialog(
       const LoadingWidget(),
       barrierDismissible: false,
     );
-    var body = signUpModelToJson(SignUpModel(
-      verificationCode: verificationCode,
-      email: email.text.trim(),
-      userName: name.text.trim(),
-      phoneNumber: phone,
-      password: password.text.trim(),
-      accountType: accountType,
-      fcmToken: App.fcmToken,
-      countryName: signInController.selectedCountryName,
-      notifyMe: App.notifyMe == true ? 1 : 0,
-      countryId: signInController.selectedCountryId,
-    ));
+    var body = token != null
+        ? signUpModelToJson(
+            SignUpModel(
+              accountType: accountType,
+              email: email,
+              userName: name,
+              token: token,
+              fcmToken: App.fcmToken,
+              notifyMe: App.notifyMe == true ? 1 : 0,
+              countryName: 'AED',
+              countryId: 1,
+            ),
+            isSocial: true)
+        : signUpModelToJson(SignUpModel(
+            verificationCode: verificationCode,
+            email: this.email.text.trim(),
+            userName: this.name.text.trim(),
+            phoneNumber: phone,
+            password: password.text.trim(),
+            accountType: this.accountType,
+            fcmToken: App.fcmToken,
+            countryName: signInController.selectedCountryName,
+            notifyMe: App.notifyMe == true ? 1 : 0,
+            countryId: signInController.selectedCountryId,
+          ));
     Either<Failure, ApiResponse> results = await signUpRepo.signUp(
       body: body,
     );
     Get.back();
     results.fold((l) {
-      log(l.message);
       showSnackBar(l.message);
     }, (r) async {
-      log("${r.object}");
       bool success = r.object['isSuccessful'];
       var message = r.object['message'];
       if (success == true) {
         var data = r.object['data'];
-        var token = data['token'];
-        CountryModel country = CountryModel.fromJson(data["country"]);
-        log(country.prefix);
-        App.token = token;
-        App.countryId = country.id;
-        App.currency = country.currency.currency;
-        App.countryName = country.name;
-        App.countryCode = country.prefix;
+        var tokenRes = data['token'];
+
+        CountryModel? country =
+            token == null ? CountryModel.fromJson(data["country"]) : null;
+        App.token = tokenRes;
+        App.countryId = country == null ? 1 : country.id;
+        App.currency = country == null ? 'AED' : country.currency.currency;
+        App.countryName = country == null ? 'Arab Emirates' : country.name;
+        App.countryCode = country == null ? 'AE' : country.prefix;
+
         await StoragePref.setInt(
           key: 'countryid',
           value: App.countryId ?? 1,
@@ -100,13 +116,15 @@ class SignUpController extends GetxController {
         );
         Api.authorizedheaders = {
           'Content-Type': 'application/json',
-          'Authorization': "Bearer $token",
+          'Authorization': "Bearer $tokenRes",
           'Country-Id': "${App.countryId}",
         };
         await StoragePref.setString(
           key: "token",
-          value: token,
+          value: tokenRes,
         );
+        // ProfileController profileController = Get.find();
+        // profileController.updateProfileInfo(ProfileInfoModal.fromJson(data));
         Get.offAllNamed(MainWrapper.routeName);
       } else {
         AppToasts.errorToast(message);

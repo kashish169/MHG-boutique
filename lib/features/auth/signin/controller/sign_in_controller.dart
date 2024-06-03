@@ -111,20 +111,18 @@ class SignInController extends GetxController {
         showSnackBar(l.message);
       },
       (r) async {
-        log("${r.object}");
-        log("here............");
-        log(Api.authorizedheaders.toString());
         int statusCode = r.object["code"];
         var message = r.object['message'];
         if (statusCode == 200) {
           loginModel = LoginModel.fromJson(r.object['data']);
+
           var token = loginModel.token;
           App.token = token;
           App.countryId = loginModel.countryId;
 
-          App.currency = "${loginModel.country?.currency.currency}";
-          App.countryName = '${loginModel.country?.name}';
-          App.countryCode = '${loginModel.country?.prefix}';
+          App.currency = loginModel.country.currency.currency;
+          App.countryName = loginModel.country.name;
+          App.countryCode = loginModel.country.prefix;
           await StoragePref.setInt(
             key: 'countryid',
             value: App.countryId ?? 1,
@@ -192,9 +190,9 @@ class SignInController extends GetxController {
           App.token = token;
           App.countryId = loginModel.countryId;
           log("COUNRTRY ID IS:${loginModel.countryId}");
-          App.currency = "${loginModel.country?.currency.currency}";
-          App.countryName = '${loginModel.country?.name}';
-          App.countryCode = '${loginModel.country?.prefix}';
+          App.currency = loginModel.country.currency.currency;
+          App.countryName = loginModel.country.name;
+          App.countryCode = loginModel.country.prefix;
           await StoragePref.setInt(
             key: 'countryid',
             value: App.countryId ?? 1,

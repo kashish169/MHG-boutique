@@ -1,5 +1,3 @@
-import 'package:get/get.dart';
-
 import '../../app/app.dart';
 
 class Api {
@@ -26,6 +24,7 @@ class Api {
   static String verifyOtp = "$apiRoot/users/auth/verify-reset-password-otp";
   static String loginEmail = "$apiRoot/users/auth/login";
   static String login = "$apiRoot/users/auth/login-with-phone";
+  static String socialSignIn = "$apiRoot/users/auth/social-signin";
   static String profile = "$apiRoot/users/profile";
   static String privacyPolicyLink = "$apiRoot/privacy-policy";
   static String termsAndConidtionsLink = "$apiRoot/terms-conditions";
@@ -73,6 +72,7 @@ class Api {
   static String autoComplete = "$apiRoot/product/auto-complete";
   static String destroyCart = "$apiRoot/cart/destroy-cart";
   static String applePay = "$apiRoot/payment/tap/apple-pay";
+  static String googlePay = "$apiRoot/payment/tap/google-pay";
   static String getSwipeProducts = "$apiRoot/product/insights";
   static String getSwipePrefProducts = "$apiRoot/product/add-preference";
   static String productOfsSubscribe =

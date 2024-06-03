@@ -22,11 +22,11 @@ class _HomeSliderState extends State<HomeSlider> {
 
   @override
   void initState() {
-    swiperController.addListener(() {
-      if (mounted) {
-        setState(() {});
-      }
-    });
+    // swiperController.addListener(() {
+    //   Future.delayed(const Duration(milliseconds: 500), () {
+    //     setState(() {});
+    //   });
+    // });
     super.initState();
   }
 

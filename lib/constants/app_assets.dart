@@ -97,6 +97,15 @@ class AppAssets {
   static String deniedIcon = 'assets/icons/denied_icon.png';
   static String loveIcon = 'assets/icons/love_icon.png';
   static String languageIcon = 'assets/icons/language.png';
+  static String appleIcon = 'assets/icons/apple.png';
+  static String googleIcon = 'assets/icons/google.png';
+}
+
+//unhandled exception: platformexception(sign_in_failed, com.google.android.gms.common.api.apiexception: 10: , null, null)
+////
+
+class AssetsJson {
+  static String googlePay = 'assets/json/google_pay_example.json';
 }
 
 class AssetsVideos {

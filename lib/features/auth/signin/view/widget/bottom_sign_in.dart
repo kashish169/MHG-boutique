@@ -9,6 +9,7 @@ import '../../../../forgot_password/view/pages/forget_view.dart';
 import '../../../otp/view/pages/otp.dart';
 import '../../../sign_up/view/pages/sign_up_view.dart';
 import '../../controller/sign_in_controller.dart';
+import '../../../widgets/bottom_third_auth.dart';
 
 class BottomSignIn extends StatelessWidget {
   BottomSignIn({super.key});
@@ -103,6 +104,7 @@ class BottomSignIn extends StatelessWidget {
                   ),
                 )
               : const SizedBox(),
+          const BottomThirdAuth(),
           const SizedBox(
             height: 20,
           ),

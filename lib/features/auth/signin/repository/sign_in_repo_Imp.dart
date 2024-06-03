@@ -30,4 +30,12 @@ class SignInRepoImpl implements SignInRepo {
         url: Api.loginEmail,
         body: body,
       );
+
+  @override
+  Future<Either<Failure, ApiResponse>> socialSignIn(
+          {required String body}) async =>
+      await httpService.post(
+        url: Api.socialSignIn,
+        body: body,
+      );
 }
