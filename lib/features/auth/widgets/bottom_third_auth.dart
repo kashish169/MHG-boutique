@@ -65,14 +65,21 @@ class _BottomThirdAuthState extends State<BottomThirdAuth> {
                       name: gUser.displayName);
                 }),
             const Padding(padding: EdgeInsets.only(right: 15)),
-            CardAuth(iconPath: AppAssets.appleIcon, onPressed: () async{
-               final credential = await SignInWithApple.getAppleIDCredential(
-      scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
-      ],
-    );
-            }),
+            CardAuth(
+                iconPath: AppAssets.appleIcon,
+                onPressed: () async {
+                  final credential = await SignInWithApple.getAppleIDCredential(
+                    scopes: [
+                      AppleIDAuthorizationScopes.email,
+                      AppleIDAuthorizationScopes.fullName,
+                    ],
+                  );
+                  await controller.signUp(
+                      accountType: 'apple',
+                      token: credential.identityToken,
+                      email: credential.email,
+                      name: credential.givenName);
+                }),
           ],
         )
       ],
