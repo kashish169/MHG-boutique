@@ -30,7 +30,9 @@
 	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
-	<key>GOOGLE_APP_ID</key>
+	<key>GOOGLE_APP_ID</key>	
 	<string>1:137515787512:ios:abc24aadc4d25922c7c70d</string>
+	<key>GIDClientID</key>
+	<string>137515787512-65ing6qp33hpasge83bigg744aqjfnc0.apps.googleusercontent.com</string>
 </dict>
 </plist>
