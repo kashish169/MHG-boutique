@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MHGBoutique</string>
-    <string name="facebook_app_id">770392171943820</string>
-    <string name="facebook_client_token">07c785d86e32936ae8a0f7237ad21b53</string>
-    <string name="fb_login_protocol_scheme">fb64a541852ebf515cfa7d8337eae4bd59</string>
+    <string name="facebook_app_id">1014499380280103</string>
+    <string name="facebook_client_token">92a8bfc245d2ebe533dd4945dc4a32ea</string>
+    <string name="fb_login_protocol_scheme">f65823d9eb43545e812e32228143b22a</string>
 </resources>

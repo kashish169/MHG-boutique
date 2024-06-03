@@ -37,7 +37,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb770392171943820</string>
+				<string>fb1014499380280103</string>
 			</array>
 		</dict>
 	</array>
@@ -53,7 +53,6 @@
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>fbapi</string>
 		<string>https</string>
 		<string>whatsapp</string>
 		<string>tel</string>
