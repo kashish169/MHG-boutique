@@ -5,7 +5,7 @@ import 'package:mhg/constants/app_assets.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mhg/features/auth/signin/controller/sign_in_controller.dart';
-
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import '../sign_up/controller/sign_up_controller.dart';
 
 class BottomThirdAuth extends StatefulWidget {
@@ -65,7 +65,14 @@ class _BottomThirdAuthState extends State<BottomThirdAuth> {
                       name: gUser.displayName);
                 }),
             const Padding(padding: EdgeInsets.only(right: 15)),
-            CardAuth(iconPath: AppAssets.appleIcon, onPressed: () {}),
+            CardAuth(iconPath: AppAssets.appleIcon, onPressed: () async{
+               final credential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+    );
+            }),
           ],
         )
       ],
