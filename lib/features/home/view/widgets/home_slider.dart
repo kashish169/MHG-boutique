@@ -97,13 +97,12 @@ class _HomeSliderState extends State<HomeSlider> {
                           videoLink: controller.slidersList[index].videoLinkk!,
                           endVideoFun: controller.slidersList.length > 1
                               ? () {
-                                  Future.delayed(
-                                      const Duration(milliseconds: 200), () {
-                                    setState(() {
-                                      swiperController.next(animation: true);
-                                      isSkip = true;
-                                    });
-                                  });
+                                  // Future.delayed(
+                                  //     const Duration(milliseconds: 200), () {
+                                  //   setState(() {
+                                  //     swiperController.next(animation: true);
+                                  //   });
+                                  // });
                                 }
                               : null,
                           startFun: () {
