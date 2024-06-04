@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/categories/controller/categories_controller.dart';
+import 'package:mhg/features/home/view/widgets/home_reward_box.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import '../../../profile/controller/profile_controller.dart';
@@ -40,47 +42,55 @@ class _CategoriesPageState extends State<CategoriesPage> {
           controller.getBrands();
         });
       }
-      return SingleChildScrollView(
-          child: Column(
+      return Stack(
         children: [
-          const Padding(padding: EdgeInsets.only(top: 8)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CategoryFilterButton(
-                text: "Shop By Brand",
-                onPressed: () {
-                  setState(() {
-                    indexChosen = 0;
-                  });
-                },
-                isChecked: indexChosen == 0,
-              ),
-              const Padding(padding: EdgeInsets.only(right: 5)),
-              CategoryFilterButton(
-                text: "Shop By Category",
-                onPressed: () {
-                  setState(() {
-                    indexChosen = 1;
-                  });
-                },
-                isChecked: indexChosen == 1,
-              )
-            ],
+          Padding(
+            padding: EdgeInsets.only(top: 100),
+            child: SingleChildScrollView(
+                child: Column(
+              children: [
+                const Padding(padding: EdgeInsets.only(top: 8)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CategoryFilterButton(
+                      text: "Shop By Brand",
+                      onPressed: () {
+                        setState(() {
+                          indexChosen = 0;
+                        });
+                      },
+                      isChecked: indexChosen == 0,
+                    ),
+                    const Padding(padding: EdgeInsets.only(right: 5)),
+                    CategoryFilterButton(
+                      text: "Shop By Category",
+                      onPressed: () {
+                        setState(() {
+                          indexChosen = 1;
+                        });
+                      },
+                      isChecked: indexChosen == 1,
+                    )
+                  ],
+                ),
+                indexChosen == 1
+                    ? ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: controller.categoriesModel.menus.length,
+                        itemBuilder: (context, index) {
+                          return CategoryListTile(
+                            model: controller.categoriesModel.menus[index],
+                          );
+                        })
+                    : BrandsPage(brands: controller.brands),
+              ],
+            )),
           ),
-          indexChosen == 1
-              ? ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: controller.categoriesModel.menus.length,
-                  itemBuilder: (context, index) {
-                    return CategoryListTile(
-                      model: controller.categoriesModel.menus[index],
-                    );
-                  })
-              : BrandsPage(brands: controller.brands),
+          const HomeRewardBox()
         ],
-      ));
+      );
     });
   }
 }

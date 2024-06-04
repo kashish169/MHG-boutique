@@ -6,7 +6,6 @@ import 'package:mhg/features/profile/view/pages/profile_view.dart';
 import '../../../../widgets/retry_button.dart';
 import '../../../categories/view/pages/categories_page.dart';
 import '../../../home/view/pages/home_page.dart';
-import '../../../home/view/widgets/home_reward_box.dart';
 import '../../../mycart/view/pages/my_cart_page.dart';
 import '../../controller/main_wrapper_controller.dart';
 import '../widgets/bottom_nav_bar.dart';
@@ -52,7 +51,6 @@ class _MainWrapperState extends State<MainWrapper> {
     return GetX<ProfileController>(builder: (controller) {
       if (mainController.navBarIndex.value != 0) {
         controller.changeRewardBannerIsScrlling(false);
-        controller.hideRewardBanner(false);
       }
       if (controller.isLoading.isTrue) {
         return Container(
@@ -85,14 +83,12 @@ class _MainWrapperState extends State<MainWrapper> {
             builder: (controller) => Stack(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(
-                      top: mainController.navBarIndex.value == 0 ? 0 : 100),
+                  padding: const EdgeInsets.only(top: 0),
                   child: IndexedStack(
                     index: mainController.navBarIndex.value,
                     children: _children,
                   ),
                 ),
-                const HomeRewardBox(),
               ],
             ),
           ));

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:mhg/features/home/view/widgets/home_reward_box.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
 import '../../../profile/controller/profile_controller.dart';
@@ -22,16 +23,21 @@ class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   final profileController = Get.find<ProfileController>();
   ScrollController scrollController = ScrollController();
+  bool isScrollForward = false;
 
   @override
   void initState() {
     scrollController.addListener(() {
       if (scrollController.position.userScrollDirection ==
           ScrollDirection.forward) {
-        profileController.hideRewardBanner(false);
+        setState(() {
+          isScrollForward = false;
+        });
       } else if (scrollController.position.userScrollDirection ==
           ScrollDirection.reverse) {
-        profileController.hideRewardBanner(true);
+        setState(() {
+          isScrollForward = true;
+        });
       }
       // if (scrollController.position.atEdge) {
       //   bool isTop = scrollController.position.pixels == 0;
@@ -63,20 +69,25 @@ class _HomePageState extends State<HomePage>
       }
       return RefreshIndicator(
         onRefresh: () async => await controller.getHome(),
-        child: SingleChildScrollView(
-          controller: scrollController,
-          child: const Column(
-            children: [
-              HomeSlider(),
-              HomeCategoriesListWidget(),
-              HomeTopSellersWidget(),
-              //HomeShopByCategoryWidget(),
-              // HomeNewArrivelsWidget(),
-              HomeMiddleSectionWidget(),
-              HomeFooterSlider(),
-              // HomeExploreOurBrandsWidget(),
-            ],
-          ),
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              controller: scrollController,
+              child: const Column(
+                children: [
+                  HomeSlider(),
+                  HomeCategoriesListWidget(),
+                  HomeTopSellersWidget(),
+                  //HomeShopByCategoryWidget(),
+                  // HomeNewArrivelsWidget(),
+                  HomeMiddleSectionWidget(),
+                  HomeFooterSlider(),
+                  // HomeExploreOurBrandsWidget(),
+                ],
+              ),
+            ),
+            if (!isScrollForward) const HomeRewardBox()
+          ],
         ),
       );
     });

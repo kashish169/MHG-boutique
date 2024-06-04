@@ -8,7 +8,6 @@ import 'package:mhg/features/my_wish_list/controller/wish_list_controller.dart';
 import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
 import '../../../../constants/app_colors.dart';
-import '../../../../constants/app_dimensions.dart';
 import '../../../checkout/controllers/checkout_controller.dart';
 import '../../controller/main_wrapper_controller.dart';
 import 'bottom_nav_bar_items.dart';
