@@ -97,12 +97,20 @@ class _HomeSliderState extends State<HomeSlider> {
                           videoLink: controller.slidersList[index].videoLinkk!,
                           endVideoFun: controller.slidersList.length > 1
                               ? () {
-                                  // Future.delayed(
-                                  //     const Duration(milliseconds: 200), () {
-                                  //   setState(() {
-                                  //     swiperController.next(animation: true);
-                                  //   });
-                                  // });
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                          content: Container(
+                                    color: Colors.white,
+                                    child: const Text('LOL',
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 28)),
+                                  )));
+                                  Future.delayed(
+                                      const Duration(milliseconds: 200), () {
+                                    setState(() {
+                                      swiperController.next(animation: true);
+                                    });
+                                  });
                                 }
                               : null,
                           startFun: () {
