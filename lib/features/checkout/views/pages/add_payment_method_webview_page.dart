@@ -41,6 +41,7 @@ class _AddPaymentMethodWebViewPageState
 
   @override
   void initState() {
+    log('WEBVIEW URL WEBVIEW URWEBVIEW URWEBVIEW UR: ${widget.url}');
     webViewController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))

@@ -49,9 +49,9 @@ class ProfileController extends GetxController {
     rewardBannerIsScrlling.value = isScroll;
   }
 
-  hideRewardBanner(bool isHide) {
-    isHideRewardBanner.value = isHide;
-  }
+  // hideRewardBanner(bool isHide) {
+  //   isHideRewardBanner.value = isHide;
+  // }
 
   void updateProfileInfo(ProfileInfoModal profileInfoModal) {
     model.value = profileInfoModal;

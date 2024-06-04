@@ -484,7 +484,7 @@ class CheckoutController extends GetxController {
               ? 'apple'
               : isGooglePay == true
                   ? 'google'
-                  : '',
+                  : null,
           appleToken:
               isApplePay == true ? applePayResultModel?.token.data ?? '' : null,
           ephemeralPublicKey: isApplePay == true
@@ -512,8 +512,6 @@ class CheckoutController extends GetxController {
               : null,
         ),
       );
-      log("ORDER MODEL");
-
       Get.dialog(
         const LoadingWidget(),
         barrierDismissible: false,
@@ -523,7 +521,58 @@ class CheckoutController extends GetxController {
       newheaders['lang'] = Get.locale!.languageCode;
       Api.authorizedheaders = newheaders;
       log('Authorizedheaders Authorizedheaders: ${Api.authorizedheaders}');
-      log('OBJECT OBJECT: $objectData');
+      log('OBJECT OBJECT: ${OrderModel(
+        billingName: userName,
+        billingEmail: email,
+        billingStreetAddress: street,
+        billingState: state,
+        billingZipcode: '00000',
+        billingCountry: countryName,
+        shippingName: userName,
+        shippingEmail: email,
+        shippingStreetAddress: street,
+        shippingState: state,
+        shippingZipcode: '00000',
+        billingPhoneNumber: billingPhoneNumber,
+        shippingPhoneNumber: shippingPhoneNumber,
+        shippingCountry: countryName,
+        redeem: hasRedeem.isTrue ? 1 : 0,
+        coupon: promoCode,
+        paymentMethod: isApplePay == true || isGooglePay == true
+            ? 'TAP'
+            : paymentMethodValue.value,
+        onlinePaymentMethodId: userSelectedCardModel.value?.id,
+        paymentPlatForm: isApplePay == true
+            ? 'apple'
+            : isGooglePay == true
+                ? 'google'
+                : '',
+        appleToken:
+            isApplePay == true ? applePayResultModel?.token.data ?? '' : null,
+        ephemeralPublicKey: isApplePay == true
+            ? applePayResultModel?.token.header.ephemeralPublicKey ?? ''
+            : null,
+        signature: isApplePay == true
+            ? applePayResultModel?.token.signature
+            : isGooglePay == true
+                ? googlePayResultModel?.signature ?? ''
+                : null,
+        publicKeyHash: isApplePay == true
+            ? applePayResultModel?.token.header.publicKeyHash ?? ''
+            : null,
+        transactionId: isApplePay == true
+            ? applePayResultModel?.token.header.transactionId ?? ''
+            : null,
+        signatures: isGooglePay == true
+            ? googlePayResultModel?.intermediateSigningKey?.signatures ?? []
+            : null,
+        signedMessage: isGooglePay == true
+            ? googlePayResultModel?.signedMessage ?? ''
+            : null,
+        signedKey: isGooglePay == true
+            ? googlePayResultModel?.intermediateSigningKey?.signedKey ?? ''
+            : null,
+      ).toJson()}');
       Either<Failure, ApiResponse> results =
           await checkoutRepository.createOrder(objectData);
       Api.authorizedheaders = oldheaders;
@@ -537,7 +586,6 @@ class CheckoutController extends GetxController {
         (r) async {
           var statusCode = r.object["code"];
           var message = r.object["message"];
-          log('OBJECT OBJECT: ${App.token}');
           log("CREATE ORDER METHODS RESPONSE STATUS $statusCode");
           log("${r.object}");
           if (statusCode == 201) {

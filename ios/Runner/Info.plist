@@ -44,15 +44,16 @@
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>FacebookAppID</key>
-	<string>770392171943820</string>
+	<string>1014499380280103</string>
 	<key>FacebookClientToken</key>
-	<string>07c785d86e32936ae8a0f7237ad21b53</string>
+	<string>92a8bfc245d2ebe533dd4945dc4a32ea</string>
 	<key>FacebookDisplayName</key>
 	<string>MHGBoutique</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>fbapi</string>
 		<string>https</string>
 		<string>whatsapp</string>
 		<string>tel</string>
