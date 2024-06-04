@@ -101,7 +101,6 @@ class _HomeSliderState extends State<HomeSlider> {
                                   //     const Duration(milliseconds: 200), () {
                                   //   setState(() {
                                   //     swiperController.next(animation: true);
-                                  //     isSkip = true;
                                   //   });
                                   // });
                                 }
