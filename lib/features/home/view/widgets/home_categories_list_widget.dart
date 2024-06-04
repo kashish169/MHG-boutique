@@ -6,10 +6,10 @@ import '../../../../constants/app_fonts.dart';
 import '../../../../core/languages/languages.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
-import '../../../categories/controller/categories_controller.dart';
 import '../../../categories/view/pages/sub_categories_page.dart';
 import '../../../product_details/view/pages/product_details_page.dart';
 import '../../../products_page/view/pages/product_page.dart';
+import '../../controller/home_controller.dart';
 
 class HomeCategoriesListWidget extends StatefulWidget {
   const HomeCategoriesListWidget({super.key});
@@ -22,26 +22,25 @@ class HomeCategoriesListWidget extends StatefulWidget {
 class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
   @override
   Widget build(BuildContext context) {
-    return GetX<CategoriesController>(builder: (controller) {
+    return GetX<HomeController>(builder: (controller) {
       if (controller.isLoading.isTrue) {
         return const LoadingWidget();
       } else if (controller.isError.isTrue) {
         return RetryButton(onTap: () {
-          controller.getCategories();
-          controller.getBrands();
+          controller.getHome();
         });
       }
       return Visibility(
-        visible: controller.categoriesModel.menus.isNotEmpty,
+        visible: controller.categories.isNotEmpty,
         child: Container(
           padding: const EdgeInsets.only(top: 5, left: 5),
           child: SizedBox(
             height: 100,
             child: ListView.builder(
-              itemCount: controller.categoriesModel.menus.length,
+              itemCount: controller.categories.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                final model = controller.categoriesModel.menus[index];
+                final model = controller.categories[index];
                 return Padding(
                   padding: const EdgeInsets.only(right: 5),
                   child: InkWell(
@@ -80,17 +79,14 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
                         SizedBox(
                           width: 100,
                           height: 100,
-                          child: controller
-                                      .categoriesModel.menus[index].imageLink !=
-                                  null
+                          child: controller.categories[index].imageLink != null
                               ? ColorFiltered(
                                   colorFilter: ColorFilter.mode(
                                       Colors.black.withOpacity(0.35),
                                       BlendMode.darken),
                                   child: Image(
                                     image: NetworkImage(
-                                      controller.categoriesModel.menus[index]
-                                          .imageLink!,
+                                      controller.categories[index].imageLink!,
                                     ),
                                     fit: BoxFit.cover,
                                   ),
@@ -104,10 +100,8 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
                           child: Center(
                             child: Text(
                                 isAR()
-                                    ? controller
-                                        .categoriesModel.menus[index].frName
-                                    : controller
-                                        .categoriesModel.menus[index].enName,
+                                    ? controller.categories[index].frName
+                                    : controller.categories[index].enName,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: AppColors.white,
