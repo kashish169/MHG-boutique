@@ -42,7 +42,7 @@ class _BottomThirdAuthState extends State<BottomThirdAuth> {
                   final userData = await FacebookAuth.instance
                       .getUserData(fields: "name,email");
                   await controller.signUp(
-                      accountType: 'google',
+                      accountType: 'facebook',
                       token: login.accessToken!.token,
                       email: userData['email'],
                       name: userData['name']);
