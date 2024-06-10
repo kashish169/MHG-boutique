@@ -2,8 +2,15 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'dart:ui';
+import 'package:flutter/material.dart';
 import 'package:dartz/dartz.dart';
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
 import 'package:mhg/app/app.dart';
+import 'package:mhg/constants/app_toasts.dart';
+import 'package:mhg/features/splash/view/update_view.dart';
+import 'package:mhg/main.dart';
 import '../api/api.dart';
 import '../models/api_response.dart';
 import 'package:http/http.dart' as http;
@@ -11,6 +18,12 @@ import '../models/failure.dart';
 import 'http_services_repository.dart';
 
 class HttpServiceImplementation implements HttpService {
+  Future checkUpgrade(http.Response? responseData) async {
+    if (jsonDecode(responseData!.body)['message'] == App.upgradeMessage) {
+      await Get.toNamed(UpdateView.routeName);
+    }
+  }
+
   @override
   Future<Either<Failure, ApiResponse>> get({
     required String url,
@@ -28,6 +41,7 @@ class HttpServiceImplementation implements HttpService {
       log("${response.statusCode}");
       final parsedResponse = jsonDecode(response.body);
       http.Response? responseData = handleResponse(response);
+
       if (responseData != null) {
         if (App.sid.isEmpty) {
           log("HEADERS ${response.headers["set-cookie"]}");
@@ -35,9 +49,9 @@ class HttpServiceImplementation implements HttpService {
           String result = sid.substring(0, sid.indexOf(';'));
           App.sid = result;
         }
+        await checkUpgrade(responseData);
         return Right(ApiResponse(response.statusCode, parsedResponse));
       } else {
-        log('ERROR ERROR ERROR ERROR ERROR: ${response.statusCode}');
         return Left(BadRequestError('${response.statusCode}'));
       }
     } on TimeoutException catch (e) {
@@ -46,8 +60,7 @@ class HttpServiceImplementation implements HttpService {
     } on SocketException catch (e) {
       log('No internet connection | $url');
       return Left(NetworkingError('$e'));
-    } catch (e, s) {
-      log("$e$s");
+    } catch (e) {
       return Left(Failure("$e"));
     }
   }
@@ -74,6 +87,7 @@ class HttpServiceImplementation implements HttpService {
       final parsedResponse = jsonDecode(response.body);
       http.Response? responseData = handleResponse(response);
       if (responseData != null) {
+        await checkUpgrade(responseData);
         return Right(ApiResponse(response.statusCode, parsedResponse));
       } else {
         return Left(BadRequestError('${response.statusCode}'));
@@ -84,8 +98,7 @@ class HttpServiceImplementation implements HttpService {
     } on SocketException catch (e) {
       log('No internet connection | $url');
       return Left(NetworkingError('$e'));
-    } catch (e, s) {
-      log("$e$s");
+    } catch (e) {
       return Left(Failure('$e'));
     }
   }
@@ -113,6 +126,7 @@ class HttpServiceImplementation implements HttpService {
       final parsedResponse = jsonDecode(response.body);
       http.Response? responseData = handleResponse(response);
       if (responseData != null) {
+        await checkUpgrade(responseData);
         return Right(ApiResponse(response.statusCode, parsedResponse));
       } else {
         log(response.body);
@@ -124,8 +138,7 @@ class HttpServiceImplementation implements HttpService {
     } on SocketException catch (e) {
       log('No internet connection | $url');
       return Left(NetworkingError('$e'));
-    } catch (e, s) {
-      log("$e$s");
+    } catch (e) {
       return Left(Failure('$e'));
     }
   }
@@ -149,6 +162,7 @@ class HttpServiceImplementation implements HttpService {
       final parsedResponse = jsonDecode(response.body);
       http.Response? responseData = handleResponse(response);
       if (responseData != null) {
+        await checkUpgrade(responseData);
         return Right(ApiResponse(response.statusCode, parsedResponse));
       } else {
         return Left(BadRequestError('${response.statusCode}'));
@@ -159,8 +173,7 @@ class HttpServiceImplementation implements HttpService {
     } on SocketException catch (e) {
       log('No internet connection | $url');
       return Left(NetworkingError('$e'));
-    } catch (e, s) {
-      log("$e$s");
+    } catch (e) {
       return Left(Failure('$e'));
     }
   }
@@ -187,6 +200,7 @@ class HttpServiceImplementation implements HttpService {
       final parsedResponse = jsonDecode(response.body);
       http.Response? responseData = handleResponse(response);
       if (responseData != null) {
+        await checkUpgrade(responseData);
         return Right(ApiResponse(response.statusCode, parsedResponse));
       } else {
         return Left(BadRequestError('${response.statusCode}'));
@@ -197,8 +211,7 @@ class HttpServiceImplementation implements HttpService {
     } on SocketException catch (e) {
       log('No internet connection | $url');
       return Left(NetworkingError('$e'));
-    } catch (e, s) {
-      log("$e$s");
+    } catch (e) {
       return Left(Failure('$e'));
     }
   }
@@ -231,6 +244,7 @@ class HttpServiceImplementation implements HttpService {
       final parsedResponse = jsonDecode(response.body);
       http.Response? responseData = handleResponse(response);
       if (responseData != null) {
+        await checkUpgrade(responseData);
         return Right(ApiResponse(response.statusCode, parsedResponse));
       } else {
         return Left(BadRequestError('${response.statusCode}'));
@@ -241,8 +255,7 @@ class HttpServiceImplementation implements HttpService {
     } on SocketException catch (e) {
       log('No internet connection | $url');
       return Left(NetworkingError('$e'));
-    } catch (e, s) {
-      log("$e$s");
+    } catch (e) {
       return Left(Failure('$e'));
     }
   }

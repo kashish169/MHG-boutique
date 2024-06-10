@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import '../app/app.dart';
 import 'app_colors.dart';
 
 class AppToasts {
-  static Future<bool?> errorToast(String message) {
+  static Future<bool?> errorToast(String message) async {
+    if (message == App.upgradeMessage) {
+      return false;
+    }
     return Fluttertoast.showToast(
         msg: message,
         toastLength: Toast.LENGTH_LONG,

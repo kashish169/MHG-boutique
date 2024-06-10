@@ -24,6 +24,8 @@ import 'features/auth/sign_up/repository/sign_up_repo_impl.dart';
 import 'features/on_board/model/country_model.dart';
 import 'widgets/show_snakBar.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   log("Handling a background message: ${message.messageId}");
 }
@@ -41,6 +43,7 @@ class MHG extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.themeData,
+      navigatorKey: navigatorKey,
       getPages: AppRoutes.getRoutes,
       translations: Language(),
       locale: Get.locale,
