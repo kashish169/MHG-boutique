@@ -44,6 +44,7 @@ import 'package:mhg/features/setting/view/pages/setting_view.dart';
 import 'package:mhg/features/setting/view/pages/terms_and_conditions_page.dart';
 import 'package:mhg/features/splash/binding/splash_binding.dart';
 import 'package:mhg/features/splash/view/splash_view.dart';
+import 'package:mhg/features/splash/view/update_view.dart';
 import 'package:mhg/features/stroresmap/bindings/stores_map_binding.dart';
 import 'package:mhg/features/stroresmap/view/pages/stores_map_page.dart';
 import 'package:mhg/features/success_order/binding/success_order_binding.dart';
@@ -217,6 +218,10 @@ class AppRoutes {
       name: SwipePage.routeName,
       page: () => const SwipePage(),
       binding: SwipBinding(),
+    ),
+    GetPage(
+      name: UpdateView.routeName,
+      page: () => const UpdateView(),
     ),
     GetPage(
         name: '/all_products',

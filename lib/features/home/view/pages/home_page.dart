@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage>
           children: [
             SingleChildScrollView(
               controller: scrollController,
-              child: const Column(
+              child:  Column(
                 children: [
                   HomeSlider(),
                   HomeCategoriesListWidget(),

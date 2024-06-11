@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../../app/app.dart';
 
 class Api {
@@ -5,11 +7,17 @@ class Api {
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Country-Id': "${App.countryId}",
+    'android-version': App.version,
+    'ios-version': App.version,
+    'env': Platform.isAndroid ? 'android' : 'ios'
   };
   static Map<String, String> authorizedheaders = {
     'Content-Type': 'application/json',
     'Authorization': "Bearer ${App.token}",
     'Country-Id': "${App.countryId}",
+    'android-version': App.version,
+    'ios-version': App.version,
+    'env': Platform.isAndroid ? 'android' : 'ios'
   };
 
   // static String apiRoot = "/api/v1";//VERSION 1

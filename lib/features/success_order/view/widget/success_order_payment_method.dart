@@ -5,6 +5,8 @@ import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/myorders/controller/my_orders_controller.dart';
 import 'package:mhg/features/success_order/controller/success_order_controller.dart';
 
+import '../../../../constants/app_assets.dart';
+
 class SuccessOrderPaymentMethod extends StatelessWidget {
   SucessOrderController controller;
 
@@ -46,18 +48,17 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                     )
-                  : SizedBox()
-              /* Text(
-                      'ending ${controller.getCodedNumber(model.cardNumber)}',
-                      maxLines: null,
-                      overflow: TextOverflow.fade,
-                      softWrap: true,
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 14,
-                            color: AppColors.mediumLabel,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ) */
+                  : controller.orderModel.paymentMethod == 'TABBY'
+                      ? Image.asset(
+                          AssetsPaymentsLogos.tabbyLogo,
+                          width: 50,
+                        )
+                      : controller.orderModel.paymentMethod == 'TAMARA'
+                          ? Image.asset(
+                              AssetsPaymentsLogos.tamaraLogo,
+                              width: 50,
+                            )
+                          : const SizedBox(),
             ],
           ),
           controller.orderModel.tapPaymentMethod?.cardType != null

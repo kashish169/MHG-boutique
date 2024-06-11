@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mhg/core/helper/app_helper.dart';
 import 'package:mhg/core/storage/storage_pref.dart';
@@ -21,12 +21,16 @@ class App {
   static String flagLink = '';
   static String lang = '';
   static String sid = '';
+  static String version = '1.0.0';
+  static String upgradeMessage = 'Upgrade Required';
 
   static Future<void> initSettings() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
     await GetStorage.init();
     await dotenv.load(fileName: ".env");
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    version = packageInfo.version;
     token = await StoragePref.getString("token");
     notifyMe = await StoragePref.getbool("notifyme");
     countryId = await StoragePref.getInt("countryid");
