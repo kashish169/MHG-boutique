@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
@@ -58,11 +60,17 @@ class OnBoardButtons extends StatelessWidget {
                         'Content-Type': 'application/json',
                         'Cookie': App.sid,
                         'Country-Id': "${App.countryId}",
+                        'android-version': App.version,
+                        'ios-version': App.version,
+                        'env': Platform.isAndroid ? 'android' : 'ios'
                       };
                       Api.headers = {
                         'Content-Type': 'application/json',
                         'Cookie': App.sid,
                         'Country-Id': "${App.countryId}",
+                        'android-version': App.version,
+                        'ios-version': App.version,
+                        'env': Platform.isAndroid ? 'android' : 'ios'
                       };
                       Get.offAllNamed(
                         MainWrapper.routeName,
