@@ -15,6 +15,7 @@ class UpdateView extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Container(
         margin: const EdgeInsets.only(left: 25, right: 25),
+        width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -38,44 +39,47 @@ class UpdateView extends StatelessWidget {
                         ?.copyWith(fontSize: 16))
               ],
             ),
-            TextButton(
-              onPressed: () async {
-                if (Platform.isAndroid) {
-                  const androidUrl =
-                      'market://details?id=com.starttech.mhgboutique';
-                  const webUrl =
-                      'https://play.google.com/store/apps/details?id=com.starttech.mhgboutique';
+            Center(
+              child: TextButton(
+                onPressed: () async {
+                  if (Platform.isAndroid) {
+                    const androidUrl =
+                        'market://details?id=com.starttech.mhgboutique';
+                    const webUrl =
+                        'https://play.google.com/store/apps/details?id=com.starttech.mhgboutique';
 
-                  if (await canLaunch(androidUrl)) {
-                    await launch(androidUrl);
-                  } else if (await canLaunch(webUrl)) {
-                    await launch(webUrl);
+                    if (await canLaunch(androidUrl)) {
+                      await launch(androidUrl);
+                    } else if (await canLaunch(webUrl)) {
+                      await launch(webUrl);
+                    } else {
+                      throw 'Could not launch $androidUrl or $webUrl';
+                    }
+                  } else if (Platform.isIOS) {
+                    const iosUrl =
+                        'https://apps.apple.com/ae/app/mhgboutique/id6463312590';
+
+                    if (await canLaunch(iosUrl)) {
+                      await launch(iosUrl);
+                    } else {
+                      throw 'Could not launch $iosUrl';
+                    }
                   } else {
-                    throw 'Could not launch $androidUrl or $webUrl';
+                    throw UnsupportedError('Unsupported platform');
                   }
-                } else if (Platform.isIOS) {
-                  // final iosUrl = 'https://apps.apple.com/app/id$iOSAppId';
-
-                  // if (await canLaunch(iosUrl)) {
-                  //   await launch(iosUrl);
-                  // } else {
-                  //   throw 'Could not launch $iosUrl';
-                  // }
-                } else {
-                  throw UnsupportedError('Unsupported platform');
-                }
-              },
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                margin: const EdgeInsets.only(bottom: 25),
-                decoration: BoxDecoration(
-                    color: AppColors.green,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Text('Update now',
-                    style: Theme.of(context)
-                        .textTheme
-                        .displaySmall
-                        ?.copyWith(fontSize: 18, color: Colors.white)),
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  margin: const EdgeInsets.only(bottom: 25),
+                  decoration: BoxDecoration(
+                      color: AppColors.green,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Text('Update now',
+                      style: Theme.of(context)
+                          .textTheme
+                          .displaySmall
+                          ?.copyWith(fontSize: 18, color: Colors.white)),
+                ),
               ),
             ),
           ],
