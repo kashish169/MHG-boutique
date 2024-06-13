@@ -34,10 +34,10 @@ class HomeShopByCategoryWidget extends StatelessWidget {
               shrinkWrap: true,
               mainAxisSpacing: 10,
               crossAxisSpacing: 10,
-              itemCount: controller.categories.length,
+              itemCount: controller.homeModel!.categories.length,
               builder: (ctx, index) {
                 return HomeCategoryCard(
-                  model: controller.categories[index],
+                  model: controller.homeModel!.categories[index],
                 );
               },
             )),

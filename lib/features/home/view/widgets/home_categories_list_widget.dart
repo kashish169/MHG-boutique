@@ -31,16 +31,16 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
         });
       }
       return Visibility(
-        visible: controller.categories.isNotEmpty,
+        visible: controller.homeModel!.categories.isNotEmpty,
         child: Container(
           padding: const EdgeInsets.only(top: 5, left: 5),
           child: SizedBox(
             height: 100,
             child: ListView.builder(
-              itemCount: controller.categories.length,
+              itemCount: controller.homeModel!.categories.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                final model = controller.categories[index];
+                final model = controller.homeModel!.categories[index];
                 return Padding(
                   padding: const EdgeInsets.only(right: 5),
                   child: InkWell(
@@ -79,14 +79,17 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
                         SizedBox(
                           width: 100,
                           height: 100,
-                          child: controller.categories[index].imageLink != null
+                          child: controller
+                                      .homeModel!.categories[index].imageLink !=
+                                  null
                               ? ColorFiltered(
                                   colorFilter: ColorFilter.mode(
                                       Colors.black.withOpacity(0.35),
                                       BlendMode.darken),
                                   child: Image(
                                     image: NetworkImage(
-                                      controller.categories[index].imageLink!,
+                                      controller.homeModel!.categories[index]
+                                          .imageLink!,
                                     ),
                                     fit: BoxFit.cover,
                                   ),
@@ -100,8 +103,10 @@ class _HomeCategoriesListWidgetState extends State<HomeCategoriesListWidget> {
                           child: Center(
                             child: Text(
                                 isAR()
-                                    ? controller.categories[index].frName
-                                    : controller.categories[index].enName,
+                                    ? controller
+                                        .homeModel!.categories[index].frName
+                                    : controller
+                                        .homeModel!.categories[index].enName,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: AppColors.white,

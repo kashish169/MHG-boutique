@@ -28,7 +28,7 @@ class HomeController extends GetxController {
   RxList<ProductModel> topSellersList = <ProductModel>[].obs;
   RxList<ProductModel> newArrivalsList = <ProductModel>[].obs;
   RxList<BrandModel> brandsList = <BrandModel>[].obs;
-  RxList<Menu> categories = <Menu>[].obs;
+  // RxList<Menu> categories = <Menu>[].obs;
   RxList<NewMiddleSectionModel> middleSectionList =
       <NewMiddleSectionModel>[].obs;
   RxList<SliderModel> footerSlider = <SliderModel>[].obs;
@@ -76,7 +76,7 @@ class HomeController extends GetxController {
             topSellersList.value = data.topSellers;
             newArrivalsList.value = data.newArrivals;
             brandsList.value = data.brands;
-            categories.value = data.categories;
+            // categories.value = data.categories;
             footerSlider.value = data.footerSliders;
             recentSearchList.value = data.recentSearch;
             middleSectionList.value = data.middleSections;

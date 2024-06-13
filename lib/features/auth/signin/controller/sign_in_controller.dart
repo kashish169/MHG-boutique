@@ -145,6 +145,7 @@ class SignInController extends GetxController {
             'Content-Type': 'application/json',
             'Authorization': "Bearer $token",
             'Country-Id': "${App.countryId}",
+            'lang': Get.locale!.languageCode,
             'android-version': App.version,
             'ios-version': App.version,
             'env': Platform.isAndroid ? 'android' : 'ios'
@@ -218,6 +219,7 @@ class SignInController extends GetxController {
             'Content-Type': 'application/json',
             'Authorization': "Bearer $token",
             'Country-Id': "${App.countryId}",
+            'lang': Get.locale!.languageCode,
             'android-version': App.version,
             'ios-version': App.version,
             'env': Platform.isAndroid ? 'android' : 'ios'

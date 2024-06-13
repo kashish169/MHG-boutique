@@ -137,6 +137,7 @@ class OnboardController extends GetxController {
                   'Content-Type': 'application/json',
                   'Authorization': "Bearer ${App.token}",
                   'Country-Id': "${App.countryId}",
+                  'lang': Get.locale!.languageCode,
                   'android-version': App.version,
                   'ios-version': App.version,
                   'env': Platform.isAndroid ? 'android' : 'ios'
@@ -196,6 +197,7 @@ class OnboardController extends GetxController {
       'Content-Type': 'application/json',
       'Authorization': "Bearer ${App.token}",
       'Country-Id': "${App.countryId}",
+      'lang': Get.locale!.languageCode,
       'android-version': App.version,
       'ios-version': App.version,
       'env': Platform.isAndroid ? 'android' : 'ios'
@@ -203,6 +205,7 @@ class OnboardController extends GetxController {
     Api.headers = {
       'Content-Type': 'application/json',
       'Country-Id': "${App.countryId}",
+      'lang': Get.locale!.languageCode,
       'android-version': App.version,
       'ios-version': App.version,
       'env': Platform.isAndroid ? 'android' : 'ios'
