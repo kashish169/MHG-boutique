@@ -197,7 +197,7 @@ class PersonalInformationController extends GetxController {
         bool success = r.object['isSuccessful'];
         var message = r.object['message'];
         if (success == true) {
-          Get.find<HomeController>().homeModel = null;
+          // Get.find<HomeController>().homeModel = null;
           Get.find<WishListController>().getWishList();
           await profileController.getProfileInfo();
           AppToasts.successToast("Updated Successfully");

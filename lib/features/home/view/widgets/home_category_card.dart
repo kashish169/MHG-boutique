@@ -6,31 +6,40 @@ import 'package:mhg/features/categories/models/categories_model.dart';
 import 'package:mhg/features/categories/view/pages/sub_categories_page.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
 
+import '../../../categories/models/menu.dart';
+
 class HomeCategoryCard extends StatelessWidget {
-  final Menu model;
+  final MenuModel model;
   const HomeCategoryCard({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (model.categoryId == null && model.allActiveSubMenus.isEmpty) {
+        if (model.categoryId == null) {
           return;
         }
-        if (model.allActiveSubMenus.isEmpty) {
-          Get.toNamed(
-            ProductsPage.routeName,
-            arguments: {
-              "categoryId": model.categoryId,
-              "categoryName": isAR() ? model.enName : model.enName,
-            },
-          );
-        } else {
-          Navigator.pushNamed(context, SubCategoriesPage.routeName, arguments: [
-            model.allActiveSubMenus,
-            isAR() ? model.frName : model.enName
-          ]);
-        }
+        Get.toNamed(
+          ProductsPage.routeName,
+          arguments: {
+            "categoryId": model.categoryId,
+            "categoryName": isAR() ? model.enName : model.enName,
+          },
+        );
+        // if (model.allActiveSubMenus.isEmpty) {
+        //   Get.toNamed(
+        //     ProductsPage.routeName,
+        //     arguments: {
+        //       "categoryId": model.categoryId,
+        //       "categoryName": isAR() ? model.enName : model.enName,
+        //     },
+        //   );
+        // } else {
+        //   Navigator.pushNamed(context, SubCategoriesPage.routeName, arguments: [
+        //     model.allActiveSubMenus,
+        //     isAR() ? model.frName : model.enName
+        //   ]);
+        // }
       },
       child: Container(
         padding:
@@ -42,7 +51,7 @@ class HomeCategoryCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 14),
           child: Text(
-            isAR() ? model.frName : model.enName,
+            isAR() ? model.frName! : model.enName!,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   fontSize: 12,

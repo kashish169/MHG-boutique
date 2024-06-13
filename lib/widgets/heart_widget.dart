@@ -9,10 +9,6 @@ import 'package:mhg/features/products_page/controller/product_controller.dart';
 import 'package:mhg/features/search/controller/search_controller.dart';
 import 'package:mhg/widgets/three_bounce_loading.dart';
 
-import '../app/app.dart';
-import '../features/auth/signin/view/pages/sign_in_page.dart';
-import '../features/mainwrapper/controller/main_wrapper_controller.dart';
-
 class FavouriteWidget extends StatefulWidget {
   final double? height;
   final double? width;
@@ -42,7 +38,6 @@ class FavouriteWidget extends StatefulWidget {
 class _FavouriteWidgetState extends State<FavouriteWidget> {
   @override
   Widget build(BuildContext context) {
-    final mainController = Get.find<MainWrapperController>();
     return InkWell(child: GetX<WishListController>(builder: (controller) {
       if (controller.isLoading.isTrue) {
         return Container(
@@ -75,14 +70,26 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                   widget.inWishlist = 0;
                   setState(() {});
 
-                  List<ProductModel> temp = widget.fromArrival
-                      ? Get.find<HomeController>().newArrivalsList
-                      : Get.find<HomeController>().topSellersList;
-                  for (int i = 0; i < temp.length; i++) {
-                    if (temp[i].id == widget.itemId!) {
-                      temp[i].inWishlist = 0;
+                  List<ProductModel> temp = [];
+                  List<List<ProductModel>> temp2 = [];
+                  if (widget.fromArrival) {
+                    temp = Get.find<HomeController>().newArrivalsList;
+                    for (int i = 0; i < temp.length; i++) {
+                      if (temp[i].id == widget.itemId!) {
+                        temp[i].inWishlist = 1;
+                      }
+                    }
+                  } else {
+                    temp2 = Get.find<HomeController>().topSellersList;
+                    for (int i = 0; i < temp2.length; i++) {
+                      for (int j = 0; j < temp2[i].length; j++) {
+                        if (temp2[i][j].id == widget.itemId!) {
+                          temp2[i][j].inWishlist = 1;
+                        }
+                      }
                     }
                   }
+
                   if (widget.from == 'product') {
                     Get.find<ProductsController>()
                         .updateList(temp, widget.fromArrival);
@@ -91,8 +98,9 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                     Get.find<SearchingController>()
                         .updateList(temp, widget.fromArrival);
                   }
-                  Get.find<HomeController>()
-                      .updateList(temp, widget.fromArrival);
+                  Get.find<HomeController>().updateList(
+                      arrivals: widget.fromArrival ? temp : null,
+                      topSellers: widget.fromArrival ? null : temp2);
                 }
                 // if(res==true){
                 //   if(from=='home'){
@@ -109,17 +117,28 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
                   widget.inWishlist = 1;
 
                   setState(() {});
-
-                  List<ProductModel> temp = widget.fromArrival
-                      ? Get.find<HomeController>().newArrivalsList
-                      : Get.find<HomeController>().topSellersList;
-                  for (int i = 0; i < temp.length; i++) {
-                    if (temp[i].id == widget.itemId!) {
-                      temp[i].inWishlist = 1;
+                  List<ProductModel> temp = [];
+                  List<List<ProductModel>> temp2 = [];
+                  if (widget.fromArrival) {
+                    temp = Get.find<HomeController>().newArrivalsList;
+                    for (int i = 0; i < temp.length; i++) {
+                      if (temp[i].id == widget.itemId!) {
+                        temp[i].inWishlist = 1;
+                      }
+                    }
+                  } else {
+                    temp2 = Get.find<HomeController>().topSellersList;
+                    for (int i = 0; i < temp2.length; i++) {
+                      for (int j = 0; j < temp2[i].length; j++) {
+                        if (temp2[i][j].id == widget.itemId!) {
+                          temp2[i][j].inWishlist = 1;
+                        }
+                      }
                     }
                   }
-                  Get.find<HomeController>()
-                      .updateList(temp, widget.fromArrival);
+                  Get.find<HomeController>().updateList(
+                      arrivals: widget.fromArrival ? temp : null,
+                      topSellers: widget.fromArrival ? null : temp2);
                 }
                 // if(res==true){
                 //   if(from=='home'){

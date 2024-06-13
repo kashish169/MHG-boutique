@@ -61,17 +61,20 @@ class _ProductDetailsCounterWidgetState
                   fromArrival = true;
                 }
               }
-              List<ProductModel> temp2 =
+              List<List<ProductModel>> temp2 =
                   Get.find<HomeController>().topSellersList;
               for (int i = 0; i < temp2.length; i++) {
-                if (temp2[i].id == widget.model.id) {
-                  temp2[i].inCart = 1;
-                  temp2[i].cartQty = value;
-                  fromArrival = false;
+                for (int j = 0; j < temp2[i].length; j++) {
+                  if (temp2[i][j].id == widget.model.id) {
+                    temp2[i][j].inCart = 1;
+                    temp2[i][j].cartQty = value;
+                    fromArrival = false;
+                  }
                 }
               }
-              Get.find<HomeController>()
-                  .updateList(fromArrival == true ? temp : temp2, fromArrival);
+              Get.find<HomeController>().updateList(
+                  arrivals: fromArrival ? temp : null,
+                  topSellers: fromArrival ? null : temp2);
             }
             widget.model.isLoadingQuantity = false;
             if (mounted) setState(() {});
@@ -96,17 +99,20 @@ class _ProductDetailsCounterWidgetState
                   fromArrival = true;
                 }
               }
-              List<ProductModel> temp2 =
+              List<List<ProductModel>> temp2 =
                   Get.find<HomeController>().topSellersList;
               for (int i = 0; i < temp2.length; i++) {
-                if (temp2[i].id == widget.model.id) {
-                  temp2[i].inCart = 1;
-                  temp2[i].cartQty = value;
-                  fromArrival = false;
+                for (int j = 0; j < temp2[i].length; j++) {
+                  if (temp2[i][j].id == widget.model.id) {
+                    temp2[i][j].inCart = 1;
+                    temp2[i][j].cartQty = value;
+                    fromArrival = false;
+                  }
                 }
               }
-              Get.find<HomeController>()
-                  .updateList(fromArrival == true ? temp : temp2, fromArrival);
+              Get.find<HomeController>().updateList(
+                  arrivals: fromArrival ? temp : null,
+                  topSellers: fromArrival ? null : temp2);
             }
             widget.model.isLoadingQuantity = false;
             if (mounted) setState(() {});

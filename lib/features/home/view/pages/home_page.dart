@@ -7,8 +7,6 @@ import '../../../../widgets/retry_button.dart';
 import '../../../profile/controller/profile_controller.dart';
 import '../../controller/home_controller.dart';
 import '../widgets/home_categories_list_widget.dart';
-import '../widgets/home_footer_slider.dart';
-import '../widgets/home_middle_section_widget.dart';
 import '../widgets/home_slider.dart';
 import '../widgets/home_top_sellers_widget.dart';
 
@@ -72,20 +70,24 @@ class _HomePageState extends State<HomePage>
         child: Stack(
           children: [
             SingleChildScrollView(
-              controller: scrollController,
-              child: const Column(
-                children: [
-                  HomeSlider(),
-                  HomeCategoriesListWidget(),
-                  HomeTopSellersWidget(),
-                  //HomeShopByCategoryWidget(),
-                  // HomeNewArrivelsWidget(),
-                  HomeMiddleSectionWidget(),
-                  HomeFooterSlider(),
-                  // HomeExploreOurBrandsWidget(),
-                ],
-              ),
-            ),
+                controller: scrollController,
+                child: Column(
+                    children: List.generate(
+                  controller.lengthHomeSections.value,
+                  (index) => Column(
+                    children: [
+                      HomeSlider(sliders: controller.slidersList[index]),
+                      HomeCategoriesListWidget(
+                          categories: controller.categories[index]),
+                      HomeTopSellersWidget(
+                          categoryID: controller.categoryIdsToppSeller[index],
+                          topSellers: controller.topSellersList[index]),
+                      //HomeShopByCategoryWidget(),
+                      // HomeNewArrivelsWidget(),
+                      // HomeExploreOurBrandsWidget(),
+                    ],
+                  ),
+                ))),
             if (!isScrollForward) const HomeRewardBox()
           ],
         ),

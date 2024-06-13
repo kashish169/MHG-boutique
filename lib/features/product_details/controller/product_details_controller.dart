@@ -204,17 +204,20 @@ class ProductDetailsController extends GetxController {
                 fromArrival = true;
               }
             }
-            List<ProductModel> temp2 =
+            List<List<ProductModel>> temp2 =
                 Get.find<HomeController>().topSellersList;
             for (int i = 0; i < temp2.length; i++) {
-              if (temp2[i].id == productId) {
-                temp2[i].inCart = 1;
-                temp2[i].cartQty = 1;
-                fromArrival = false;
+              for (int j = 0; j < temp2[i].length; j++) {
+                if (temp2[i][j].id == productId) {
+                  temp2[i][j].inCart = 1;
+                  temp2[i][j].cartQty = 1;
+                  fromArrival = false;
+                }
               }
             }
-            Get.find<HomeController>()
-                .updateList(fromArrival == true ? temp : temp2, fromArrival);
+            Get.find<HomeController>().updateList(
+                arrivals: fromArrival ? temp : null,
+                topSellers: fromArrival ? null : temp2);
             AppToasts.successToast(
               "The product has been added to the bag",
             );

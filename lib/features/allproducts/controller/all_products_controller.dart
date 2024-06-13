@@ -2,12 +2,8 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/app/app.dart';
 import 'package:mhg/features/allproducts/repository/all_products_repo.dart';
 import 'package:mhg/features/allproducts/repository/all_products_repo_impl.dart';
-import 'package:mhg/features/categories/models/categories_model.dart';
-import 'package:mhg/features/home/models/brand_model.dart';
-import 'package:mhg/features/home/models/home_model.dart';
 import 'package:mhg/features/home/models/product_model.dart';
 
 import '../../../constants/app_toasts.dart';
@@ -48,7 +44,6 @@ class AllProductsController extends GetxController {
   }
 
   Future<void> paginate() async {
-    log("pagination .................................");
     scrollController.addListener(() {
       if (scrollController.offset ==
           scrollController.position.maxScrollExtent) {
@@ -73,30 +68,15 @@ class AllProductsController extends GetxController {
         isFetching.trigger(true);
       }
       isError(false);
-      var query = '?page=$page';
+      var query = '/category?category_id=$arg';
+      // var query = '?page=$page';
 
-      if (arg == 'topSeller') {
-        query += "&best_sale=1";
-      }
-      if (arg == 'fromArrival') {
-        query += "&new_arrival=1";
-      }
-      // if (brandId != null) {
-      //   query += "&brands[]=$brandId";
-      // }
-      // if (search != null) {
-      //   query += "&search=$search";
-      // }
-      // if (selectedSortBy.value == 'Featured') {
-      //   query += "&featured=1";
-      // }
-      // if (selectedSortBy.value == 'Best Sellers') {
+      // if (arg == 'topSeller') {
       //   query += "&best_sale=1";
       // }
-      // if (selectedSortBy.value == 'New Arrival') {
+      // if (arg == 'fromArrival') {
       //   query += "&new_arrival=1";
       // }
-      // log("query $query");
       Either<Failure, ApiResponse> results =
           await allProductsRepository.getAllProducts(
         query: query,

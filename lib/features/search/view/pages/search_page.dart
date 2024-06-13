@@ -44,7 +44,10 @@ class SearchPage extends StatelessWidget {
                   : homeController.isError.isTrue
                       ? RetryButton(onTap: () => homeController.getHome())
                       : homeController.topSellersList.isNotEmpty
-                          ? HomeTopSellersWidget()
+                          ? HomeTopSellersWidget(
+                              categoryID:
+                                  homeController.categoryIdsToppSeller[0],
+                              topSellers: homeController.topSellersList[0])
                           : SizedBox(
                               height: 50,
                               child: Center(

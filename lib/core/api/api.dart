@@ -92,5 +92,5 @@ class Api {
   static String productOfsUnSubscribe =
       "$apiRoot/product/unsubscribe-stock-notification";
 
-  static String allProducts = "$apiRoot/product/filter";
+  static String allProducts = "$apiRoot/product";
 }
