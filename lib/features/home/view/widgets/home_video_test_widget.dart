@@ -53,10 +53,10 @@ class _HomeVideoTestWidgetState extends State<HomeVideoTestWidget> {
 
   @override
   void dispose() {
-    setState(() {
-      _controller?.dispose();
-      _controller = null;
-    });
+    // setState(() {
+    //   _controller?.dispose();
+    //   _controller = null;
+    // });
 
     super.dispose();
   }

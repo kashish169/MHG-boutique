@@ -44,14 +44,14 @@ class HomeCategoriesListWidget extends StatelessWidget {
                         );
                       }
                       return;
-                    }
-                    log(model.categoryId.toString());
-                    Get.toNamed(
+                    }else{
+                        Get.toNamed(
                       ProductsPage.routeName,
                       arguments: {
                         "categoryId": model.categoryId,
                       },
                     );
+                    }                  
                     // if (model.allActiveSubMenus.isEmpty) {
                     //   log(model.categoryId.toString());
                     //   Get.toNamed(
