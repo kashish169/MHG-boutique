@@ -119,6 +119,7 @@ class SignUpController extends GetxController {
           'Content-Type': 'application/json',
           'Authorization': "Bearer $tokenRes",
           'Country-Id': "${App.countryId}",
+          'lang': Get.locale!.languageCode,
           'android-version': App.version,
           'ios-version': App.version,
           'env': Platform.isAndroid ? 'android' : 'ios'

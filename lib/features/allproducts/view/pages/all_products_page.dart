@@ -6,7 +6,6 @@ import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import '../../../../widgets/dynamic_grid_view.dart';
-import '../../../home/models/product_model.dart';
 
 class AllProductsPage extends StatelessWidget {
   static String routeName = '/all_products';
@@ -17,7 +16,6 @@ class AllProductsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<AllProductsController>();
     return Scaffold(
         appBar: customAppBar(context, title: 'All Products'),
         body: GetX<AllProductsController>(builder: (controller) {

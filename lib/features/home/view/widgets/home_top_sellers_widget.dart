@@ -5,15 +5,19 @@ import 'package:mhg/features/home/view/widgets/product_card.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import '../../../../widgets/view_all_button.dart';
 import '../../controller/home_controller.dart';
+import '../../models/product_model.dart';
 
 class HomeTopSellersWidget extends StatelessWidget {
-  const HomeTopSellersWidget({super.key});
+  const HomeTopSellersWidget(
+      {super.key, required this.topSellers, required this.categoryID});
+  final List<ProductModel> topSellers;
+  final int categoryID;
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
     return Visibility(
-      visible: controller.topSellersList.isNotEmpty,
+      visible: topSellers.isNotEmpty,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,7 +37,7 @@ class HomeTopSellersWidget extends StatelessWidget {
                 ),
                 ViewAllButton(onTap: () {
                   Get.toNamed(AllProductsPage.routeName,
-                      arguments: 'topSeller');
+                      arguments: '$categoryID');
                 }),
               ],
             ),
@@ -52,16 +56,15 @@ class HomeTopSellersWidget extends StatelessWidget {
                       child: Row(
                         children: [
                           for (int index = 0;
-                              index < controller.topSellersList.length;
+                              index < topSellers.length;
                               index++)
-                            Obx(() => Padding(
-                                  padding:
-                                      const EdgeInsetsDirectional.only(end: 8),
-                                  child: ProductCard(
-                                    isHomePage: true,
-                                    model: controller.topSellersList[index],
-                                  ),
-                                )),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.only(end: 8),
+                              child: ProductCard(
+                                isHomePage: true,
+                                model: topSellers[index],
+                              ),
+                            )
                         ],
                       ),
                     ),

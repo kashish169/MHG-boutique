@@ -1,16 +1,17 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mhg/features/home/controller/home_controller.dart';
 import 'package:mhg/features/home/view/widgets/home_video_test_widget.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/net_image.dart';
 import '../../../mainwrapper/controller/main_wrapper_controller.dart';
+import '../../models/slider_model.dart';
 
 class HomeSlider extends StatefulWidget {
-  const HomeSlider({super.key});
+  const HomeSlider({super.key, required this.sliders});
+  final List<SliderModel> sliders;
 
   @override
   State<HomeSlider> createState() => _HomeSliderState();
@@ -38,9 +39,8 @@ class _HomeSliderState extends State<HomeSlider> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<HomeController>();
     return Visibility(
-      visible: controller.slidersList.isNotEmpty,
+      visible: widget.sliders.isNotEmpty,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -59,43 +59,40 @@ class _HomeSliderState extends State<HomeSlider> {
                   builder: DotSwiperPaginationBuilder(
                     color: AppColors.lightGray3,
                     activeColor: AppColors.secondary,
-                    size: controller.slidersList.length <= 1 ? 0 : 10.0,
-                    activeSize: controller.slidersList.length <= 1 ? 0 : 9.0,
+                    size: widget.sliders.length <= 1 ? 0 : 10.0,
+                    activeSize: widget.sliders.length <= 1 ? 0 : 9.0,
                   )),
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () {
-                    if (controller.slidersList[index].productId != null) {
+                    if (widget.sliders[index].productId != null) {
                       Get.toNamed(
                         ProductDetailsPage.routeName,
                         arguments: {
-                          "id": controller.slidersList[index].productId,
+                          "id": widget.sliders[index].productId,
                           "name": '',
                           "fromArrival": false,
                         },
                       );
-                    } else if (controller.slidersList[index].productId ==
-                            null &&
-                        controller.slidersList[index].categoryId != null) {
+                    } else if (widget.sliders[index].productId == null &&
+                        widget.sliders[index].categoryId != null) {
                       Get.toNamed(
                         ProductsPage.routeName,
                         arguments: {
-                          "categoryId":
-                              controller.slidersList[index].categoryId,
+                          "categoryId": widget.sliders[index].categoryId,
                         },
                       );
-                    } else if (controller.slidersList[index].productId ==
-                            null &&
-                        controller.slidersList[index].categoryId == null) {
+                    } else if (widget.sliders[index].productId == null &&
+                        widget.sliders[index].categoryId == null) {
                       Get.find<MainWrapperController>().launchUrl(
-                        controller.slidersList[index].link!,
+                        widget.sliders[index].link!,
                       );
                     }
                   },
-                  child: controller.slidersList[index].videoLinkk != null
+                  child: widget.sliders[index].videoLinkk != null
                       ? HomeVideoTestWidget(
-                          videoLink: controller.slidersList[index].videoLinkk!,
-                          endVideoFun: controller.slidersList.length > 1
+                          videoLink: widget.sliders[index].videoLinkk!,
+                          endVideoFun: widget.sliders.length > 1
                               ? () {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(
@@ -123,14 +120,13 @@ class _HomeSliderState extends State<HomeSlider> {
                           },
                           height: MediaQuery.of(context).size.height * 2 / 2.6)
                       : NetImage(
-                          image:
-                              controller.slidersList[index].backgroundImageLink,
+                          image: widget.sliders[index].backgroundImageLink,
                           height: MediaQuery.of(context).size.height * 2 / 2.6,
                           width: double.infinity),
                 );
               },
               loop: false,
-              itemCount: controller.slidersList.length,
+              itemCount: widget.sliders.length,
               outer: false,
             ),
           ),

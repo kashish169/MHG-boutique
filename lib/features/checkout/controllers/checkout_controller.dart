@@ -370,14 +370,9 @@ class CheckoutController extends GetxController {
         query += "&cod=0";
       }
       log('QUERY: $query');
-      Map<String, String> oldheaders = Map.from(Api.authorizedheaders);
-      Map<String, String> newheaders = Map.from(oldheaders);
-      newheaders['lang'] = Get.locale!.languageCode;
-      Api.authorizedheaders = newheaders;
-      log('LOOOOOOOOOOOOG: ${Api.authorizedheaders}');
+
       Either<Failure, ApiResponse> results =
           await checkoutRepository.orderPrice(query);
-      Api.authorizedheaders = oldheaders;
       isLoadingRedeem(false);
       isLoadingPromo(false);
       results.fold(
@@ -516,66 +511,9 @@ class CheckoutController extends GetxController {
         const LoadingWidget(),
         barrierDismissible: false,
       );
-      Map<String, String> oldheaders = Map.from(Api.authorizedheaders);
-      Map<String, String> newheaders = Map.from(oldheaders);
-      newheaders['lang'] = Get.locale!.languageCode;
-      Api.authorizedheaders = newheaders;
-      log('Authorizedheaders Authorizedheaders: ${Api.authorizedheaders}');
-      log('OBJECT OBJECT: ${OrderModel(
-        billingName: userName,
-        billingEmail: email,
-        billingStreetAddress: street,
-        billingState: state,
-        billingZipcode: '00000',
-        billingCountry: countryName,
-        shippingName: userName,
-        shippingEmail: email,
-        shippingStreetAddress: street,
-        shippingState: state,
-        shippingZipcode: '00000',
-        billingPhoneNumber: billingPhoneNumber,
-        shippingPhoneNumber: shippingPhoneNumber,
-        shippingCountry: countryName,
-        redeem: hasRedeem.isTrue ? 1 : 0,
-        coupon: promoCode,
-        paymentMethod: isApplePay == true || isGooglePay == true
-            ? 'TAP'
-            : paymentMethodValue.value,
-        onlinePaymentMethodId: userSelectedCardModel.value?.id,
-        paymentPlatForm: isApplePay == true
-            ? 'apple'
-            : isGooglePay == true
-                ? 'google'
-                : '',
-        appleToken:
-            isApplePay == true ? applePayResultModel?.token.data ?? '' : null,
-        ephemeralPublicKey: isApplePay == true
-            ? applePayResultModel?.token.header.ephemeralPublicKey ?? ''
-            : null,
-        signature: isApplePay == true
-            ? applePayResultModel?.token.signature
-            : isGooglePay == true
-                ? googlePayResultModel?.signature ?? ''
-                : null,
-        publicKeyHash: isApplePay == true
-            ? applePayResultModel?.token.header.publicKeyHash ?? ''
-            : null,
-        transactionId: isApplePay == true
-            ? applePayResultModel?.token.header.transactionId ?? ''
-            : null,
-        signatures: isGooglePay == true
-            ? googlePayResultModel?.intermediateSigningKey?.signatures ?? []
-            : null,
-        signedMessage: isGooglePay == true
-            ? googlePayResultModel?.signedMessage ?? ''
-            : null,
-        signedKey: isGooglePay == true
-            ? googlePayResultModel?.intermediateSigningKey?.signedKey ?? ''
-            : null,
-      ).toJson()}');
+
       Either<Failure, ApiResponse> results =
           await checkoutRepository.createOrder(objectData);
-      Api.authorizedheaders = oldheaders;
       Get.back();
       results.fold(
         (l) {

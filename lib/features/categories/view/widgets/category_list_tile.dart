@@ -9,8 +9,10 @@ import 'package:mhg/features/product_details/view/pages/product_details_page.dar
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
 import 'package:mhg/widgets/divider_widget.dart';
 
+import '../../models/menu.dart';
+
 class CategoryListTile extends StatelessWidget {
-  final Menu model;
+  final MenuModel model;
   final Function()? onTap;
 
   const CategoryListTile({
@@ -24,7 +26,7 @@ class CategoryListTile extends StatelessWidget {
     log('CATEGORY CATEGORY "${model.toJson()}');
     return InkWell(
       onTap: () {
-        if (model.categoryId == null && model.allActiveSubMenus.isEmpty) {
+        if (model.categoryId == null) {
           if (model.productId != null) {
             Get.toNamed(
               ProductDetailsPage.routeName,
@@ -37,18 +39,25 @@ class CategoryListTile extends StatelessWidget {
           }
           return;
         }
-        if (model.allActiveSubMenus.isEmpty) {
-          log(model.categoryId.toString());
-          Get.toNamed(
-            ProductsPage.routeName,
-            arguments: {
-              "categoryId": model.categoryId,
-            },
-          );
-        } else {
-          Navigator.pushNamed(context, SubCategoriesPage.routeName,
-              arguments: [model.allActiveSubMenus, model.enName]);
-        }
+        log(model.categoryId.toString());
+        Get.toNamed(
+          ProductsPage.routeName,
+          arguments: {
+            "categoryId": model.categoryId,
+          },
+        );
+        // if (model.allActiveSubMenus.isEmpty) {
+        //   log(model.categoryId.toString());
+        //   Get.toNamed(
+        //     ProductsPage.routeName,
+        //     arguments: {
+        //       "categoryId": model.categoryId,
+        //     },
+        //   );
+        // } else {
+        //   Navigator.pushNamed(context, SubCategoriesPage.routeName,
+        //       arguments: [model.allActiveSubMenus, model.enName]);
+        // }
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,8 +73,8 @@ class CategoryListTile extends StatelessWidget {
                   Expanded(
                     child: Text(
                       isAR()
-                          ? model.frName.toUpperCase()
-                          : model.enName.toUpperCase(),
+                          ? model.frName?.toUpperCase() ?? ''
+                          : model.enName?.toUpperCase() ?? '',
                       style: Theme.of(context)
                           .textTheme
                           .displaySmall

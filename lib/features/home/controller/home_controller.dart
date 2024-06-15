@@ -1,8 +1,6 @@
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
-import 'package:mhg/features/categories/models/categories_model.dart';
-import 'package:mhg/features/home/models/brand_model.dart';
 import 'package:mhg/features/home/models/home_model.dart';
 import 'package:mhg/features/home/models/product_model.dart';
 import 'package:mhg/features/home/repository/home_repo.dart';
@@ -10,7 +8,7 @@ import 'package:mhg/features/home/repository/home_repo_impl.dart';
 import '../../../constants/app_toasts.dart';
 import '../../../core/models/api_response.dart';
 import '../../../core/models/failure.dart';
-import '../models/new_middle_section_model/new_middle_section_model.dart';
+import '../../categories/models/menu.dart';
 import '../models/recent_search_model.dart';
 import '../models/slider_model.dart';
 
@@ -23,36 +21,32 @@ class HomeController extends GetxController {
     homeRepository = Get.find<HomeRepoImplement>();
   }
 
-  HomeModel? homeModel;
-  RxList<SliderModel> slidersList = <SliderModel>[].obs;
-  RxList<ProductModel> topSellersList = <ProductModel>[].obs;
+  RxInt lengthHomeSections = 0.obs;
+  RxList<int> categoryIdsToppSeller = <int>[].obs;
+  RxList<List<SliderModel>> slidersList = <List<SliderModel>>[].obs;
+  RxList<List<ProductModel>> topSellersList = <List<ProductModel>>[].obs;
   RxList<ProductModel> newArrivalsList = <ProductModel>[].obs;
-  RxList<BrandModel> brandsList = <BrandModel>[].obs;
-  RxList<Menu> categories = <Menu>[].obs;
-  RxList<NewMiddleSectionModel> middleSectionList =
-      <NewMiddleSectionModel>[].obs;
-  RxList<SliderModel> footerSlider = <SliderModel>[].obs;
+  RxList<List<MenuModel>> categories = <List<MenuModel>>[].obs;
   RxList<RecentSearchModel> recentSearchList = <RecentSearchModel>[].obs;
-  RxString middleSectionMainVideo = ''.obs;
-  RxString middleSectionMainImage = ''.obs;
-  RxString middleSectionMainTitle = ''.obs;
-  int? middleSectionMainBrandId;
-  int? middleSectionMainCategoryId;
-  int? middleSectionMainProductId;
 
-  updateList(List<ProductModel> model, bool fromArrival) {
-    for (int i = 0; i < model.length; i++) {
-      if (fromArrival) {
-        newArrivalsList[i] = model[i];
-      } else {
-        topSellersList[i] = model[i];
+  updateList(
+      {List<List<ProductModel>>? topSellers, List<ProductModel>? arrivals}) {
+    if (arrivals != null) {
+      for (int i = 0; i < arrivals.length; i++) {
+        newArrivalsList[i] = arrivals[i];
+      }
+    } else {
+      for (int i = 0; i < topSellers!.length; i++) {
+        for (int j = 0; j < topSellers[i].length; j++) {
+          topSellersList[i][j] = topSellers[i][j];
+        }
       }
     }
   }
 
   Future<void> getHome() async {
     try {
-      if (homeModel == null) isLoading(true);
+      isLoading(true);
       isError(false);
       Either<Failure, ApiResponse> results = await homeRepository.getHome();
       isLoading(false);
@@ -67,30 +61,21 @@ class HomeController extends GetxController {
 
           if (statusCode == 200) {
             var json = r.object["data"];
-            log(json.toString());
 
             var data = HomeModel.fromJson(json);
-            homeModel = data;
-
-            slidersList.value = data.sliders;
-            topSellersList.value = data.topSellers;
+            log('HOME HOME HOME: ${data.homeSections.length}');
+            lengthHomeSections.value = data.homeSections.length;
+            categoryIdsToppSeller.value = data.homeSections
+                .map((e) => e.bestSellersCategoryId ?? -1)
+                .toList();
+            slidersList.value =
+                data.homeSections.map((e) => e.sliders).toList();
+            topSellersList.value =
+                data.homeSections.map((e) => e.topSellers).toList();
             newArrivalsList.value = data.newArrivals;
-            brandsList.value = data.brands;
-            categories.value = data.categories;
-            footerSlider.value = data.footerSliders;
+            categories.value =
+                data.homeSections.map((e) => (e.categories)).toList();
             recentSearchList.value = data.recentSearch;
-            middleSectionList.value = data.middleSections;
-            if (middleSectionList.isNotEmpty) {
-              middleSectionMainVideo.value =
-                  middleSectionList.first.brand?.videoLink ?? '';
-              middleSectionMainImage.value =
-                  middleSectionList.first.imageLink ?? '';
-              middleSectionMainTitle.value =
-                  middleSectionList.first.enTitle ?? '';
-              middleSectionMainBrandId = middleSectionList.first.brandId;
-              middleSectionMainCategoryId = middleSectionList.first.categoryId;
-              middleSectionMainProductId = middleSectionList.first.productId;
-            }
           } else {
             AppToasts.errorToast(message);
           }

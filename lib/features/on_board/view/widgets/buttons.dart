@@ -60,6 +60,7 @@ class OnBoardButtons extends StatelessWidget {
                         'Content-Type': 'application/json',
                         'Cookie': App.sid,
                         'Country-Id': "${App.countryId}",
+                        'lang': Get.locale!.languageCode,
                         'android-version': App.version,
                         'ios-version': App.version,
                         'env': Platform.isAndroid ? 'android' : 'ios'
@@ -68,6 +69,7 @@ class OnBoardButtons extends StatelessWidget {
                         'Content-Type': 'application/json',
                         'Cookie': App.sid,
                         'Country-Id': "${App.countryId}",
+                        'lang': Get.locale!.languageCode,
                         'android-version': App.version,
                         'ios-version': App.version,
                         'env': Platform.isAndroid ? 'android' : 'ios'

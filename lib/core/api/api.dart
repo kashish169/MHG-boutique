@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:get/get.dart';
+
 import '../../app/app.dart';
 
 class Api {
@@ -7,6 +9,7 @@ class Api {
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Country-Id': "${App.countryId}",
+    'lang': Get.locale!.languageCode,
     'android-version': App.version,
     'ios-version': App.version,
     'env': Platform.isAndroid ? 'android' : 'ios'
@@ -15,6 +18,7 @@ class Api {
     'Content-Type': 'application/json',
     'Authorization': "Bearer ${App.token}",
     'Country-Id': "${App.countryId}",
+    'lang': Get.locale!.languageCode,
     'android-version': App.version,
     'ios-version': App.version,
     'env': Platform.isAndroid ? 'android' : 'ios'
@@ -88,5 +92,5 @@ class Api {
   static String productOfsUnSubscribe =
       "$apiRoot/product/unsubscribe-stock-notification";
 
-  static String allProducts = "$apiRoot/product/filter";
+  static String allProducts = "$apiRoot/product";
 }

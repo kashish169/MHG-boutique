@@ -89,7 +89,8 @@ class ResponseSocialLoginModel {
     this.invitationLink,
   });
 
-  factory ResponseSocialLoginModel.fromJson(Map<String, dynamic> json) => ResponseSocialLoginModel(
+  factory ResponseSocialLoginModel.fromJson(Map<String, dynamic> json) =>
+      ResponseSocialLoginModel(
         id: json['id'] as int?,
         externalId: json['external_id'] as dynamic,
         qrCode: json['qr_code'] as String?,

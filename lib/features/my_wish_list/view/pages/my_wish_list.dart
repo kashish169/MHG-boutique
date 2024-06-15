@@ -117,7 +117,10 @@ class _MyWishListState extends State<MyWishList> {
                                     ],
                                   );
                                 }
-                                return const HomeTopSellersWidget();
+                                return HomeTopSellersWidget(
+                                    categoryID:
+                                        controller.categoryIdsToppSeller[0],
+                                    topSellers: controller.topSellersList[0]);
                               }),
                             ],
                           );
