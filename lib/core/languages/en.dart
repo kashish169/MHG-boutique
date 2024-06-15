@@ -185,5 +185,6 @@ Map<String, String> en_US = {
   'Payment Method': 'Payment Method',
   'Items': 'Items',
   'Add Payment Method': 'Add Payment Method',
-  'Payment Methods': 'Payment Methods'
+  'Payment Methods': 'Payment Methods',
+  'SHOP NOW': 'SHOP NOW'
 };

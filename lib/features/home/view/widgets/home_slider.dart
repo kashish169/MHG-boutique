@@ -1,6 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/core/languages/languages.dart';
 import 'package:mhg/features/home/view/widgets/home_video_test_widget.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
@@ -92,6 +93,13 @@ class _HomeSliderState extends State<HomeSlider> {
                   child: widget.sliders[index].videoLinkk != null
                       ? HomeVideoTestWidget(
                           videoLink: widget.sliders[index].videoLinkk!,
+                          title: isAR()
+                              ? widget.sliders[index].frTitle
+                              : widget.sliders[index].enTitle,
+                          value: isAR()
+                              ? widget.sliders[index].frSubTitle
+                              : widget.sliders[index].enSubTitle,
+                          isShowBtnShop: true,
                           endVideoFun: widget.sliders.length > 1
                               ? () {
                                   ScaffoldMessenger.of(context)
