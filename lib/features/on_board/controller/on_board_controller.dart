@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
@@ -136,6 +137,9 @@ class OnboardController extends GetxController {
                   'Content-Type': 'application/json',
                   'Authorization': "Bearer ${App.token}",
                   'Country-Id': "${App.countryId}",
+                  'android-version': App.version,
+                  'ios-version': App.version,
+                  'env': Platform.isAndroid ? 'android' : 'ios'
                 };
               }
             }
@@ -192,10 +196,16 @@ class OnboardController extends GetxController {
       'Content-Type': 'application/json',
       'Authorization': "Bearer ${App.token}",
       'Country-Id': "${App.countryId}",
+      'android-version': App.version,
+      'ios-version': App.version,
+      'env': Platform.isAndroid ? 'android' : 'ios'
     };
     Api.headers = {
       'Content-Type': 'application/json',
       'Country-Id': "${App.countryId}",
+      'android-version': App.version,
+      'ios-version': App.version,
+      'env': Platform.isAndroid ? 'android' : 'ios'
     };
     //  }
 

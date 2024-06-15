@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:country_picker/country_picker.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -118,6 +119,9 @@ class SignUpController extends GetxController {
           'Content-Type': 'application/json',
           'Authorization': "Bearer $tokenRes",
           'Country-Id': "${App.countryId}",
+          'android-version': App.version,
+          'ios-version': App.version,
+          'env': Platform.isAndroid ? 'android' : 'ios'
         };
         await StoragePref.setString(
           key: "token",

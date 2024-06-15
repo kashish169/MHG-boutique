@@ -109,6 +109,9 @@ class ProfileController extends GetxController {
                 'Content-Type': 'application/json',
                 'Authorization': "Bearer ${App.token}",
                 'Country-Id': "${App.countryId}",
+                'android-version': App.version,
+                'ios-version': App.version,
+                'env': Platform.isAndroid ? 'android' : 'ios'
               };
             }
 
@@ -191,6 +194,7 @@ class ProfileController extends GetxController {
         const LoadingWidget(),
         barrierDismissible: false,
       );
+      log('AUTH: ${Api.authorizedheaders}');
       Either<Failure, ApiResponse> results = await profileRepo.logOut();
       Get.back();
       results.fold((l) {
