@@ -43,7 +43,7 @@ class _MainWrapperState extends State<MainWrapper> {
       indexChosen: 1,
     ),
     const MyCartPage(),
-    const ProfileView(isHamMenuNavi: false)
+    const ProfileView()
   ];
 
   @override
