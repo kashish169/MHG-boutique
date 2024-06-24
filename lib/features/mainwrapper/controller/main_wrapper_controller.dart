@@ -20,14 +20,15 @@ class MainWrapperController extends GetxController {
   }
 
   RxInt navBarIndex = 0.obs;
+  RxBool isHamMenuNavi = false.obs;
   RxBool isLoadingAdd = false.obs;
   RxBool isErrorAdd = false.obs;
   String? globalGuestCountryCode;
   String? globalGuestCountryFlag;
   int? globalGuestCountryId;
 
-  void changeNavi(int index) {
-    navBarIndex.value = index;
+  void hamMenuNavi() {
+    isHamMenuNavi.value = true;
   }
 
   Future<void> launchUrl(String url) async {

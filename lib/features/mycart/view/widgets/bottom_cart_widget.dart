@@ -98,8 +98,9 @@ class BottomCartWidget extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  checkoutController.orderPriceModal.value.data!
-                                      .shippingMessage!,
+                                  checkoutController.orderPriceModal.value.data
+                                          ?.shippingMessage ??
+                                      '',
                                   style: Theme.of(context)
                                       .textTheme
                                       .displaySmall

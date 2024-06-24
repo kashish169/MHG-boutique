@@ -101,7 +101,7 @@ class AppRoutes {
     ),
     GetPage(
       name: '/profile',
-      page: () => const ProfileView(),
+      page: () => const ProfileView(isHamMenuNavi: false),
     ),
     GetPage(
         name: '/reward',

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -14,8 +12,15 @@ import 'brands_page.dart';
 
 class CategoriesPage extends StatefulWidget {
   static String routeName = '/categories';
-  const CategoriesPage({Key? key, required this.indexChosen}) : super(key: key);
+  const CategoriesPage({
+    Key? key,
+    required this.indexChosen,
+    this.isProfileView = false,
+    this.topPadding = 100,
+  }) : super(key: key);
   final int indexChosen;
+  final bool isProfileView;
+  final double topPadding;
 
   @override
   State<CategoriesPage> createState() => _CategoriesPageState();
@@ -45,35 +50,37 @@ class _CategoriesPageState extends State<CategoriesPage> {
       return Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 100),
+            padding: EdgeInsets.only(top: widget.topPadding),
             child: SingleChildScrollView(
                 child: Column(
               children: [
-                const Padding(padding: EdgeInsets.only(top: 8)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CategoryFilterButton(
-                      text: "Shop By Brand",
-                      onPressed: () {
-                        setState(() {
-                          indexChosen = 0;
-                        });
-                      },
-                      isChecked: indexChosen == 0,
-                    ),
-                    const Padding(padding: EdgeInsets.only(right: 5)),
-                    CategoryFilterButton(
-                      text: "Shop By Category",
-                      onPressed: () {
-                        setState(() {
-                          indexChosen = 1;
-                        });
-                      },
-                      isChecked: indexChosen == 1,
-                    )
-                  ],
-                ),
+                if (!widget.isProfileView)
+                  const Padding(padding: EdgeInsets.only(top: 8)),
+                if (!widget.isProfileView)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CategoryFilterButton(
+                        text: "Shop By Brand",
+                        onPressed: () {
+                          setState(() {
+                            indexChosen = 0;
+                          });
+                        },
+                        isChecked: indexChosen == 0,
+                      ),
+                      const Padding(padding: EdgeInsets.only(right: 5)),
+                      CategoryFilterButton(
+                        text: "Shop By Category",
+                        onPressed: () {
+                          setState(() {
+                            indexChosen = 1;
+                          });
+                        },
+                        isChecked: indexChosen == 1,
+                      )
+                    ],
+                  ),
                 indexChosen == 1
                     ? ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
@@ -88,7 +95,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
               ],
             )),
           ),
-          const HomeRewardBox()
+          if (!widget.isProfileView) const HomeRewardBox()
         ],
       );
     });

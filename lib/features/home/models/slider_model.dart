@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 class SliderModel {
   int id;
   dynamic backgroundImage;
@@ -18,8 +16,10 @@ class SliderModel {
   dynamic backgroundImageLink;
   dynamic link;
   String? videoLinkk;
+  String? productNameEn;
+  String? productNameAr;
   dynamic categoryId;
-  dynamic productId;
+  int? productId;
 
   SliderModel(
       {required this.id,
@@ -39,7 +39,9 @@ class SliderModel {
       required this.backgroundImageLink,
       required this.link,
       required this.categoryId,
-      required this.productId,
+      this.productId,
+      this.productNameEn,
+      this.productNameAr,
       this.videoLinkk});
 
   factory SliderModel.fromJson(Map<String, dynamic> json) {
@@ -62,7 +64,9 @@ class SliderModel {
       backgroundImageLink: json["background_image_link"],
       link: json["link"],
       categoryId: json["category_id"],
-      productId: json["product_id"],
+      productId: json["product"]['id'],
+      productNameAr: json["product"]['fr_Product_Name'],
+      productNameEn: json["product"]['en_Product_Name'],
     );
   }
 }

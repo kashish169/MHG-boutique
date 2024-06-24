@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -19,289 +20,318 @@ import 'package:mhg/features/setting/view/pages/setting_view.dart';
 import 'package:mhg/widgets/retry_button.dart';
 import '../../../../core/helper/app_helper.dart';
 import '../../../../widgets/divider_widget.dart';
+import '../../../categories/view/pages/categories_page.dart';
 import '../../../checkout/views/pages/payment_methods_page.dart';
+import '../../../mainwrapper/view/widgets/bottom_nav_bar.dart';
 import '../../../personal_infromation/view/pages/personal_information.dart';
 import '../../../swipe/view/pages/swipe_page.dart';
 import '../widgets/profile_card.dart';
 import '../widgets/profile_follow_us_widget.dart';
 import '../widgets/profile_header.dart';
 
-class ProfileView extends StatelessWidget {
+class ProfileView extends StatefulWidget {
   static String routeName = '/profile';
-  const ProfileView({Key? key}) : super(key: key);
+  const ProfileView({Key? key, required this.isHamMenuNavi}) : super(key: key);
+  final bool isHamMenuNavi;
 
   @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+  @override
   Widget build(BuildContext context) {
-    return App.token.isEmpty
-        ? const SizedBox()
-        : GetX<ProfileController>(builder: (controller) {
-            if (controller.isLoading.isTrue) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (controller.isError.isTrue) {
-              return RetryButton(
-                onTap: () {
-                  controller.getProfileInfo();
-                },
-              );
-            }
-            return RefreshIndicator(
-              onRefresh: () async => controller.getProfileInfo(),
-              child: Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 100),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          ProfileHeader(
-                            name: controller.model.value?.name ?? '',
-                            email: controller.model.value?.email ?? '',
-                            image: controller.model.value?.image,
-                            level: controller.model.value?.currentTier ?? '-',
-                          ),
-                          const ProfileRewardBox(),
-                          const DividerWidget(),
-                          ProfileCard(
-                            onTap: () async {
-                              await Get.toNamed(PersonalInformation.routeName,
-                                  arguments: {
-                                    "profile": controller.model.value,
-                                  });
-                              controller.getProfileInfo();
-                            },
-                            icon: AppAssets.person1,
-                            title: 'Personal information'.tr,
-                          ),
-                          const DividerWidget(),
-                          ProfileCard(
-                            icon: AppAssets.order,
-                            title: 'My Orders'.tr,
-                            onTap: () async {
-                              await Get.toNamed(MyOrdersPage.routeName);
-                              controller.getProfileInfo();
-                            },
-                          ),
-                          const DividerWidget(),
-                          ProfileCard(
-                            icon: AppAssets.setting,
-                            title: 'Settings'.tr,
-                            onTap: () async {
-                              await Get.toNamed(SettingPage.routeName);
-                            },
-                          ),
-                          const DividerWidget(),
-                          ProfileCard(
-                            icon: AppAssets.reward,
-                            title: 'Rewards'.tr,
-                            onTap: () async {
-                              await Get.toNamed(RewardsPage.routeName);
-                              controller.getProfileInfo();
-                            },
-                          ),
-                          const DividerWidget(),
-                          ProfileCard(
-                            icon: AppAssets.sendPoints,
-                            title: 'Send Points'.tr,
-                            onTap: () async {
-                              await Get.dialog(const SendPointsPage());
-                              controller.phoneNumberController.clear();
-                              controller.pointsController.clear();
-                            },
-                          ),
-                          const DividerWidget(),
-                          ProfileCard(
-                              icon: AppAssets.scan,
-                              title: 'Scan QR to collect Rewards'.tr,
-                              onTap: () async {
-                                await Get.to(
-                                  () => const QRPage(),
-                                );
-                                controller.getProfileInfo();
-                              }),
-                          const DividerWidget(),
-                          ProfileCard(
-                            icon: AppAssets.payment,
-                            title: 'Payment information'.tr,
-                            onTap: () {
-                              Get.to(
-                                () => const PaymentMethodsPage(
-                                  isProfile: true,
-                                ),
-                              );
-                            },
-                          ),
-                          const DividerWidget(),
-                          ProfileCard(
-                            icon: AppAssets.invite,
-                            height: 32,
-                            title: 'Invite your friends'.tr,
-                            onTap: () {
-                              Get.toNamed(InviteFriendPage.routeName);
-                              //  controller.launchMyUrl(controller.model.value!.invitationLink);
-                            },
-                          ),
-                          const DividerWidget(),
-                          ProfileCard(
-                            icon: AppAssets.about,
-                            title: 'About MHGboutique'.tr,
-                            onTap: () {
-                              Get.toNamed(AboutUsPage.routeName);
-                            },
-                          ),
-                          const DividerWidget(),
-                          ProfileCard(
-                            icon: AppAssets.feedback,
-                            title: 'Send a feedback'.tr,
-                            onTap: () {
-                              showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return const FeedBackDialog();
-                                  });
-                            },
-                          ),
-                          const DividerWidget(),
-                          ProfileCard(
-                            icon: AppAssets.store,
-                            title: 'Find Our Stores'.tr,
-                            onTap: () {
-                              Get.toNamed('/map');
-                            },
-                          ),
-                          const DividerWidget(),
-                          ProfileCard(
-                            icon: AppAssets.scan,
-                            title: 'Gamifications'.tr,
-                            onTap: () {
-                              Get.toNamed(SwipePage.routeName);
-                            },
-                          ),
-                          const DividerWidget(),
-                          ProfileCard(
-                            icon: AppAssets.languageIcon,
-                            title: 'Languages'.tr,
-                            onTap: () {
-                              Get.toNamed(LanguagePage.routeName);
-                            },
-                          ),
-                          // const DividerWidget(),
-                          // const SizedBox(
-                          //   height: 40,
-                          // ),
-                          const DividerWidget(),
-                          ProfileCard(
-                            icon: AppAssets.logout,
-                            title: 'Log out'.tr,
-                            onTap: () {
-                              controller.logOut();
-                            },
-                          ),
-                          const DividerWidget(),
-                          const SizedBox(height: 15),
-                          const SizedBox(height: 15),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 5, horizontal: 10),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    child: InkWell(
-                                  onTap: () {
-                                    // controller.launchMyUrl('mailto:care@hilal.cc');
-                                    AppHelper.launchURL(
-                                        'care@hilal.cc', 'mailto');
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        AppAssets.message,
-                                        color: AppColors.secondaryBlack,
-                                        height: 20,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text('Email'.tr,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .displaySmall)
-                                    ],
-                                  ),
-                                )),
-                                const SizedBox(
-                                    height: 25,
-                                    child: VerticalDivider(
-                                      thickness: 1,
-                                      color: Colors.grey,
-                                    )),
-                                Expanded(
-                                    child: InkWell(
-                                  onTap: () {
-                                    controller
-                                        .launchMyUrl('tel://+9710506333911');
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        AppAssets.phone,
-                                        color: AppColors.secondaryBlack,
-                                        height: 20,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text('Call us'.tr,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .displaySmall)
-                                    ],
-                                  ),
-                                )),
-                                const SizedBox(
-                                    height: 25,
-                                    child: VerticalDivider(
-                                      thickness: 1,
-                                      color: Colors.grey,
-                                    )),
-                                Expanded(
-                                    child: InkWell(
-                                  onTap: () {
-                                    controller.connectViaWhatsApp(
-                                        phone: '+9710557396666');
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        AppAssets.whatsApp,
-                                        height: 20,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text('WhatsApp',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .displaySmall)
-                                    ],
-                                  ),
-                                )),
-                              ],
+    return Scaffold(
+      bottomNavigationBar:
+          widget.isHamMenuNavi ? const BottomNavBarWidget() : null,
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(0),
+          child: AppBar(
+            backgroundColor: Colors.black,
+          )),
+      body: App.token.isEmpty
+          ? const SizedBox()
+          : GetX<ProfileController>(builder: (controller) {
+              if (controller.isLoading.isTrue) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (controller.isError.isTrue) {
+                return RetryButton(
+                  onTap: () {
+                    controller.getProfileInfo();
+                  },
+                );
+              }
+              return RefreshIndicator(
+                onRefresh: () async => controller.getProfileInfo(),
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 100),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            ProfileHeader(
+                              name: controller.model.value?.name ?? '',
+                              email: controller.model.value?.email ?? '',
+                              image: controller.model.value?.image,
+                              level: controller.model.value?.currentTier ?? '-',
                             ),
-                          ),
-                          const ProfileFollowUsWidget(),
-                        ],
+                            const ProfileRewardBox(),
+                            if (widget.isHamMenuNavi)
+                              const Padding(
+                                padding: EdgeInsets.only(bottom: 25),
+                                child: CategoriesPage(
+                                  indexChosen: 1,
+                                  isProfileView: true,
+                                  topPadding: 20,
+                                ),
+                              ),
+                            const DividerWidget(),
+                            ProfileCard(
+                              onTap: () async {
+                                await Get.toNamed(PersonalInformation.routeName,
+                                    arguments: {
+                                      "profile": controller.model.value,
+                                    });
+                                controller.getProfileInfo();
+                              },
+                              icon: AppAssets.person1,
+                              title: 'Personal information'.tr,
+                            ),
+                            const DividerWidget(),
+                            ProfileCard(
+                              icon: AppAssets.order,
+                              title: 'My Orders'.tr,
+                              onTap: () async {
+                                await Get.toNamed(MyOrdersPage.routeName);
+                                controller.getProfileInfo();
+                              },
+                            ),
+                            const DividerWidget(),
+                            ProfileCard(
+                              icon: AppAssets.setting,
+                              title: 'Settings'.tr,
+                              onTap: () async {
+                                await Get.toNamed(SettingPage.routeName);
+                              },
+                            ),
+                            const DividerWidget(),
+                            ProfileCard(
+                              icon: AppAssets.reward,
+                              title: 'Rewards'.tr,
+                              onTap: () async {
+                                await Get.toNamed(RewardsPage.routeName);
+                                controller.getProfileInfo();
+                              },
+                            ),
+                            const DividerWidget(),
+                            ProfileCard(
+                              icon: AppAssets.sendPoints,
+                              title: 'Send Points'.tr,
+                              onTap: () async {
+                                await Get.dialog(const SendPointsPage());
+                                controller.phoneNumberController.clear();
+                                controller.pointsController.clear();
+                              },
+                            ),
+                            const DividerWidget(),
+                            ProfileCard(
+                                icon: AppAssets.scan,
+                                title: 'Scan QR to collect Rewards'.tr,
+                                onTap: () async {
+                                  await Get.to(
+                                    () => const QRPage(),
+                                  );
+                                  controller.getProfileInfo();
+                                }),
+                            const DividerWidget(),
+                            ProfileCard(
+                              icon: AppAssets.payment,
+                              title: 'Payment information'.tr,
+                              onTap: () {
+                                Get.to(
+                                  () => const PaymentMethodsPage(
+                                    isProfile: true,
+                                  ),
+                                );
+                              },
+                            ),
+                            const DividerWidget(),
+                            ProfileCard(
+                              icon: AppAssets.invite,
+                              height: 32,
+                              title: 'Invite your friends'.tr,
+                              onTap: () {
+                                Get.toNamed(InviteFriendPage.routeName);
+                                //  controller.launchMyUrl(controller.model.value!.invitationLink);
+                              },
+                            ),
+                            const DividerWidget(),
+                            ProfileCard(
+                              icon: AppAssets.about,
+                              title: 'About MHGboutique'.tr,
+                              onTap: () {
+                                Get.toNamed(AboutUsPage.routeName);
+                              },
+                            ),
+                            const DividerWidget(),
+                            ProfileCard(
+                              icon: AppAssets.feedback,
+                              title: 'Send a feedback'.tr,
+                              onTap: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return const FeedBackDialog();
+                                    });
+                              },
+                            ),
+                            const DividerWidget(),
+                            ProfileCard(
+                              icon: AppAssets.store,
+                              title: 'Find Our Stores'.tr,
+                              onTap: () {
+                                Get.toNamed('/map');
+                              },
+                            ),
+                            const DividerWidget(),
+                            ProfileCard(
+                              icon: AppAssets.scan,
+                              title: 'Gamifications'.tr,
+                              onTap: () {
+                                Get.toNamed(SwipePage.routeName);
+                              },
+                            ),
+                            const DividerWidget(),
+                            ProfileCard(
+                              icon: AppAssets.languageIcon,
+                              title: 'Languages'.tr,
+                              onTap: () {
+                                Get.toNamed(LanguagePage.routeName);
+                              },
+                            ),
+                            // const DividerWidget(),
+                            // const SizedBox(
+                            //   height: 40,
+                            // ),
+                            const DividerWidget(),
+                            ProfileCard(
+                              icon: AppAssets.logout,
+                              title: 'Log out'.tr,
+                              onTap: () {
+                                controller.logOut();
+                              },
+                            ),
+                            const DividerWidget(),
+                            const SizedBox(height: 15),
+                            const SizedBox(height: 15),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 10),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                      child: InkWell(
+                                    onTap: () {
+                                      // controller.launchMyUrl('mailto:care@hilal.cc');
+                                      AppHelper.launchURL(
+                                          'care@hilal.cc', 'mailto');
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          AppAssets.message,
+                                          color: AppColors.secondaryBlack,
+                                          height: 20,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text('Email'.tr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .displaySmall)
+                                      ],
+                                    ),
+                                  )),
+                                  const SizedBox(
+                                      height: 25,
+                                      child: VerticalDivider(
+                                        thickness: 1,
+                                        color: Colors.grey,
+                                      )),
+                                  Expanded(
+                                      child: InkWell(
+                                    onTap: () {
+                                      controller
+                                          .launchMyUrl('tel://+9710506333911');
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          AppAssets.phone,
+                                          color: AppColors.secondaryBlack,
+                                          height: 20,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text('Call us'.tr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .displaySmall)
+                                      ],
+                                    ),
+                                  )),
+                                  const SizedBox(
+                                      height: 25,
+                                      child: VerticalDivider(
+                                        thickness: 1,
+                                        color: Colors.grey,
+                                      )),
+                                  Expanded(
+                                      child: InkWell(
+                                    onTap: () {
+                                      controller.connectViaWhatsApp(
+                                          phone: '+9710557396666');
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          AppAssets.whatsApp,
+                                          height: 20,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text('WhatsApp',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .displaySmall)
+                                      ],
+                                    ),
+                                  )),
+                                ],
+                              ),
+                            ),
+                            const ProfileFollowUsWidget(),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const HomeRewardBox()
-                ],
-              ),
-            );
-          });
+                    const HomeRewardBox()
+                  ],
+                ),
+              );
+            }),
+    );
   }
 }

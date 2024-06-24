@@ -35,10 +35,10 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
         const SizedBox(height: 20),
         Text(
           widget.isCountry
-              ? "Country"
+              ? "Country".tr
               : controller.countryId.value == 1
-                  ? 'Emirate'
-                  : 'City',
+                  ? 'Emirate'.tr
+                  : 'City'.tr,
           style: Theme.of(context)
               .textTheme
               .displaySmall!

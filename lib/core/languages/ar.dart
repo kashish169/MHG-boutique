@@ -213,5 +213,10 @@ Map<String, String> ar_AE = {
   'Items': 'المنتجات',
   'Add Payment Method': 'إضافة طريقة دفع',
   'Payment Methods': 'طرق الدفع',
-  'SHOP NOW': 'تسوق الان'
+  'SHOP NOW': 'تسوق الان',
+  'BEST SELLERS': 'الأكثر مبيعًا',
+  'The product has been added to the bag': 'تمت إضافة المنتج إلى الحقيبة',
+  'Country': 'الدولة',
+  'Emirate': 'الإمارة',
+  'City': 'المدينة',
 };

@@ -63,7 +63,7 @@ class HomeController extends GetxController {
             var json = r.object["data"];
 
             var data = HomeModel.fromJson(json);
-            log('HOME HOME HOME: ${data.homeSections.length}');
+
             lengthHomeSections.value = data.homeSections.length;
             categoryIdsToppSeller.value = data.homeSections
                 .map((e) => e.bestSellersCategoryId ?? -1)
