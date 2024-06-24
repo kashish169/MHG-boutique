@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/core/languages/languages.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../constants/app_colors.dart';
@@ -94,23 +95,25 @@ class _HomeVideoTestWidgetState extends State<HomeVideoTestWidget> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      widget.title ?? '',
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 10,
-                          color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
+                    Text(widget.title ?? '',
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall
+                            ?.copyWith(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 10,
+                                color: Colors.white),
+                        textAlign: TextAlign.start),
                     const Padding(padding: EdgeInsets.only(bottom: 10)),
-                    Text(
-                      widget.value ?? '',
-                      style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 22,
-                          color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
+                    Text(widget.value ?? '',
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayLarge
+                            ?.copyWith(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 22,
+                                color: Colors.white),
+                        textAlign: TextAlign.start),
                     const Padding(padding: EdgeInsets.only(bottom: 10)),
                     Container(
                       color: AppColors.dGreen,
