@@ -219,7 +219,7 @@ class ProductDetailsController extends GetxController {
                 arrivals: fromArrival ? temp : null,
                 topSellers: fromArrival ? null : temp2);
             AppToasts.successToast(
-              "The product has been added to the bag",
+              "The product has been added to the bag".tr,
             );
             Get.find<MyCartController>().getCart();
             Get.find<CheckoutController>().orderPrice();

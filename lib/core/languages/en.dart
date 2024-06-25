@@ -186,5 +186,12 @@ Map<String, String> en_US = {
   'Items': 'Items',
   'Add Payment Method': 'Add Payment Method',
   'Payment Methods': 'Payment Methods',
-  'SHOP NOW': 'SHOP NOW'
+  'SHOP NOW': 'SHOP NOW',
+  'BEST SELLERS': 'BEST SELLERS',
+  'The product has been added to the bag':
+      'The product has been added to the bag',
+
+  'Country': 'Country',
+  'Emirate': 'Emirate',
+  'City': 'City',
 };

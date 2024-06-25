@@ -86,7 +86,7 @@ class Data {
 }
 
 class Hearts {
-  String tierName;
+  String? tierName;
   dynamic hearts;
 
   Hearts({required this.tierName, required this.hearts});

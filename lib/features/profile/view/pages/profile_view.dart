@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -20,16 +21,22 @@ import 'package:mhg/widgets/retry_button.dart';
 import '../../../../core/helper/app_helper.dart';
 import '../../../../widgets/divider_widget.dart';
 import '../../../checkout/views/pages/payment_methods_page.dart';
+
 import '../../../personal_infromation/view/pages/personal_information.dart';
 import '../../../swipe/view/pages/swipe_page.dart';
 import '../widgets/profile_card.dart';
 import '../widgets/profile_follow_us_widget.dart';
 import '../widgets/profile_header.dart';
 
-class ProfileView extends StatelessWidget {
+class ProfileView extends StatefulWidget {
   static String routeName = '/profile';
   const ProfileView({Key? key}) : super(key: key);
 
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return App.token.isEmpty
@@ -62,7 +69,9 @@ class ProfileView extends StatelessWidget {
                             level: controller.model.value?.currentTier ?? '-',
                           ),
                           const ProfileRewardBox(),
+
                           const DividerWidget(),
+
                           ProfileCard(
                             onTap: () async {
                               await Get.toNamed(PersonalInformation.routeName,

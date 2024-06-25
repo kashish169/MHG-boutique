@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/my_wish_list/view/pages/my_wish_list.dart';
 import 'package:mhg/features/notifications/view/pages/notifications_page.dart';
+import 'package:mhg/features/profile/view/pages/profile_categories_view.dart';
 import '../../../../app/app.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../auth/signin/view/pages/sign_in_page.dart';
@@ -66,10 +65,11 @@ class _MainAppBarState extends State<MainAppBar> {
                       'id': controller.globalGuestCountryId,
                     });
                   } else {
-                    controller.changeNavi(4);
-                    while (Get.currentRoute != MainWrapper.routeName) {
-                      Get.back();
-                    }
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const ProfileCategoriesView()));
                   }
                 },
                 icon: Image.asset(

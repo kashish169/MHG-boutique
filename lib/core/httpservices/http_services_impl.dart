@@ -2,13 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'dart:ui';
-import 'package:flutter/material.dart';
+
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:get/utils.dart';
 import 'package:mhg/app/app.dart';
-import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/features/splash/view/update_view.dart';
 import 'package:mhg/main.dart';
 import '../api/api.dart';

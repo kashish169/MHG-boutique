@@ -97,8 +97,8 @@ class _HomeSliderState extends State<HomeSlider> {
                               ? widget.sliders[index].frTitle
                               : widget.sliders[index].enTitle,
                           value: isAR()
-                              ? widget.sliders[index].frSubTitle
-                              : widget.sliders[index].enSubTitle,
+                              ? widget.sliders[index].productNameAr
+                              : widget.sliders[index].productNameEn,
                           isShowBtnShop: true,
                           endVideoFun: widget.sliders.length > 1
                               ? () {
