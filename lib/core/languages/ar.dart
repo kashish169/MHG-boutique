@@ -212,5 +212,6 @@ Map<String, String> ar_AE = {
   'Payment Method': 'طريقة الدفع او السداد',
   'Items': 'المنتجات',
   'Add Payment Method': 'إضافة طريقة دفع',
-  'Payment Methods': 'طرق الدفع'
+  'Payment Methods': 'طرق الدفع',
+  'SHOP NOW': 'تسوق الان'
 };

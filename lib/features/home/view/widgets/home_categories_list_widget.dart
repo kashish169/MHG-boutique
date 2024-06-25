@@ -1,13 +1,10 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/app_fonts.dart';
 import '../../../../core/languages/languages.dart';
 
-import '../../../categories/models/categories_model.dart';
 import '../../../categories/models/menu.dart';
-import '../../../categories/view/pages/sub_categories_page.dart';
 import '../../../product_details/view/pages/product_details_page.dart';
 import '../../../products_page/view/pages/product_page.dart';
 
@@ -44,14 +41,14 @@ class HomeCategoriesListWidget extends StatelessWidget {
                         );
                       }
                       return;
-                    }else{
-                        Get.toNamed(
-                      ProductsPage.routeName,
-                      arguments: {
-                        "categoryId": model.categoryId,
-                      },
-                    );
-                    }                  
+                    } else {
+                      Get.toNamed(
+                        ProductsPage.routeName,
+                        arguments: {
+                          "categoryId": model.categoryId,
+                        },
+                      );
+                    }
                     // if (model.allActiveSubMenus.isEmpty) {
                     //   log(model.categoryId.toString());
                     //   Get.toNamed(
