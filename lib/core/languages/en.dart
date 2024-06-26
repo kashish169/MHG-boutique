@@ -194,4 +194,25 @@ Map<String, String> en_US = {
   'Country': 'Country',
   'Emirate': 'Emirate',
   'City': 'City',
+  'The product has been removed from the cart':
+      'The product has been removed from the cart',
+
+  'Confirmation': 'Confirmation',
+  'Your order is confirmed!': 'Your order is confirmed!',
+  'Price': 'Price',
+  'Total Price': 'Total Price',
+  'Contact Information': 'Contact Information',
+  'Name': 'Name',
+  'Cash On Delivery': 'Cash On Delivery',
+  'ending': 'ending',
+
+  'Subtotal': 'Subtotal',
+  'Shipping (10-12 Business Days)': 'Shipping (10-12 Business Days)',
+  'Shipping (3-5 Business Days)': 'Shipping (3-5 Business Days)',
+  'Total': 'Total',
+  'Continue shopping': 'Continue shopping',
+  'Your order has been submitted successfully!':
+      'Your order has been submitted successfully!',
+  'or 4 interest-free payments of': 'or 4 interest-free payments of',
+  'Learn more': 'Learn more'
 };

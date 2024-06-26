@@ -20,7 +20,7 @@ class SuccessOrderShippingAddress extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 4.0),
                   child: Text(
-                    'Shipping Address',
+                    'Shipping Address'.tr,
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontSize: 14,
                         color: AppColors.label,

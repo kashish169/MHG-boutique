@@ -58,34 +58,10 @@ class SuccessOrderItems extends StatelessWidget {
                                 ),
                       ),
                       const SizedBox(height: 4),
-                      /*    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Order ID:${controller.orderModel.orderDetails[index].orderId}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  fontSize: 12,
-                                  color: AppColors.lightLabel,
-                                ),
-                          ),
-                          Text(
-                            'Product ID:${controller.orderModel.orderDetails[index].productId}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  fontSize: 12,
-                                  color: AppColors.lightLabel,
-                                ),
-                          ),
-                        ],
-                      ), */
+
                       profileController?.currnecy.value != null
                           ? Obx(() => Text(
-                                'Price: ${profileController?.currnecy.value} ${controller.orderModel.orderDetails[index].price}',
+                                '${'Price'.tr}: ${profileController?.currnecy.value} ${controller.orderModel.orderDetails[index].price}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall
@@ -95,7 +71,7 @@ class SuccessOrderItems extends StatelessWidget {
                                     ),
                               ))
                           : Text(
-                              'Price: ${App.currency} ${controller.orderModel.orderDetails[index].price}',
+                              '${'Price'.tr}: ${App.currency} ${controller.orderModel.orderDetails[index].price}',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall
@@ -106,7 +82,7 @@ class SuccessOrderItems extends StatelessWidget {
                             ),
                       const SizedBox(height: 4),
                       Text(
-                        'Quantity: ${double.parse(controller.orderModel.orderDetails[index].quantity.toString()).toInt()}',
+                        '${'Quantity'.tr}: ${double.parse(controller.orderModel.orderDetails[index].quantity.toString()).toInt()}',
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
                                   fontSize: 11,
@@ -142,7 +118,7 @@ class SuccessOrderItems extends StatelessWidget {
                       // const SizedBox(height: 4),
                       profileController?.currnecy.value != null
                           ? Obx(() => Text(
-                                'Total Price: ${profileController?.currnecy.value} ${controller.orderModel.orderDetails[index].totalPrice}',
+                                '${'Total Price'.tr}: ${profileController?.currnecy.value} ${controller.orderModel.orderDetails[index].totalPrice}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .displaySmall
@@ -152,7 +128,7 @@ class SuccessOrderItems extends StatelessWidget {
                                     ),
                               ))
                           : Text(
-                              'Total Price: ${App.currency} ${controller.orderModel.orderDetails[index].totalPrice}',
+                              '${'Total Price'.tr}: ${App.currency} ${controller.orderModel.orderDetails[index].totalPrice}',
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall

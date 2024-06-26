@@ -18,6 +18,10 @@ abstract class ProductDetailsRepository {
     required Object body,
   });
 
+  Future<Either<Failure, ApiResponse>> getTabbyLink({
+    required double price,
+  });
+
   Future<Either<Failure, ApiResponse>> addReview({
     required Object body,
   });

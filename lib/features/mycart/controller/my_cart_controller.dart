@@ -179,7 +179,7 @@ class MyCartController extends GetxController {
           log("DELETE CART RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
             AppToasts.successToast(
-              "The product has been removed from the cart",
+              "The product has been removed from the cart".tr,
             );
           } else {
             AppToasts.errorToast(message);

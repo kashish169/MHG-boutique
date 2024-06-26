@@ -92,6 +92,34 @@ class _HomeSliderState extends State<HomeSlider> {
                   },
                   child: widget.sliders[index].videoLinkk != null
                       ? HomeVideoTestWidget(
+                          shopFun: () {
+                            if (widget.sliders[index].productId != null) {
+                              Get.toNamed(
+                                ProductDetailsPage.routeName,
+                                arguments: {
+                                  "id": widget.sliders[index].productId,
+                                  "name": '',
+                                  "fromArrival": false,
+                                },
+                              );
+                            } else if (widget.sliders[index].productId ==
+                                    null &&
+                                widget.sliders[index].categoryId != null) {
+                              Get.toNamed(
+                                ProductsPage.routeName,
+                                arguments: {
+                                  "categoryId":
+                                      widget.sliders[index].categoryId,
+                                },
+                              );
+                            } else if (widget.sliders[index].productId ==
+                                    null &&
+                                widget.sliders[index].categoryId == null) {
+                              Get.find<MainWrapperController>().launchUrl(
+                                widget.sliders[index].link!,
+                              );
+                            }
+                          },
                           videoLink: widget.sliders[index].videoLinkk!,
                           title: isAR()
                               ? widget.sliders[index].frTitle
@@ -100,24 +128,7 @@ class _HomeSliderState extends State<HomeSlider> {
                               ? widget.sliders[index].productNameAr
                               : widget.sliders[index].productNameEn,
                           isShowBtnShop: true,
-                          endVideoFun: widget.sliders.length > 1
-                              ? () {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(SnackBar(
-                                          content: Container(
-                                    color: Colors.white,
-                                    child: const Text('LOL',
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 28)),
-                                  )));
-                                  Future.delayed(
-                                      const Duration(milliseconds: 200), () {
-                                    setState(() {
-                                      swiperController.next(animation: true);
-                                    });
-                                  });
-                                }
-                              : null,
+                          endVideoFun: widget.sliders.length > 1 ? () {} : null,
                           startFun: () {
                             Future.delayed(const Duration(milliseconds: 200),
                                 () {
