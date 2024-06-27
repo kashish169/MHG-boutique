@@ -10,9 +10,11 @@ import '../../../home/view/widgets/product_card.dart';
 import '../../controller/product_details_controller.dart';
 
 class SimilarProductsWidget extends StatelessWidget {
-  const SimilarProductsWidget({Key? key, required this.title})
+  const SimilarProductsWidget(
+      {Key? key, required this.title, required this.isRelatedProducts})
       : super(key: key);
   final String title;
+  final bool isRelatedProducts;
 
   @override
   Widget build(BuildContext context) {
@@ -43,20 +45,20 @@ class SimilarProductsWidget extends StatelessWidget {
               vertical: 10,
             ),
             child: Row(
-              children: [
-                for (int index = 0;
-                    index < controller.model.relatedProducts.length;
-                    index++)
-                  Padding(
-                    padding: const EdgeInsetsDirectional.only(end: 8),
-                    child: ProductCard(
-                      model: controller.model.relatedProducts[index],
-                      isDetails: true,
-                      fromArrival: controller.fromArrival,
-                    ),
-                  )
-              ],
-            ),
+                children: List.generate(
+                    isRelatedProducts
+                        ? controller.model.relatedProducts.length
+                        : controller.model.boughtTogeher.length,
+                    (index) => Padding(
+                          padding: const EdgeInsetsDirectional.only(end: 8),
+                          child: ProductCard(
+                            model: isRelatedProducts
+                                ? controller.model.relatedProducts[index]
+                                : controller.model.boughtTogeher[index],
+                            isDetails: true,
+                            fromArrival: controller.fromArrival,
+                          ),
+                        ))),
           ),
         ),
 

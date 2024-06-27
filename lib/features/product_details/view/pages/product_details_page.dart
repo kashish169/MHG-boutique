@@ -38,8 +38,11 @@ class ProductDetailsPage extends StatelessWidget {
                 VariantsWidget(),
                 DividerWidget(),
                 ProductDetailsInfoCard(),
-                SimilarProductsWidget(title: 'You might also like'),
-                SimilarProductsWidget(title: 'Frequently Bought Together'),
+                SimilarProductsWidget(
+                    title: 'You might also like', isRelatedProducts: true),
+                SimilarProductsWidget(
+                    title: 'Frequently Bought Together',
+                    isRelatedProducts: false),
                 SizedBox(height: 20),
                 ProductDetailsReview()
               ],

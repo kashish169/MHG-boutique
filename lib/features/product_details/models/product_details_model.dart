@@ -69,6 +69,7 @@ class ProductDetailsModel {
   List<Size> sizes;
   List<ProductTag> productTags;
   List<ProductModel> relatedProducts;
+  List<ProductModel> boughtTogeher;
   List<ProductReviewModel> productReviews;
   bool isLoadingQuantity;
   String? preOrderShippingMessage;
@@ -139,6 +140,7 @@ class ProductDetailsModel {
     required this.productTags,
     required this.productReviews,
     required this.relatedProducts,
+    required this.boughtTogeher,
     this.avarageRate,
     this.reviewsCount,
     this.isLoadingQuantity = false,
@@ -154,6 +156,7 @@ class ProductDetailsModel {
         externalId: json["external_id"],
         isPreOrder: json['is_pre_order'],
         sku: json["sku"],
+        boughtTogeher: json['frequentlyBoughtTogetherProducts'],
         categoryId: json["Category_Id"],
         storeId: json["store_id"],
         brandId: json["Brand_Id"],
