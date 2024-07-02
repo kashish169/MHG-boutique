@@ -27,7 +27,7 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 4.0),
             child: Text(
-              'Payment Method',
+              'Payment Method'.tr,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   fontSize: 14,
                   color: AppColors.label,
@@ -41,7 +41,7 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
             children: [
               controller.orderModel.paymentMethod == 'COD'
                   ? Text(
-                      'Cash On Delivery',
+                      'Cash On Delivery'.tr,
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                             fontSize: 12,
                             color: AppColors.mediumLabel,
@@ -85,7 +85,7 @@ class SuccessOrderPaymentMethod extends StatelessWidget {
                     const SizedBox(width: 5),
                     Expanded(
                       child: Text(
-                        'ending ${checkoutController.getCodedNumber(controller.orderModel.tapPaymentMethod?.cardNumber)}',
+                        '${'ending'.tr} ${checkoutController.getCodedNumber(controller.orderModel.tapPaymentMethod?.cardNumber)}',
                         maxLines: null,
                         overflow: TextOverflow.fade,
                         softWrap: true,

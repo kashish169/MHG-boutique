@@ -92,5 +92,8 @@ class Api {
   static String productOfsUnSubscribe =
       "$apiRoot/product/unsubscribe-stock-notification";
 
+  static String getTabbyLinkMessage =
+      "$apiRoot/payment/tabby/on-site-message-link";
+
   static String allProducts = "$apiRoot/product";
 }

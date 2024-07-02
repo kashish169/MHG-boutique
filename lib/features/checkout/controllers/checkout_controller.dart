@@ -722,7 +722,7 @@ class CheckoutController extends GetxController {
     //  Get.find<MyCartController>().getCart();
     //  await profileController.getProfileInfo();
     AppToasts.successToast(
-      'Your order has been submitted successfully!',
+      'Your order has been submitted successfully!'.tr,
     );
   }
 
@@ -731,7 +731,7 @@ class CheckoutController extends GetxController {
     Get.find<MyCartController>().getCart();
     await profileController.getProfileInfo();
     AppToasts.successToast(
-      'Your order has been submitted successfully!',
+      'Your order has been submitted successfully!'.tr,
     );
   }
 

@@ -23,9 +23,11 @@ import '../../../core/models/failure.dart';
 class ProductDetailsController extends GetxController {
   late ProductDetailsRepository productDetailsRepository;
   RxBool isLoading = false.obs;
+  RxBool isTabbyLoading = false.obs;
   RxBool isError = false.obs;
   RxBool isLoadingAdd = false.obs;
   RxBool isErrorAdd = false.obs;
+  RxString tabbyLink = ''.obs;
   late int productId;
   late int selectedVariantId;
   RxInt selectedVariantInd = 0.obs;
@@ -113,6 +115,31 @@ class ProductDetailsController extends GetxController {
       log("$e $s");
       isError(true);
     }
+  }
+
+  Future<void> getTabbyLink({required double price}) async {
+    isTabbyLoading(true);
+    tabbyLink('');
+    Either<Failure, ApiResponse> results =
+        await productDetailsRepository.getTabbyLink(price: price);
+
+    results.fold(
+      (l) {
+        AppToasts.errorToast(l.message);
+        isTabbyLoading(false);
+      },
+      (r) {
+        var statusCode = r.object["code"];
+        var message = r.object["message"];
+        if (statusCode == 200) {
+          tabbyLink(r.object['data']);
+        } else {
+          isErrorAdd(true);
+          AppToasts.errorToast(message);
+        }
+        isTabbyLoading(false);
+      },
+    );
   }
 
   Future<void> ofsSubscribe(int product, int variant) async {

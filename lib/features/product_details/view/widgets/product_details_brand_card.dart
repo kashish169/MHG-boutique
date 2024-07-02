@@ -9,6 +9,7 @@ import 'package:mhg/widgets/primary_button.dart';
 import '../../../profile/controller/profile_controller.dart';
 import '../../controller/product_details_controller.dart';
 import 'product_check_box_ofs.dart';
+import 'product_detail_widget_tabby.dart';
 
 class ProductDetailsBrandCard extends StatelessWidget {
   const ProductDetailsBrandCard({Key? key}) : super(key: key);
@@ -96,6 +97,9 @@ class ProductDetailsBrandCard extends StatelessWidget {
                       )),
                 ],
               )),
+          ProductDetailWidgetTabby(
+              price: controller
+                  .model.variants[controller.selectedVariantInd.value].price),
           const SizedBox(height: 5),
           controller.model.pts != null && controller.model.pts != 0
               ? Row(

@@ -337,7 +337,7 @@ class Variant {
   String externalId;
   String nameEn;
   String nameAr;
-  dynamic price;
+  double price;
   dynamic discountPrice;
   String sku;
   int grams;
@@ -384,7 +384,7 @@ class Variant {
         externalId: json["external_id"],
         nameEn: json["name_en"],
         nameAr: json["name_ar"],
-        price: json["price"],
+        price: double.parse(json["price"].toString()),
         sku: json["sku"],
         grams: json["grams"],
         weight: json["weight"],

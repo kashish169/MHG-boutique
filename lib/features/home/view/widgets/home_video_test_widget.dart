@@ -15,11 +15,13 @@ class HomeVideoTestWidget extends StatefulWidget {
       this.endVideoFun,
       this.isShowBtnShop = false,
       this.title,
-      this.value});
+      this.value,
+      this.shopFun});
   final String videoLink;
   final double height;
   final Function()? startFun;
   final Function()? endVideoFun;
+  final Function()? shopFun;
   final bool isShowBtnShop;
   final String? title;
   final String? value;
@@ -119,7 +121,7 @@ class _HomeVideoTestWidgetState extends State<HomeVideoTestWidget> {
                       color: AppColors.dGreen,
                       padding: const EdgeInsets.only(left: 35, right: 35),
                       child: TextButton(
-                          onPressed: () {},
+                          onPressed: widget.shopFun ?? () {},
                           child: Text(
                             'SHOP NOW'.tr,
                             style: Theme.of(context)

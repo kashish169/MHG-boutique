@@ -219,4 +219,24 @@ Map<String, String> ar_AE = {
   'Country': 'الدولة',
   'Emirate': 'الإمارة',
   'City': 'المدينة',
+  'The product has been removed from the cart':
+      'تمت إزالة المنتج من سلة التسوق',
+
+  'Confirmation': 'تأكيد',
+  'Your order is confirmed!': 'تم تأكيد طلبك!',
+  'Price': 'السعر',
+  'Total Price': 'السعر الكلي',
+  'Contact Information': 'معلومات الاتصال',
+  'Name': 'الاسم',
+  'Cash On Delivery': 'الدفع عند الاستلام',
+  'ending': 'إنهاء',
+
+  'Subtotal': 'المجموع الفرعي',
+  'Shipping (10-12 Business Days)': 'الشحن (10-12 يوم عمل)',
+  'Shipping (3-5 Business Days)': 'الشحن (3-5 أيام عمل)',
+  'Total': 'المجموع',
+  'Continue shopping': 'مواصلة التسوق',
+  'Your order has been submitted successfully!': 'لقد تم تقديم طلبك بنجاح!',
+  'or 4 interest-free payments of': 'أو 4 دفعات بدون فوائد',
+  'Learn more': 'اعرف اكثر'
 };

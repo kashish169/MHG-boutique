@@ -6,18 +6,19 @@ import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
 import 'package:mhg/features/checkout/controllers/checkout_controller.dart';
 import 'package:mhg/features/mainwrapper/view/pages/main_wrapper.dart';
-import 'package:mhg/features/mycart/controller/my_cart_controller.dart';
-import 'package:mhg/features/profile/controller/profile_controller.dart';
-import 'package:mhg/features/success_order/view/widget/confirmation_footer.dart';
-import 'package:mhg/features/success_order/view/widget/success_order_contact_info.dart';
-import 'package:mhg/features/success_order/view/widget/success_order_items.dart';
-import 'package:mhg/features/success_order/view/widget/success_order_payment_method.dart';
-import 'package:mhg/features/success_order/view/widget/success_order_shipping_address.dart';
+
 import 'package:mhg/widgets/custom_app_bar.dart';
 import 'package:mhg/widgets/primary_button.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/retry_button.dart';
+import '../../../mycart/controller/my_cart_controller.dart';
+import '../../../profile/controller/profile_controller.dart';
 import '../../controller/success_order_controller.dart';
+import '../widget/confirmation_footer.dart';
+import '../widget/success_order_contact_info.dart';
+import '../widget/success_order_items.dart';
+import '../widget/success_order_payment_method.dart';
+import '../widget/success_order_shipping_address.dart';
 
 class SuccessOrderView extends StatelessWidget {
   SuccessOrderView({
@@ -35,7 +36,7 @@ class SuccessOrderView extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return Scaffold(
-      appBar: customAppBar(context, title: 'Confirmation'),
+      appBar: customAppBar(context, title: 'Confirmation'.tr),
       body: SafeArea(
         child: GetX<SucessOrderController>(
           builder: (controller) => controller.isLoading.value
@@ -127,7 +128,7 @@ class SuccessOrderView extends StatelessWidget {
                             child: PrimaryButton(
                                 height: 50,
                                 width: AppDimensions.screenWidth(context),
-                                title: 'Continue shopping',
+                                title: 'Continue shopping'.tr,
                                 onTap: () {
                                   Get.offAllNamed(MainWrapper.routeName);
                                 }),

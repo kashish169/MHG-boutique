@@ -4,9 +4,9 @@ import 'package:mhg/core/api/api.dart';
 import 'package:mhg/core/models/failure.dart';
 import 'package:mhg/core/models/api_response.dart';
 import 'package:dartz/dartz.dart';
-import 'package:mhg/features/product_details/repository/product_details_repo_impl.dart';
 import '../../../core/httpservices/http_services_impl.dart';
 import '../../../core/httpservices/http_services_repository.dart';
+import 'product_details_repo_impl.dart';
 
 class ProductDetailsRepoImplement implements ProductDetailsRepository {
   late HttpService httpService;
@@ -60,5 +60,12 @@ class ProductDetailsRepoImplement implements ProductDetailsRepository {
         url: Api.productOfsUnSubscribe,
         isAuthorized: true,
         body: body,
+      );
+
+  @override
+  Future<Either<Failure, ApiResponse>> getTabbyLink({required double price}) =>
+      httpService.get(
+        url: '${Api.getTabbyLinkMessage}?price=$price',
+        isAuthorized: true,
       );
 }
