@@ -11,12 +11,14 @@ class CustomValueSelector extends StatelessWidget {
       this.onChange,
       required this.selected,
       required this.groupValue,
-      required this.image});
+      required this.image,
+      this.imageAsset = false});
   final String textValue;
   final bool isSelectCountry;
   final String selected;
   final String groupValue;
   final String image;
+  final bool imageAsset;
   final void Function(String?)? onChange;
   @override
   Widget build(BuildContext context) {
@@ -34,10 +36,15 @@ class CustomValueSelector extends StatelessWidget {
                 height: 60,
                 width: 40,
                 decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: CachedNetworkImageProvider(
-                      image,
-                    )),
+                    image: imageAsset
+                        ? DecorationImage(
+                            image: AssetImage(
+                            image,
+                          ))
+                        : DecorationImage(
+                            image: CachedNetworkImageProvider(
+                            image,
+                          )),
                     shape: BoxShape.circle,
                     border: Border.all(color: AppColors.grey))),
             SizedBox(

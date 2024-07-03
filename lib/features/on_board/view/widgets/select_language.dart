@@ -17,10 +17,12 @@ class SelectLanguageView extends StatelessWidget {
           valueWidget: ListView.builder(
             itemCount: controller.langList.length,
             itemBuilder: (context, index) => CustomValueSelector(
-              textValue: controller.langList[index].showName,
+              textValue: controller.langList[index].name,
+              imageAsset: true,
               isSelectCountry: false,
               onChange: (val) {
                 controller.selectLanguage(controller.langList[index].name);
+                Navigator.pop(context);
               },
               selected: controller.langList[index].name,
               groupValue: controller.selectedLang.value,

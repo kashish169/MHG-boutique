@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage>
                 controller: scrollController,
                 child: Column(
                     children: List.generate(
-                  controller.slidersList.length,
+                  1,
                   (index) => Column(
                     children: [
                       HomeSlider(sliders: controller.slidersList[index]),

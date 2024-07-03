@@ -214,5 +214,7 @@ Map<String, String> en_US = {
   'Your order has been submitted successfully!':
       'Your order has been submitted successfully!',
   'or 4 interest-free payments of': 'or 4 interest-free payments of',
-  'Learn more': 'Learn more'
+  'Learn more': 'Learn more',
+  'English': 'English',
+  'Arabic': 'Arabic',
 };
