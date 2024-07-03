@@ -7,6 +7,10 @@ import 'package:mhg/features/on_board/view/widgets/buttons.dart';
 import 'package:mhg/widgets/net_image.dart';
 import 'package:mhg/widgets/three_bounce_loading.dart';
 import '../../../../constants/app_assets.dart';
+import '../../../../core/languages/languages.dart';
+import '../../../languages/view/pages/languages_page.dart';
+import '../widgets/board_select_languages.dart';
+import '../widgets/select_language.dart';
 
 class OnBoardView extends StatefulWidget {
   static String routeName = '/onBoard';
@@ -48,6 +52,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                   flex: 2,
                   child: SizedBox(),
                 ),
+                const BoardSelectLanguages(),
                 Expanded(
                   flex: 2,
                   child: Column(

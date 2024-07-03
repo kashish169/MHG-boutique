@@ -48,11 +48,12 @@ class OnboardController extends GetxController {
   String? selectedCountryFlage;
   List<CountryModel> countryList = [];
   RxString selectedLang = 'English'.obs;
+  RxString selectedLangFlag = AppAssets.ukFlag.obs;
   List<LanguageModel> langList = [
     LanguageModel(
         name: 'English', image: AppAssets.ukFlag, showName: 'English'.tr),
     LanguageModel(
-        name: 'Arabic'.tr, image: AppAssets.uaeFlage, showName: 'Arabic'.tr),
+        name: 'العربية', image: AppAssets.uaeFlage, showName: 'Arabic'.tr),
   ];
   PageController pageController = PageController();
   RxInt activeIndex = 0.obs;
@@ -70,9 +71,11 @@ class OnboardController extends GetxController {
     getCountries();
     isFirstLaunch();
     if (App.lang == "en") {
-      selectedLang.value = "ENGLISH";
+      selectedLang.value = "English";
+      selectedLangFlag = AppAssets.ukFlag.obs;
     } else {
-      selectedLang.value = "ARABIC";
+      selectedLang.value = "Arabic";
+      selectedLangFlag = AppAssets.uaeFlage.obs;
     }
     super.onInit();
   }
@@ -218,8 +221,10 @@ class OnboardController extends GetxController {
   selectLanguage(String language) async {
     selectedLang.value = language;
     if (selectedLang.value == "English") {
+      selectedLangFlag = AppAssets.ukFlag.obs;
       await AppHelper.updateLanguage(const Locale("en_US"));
     } else {
+      selectedLangFlag = AppAssets.uaeFlage.obs;
       await AppHelper.updateLanguage(const Locale("ar_AE"));
     }
     update();

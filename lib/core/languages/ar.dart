@@ -238,5 +238,5 @@ Map<String, String> ar_AE = {
   'Continue shopping': 'مواصلة التسوق',
   'Your order has been submitted successfully!': 'لقد تم تقديم طلبك بنجاح!',
   'or 4 interest-free payments of': 'أو 4 دفعات بدون فوائد',
-  'Learn more': 'اعرف اكثر'
+  'Learn more': 'اعرف اكثر',
 };

@@ -60,11 +60,15 @@ class LanguageSwitch extends StatelessWidget {
       required this.isSwitch,
       required this.text,
       required this.languageCode,
-      this.countryCode});
+      this.countryCode,
+      this.colorSwitchOn = const Color(0XFF21559e),
+      this.colorSiwtchOff = Colors.white});
   final String text;
   final bool isSwitch;
   final String languageCode;
   final String? countryCode;
+  final Color colorSwitchOn;
+  final Color colorSiwtchOff;
 
   @override
   Widget build(BuildContext context) {
@@ -82,14 +86,13 @@ class LanguageSwitch extends StatelessWidget {
           style: TextButton.styleFrom(padding: EdgeInsets.zero),
           child: CircleAvatar(
             radius: 11,
-            backgroundColor: const Color(0XFF21559e),
+            backgroundColor: colorSwitchOn,
             child: CircleAvatar(
               radius: 9,
-              backgroundColor: Colors.white,
+              backgroundColor: colorSiwtchOff,
               child: CircleAvatar(
                 radius: 6,
-                backgroundColor:
-                    isSwitch ? const Color(0XFF21559e) : Colors.white,
+                backgroundColor: isSwitch ? colorSwitchOn : colorSiwtchOff,
               ),
             ),
           ),
