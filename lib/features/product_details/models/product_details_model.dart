@@ -69,7 +69,7 @@ class ProductDetailsModel {
   List<Size> sizes;
   List<ProductTag> productTags;
   List<ProductModel> relatedProducts;
-  List<ProductModel> boughtTogeher;
+  List<dynamic> boughtTogeher;
   List<ProductReviewModel> productReviews;
   bool isLoadingQuantity;
   String? preOrderShippingMessage;
@@ -156,7 +156,9 @@ class ProductDetailsModel {
         externalId: json["external_id"],
         isPreOrder: json['is_pre_order'],
         sku: json["sku"],
-        boughtTogeher: json['frequentlyBoughtTogetherProducts'],
+        boughtTogeher: List<ProductModel>.from(
+            json["frequentlyBoughtTogetherProducts"]
+                .map((x) => ProductModel.fromJson(x))),
         categoryId: json["Category_Id"],
         storeId: json["store_id"],
         brandId: json["Brand_Id"],
