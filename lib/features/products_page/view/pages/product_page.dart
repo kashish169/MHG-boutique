@@ -43,9 +43,9 @@ class _ProductsPageState extends State<ProductsPage> {
           backGroundColor = null;
         }
       } else {
-        greeding = Colors.white;
-        topStatusColor = Colors.white;
-        backGroundColor = AppColors.dBlack;
+        greeding = Colors.black;
+        topStatusColor = Colors.black;
+        backGroundColor = AppColors.white;
       }
       setState(() {});
     });
@@ -201,7 +201,6 @@ class _ProductsPageState extends State<ProductsPage> {
             topStatusColor: topStatusColor,
             greeding: greeding,
             backGroundColor: backGroundColor,
-            //backGroundColor: AppColors.dBlack,
           ),
         ],
       ),
