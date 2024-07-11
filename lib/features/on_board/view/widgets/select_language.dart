@@ -5,7 +5,8 @@ import '../../controller/on_board_controller.dart';
 import 'custom_value_selctor.dart';
 
 class SelectLanguageView extends StatelessWidget {
-  SelectLanguageView({super.key});
+  SelectLanguageView({super.key, this.indexChosen});
+  final int? indexChosen;
   final OnboardController controller = Get.find();
 
   @override

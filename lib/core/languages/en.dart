@@ -151,6 +151,7 @@ Map<String, String> en_US = {
   //languages
   'Languages': 'Languages',
   'Change language': 'Change language',
+  'Select language': 'Select language',
 
   //product detail
   'box ofs':

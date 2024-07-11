@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/constants/app_dimensions.dart';
+import 'package:mhg/core/languages/languages.dart';
 
 class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet(
@@ -21,7 +23,8 @@ class CustomBottomSheet extends StatelessWidget {
         color: AppColors.white,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment:
+            isAR() ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           Center(
             child: GestureDetector(
@@ -47,19 +50,16 @@ class CustomBottomSheet extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
-          Row(
-            children: [
-              SizedBox(
-                width: AppDimensions.screenWidth(context) * 0.12,
-              ),
-              Text(
-                selectText,
-                style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                    color: AppColors.secondaryBlack,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400),
-              ),
-            ],
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: AppDimensions.screenWidth(context) * 0.12),
+            child: Text(
+              selectText,
+              style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                  color: AppColors.secondaryBlack,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400),
+            ),
           ),
           const SizedBox(
             height: 25,

@@ -76,14 +76,12 @@ class _ProductsPageState extends State<ProductsPage> {
                     routeArgs?['video_link'] != null
                         ? HomeVideoTestWidget(
                             videoLink: routeArgs?['video_link']!,
-                            height:
-                                MediaQuery.of(context).size.height * 1 / 2.2,
+                            height: 440,
                           )
                         : Opacity(
                             opacity: 1,
                             child: Container(
-                              height:
-                                  MediaQuery.of(context).size.height * 1 / 2.2,
+                              height: 440,
                               decoration: BoxDecoration(
                                   // color: Colors.black38,
                                   image: DecorationImage(
@@ -105,7 +103,7 @@ class _ProductsPageState extends State<ProductsPage> {
               ),
               // const ProductsCategoriesListView(),
               Padding(
-                padding: const EdgeInsets.only(top: 60),
+                padding: const EdgeInsets.only(top: 40),
                 child: GetX<ProductsController>(builder: (controller) {
                   if (controller.isLoading.isTrue ||
                       controller.isLoadingCategories.isTrue) {

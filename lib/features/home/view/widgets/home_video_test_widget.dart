@@ -80,7 +80,7 @@ class _HomeVideoTestWidgetState extends State<HomeVideoTestWidget> {
         alignment: Alignment.bottomLeft,
         children: [
           Container(
-            width: double.infinity,
+            width: _controller?.value.size.width ?? double.infinity,
             color: Colors.white,
             height: widget.height,
             child: isLoading

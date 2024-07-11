@@ -52,7 +52,6 @@ class _OnBoardViewState extends State<OnBoardView> {
                   flex: 2,
                   child: SizedBox(),
                 ),
-                const BoardSelectLanguages(),
                 Expanded(
                   flex: 2,
                   child: Column(
@@ -121,6 +120,9 @@ class _OnBoardViewState extends State<OnBoardView> {
                     color: AppColors.black3,
                   ),
                 ),
+                const Padding(padding: EdgeInsets.only(top: 10)),
+                const BoardSelectLanguages(),
+                const Padding(padding: EdgeInsets.only(top: 20)),
                 controller.isLoading
                     ? const Padding(
                         padding: EdgeInsets.all(13.0),
