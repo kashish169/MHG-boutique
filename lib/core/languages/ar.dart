@@ -178,6 +178,7 @@ Map<String, String> ar_AE = {
   //languages
   'Languages': 'اللغات',
   'Change language': 'تغيير اللغة',
+  'Select language': 'اختار اللغة',
 
   //product detail
   'box ofs':

@@ -236,7 +236,7 @@ class OnboardController extends GetxController {
     );
   }
 
-  openselcetLangage() {
-    Get.bottomSheet(SelectLanguageView());
+  openselcetLangage({int? index}) {
+    Get.bottomSheet(SelectLanguageView(indexChosen: index));
   }
 }

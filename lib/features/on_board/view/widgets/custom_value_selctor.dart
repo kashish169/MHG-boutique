@@ -23,6 +23,7 @@ class CustomValueSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         isSelectCountry == false
             ? Divider(
@@ -56,7 +57,7 @@ class CustomValueSelector extends StatelessWidget {
                       .textTheme
                       .displaySmall!
                       .copyWith(fontSize: 16),
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.end,
                 ),
               ),
             ),

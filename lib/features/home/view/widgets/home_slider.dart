@@ -47,7 +47,7 @@ class _HomeSliderState extends State<HomeSlider> {
         children: [
           Container(
             color: Colors.amber,
-            height: MediaQuery.of(context).size.height * 2 / 2.6,
+            height: 550,
             width: double.infinity,
             child: Swiper(
               autoplay: isSkip,
@@ -137,10 +137,10 @@ class _HomeSliderState extends State<HomeSlider> {
                               });
                             });
                           },
-                          height: MediaQuery.of(context).size.height * 2 / 2.6)
+                          height: 550)
                       : NetImage(
                           image: widget.sliders[index].backgroundImageLink,
-                          height: MediaQuery.of(context).size.height * 2 / 2.6,
+                          height: 550,
                           width: double.infinity),
                 );
               },
