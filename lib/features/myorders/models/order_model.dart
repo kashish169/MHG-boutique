@@ -3,7 +3,7 @@
 //     final myOrdersModel = myOrdersModelFromJson(jsonString);
 
 import 'dart:convert';
-
+import 'dart:developer';
 import '../../success_order/model/shipning_model.dart';
 
 MyOrdersModel myOrdersModelFromJson(String str) =>
@@ -107,50 +107,56 @@ class MyOrder {
     this.tapPaymentMethod,
   });
 
-  factory MyOrder.fromJson(Map<String, dynamic> json) => MyOrder(
-        tapPaymentMethod: json["tap_payment_method"] == null
-            ? null
-            : TapPaymentMethod.fromJson(json["tap_payment_method"]),
-        deliveryStatusText: json['delivery_status_text'],
-        trackingDeliveryUrl: json['tracking_delivery_url'],
-        cancelRequested: json["cancel_requested"],
-        returnRequested: json["return_requested"],
-        cancelReason: json["cancel_reason"],
-        returnReason: json["return_reason"],
-        id: json["id"],
-        orderNumber: json["Order_Number"],
-        orderBill: json["order_bill"],
-        userId: json["User_Id"],
-        billingId: json["Billing_Id"],
-        shippingId: json["Shipping_Id"],
-        billingAddress:
-            ShippingModel.fromJson(jsonDecode(json['billing_address'])),
-        shippingAddress:
-            ShippingModel.fromJson(jsonDecode(json['shipping_address'])),
-        couponId: json["Coupon_Id"],
-        couponAmount: json["Coupon_Amount"].toString(),
-        heartsDiscount: json["hearts_discount"].toString(),
-        deliveryCharge: json["Delivery_Charge"].toString(),
-        subTotal: json["Sub_Total"].toString(),
-        tax: json["Tax"].toString(),
-        grandTotal: json["Grand_Total"].toString(),
-        isFreeDelivery: json["Is_Free_Delivery"],
-        isOrderSuccessful: json["Is_Order_Successful"],
-        isOrderCompleted: json["Is_Order_Completed"],
-        paymentMethod: json["Payment_Method"],
-        paymentStatus: json["Payment_Status"],
-        orderStatus: json["Order_Status"],
-        txn: json["txn"],
-        storeId: json["store_id"],
-        deliveryAt: json["Delivery_At"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-        orderDetails: List<OrderDetail>.from(
-            json["order_details"].map((x) => OrderDetail.fromJson(x))),
-        user: json["user"] != null ? User.fromJson(json["user"]) : null,
-        coupon: json["coupon"],
-        store: json["store"],
-      );
+  factory MyOrder.fromJson(Map<String, dynamic> json) {
+    log('ORDER DETAIL:${json['order_details']}');
+    return MyOrder(
+      tapPaymentMethod: json["tap_payment_method"] == null
+          ? null
+          : TapPaymentMethod.fromJson(json["tap_payment_method"]),
+      deliveryStatusText: json['delivery_status_text'],
+      trackingDeliveryUrl: json['tracking_delivery_url'],
+      cancelRequested: json["cancel_requested"],
+      returnRequested: json["return_requested"],
+      cancelReason: json["cancel_reason"],
+      returnReason: json["return_reason"],
+      id: json["id"],
+      orderNumber: json["Order_Number"],
+      orderBill: json["order_bill"],
+      userId: json["User_Id"],
+      billingId: json["Billing_Id"],
+      shippingId: json["Shipping_Id"],
+      billingAddress:
+          ShippingModel.fromJson(jsonDecode(json['billing_address'])),
+      shippingAddress:
+          ShippingModel.fromJson(jsonDecode(json['shipping_address'])),
+      couponId: json["Coupon_Id"],
+      couponAmount: json["Coupon_Amount"].toString(),
+      heartsDiscount: json["hearts_discount"].toString(),
+      deliveryCharge: json["Delivery_Charge"].toString(),
+      subTotal: json["Sub_Total"].toString(),
+      tax: json["Tax"].toString(),
+      grandTotal: json["Grand_Total"].toString(),
+      isFreeDelivery: json["Is_Free_Delivery"],
+      isOrderSuccessful: json["Is_Order_Successful"],
+      isOrderCompleted: json["Is_Order_Completed"],
+      paymentMethod: json["Payment_Method"],
+      paymentStatus: json["Payment_Status"],
+      orderStatus: json["Order_Status"],
+      txn: json["txn"],
+      storeId: json["store_id"],
+      deliveryAt: json["Delivery_At"],
+      createdAt: DateTime.parse(json["created_at"]),
+      updatedAt: DateTime.parse(json["updated_at"]),
+      orderDetails: json["order_details"].runtimeType == List
+          ? (json["order_details"] as List<dynamic>)
+              .map((e) => OrderDetail.fromJson(e))
+              .toList()
+          : [],
+      user: json["user"] != null ? User.fromJson(json["user"]) : null,
+      coupon: json["coupon"],
+      store: json["store"],
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "tap_payment_method": tapPaymentMethod?.toJson(),
