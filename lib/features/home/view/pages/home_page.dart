@@ -72,7 +72,9 @@ class _HomePageState extends State<HomePage>
             SingleChildScrollView(
                 controller: scrollController,
                 child: Column(
-                    children: List.generate(
+                    children:
+                        //[]
+                        List.generate(
                   controller.slidersList.length,
                   (index) => Column(
                     children: [

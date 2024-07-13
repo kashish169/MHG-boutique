@@ -97,30 +97,32 @@ class ProductDetailsBrandCard extends StatelessWidget {
                       )),
                 ],
               )),
+          if (controller.model.pts != null && controller.model.pts != 0)
+            Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: Row(
+                children: [
+                  Image.asset(
+                    AppAssets.starIcon,
+                    height: 17,
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    '${'Earn'.tr} ${controller.model.pts} ${'Points'.tr}',
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                        fontSize: 13,
+                        color: AppColors.mediumLabel,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+            ),
+          const SizedBox(height: 5),
           ProductDetailWidgetTabby(
               price: controller
                   .model.variants[controller.selectedVariantInd.value].price),
-          const SizedBox(height: 5),
-          controller.model.pts != null && controller.model.pts != 0
-              ? Row(
-                  children: [
-                    Image.asset(
-                      AppAssets.starIcon,
-                      height: 17,
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      '${'Earn'.tr} ${controller.model.pts} ${'Points'.tr}',
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontSize: 13,
-                          color: AppColors.mediumLabel,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                )
-              : const SizedBox(),
           Obx(
             () => controller.model.variants[controller.selectedVariantInd.value]
                         .quantity >
