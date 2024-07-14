@@ -8,7 +8,7 @@ class ProductDetailsModel {
   List<Variant> variants;
   int id;
   dynamic externalId;
-  dynamic pts;
+  double? pts;
   dynamic sku;
   dynamic categoryId;
   dynamic storeId;
@@ -152,7 +152,7 @@ class ProductDetailsModel {
         variants: List<Variant>.from(
             json["variants"].map((x) => Variant.fromJson(x))),
         id: json["id"],
-        pts: json["pts"],
+        pts: (json["pts"] as num?)?.toDouble(),
         externalId: json["external_id"],
         isPreOrder: json['is_pre_order'],
         sku: json["sku"],

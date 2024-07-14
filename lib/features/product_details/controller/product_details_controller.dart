@@ -70,7 +70,6 @@ class ProductDetailsController extends GetxController {
           var message = r.object["message"];
           log("PRODUCT DETAILS RESPONSE STATUS $statusCode");
           if (statusCode == 200) {
-            log(r.object["data"].toString());
             var json = r.object["data"]["product"];
             // log("Detailssss $json");
             model = ProductDetailsModel.fromJson(json);

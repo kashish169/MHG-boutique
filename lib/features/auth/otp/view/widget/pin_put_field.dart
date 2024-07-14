@@ -22,11 +22,13 @@ class PinPutField extends StatelessWidget {
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       showCursor: true,
       onCompleted: (pin) {
+        try{
         if (controller.type == 'reset') {
           controller.verifyResetPasswordOtp(controller.codeController.text);
         } else {
           controller.signInWithCredential(controller.codeController.text);
         }
+        }catch(e){}
       },
     );
   }
