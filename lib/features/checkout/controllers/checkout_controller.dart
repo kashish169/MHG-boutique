@@ -3,6 +3,7 @@ import 'package:country_picker/country_picker.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/constants/app_toasts.dart';
 import 'package:mhg/core/models/api_response.dart';
@@ -94,6 +95,7 @@ class CheckoutController extends GetxController {
   RxBool loadingGoogleConfiguration = false.obs;
   RxBool errorAppleConfiguration = false.obs;
   RxBool errorGoogleConfiguration = false.obs;
+  RxDouble redeemAmount = 0.0.obs;
   Map appleConfiguration = {};
   Map googleConfiguration = {};
   RxBool isApplePay = false.obs;
@@ -330,9 +332,8 @@ class CheckoutController extends GetxController {
     }
   }
 
-  Future<void> orderPrice({
-    bool isRedeem = false,
-  }) async {
+  Future<void> orderPrice(
+      {bool isRedeem = false, double redeemAmount = 0}) async {
     try {
       isLoadingRedeem(true);
       isErrorRedeem(false);
@@ -357,8 +358,13 @@ class CheckoutController extends GetxController {
       if (promoCode.isNotEmpty) {
         query += "&coupon=$promoCode";
       }
-      if (hasRedeem.isTrue) {
+      if (isRedeem) {
+        hasRedeem(true);
         query += "&redeem=1";
+        if (redeemAmount != 0) {
+          query += "&redeem_amount=$redeemAmount";
+          this.redeemAmount(redeemAmount);
+        }
       } else {
         query += "&redeem=0";
       }
@@ -470,6 +476,7 @@ class CheckoutController extends GetxController {
           shippingPhoneNumber: shippingPhoneNumber,
           shippingCountry: countryName,
           redeem: hasRedeem.isTrue ? 1 : 0,
+          redeemAmount: redeemAmount.value <= 0 ? null : redeemAmount.value,
           coupon: promoCode,
           paymentMethod: isApplePay == true || isGooglePay == true
               ? 'TAP'
@@ -511,6 +518,8 @@ class CheckoutController extends GetxController {
         const LoadingWidget(),
         barrierDismissible: false,
       );
+
+      log('CREATE ORDER ORDER ORDER ORDER: $objectData');
 
       Either<Failure, ApiResponse> results =
           await checkoutRepository.createOrder(objectData);

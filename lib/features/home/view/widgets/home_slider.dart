@@ -2,11 +2,11 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhg/core/languages/languages.dart';
-import 'package:mhg/features/home/view/widgets/home_video_test_widget.dart';
 import 'package:mhg/features/product_details/view/pages/product_details_page.dart';
 import 'package:mhg/features/products_page/view/pages/product_page.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/net_image.dart';
+import '../../../../widgets/video_play.dart';
 import '../../../mainwrapper/controller/main_wrapper_controller.dart';
 import '../../models/slider_model.dart';
 
@@ -40,6 +40,7 @@ class _HomeSliderState extends State<HomeSlider> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height * 2 / 2.6;
     return Visibility(
       visible: widget.sliders.isNotEmpty,
       child: Column(
@@ -47,7 +48,7 @@ class _HomeSliderState extends State<HomeSlider> {
         children: [
           Container(
             color: Colors.amber,
-            height: 550,
+            height: height,
             width: double.infinity,
             child: Swiper(
               autoplay: isSkip,
@@ -91,7 +92,8 @@ class _HomeSliderState extends State<HomeSlider> {
                     }
                   },
                   child: widget.sliders[index].videoLinkk != null
-                      ? HomeVideoTestWidget(
+                      ? //SizedBox()
+                      VideoPlay(
                           shopFun: () {
                             if (widget.sliders[index].productId != null) {
                               Get.toNamed(
@@ -128,19 +130,10 @@ class _HomeSliderState extends State<HomeSlider> {
                               ? widget.sliders[index].productNameAr
                               : widget.sliders[index].productNameEn,
                           isShowBtnShop: true,
-                          endVideoFun: widget.sliders.length > 1 ? () {} : null,
-                          startFun: () {
-                            Future.delayed(const Duration(milliseconds: 200),
-                                () {
-                              setState(() {
-                                isSkip = false;
-                              });
-                            });
-                          },
-                          height: 550)
+                          height: height)
                       : NetImage(
                           image: widget.sliders[index].backgroundImageLink,
-                          height: 550,
+                          height: height,
                           width: double.infinity),
                 );
               },
