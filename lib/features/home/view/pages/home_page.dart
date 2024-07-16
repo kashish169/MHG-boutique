@@ -73,23 +73,25 @@ class _HomePageState extends State<HomePage>
                 controller: scrollController,
                 child: Column(
                     children:
-                        //[]
-                        List.generate(
-                  controller.slidersList.length,
-                  (index) => Column(
-                    children: [
-                      HomeSlider(sliders: controller.slidersList[index]),
-                      HomeCategoriesListWidget(
-                          categories: controller.categories[index]),
-                      HomeTopSellersWidget(
-                          categoryID: controller.categoryIdsToppSeller[index],
-                          topSellers: controller.topSellersList[index]),
-                      //HomeShopByCategoryWidget(),
-                      // HomeNewArrivelsWidget(),
-                      // HomeExploreOurBrandsWidget(),
-                    ],
-                  ),
-                ))),
+                        []
+                //         List.generate(
+                //   controller.slidersList.length,
+                //   (index) => Column(
+                //     children: [
+                //       HomeSlider(sliders: controller.slidersList[index]),
+                //       HomeCategoriesListWidget(
+                //           categories: controller.categories[index]),
+                //       HomeTopSellersWidget(
+                //           categoryID: controller.categoryIdsToppSeller[index],
+                //           topSellers: controller.topSellersList[index]),
+                //       //HomeShopByCategoryWidget(),
+                //       // HomeNewArrivelsWidget(),
+                //       // HomeExploreOurBrandsWidget(),
+                //     ],
+                //   ),
+                // )
+                
+                )),
             if (!isScrollForward) const HomeRewardBox()
           ],
         ),
