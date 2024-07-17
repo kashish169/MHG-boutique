@@ -77,7 +77,9 @@ class CheckoutController extends GetxController {
   RxList<CartModel> cartItemsList = <CartModel>[].obs;
   RxInt loadingPercentage = 0.obs;
   RxBool hasRedeem = false.obs;
+  RxBool isRedeem = false.obs;
   RxBool isFromApply = false.obs;
+  RxBool isVoucherAdd = false.obs;
   List<PaymentMethodsModel> paymentMethodsList = [];
   RxString paymentMethodValue = ''.obs;
   RxInt paymentMethodIndex = (-1).obs;
@@ -338,6 +340,7 @@ class CheckoutController extends GetxController {
       isLoadingRedeem(true);
       isErrorRedeem(false);
       if (isRedeem == false) {
+        this.isRedeem(false);
         isLoadingPromo(true);
         isErrorPromo(false);
       }
@@ -356,10 +359,11 @@ class CheckoutController extends GetxController {
         }
       }
       if (promoCode.isNotEmpty) {
+        isVoucherAdd(true);
         query += "&coupon=$promoCode";
       }
       if (isRedeem) {
-        hasRedeem(true);
+        this.isRedeem(true);
         query += "&redeem=1";
         if (redeemAmount != 0) {
           query += "&redeem_amount=$redeemAmount";
@@ -396,10 +400,12 @@ class CheckoutController extends GetxController {
           var message = r.object["message"];
           log("ORDER PRICE METHODS RESPONSE STATUS $statusCode");
           log("ORDER PRICE METHODS RESPONSE ${r.object["data"]}");
+
           if (statusCode == 200) {
             if (r.object["data"] != null) {
               log(orderPriceModal.toString());
               orderPriceModal.value = OrderPriceModal.fromJson(r.object);
+
               if (isRedeem == true) {
                 AppToasts.successToast(
                   "Points have been redeemed successfully",
@@ -407,6 +413,9 @@ class CheckoutController extends GetxController {
               }
             }
           } else {
+            if (r.object['message'] == 'The selected voucher code is invalid') {
+              isVoucherAdd(false);
+            }
             AppToasts.errorToast(message);
           }
         },
@@ -475,7 +484,7 @@ class CheckoutController extends GetxController {
           billingPhoneNumber: billingPhoneNumber,
           shippingPhoneNumber: shippingPhoneNumber,
           shippingCountry: countryName,
-          redeem: hasRedeem.isTrue ? 1 : 0,
+          redeem: isRedeem.isTrue ? 1 : 0,
           redeemAmount: redeemAmount.value <= 0 ? null : redeemAmount.value,
           coupon: promoCode,
           paymentMethod: isApplePay == true || isGooglePay == true

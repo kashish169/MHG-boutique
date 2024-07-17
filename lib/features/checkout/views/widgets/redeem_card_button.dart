@@ -54,6 +54,11 @@ class _RedeemCardButtonState extends State<RedeemCardButton> {
                           value: checkoutController.hasRedeem.value,
                           //  groupValue: checkoutController.hasRedeem.value,
                           onChanged: (val) {
+                            if (checkoutController.isVoucherAdd.value) {
+                              AppToasts.errorToast(
+                                  'You can\'t add redeem with voucher code');
+                              return;
+                            }
                             checkoutController.hasRedeem.value =
                                 !checkoutController.hasRedeem.value;
                             checkoutController.orderPrice(
@@ -92,6 +97,11 @@ class _RedeemCardButtonState extends State<RedeemCardButton> {
                     suffixIcon: TextButton(
                       onPressed: () {
                         if (amountController.text.isNotEmpty) {
+                          if (checkoutController.isVoucherAdd.value) {
+                            AppToasts.errorToast(
+                                'You can\'t add redeem with voucher code');
+                            return;
+                          }
                           if (double.parse(amountController.text) <=
                               double.parse(
                                   profileController.model.value!.hearts!)) {

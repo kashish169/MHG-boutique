@@ -92,8 +92,7 @@ class _HomeSliderState extends State<HomeSlider> {
                     }
                   },
                   child: widget.sliders[index].videoLinkk != null
-                      ? //SizedBox()
-                      VideoPlay(
+                      ? VideoPlay(
                           shopFun: () {
                             if (widget.sliders[index].productId != null) {
                               Get.toNamed(

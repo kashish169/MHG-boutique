@@ -93,26 +93,32 @@ class PromoCode extends StatelessWidget {
                       isLoading: checkoutController.isLoadingPromo.value,
                       onPress: checkoutController.isLoadingPromo.isTrue
                           ? () {}
-                          : () {
-                              checkoutController.isFromApply(
-                                  !checkoutController.isFromApply.value);
-                              if (checkoutController.codeController.text
-                                  .trim()
-                                  .isNotEmpty) {
-                                if (App.token.isNotEmpty) {
-                                  if (controller.model.value!.countryId ==
-                                      null) {
-                                    AppToasts.errorToast(
-                                        'Please add your country in profile information');
+                          : () async {
+                              if (checkoutController.isRedeem.value) {
+                                AppToasts.errorToast(
+                                    'You can\'t add redeem with voucher code');
+                              } else {
+                                checkoutController.isFromApply(
+                                    !checkoutController.isFromApply.value);
+                                if (checkoutController.codeController.text
+                                    .trim()
+                                    .isNotEmpty) {
+                                  if (App.token.isNotEmpty) {
+                                    if (controller.model.value!.countryId ==
+                                        null) {
+                                      AppToasts.errorToast(
+                                          'Please add your country in profile information');
+                                    } else {
+                                      AppHelper.closeKeyboard();
+                                      await checkoutController.orderPrice();
+                                    }
                                   } else {
                                     AppHelper.closeKeyboard();
-                                    checkoutController.orderPrice();
+                                    await checkoutController.orderPrice();
                                   }
-                                } else {
-                                  AppHelper.closeKeyboard();
-                                  checkoutController.orderPrice();
                                 }
                               }
+                              checkoutController.codeController.clear();
                             }),
                   const SizedBox(width: 20),
                 ],

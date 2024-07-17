@@ -88,7 +88,19 @@ class _VideoPlayState extends State<VideoPlay> {
           alignment: Alignment.bottomLeft,
           children: [
             chewieController != null
-                ? Container(
+                ?
+                // Container(
+                //     color: Colors.white,
+                //     width: MediaQuery.of(context).size.width,
+                //     height: widget.height,
+                //     child: AspectRatio(
+                //       aspectRatio: videoContainerRatio,
+                //       child: Chewie(
+                //         controller: chewieController!,
+                //       ),
+                //     ),
+                //   )
+                Container(
                     color: Colors.white,
                     width: MediaQuery.of(context).size.width,
                     height: widget.height,
