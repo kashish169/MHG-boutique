@@ -17,6 +17,7 @@ class OrderModel {
   String? shippingCountry;
   String coupon;
   int redeem;
+  double? redeemAmount;
   String? paymentMethod;
   int? onlinePaymentMethodId;
   String? paymentPlatForm;
@@ -50,6 +51,7 @@ class OrderModel {
       required this.onlinePaymentMethodId,
       required this.shippingPhoneNumber,
       required this.billingPhoneNumber,
+      this.redeemAmount,
       this.paymentPlatForm,
       this.appleToken,
       this.ephemeralPublicKey,
@@ -75,6 +77,7 @@ class OrderModel {
       "shipping_zipcode": shippingZipcode,
       "shipping_country": shippingCountry,
       "redeem": redeem,
+      "redeem_amount": redeemAmount,
       "payment_method": paymentMethod,
       'shipping_phone_number': shippingPhoneNumber,
       'billing_phone_number': billingPhoneNumber,

@@ -7,6 +7,7 @@ import 'package:mhg/features/home/view/widgets/product_card.dart';
 import 'package:mhg/features/products_page/controller/product_controller.dart';
 import 'package:mhg/widgets/loading_widget.dart';
 import 'package:mhg/widgets/retry_button.dart';
+import 'package:mhg/widgets/video_play.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../widgets/dynamic_grid_view.dart';
 import '../../../categories/view/widgets/category_filter_button.dart';
@@ -74,9 +75,10 @@ class _ProductsPageState extends State<ProductsPage> {
                   if (routeArgs?['video_link'] != null ||
                       routeArgs?['image_link'] != null)
                     routeArgs?['video_link'] != null
-                        ? HomeVideoTestWidget(
+                        ? VideoPlay(
                             videoLink: routeArgs?['video_link']!,
-                            height: 440,
+                            height:
+                                MediaQuery.of(context).size.height * 2 / 2.6,
                           )
                         : Opacity(
                             opacity: 1,

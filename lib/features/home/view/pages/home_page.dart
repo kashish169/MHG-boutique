@@ -69,27 +69,32 @@ class _HomePageState extends State<HomePage>
         onRefresh: () async => await controller.getHome(),
         child: Stack(
           children: [
-            SingleChildScrollView(
-                controller: scrollController,
-                child: Column(
-                    children:
-                        //[]
-                        List.generate(
-                  controller.slidersList.length,
-                  (index) => Column(
-                    children: [
-                      HomeSlider(sliders: controller.slidersList[index]),
-                      HomeCategoriesListWidget(
-                          categories: controller.categories[index]),
-                      HomeTopSellersWidget(
-                          categoryID: controller.categoryIdsToppSeller[index],
-                          topSellers: controller.topSellersList[index]),
-                      //HomeShopByCategoryWidget(),
-                      // HomeNewArrivelsWidget(),
-                      // HomeExploreOurBrandsWidget(),
-                    ],
-                  ),
-                ))),
+            ListView.builder(
+            itemCount: controller.slidersList.length,
+            itemBuilder: (context, index){
+              return Column(
+                children: [
+                  HomeSlider(sliders: controller.slidersList[index]),
+                  HomeCategoriesListWidget(
+                      categories: controller.categories[index]),
+                  HomeTopSellersWidget(
+                      categoryID: controller.categoryIdsToppSeller[index],
+                      topSellers: controller.topSellersList[index]),
+                  //HomeShopByCategoryWidget(),
+                  // HomeNewArrivelsWidget(),
+                  // HomeExploreOurBrandsWidget(),
+                ],
+              );
+            }),
+            // SingleChildScrollView(
+            //     controller: scrollController,
+            //     child: Column(
+            //         children:
+            //             // []
+            //             List.generate(
+            //       controller.slidersList.length,
+            //       (index) => ,
+            //     ))),
             if (!isScrollForward) const HomeRewardBox()
           ],
         ),
