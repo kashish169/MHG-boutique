@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="@android:color/white" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.appcompat.widget.AppCompatImageView android:layout_width="match_parent" android:layout_height="wrap_content" android:scaleType="centerCrop" app:layout_constraintTop_toTopOf="parent" app:srcCompat="@drawable/tw_header_bg" />
+    <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:padding="@dimen/tamara_padding_general" android:fitsSystemWindows="true" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatImageView android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="24.0dp" android:layout_margin="@dimen/tamara_margin_general" android:paddingVertical="2.0dp" app:srcCompat="@drawable/tw_ic_logo" />
+            <androidx.appcompat.widget.AppCompatImageButton android:layout_gravity="end|center" android:id="@id/twCloseBtn" android:background="@android:color/transparent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/tw_ic_circle_button" />
+        </FrameLayout>
+        <androidx.appcompat.widget.AppCompatTextView android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/tamara_margin_general" android:text="@string/tw_info_title" style="@style/Heading1" />
+        <androidx.appcompat.widget.AppCompatTextView android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/tamara_margin_general_large" android:layout_marginBottom="@dimen/tamara_margin_general_medium" android:text="@string/tw_info_sub_title" style="@style/LabelMedium3" />
+        <androidx.appcompat.widget.LinearLayoutCompat android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/tamara_margin_general" android:layout_marginHorizontal="@dimen/tamara_margin_general">
+            <androidx.appcompat.widget.AppCompatImageView android:layout_width="40.0dp" android:layout_height="40.0dp" android:src="@drawable/tw_ic_tamara_badge" />
+            <androidx.appcompat.widget.LinearLayoutCompat android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatTextView android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/tw_info_content_1_title" android:layout_marginStart="@dimen/tamara_padding_general" style="@style/Heading5" />
+                <androidx.appcompat.widget.AppCompatTextView android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/tw_info_content_1_subtitle" android:layout_marginStart="@dimen/tamara_padding_general" style="@style/BodyRegular3" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/tamara_margin_general" android:layout_marginHorizontal="@dimen/tamara_margin_general">
+            <androidx.appcompat.widget.AppCompatImageView android:layout_width="40.0dp" android:layout_height="40.0dp" android:src="@drawable/tw_ic_id_badge" />
+            <androidx.appcompat.widget.LinearLayoutCompat android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatTextView android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/tw_info_content_2_title" android:layout_marginStart="@dimen/tamara_padding_general" style="@style/Heading5" />
+                <androidx.appcompat.widget.AppCompatTextView android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/tw_info_content_2_subtitle" android:layout_marginStart="@dimen/tamara_padding_general" style="@style/BodyRegular3" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/tamara_margin_general" android:layout_marginBottom="@dimen/tamara_margin_general_large" android:layout_marginHorizontal="@dimen/tamara_margin_general">
+            <androidx.appcompat.widget.AppCompatImageView android:layout_width="40.0dp" android:layout_height="40.0dp" android:src="@drawable/tw_ic_pay_badge" />
+            <androidx.appcompat.widget.LinearLayoutCompat android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatTextView android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/tw_info_content_3_title" android:layout_marginStart="@dimen/tamara_padding_general" style="@style/Heading5" />
+                <androidx.appcompat.widget.AppCompatTextView android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/tw_info_content_3_subtitle" android:layout_marginStart="@dimen/tamara_padding_general" style="@style/BodyRegular3" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <View android:background="@color/tw_color_divider" android:layout_width="match_parent" android:layout_height="1.0dp" android:layout_margin="@dimen/tamara_margin_general" />
+        <androidx.appcompat.widget.AppCompatTextView android:textColor="@color/tw_neutral_black" android:textColorLink="@color/tw_color_highlight" android:gravity="center" android:autoLink="web" android:id="@id/twFooterLearnMoreTxt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/tamara_margin_general_medium" android:text="@string/tw_info_footer_subtitle" style="@style/BodyRegular3" />
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatTextView android:textColor="@color/tw_neutral_black" android:textColorLink="@color/tw_color_highlight" android:gravity="center" android:autoLink="web" android:layout_gravity="center|bottom" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="40.0dp" android:text="@string/tw_info_footer_info" android:layout_marginHorizontal="@dimen/tamara_margin_general" style="@style/BodyRegular3" />
+</FrameLayout>

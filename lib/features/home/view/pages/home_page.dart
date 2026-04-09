@@ -10,6 +10,7 @@ import '../widgets/home_categories_list_widget.dart';
 import '../widgets/home_slider.dart';
 import '../widgets/home_top_sellers_widget.dart';
 
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -70,22 +71,22 @@ class _HomePageState extends State<HomePage>
         child: Stack(
           children: [
             ListView.builder(
-            itemCount: controller.slidersList.length,
-            itemBuilder: (context, index){
-              return Column(
-                children: [
-                  HomeSlider(sliders: controller.slidersList[index]),
-                  HomeCategoriesListWidget(
-                      categories: controller.categories[index]),
-                  HomeTopSellersWidget(
-                      categoryID: controller.categoryIdsToppSeller[index],
-                      topSellers: controller.topSellersList[index]),
-                  //HomeShopByCategoryWidget(),
-                  // HomeNewArrivelsWidget(),
-                  // HomeExploreOurBrandsWidget(),
-                ],
-              );
-            }),
+                itemCount: controller.slidersList.length,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      HomeSlider(sliders: controller.slidersList[index]),
+                      HomeCategoriesListWidget(
+                          categories: controller.categories[index]),
+                      HomeTopSellersWidget(
+                          categoryID: controller.categoryIdsToppSeller[index],
+                          topSellers: controller.topSellersList[index]),
+                      //HomeShopByCategoryWidget(),
+                      // HomeNewArrivelsWidget(),
+                      // HomeExploreOurBrandsWidget(),
+                    ],
+                  );
+                }),
             // SingleChildScrollView(
             //     controller: scrollController,
             //     child: Column(

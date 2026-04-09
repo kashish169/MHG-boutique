@@ -26,9 +26,36 @@ class CountriesDropDownWidget extends StatefulWidget {
 class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
   final TextEditingController _searchController = TextEditingController();
   final PersonalInformationController controller = Get.find();
+  late final ValueNotifier<String?> _valueNotifier;
+
+  @override
+  void initState() {
+    super.initState();
+    final initial = widget.isCountry
+        ? controller.selectedCountry
+        : (controller.selectedCity ?? '').isEmpty
+            ? null
+            : controller.selectedCity;
+    _valueNotifier = ValueNotifier<String?>(initial);
+  }
+
+  @override
+  void dispose() {
+    _valueNotifier.dispose();
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final currentValue = widget.isCountry
+        ? controller.selectedCountry
+        : (controller.selectedCity ?? '').isEmpty
+            ? null
+            : controller.selectedCity;
+    if (_valueNotifier.value != currentValue) {
+      _valueNotifier.value = currentValue;
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -50,15 +77,12 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
         DropdownButtonHideUnderline(
           child: DropdownButton2<String>(
             isExpanded: true,
-            value: widget.isCountry
-                ? controller.selectedCountry
-                : controller.selectedCity!.isEmpty
-                    ? null
-                    : controller.selectedCity,
+            valueListenable: _valueNotifier,
             onChanged: (value) {
               widget.isCountry
-                  ? controller.setCountry(value)
+                  ? controller.setCountry(value!)
                   : controller.setCity(value);
+              _valueNotifier.value = value;
             },
             hint: Text(
               widget.isCountry
@@ -74,7 +98,7 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
             items: widget.isCountry
                 ? widget.countries
                     .map(
-                      (item) => DropdownMenuItem<String>(
+                      (item) => DropdownItem<String>(
                         value: item.name,
                         child: RichText(
                           text: TextSpan(
@@ -104,7 +128,7 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
                     .toList()
                 : widget.cities
                     .map(
-                      (e) => DropdownMenuItem<String>(
+                      (e) => DropdownItem<String>(
                         value: e,
                         child: RichText(
                           text: TextSpan(
@@ -125,10 +149,10 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
                       ),
                     )
                     .toList(),
-            dropdownSearchData: DropdownSearchData(
+            dropdownSearchData: DropdownSearchData<String>(
               searchController: _searchController,
-              searchInnerWidgetHeight: 50,
-              searchInnerWidget: Container(
+              searchBarWidgetHeight: 50,
+              searchBarWidget: Container(
                 height: 50,
                 padding: const EdgeInsets.only(
                   top: 8,
@@ -163,9 +187,9 @@ class _CountriesDropDownWidgetState extends State<CountriesDropDownWidget> {
                 ),
               ),
               searchMatchFn: (item, searchValue) {
-                return (item.value.toString().contains(
-                      searchValue,
-                    ));
+                return item.value?.toString().toLowerCase().contains(
+                      searchValue.toLowerCase(),
+                    ) ?? false;
               },
             ),
             onMenuStateChange: (isOpen) {

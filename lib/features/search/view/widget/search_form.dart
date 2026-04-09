@@ -20,82 +20,85 @@ class SearchForm extends StatelessWidget {
       builder: (controller) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: TypeAheadField<AutoSearchProductModel>(
-          noItemsFoundBuilder: (context) {
-            return const SizedBox();
-          },
-          textFieldConfiguration: TextFieldConfiguration(
-              textInputAction: TextInputAction.search,
-              controller: controller.search,
-              onSubmitted: (value) {
+          controller: controller.search,
+          emptyBuilder: (context) => const SizedBox(),
+          builder: (context, textController, focusNode) => TextField(
+            controller: textController,
+            focusNode: focusNode,
+            textInputAction: TextInputAction.search,
+            onSubmitted: (value) {
+              controller.resetPaginate();
+              if (controller.search.text.isNotEmpty) {
+                searchController.filterSearchForProduct();
+              }
+            },
+            onChanged: (value) {
+              if (value == '') {
                 controller.resetPaginate();
-                controller.search.text.isNotEmpty
-                    ? searchController.filterSearchForProduct()
-                    : null;
-              },
-              onChanged: (value) {
-                if (value == '') {
+              }
+            },
+            autofocus: false,
+            style: Theme.of(context).textTheme.displaySmall,
+            decoration: InputDecoration(
+              fillColor: const Color(0XFFF0F0F0),
+              suffixIcon: IconButton(
+                onPressed: () {
+                  AppHelper.closeKeyboard();
+                  controller.search.clear();
+                },
+                icon: const Icon(Icons.close, size: 20),
+              ),
+              prefixIcon: IconButton(
+                onPressed: () {
                   controller.resetPaginate();
-                }
-              },
-              autofocus: false,
-              style: Theme.of(context).textTheme.displaySmall,
-              decoration: InputDecoration(
-                  fillColor: const Color(0XFFF0F0F0),
-                  suffixIcon: IconButton(
-                      onPressed: () {
-                        AppHelper.closeKeyboard();
-                        controller.search.clear();
-                      },
-                      icon: const Icon(
-                        Icons.close,
-                        size: 20,
-                      )),
-                  prefixIcon: IconButton(
-                      onPressed: () {
-                        controller.resetPaginate();
-                        controller.search.text.isNotEmpty
-                            ? searchController.filterSearchForProduct()
-                            : null;
-                      },
-                      icon: SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: Image.asset(
-                          AppAssets.search,
-                          color: AppColors.primary,
-                        ),
-                      )),
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: Colors.white),
+                  if (controller.search.text.isNotEmpty) {
+                    searchController.filterSearchForProduct();
+                  }
+                },
+                icon: SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: Image.asset(
+                    AppAssets.search,
+                    color: AppColors.primary,
                   ),
-                  enabledBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  filled: true,
-                  hintText: "What Are You Looking For ?".tr,
-                  hintStyle: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        color: AppColors.grey,
-                      ))),
-          keepSuggestionsOnLoading: false,
-          suggestionsBoxDecoration: SuggestionsBoxDecoration(
-            constraints: BoxConstraints(
-              maxHeight: AppDimensions.productHeight(context) / 1.2,
+                ),
+              ),
+              border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              filled: true,
+              hintText: "What Are You Looking For ?".tr,
+              hintStyle: Theme.of(context).textTheme.displaySmall?.copyWith(
+                color: AppColors.grey,
+              ),
             ),
-            borderRadius: BorderRadius.circular(10),
-            color: const Color(0XFFF0F0F0),
+          ),
+          retainOnLoading: false,
+          constraints: BoxConstraints(
+            maxHeight: AppDimensions.productHeight(context) / 1.2,
+          ),
+          decorationBuilder: (context, child) => Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: const Color(0XFFF0F0F0),
+            ),
+            child: child,
           ),
           suggestionsCallback: (pattern) async {
             if (pattern.isNotEmpty) {
               return await controller.autoCompleteSearch(pattern);
-            } else {
-              return [];
             }
+            return [];
           },
           itemBuilder: (context, suggestion) {
             return Padding(
@@ -109,7 +112,7 @@ class SearchForm extends StatelessWidget {
               ),
             );
           },
-          onSuggestionSelected: (suggestion) {
+          onSelected: (suggestion) {
             Get.toNamed(
               ProductDetailsPage.routeName,
               arguments: {

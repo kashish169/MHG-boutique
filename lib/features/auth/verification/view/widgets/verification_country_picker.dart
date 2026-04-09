@@ -43,7 +43,7 @@ class VerificationCountryPickerWidget extends StatelessWidget {
                         )
                       : Text(
                           controller.countryFlag.value,
-                          style: Theme.of(context).textTheme.headline2,
+                          style: Theme.of(context).textTheme.headlineMedium,
                         ),
               const SizedBox(width: 8),
               Text(

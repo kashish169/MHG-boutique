@@ -186,7 +186,7 @@ DEPENDENCIES:
   - map_launcher (from `.symlinks/plugins/map_launcher/ios`)
   - modal_progress_hud_nsn (from `.symlinks/plugins/modal_progress_hud_nsn/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
-  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - pay_ios (from `.symlinks/plugins/pay_ios/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
@@ -261,7 +261,7 @@ EXTERNAL SOURCES:
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_foundation:
-    :path: ".symlinks/plugins/path_provider_foundation/ios"
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
   pay_ios:
     :path: ".symlinks/plugins/pay_ios/ios"
   permission_handler_apple:
@@ -286,17 +286,17 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
-  app_tracking_transparency: 5b1745ef9ade815f7455cb6a0848349589afb7c5
+  app_tracking_transparency: 697a5a2215d1abd69b5d6420ddef4c91956bade7
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   FBAEMKit: daac7466b918752f020345be5c7d9787f98cfc07
   FBSDKCoreKit: 2cb033464b2134af0138f87d20b859eb3f9be359
   FBSDKCoreKit_Basics: d37280da2e65872f0e931d15f45d97ea324fec37
   FBSDKLoginKit: c47a3b90920702487b10b647c63520dc2676dad9
   Firebase: 07150e75d142fb9399f6777fa56a187b17f833a0
-  firebase_auth: 3f7820b22557dd4a1b024f4d86947d1a0ff8a10f
-  firebase_core: e477125798fc37cd4ab43ca6a8536bf7e0929c00
-  firebase_dynamic_links: d85cf455646322fd101c8a5a5942c3d47132fe80
-  firebase_messaging: 334d68c3a36b6d4d5cd91e4f42509e0d4ae49828
+  firebase_auth: 2aaf696eaafa1659bd0723a189a021688591aa66
+  firebase_core: 473743a68e72b1a854abc9d129862621092aa047
+  firebase_dynamic_links: 892e4ad3d2c4b6886fb1c81cc2fb8158a359c2da
+  firebase_messaging: db8874dea4fb57497af9601fc585658ee63ed0cf
   FirebaseAppCheckInterop: f95a4feb9089867aff1a4bdc2ce309137e07736a
   FirebaseAuth: a66c1e14ec58f41d154a4b41ce1a23ea00ad4805
   FirebaseCore: f86a1394906b97ac445ae49c92552a9425831bed
@@ -304,41 +304,41 @@ SPEC CHECKSUMS:
   FirebaseDynamicLinks: 1a387da899779e5ef34f4d6f8bdba882f90d0e67
   FirebaseInstallations: 7b99ef103f013624444c614397038219c45f8e63
   FirebaseMessaging: bb2c4f6422a753038fe137d90ae7c1af57251316
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  flutter_facebook_auth: 42016bec1574eabf69bc2fe4311e8cd55813d352
-  flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
-  flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
-  flutter_secure_storage: 23fc622d89d073675f2eaa109381aefbcf5a49be
-  fluttertoast: 31b00dabfa7fb7bacd9e7dbee580d7a2ff4bf265
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  flutter_facebook_auth: 3fca4985580f602bc27e2d94b01da28696878a2f
+  flutter_keyboard_visibility: 4625131e43015dbbe759d9b20daaf77e0e3f6619
+  flutter_local_notifications: ef18f0537538fcd18e9106b3ddc91cc10b4e579a
+  flutter_secure_storage: 2c2ff13db9e0a5647389bff88b0ecac56e3f3418
+  fluttertoast: 294ad8b4b83f149520f7c13484770323c54df109
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  geolocator_apple: cc556e6844d508c95df1e87e3ea6fa4e58c50401
-  google_maps_flutter_ios: abdac20d6ce8931f6ebc5f46616df241bfaa2cfd
-  google_sign_in_ios: 8115e3fbe097e6509beb819ed602d47369d9011f
+  geolocator_apple: 1d9e8e718b0aee61b8573d2d531eff76d00f383b
+  google_maps_flutter_ios: e523ee12cfa731f83c9200bd54f331bdbfd76a73
+  google_sign_in_ios: 8c4b89589e876fc9fcf22035d6208077008f6c03
   GoogleDataTransport: f0308f5905a745f94fb91fea9c6cbaf3831cb1bd
   GoogleMaps: 025272d5876d3b32604e5c080dc25eaf68764693
   GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
   GoogleUtilities: c63691989bf362ba0505507da00eeb326192e83e
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
-  map_launcher: e325db1261d029ff33e08e03baccffe09593ffea
-  modal_progress_hud_nsn: f6fb744cd060653d66ed8f325360ef3650eb2fde
+  map_launcher: b429f5dc548985f011d7c840f269cd2ee3b5d45e
+  modal_progress_hud_nsn: 3adb18f52cf6767c244f79bb06b532d9c5c94240
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
-  package_info_plus: 115f4ad11e0698c8c1c5d8a689390df880f47e85
-  path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
-  pay_ios: 8c7beb9c61d885f3f51b61f75f8793023fc8843a
-  permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
+  package_info_plus: 566e1b7a2f3900e4b0020914ad3fc051dcc95596
+  path_provider_foundation: 2a68637f8a62df7f6e790a428d1bdf72cb4e2d59
+  pay_ios: 2c48d76615ded0cfaff66185669501b8b1dfc55e
+  permission_handler_apple: 3787117e48f80715ff04a3830ca039283d6a4f29
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
-  share_plus: 599aa54e4ea31d4b4c0e9c911bcc26c55e791028
-  sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
-  smart_auth: 4bedbc118723912d0e45a07e8ab34039c19e04f2
-  sms_autofill: c461043483362c3f1709ee76eaae6eb570b31686
-  sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
+  share_plus: 35c6613d1452d4134cfdb14865ac23bff7e7f3c1
+  sign_in_with_apple: c5dcc141574c8c54d5ac99dd2163c0c72ad22418
+  smart_auth: 33668081c5f646af84f10492a067d25fdcd16951
+  sms_autofill: b36b2147535657fea83d7f3898d7831de70bd8e4
+  sqflite: 5b24d06a453c198c13b305ceea4b4286cc07cfe4
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
-  url_launcher_ios: 68d46cc9766d0c41dbdc884310529557e3cd7a86
-  video_player_avfoundation: 81e49bb3d9fb63dccf9fa0f6d877dc3ddbeac126
-  wakelock_plus: 8b09852c8876491e4b6d179e17dfe2a0b5f60d47
-  webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
+  url_launcher_ios: 9d5365b30ff416ba8e3d917bae5f7fb25f6a4a89
+  video_player_avfoundation: a8ea941d9519a60fa93a9908123c68e0917cbd1d
+  wakelock_plus: 8c239121a007daa1d6759c6acdc507860273dd2f
+  webview_flutter_wkwebview: 75789e80e2ad25e78ac88a17e5c2f82019277c53
 
 PODFILE CHECKSUM: fe5e039928e08cc3aa55730590fe5577354d32d2
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.16.2

@@ -35,7 +35,6 @@ class VerificationController extends GetxController {
   final TextEditingController codeController = TextEditingController();
   final TextEditingController phone = TextEditingController();
   final TextEditingController email = TextEditingController();
-  final smartAuth = SmartAuth();
   FirebaseAuth auth = FirebaseAuth.instance;
   String smsCode = '';
   RxInt timerValue = 60.obs;

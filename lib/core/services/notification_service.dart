@@ -15,7 +15,7 @@ class NotificationService {
     const iOS = DarwinInitializationSettings();
     const initSettings = InitializationSettings(android: android, iOS: iOS);
     flutterLocalNotificationsPlugin.initialize(
-      initSettings,
+      settings: initSettings,
     );
     registerNotification();
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage? message) {
@@ -85,6 +85,9 @@ class NotificationService {
     const iOS = DarwinNotificationDetails();
     const platform = NotificationDetails(android: android, iOS: iOS);
     await flutterLocalNotificationsPlugin.show(
-        math.Random().nextInt(100), title, body, platform);
+        id: math.Random().nextInt(100),
+        title: title,
+        body: body,
+        notificationDetails: platform);
   }
 }

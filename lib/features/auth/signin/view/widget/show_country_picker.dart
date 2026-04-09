@@ -10,8 +10,8 @@ showCountries(BuildContext context, void Function(Country) onSelect) {
     countryListTheme: CountryListThemeData(
       flagSize: 25,
       backgroundColor: Colors.white,
-      searchTextStyle: Theme.of(context).textTheme.headline3,
-      textStyle: Theme.of(context).textTheme.headline3,
+      searchTextStyle: Theme.of(context).textTheme.headlineSmall,
+      textStyle: Theme.of(context).textTheme.headlineSmall,
       bottomSheetHeight: 500,
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(20.0),

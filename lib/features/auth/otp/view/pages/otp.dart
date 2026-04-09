@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/auth/verification/controller/verification_controller.dart';
 import 'package:mhg/features/auth/otp/controller/otp_controller.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -23,10 +24,10 @@ class OtpPage extends StatelessWidget {
         builder: (controller) => ModalProgressHUD(
           inAsyncCall: controller.isLoading.value,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 OtpTopPart(),
                 OtpBottomPart(),
               ],

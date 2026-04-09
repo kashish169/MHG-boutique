@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mhg/constants/app_colors.dart';
 import 'package:mhg/features/profile/controller/profile_controller.dart';
@@ -74,7 +75,8 @@ class _MainWrapperState extends State<MainWrapper> {
           appBar: PreferredSize(
               preferredSize: const Size.fromHeight(0),
               child: AppBar(
-                backgroundColor: Colors.black,
+                backgroundColor: Colors.transparent,
+                systemOverlayStyle: SystemUiOverlayStyle.light,
               )),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,

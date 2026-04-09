@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation android:id="@id/tamara_information_nav_graph" app:startDestination="@id/tamaraInformationFragment"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <fragment android:label="tamara_information_fragment" android:name="co.tamara.sdk.ui.TamaraInformationFragment" android:id="@id/tamaraInformationFragment">
+        <argument android:name="type" android:defaultValue="" app:argType="string" />
+        <argument android:name="capture_payment" app:argType="co.tamara.sdk.model.request.CapturePaymentRequest" />
+        <argument android:name="refunds" app:argType="co.tamara.sdk.model.request.PaymentRefund" />
+        <argument android:name="order_reference" app:argType="co.tamara.sdk.model.request.OrderReference" />
+        <argument android:name="cancel_order" app:argType="co.tamara.sdk.model.request.CancelOrder" />
+        <argument android:name="payment_options" app:argType="co.tamara.sdk.model.request.PaymentOptions" />
+        <argument android:name="order_id" android:defaultValue="" app:argType="string" />
+    </fragment>
+</navigation>

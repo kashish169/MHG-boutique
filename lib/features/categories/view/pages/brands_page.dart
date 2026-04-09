@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants/app_assets.dart';
 import '../../../products_page/view/pages/product_page.dart';
 import '../../models/brand_model.dart';
 
@@ -15,6 +14,14 @@ class BrandsPage extends StatefulWidget {
 }
 
 class _BrandsPageState extends State<BrandsPage> {
+  ImageProvider _brandImage(BrandCategoryModel brand) {
+    final url = brand.imageLink ?? brand.brandImage;
+    if (url != null && url.isNotEmpty) {
+      return NetworkImage(url);
+    }
+    return AssetImage(AppAssets.loadingHolder);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,7 +51,7 @@ class _BrandsPageState extends State<BrandsPage> {
                     width: double.infinity,
                     child: Image(
                         fit: BoxFit.cover,
-                        image: NetworkImage(widget.brands[index].imageLink!)),
+                        image: _brandImage(widget.brands[index])),
                   ),
                 );
               }),
@@ -74,8 +81,8 @@ class _BrandsPageState extends State<BrandsPage> {
                               width: double.infinity,
                               child: Image(
                                   fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      widget.brands[index + 3].imageLink!)),
+                                  image: _brandImage(
+                                      widget.brands[index + 3])),
                             ),
                           )),
                 ),

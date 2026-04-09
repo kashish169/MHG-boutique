@@ -81,6 +81,7 @@ class SignUpController extends GetxController {
     Either<Failure, ApiResponse> results = await signUpRepo.signUp(
       body: body,
     );
+    log('results: ${results.toString()}');
     Get.back();
     results.fold((l) {
       showSnackBar(l.message);
@@ -132,6 +133,7 @@ class SignUpController extends GetxController {
         // profileController.updateProfileInfo(ProfileInfoModal.fromJson(data));
         Get.offAllNamed(MainWrapper.routeName);
       } else {
+        log('error message: $message');
         AppToasts.errorToast(message);
       }
     });

@@ -43,7 +43,7 @@ class _BottomThirdAuthState extends State<BottomThirdAuth> {
                       .getUserData(fields: "name,email");
                   await controller.signUp(
                       accountType: 'facebook',
-                      token: login.accessToken!.token,
+                      token: login.accessToken!.tokenString,
                       email: userData['email'],
                       name: userData['name']);
                 }),
@@ -51,16 +51,17 @@ class _BottomThirdAuthState extends State<BottomThirdAuth> {
             CardAuth(
                 iconPath: AppAssets.googleIcon,
                 onPressed: () async {
-                  if (await GoogleSignIn().isSignedIn()) {
-                    await GoogleSignIn().signOut();
-                  }
-                  final GoogleSignInAccount? gUser =
-                      await GoogleSignIn().signIn();
+                  await GoogleSignIn.instance.initialize();
+                  await GoogleSignIn.instance.signOut();
+                  final GoogleSignInAccount gUser =
+                      await GoogleSignIn.instance.authenticate();
                   final GoogleSignInAuthentication gAuth =
-                      await gUser!.authentication;
+                      await gUser.authentication;
+                  final String? token = gAuth.idToken;
+                  if (token == null) return;
                   await controller.signUp(
                       accountType: 'google',
-                      token: gAuth.accessToken,
+                      token: token,
                       email: gUser.email,
                       name: gUser.displayName);
                 }),

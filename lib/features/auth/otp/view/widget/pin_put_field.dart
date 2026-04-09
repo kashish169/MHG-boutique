@@ -12,7 +12,6 @@ class PinPutField extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<VerificationController>();
     return Pinput(
-      androidSmsAutofillMethod: AndroidSmsAutofillMethod.smsRetrieverApi,
       length: 6,
       controller: controller.codeController,
       defaultPinTheme: defaultPinTheme,

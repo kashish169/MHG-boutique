@@ -11,11 +11,17 @@ class CategoriesModel {
     required this.menus,
   });
 
-  factory CategoriesModel.fromJson(Map<String, dynamic> json) =>
-      CategoriesModel(
-        menus: List<MenuModel>.from(
-            json["menus"].map((x) => MenuModel.fromJson(x))),
-      );
+  factory CategoriesModel.fromJson(Map<String, dynamic> json) {
+    final raw = json["menus"];
+    if (raw == null) {
+      return CategoriesModel(menus: []);
+    }
+    return CategoriesModel(
+      menus: List<MenuModel>.from(
+        (raw as List).map((x) => MenuModel.fromJson(x as Map<String, dynamic>)),
+      ),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "menus": List<dynamic>.from(menus.map((x) => x.toJson())),

@@ -28,7 +28,8 @@ class SignInWithOutOtpModel {
       {this.email,
       required this.fcmToken,
       required this.password,
-      this.phoneNumber});
+      this.phoneNumber
+      });
   String? email;
   String fcmToken;
   String password;

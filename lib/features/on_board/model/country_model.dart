@@ -24,16 +24,25 @@ class CountryModel {
   });
 
   factory CountryModel.fromJson(Map<String, dynamic> json) => CountryModel(
-        id: json['id'],
-        prefix: json['prefix'],
-        currencyId: json['currency_id'],
-        name: json['name'],
-        falg: json['flag'],
-        flagLink: json['flag_link'],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-        currency: CurrencyModel.fromJson(json["currency"]),
+        id: (json['id'] as num?)?.toInt() ?? 0,
+        prefix: json['prefix']?.toString() ?? '',
+        currencyId: (json['currency_id'] as num?)?.toInt() ?? 0,
+        name: json['name']?.toString() ?? '',
+        falg: json['flag']?.toString() ?? '',
+        flagLink: json['flag_link']?.toString() ?? '',
+        createdAt: _parseDate(json["created_at"]),
+        updatedAt: _parseDate(json["updated_at"]),
+        currency: CurrencyModel.fromJson(
+          (json["currency"] as Map<String, dynamic>?) ?? <String, dynamic>{},
+        ),
       );
+}
+
+DateTime? _parseDate(dynamic value) {
+  if (value == null) return null;
+  final raw = value.toString();
+  if (raw.isEmpty) return null;
+  return DateTime.tryParse(raw);
 }
 
 class TermsModel {

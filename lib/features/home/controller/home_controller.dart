@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/home/models/home_model.dart';
 import 'package:mhg/features/home/models/product_model.dart';
@@ -56,6 +58,7 @@ class HomeController extends GetxController {
           log("HOME RESPONSE ERROR ${l.message}");
         },
         (r) {
+          debugPrint('getHome: raw response ${jsonEncode(r.object)}');
           var statusCode = r.object["code"];
           var message = r.object["message"];
 

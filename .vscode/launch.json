@@ -1,0 +1,46 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "mhg (Flutter)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "mhg (Flutter Attach)",
+      "request": "attach",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "program": "lib/main.dart"
+    },
+    {
+      "name": "mhg (Flutter Attach, DDS fix)",
+      "request": "attach",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "program": "lib/main.dart",
+      "args": [
+        "--no-dds",
+        "--app-id",
+        "com.starttech.mhgboutique"
+      ]
+    },
+    {
+      "name": "mhg (Attach, VM Service URL)",
+      "request": "attach",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "program": "lib/main.dart",
+      "vmServiceUri": "${input:flutterVmServiceUri}"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "flutterVmServiceUri",
+      "type": "promptString",
+      "description": "Full VM Service URL from flutter run (http://127.0.0.1:.../...=/). Unreliable while flutter run is active; prefer Attach or IDE Launch."
+    }
+  ]
+}

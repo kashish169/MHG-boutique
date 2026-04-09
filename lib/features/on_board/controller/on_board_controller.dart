@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
@@ -81,6 +82,7 @@ class OnboardController extends GetxController {
   }
 
   getCountries() async {
+    debugPrint('getCountries: start');
     try {
       isLoading = true;
       isError = false;
@@ -88,30 +90,55 @@ class OnboardController extends GetxController {
       Either<Failure, ApiResponse> results = await unBoardRepo.getCountryData();
       isLoading = false;
       update();
-      results.fold(
-        (l) {
+      // Await fold so errors inside the async right branch are caught by try/catch
+      // (otherwise RangeError/parsing errors become "unhandled async" and skip catch).
+      await results.fold<Future<void>>(
+        (l) async {
           isError = true;
           update();
+          log('getCountries: Left Failure -> ${l.message}', name: 'OnboardController');
+          debugPrint('getCountries: repo failure ${l.message}');
           AppToasts.errorToast(l.message);
-          log("onBoard ${l.message}");
         },
         (r) async {
-          var statusCode = r.object["code"];
-          var message = r.object["message"];
-          var stats = r.object['isSuccessful'];
-          log("Privacy Status Code $statusCode");
+          debugPrint(
+            'getCountries: raw response ${jsonEncode(r.object)}',
+          );
+          final statusCode = r.object['code'];
+          final message = r.object['message'];
+          final stats = r.object['isSuccessful'];
+          log(
+            'getCountries: API code=$statusCode isSuccessful=$stats message=$message',
+            name: 'OnboardController',
+          );
+          debugPrint(
+            'getCountries: API code=$statusCode isSuccessful=$stats message=$message',
+          );
           if (stats == true) {
-            List json = r.object['data'];
+            final List json = r.object['data'];
             countryList = json.map((e) => CountryModel.fromJson(e)).toList();
+            log(
+              'getCountries: parsed ${countryList.length} countries',
+              name: 'OnboardController',
+            );
 
             ///todo
-            log(countryList.toString());
-            countryList = [
-              countryList.first,
-              countryList[1],
-              countryList[3],
-              countryList[5]
-            ];
+            if (countryList.length >= 6) {
+              countryList = [
+                countryList.first,
+                countryList[1],
+                countryList[3],
+                countryList[5]
+              ];
+            } else {
+              log(
+                'getCountries: need 6+ countries for subset, got ${countryList.length}',
+                name: 'OnboardController',
+              );
+              debugPrint(
+                'getCountries: skipping subset (need 6+, have ${countryList.length})',
+              );
+            }
             if (countryList.isNotEmpty) {
               selectedCountryFlage = countryList.first.flagLink;
               App.countryName = countryList.first.name;
@@ -150,15 +177,24 @@ class OnboardController extends GetxController {
           } else {
             isError = true;
             update();
-            AppToasts.errorToast(message);
+            final msg = message?.toString() ?? 'Unknown error';
+            log('getCountries: API unsuccessful -> $msg', name: 'OnboardController');
+            debugPrint('getCountries: API unsuccessful $msg');
+            AppToasts.errorToast(msg);
           }
         },
       );
-    } catch (e) {
+    } catch (e, st) {
       isError = true;
       update();
-      AppToasts.errorToast("$e");
-      print("catch error" "$e");
+      log(
+        'getCountries: exception',
+        name: 'OnboardController',
+        error: e,
+        stackTrace: st,
+      );
+      debugPrint('getCountries: catch $e\n$st');
+      AppToasts.errorToast('$e');
     }
   }
 

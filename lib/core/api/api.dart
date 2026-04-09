@@ -1,11 +1,21 @@
 import 'dart:io';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 
 import '../../app/app.dart';
 
 class Api {
-  static String baseUrl = 'https://api.mhgboutique.com';
+  /// Uses `ROOT_API` from `.env` after [dotenv.load]; falls back to staging if unset.
+  static String get baseUrl {
+    if (dotenv.isInitialized) {
+      final raw = dotenv.env['ROOT_API']?.trim();
+      if (raw != null && raw.isNotEmpty) return raw;
+    }
+    return 'https://api.mhgboutique.com';
+    // return "http://192.168.234.20:8000";
+  }
+
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Country-Id': "${App.countryId}",

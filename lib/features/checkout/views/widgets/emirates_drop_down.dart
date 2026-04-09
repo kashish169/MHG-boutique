@@ -16,9 +16,26 @@ class CountriesDropDown extends StatefulWidget {
 class _CountriesDropDownState extends State<CountriesDropDown> {
   final TextEditingController _searchController = TextEditingController();
   final controller = Get.find<CheckoutController>();
+  late final ValueNotifier<String?> _valueNotifier;
+
+  @override
+  void initState() {
+    super.initState();
+    _valueNotifier = ValueNotifier<String?>(controller.selectedCity);
+  }
+
+  @override
+  void dispose() {
+    _valueNotifier.dispose();
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (_valueNotifier.value != controller.selectedCity) {
+      _valueNotifier.value = controller.selectedCity;
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -36,9 +53,10 @@ class _CountriesDropDownState extends State<CountriesDropDown> {
         DropdownButtonHideUnderline(
           child: DropdownButton2<String>(
             isExpanded: true,
-            value: controller.selectedCity,
+            valueListenable: _valueNotifier,
             onChanged: (value) {
               controller.setCity(value);
+              _valueNotifier.value = value;
               setState(() {});
             },
             hint: Text(
@@ -50,7 +68,7 @@ class _CountriesDropDownState extends State<CountriesDropDown> {
             ),
             items: widget.cities
                 .map(
-                  (e) => DropdownMenuItem<String>(
+                  (e) => DropdownItem<String>(
                     value: e,
                     child: RichText(
                       text: TextSpan(
@@ -71,10 +89,10 @@ class _CountriesDropDownState extends State<CountriesDropDown> {
                   ),
                 )
                 .toList(),
-            dropdownSearchData: DropdownSearchData(
+            dropdownSearchData: DropdownSearchData<String>(
               searchController: _searchController,
-              searchInnerWidgetHeight: 50,
-              searchInnerWidget: Container(
+              searchBarWidgetHeight: 50,
+              searchBarWidget: Container(
                 height: 50,
                 padding: const EdgeInsets.only(
                   top: 8,
@@ -109,9 +127,9 @@ class _CountriesDropDownState extends State<CountriesDropDown> {
                 ),
               ),
               searchMatchFn: (item, searchValue) {
-                return (item.value.toString().contains(
-                      searchValue,
-                    ));
+                return item.value?.toString().toLowerCase().contains(
+                      searchValue.toLowerCase(),
+                    ) ?? false;
               },
             ),
             onMenuStateChange: (isOpen) {

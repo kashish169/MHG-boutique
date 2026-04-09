@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation android:id="@id/nav_graph" app:startDestination="@id/tamaraPaymentFragment"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <fragment android:label="tamara_payment_fragment" android:name="co.tamara.sdk.ui.TamaraPaymentFragment" android:id="@id/tamaraPaymentFragment">
+        <argument android:name="order" app:argType="co.tamara.sdk.model.Order" />
+        <action android:id="@id/action_tamaraPaymentFragment_to_webViewFragment" app:destination="@id/webViewFragment" />
+        <argument android:name="payment_status" android:defaultValue="STATUS_PENDING" app:argType="string" />
+    </fragment>
+    <fragment android:label="fragment_web_view" android:name="co.tamara.sdk.ui.WebViewFragment" android:id="@id/webViewFragment">
+        <argument android:name="url" app:argType="string" />
+        <action android:id="@id/action_webViewFragment_to_tamaraPaymentFragment" app:destination="@id/tamaraPaymentFragment">
+            <argument android:name="payment_status" android:defaultValue="STATUS_CANCEL" />
+            <argument android:name="order" android:defaultValue="null" />
+        </action>
+    </fragment>
+</navigation>

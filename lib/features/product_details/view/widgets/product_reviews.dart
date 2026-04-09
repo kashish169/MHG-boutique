@@ -125,7 +125,7 @@ class ProductDetailsReview extends StatelessWidget {
                       controller.ratingValue = 3;
                       Get.defaultDialog(
                         title: "Add Review".tr,
-                        titleStyle: Theme.of(context).textTheme.headline2,
+                        titleStyle: Theme.of(context).textTheme.headlineMedium,
                         titlePadding: const EdgeInsets.only(
                           top: 20,
                         ),

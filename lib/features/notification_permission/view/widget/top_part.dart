@@ -27,7 +27,7 @@ class ENotificationsTopPart extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text("THE ULTIMATE HOUSE OF EMIRATI LUXURY".tr,
-                    style: Theme.of(context).textTheme.headline1!.copyWith(
+                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                           fontSize: 10,
                           fontWeight: FontWeight.w400,
                           color: AppColors.white.withOpacity(0.5),
@@ -60,7 +60,7 @@ class ENotificationsTopPart extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text("to Stay up to date on latest offers and more".tr,
-                    style: Theme.of(context).textTheme.headline1!.copyWith(
+                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
                           color: AppColors.white,

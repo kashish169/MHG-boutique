@@ -4,11 +4,10 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
 import 'package:mhg/app/app.dart';
 import 'package:mhg/features/splash/view/update_view.dart';
-import 'package:mhg/main.dart';
 import '../api/api.dart';
 import '../models/api_response.dart';
 import 'package:http/http.dart' as http;
@@ -16,6 +15,68 @@ import '../models/failure.dart';
 import 'http_services_repository.dart';
 
 class HttpServiceImplementation implements HttpService {
+  /// Paths are joined with [Api.baseUrl]. Full `http(s)://` URLs and chat URLs are left as-is.
+  String _resolveUrl(String url) {
+    if (url.contains('chat')) return url;
+    if (url.startsWith('http://') || url.startsWith('https://')) return url;
+    return Api.baseUrl + url;
+  }
+
+  /// First stack frame outside this file in app code — typically repository / controller.
+  String _httpCallerLocation() {
+    final frames = StackTrace.current.toString().split('\n');
+    for (final line in frames) {
+      if (line.contains('http_services_impl.dart')) continue;
+      if (line.contains('package:mhg')) {
+        return line.trim();
+      }
+    }
+    return '';
+  }
+
+  String _formatBody(Object? body) {
+    if (body == null) return '(none)';
+    if (body is String) {
+      if (body.length > 4000) {
+        return '${body.substring(0, 4000)}… (truncated, ${body.length} chars)';
+      }
+      return body;
+    }
+    if (body is List<int>) {
+      return '<binary ${body.length} bytes>';
+    }
+    return body.toString();
+  }
+
+  void _debugLogApiHit({
+    required String method,
+    required Uri uri,
+    Object? body,
+    Map<String, String>? multipartFields,
+    Map<String, File>? multipartFiles,
+  }) {
+    final caller = _httpCallerLocation();
+    final query = uri.queryParameters;
+    final queryStr = query.isEmpty ? '(none)' : jsonEncode(query);
+    final buf = StringBuffer()
+      ..writeln('[HTTP] ▶ $method ${uri.toString()}')
+      ..writeln('  from: ${caller.isEmpty ? '(unknown)' : caller}')
+      ..writeln('  query: $queryStr');
+    if (multipartFields != null || multipartFiles != null) {
+      buf.writeln(
+        '  fields: ${multipartFields == null || multipartFields.isEmpty ? '(none)' : jsonEncode(multipartFields)}',
+      );
+      if (multipartFiles != null && multipartFiles.isNotEmpty) {
+        buf.writeln(
+          '  files: ${multipartFiles.keys.map((k) => '$k → ${multipartFiles[k]!.path}').join(', ')}',
+        );
+      }
+    } else {
+      buf.writeln('  body: ${_formatBody(body)}');
+    }
+    debugPrint(buf.toString());
+  }
+
   Future checkUpgrade(http.Response? responseData) async {
     if (jsonDecode(responseData!.body)['message'] == App.upgradeMessage) {
       await Get.toNamed(UpdateView.routeName);
@@ -28,15 +89,15 @@ class HttpServiceImplementation implements HttpService {
     bool isAuthorized = false,
   }) async {
     try {
-      log("${Api.authorizedheaders}");
-      log("url is:$url\n${Api.headers}");
+      final uri = Uri.parse(_resolveUrl(url));
+      _debugLogApiHit(method: 'GET', uri: uri);
       final response = await http
           .get(
-            Uri.parse(url.contains('chat') ? url : (Api.baseUrl + url)),
+            uri,
             headers: isAuthorized == true ? Api.authorizedheaders : Api.headers,
           )
           .timeout(const Duration(seconds: 40));
-      log("${response.statusCode}");
+      debugPrint('[HTTP] ◀ GET ${response.statusCode} ${uri.toString()}');
       final parsedResponse = jsonDecode(response.body);
       http.Response? responseData = handleResponse(response);
 
@@ -70,17 +131,17 @@ class HttpServiceImplementation implements HttpService {
     Object? body,
   }) async {
     try {
-      log('$body');
+      final uri = Uri.parse(_resolveUrl(url));
+      _debugLogApiHit(method: 'POST', uri: uri, body: body);
 
       final response = await http
           .post(
-            Uri.parse(url.contains('chat') ? url : (Api.baseUrl + url)),
+            uri,
             headers: isAuthorized == true ? Api.authorizedheaders : Api.headers,
             body: body,
           )
           .timeout(const Duration(seconds: 30));
-      log("${response.statusCode}");
-      log(response.body);
+      debugPrint('[HTTP] ◀ POST ${response.statusCode} ${uri.toString()}');
 
       final parsedResponse = jsonDecode(response.body);
       http.Response? responseData = handleResponse(response);
@@ -108,18 +169,17 @@ class HttpServiceImplementation implements HttpService {
     Object? body,
   }) async {
     try {
-      log('$body');
-      log(Api.baseUrl + url);
+      final uri = Uri.parse(_resolveUrl(url));
+      _debugLogApiHit(method: 'DELETE', uri: uri, body: body);
 
       final response = await http
           .delete(
-            Uri.parse(Api.baseUrl + url),
+            uri,
             headers: isAuthorized == true ? Api.authorizedheaders : Api.headers,
             body: body,
           )
           .timeout(const Duration(seconds: 30));
-      log("${response.statusCode}");
-      log(response.body);
+      debugPrint('[HTTP] ◀ DELETE ${response.statusCode} ${uri.toString()}');
 
       final parsedResponse = jsonDecode(response.body);
       http.Response? responseData = handleResponse(response);
@@ -127,7 +187,6 @@ class HttpServiceImplementation implements HttpService {
         await checkUpgrade(responseData);
         return Right(ApiResponse(response.statusCode, parsedResponse));
       } else {
-        log(response.body);
         return Left(BadRequestError('${response.statusCode}'));
       }
     } on TimeoutException catch (e) {
@@ -148,15 +207,16 @@ class HttpServiceImplementation implements HttpService {
     Object? body,
   }) async {
     try {
-      log('$body');
+      final uri = Uri.parse(_resolveUrl(url));
+      _debugLogApiHit(method: 'PUT', uri: uri, body: body);
       final response = await http
           .put(
-            Uri.parse(Api.baseUrl + url),
+            uri,
             headers: isAuthorized == true ? Api.authorizedheaders : Api.headers,
             body: body,
           )
           .timeout(const Duration(seconds: 30));
-      log("${response.statusCode}");
+      debugPrint('[HTTP] ◀ PUT ${response.statusCode} ${uri.toString()}');
       final parsedResponse = jsonDecode(response.body);
       http.Response? responseData = handleResponse(response);
       if (responseData != null) {
@@ -183,17 +243,17 @@ class HttpServiceImplementation implements HttpService {
     Object? body,
   }) async {
     try {
-      log('$body');
+      final uri = Uri.parse(_resolveUrl(url));
+      _debugLogApiHit(method: 'PATCH', uri: uri, body: body);
 
       final response = await http
           .patch(
-            Uri.parse(Api.baseUrl + url),
+            uri,
             headers: isAuthorized == true ? Api.authorizedheaders : Api.headers,
             body: body,
           )
           .timeout(const Duration(seconds: 30));
-      log("${response.statusCode}");
-      log(response.body);
+      debugPrint('[HTTP] ◀ PATCH ${response.statusCode} ${uri.toString()}');
 
       final parsedResponse = jsonDecode(response.body);
       http.Response? responseData = handleResponse(response);
@@ -224,9 +284,16 @@ class HttpServiceImplementation implements HttpService {
   }) async {
     late http.Response response;
     http.MultipartRequest request;
+    final uri = Uri.parse(_resolveUrl(url));
+    _debugLogApiHit(
+      method: 'POST (multipart)',
+      uri: uri,
+      multipartFields: body,
+      multipartFiles: files,
+    );
     request = http.MultipartRequest(
       'POST',
-      Uri.parse(url.contains('chat') ? url : (Api.baseUrl + url)),
+      uri,
     );
     try {
       request.headers.addAll(
@@ -239,6 +306,9 @@ class HttpServiceImplementation implements HttpService {
         });
       }
       response = await http.Response.fromStream(await request.send());
+      debugPrint(
+        '[HTTP] ◀ POST multipart ${response.statusCode} ${uri.toString()}',
+      );
       final parsedResponse = jsonDecode(response.body);
       http.Response? responseData = handleResponse(response);
       if (responseData != null) {

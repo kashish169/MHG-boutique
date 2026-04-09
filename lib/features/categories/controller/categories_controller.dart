@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:mhg/features/categories/models/categories_model.dart';
 import 'package:mhg/features/categories/repository/categories_repo.dart';
@@ -38,7 +40,12 @@ class CategoriesController extends GetxController {
           var statusCode = r.object["code"];
           var message = r.object["message"];
           if (statusCode == 200) {
-            categoriesModel = CategoriesModel.fromJson(r.object["data"]);
+            final data = r.object["data"];
+            if (data is Map<String, dynamic>) {
+              categoriesModel = CategoriesModel.fromJson(data);
+            } else {
+              categoriesModel = CategoriesModel(menus: []);
+            }
           } else {
             AppToasts.errorToast(message);
           }
@@ -50,6 +57,7 @@ class CategoriesController extends GetxController {
   }
 
   Future<void> getBrands() async {
+    debugPrint('getBrands: start');
     try {
       isLoading(true);
       isError(false);
@@ -59,14 +67,22 @@ class CategoriesController extends GetxController {
       results.fold(
         (l) {
           isError(true);
+          debugPrint('getBrands: error occurred ${l.message}');
         },
         (r) {
+          debugPrint('getBrands: raw response ${jsonEncode(r.object)}');
           var statusCode = r.object["code"];
           var message = r.object["message"];
           if (statusCode == 200) {
-            brands = (r.object["data"] as List)
-                .map((e) => BrandCategoryModel.fromJson(e))
-                .toList();
+            final raw = r.object["data"];
+            if (raw is List) {
+              brands = raw
+                  .map((e) =>
+                      BrandCategoryModel.fromJson(e as Map<String, dynamic>))
+                  .toList();
+            } else {
+              brands = [];
+            }
           } else {
             AppToasts.errorToast(message);
           }
@@ -74,6 +90,7 @@ class CategoriesController extends GetxController {
       );
     } catch (e, s) {
       log("$e $s");
+      debugPrint('getBrands: error occurred $e\nStackTrace: $s');
     }
   }
 

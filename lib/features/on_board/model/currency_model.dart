@@ -18,12 +18,19 @@ class CurrencyModel {
   });
 
   factory CurrencyModel.fromJson(Map<String, dynamic> json) => CurrencyModel(
-        id: json["id"],
-        currency: json["currency"],
+        id: (json["id"] as num?)?.toInt() ?? 0,
+        currency: json["currency"]?.toString() ?? '',
         iso: json["iso"],
         symbol: json["symbol"],
-        convertFromUsd: json["convert_from_usd"].toDouble(),
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        convertFromUsd: (json["convert_from_usd"] as num?)?.toDouble(),
+        createdAt: _parseDate(json["created_at"]),
+        updatedAt: _parseDate(json["updated_at"]),
       );
+}
+
+DateTime? _parseDate(dynamic value) {
+  if (value == null) return null;
+  final raw = value.toString();
+  if (raw.isEmpty) return null;
+  return DateTime.tryParse(raw);
 }

@@ -3,17 +3,17 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  firebase_auth
   firebase_core
   flutter_secure_storage_windows
   geolocator_windows
-  modal_progress_hud_nsn
   permission_handler_windows
   share_plus
-  smart_auth
   url_launcher_windows
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
+  flutter_local_notifications_windows
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)
